@@ -3,7 +3,7 @@ OpenEduAnalytics is a fully open-sourced [(MIT license)](https://github.com/micr
 
 You can setup a fully functional test environment with a test data set in 3 steps:
 1) Open cloud shell in your azure subscription \
-[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
+[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash){:target="_blank"}
 2) Download this repo to your azure clouddrive \
 `cd clouddrive`\
 `git clone https://github.com/microsoft/OpenEduAnalytics`
