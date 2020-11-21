@@ -1,4 +1,15 @@
 # OpenEduAnalytics
+OpenEduAnalytics is a fully open-sourced [(MIT license)](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE) data integration and analytics solution for the education sector.
+
+You can setup a fully functional test environment with a test data set in 3 steps:
+1) Open cloud shell in your azure subscription \
+[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
+2) Download this repo to your azure clouddrive \
+`cd clouddrive`\
+`git clone https://github.com/microsoft/OpenEduAnalytics`
+3) Run the setup script\
+`./OpenEduAnalytics/setup_testenv.sh`
+
 
 
 # Contributing
