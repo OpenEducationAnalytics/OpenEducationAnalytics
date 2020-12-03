@@ -10,6 +10,14 @@ You can setup a fully functional test environment with a test data set in 3 step
 3) Run the setup script\
 `./OpenEduAnalytics/setup_testenv.sh`
 
+Because of issues with automating the provisioning of Synapse Notebooks, these additional steps are currently required for now...
+4) In the cloud shell window, click on the upload/download icon, select "Manage file share", navigate to OpenEduAnalytics, download the notebook within each module and package folder.
+5) In the cloud shell window, click on the link for your newly created Synapse instance
+6) In Synapse, click on Develop, click on the "+", and select "Import", then multi-select all of the notebooks you just downloaded, and complete the import.
+7) Open each notebook in Synapse, and do the following:
+	* ensure that the "Attach to" dropdown is set to "spark1"
+	* ensure that the "Language" dropdown is set to "PySpark"
+	* click on "Run all" (make sure to run the Contoso_ISD notebook last because it depends on the others)
 
 # Contributing
 

@@ -19,7 +19,8 @@ fi
 #read -p 'Enter an org id, using only lowercase letters and numbers (eg, contosoisd3): ' org_id
 org_id=$1
 #read -p 'Enter the location for the Azure resources to be create in (eg, eastus, westus, northeurope) [eastus]: ' location
-location=${$2:-eastus}
+location=$2
+location=${location:-eastus}
 
 resource_group="EduAnalytics${org_id}"
 subscription_id=$(az account show --query id -o tsv)
@@ -98,5 +99,5 @@ az role assignment create --role "Storage Blob Data Contributor" --assignee $ext
 
 # Setup is complete. Provide a link for user to jump to synapse studio.
 workspace_url=$(az synapse workspace show --name $synapse_workspace --resource-group $resource_group | jq -r '.connectivityEndpoints | .web')
-echo "Setup complete."
+echo "--> Setup complete."
 echo "Click on this url to open your Synapse Workspace: $workspace_url"

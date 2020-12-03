@@ -22,6 +22,6 @@ echo "--> Copying test data set from: $source  to: $destination"
 az storage copy -s $source -d $destination --recursive
 
 # Update the notebook to refer to the correct storage account
-sed -i "s/storage_account = '.*'/storage_account = '$storage_account'/" $this_file_path/contoso_sis.ipynb
+sed -i "s/storage_account = '.*'/storage_account = '$storage_account'/" $this_file_path/notebooks/contoso_sis.ipynb
 
 # todo: import the notebook
