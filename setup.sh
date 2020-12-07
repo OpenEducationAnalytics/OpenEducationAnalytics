@@ -1,18 +1,17 @@
 #!/bin/bash
 
 # Provisions and configures the OpenEduAnalytics base architecture, as well as the Contoso package.
-echo "This script will setup a test Open Edu Analytics environment within a separate resource group."
-
 if [ $# -ne 1 ]; then
     echo "This setup script will install the Open Edu Analytics base architecture along with the ContosoISD package and test data into a newly created resource group."
-    echo "Invoke this script like this:  setup_test_env.sh <testOrgId>"
-    echo "where testOrgId is an id for test env (eg, testcontosoisd)"
+    echo "Invoke this script like this:  setup.sh <OrgId>"
+    echo "where OrgId is an id for the env (eg, CISD3)"
     exit 1
 fi
 
 org_id=$1
+org_id_lowercase=${org_id,,}
 resource_group="EduAnalytics${org_id}"
-synapse_workspace="syeduanalytics${org_id}"
+synapse_workspace="syeduanalytics${org_id_lowercase}"
 
 # The assumption here is that this script is in the base path of the OpenEduAnalytics project.
 oea_path=$(dirname $(realpath $0))

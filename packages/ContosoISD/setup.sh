@@ -9,7 +9,8 @@ fi
 
 this_file_path=$(dirname $(realpath $0))
 org_id=$1
-storage_account="steduanalytics${org_id}"
+org_id_lowercase=${org_id,,}
+storage_account="steduanalytics${org_id_lowercase}"
 echo "--> Installing: $this_file_path, for org: $org_id"
 module_path="$this_file_path/../../modules"
 

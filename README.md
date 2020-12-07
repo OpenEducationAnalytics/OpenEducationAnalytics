@@ -4,20 +4,19 @@ OpenEduAnalytics is a fully open-sourced [(MIT license)](https://github.com/micr
 You can setup a fully functional test environment with a test data set in 3 steps:
 1) Open cloud shell in your azure subscription (use ctrl+click on the button below to open in a new page)\
 [![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
-2) Download this repo to your azure clouddrive \
+1) Download this repo to your azure clouddrive \
 `cd clouddrive`\
 `git clone https://github.com/microsoft/OpenEduAnalytics`
-3) Run the setup script\
-`./OpenEduAnalytics/setup_testenv.sh`
+1) Run the setup script and specify an <OrgId> for use as a suffix when provisioning Azure resources (use your organization's abbreviation or something similar)\
+`./OpenEduAnalytics/setup.sh <OrgId>`
 
-Because of issues with automating the provisioning of Synapse Notebooks, these additional steps are currently required for now...
-4) In the cloud shell window, click on the upload/download icon, select "Manage file share", navigate to OpenEduAnalytics, download the notebook within each module and package folder.
-5) In the cloud shell window, click on the link for your newly created Synapse instance
-6) In Synapse, click on Develop, click on the "+", and select "Import", then multi-select all of the notebooks you just downloaded, and complete the import.
-7) Open each notebook in Synapse, and do the following:
-	* ensure that the "Attach to" dropdown is set to "spark1"
-	* ensure that the "Language" dropdown is set to "PySpark"
-	* click on "Run all" (make sure to run the Contoso_ISD notebook last because it depends on the others)
+Because of issues with automating the provisioning of Synapse Notebooks, these additional steps are currently required for now.
+1) In the cloud shell window, click on the upload/download icon, select "Manage file share", navigate to OpenEduAnalytics/tmp, download Contoso_ISD_all_in_one.ipynb  \
+1) In the cloud shell window, click on the link for your newly created Synapse instance
+1) In Synapse, click on Develop, click on the "+", and select "Import" and import the notebook you just downloaded.
+1) Open the notebook and click "Run all"
+
+For more complete details on the installation and usage of the Open Edu Analytics base architecture and test environment, see [Open Edu Analytics Implementation Guide](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsImplementationGuide.pdf)
 
 # Contributing
 

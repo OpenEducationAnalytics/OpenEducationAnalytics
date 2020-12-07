@@ -9,8 +9,9 @@ if [ $# -ne 1 ]; then
 fi
 
 org_id=$1
+org_id_lowercase=${org_id,,}
 this_file_path=$(dirname $(realpath $0))
-storage_account="steduanalytics${org_id}"
+storage_account="steduanalytics${org_id_lowercase}"
 
 echo "--> Installing: $this_file_path, for org: $org_id"
 
