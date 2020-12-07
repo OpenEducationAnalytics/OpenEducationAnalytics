@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\modules",
+    "\\modules\\Clever",
     "\\modules\\Clever\\notebooks",
-    "\\modules\\iReady\\notebooks",
+    "\\modules\\Contoso_SIS",
+    "\\modules\\Contoso_SIS\\notebooks",
     "\\modules\\M365",
-    "\\modules\\M365\\test-data",
     "\\packages",
     "\\packages\\ContosoISD",
     "\\packages\\ContosoISD\\notebooks",
-    "\\packages\\ContosoISD\\powerbi"
+    "\\packages\\ContosoISD\\pipelines"
   ],
-  "SelectedNode": "\\modules\\M365\\setup.sh",
+  "SelectedNode": "\\packages\\ContosoISD\\setup.sh",
   "PreviewInSolutionExplorer": false
 }

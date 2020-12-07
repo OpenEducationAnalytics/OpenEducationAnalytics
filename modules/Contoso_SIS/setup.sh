@@ -11,17 +11,16 @@ fi
 org_id=$1
 this_file_path=$(dirname $(realpath $0))
 storage_account="steduanalytics${org_id}"
-module_path=$(dirname $(realpath $0))
 
 echo "--> Installing: $this_file_path, for org: $org_id"
 
 # copy test data set
 source="$this_file_path/test-data/*"
-destination="https://$storage_account.blob.core.windows.net/test-data/stage1"
+destination="https://$storage_account.blob.core.windows.net/test-env/stage1"
 echo "--> Copying test data set from: $source  to: $destination"
 az storage copy -s $source -d $destination --recursive
 
 # Update the notebook to refer to the correct storage account
-sed -i "s/storage_account = '.*'/storage_account = '$storage_account'/" $this_file_path/notebooks/contoso_sis.ipynb
+sed "s/storage_account = '.*'/storage_account = '$storage_account'/" $this_file_path/notebooks/Contoso_SIS_setup_and_update.ipynb > $this_file_path/../../tmp/Contoso_SIS_setup_and_update.ipynb
 
 # todo: import the notebook

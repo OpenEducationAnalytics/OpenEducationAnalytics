@@ -9,6 +9,7 @@ fi
 
 this_file_path=$(dirname $(realpath $0))
 org_id=$1
+storage_account="steduanalytics${org_id}"
 echo "--> Installing: $this_file_path, for org: $org_id"
 module_path="$this_file_path/../../modules"
 
@@ -18,4 +19,6 @@ $module_path/M365/setup.sh $org_id
 $module_path/Clever/setup.sh $org_id
 $module_path/iReady/setup.sh $org_id
 
+sed "s/storage_account = '.*'/storage_account = '$storage_account'/" $this_file_path/notebooks/Contoso_ISD_setup_and_update.ipynb > $this_file_path/../../tmp/Contoso_ISD_setup_and_update.ipynb
+sed "s/storage_account = '.*'/storage_account = '$storage_account'/" $this_file_path/notebooks/Contoso_ISD_all_in_one.ipynb > $this_file_path/../../tmp/Contoso_ISD_all_in_one.ipynb
 # todo: import the notebook
