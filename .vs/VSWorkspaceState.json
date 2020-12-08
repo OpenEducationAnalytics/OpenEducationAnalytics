@@ -2,15 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\modules",
-    "\\modules\\Contoso_SIS\\notebooks",
-    "\\modules\\iReady\\notebooks",
-    "\\modules\\M365\\notebooks",
-    "\\modules\\M365\\test-data\\m365\\DIPData\\Roster",
+    "\\modules\\Contoso_SIS",
+    "\\modules\\Contoso_SIS\\test-data",
+    "\\modules\\Contoso_SIS\\test-data\\contoso_sis",
+    "\\modules\\M365\\powerbi",
+    "\\modules\\M365\\test-data\\m365",
+    "\\modules\\M365\\test-data\\m365\\DIPData",
     "\\packages",
     "\\packages\\ContosoISD",
-    "\\packages\\ContosoISD\\notebooks",
-    "\\packages\\ContosoISD\\pipelines"
+    "\\packages\\ContosoISD\\powerbi"
   ],
-  "SelectedNode": "\\setup_base_architecture.sh",
+  "SelectedNode": "\\packages\\ContosoISD\\notebooks",
   "PreviewInSolutionExplorer": false
 }
