@@ -2,7 +2,7 @@
 OpenEduAnalytics is a fully open-sourced [(MIT license)](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE) data integration and analytics solution for the education sector.
 
 Please be aware that this is an early alpha release of the assets for building the reference architecture and assets demonstrating its use.
-The underlying Azure platform services are mature and well documented, but this set of assets utilizing those platform services is very much a work in progress.
+The underlying Azure platform services are mature and well documented, but this set of assets utilizing those platform services is very much a work in progress and comes with no warranties nor SLA's, etc.'
 
 You can setup a fully functional test environment with a test data set in 3 steps:
 1) Open cloud shell in your azure subscription (use ctrl+click on the button below to open in a new page)\
