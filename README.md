@@ -13,12 +13,6 @@ You can setup a fully functional test environment with a test data set in 3 step
 1) Run the setup script and specify an organization ID for use as a suffix when provisioning Azure resources (use your organization's abbreviation or something similar)\
 `./OpenEduAnalytics/setup.sh <OrgId>`
 
-Because of issues with automating the provisioning of Synapse Notebooks, these additional steps are currently required for now.
-1) In the cloud shell window, click on the upload/download icon, select "Manage file share", navigate to OpenEduAnalytics/tmp, download Contoso_ISD_all_in_one.ipynb  \
-1) In the cloud shell window, click on the link for your newly created Synapse instance
-1) In Synapse, click on Develop, click on the "+", and select "Import" and import the notebook you just downloaded.
-1) Open the notebook and click "Run all"
-
 For more complete details on the installation and usage of the Open Edu Analytics base architecture and test environment, see [Open Edu Analytics Implementation Guide](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsImplementationGuide.pdf)
 
 # Contributing
