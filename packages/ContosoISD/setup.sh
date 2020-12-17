@@ -2,7 +2,8 @@
 
 if [ $# -ne 1 ]; then
     echo "This setup script will install this package and all module dependencies into an existing Open Edu Analytics instance."
-    echo "Invoke this script like this:  setup.sh <orgId>"
+    echo "Invoke this script like this:  "
+    echo "    setup.sh <orgId>"
     echo "where orgId is the id for your organization (eg, contosoisd)"
     exit 1
 fi
