@@ -1,0 +1,13 @@
+{
+    "name": "EdFi_Ods_Query",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "EdFi_Ods_Production",
+            "type": "LinkedServiceReference"
+        },
+        "annotations": [],
+        "type": "AzureSqlTable",
+        "schema": []
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

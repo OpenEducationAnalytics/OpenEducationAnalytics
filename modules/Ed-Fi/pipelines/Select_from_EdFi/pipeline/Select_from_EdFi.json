@@ -1,0 +1,91 @@
+{
+    "name": "Select_from_EdFi",
+    "properties": {
+        "activities": [
+            {
+                "name": "query_EdFi_Ods",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "AzureSqlSource",
+                        "sqlReaderQuery": {
+                            "value": "@pipeline().parameters.query",
+                            "type": "Expression"
+                        },
+                        "queryTimeout": "02:00:00",
+                        "partitionOption": "None"
+                    },
+                    "sink": {
+                        "type": "ParquetSink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        },
+                        "formatSettings": {
+                            "type": "ParquetWriteSettings"
+                        }
+                    },
+                    "enableStaging": false,
+                    "translator": {
+                        "type": "TabularTranslator",
+                        "typeConversion": true,
+                        "typeConversionSettings": {
+                            "allowDataTruncation": true,
+                            "treatBooleanAsNumber": false
+                        }
+                    }
+                },
+                "inputs": [
+                    {
+                        "referenceName": "EdFi_Ods_Query",
+                        "type": "DatasetReference"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "Datalake_parquet",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@pipeline().parameters.sink_filesystem",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "@pipeline().parameters.sink_directory",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ]
+            }
+        ],
+        "parameters": {
+            "query": {
+                "type": "string",
+                "defaultValue": "select * from edfi.Student"
+            },
+            "sink_filesystem": {
+                "type": "string",
+                "defaultValue": "test-env"
+            },
+            "sink_directory": {
+                "type": "string",
+                "defaultValue": "stage1/ed-fi"
+            }
+        },
+        "folder": {
+            "name": "EdFi"
+        },
+        "annotations": [],
+        "lastPublishTime": "2020-12-19T22:42:25Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

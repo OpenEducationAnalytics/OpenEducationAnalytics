@@ -1,0 +1,85 @@
+{
+    "name": "Copy_from_EdFi",
+    "properties": {
+        "activities": [
+            {
+                "name": "Get List of EdFi tables",
+                "type": "Lookup",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "AzureSqlSource",
+                        "sqlReaderQuery": "select schema_name(t.schema_id) as schema_name, t.name as table_name\nfrom sys.tables t\nwhere schema_name(t.schema_id) = 'edfi'\norder by schema_name, table_name",
+                        "queryTimeout": "02:00:00",
+                        "partitionOption": "None"
+                    },
+                    "dataset": {
+                        "referenceName": "EdFi_Ods_Query",
+                        "type": "DatasetReference"
+                    },
+                    "firstRowOnly": false
+                }
+            },
+            {
+                "name": "ForEach1",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Get List of EdFi tables",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Get List of EdFi tables').output.value",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "Select_from_EdFi",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "Select_from_EdFi",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": false,
+                                "parameters": {
+                                    "query": {
+                                        "value": "select * from @{item().schema_name}.@{item().table_name}",
+                                        "type": "Expression"
+                                    },
+                                    "sink_filesystem": "test-env",
+                                    "sink_directory": {
+                                        "value": "stage1/ed-fi/@{item().table_name}",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "folder": {
+            "name": "EdFi"
+        },
+        "annotations": [],
+        "lastPublishTime": "2020-12-19T22:44:54Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
