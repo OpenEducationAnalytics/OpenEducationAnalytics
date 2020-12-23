@@ -19,7 +19,7 @@ echo "--> Installing: $this_file_path, for org: $org_id"
 
 # copy test data set
 source="$this_file_path/test-data/*"
-destination="https://$storage_account.blob.core.windows.net/test-env/stage1"
+destination="https://$storage_account.blob.core.windows.net/test-env/stage2"
 echo "--> Copying test data set from: $source  to: $destination"
 az storage copy --account-key $storage_account_key -s $source -d $destination --recursive
 
