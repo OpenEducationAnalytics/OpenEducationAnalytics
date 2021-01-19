@@ -13,12 +13,15 @@ You can setup a fully functional test environment with a test data set in 3 step
 1) Download this repo to your azure clouddrive \
 `cd clouddrive`\
 `git clone https://github.com/microsoft/OpenEduAnalytics`
-1) Run the setup script and specify an organization ID for use as a suffix when provisioning Azure resources (use your organization's abbreviation or something similar)\
-`./OpenEduAnalytics/setup.sh <OrgId>`\
-If you don't have global admin permissions in your tenant, or you just want to create a basic test environment, you tell the setup to not create security groups by invoking it like this:\
-`./OpenEduAnalytics/setup.sh <OrgId> <location> false`\
-For example, here's how it would look for the fictional Contoso Independent School District:\
-`./OpenEduAnalytics/setup.sh CISD westus false`
+1) Run the setup script like this: \
+`./OpenEduAnalytics/setup.sh myprefix westus false`\
+(substitute your "myprefix" with your preferred prefix - which must be less than 13 characters).\
+In this example, the resources will be created in the "westus" location, but you can choose other locations as well.\
+Note that you must have the role of "Owner" on the Azure subscription in order for the resources to be provisioned properly.\
+
+Additional setup options:\
+If you are running the setup for an environment in which you have Global Admin permissions on the tenant, and you want to have security groups provisioned, you can invoke the setup script like this:\
+`./OpenEduAnalytics/setup.sh myprefix westus`\
 
 For more complete details on the installation and usage of the Open Edu Analytics base architecture and test environment, see [Open Edu Analytics Implementation Guide](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsImplementationGuide.pdf)
 
