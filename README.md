@@ -8,7 +8,7 @@ We look forward to growing this set of assets in conjunction with our customers 
 
 You can setup a fully functional test environment with a test data set in 3 steps:
 1) Open cloud shell in your azure subscription (use ctrl+click on the button below to open in a new page)\
-[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)\
+[![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)\
 (If you don't have an Azure subscription, you can set up a [free subscription here](https://azure.microsoft.com/free).)
 1) Download this repo to your azure clouddrive \
 `cd clouddrive`\
