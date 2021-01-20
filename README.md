@@ -24,7 +24,9 @@ You can setup a fully functional test environment with a test data set in 3 step
 
 
 ### Additional setup options
-By default, the setup script provisions Azure resources in the East US region, but you can choose other locations as well (eg, westus, northeurope).
+By default, the setup script provisions Azure resources in the East US region, but you can choose other locations as well (eg, westus, northeurope).\
+For example:\
+`./OpenEduAnalytics/setup.sh myprefix northeurope`
 
 You can also choose to have the script create security groups to facilitate the use of role based access control to the data lake.\
 If you are running the setup for an environment in which you have Global Admin permissions on the tenant, and you want to have security groups provisioned, you can invoke the setup script like this:\
