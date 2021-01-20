@@ -20,14 +20,17 @@ You can setup a fully functional test environment with a test data set in 3 step
 `cd clouddrive`\
 `git clone https://github.com/microsoft/OpenEduAnalytics`
 1) Run the setup script like this (substitute "myprefix" with your preferred prefix - which must be less than 13 characters): \
-`./OpenEduAnalytics/setup.sh myprefix westus false`
+`./OpenEduAnalytics/setup.sh myprefix`
 
-In this example use of the setup script the resources will be created in the "westus" location, but you can choose other locations as well (eg, eastus, northeurope).
 
-Additional setup options:\
+### Additional setup options
+By default, the setup script provisions Azure resources in the East US region, but you can choose other locations as well (eg, westus, northeurope).
+
+You can also choose to have the script create security groups to facilitate the use of role based access control to the data lake.\
 If you are running the setup for an environment in which you have Global Admin permissions on the tenant, and you want to have security groups provisioned, you can invoke the setup script like this:\
-`./OpenEduAnalytics/setup.sh myprefix westus`
+`./OpenEduAnalytics/setup.sh myprefix eastus true`
 
+### Additional info
 For more complete details on the installation and usage of the Open Edu Analytics base architecture and test environment, see [Open Edu Analytics Implementation Guide](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsImplementationGuide.pdf)
 
 # Contributing
