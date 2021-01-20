@@ -1,4 +1,5 @@
 # OpenEduAnalytics
+### Overview
 OpenEduAnalytics is a fully open-sourced ([Creative Commons](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE) and [MIT](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE-CODE)) data integration and analytics solution for the education sector built on [Synapse Analytics](https://azure.microsoft.com/services/synapse-analytics/).
 
 Please be aware that this is an early alpha release of the assets for building the reference architecture and assets demonstrating its use.
@@ -6,19 +7,22 @@ The underlying Azure platform services are mature and well documented, but this 
 
 We look forward to growing this set of assets in conjunction with our customers and partners.
 
+### What you need
+To setup an environment with OpenEduAnalytics, you'll need:
+* an Azure subscription (if you don't have an Azure subscription, you can set up a [free subscription here](https://azure.microsoft.com/free)
+* role assignment of "Owner" on the Azure subscription you're using
+
+### Setup
 You can setup a fully functional test environment with a test data set in 3 steps:
 1) Open cloud shell in your azure subscription (use ctrl+click on the button below to open in a new page)\
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)\
-(If you don't have an Azure subscription, you can set up a [free subscription here](https://azure.microsoft.com/free).)
 1) Download this repo to your azure clouddrive \
 `cd clouddrive`\
 `git clone https://github.com/microsoft/OpenEduAnalytics`
-1) Run the setup script like this: \
+1) Run the setup script like this (substitute "myprefix" with your preferred prefix - which must be less than 13 characters): \
 `./OpenEduAnalytics/setup.sh myprefix westus false`
 
-(substitute your "myprefix" with your preferred prefix - which must be less than 13 characters).\
-In this example, the resources will be created in the "westus" location, but you can choose other locations as well.\
-Note that you must have the role of "Owner" on the Azure subscription in order for the resources to be provisioned properly.
+In this example use of the setup script the resources will be created in the "westus" location, but you can choose other locations as well (eg, eastus, northeurope).\
 
 Additional setup options:\
 If you are running the setup for an environment in which you have Global Admin permissions on the tenant, and you want to have security groups provisioned, you can invoke the setup script like this:\
