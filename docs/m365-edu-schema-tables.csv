@@ -1,0 +1,18 @@
+Table,Relationships,Description
+RefDefinition,,Defines the reference types used throughout the model.
+Extension,,Provides a way to define an extension attribute for an entity.
+SourceSystem,,A system that is a source of data.
+Course,Calendar(*:1),"The organization of subject matter and related learning experiences provided for the instruction of students on a regular or systematic basis, usually for a predetermined period of time (e.g., a semester or two-week workshop) to an individual or group of students (e.g., a class/section). "
+Section,Session(*:1);SourceSystem(*:1);Org(*:1),"A setting in which organized instruction of course content is provided to one or more students (including cross-age groupings) for a given period of time. (A course may be offered to more than one class/section.) Instruction, provided by one or more teachers or other staff members, may be delivered in person or via a different medium. Classes/Sections that share space should be considered as separate classes/sections if they function as separate units for more than 50 percent of the time. "
+Calendar,Org(*:1),A set of dates associated with an organization. 
+Session,Calendar(*:1);Session(*:1),"A prescribed span of time when an education institution is open, instruction is provided, and students are under the direction and guidance of teachers and/or education institution administration."
+Org,Org(*:1);SourceSystem(*:1),An entity that represents any type of education organization. 
+StaffOrgAffiliation,Staff(*:1);Org(*:1),The association of an organization to a staff member. Allows for specifying a sub-role for the student in relation to the organization.
+StudentOrgAffiliation,Student(*:1);Org(*:1),The association of an organization to a student. Allows for specifying a sub-role for the student in relation to the organization.
+StudentSectionMembership,Student(*:1);Section(*:1),The enrollment of a student within a section
+StaffSectionMembership,Staff(*:1);Section(*:1),The assignment of a staff member to a section
+Person,SourceSystem(*:1),"A person, including Students, Staff and Guardians."
+PersonIdentifier,Person(*:1);SourceSystem(*:1),Identifiers assigned to an individual.
+Student,Person(1:1),Identifies a Person record as a student (sub-roles can be specified in the association tables)
+Staff,Person(1:1),Identifies a Person record as a staff (sub-roles can be specified in the association tables)
+Activity,PersonIdentifier(*:1),User activity in M365 applications
