@@ -7,7 +7,7 @@ Included in this module is a test data set in parquet format.
 This module is installed as an addition to an existing Open Edu Analytics instance (if you have not yet setup an Open Edu Analytics, refer to the main [readme](https://github.com/microsoft/OpenEduAnalytics)).
 To install this module:
 1) Open cloud shell in your azure subscription (use ctrl+click on the button below to open in a new page)\
-[![Launch Cloud Shell](https://shell.azure.com/images/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
+[![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
 2) Run the setup script and specify your organization ID (this should be the same value you used when you did the initial installation of Open Edu Analytics - eg: CISD1)\
 `cd clouddrive`\
 `./OpenEduAnalytics/modules/Ed-Fi/setup.sh <OrgId>`
