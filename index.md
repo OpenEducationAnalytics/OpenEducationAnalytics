@@ -6,3 +6,5 @@ This site will provide a blog as well as videos with details on the setup and us
 
 Example video #1:
 {% include youtubePlayer.html id="e1HGXxMsLxg" %}
+
+Example video #2:
