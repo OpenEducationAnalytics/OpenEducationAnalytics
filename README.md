@@ -1,6 +1,7 @@
-# OpenEduAnalytics
+<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
-<img alight="right" width="100 src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+
+# OpenEduAnalytics
                                                                                                                         
 ### Overview
 OpenEduAnalytics is a fully open-sourced ([Creative Commons](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE) and [MIT](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE-CODE)) data integration and analytics solution for the education sector built on [Synapse Analytics](https://azure.microsoft.com/services/synapse-analytics/).
