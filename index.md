@@ -13,7 +13,5 @@ This site will provide a blog as well as videos with details on the setup and us
 
 ### Videos
 
-Example video #1:
-{% include youtubePlayer.html id="e1HGXxMsLxg" %}
-
-Example video #2:
+Basic setup of OEA:
+{% include youtubePlayer.html id="7QnRPHK1vXg" %}
