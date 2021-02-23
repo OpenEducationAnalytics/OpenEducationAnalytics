@@ -1,4 +1,8 @@
+<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+
+
 # OpenEduAnalytics
+                                                                                                                        
 ### Overview
 OpenEduAnalytics is a fully open-sourced ([Creative Commons](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE) and [MIT](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE-CODE)) data integration and analytics solution for the education sector built on [Synapse Analytics](https://azure.microsoft.com/services/synapse-analytics/).
 
@@ -22,6 +26,7 @@ You can setup a fully functional test environment with a test data set in 3 step
 1) Run the setup script like this (substitute "mysuffix" with your preferred suffix, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
 `./OpenEduAnalytics/setup.sh mysuffix`
 
+(You can refer to this [setup video](https://www.youtube.com/watch?v=7QnRPHK1vXg) for a quick walkthrough of this process)
 
 ### Additional setup options
 By default, the setup script provisions Azure resources in the East US region, but you can choose other locations as well (eg, westus, northeurope).\
