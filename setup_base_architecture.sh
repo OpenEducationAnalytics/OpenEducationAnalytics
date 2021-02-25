@@ -45,7 +45,7 @@ user_object_id=$(az ad signed-in-user show --query objectId -o tsv)
 
 # Verify that the user has the Owner role assignment
 roles=$(az role assignment list --subscription $subscription_id --query [].roleDefinitionName -o tsv)
-if [[ ! " ${roles[@]} " =~ "xpOwner" ]]; then
+if [[ ! " ${roles[@]} " =~ "Owner" ]]; then
   echo "You do not have the role assignment of Owner on this subscription."
   echo "For more info, click here -> https://github.com/microsoft/OpenEduAnalytics/wiki/Setup-Tips#error-must-have-role-assignment-of-owner-on-subscription"
   exit 1
