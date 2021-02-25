@@ -9,7 +9,12 @@ OpenEduAnalytics is a fully open-sourced ([Creative Commons](https://github.com/
 Please be aware that this is an early alpha release of the assets for building the reference architecture and assets demonstrating its use.
 The underlying Azure platform services are mature and well documented, but this set of assets utilizing those platform services is very much a work in progress and comes with no warranties nor SLA's, etc.
 
-We look forward to growing this set of assets in conjunction with our customers and partners.
+That being said, this effort is far enough along to serve as a great starting point to quickly provision the Azure resources needed for the implementation of a reference architecture for the ingestion, processing, and visualization of education data in a data lake.
+
+<img height="400" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA-ref-arch.png">
+
+And once you have your starting point, it's a matter of iterating and optimizing as you evolve your design and build out the solution you need.
+We look forward to growing this set of assets in conjunction with you - our customers and partners.
 
 ### What you need
 To setup an environment with OpenEduAnalytics, you'll need:
