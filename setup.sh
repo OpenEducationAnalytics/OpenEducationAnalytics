@@ -38,6 +38,11 @@ oea_path=$(dirname $(realpath $0))
 
 # setup the base architecture
 $oea_path/setup_base_architecture.sh $org_id $location $include_groups
+# exit out if setup_base_architecture failed
+if [[ $? != 0 ]]; then
+  exit 1
+fi
+
 # install the ContosoISD package
 $oea_path/packages/ContosoISD/setup.sh $org_id
 
