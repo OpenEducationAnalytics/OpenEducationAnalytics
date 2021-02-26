@@ -18,11 +18,11 @@ We look forward to growing this set of assets in conjunction with you - our cust
 
 ### What you need
 To setup an environment with OpenEduAnalytics, you'll need:
-* an Azure subscription (if you don't have an Azure subscription, you can set up a [free subscription here](https://azure.microsoft.com/free))
+* an Azure subscription (if you don't have an Azure subscription, you can set up a [free subscription here](https://azure.microsoft.com/free), or check the [current list of Azure offers](https://azure.microsoft.com/en-us/support/legal/offer-details/))
 * role assignment of "Owner" on the Azure subscription you're using
 
 ### Setup
-You can setup a fully functional test environment with a test data set in 3 steps:
+You can setup this fully functional reference architecture (which includes test data sets for basic examples of usage) in 3 steps:
 1) Open cloud shell in your azure subscription (use ctrl+click on the button below to open in a new page)\
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
 1) Download this repo to your azure clouddrive \
@@ -35,12 +35,11 @@ You can setup a fully functional test environment with a test data set in 3 step
 
 ### Additional setup options
 By default, the setup script provisions Azure resources in the East US region, but you can choose other locations as well (eg, westus, northeurope).\
-For example:\
-`./OpenEduAnalytics/setup.sh mysuffix northeurope`
+For example:  `./OpenEduAnalytics/setup.sh mysuffix northeurope`\
+For a list of available locations, you can use the command:  `az account list-locations`
 
 You can also choose to have the script create security groups to facilitate the use of role based access control to the data lake.\
-If you are running the setup for an environment in which you have Global Admin permissions on the tenant, and you want to have security groups provisioned, you can invoke the setup script like this:\
-`./OpenEduAnalytics/setup.sh mysuffix eastus true`
+If you are running the setup for an environment in which you have Global Admin permissions on the tenant, and you want to have security groups provisioned, you can invoke the setup script like this:  `./OpenEduAnalytics/setup.sh mysuffix eastus true`
 
 ### Additional info
 For more complete details on the installation and usage of the Open Edu Analytics base architecture and test environment, see [Open Edu Analytics Solution Guide](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsSolutionGuide.pdf)
