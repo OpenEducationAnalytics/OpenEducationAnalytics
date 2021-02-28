@@ -25,9 +25,13 @@ if [ $# -ne 1 ] && [ $# -ne 2 ] && [ $# -ne 3 ]; then
     echo "where mysuffix is a suffix for your organization (eg, CISD3), and location is the abbreviation of the desired location (eg, eastus, westus, northeurope), and true specifies that security groups should be created."
     exit 1
 fi
+
+this_file_path=$(dirname $(realpath $0))
+
 #read -p 'Enter an org id, using only letters and numbers (eg, ContosoISD3): ' org_id
 org_id=$1
 org_id_lowercase=${org_id,,}
+source $this_file_path/set_names.sh $org_id
 #read -p 'Enter the location for the Azure resources to be create in (eg, eastus, westus, northeurope) [eastus]: ' location
 location=$2
 location=${location:-eastus}
@@ -35,13 +39,16 @@ include_groups=$3
 include_groups=${include_groups,,}
 include_groups=${include_groups:-false}
 
-resource_group="EduAnalytics${org_id}"
 subscription_id=$(az account show --query id -o tsv)
-storage_account="steduanalytics${org_id_lowercase}"
-storage_account_id="/subscriptions/$subscription_id/resourceGroups/$resource_group/providers/Microsoft.Storage/storageAccounts/$storage_account"
-
-synapse_workspace="syeduanalytics${org_id_lowercase}"
+storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT"
 user_object_id=$(az ad signed-in-user show --query objectId -o tsv)
+
+# Verify that the specified org_id is not too long and doesn't have invalid characters
+if [[ ${#org_id} -gt 12 || ! $org_id =~ ^[a-zA-Z0-9]+$ ]]; then
+  echo "Invalid suffix: $org_id"
+  echo "The chosen suffix must be less than 12 characters, and must contain only letters and numbers."
+  exit 1
+fi
 
 # Verify that the user has the Owner role assignment
 roles=$(az role assignment list --subscription $subscription_id --query [].roleDefinitionName -o tsv)
@@ -52,49 +59,69 @@ if [[ ! " ${roles[@]} " =~ "Owner" ]]; then
 fi
 
 # Create a tmp dir in order to write notebooks to for easier importing (this can be removed once the automated provisioning of notebooks is fixed)
-this_file_path=$(dirname $(realpath $0))
 mkdir $this_file_path/tmp
 
 # 1) Create the resource group
-echo "--> Creating resource group: $resource_group"
-az group create -l $location -n $resource_group
+echo "--> Creating resource group: $OEA_RESOURCE_GROUP"
+az group create -l $location -n $OEA_RESOURCE_GROUP
 
 # 2) Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
-echo "--> Creating storage account: ${storage_account}"
-az storage account create --resource-group $resource_group --name ${storage_account} --location $location \
+echo "--> Creating storage account: ${OEA_STORAGE_ACCOUNT}"
+az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location \
   --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --default-action Allow
 
 echo "--> Creating storage account containers: stage1, stage2, stage3, synapse"
-az storage container create --account-name $storage_account --name synapse --auth-mode login
-az storage container create --account-name $storage_account --name stage1 --auth-mode login
-az storage container create --account-name $storage_account --name stage2 --auth-mode login
-az storage container create --account-name $storage_account --name stage3 --auth-mode login
-az storage container create --account-name $storage_account --name test-env --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name synapse --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage1 --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage2 --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3 --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name test-env --auth-mode login
 
 # 3) Create Synapse workspace, configure firewall access, and create spark pool
-echo "--> Creating Synapse Workspace: $synapse_workspace"
+echo "--> Creating Synapse Workspace: $OEA_SYNAPSE"
 temporary_password="$(openssl rand -base64 12)" # Generate random password (because sql-admin-login-password is required, but not used in this solution)
-az synapse workspace create --name $synapse_workspace --resource-group $resource_group \
-  --storage-account $storage_account --file-system synapse --location $location \
+az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
+  --storage-account $OEA_STORAGE_ACCOUNT --file-system synapse --location $location \
   --sql-admin-login-user eduanalyticsuser --sql-admin-login-password $temporary_password
 
 # This permission is necessary to allow a data pipeline in Synapse to invoke notebooks.
 # In order to set this permission, the user has to have the role assignment of "Owner" on the Azure subscription.
-synapse_principal_id=$(az synapse workspace show --name $synapse_workspace --resource-group $resource_group --query identity.principalId -o tsv)
+synapse_principal_id=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --query identity.principalId -o tsv)
 az role assignment create --role "Storage Blob Data Contributor" --assignee $synapse_principal_id --scope $storage_account_id
 
 echo "--> Creating firewall rule for accessing Synapse Workspace."
-az synapse workspace firewall-rule create --name allowAll --workspace-name $synapse_workspace --resource-group $resource_group \
+az synapse workspace firewall-rule create --name allowAll --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
   --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
 
 echo "--> Creating spark pool."
-az synapse spark pool create --name spark1 --workspace-name $synapse_workspace --resource-group $resource_group \
+az synapse spark pool create --name spark1 --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
   --spark-version 2.4 --node-count 3 --node-size Small --min-node-count 3 --max-node-count 10 \
   --enable-auto-scale true --delay 15 --enable-auto-pause true \
   --no-wait
 
+# 4) Create data factory instance
+echo "--> Creating data factory instance: ${OEA_DATA_FACTORY}"
+az datafactory factory create --name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --location $location
+
+# 5) Create machine learning resources (storage, keyvault, app insights, ml workspace)
+echo "--> Creating storage account for ML workspace: ${OEA_ML_STORAGE_ACCOUNT}"
+az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_ML_STORAGE_ACCOUNT} --location $location \
+  --kind StorageV2 --sku Standard_LRS --access-tier Hot --default-action Allow
+
+echo "--> Creating key vault: ${OEA_KEYVAULT}"
+az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --location $location
+
+echo "--> Creating app-insights: $OEA_APP_INSIGHTS"
+az monitor app-insights component create --app $OEA_APP_INSIGHTS --resource-group $OEA_RESOURCE_GROUP --location $location
+
+ml_storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_ML_STORAGE_ACCOUNT"
+keyvault_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$OEA_KEYVAULT"
+app_insights_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/microsoft.insights/components/$OEA_APP_INSIGHTS"
+az ml workspace create --workspace-name $OEA_ML_WORKSPACE --resource-group $OEA_RESOURCE_GROUP --location $location \
+  --storage-account $ml_storage_account_id --keyvault $keyvault_id --app $app_insights_id
+
 if [ "$include_groups" == "true" ]; then
-  # 4) Create security groups in AAD, and grant access to storage
+  # 6) Create security groups in AAD, and grant access to storage
   echo "--> Creating security groups in Azure Active Directory."
   az ad group create --display-name 'Edu Analytics Global Admins' --mail-nickname 'EduAnalyticsGlobalAdmins'
   az ad group owner add --group 'Edu Analytics Global Admins' --owner-object-id $user_object_id
@@ -114,15 +141,15 @@ if [ "$include_groups" == "true" ]; then
   external_data_scientists=$(az ad group show --group "Edu Analytics External Data Scientists" --query objectId --output tsv)
 
   echo "--> Creating role assignments for Edu Analytics Global Admins, Edu Analytics Data Scientists, and Edu Analytics Data Engineers."
-  az role assignment create --role "Owner" --assignee $global_admins --resource-group $resource_group
+  az role assignment create --role "Owner" --assignee $global_admins --resource-group $OEA_RESOURCE_GROUP
   # Asssign "Storage Blob Data Contributor" to security groups to allow users to query data via Synapse studio
   az role assignment create --role "Storage Blob Data Contributor" --assignee $global_admins --scope $storage_account_id
   az role assignment create --role "Storage Blob Data Contributor" --assignee $data_scientists --scope $storage_account_id
   az role assignment create --role "Storage Blob Data Contributor" --assignee $data_engineers --scope $storage_account_id
   # Assign limited access to specific containers for the external data scientists
-  stage3_id="/subscriptions/$subscription_id/resourceGroups/$resource_group/providers/Microsoft.Storage/storageAccounts/$storage_account/blobServices/default/containers/stage3"
+  stage3_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/stage3"
   az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $stage3_id
-  testdata_id="/subscriptions/$subscription_id/resourceGroups/$resource_group/providers/Microsoft.Storage/storageAccounts/$storage_account/blobServices/default/containers/test-env"
+  testdata_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/test-env"
   az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $testdata_id
 
 else
@@ -132,6 +159,6 @@ else
 fi
 
 # Setup is complete. Provide a link for user to jump to synapse studio.
-workspace_url=$(az synapse workspace show --name $synapse_workspace --resource-group $resource_group | jq -r '.connectivityEndpoints | .web')
+workspace_url=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP | jq -r '.connectivityEndpoints | .web')
 echo "--> Setup complete."
 echo "Click on this url to open your Synapse Workspace: $workspace_url"

@@ -20,7 +20,6 @@ if [ $# -ne 1 ] && [ $# -ne 2 ] && [ $# -ne 3 ]; then
     exit 1
 fi
 
-
 org_id=$1
 org_id_lowercase=${org_id,,}
 location=$2
@@ -28,10 +27,6 @@ location=${location:-eastus}
 include_groups=$3
 include_groups=${include_groups,,}
 include_groups=${include_groups:-false}
-
-
-resource_group="EduAnalytics${org_id}"
-synapse_workspace="syeduanalytics${org_id_lowercase}"
 
 # The assumption here is that this script is in the base path of the OpenEduAnalytics project.
 oea_path=$(dirname $(realpath $0))
@@ -46,8 +41,4 @@ fi
 # install the ContosoISD package
 $oea_path/packages/ContosoISD/setup.sh $org_id
 
-# Setup is complete. Provide a link for user to jump to synapse studio.
-workspace_url=$(az synapse workspace show --name $synapse_workspace --resource-group $resource_group | jq -r '.connectivityEndpoints | .web')
-echo "--> Setup of the test environment is complete."
-echo "Click on this url to open your Synapse Workspace: $workspace_url"
-
+echo "--> Setup of the Open Education Analytics reference architecture is complete."
