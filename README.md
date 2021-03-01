@@ -39,7 +39,8 @@ For example:  `./OpenEduAnalytics/setup.sh mysuffix northeurope`\
 For a list of available locations, you can use the command:  `az account list-locations`
 
 You can also choose to have the script create security groups to facilitate the use of role based access control to the data lake.\
-If you are running the setup for an environment in which you have Global Admin permissions on the tenant, and you want to have security groups provisioned, you can invoke the setup script like this:  `./OpenEduAnalytics/setup.sh mysuffix eastus true`
+If you are running the setup for an environment in which you have Global Admin permissions on the tenant, and you want to have security groups provisioned, you can invoke the setup script like this:\
+`./OpenEduAnalytics/setup.sh mysuffix eastus true`
 
 ### Additional info
 For more complete details on the installation and usage of the Open Edu Analytics base architecture and test environment, see [Open Edu Analytics Solution Guide](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsSolutionGuide.pdf)
