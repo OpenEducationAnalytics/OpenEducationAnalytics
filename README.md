@@ -42,6 +42,8 @@ You can also choose to have the script create security groups to facilitate the 
 If you are running the setup for an environment in which you have Global Admin permissions on the tenant, and you want to have security groups provisioned, you can invoke the setup script like this:\
 `./OpenEduAnalytics/setup.sh mysuffix eastus true`
 
+By default, the provisioned Azure resources are named according to [recommended Azure naming standards](https://github.com/microsoft/OpenEduAnalytics/wiki/Design-Decisions), however you can directly modify [set_names.sh](https://github.com/microsoft/OpenEduAnalytics/blob/main/set_names.sh) before running the setup if you want to specify an alternative set of resource names.
+
 ### Additional info
 For more complete details on the installation and usage of the Open Edu Analytics base architecture and test environment, see [Open Edu Analytics Solution Guide](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsSolutionGuide.pdf)
 
