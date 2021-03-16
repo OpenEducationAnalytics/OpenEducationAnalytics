@@ -101,7 +101,18 @@ az synapse spark pool create --name spark1 --workspace-name $OEA_SYNAPSE --resou
 
 # 4) Create data factory instance
 echo "--> Creating data factory instance: ${OEA_DATA_FACTORY}"
-az datafactory factory create --name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --location $location
+# This approach is more straightforward, but it doesn't support the creation of a managed identity. We'll revert to this approach once that feature is supported.
+# az datafactory factory create --name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --location $location
+
+# Must use the REST API to provision the Data Factory in order to have it created with a Managed Identity, so that an access policy can be created to allow the Data Factory to access secrets in the key vault.
+request="https://management.azure.com/subscriptions/${subscription_id}/resourceGroups/${OEA_RESOURCE_GROUP}/providers/Microsoft.DataFactory/factories/${OEA_DATA_FACTORY}?api-version=2018-06-01"
+body="{\"name\":\"${OEA_DATA_FACTORY}\",\"location\":\"${location}\",\"properties\":{},\"identity\":{\"type\":\"SystemAssigned\"}}"
+az rest --method PATCH --uri $request --body $body
+
+# Add a linked service to the Data factory that links to the data lake
+storage_account_key=$(az storage account keys list -g $OEA_RESOURCE_GROUP -n $OEA_STORAGE_ACCOUNT --query [0].value -o tsv)
+properties="{\"type\":\"AzureStorage\",\"typeProperties\":{\"connectionString\":{\"type\":\"SecureString\",\"value\":\"DefaultEndpointsProtocol=https;AccountName=${OEA_STORAGE_ACCOUNT};AccountKey=${storage_account_key}\"}}}"
+az datafactory linked-service create --factory-name $OEA_DATA_FACTORY --properties $properties --name $OEA_STORAGE_ACCOUNT --resource-group $OEA_RESOURCE_GROUP
 
 # 5) Create machine learning resources (storage, keyvault, app insights, ml workspace)
 echo "--> Creating storage account for ML workspace: ${OEA_ML_STORAGE_ACCOUNT}"
@@ -110,6 +121,9 @@ az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_ML_S
 
 echo "--> Creating key vault: ${OEA_KEYVAULT}"
 az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --location $location
+# give the Data factory access to get secrets from the key vault, so that integration pipelines can retrieve credentials kept in the key vault
+adf_id=$(az datafactory factory show --factory-name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --query identity.principalId -o tsv)
+az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get --object-id $adf_id
 
 echo "--> Creating app-insights: $OEA_APP_INSIGHTS"
 az monitor app-insights component create --app $OEA_APP_INSIGHTS --resource-group $OEA_RESOURCE_GROUP --location $location

@@ -8,6 +8,7 @@ org_id=$1
 org_id_lowercase=${org_id,,}
 
 export OEA_RESOURCE_GROUP="rg-oea-${org_id}"
+export OEA_BUDGET="budget-oea-${org_id}"
 
 export OEA_DATA_FACTORY="adf-oea-${org_id_lowercase}"
 
