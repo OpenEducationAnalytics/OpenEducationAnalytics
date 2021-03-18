@@ -200,7 +200,7 @@ if [ "$include_groups" == "true" ]; then
 
   echo "--> Creating role assignments for Edu Analytics Global Admins, Edu Analytics Data Scientists, and Edu Analytics Data Engineers."
   az role assignment create --role "Owner" --assignee $global_admins --resource-group $OEA_RESOURCE_GROUP
-  # Asssign "Storage Blob Data Contributor" to security groups to allow users to query data via Synapse studio
+  # Assign "Storage Blob Data Contributor" to security groups to allow users to query data via Synapse studio
   az role assignment create --role "Storage Blob Data Contributor" --assignee $global_admins --scope $storage_account_id
   az role assignment create --role "Storage Blob Data Contributor" --assignee $data_scientists --scope $storage_account_id
   az role assignment create --role "Storage Blob Data Contributor" --assignee $data_engineers --scope $storage_account_id
@@ -209,6 +209,9 @@ if [ "$include_groups" == "true" ]; then
   az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $stage3_id
   testdata_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/test-env"
   az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $testdata_id
+  # Assign "Storage Blob Data Contributor" for the "synapse" container so that External Data Scientists can create spark db's against data they have prepared.
+  synapse_container_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/synapse"
+  az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $synapse_container_id
 
 else
   # If security groups are not created, this user will need to have this role assignment to be able to query data from the storage account
