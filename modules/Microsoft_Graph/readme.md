@@ -6,16 +6,15 @@ This module provides:
 * A simple Power BI report that demonstrates how to connect to your data lake and construct a semantic model and basic report on the data from the Graph API
 
 # For more info
-For an intro to what the Graph API is and what it can do, see [Overview of Microsoft Graph](https://docs.microsoft.com/en-us/graph/overview)
+| Resource | Description |
+| --------------- | --------------- |
+|[Overview of Microsoft Graph](https://docs.microsoft.com/en-us/graph/overview)|intro to Graph API and what it can do|
+|[Microsoft Graph REST API v1.0 reference](https://docs.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0)|API ref doc for v1.0|
+|[Microsoft Graph beta endpoint reference](https://docs.microsoft.com/en-us/graph/api/overview?view=graph-rest-beta)|API ref doc for beta version|
+|[Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer)|utility that allows you to easily try out Graph API endpoints|
+|[Use Postman with the Microsoft Graph API](https://docs.microsoft.com/en-us/graph/use-postman)|info on setting up Postman to work with Graph API|
 
-Reference info for the Graph API can be found here:
-[Microsoft Graph REST API v1.0 reference](https://docs.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0)
-[Microsoft Graph beta endpoint reference](https://docs.microsoft.com/en-us/graph/api/overview?view=graph-rest-beta)
-
-The fastest way to learn more about Microsoft Graph and how it works is to try out the different endpoints with [Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer).
-
-
-# A word about Graph data connect
+# A word about Graph data connect...
 [Microsoft Graph data connect](https://docs.microsoft.com/en-us/graph/data-connect-concept-overview) provides access to [some M365 data](https://docs.microsoft.com/en-us/graph/data-connect-datasets) at scale, using Azure Data Factory.
 
 This module demonstrates the use of Graph API only - for an example of how to use data connect with Azure Data Factory, see: [msgraph-training-dataconnect](https://github.com/microsoftgraph/msgraph-training-dataconnect)
