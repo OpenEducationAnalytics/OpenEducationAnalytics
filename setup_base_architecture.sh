@@ -61,6 +61,16 @@ fi
 # Create a tmp dir in order to write notebooks to for easier importing (this can be removed once the automated provisioning of notebooks is fixed)
 mkdir $this_file_path/tmp
 
+# 0) Ensure that the resource providers are registered in the subscription (more info about this here: https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/error-register-resource-provider )
+az provider register --namespace 'Microsoft.DataFactory'
+az provider register --namespace 'Microsoft.Sql'
+az provider register --namespace 'Microsoft.ManagedIdentity'
+az provider register --namespace 'Microsoft.Storage'
+az provider register --namespace 'Microsoft.KeyVault'
+az provider register --namespace 'Microsoft.DataShare'
+az provider register --namespace 'Microsoft.Synapse'
+az provider register --namespace 'Microsoft.MachineLearningServices'
+
 # 1) Create the resource group
 echo "--> Creating resource group: $OEA_RESOURCE_GROUP"
 az group create -l $location -n $OEA_RESOURCE_GROUP
@@ -134,9 +144,8 @@ az synapse spark pool create --name spark1 --workspace-name $OEA_SYNAPSE --resou
 
 # 5) Create data factory instance
 echo "--> Creating data factory instance: ${OEA_DATA_FACTORY}"
-# This approach is more straightforward, but it doesn't support the creation of a managed identity. We'll revert to this approach once that feature is supported.
-# az datafactory factory create --name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --location $location
 
+# Now provision the Data Factory instance.
 # Must use the REST API to provision the Data Factory in order to have it created with a Managed Identity, so that an access policy can be created to allow the Data Factory to access secrets in the key vault.
 request="https://management.azure.com/subscriptions/${subscription_id}/resourceGroups/${OEA_RESOURCE_GROUP}/providers/Microsoft.DataFactory/factories/${OEA_DATA_FACTORY}?api-version=2018-06-01"
 body=$(cat <<EOF
@@ -150,6 +159,8 @@ EOF
 )
 body=${body//[$'\t\r\n ']}
 az rest --method PUT --uri $request --body $body
+# This approach for provisioning ADF is more straightforward, but it doesn't support the creation of a managed identity. We'll revert to this approach once that feature is supported.
+# az datafactory factory create --name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --location $location
 
 # Give Data factory access to the data lake via the Managed Instance id
 adf_id=$(az datafactory factory show --factory-name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --query identity.principalId -o tsv)
