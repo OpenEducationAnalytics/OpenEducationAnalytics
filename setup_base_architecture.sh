@@ -76,7 +76,7 @@ az config set extension.use_dynamic_install=yes_without_prompt
 
 # 1) Create the resource group
 echo "--> Creating resource group: $OEA_RESOURCE_GROUP"
-az group create -l $location -n $OEA_RESOURCE_GROUP
+az group create -l $location -n $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION
 
 # 2) Create a budget for the resource group with an alert
 email=$(az ad signed-in-user show --query mail -o tsv)
@@ -113,8 +113,10 @@ az rest --method PUT --uri $request --body $body
 
 # 3) Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
 echo "--> Creating storage account: ${OEA_STORAGE_ACCOUNT}"
-az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location \
+az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION \
   --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --default-action Allow
+
+az tag update --operation Merge --resource-id $storage_account_id --tags oea_version=0.2+
 
 echo "--> Creating storage account containers: stage1, stage2, stage3, synapse"
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name synapse --auth-mode login
@@ -126,7 +128,7 @@ az storage container create --account-name $OEA_STORAGE_ACCOUNT --name test-env 
 # 4) Create Synapse workspace, configure firewall access, and create spark pool
 echo "--> Creating Synapse Workspace: $OEA_SYNAPSE"
 temporary_password="$(openssl rand -base64 12)" # Generate random password (because sql-admin-login-password is required, but not used in this solution)
-az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
+az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION \
   --storage-account $OEA_STORAGE_ACCOUNT --file-system synapse --location $location \
   --sql-admin-login-user eduanalyticsuser --sql-admin-login-password $temporary_password
 
@@ -155,6 +157,7 @@ body=$(cat <<EOF
 {
   "name":"${OEA_DATA_FACTORY}",
   "location":"${location}",
+  "tags":{"oea_version":"${OEA_VERSION}"},
   "properties":{},
   "identity":{"type":"SystemAssigned"}
 }
@@ -162,6 +165,7 @@ EOF
 )
 body=${body//[$'\t\r\n ']}
 az rest --method PUT --uri $request --body $body
+
 # This approach for provisioning ADF is more straightforward, but it doesn't support the creation of a managed identity. We'll revert to this approach once that feature is supported.
 # az datafactory factory create --name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --location $location
 
@@ -175,21 +179,21 @@ az rest --method PUT --uri $request --body $body
 
 # 6) Create machine learning resources (storage, keyvault, app insights, ml workspace)
 echo "--> Creating storage account for ML workspace: ${OEA_ML_STORAGE_ACCOUNT}"
-az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_ML_STORAGE_ACCOUNT} --location $location \
+az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_ML_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION \
   --kind StorageV2 --sku Standard_LRS --access-tier Hot --default-action Allow
 
 echo "--> Creating key vault: ${OEA_KEYVAULT}"
-az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --location $location
+az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION
 # give the Data factory access to get secrets from the key vault, so that integration pipelines can retrieve credentials kept in the key vault
 az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get --object-id $adf_id
 
 echo "--> Creating app-insights: $OEA_APP_INSIGHTS"
-az monitor app-insights component create --app $OEA_APP_INSIGHTS --resource-group $OEA_RESOURCE_GROUP --location $location
+az monitor app-insights component create --app $OEA_APP_INSIGHTS --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION
 
 ml_storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_ML_STORAGE_ACCOUNT"
 keyvault_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$OEA_KEYVAULT"
 app_insights_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/microsoft.insights/components/$OEA_APP_INSIGHTS"
-az ml workspace create --workspace-name $OEA_ML_WORKSPACE --resource-group $OEA_RESOURCE_GROUP --location $location \
+az ml workspace create --workspace-name $OEA_ML_WORKSPACE --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION \
   --storage-account $ml_storage_account_id --keyvault $keyvault_id --app $app_insights_id
 
 
