@@ -71,6 +71,9 @@ az provider register --namespace 'Microsoft.DataShare'
 az provider register --namespace 'Microsoft.Synapse'
 az provider register --namespace 'Microsoft.MachineLearningServices'
 
+# and allow for az extensions to be installed as needed without prompting (extensions like azure-cli-ml and application-insights end up being installed)
+az config set extension.use_dynamic_install=yes_without_prompt
+
 # 1) Create the resource group
 echo "--> Creating resource group: $OEA_RESOURCE_GROUP"
 az group create -l $location -n $OEA_RESOURCE_GROUP
