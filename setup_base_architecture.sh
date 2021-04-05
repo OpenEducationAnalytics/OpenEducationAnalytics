@@ -162,12 +162,13 @@ az rest --method PUT --uri $request --body $body
 # This approach for provisioning ADF is more straightforward, but it doesn't support the creation of a managed identity. We'll revert to this approach once that feature is supported.
 # az datafactory factory create --name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --location $location
 
+# todo: this section is causing the script to freeze in a customer's subscription - more investigation is needed to determine why.
 # Give Data factory access to the data lake via the Managed Instance id
-adf_id=$(az datafactory factory show --factory-name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --query identity.principalId -o tsv)
-az role assignment create --role "Storage Blob Data Contributor" --assignee $adf_id --scope $storage_account_id
+#adf_id=$(az datafactory factory show --factory-name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --query identity.principalId -o tsv)
+#az role assignment create --role "Storage Blob Data Contributor" --assignee $adf_id --scope $storage_account_id
 # Add a linked service to the Data factory that links to the data lake
-properties='{"type":"AzureBlobFS","typeProperties":{"url":"https://'"${OEA_STORAGE_ACCOUNT}"'.dfs.core.windows.net"}}'
-az datafactory linked-service create --factory-name $OEA_DATA_FACTORY --properties $properties --name $OEA_STORAGE_ACCOUNT --resource-group $OEA_RESOURCE_GROUP
+#properties='{"type":"AzureBlobFS","typeProperties":{"url":"https://'"${OEA_STORAGE_ACCOUNT}"'.dfs.core.windows.net"}}'
+#az datafactory linked-service create --factory-name $OEA_DATA_FACTORY --properties $properties --name $OEA_STORAGE_ACCOUNT --resource-group $OEA_RESOURCE_GROUP
 
 # 6) Create machine learning resources (storage, keyvault, app insights, ml workspace)
 echo "--> Creating storage account for ML workspace: ${OEA_ML_STORAGE_ACCOUNT}"
