@@ -116,8 +116,6 @@ echo "--> Creating storage account: ${OEA_STORAGE_ACCOUNT}"
 az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION \
   --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --default-action Allow
 
-az tag update --operation Merge --resource-id $storage_account_id --tags oea_version=0.2+
-
 echo "--> Creating storage account containers: stage1, stage2, stage3, synapse"
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name synapse --auth-mode login
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage1 --auth-mode login
