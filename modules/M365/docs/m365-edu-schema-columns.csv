@@ -115,13 +115,22 @@ PersonIdentifier,Description,varchar(250),"The description for the identifier (e
 PersonIdentifier,IsActive,boolean,"Used by db for tracking soft-delete. If IsActive is false, the record is understood to have been ""soft-deleted"" and should be ignored."
 Student,PersonId,int,Indicates the person has a student role. This allows for more explicit associations in the schema with the student table.
 Staff,PersonId,int,Indicates the person has a staff role. This allows for more explicit associations in the schema with the staff table.
-Activity,BinDate,datetime,"The date and time of the activity, for a given hour (activity sum is calculated per hour)"
-Activity,UPN,varchar,The UPN (User Principal Name from Active Directory) identifying the user who has performed the activity
-Activity,UserId,varchar,"The object id that uniquely identifies the user (some events utilize UserId, while others utilize UPN)"
-Activity,Application,varchar,"The application the activity was recorded from (one of: Teams, Excel, Word, PowerPoint, PDF viewers, Image apps, Media apps, Other apps) "
-Activity,SumNumberOfSignals,int,Summation of the number of signals recorded during the hour for the given activity
-Activity,Client,varchar,"Info on the client used to access the application (eg, Mozilla/5.0 WIndows, Mozilla/5.0 Macintosh)"
-Activity,Duration,int,"The number of minutes of the recorded activity, occuring during the specified date and hour of day."
-Activity,LearningActivity,varchar,"Category of the activity (one of: Assignments, Communications, Files, Meetings)"
-,,,
-,,,
+Activity,SignalType,,"'VisitTeamChannel', 'ReactedWithEmoji', 'PostChannelMessage', 'ReplyChannelMessage', 'ExpandChannelMessage', "CallRecordSummarized',FileAccessed', 'FileDownloaded','FileModified', 'FileUploaded', 'ShareNotificationRequested', 'CommentCreated', 'UserAtMentioned', 'AddedToSharedWithMe', 'CommentDeleted', 'Unlike'"
+Activity,StartTime,,Action time
+Activity,UserAgent,,Device information
+Activity,SignalId,,Can be used to remove potential signal duplications
+Activity,SisClassId,,Only for tenants running SDS [empty is the sample]
+Activity,ClassId,,Office Group ID
+Activity,ChannelId,,"Optional, the channel in which action took place. In some cases such as AS signals empty==general. In cases of meetings this identify the channel the meeting took place and hence can be used as a meeting ID"
+Activity,AppName,,"Application used: Assignments, SharePoint Online, Teams, OneDrive for Business, OneNote, TeamsMobile"
+Activity,ActorId,,AAD Object ID
+Activity,ActorRole,,Student - only for tenants running SDS
+Activity,SchemaVersion,,"technical, used to track data changes or bugs in the export"
+Activity,AssignmentId,,"GUID, identifies the assignment. Can be used to access Graph for additional information."
+Activity,SubmissionId,,"GUID, identifies the student submission. Can be used to access Graph for additional information."
+Activity,Action,,"Assigned,Updated,Returned,Visited,Submitted,Unsubmitted,Deleted,FeedbackSubmitted"
+Activity,DueDate,,Assignments due date
+Activity,ClassCreationDate,,Time the class was created (might be empty for now)
+Activity,Grade,,Optional. Submission grade points. E.g.: 100 (when action=Returned)
+Activity,SourceFileExtension,,"For File* signals, captures the type of file:  Aspx, docx, webm, mp4, .docx, .webm, jpg, pptx etc."
+Activity,Meeting Duration,,Duration in seconds the student spent in the meeting
