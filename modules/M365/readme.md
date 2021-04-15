@@ -7,10 +7,13 @@ Also note the availability of [Insights in Microsoft Teams for Education](https:
 
 You can find short videos about School Data Sync and the Insights app on the [Microsoft School Data Sync channel](https://www.youtube.com/channel/UCA8ZOC7eTfzLlkcFW3imkHg/featured).
 
-# Update on activity data format
-The format for the activity data has been modified to provide more granular signals rather than the previous format which was an hourly aggregate of activity per user.
-The assets in this module will be updated to incorporate this change in the coming weeks.
-Provided below is the schema for the new format:
+# App usage data available via Azure Data Share
+In order to begin receiving usage data from M365, the first step is to initiate the Data Share feature within School Data Sync. This feature is in Private Preview and is not visible by default - check with your account manager to have the feature enabled for your tenant.
+
+Once your tenant is enabled to access the Data Share feature, you can follow the steps in [modules/M365/docs/M365 Module Guide.pdf](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/M365/docs/M365%20Module%20Guide.pdf) to get it setup.
+
+The format for the activity data that you will receive in your data lake is shown below.
+See [modules/M365/docs](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/M365/docs) for more detailed info and see [modules/M365/test-data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/M365/test-data/m365/DIPData) for an example data set.
 
 |Category   |Column Name        |Description                                                                                                |
 |-----------|-------------------|-----------------------------------------------------------------------------------------------------------|
