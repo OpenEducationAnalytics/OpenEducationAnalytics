@@ -33,6 +33,6 @@ See [modules/M365/docs](https://github.com/microsoft/OpenEduAnalytics/tree/main/
 |           |Action             |Assigned,Updated,Returned,Visited,Submitted,Unsubmitted,Deleted,FeedbackSubmitted                          |
 |           |DueDate            |Assignments due date                                                                                       |
 |           |ClassCreationDate  |Time the class was created (might be empty for now)                                                        |
-|           |Grade              |Optional. Submission grade points. E.g.: 100 (when action=Returned)                                        |
-|Files      |SourceFileExtension|For File* signals, captures the type of file:  Aspx, docx, webm, mp4, .docx, .webm, jpg, pptx etc.         |
+|           |Grade              |Optional. Submission grade points. E.g.: 100 (when SignalType=SubmissionEvent and Action=Returned)                                        |
+|Files      |SourceFileExtension|For File signals, captures the type of file:  Aspx, docx, webm, mp4, .docx, .webm, jpg, pptx etc.         |
 |Meeting    |Meeting Duration   |Duration in seconds the student spent in the meeting                                                       |
