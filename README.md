@@ -47,6 +47,12 @@ For more complete details on the installation and usage of the Open Edu Analytic
 
 For a practical intro to Azure Synapse Analytics, see [Cloud Analytics with Microsoft Azure](https://azure.microsoft.com/en-us/resources/cloud-analytics-with-microsoft-azure) (a 183 page e-book, published in Jan of 2021)
 
+### Cost Estimation
+The OEA architecture leverages low cost data storage (Azure Data Lake gen2) as well as serverless data platform services that only incur cost when used.
+This means that the initial cost of an implementation of this architecture is very low, and cost only increases based on increased usage.
+
+We have a [cost estimation worksheet](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Cost_Estimation.xlsx) that provides a simple model to calculate a cost estimate based on a small number of basic inputs. We will continue to validate this model against actual results seen by our customers and partners and refine it to be more accurate.
+
 # Training Resources
 | Resource | Description |
 | --------------- | --------------- |
