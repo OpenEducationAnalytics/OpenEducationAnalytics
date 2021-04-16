@@ -17,7 +17,7 @@ See [modules/M365/docs](https://github.com/microsoft/OpenEduAnalytics/tree/main/
 
 |Category   |Column Name        |Description                                                                                                |
 |-----------|-------------------|-----------------------------------------------------------------------------------------------------------|
-|Common     |SignalType         |'VisitTeamChannel', 'ReactedWithEmoji', 'PostChannelMessage', 'ReplyChannelMessage', 'ExpandChannelMessage', "CallRecordSummarized',FileAccessed', 'FileDownloaded','FileModified', 'FileUploaded', 'ShareNotificationRequested', 'CommentCreated', 'UserAtMentioned', 'AddedToSharedWithMe', 'CommentDeleted', 'Unlike'|
+|Common     |SignalType         |'VisitTeamChannel', 'ReactedWithEmoji', 'PostChannelMessage', 'ReplyChannelMessage', 'ExpandChannelMessage', 'CallRecordSummarized',FileAccessed', 'FileDownloaded','FileModified', 'FileUploaded', 'ShareNotificationRequested', 'CommentCreated', 'UserAtMentioned', 'AddedToSharedWithMe', 'CommentDeleted', 'Unlike', 'OneNotePageChanged', 'AssignmentEvent'|
 |           |StartTime          |Action time                                                                                                |
 |           |UserAgent          |Device information                                                                                         |
 |           |SignalId           |Can be used to remove potential signal duplications                                                        |
