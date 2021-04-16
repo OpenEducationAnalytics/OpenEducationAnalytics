@@ -26,7 +26,7 @@ See [modules/M365/docs](https://github.com/microsoft/OpenEduAnalytics/tree/main/
 |           |ChannelId          |Optional, the channel in which action took place. In some cases such as AS signals empty==general. In cases of meetings this identify the channel the meeting took place and hence can be used as a meeting ID|
 |           |AppName            |Application used: Assignments, SharePoint Online, Teams, OneDrive for Business, OneNote, TeamsMobile       |
 |           |ActorId            |AAD Object ID                                                                                              |
-|           |ActorRole          |Student - only for tenants running SDS                                                                     |
+|           |ActorRole          |Student, Teacher (only for tenants running SDS)                                                                     |
 |           |SchemaVersion      |technical, used to track data changes or bugs in the export                                                |
 |Assignments|AssignmentId       |GUID, identifies the assignment. Can be used to access Graph for additional information.                   |
 |           |SubmissionId       |GUID, identifies the student submission. Can be used to access Graph for additional information.           |
