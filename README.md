@@ -4,11 +4,14 @@
 # OpenEduAnalytics
                                                                                                                         
 ### Overview
-OpenEduAnalytics is a fully open-sourced ([Creative Commons](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE) and [MIT](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE-CODE)) data integration and analytics architecture and reference implementation for the education sector built on [Synapse Analytics](https://azure.microsoft.com/services/synapse-analytics/).
+Open Education Analytics (OEA) is a fully open-sourced ([Creative Commons](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE) and [MIT](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE-CODE)) data integration and analytics architecture and reference implementation for the education sector built on [Synapse Analytics](https://azure.microsoft.com/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) as providing the role-based access control.
 
-<img height="400" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA-ref-arch.png">
+<img height="400" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_ref_arch_simple.png">
 
-This repository contains a set of assets for setting up and walking through a reference implementation of the Open Education Analytics reference architecture.
+This repository contains a set of assets for setting up and walking through a reference implementation of the OEA reference architecture.
+
+<img height="400" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_ref_arch2.png">
+
 The underlying Azure platform services are mature and well documented, but this set of assets utilizing those platform services is very much a work in progress and comes with no warranties nor SLA's, etc.
 
 That being said, this repository provides a great starting point for the development of your modern education data estate. And once you have your starting point, it's a matter of iterating and optimizing as you evolve your design and build out the solution you need.
