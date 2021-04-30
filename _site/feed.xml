@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-04-30T12:08:06-04:00</updated><id>/feed.xml</id><title type="html">Your awesome title</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Intro Post</title><link href="/2021/02/16/Intro-Post.html" rel="alternate" type="text/html" title="Intro Post" /><published>2021-02-16T00:00:00-05:00</published><updated>2021-02-16T00:00:00-05:00</updated><id>/2021/02/16/Intro-Post</id><content type="html" xml:base="/2021/02/16/Intro-Post.html">&lt;p&gt;layout: post
+title: “OpenEduAnalytics Blog”
+date: 2021-02-16 17:01:00
+categories: general&lt;/p&gt;
+
+&lt;h2 id=&quot;openeduanalytics-blog&quot;&gt;OpenEduAnalytics blog&lt;/h2&gt;
+&lt;p&gt;This is the first entry of the OpenEduAnalytics blog.&lt;/p&gt;</content><author><name></name></author><summary type="html">layout: post title: “OpenEduAnalytics Blog” date: 2021-02-16 17:01:00 categories: general</summary></entry><entry><title type="html">First entry</title><link href="/2021/02/15/first-post.html" rel="alternate" type="text/html" title="First entry" /><published>2021-02-15T00:00:00-05:00</published><updated>2021-02-15T00:00:00-05:00</updated><id>/2021/02/15/first-post</id><content type="html" xml:base="/2021/02/15/first-post.html">&lt;h1 id=&quot;welcome&quot;&gt;Welcome&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;Hello world&lt;/strong&gt;, this is the first blog post.&lt;/p&gt;</content><author><name></name></author><summary type="html">Welcome</summary></entry></feed>
