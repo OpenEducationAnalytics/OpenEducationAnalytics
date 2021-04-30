@@ -1,17 +1,17 @@
-## Welcome to OpenEduAnalytics
+---
+#
+# Here you can change the text shown in the Home page before the Latest Posts section.
+#
+# Edit cayman-blog's home layout in _layouts instead if you wanna make some changes
+# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
+#
+layout: home
+---
 
-This site will provide a blog as well as videos with details on the setup and use of OpenEduAnalytics.
+Cayman Blog Theme is a clean, responsive blogging theme for Jekyll. It is inspired by the Cayman Theme for Github Pages, which can be greatly used for single projects but not as blogging platform.
 
-### Posts
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <a href="/OpenEduAnalytics{{ post.url }}">{{post.date | date: '%B %d, %Y' }} - {{ post.title }}</a>
-    </li>
-  {% endfor %}
-</ul>
+This theme has instead all you need to start today blogging with Jekyll, and no effort: pages, posts, few social buttons. Try loading this on mobile too.
 
-### Videos
+Have a look at the Github page for more information.
 
-Basic setup of OEA:
-{% include youtubePlayer.html id="7QnRPHK1vXg" %}
+You find this descriptive text in the `index.md` file, so you can change it, or remove it completely, according to your needs.
