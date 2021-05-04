@@ -1,0 +1,37 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+
+.greedy-nav .visible-links a:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background: #003057;
+    width: 100%;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    -webkit-transform: scaleX(0) translate3d(0, 0, 0);
+    transform: scaleX(0) translate3d(0, 0, 0);
+}
+
+.page__footer {
+    clear: both;
+    float: left;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    margin-top: 3em;
+    color: #000;
+    -webkit-animation: intro 0.3s both;
+    animation: intro 0.3s both;
+    -webkit-animation-delay: 0.45s;
+    animation-delay: 0.45s;
+    background-color: #003057;
+}
