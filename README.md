@@ -46,6 +46,13 @@ If you are running the setup for an environment in which you have Global Admin p
 By default, the provisioned Azure resources are named according to [recommended Azure naming standards](https://github.com/microsoft/OpenEduAnalytics/wiki/Design-Decisions), however you can directly modify [set_names.sh](https://github.com/microsoft/OpenEduAnalytics/blob/main/set_names.sh) before running the setup if you want to specify an alternative set of resource names.
 
 ### Additional info
+You can get more info by reviewing the documentation available in the [docs](https://github.com/microsoft/OpenEduAnalytics/tree/main/docs) folder.
+This includes a Powerpoint deck with notes and a pdf version that can be viewed in the browser
+* [OEA_Overview.pptx](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Overview.pptx) (note: this won't display in the browser - you have to download the file and open it in Powerpoint)
+* [OEA_Overview.pdf](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Overview.pdf)
+
+And thanks to our friends at Analytikus who graciously offered to translate the deck, we have a spanish version here: [OEA_Overview_in_Spanish.pptx](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Overview_in_Spanish.pptx), [OEA_Overview_in_Spanish.pdf](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Overview_in_Spanish.pdf)
+
 For more complete details on the installation and usage of the Open Edu Analytics base architecture and test environment, see [Open Edu Analytics Solution Guide](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsSolutionGuide.pdf)
 
 For a practical intro to Azure Synapse Analytics, see [Cloud Analytics with Microsoft Azure](https://azure.microsoft.com/en-us/resources/cloud-analytics-with-microsoft-azure) (a 183 page e-book, published in Jan of 2021)
