@@ -1,3 +1,5 @@
 main:
   - title: "blog"
     url: /posts/
+  - title: "videos"
+    url: /videos
