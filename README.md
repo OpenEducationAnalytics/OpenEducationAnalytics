@@ -55,7 +55,7 @@ And thanks to our friends at Analytikus who graciously offered to translate the 
 
 For more complete details on the installation and usage of the Open Edu Analytics base architecture and test environment, see [Open Edu Analytics Solution Guide](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsSolutionGuide.pdf)
 
-For a practical intro to Azure Synapse Analytics, see [Cloud Analytics with Microsoft Azure](https://azure.microsoft.com/en-us/resources/cloud-analytics-with-microsoft-azure) (a 183 page e-book, published in Jan of 2021)
+For a practical intro to Azure Synapse Analytics, see [Cloud Analytics with Microsoft Azure](https://azure.microsoft.com/en-us/resources/cloud-analytics-with-microsoft-azure) (a free e-book, published in Jan of 2021; also available in [other formats for purchase](https://www.amazon.com/Cloud-Analytics-Microsoft-Azure-Transform-dp-1800202431/dp/1800202431)).
 
 ### Cost Estimation
 The OEA architecture leverages low cost data storage (Azure Data Lake gen2) as well as serverless data platform services that only incur cost when used.
