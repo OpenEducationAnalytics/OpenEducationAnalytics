@@ -64,6 +64,8 @@ This means that the initial cost of an implementation of this architecture is ve
 We have a [cost estimation worksheet](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Cost_Estimation.xlsx) that provides a simple model to calculate a cost estimate based on a small number of basic inputs. We will continue to validate this model against actual results seen by our customers and partners and refine it to be more accurate.
 
 # Training Resources
+[OEA training videos](https://www.youtube.com/channel/UCojAPdH6vmb395HWP_2yUXg)
+
 | Resource | Description |
 | --------------- | --------------- |
 | [Azure Fundamentals part 1](https://docs.microsoft.com/en-us/learn/paths/az-900-describe-cloud-concepts/) | Azure fundamentals is a six-part series that teaches you basic cloud concepts, provides a streamlined overview of many Azure services, and guides you with hands-on exercises to deploy your very first services for free. | 
