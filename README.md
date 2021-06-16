@@ -64,10 +64,9 @@ This means that the initial cost of an implementation of this architecture is ve
 We have a [cost estimation worksheet](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Cost_Estimation.xlsx) that provides a simple model to calculate a cost estimate based on a small number of basic inputs. We will continue to validate this model against actual results seen by our customers and partners and refine it to be more accurate.
 
 # Training Resources
-[OEA training videos](https://www.youtube.com/channel/UCojAPdH6vmb395HWP_2yUXg)
-
 | Resource | Description |
 | --------------- | --------------- |
+| [OEA training videos](https://www.youtube.com/channel/UCojAPdH6vmb395HWP_2yUXg) | We have a set of OEA specific training videos that provide an overview of OEA as well as walk throughs of the installation and setup and how to work within Synapse studio and ML studio. | 
 | [Azure Fundamentals part 1](https://docs.microsoft.com/en-us/learn/paths/az-900-describe-cloud-concepts/) | Azure fundamentals is a six-part series that teaches you basic cloud concepts, provides a streamlined overview of many Azure services, and guides you with hands-on exercises to deploy your very first services for free. | 
 | [Azure Fundamentals part 2](https://docs.microsoft.com/en-us/learn/paths/az-900-describe-core-azure-services/) | Continuation of part 1 | 
 | [Azure for the Data Engineer](https://docs.microsoft.com/en-us/learn/paths/azure-for-the-data-engineer/) | Explore how the world of data has evolved and how the advent of cloud technologies is providing new opportunities for business to explore. You will learn the various data platform technologies that are available, and how a Data Engineer can take advantage of this technology to an organization benefit. |
