@@ -74,6 +74,10 @@ az provider register --namespace 'Microsoft.MachineLearningServices'
 # and allow for az extensions to be installed as needed without prompting (extensions like azure-cli-ml and application-insights end up being installed)
 az config set extension.use_dynamic_install=yes_without_prompt
 
+# In some cases, the correct extensions are not installed. Forcing
+az extension add --name datafactory
+az extension add --name azure-cli-ml
+
 # 1) Create the resource group
 echo "--> Creating resource group: $OEA_RESOURCE_GROUP"
 az group create -l $location -n $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION
@@ -169,11 +173,11 @@ az rest --method PUT --uri $request --body $body
 
 # todo: this section is causing the script to freeze in a customer's subscription - more investigation is needed to determine why.
 # Give Data factory access to the data lake via the Managed Instance id
-#adf_id=$(az datafactory factory show --factory-name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --query identity.principalId -o tsv)
-#az role assignment create --role "Storage Blob Data Contributor" --assignee $adf_id --scope $storage_account_id
+adf_id=$(az datafactory show --factory-name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --query identity.principalId -o tsv)
+az role assignment create --role "Storage Blob Data Contributor" --assignee $adf_id --scope $storage_account_id
 # Add a linked service to the Data factory that links to the data lake
-#properties='{"type":"AzureBlobFS","typeProperties":{"url":"https://'"${OEA_STORAGE_ACCOUNT}"'.dfs.core.windows.net"}}'
-#az datafactory linked-service create --factory-name $OEA_DATA_FACTORY --properties $properties --name $OEA_STORAGE_ACCOUNT --resource-group $OEA_RESOURCE_GROUP
+properties='{"type":"AzureBlobFS","typeProperties":{"url":"https://'"${OEA_STORAGE_ACCOUNT}"'.dfs.core.windows.net"}}'
+az datafactory linked-service create --factory-name $OEA_DATA_FACTORY --properties $properties --name $OEA_STORAGE_ACCOUNT --resource-group $OEA_RESOURCE_GROUP
 
 # 6) Create machine learning resources (storage, keyvault, app insights, ml workspace)
 echo "--> Creating storage account for ML workspace: ${OEA_ML_STORAGE_ACCOUNT}"
