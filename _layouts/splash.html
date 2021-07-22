@@ -15,8 +15,35 @@ layout: default
     {% if page.date %}<meta itemprop="datePublished" content="{{ page.date | date_to_xmlschema }}">{% endif %}
     {% if page.last_modified_at %}<meta itemprop="dateModified" content="{{ page.last_modified_at | date_to_xmlschema }}">{% endif %}
 
+
     <section class="page__content" itemprop="text">
       {{ content }}
+      <div class="cards">
+        <div class="cards__item" align="center"><img class="faded_img" src="/assets/images/dial_yellow.png" alt="efficient" width="210px"></div>
+        <div class="cards__big_item">
+          <p>The initial setup is a simple 3-step process that uses a setup script to provision the resources necessary in your Azure subscription.</p>
+          <p>For more info on the setup process, see: <a href="https://github.com/microsoft/OpenEduAnalytics" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub repository</a></p>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="cards__big_item">
+          <p>OEA provides common assets for the ingestion and preparation of data from common educational systems, as well as example dashboards and an ever-growing number of utilization assets.</p>
+        </div>
+        <div class="cards__item" align="center"><img class="faded_img" src="/assets/images/blocks_yellow.png" alt="efficient" width="210px"></div>
+      </div>
+      <div class="cards">
+        <div class="cards__item" align="center"><img class="faded_img" src="/assets/images/forklift_yellow.png" alt="efficient" width="210px"></div>
+        <div class="cards__big_item">
+          <p>Adjust and extend the included OEA assets and build new modules as needed - following the architecture to simplify the process of iteratively growing your modern data estate.</p>
+        </div>
+      </div>
+      <div class="cards">
+        <div class="cards__item" align="center"><img class="faded_img" src="/assets/images/community_yellow.png" alt="efficient" width="210px"></div>
+        <div class="cards__big_item">
+          <p>Share back common assets with the community as we grow the catalog of basic components that commodotize the low-level plumbing so the ecosystem can focus on building real value at a higher level.</p>
+        </div>
+      </div>
+
       {% include feature_row %}
     </section>
   </article>

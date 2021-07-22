@@ -1,5 +1,6 @@
 ---
 permalink: /about/
+layout: splash
 title: "About"
 feature_row:
   - image_path: /assets/images/oea-logo-nobg.png
@@ -20,4 +21,8 @@ feature_row:
     excerpt: "This is some sample content that goes here with **Markdown** formatting."
 ---
 
-Open Education Analytics (OEA) is a fully open-sourced (Creative Commons and MIT) data integration and analytics architecture and reference implementation for the education sector built on Synapse Analytics - with Azure Data Lake Storage as the storage backbone, and Azure Active Directory as providing the role-based access control.
+Open Education Analytics (OEA) is an open-source community started and facilitated by Microsoft with the goals of:
+* Greatly simplifying the initial setup of a modern data estate in Azure
+* Establishing a reference architecture to enable reuse of common components
+* Crowd-sourcing and commoditzing common assets (eg, ingestion pipelines, data transformation scripts, Power BI dashboards, how-to docs, etc) which are built and contributed by partners and customers
+* Providing ongoing guidance around best practices for addressing common needs in a modern data estate
