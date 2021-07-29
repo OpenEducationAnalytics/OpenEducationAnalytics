@@ -110,8 +110,8 @@ az synapse workspace firewall-rule create --name allowAll --workspace-name $OEA_
   --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
 
 echo "--> Creating spark pool."
-az synapse spark pool create --name spark1 --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
-  --spark-version 2.4 --node-count 3 --node-size Small --min-node-count 3 --max-node-count 10 \
+az synapse spark pool create --name spark_v3p0_small --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
+  --spark-version 3.0 --node-count 3 --node-size Small --min-node-count 3 --max-node-count 10 \
   --enable-auto-scale true --delay 15 --enable-auto-pause true \
   --no-wait
 
