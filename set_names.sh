@@ -7,11 +7,8 @@ fi
 org_id=$1
 org_id_lowercase=${org_id,,}
 
-export OEA_VERSION="0.2+"
+export OEA_VERSION="0.3"
 export OEA_RESOURCE_GROUP="rg-oea-${org_id}"
-export OEA_BUDGET="budget-oea-${org_id}"
-
-export OEA_DATA_FACTORY="adf-oea-${org_id_lowercase}"
 
 export OEA_SYNAPSE="syn-oea-${org_id_lowercase}"
 export OEA_STORAGE_ACCOUNT="stoea${org_id_lowercase}"

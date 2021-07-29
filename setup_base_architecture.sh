@@ -75,47 +75,13 @@ az provider register --namespace 'Microsoft.MachineLearningServices'
 az config set extension.use_dynamic_install=yes_without_prompt
 
 # In some cases, the correct extensions are not installed. Forcing
-az extension add --name datafactory
 az extension add --name azure-cli-ml
 
 # 1) Create the resource group
 echo "--> Creating resource group: $OEA_RESOURCE_GROUP"
 az group create -l $location -n $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION
 
-# 2) Create a budget for the resource group with an alert
-email=$(az ad signed-in-user show --query mail -o tsv)
-echo "--> Creating budget ($OEA_BUDGET) with alerts configured to be sent to: $email"
-# make the start date be the current month, but use the first day of the month to satisfy the API, and make the end date be 10 years later
-start_date=$(date +"%Y-%m-01")
-end_date=`date '+%Y-%m-%d' -d "$start_date+10 years"`
-request="https://management.azure.com/subscriptions/${subscription_id}/resourceGroups/${OEA_RESOURCE_GROUP}/providers/Microsoft.Consumption/budgets/${OEA_BUDGET}?api-version=2019-10-01"
-body=$(cat <<EOF
-{
-  "properties": {
-    "category": "Cost",
-    "amount": 100,
-    "timeGrain": "Monthly",
-    "timePeriod": {"startDate": "${start_date}","endDate": "${end_date}"},
-    "notifications": {
-      "Actual_Exceeds_Threshold": {
-        "enabled": true,
-        "operator": "GreaterThan",
-        "threshold": 100,
-        "contactEmails": ["${email}"],
-        "contactRoles": ["Contributor","Owner"],
-        "thresholdType": "Actual"
-      }  
-    }
-  }
-}
-EOF
-)
-# strip spaces and newline chars
-body=${body//[$'\t\r\n ']}
-az rest --method PUT --uri $request --body $body
-
-
-# 3) Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
+# 2) Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
 echo "--> Creating storage account: ${OEA_STORAGE_ACCOUNT}"
 az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION \
   --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --default-action Allow
@@ -127,7 +93,7 @@ az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage2 --
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3 --auth-mode login
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name test-env --auth-mode login
 
-# 4) Create Synapse workspace, configure firewall access, and create spark pool
+# 3) Create Synapse workspace, configure firewall access, and create spark pool
 echo "--> Creating Synapse Workspace: $OEA_SYNAPSE"
 temporary_password="$(openssl rand -base64 12)" # Generate random password (because sql-admin-login-password is required, but not used in this solution)
 az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION \
@@ -149,58 +115,21 @@ az synapse spark pool create --name spark1 --workspace-name $OEA_SYNAPSE --resou
   --enable-auto-scale true --delay 15 --enable-auto-pause true \
   --no-wait
 
-# 5) Create data factory instance
-echo "--> Creating data factory instance: ${OEA_DATA_FACTORY}"
-
-# Now provision the Data Factory instance.
-# Must use the REST API to provision the Data Factory in order to have it created with a Managed Identity, so that an access policy can be created to allow the Data Factory to access secrets in the key vault.
-request="https://management.azure.com/subscriptions/${subscription_id}/resourceGroups/${OEA_RESOURCE_GROUP}/providers/Microsoft.DataFactory/factories/${OEA_DATA_FACTORY}?api-version=2018-06-01"
-body=$(cat <<EOF
-{
-  "name":"${OEA_DATA_FACTORY}",
-  "location":"${location}",
-  "tags":{"oea_version":"${OEA_VERSION}"},
-  "properties":{},
-  "identity":{"type":"SystemAssigned"}
-}
-EOF
-)
-body=${body//[$'\t\r\n ']}
-az rest --method PUT --uri $request --body $body
-
-# This approach for provisioning ADF is more straightforward, but it doesn't support the creation of a managed identity. We'll revert to this approach once that feature is supported.
-# az datafactory factory create --name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --location $location
-
-# todo: this section is causing the script to freeze in a customer's subscription - more investigation is needed to determine why.
-# Give Data factory access to the data lake via the Managed Instance id
-adf_id=$(az datafactory show --factory-name $OEA_DATA_FACTORY --resource-group $OEA_RESOURCE_GROUP --query identity.principalId -o tsv)
-az role assignment create --role "Storage Blob Data Contributor" --assignee $adf_id --scope $storage_account_id
-# Add a linked service to the Data factory that links to the data lake
-properties='{"type":"AzureBlobFS","typeProperties":{"url":"https://'"${OEA_STORAGE_ACCOUNT}"'.dfs.core.windows.net"}}'
-az datafactory linked-service create --factory-name $OEA_DATA_FACTORY --properties $properties --name $OEA_STORAGE_ACCOUNT --resource-group $OEA_RESOURCE_GROUP
-
-# 6) Create machine learning resources (storage, keyvault, app insights, ml workspace)
-echo "--> Creating storage account for ML workspace: ${OEA_ML_STORAGE_ACCOUNT}"
-az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_ML_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION \
-  --kind StorageV2 --sku Standard_LRS --access-tier Hot --default-action Allow
-
+# 4) Create key vault for secure storage of credentials, and create app insights for logging
 echo "--> Creating key vault: ${OEA_KEYVAULT}"
 az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION
-# give the Data factory access to get secrets from the key vault, so that integration pipelines can retrieve credentials kept in the key vault
-az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get --object-id $adf_id
+# give the Synapse workspace access to get secrets from the key vault, for use in Synapse pipelines
+az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get --object-id $synapse_principal_id
 
 echo "--> Creating app-insights: $OEA_APP_INSIGHTS"
 az monitor app-insights component create --app $OEA_APP_INSIGHTS --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION
 
-ml_storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_ML_STORAGE_ACCOUNT"
 keyvault_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$OEA_KEYVAULT"
 app_insights_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/microsoft.insights/components/$OEA_APP_INSIGHTS"
-az ml workspace create --workspace-name $OEA_ML_WORKSPACE --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION \
-  --storage-account $ml_storage_account_id --keyvault $keyvault_id --app $app_insights_id
 
 
 if [ "$include_groups" == "true" ]; then
-  # 7) Create security groups in AAD, and grant access to storage
+  # 5) Create security groups in AAD, and grant access to storage
   echo "--> Creating security groups in Azure Active Directory."
   az ad group create --display-name 'Edu Analytics Global Admins' --mail-nickname 'EduAnalyticsGlobalAdmins'
   az ad group owner add --group 'Edu Analytics Global Admins' --owner-object-id $user_object_id
