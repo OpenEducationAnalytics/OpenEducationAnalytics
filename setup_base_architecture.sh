@@ -43,8 +43,9 @@ subscription_id=$(az account show --query id -o tsv)
 storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT"
 user_object_id=$(az ad signed-in-user show --query objectId -o tsv)
 
-# Verify that the specified org_id is not too long and doesn't have invalid characters
-if [[ ${#org_id} -gt 12 || ! $org_id =~ ^[a-zA-Z0-9]+$ ]]; then
+# Verify that the specified org_id is not too long and doesn't have invalid characters.
+# The length is constrained by the fact that the synapse workspace name must be <= 24 characters, and our naming convention requires that it start with "syn-oea-".
+if [[ ${#org_id} -gt 16 || ! $org_id =~ ^[a-zA-Z0-9]+$ ]]; then
   echo "Invalid suffix: $org_id"
   echo "The chosen suffix must be less than 12 characters, and must contain only letters and numbers."
   exit 1
