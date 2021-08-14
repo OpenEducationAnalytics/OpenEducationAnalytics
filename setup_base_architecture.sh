@@ -88,11 +88,13 @@ az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STOR
   --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --default-action Allow
 
 echo "--> Creating storage account containers: stage1, stage2, stage3, synapse"
-az storage container create --account-name $OEA_STORAGE_ACCOUNT --name synapse --auth-mode login
-az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage1 --auth-mode login
-az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage2 --auth-mode login
-az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3 --auth-mode login
-az storage container create --account-name $OEA_STORAGE_ACCOUNT --name test-env --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name synapse-workspace --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name oea-framework --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage1np --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage2np --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage2p --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3np --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3p --auth-mode login
 
 # 3) Create Synapse workspace, configure firewall access, and create spark pool
 echo "--> Creating Synapse Workspace: $OEA_SYNAPSE"
