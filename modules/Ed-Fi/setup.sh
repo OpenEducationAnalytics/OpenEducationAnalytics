@@ -16,11 +16,7 @@ source $this_file_path/../../set_names.sh $org_id
 
 # copy test data set
 source="$this_file_path/test-data/*"
-destination="https://$OEA_STORAGE_ACCOUNT.blob.core.windows.net/test-env/stage1"
+destination="https://$OEA_STORAGE_ACCOUNT.blob.core.windows.net/oea-framework/modules/test_data"
 echo "--> Copying test data set from: $source  to: $destination"
 storage_account_key=$(az storage account keys list -g $OEA_RESOURCE_GROUP -n $OEA_STORAGE_ACCOUNT --query [0].value -o tsv)
 az storage copy --account-key $storage_account_key -s $source -d $destination --recursive
-
-# Update the notebook to refer to the correct storage account
-sed "s/storage_account = '.*'/storage_account = '$OEA_STORAGE_ACCOUNT'/" $this_file_path/notebooks/EdFi_create_serverless_sql.ipynb > $this_file_path/../../tmp/EdFi_create_serverless_sql.ipynb
-# todo: import the notebook

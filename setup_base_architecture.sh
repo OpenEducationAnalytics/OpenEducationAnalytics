@@ -63,7 +63,6 @@ fi
 mkdir $this_file_path/tmp
 
 # 0) Ensure that the resource providers are registered in the subscription (more info about this here: https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/error-register-resource-provider )
-az provider register --namespace 'Microsoft.DataFactory'
 az provider register --namespace 'Microsoft.Sql'
 az provider register --namespace 'Microsoft.ManagedIdentity'
 az provider register --namespace 'Microsoft.Storage'
@@ -87,7 +86,7 @@ echo "--> Creating storage account: ${OEA_STORAGE_ACCOUNT}"
 az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION \
   --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --default-action Allow
 
-echo "--> Creating storage account containers: stage1, stage2, stage3, synapse"
+echo "--> Creating storage account containers."
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name synapse-workspace --auth-mode login
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name oea-framework --auth-mode login
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage1np --auth-mode login
@@ -100,7 +99,7 @@ az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3p -
 echo "--> Creating Synapse Workspace: $OEA_SYNAPSE"
 temporary_password="$(openssl rand -base64 12)" # Generate random password (because sql-admin-login-password is required, but not used in this solution)
 az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION \
-  --storage-account $OEA_STORAGE_ACCOUNT --file-system synapse --location $location \
+  --storage-account $OEA_STORAGE_ACCOUNT --file-system synapse-workspace --location $location \
   --sql-admin-login-user eduanalyticsuser --sql-admin-login-password $temporary_password
 
 # This permission is necessary to allow a data pipeline in Synapse to invoke notebooks.
