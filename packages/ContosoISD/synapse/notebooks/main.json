@@ -1,0 +1,514 @@
+{
+	"name": "main",
+	"properties": {
+		"bigDataPool": {
+			"referenceName": "spark3p0smallc",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/7b9a4896-4541-483f-bdc7-d8f4ec6be3ee/resourceGroups/rg-oea-cisd3ggimpl1/providers/Microsoft.Synapse/workspaces/syn-oea-cisd3ggimpl1b/bigDataPools/spark3p0smallc",
+				"name": "spark3p0smallc",
+				"type": "Spark",
+				"endpoint": "https://syn-oea-cisd3ggimpl1b.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/spark3p0smallc",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.0",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"%run /OEA_py"
+				],
+				"execution_count": 3
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"%run /Clever_py"
+				],
+				"execution_count": 215
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"%run /ContosoSIS_py"
+				],
+				"execution_count": 216
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"%run /iReady_py"
+				],
+				"execution_count": 217
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"%run /M365_py"
+				],
+				"execution_count": 218
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"oea = OEA('stoeacisd3ggimpl1', '2fc72a29-e1ee-4eb6-95eb-9346557a6d6d', 'salt123')\r\n",
+					"m365 = M365(oea)\r\n",
+					"clever = Clever(oea)\r\n",
+					"contoso_sis = ContosoSIS(oea)\r\n",
+					"iready = IReady(oea)\r\n",
+					"\r\n",
+					"\r\n",
+					"# Copy the test data sets into stage1 (simulating the process of landing data into stage1 of your data lake).\r\n",
+					"clever.copy_test_data_to_stage1()\r\n",
+					"contoso_sis.copy_test_data_to_stage1()\r\n",
+					"iready.copy_test_data_to_stage1()\r\n",
+					"m365.copy_test_data_to_stage1()"
+				],
+				"execution_count": 220
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"m365.process_roster()"
+				],
+				"execution_count": 221
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"clever.process_data_from_stage1()\r\n",
+					"clever.create_stage2_db()\r\n",
+					"\r\n",
+					"contoso_sis.process_data_from_stage1()\r\n",
+					"contoso_sis.create_stage2_db()\r\n",
+					"\r\n",
+					"iready.process_data_from_stage1()\r\n",
+					"iready.create_stage2_db()"
+				],
+				"execution_count": 222
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"process_activity(m365)\r\n",
+					"m365.create_stage2_db('PARQUET')"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"m365.reset_activity_processing()\r\n",
+					"m365.reset_roster_processing()"
+				],
+				"execution_count": 171
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": false
+				},
+				"source": [
+					"df = oea.load('m365', 'TechActivity', oea.stage2p, 'parquet')\r\n",
+					"display(df)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\r\n",
+					"select * from s2_iready.personalized_instruction_by_lesson_math"
+				],
+				"execution_count": 14
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\r\n",
+					"select * from s2_iready.comprehensive_student_lesson_activity_with_standards_ela"
+				],
+				"execution_count": 291
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"df = oea.load('iready', 'comprehensive_student_lesson_activity_with_standards_ela')\r\n",
+					"display(df)"
+				],
+				"execution_count": 292
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# reset everything"
+				]
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"contoso_sis.delete_all_stages()\r\n",
+					"clever.delete_all_stages()\r\n",
+					"iready.delete_all_stages()"
+				],
+				"execution_count": 281
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"test_env = 'abfss://test-env@stoeacisd3ggimpl1.dfs.core.windows.net'\r\n",
+					"folders, files = oea.ls(test_env + '/stage2/m365')\r\n",
+					"print(folders)\r\n",
+					"for entity_name in folders:\r\n",
+					"    df = spark.read.format('parquet').load(f\"{test_env}/stage2/m365/{entity_name}\")\r\n",
+					"    print(oea.print_schema_starter(entity_name, df))"
+				],
+				"execution_count": 15
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"folders, files = oea.ls(oea.framework_path + '/modules/m365/test_data/DIPData/Roster')\r\n",
+					"print(files)\r\n",
+					"for entity_name in files:\r\n",
+					"    df = spark.read.format('csv').load(f\"{oea.framework_path}/modules/m365/test_data/DIPData/Roster/{entity_name}\", header='true', inferSchema='true')\r\n",
+					"    print(oea.print_schema_starter(entity_name, df))"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					},
+					"collapsed": true
+				},
+				"source": [
+					"# Calendar\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/Calendar.csv', header='false')\r\n",
+					"df = spark.sql(\"select _c0 Id, _c1 Name, _c2 Description, cast(_c3 as int) SchoolYear, cast(_c4 as boolean) IsCurrent, _c5 ExternalId, to_timestamp(_c6, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c7, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c8 as boolean) IsActive, _c9 OrgId from Calendar\")\r\n",
+					"\r\n",
+					"# Course\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/Course.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'Course')\r\n",
+					"  df = spark.sql(\"select _c0 Id, _c1 Name, _c2 Code, _c3 Description, _c4 ExternalId, to_timestamp(_c5, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c6, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c7 as boolean) IsActive, _c8 CalendarId from Course\")\r\n",
+					"  df.write.format(\"parquet\").mode(\"overwrite\").save(stage2 + '/m365/Course')\r\n",
+					"# Org\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/Org.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'Org')\r\n",
+					"  df = spark.sql(\"select _c0 Id, _c1 Name, _c2 Identifier, _c3 ExternalId, to_timestamp(_c4, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c5, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c6 as boolean) IsActive, _c7 ParentOrgId, _c8 RefOrgTypeId, _c9 SourceSystemId from Org\")\r\n",
+					"  df.write.format('parquet').mode('overwrite').save(stage2 + '/m365/Org')\r\n",
+					"# Person\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/Person.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'Person')\r\n",
+					"  df_Person = spark.sql(\"select _c0 Id, _c1 FirstName, _c2 MiddleName, _c3 LastName, _c4 GenerationCode, _c5 Prefix, _c6 EnabledUser, _c7 ExternalId, to_timestamp(_c8, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c9, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c10 as boolean) IsActive, _c11 SourceSystemId from Person\")\r\n",
+					"  df_Person.write.format('parquet').mode('overwrite').save(stage2 + '/m365/Person')\r\n",
+					"# PersonIdentifier\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/PersonIdentifier.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'PersonIdentifier')\r\n",
+					"  df = spark.sql(\"select _c0 Id, _c1 Identifier, _c2 Description, _c3 RefIdentifierTypeId, _c4 ExternalId, to_timestamp(_c5, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c6, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c7 as boolean) IsActive, _c8 PersonId, _c9 SourceSystemId from PersonIdentifier\")\r\n",
+					"  df.write.format('parquet').mode('overwrite').save(stage2 + '/m365/PersonIdentifier')\r\n",
+					"# RefDefinition\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/RefDefinition.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'RefDefinition')\r\n",
+					"  df = spark.sql(\"select _c0 Id, _c1 RefType, _c2 Namespace, _c3 Code, cast(_c4 as int) SortOrder, _c5 Description, cast(_c6 as boolean) IsActive from RefDefinition\")\r\n",
+					"  df.write.format('parquet').mode('overwrite').save(stage2 + '/m365/RefDefinition')\r\n",
+					"# Section\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/Section.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'Section')\r\n",
+					"  df = spark.sql(\"select _c0 Id, _c1 Name, _c2 Code, _c3 Location, _c4 ExternalId, to_timestamp(_c5, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c6, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c7 as boolean) IsActive, _c8 CourseId, _c9 RefSectionTypeId, _c10 SessionId, _c11 OrgId from Section\")\r\n",
+					"  df.write.format('parquet').mode('overwrite').save(stage2 + '/m365/Section')\r\n",
+					"# Session\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/Session.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'Session')\r\n",
+					"  df = spark.sql(\"select _c0 Id, _c1 Name, to_timestamp(_c2, 'MM/dd/yyyy hh:mm:ss a') BeginDate, to_timestamp(_c3, 'MM/dd/yyyy hh:mm:ss a') EndDate, _c4 ExternalId, to_timestamp(_c5, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c6, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c7 as boolean) IsActive, _c8 CalendarId, _c9 ParentSessionId, _c10 RefSessionTypeId from Session\")\r\n",
+					"  df.write.format('parquet').mode('overwrite').save(stage2 + '/m365/Session')\r\n",
+					"# StaffOrgAffiliation\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/StaffOrgAffiliation.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'StaffOrgAffiliation')\r\n",
+					"  df = spark.sql(\"select _c0 Id, cast(_c1 as boolean) IsPrimary, to_timestamp(_c2, 'MM/dd/yyyy hh:mm:ss a') EntryDate, to_timestamp(_c3, 'MM/dd/yyyy hh:mm:ss a') ExitDate, _c4 ExternalId, to_timestamp(_c5, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c6, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c7 as boolean) IsActive, _c8 OrgId, _c9 PersonId, _c10 RefStaffOrgRoleId from StaffOrgAffiliation\")\r\n",
+					"  df.write.format('parquet').mode('overwrite').save(stage2 + '/m365/StaffOrgAffiliation')\r\n",
+					"# StaffSectionMembership\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/StaffSectionMembership.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'StaffSectionMembership')\r\n",
+					"  df = spark.sql(\"select _c0 Id, cast(_c1 as boolean) IsPrimaryStaffForSection, to_timestamp(_c2, 'MM/dd/yyyy hh:mm:ss a') EntryDate, to_timestamp(_c3, 'MM/dd/yyyy hh:mm:ss a') ExitDate, _c4 ExternalId, to_timestamp(_c5, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c6, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c7 as boolean) IsActive, _c8 PersonId, _c9 RefStaffSectionRoleId, _c10 SectionId from StaffSectionMembership\")\r\n",
+					"  df.write.format('parquet').mode('overwrite').save(stage2 + '/m365/StaffSectionMembership')\r\n",
+					"# StudentOrgAffiliation\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/StudentOrgAffiliation.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'StudentOrgAffiliation')\r\n",
+					"  df = spark.sql(\"select _c0 Id, cast(_c1 as boolean) IsPrimary, to_timestamp(_c2, 'MM/dd/yyyy hh:mm:ss a') EntryDate, to_timestamp(_c3, 'MM/dd/yyyy hh:mm:ss a') ExitDate, _c4 ExternalId, to_timestamp(_c5, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c6, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c7 as boolean) IsActive, _c8 OrgId, _c9 PersonId, _c10 RefGradeLevelId, _c11 RefStudentOrgRoleId, _c12 RefEnrollmentStatusId from StudentOrgAffiliation\")\r\n",
+					"  df.write.format('parquet').mode('overwrite').save(stage2 + '/m365/StudentOrgAffiliation')\r\n",
+					"# StudentSectionMembership\r\n",
+					"df = spark.read.csv(stage1_m365 + '/Roster/StudentSectionMembership.csv', header='false')\r\n",
+					"if (df.count() > 0):\r\n",
+					"  sqlContext.registerDataFrameAsTable(df, 'StudentSectionMembership')\r\n",
+					"  df = spark.sql(\"select _c0 Id, to_timestamp(_c1, 'MM/dd/yyyy hh:mm:ss a') EntryDate, to_timestamp(_c2, 'MM/dd/yyyy hh:mm:ss a') ExitDate, _c3 ExternalId, to_timestamp(_c4, 'MM/dd/yyyy hh:mm:ss a') CreateDate, to_timestamp(_c5, 'MM/dd/yyyy hh:mm:ss a') LastModifiedDate, cast(_c6 as boolean) IsActive, _c7 PersonId, _c8 RefGradeLevelWhenCourseTakenId, _c9 RefStudentSectionRoleId, _c10 SectionId from StudentSectionMembership\")\r\n",
+					"  df.write.format('parquet').mode('overwrite').save(stage2 + '/m365/StudentSectionMembership')"
+				],
+				"execution_count": null
+			}
+		]
+	}
+}

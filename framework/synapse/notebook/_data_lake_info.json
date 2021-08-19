@@ -1,5 +1,5 @@
 {
-	"name": "__oea_map",
+	"name": "_data_lake_info",
 	"properties": {
 		"nbformat": 4,
 		"nbformat_minor": 2,
@@ -31,16 +31,10 @@
 			"a365ComputeOptions": {
 				"id": "/subscriptions/7b9a4896-4541-483f-bdc7-d8f4ec6be3ee/resourceGroups/rg-oea-cisd3gg2core/providers/Microsoft.Synapse/workspaces/syn-oea-cisd3gg2core/bigDataPools/spark1",
 				"name": "spark1",
-				"type": "Spark",
-				"endpoint": "https://syn-oea-cisd3gg2core.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/spark1",
 				"auth": {
 					"type": "AAD",
 					"authResource": "https://dev.azuresynapse.net"
-				},
-				"sparkVersion": "3.0",
-				"nodeCount": 3,
-				"cores": 4,
-				"memory": 28
+				}
 			}
 		},
 		"cells": [

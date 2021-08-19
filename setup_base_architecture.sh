@@ -96,6 +96,8 @@ az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3np 
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3p --auth-mode login
 
 # 3) Create Synapse workspace, configure firewall access, and create spark pool
+# todo: specify a name for the managed resource group that gets created
+# todo: see if it's still necessary to specify a random pwd for sql (it's not necessary when creating manually in portal)
 echo "--> Creating Synapse Workspace: $OEA_SYNAPSE"
 temporary_password="$(openssl rand -base64 12)" # Generate random password (because sql-admin-login-password is required, but not used in this solution)
 az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION \
