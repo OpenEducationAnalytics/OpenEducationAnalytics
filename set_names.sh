@@ -7,7 +7,7 @@ fi
 org_id=$1
 org_id_lowercase=${org_id,,}
 
-export OEA_VERSION="0.3"
+export OEA_VERSION="0.3+"
 export OEA_RESOURCE_GROUP="rg-oea-${org_id}"
 
 export OEA_SYNAPSE="syn-oea-${org_id_lowercase}"
