@@ -18,14 +18,8 @@ module_path="$this_file_path/../../modules"
 # Install the required modules
 $module_path/Contoso_SIS/setup.sh $org_id
 $module_path/M365/setup.sh $org_id
-$module_path/Clever/setup.sh $org_id
-$module_path/iReady/setup.sh $org_id
-
-# Set the correct name of the storage account in the notebooks
-sed "s/storage_account = '.*'/storage_account = '$OEA_STORAGE_ACCOUNT'/" $this_file_path/notebooks/Contoso_ISD_setup_and_update.ipynb > $this_file_path/../../tmp/Contoso_ISD_setup_and_update.ipynb
-sed "s/storage_account = '.*'/storage_account = '$OEA_STORAGE_ACCOUNT'/" $this_file_path/notebooks/Contoso_ISD_all_in_one.ipynb > $this_file_path/../../tmp/Contoso_ISD_all_in_one.ipynb
 
 # Import the notebooks
-az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEAModules_py --file @./OEAModules_py.ipynb
-az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_py --file @./OEA_py.ipynb
-az synapse notebook import --workspace-name $OEA_SYNAPSE --name Contoso --file @./contoso.ipynb
+#az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEAModules_py --file @./OEAModules_py.ipynb
+#az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_py --file @./OEA_py.ipynb
+#az synapse notebook import --workspace-name $OEA_SYNAPSE --name Contoso --file @./contoso.ipynb

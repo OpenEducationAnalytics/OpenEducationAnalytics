@@ -48,8 +48,8 @@
 				"cell_type": "code",
 				"source": [
 					"class ContosoSIS(BaseOEAModule):\r\n",
-					"    def __init__(self, oea, source_folder='contoso_sis'):\r\n",
-					"        BaseOEAModule.__init__(self, oea, source_folder)\r\n",
+					"    def __init__(self, oea, source_folder='contoso_sis', pseudonymize = True):\r\n",
+					"        BaseOEAModule.__init__(self, oea, source_folder, pseudonymize)\r\n",
 					"        self.schemas['studentattendance'] = [['id', 'string', 'no-op'],\r\n",
 					"                                            ['student_id', 'string', 'hash-no-lookup'],\r\n",
 					"                                            ['school_year', 'integer', 'no-op'],\r\n",

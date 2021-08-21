@@ -49,8 +49,8 @@
 				"source": [
 					"class IReady(BaseOEAModule):\r\n",
 					"    \"\"\" Provides data processing methods for iReady data.  \"\"\"\r\n",
-					"    def __init__(self, oea, source_folder = 'iready'):\r\n",
-					"        BaseOEAModule.__init__(self, oea, source_folder)\r\n",
+					"    def __init__(self, oea, source_folder = 'iready', pseudonymize = True):\r\n",
+					"        BaseOEAModule.__init__(self, oea, source_folder, pseudonymize)\r\n",
 					"\r\n",
 					"        self.schemas['comprehensive_student_lesson_activity_with_standards_ela'] = [['Last Name', 'string', 'mask'],\r\n",
 					"                                            ['First Name', 'string', 'mask'],\r\n",
