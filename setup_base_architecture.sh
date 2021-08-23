@@ -9,12 +9,11 @@
 # 5) create security groups and assign them access to storage
 
 org_id=$1
-org_id_lowercase=${org_id,,}
 location=$2
-location=${location:-eastus}
 include_groups=$3
-include_groups=${include_groups,,}
-include_groups=${include_groups:-false}
+subscription_id=$4
+storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT"
+user_object_id=$(az ad signed-in-user show --query objectId -o tsv)
 
 # Create a tmp dir in order to write notebooks to for easier importing (this can be removed once the automated provisioning of notebooks is fixed)
 mkdir $this_file_path/tmp

@@ -28,7 +28,6 @@ exec 3>&1 1>>${logfile} 2>&1
 oea_path=$(dirname $(realpath $0))
 
 org_id=$1
-org_id_lowercase=${org_id,,}
 source $oea_path/set_names.sh $org_id
 
 location=$2
@@ -36,10 +35,7 @@ location=${location:-eastus}
 include_groups=$3
 include_groups=${include_groups,,}
 include_groups=${include_groups:-false}
-
 subscription_id=$(az account show --query id -o tsv)
-storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT"
-user_object_id=$(az ad signed-in-user show --query objectId -o tsv)
 
 # Verify that the specified org_id is not too long and doesn't have invalid characters.
 # The length is constrained by the fact that the synapse workspace name must be <= 24 characters, and our naming convention requires that it start with "syn-oea-".
@@ -64,7 +60,7 @@ echo "--> Setting up OEA (logging detailed setup messages to $logfile)" 1>&3
 # setup the base architecture
 echo "--> Setting up the OEA base architecture."
 echo "--> Setting up the OEA base architecture." 1>&3
-$oea_path/setup_base_architecture.sh $org_id $location $include_groups
+$oea_path/setup_base_architecture.sh $org_id $location $include_groups $subscription_id
 # exit out if setup_base_architecture failed
 if [[ $? != 0 ]]; then
   exit 1
