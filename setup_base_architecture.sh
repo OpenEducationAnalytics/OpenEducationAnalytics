@@ -26,11 +26,13 @@ az config set extension.use_dynamic_install=yes_without_prompt
 az extension add --name azure-cli-ml
 
 # 1) Create the resource group
-echo "--> Creating resource group: $OEA_RESOURCE_GROUP"
+echo "--> 1) Creating resource group: $OEA_RESOURCE_GROUP"
+echo "--> 1) Creating resource group: $OEA_RESOURCE_GROUP" 1>&3
 az group create -l $location -n $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION
 
 # 2) Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
-echo "--> Creating storage account: ${OEA_STORAGE_ACCOUNT}"
+echo "--> 2) Creating storage account: ${OEA_STORAGE_ACCOUNT}"
+echo "--> 2) Creating storage account: ${OEA_STORAGE_ACCOUNT}" 1>&3
 az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION \
   --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --default-action Allow
 
@@ -46,7 +48,8 @@ az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3p -
 # 3) Create Synapse workspace, configure firewall access, and create spark pool
 # todo: specify a name for the managed resource group that gets created
 # todo: see if it's still necessary to specify a random pwd for sql (it's not necessary when creating manually in portal)
-echo "--> Creating Synapse Workspace: $OEA_SYNAPSE"
+echo "--> 3) Creating Synapse Workspace: $OEA_SYNAPSE (this is usually the longest step - it may take 5 to 10 minutes to complete)"
+echo "--> 3) Creating Synapse Workspace: $OEA_SYNAPSE (this is usually the longest step - it may take 5 to 10 minutes to complete)" 1>&3
 temporary_password="$(openssl rand -base64 12)" # Generate random password (because sql-admin-login-password is required, but not used in this solution)
 az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION \
   --storage-account $OEA_STORAGE_ACCOUNT --file-system synapse-workspace --location $location \
@@ -68,7 +71,8 @@ az synapse spark pool create --name spark3p0sm --workspace-name $OEA_SYNAPSE --r
   --no-wait
 
 # 4) Create key vault for secure storage of credentials, and create app insights for logging
-echo "--> Creating key vault: ${OEA_KEYVAULT}"
+echo "--> 4) Creating key vault: ${OEA_KEYVAULT}"
+echo "--> 4) Creating key vault: ${OEA_KEYVAULT}" 1>&3
 az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION
 # give the Synapse workspace access to get secrets from the key vault, for use in Synapse pipelines
 az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get --object-id $synapse_principal_id
@@ -82,7 +86,8 @@ app_insights_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GR
 
 if [ "$include_groups" == "true" ]; then
   # 5) Create security groups in AAD, and grant access to storage
-  echo "--> Creating security groups in Azure Active Directory."
+  echo "--> 5) Creating security groups in Azure Active Directory."
+  echo "--> 5) Creating security groups in Azure Active Directory." 1>&3
   az ad group create --display-name 'Edu Analytics Global Admins' --mail-nickname 'EduAnalyticsGlobalAdmins'
   az ad group owner add --group 'Edu Analytics Global Admins' --owner-object-id $user_object_id
 
@@ -107,20 +112,19 @@ if [ "$include_groups" == "true" ]; then
   az role assignment create --role "Storage Blob Data Contributor" --assignee $data_scientists --scope $storage_account_id
   az role assignment create --role "Storage Blob Data Contributor" --assignee $data_engineers --scope $storage_account_id
   # Assign limited access to specific containers for the external data scientists
-  stage3_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/stage3"
-  az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $stage3_id
-  testdata_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/test-env"
-  az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $testdata_id
+  stage2p_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/stage2p"
+  az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $stage2p_id
+  stage3p_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/stage3p"
+  az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $stage3p_id
+  oea_framework_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/oea-framework"
+  az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $oea_framework_id
   # Assign "Storage Blob Data Contributor" for the "synapse" container so that External Data Scientists can create spark db's against data they have prepared.
   synapse_container_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/synapse"
   az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $synapse_container_id
+  # Assign "Reader" access to the storage account so they can see the storage containers when browsing in synapse (this doesn't give access to the data in the containers)
+  az role assignment create --role "Reader" --assignee $external_data_scientists --scope $storage_account_id
 
 else
   # If security groups are not created, this user will need to have this role assignment to be able to query data from the storage account
   az role assignment create --role "Storage Blob Data Contributor" --assignee $user_object_id --scope $storage_account_id
 fi
-
-# Setup is complete. Provide a link for user to jump to synapse studio.
-workspace_url=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP | jq -r '.connectivityEndpoints | .web')
-echo "--> Setup complete."
-echo "Click on this url to open your Synapse Workspace: $workspace_url"

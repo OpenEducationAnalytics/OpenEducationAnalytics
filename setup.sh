@@ -22,13 +22,7 @@ fi
 
 datetime=$(date "+%Y%m%d_%H%M%S")
 logfile="oea_setup_${datetime}.log"
-# Route stdout and stderr to logfile
-exec 1>>${logfile} 2>&1
-
-# Tail the logfile to have the contents go to stdout.
-tail -f $logfile &
-# Ensure the tail background process is cleaned-up when the script exits
-trap "pkill -P $$" EXIT
+exec 3>&1 1>>${logfile} 2>&1
 
 # The assumption here is that this script is in the base path of the OpenEduAnalytics project.
 oea_path=$(dirname $(realpath $0))
@@ -63,9 +57,13 @@ if [[ ! " ${roles[@]} " =~ "Owner" ]]; then
   exit 1
 fi
 
+echo "--> Setting up OEA (logging detailed setup messages to $logfile)"
+echo "--> Setting up OEA (logging detailed setup messages to $logfile)" 1>&3
+
 
 # setup the base architecture
 echo "--> Setting up the OEA base architecture."
+echo "--> Setting up the OEA base architecture." 1>&3
 $oea_path/setup_base_architecture.sh $org_id $location $include_groups
 # exit out if setup_base_architecture failed
 if [[ $? != 0 ]]; then
@@ -74,7 +72,9 @@ fi
 
 # install the ContosoISD package
 echo "--> Setting up the example OEA package."
+echo "--> Setting up the example OEA package." 1>&3
 $oea_path/packages/ContosoISD/setup.sh $org_id
 
 workspace_url=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP | jq -r '.connectivityEndpoints | .web')
 echo "--> OEA setup is complete. Click on this url to open your Synapse Workspace: $workspace_url"
+echo "--> OEA setup is complete. Click on this url to open your Synapse Workspace: $workspace_url" 1>&3
