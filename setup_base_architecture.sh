@@ -5,7 +5,16 @@
 # 1) create resource group
 # 2) create storage account and storage containers (stage1, stage2, stage3, synapse)
 # 3) create synapse workspace, configure firewall access, and create Spark pool
-# 4) create security groups and assign them access to storage
+# 4) create keyvault instance and appinsights for logging
+# 5) create security groups and assign them access to storage
+
+org_id=$1
+org_id_lowercase=${org_id,,}
+location=$2
+location=${location:-eastus}
+include_groups=$3
+include_groups=${include_groups,,}
+include_groups=${include_groups:-false}
 
 # Create a tmp dir in order to write notebooks to for easier importing (this can be removed once the automated provisioning of notebooks is fixed)
 mkdir $this_file_path/tmp
