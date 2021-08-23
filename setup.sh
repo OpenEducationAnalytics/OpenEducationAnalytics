@@ -72,5 +72,8 @@ echo "--> Setting up the example OEA package." 1>&3
 $oea_path/packages/ContosoISD/setup.sh $org_id
 
 workspace_url=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP | jq -r '.connectivityEndpoints | .web')
-echo "--> OEA setup is complete.\nClick on this url to open your new Synapse Workspace: $workspace_url\nAnd then in Synapse, click on 'Develop' in the left nav,\nthen select ContosoISD_example, and follow the directions shown there." 1>&3
-echo "--> OEA setup is complete.\nClick on this url to open your new Synapse Workspace: $workspace_url\nAnd then in Synapse, click on 'Develop' in the left nav,\nthen select ContosoISD_example, and follow the directions shown there." 1>&3
+echo "--> OEA setup is complete. Click on this url to work with your new Synapse workspace (via Synapse Studio): $workspace_url"
+echo "--> OEA setup is complete. Click on this url to work with your new Synapse workspace (via Synapse Studio): $workspace_url" 1>&3
+
+echo $'    Once in Synapse Studio, click on Develop, select the notebook called ContosoISD_example, and follow the directions shown there.'
+echo $'    Once in Synapse Studio, click on Develop, select the notebook called ContosoISD_example, and follow the directions shown there.' 1>&3
