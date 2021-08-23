@@ -7,58 +7,6 @@
 # 3) create synapse workspace, configure firewall access, and create Spark pool
 # 4) create security groups and assign them access to storage
 
-if [ $# -ne 1 ] && [ $# -ne 2 ] && [ $# -ne 3 ]; then
-    echo "This setup script will install the Open Edu Analytics base architecture."
-    echo ""
-    echo "Invoke this script like this:  "
-    echo "    setup.sh <mysuffix>"
-    echo "where mysuffix is a suffix representing your organization (eg, CISD3). This value must be 12 characters or less (consider using an abbreviation) and must contain only letters and/or numbers."
-    echo ""
-    echo "By default, the Azure resources will be provisioned in the East US location."
-    echo "If you want to have the resources provisioned in an alternate location, invoke the script like this: "
-    echo "    setup.sh <mysuffix> <location>"
-    echo "where mysuffix is a suffix for your organization (eg, CISD3), and location is the abbreviation of the desired location (eg, eastus, westus, northeurope)."
-    echo ""
-    echo "If you have Global Admin rights for the tenant associated with your Azure subscription, and you want to have the script setup security groups to facilitate the management of role based access control, you can invoke the script like this:"
-    echo "You can opt to create a set of resources (eg, for a test env) without setting up the security groups like this:"
-    echo "    setup.sh <mysuffix> <location> true"
-    echo "where mysuffix is a suffix for your organization (eg, CISD3), and location is the abbreviation of the desired location (eg, eastus, westus, northeurope), and true specifies that security groups should be created."
-    exit 1
-fi
-
-this_file_path=$(dirname $(realpath $0))
-
-#read -p 'Enter an org id, using only letters and numbers (eg, ContosoISD3): ' org_id
-org_id=$1
-org_id_lowercase=${org_id,,}
-source $this_file_path/set_names.sh $org_id
-#read -p 'Enter the location for the Azure resources to be create in (eg, eastus, westus, northeurope) [eastus]: ' location
-location=$2
-location=${location:-eastus}
-include_groups=$3
-include_groups=${include_groups,,}
-include_groups=${include_groups:-false}
-
-subscription_id=$(az account show --query id -o tsv)
-storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT"
-user_object_id=$(az ad signed-in-user show --query objectId -o tsv)
-
-# Verify that the specified org_id is not too long and doesn't have invalid characters.
-# The length is constrained by the fact that the synapse workspace name must be <= 24 characters, and our naming convention requires that it start with "syn-oea-".
-if [[ ${#org_id} -gt 16 || ! $org_id =~ ^[a-zA-Z0-9]+$ ]]; then
-  echo "Invalid suffix: $org_id"
-  echo "The chosen suffix must be less than 12 characters, and must contain only letters and numbers."
-  exit 1
-fi
-
-# Verify that the user has the Owner role assignment
-roles=$(az role assignment list --subscription $subscription_id --query [].roleDefinitionName -o tsv)
-if [[ ! " ${roles[@]} " =~ "Owner" ]]; then
-  echo "You do not have the role assignment of Owner on this subscription."
-  echo "For more info, click here -> https://github.com/microsoft/OpenEduAnalytics/wiki/Setup-Tips#error-must-have-role-assignment-of-owner-on-subscription"
-  exit 1
-fi
-
 # Create a tmp dir in order to write notebooks to for easier importing (this can be removed once the automated provisioning of notebooks is fixed)
 mkdir $this_file_path/tmp
 
