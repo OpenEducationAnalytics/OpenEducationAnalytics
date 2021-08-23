@@ -10,7 +10,7 @@ Open Education Analytics (OEA) is a fully open-sourced ([Creative Commons](https
 
 This repository contains a set of assets for setting up and walking through a reference implementation of the OEA reference architecture.
 
-<img height="400" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_ref_arch2.png">
+<img height="400" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_ref_arch_v0.4.png">
 
 The underlying Azure platform services are mature and well documented, but this set of assets utilizing those platform services is very much a work in progress and comes with no warranties nor SLA's, etc.
 
