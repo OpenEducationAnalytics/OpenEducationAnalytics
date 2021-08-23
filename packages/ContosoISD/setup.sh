@@ -21,7 +21,7 @@ $module_path/M365/setup.sh $org_id
 
 # Import the notebooks
 echo "--> Importing synapse notebooks for ContosoISD example..."
-eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name ContosoISD_example --file @$this_file_path/example/ContosoISD_example.ipynb"
-eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_framework_example_py --file @$this_file_path/example/OEA_framework_example_py.ipynb"
-eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_modules_example_py --file @$this_file_path/example/OEA_modules_example_py.ipynb"
+eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name ContosoISD_example --file @$this_file_path/example/ContosoISD_example.ipynb" --only-show-errors
+eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_framework_example_py --file @$this_file_path/example/OEA_framework_example_py.ipynb" --only-show-errors
+eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_modules_example_py --file @$this_file_path/example/OEA_modules_example_py.ipynb" --only-show-errors
 
