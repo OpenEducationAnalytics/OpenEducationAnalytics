@@ -20,6 +20,8 @@ $module_path/Contoso_SIS/setup.sh $org_id
 $module_path/M365/setup.sh $org_id
 
 # Import the notebooks
-eval "az synapse notebook import --workspace-name syn-oea-cisdggv04b --name ContosoSIS_py --file @./OpenEduAnalytics/packages/ContosoISD/example/ContosoISD_example.ipynb"
-eval "az synapse notebook import --workspace-name syn-oea-cisdggv04b --name M365_py --file @./OpenEduAnalytics/packages/ContosoISD/example/OEA_framework_example_py.ipynb"
-eval "az synapse notebook import --workspace-name syn-oea-cisdggv04b --name OEA_py --file @./OpenEduAnalytics/packages/ContosoISD/example/OEA_modules_example_py.ipynb"
+echo "--> Importing synapse notebooks for ContosoISD example..."
+eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name ContosoISD_example --file @$this_file_path/example/ContosoISD_example.ipynb"
+eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_framework_example_py --file @$this_file_path/example/OEA_framework_example_py.ipynb"
+eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_modules_example_py --file @$this_file_path/example/OEA_modules_example_py.ipynb"
+

@@ -1,0 +1,2 @@
+# ContosoISD example notebooks
+These synapse notebooks are automatically imported into your Synapse Workspace during the initial OEA setup, in order to facilitate the process of walking through an initial example.

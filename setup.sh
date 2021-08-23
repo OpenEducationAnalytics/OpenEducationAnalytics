@@ -20,6 +20,10 @@ if [ $# -ne 1 ] && [ $# -ne 2 ] && [ $# -ne 3 ]; then
     exit 1
 fi
 
+datetime=$(date "+%Y%m%d_%H%M%S")
+logfile="oea_setup_${datetime}.log"
+exec 3>&1 1>>${logfile} 2>&1
+
 org_id=$1
 org_id_lowercase=${org_id,,}
 location=$2
@@ -32,6 +36,8 @@ include_groups=${include_groups:-false}
 oea_path=$(dirname $(realpath $0))
 
 # setup the base architecture
+echo "--> Setting up the OEA base architecture."
+echo "--> Setting up the OEA base architecture." 1>&3
 $oea_path/setup_base_architecture.sh $org_id $location $include_groups
 # exit out if setup_base_architecture failed
 if [[ $? != 0 ]]; then
@@ -39,6 +45,10 @@ if [[ $? != 0 ]]; then
 fi
 
 # install the ContosoISD package
+echo "--> Setting up the example OEA package."
+echo "--> Setting up the example OEA package." 1>&3
 $oea_path/packages/ContosoISD/setup.sh $org_id
 
-echo "--> Setup of the Open Education Analytics reference architecture is complete."
+workspace_url=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP | jq -r '.connectivityEndpoints | .web')
+echo "--> OEA setup is complete. Click on this url to open your Synapse Workspace: $workspace_url"
+echo "--> OEA setup is complete. Click on this url to open your Synapse Workspace: $workspace_url" 1>&3
