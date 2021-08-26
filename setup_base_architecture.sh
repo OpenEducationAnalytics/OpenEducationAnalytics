@@ -12,11 +12,9 @@ org_id=$1
 location=$2
 include_groups=$3
 subscription_id=$4
+oea_path=$5
 storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT"
 user_object_id=$(az ad signed-in-user show --query objectId -o tsv)
-
-# Create a tmp dir in order to write notebooks to for easier importing (this can be removed once the automated provisioning of notebooks is fixed)
-mkdir $this_file_path/tmp
 
 # 0) Ensure that the resource providers are registered in the subscription (more info about this here: https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/error-register-resource-provider )
 az provider register --namespace 'Microsoft.Sql'
@@ -75,8 +73,10 @@ az synapse workspace firewall-rule create --name allowAll --workspace-name $OEA_
 echo "--> Creating spark pool."
 az synapse spark pool create --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
   --spark-version 3.1 --node-count 3 --node-size Small --min-node-count 3 --max-node-count 10 \
-  --enable-auto-scale true --delay 15 --enable-auto-pause true \
-  --no-wait
+  --enable-auto-scale true --delay 15 --enable-auto-pause true
+
+echo "--> Update spark pool to include required libraries (note that this has to be done as a separate step or the create command will fail, despite what the docs say)."
+az synapse spark pool update --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --library-requirements $oea_path/framework/requirements.txt --no-wait
 
 # 4) Create key vault for secure storage of credentials, and create app insights for logging
 echo "--> 4) Creating key vault: ${OEA_KEYVAULT}"
