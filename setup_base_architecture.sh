@@ -13,6 +13,7 @@ location=$2
 include_groups=$3
 subscription_id=$4
 oea_path=$5
+logfile=$6
 storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT"
 user_object_id=$(az ad signed-in-user show --query objectId -o tsv)
 
@@ -35,15 +36,18 @@ az extension add --name azure-cli-ml
 echo "--> 1) Creating resource group: $OEA_RESOURCE_GROUP"
 echo "--> 1) Creating resource group: $OEA_RESOURCE_GROUP" 1>&3
 az group create -l $location -n $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION
+[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 # 2) Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
 echo "--> 2) Creating storage account: ${OEA_STORAGE_ACCOUNT}"
 echo "--> 2) Creating storage account: ${OEA_STORAGE_ACCOUNT}" 1>&3
 az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION \
   --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --default-action Allow
+[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 echo "--> Creating storage account containers."
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name synapse-workspace --auth-mode login
+[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name oea-framework --auth-mode login
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage1np --auth-mode login
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage2np --auth-mode login
@@ -60,6 +64,7 @@ temporary_password="$(openssl rand -base64 12)" # Generate random password (beca
 az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION \
   --storage-account $OEA_STORAGE_ACCOUNT --file-system synapse-workspace --location $location \
   --sql-admin-login-user eduanalyticsuser --sql-admin-login-password $temporary_password
+[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 # This permission is necessary to allow a data pipeline in Synapse to invoke notebooks.
 # In order to set this permission, the user has to have the role assignment of "Owner" on the Azure subscription.
@@ -74,6 +79,7 @@ echo "--> Creating spark pool."
 az synapse spark pool create --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
   --spark-version 3.1 --node-count 3 --node-size Small --min-node-count 3 --max-node-count 10 \
   --enable-auto-scale true --delay 15 --enable-auto-pause true
+[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 echo "--> Update spark pool to include required libraries (note that this has to be done as a separate step or the create command will fail, despite what the docs say)."
 az synapse spark pool update --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --library-requirements $oea_path/framework/requirements.txt --no-wait

@@ -64,7 +64,7 @@ echo "--> Setting up OEA (logging detailed setup messages to $logfile)" 1>&3
 # setup the base architecture
 echo "--> Setting up the OEA base architecture."
 echo "--> Setting up the OEA base architecture." 1>&3
-$oea_path/setup_base_architecture.sh $org_id $location $include_groups $subscription_id $oea_path
+$oea_path/setup_base_architecture.sh $org_id $location $include_groups $subscription_id $oea_path $logfile
 # exit out if setup_base_architecture failed
 if [[ $? != 0 ]]; then
   exit 1
