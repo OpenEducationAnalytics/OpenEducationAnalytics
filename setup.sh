@@ -71,7 +71,7 @@ echo "--> Setting up the OEA framework assets."
 echo "--> Setting up the OEA framework assets." 1>&3
 az synapse dataset create --workspace-name $OEA_SYNAPSE --name data_lake_binary --file @$oea_path/framework/synapse/dataset/data_lake_binary.json
 az synapse dataset create --workspace-name $OEA_SYNAPSE --name data_lake_csv --file @$oea_path/framework/synapse/dataset/data_lake_csv.json
-eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_py --file @$oea_path/framework/synapse/notebook/OEA.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_py --file @$oea_path/framework/synapse/notebook/OEA_py.ipynb --only-show-errors"
 
 # install the ContosoISD package
 echo "--> Setting up the example OEA package."
