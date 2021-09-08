@@ -8,7 +8,7 @@ image: /assets/imgs/posts/img_fresno_visual.png
 
 Fresno Unified School District serves about 71,000 students from preschool through secondary school in California. In general, these students come from economically challenged families, with 88.3%    of the district population receiving free or reduced-price lunches at school. The district wanted to embed personalised learning across schools to make sure they were addressing the unique needs of all of their students individually and to develop and nurture a culture of continuous improvement that would benefit their learners throughout their lives.
 
->A lot of our changes are driven by equity. Creativity, collaboration, project-based learning: the irony is that students who need these skills the most to compete in the workforce and to succeed in college are the high poverty students. But often the equity issue gets in the way of improving the quality of education which better prepares students for the #as-yet-imagined-futures. 
+>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 >
 >Philip Neufeld 
 >
