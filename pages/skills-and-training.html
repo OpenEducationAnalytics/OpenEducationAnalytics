@@ -1,0 +1,149 @@
+---
+title: Skills & Training
+layout: page
+permalink: /skills-and-training/
+---
+
+<div>
+    <!--Skills and Training page barner section-->
+    <section class="skills-training-page-banner-section ">
+        <div class="container">
+            <div class="row justify-content-center g-0 mt-10 mt-md-10">
+                <div class="col-md-6 ">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h2>
+                                Developing the skills needed by each role to implement Open Education Analytics
+                            </h2>
+                        </li>
+                        <li>
+                            <p>
+                                Education Systems and OEA Partners need to develop knowledge and skills on responsible
+                                data and AI, data architecture, analytics and data science. Below you can find training
+                                from the OEA team and from Microsoft Learn. 
+                            </p>
+                            <p>
+                                Microsoft Learn is a portal for providing specific courses and curriculums, designed to the skills needed to
+                                implement and maintain a modern data estate, as well as to accelerate analytics and AI
+                                in education.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 skills-training-hero-image">
+                    <img src="../assets/imgs/skills-training-hero-img.svg" class="img-fluid w-70"
+                         alt="networking icon"/>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="">
+        <img src="../assets/imgs/img_blue_backdrop_bottom.svg" class="img-fluid w-100">
+    </div>
+
+
+    <div class="container">
+        <section class="training-courses-section">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-xl-3 col-sm-3 d-none d-lg-block d-xl-block d-md-block">
+                    <div class="mini-nav">
+                        <ul class="list-unstyled">
+                            <li class="mb-4"><a href="#list-item-0">Define the Problem</a></li>
+                            <li class="my-4"><a href="#list-item-1">Setup the Modern Data Estate</a></li>
+                            <li class="my-4"><a href="#list-item-2">Explore and Model Data</a></li>
+                            <li class="my-4"><a href="#list-item-3">Communicate and Act</a></li>
+                            <li class="my-4"><a href="#list-item-4">All Skills Training Courses</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="container px-0" data-bs-spy="scroll">
+                        <div class="row justify-content-between mb-3 mb-md-5">
+                            <div class="col-md-6 ">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <h4>Skills Training Courses</h4>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 text-right text-md-end">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <i class="fas fa-filter fa-2x"></i>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div id="list-item-0">
+                            {% for courses in site.data.skills_and_training %}
+                            <h5 class="my-5">{{courses.use_case}}</h5>
+                            <div class="mb-3 row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                {% for skill in courses.courses %}
+                                <div class="col mb-2 mb-md-0 ">
+                                    <a href="{{skill.url}}" target="_blank">
+                                        <div class="card h-100">
+                                            <div class="card-header">
+                                                <ul class="list-unstyled">
+                                                    <li>
+                                                        <img src="../assets/imgs/skills-courses-icon.svg"
+                                                             class="img-fluid w-25 pt-3" alt=""/>
+                                                    </li>
+                                                    <li><a class="stretched-link" href=""></a></li>
+
+                                                </ul>
+                                            </div>
+                                            <div class="card-body">
+                                                <ul class="list-unstyled d-flex align-self-center pt-4 mb-0">
+                                                    <li>
+                                                        <img src="../assets/imgs/avatar_1.svg" class="img-fluid"
+                                                             style="width: 2rem;" alt=""/>
+                                                    </li>
+                                                    <li>
+                                                        <p class="uppercase ps-2">{{skill.roles[0]}}</p>
+                                                    </li>
+                                                </ul>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li>
+                                                        <h6>{{skill.name}}</h6>
+                                                    </li>
+                                                    <li>
+                                                        <p class="pt-1">
+                                                            {{skill.description | truncate: 70 }}
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-footer">
+                                                <ul class="list-unstyled ">
+                                                    <li>
+                                                        <p class="">{{courses.use_case}}</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

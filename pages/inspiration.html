@@ -1,0 +1,103 @@
+---
+title: Inspiration
+layout: default
+permalink: /inspiration/
+---
+<div>
+    <section class="inspiration-header">
+        <div class="container">
+            <div class="row justify-content-center mt-10">
+                <div class="col-md-10 col-lg-6 col-sm-10 col-xl-6 d-block d-lg-none d-xl-none mt-4 text-center text-md-center">
+                    <img src="{{ site.baseurl }}/assets/imgs/img_inspiration_header.svg"
+                         alt="Inspiration page header image" class="img-fluid w-50">
+                </div>
+
+                <div class="col-md-11 col-11 col-sm-10 col-lg-6 col-xl-6 mt-10">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h2>
+                                Get inspired to create a data-driven culture
+                            </h2>
+                        </li>
+                        <li class="mt-2">
+                            <p>
+                                The OEA Community encourages knowledge sharing, collaboration and democratizing
+                                resources and best practices for modern education analytics.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Learn how OEA Community members and education systems are using data and AI to improve
+                                learning outcomes.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xl-6 d-none d-lg-block text-center">
+                    <img src="{{ site.baseurl }}/assets/imgs/img_inspiration_header.svg"
+                         alt="Inspiration page header image" class="img-fluid custom-width-60">
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="">
+        <img src="{{ site.baseurl }}/assets/imgs/img_yellow_backdrop_bottom.svg" class="img-fluid w-100">
+    </div>
+
+    <div class="inspiration-main-wrapper">
+        <div class="container">
+            <div class="row justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-center">
+                {% assign sorted_cats = site.categories | sort %}
+                {% for category in sorted_cats %}
+                {% assign sorted_posts = category[1] | reversed %}
+
+                <div class="col-11">
+                    <h5 class="my-4">{{category[0]}}</h5>
+                </div>
+                {% for post in sorted_posts %}
+                <div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xl-4 h-100">
+                    <div class="article-wrapper h-100">
+                        <ul class="list-unstyled h-100">
+                            <li>
+                                <div class="img-object-container">
+                                    <a href="{{ site.baseurl }}{{post.url}}">
+                                        <img src="{{ site.baseurl }}{{post.image}}"
+                                             alt="See the data and AI journey in Helsinki, Finland"
+                                             class="img-fluid h-100 img-fluid w-100"/>
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="my-2">
+                                <h6>
+                                    {{post.title}}
+                                </h6>
+                                <span class="badge bg-light text-dark d-none">{{post.category}}</span>
+                            </li>
+                            <li>
+                                <small class="text-muted">{{ post.date | date: "%-d %B %Y" }}</small>
+                            </li>
+                            <li {%if category[0] !='Blog' %} class="d-none" {% endif %}>
+                                <p>
+                                    {{post.excerpt | strip_html | strip_newlines | truncate: 126}}
+                                </p>
+                            </li>
+                            <li {%if category[0] !='Newsletter' %} class="d-none" {% endif %}>
+                                <p>
+                                    {{post.description | strip_html | strip_newlines | truncate: 126}}
+                                </p>
+                            </li>
+                            <li>
+                                <a href="{{ site.baseurl }}{{post.url}}">
+                                    <p class="">Read post</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
