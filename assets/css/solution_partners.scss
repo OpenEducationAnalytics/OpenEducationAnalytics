@@ -1,0 +1,54 @@
+@import "constants";
+
+
+.text-cta {
+    font-weight: bold;
+    text-decoration: none !important;
+    color: $buttonColor;
+  }
+
+
+.card{
+    height: 100%;
+}
+
+.grey-text{
+    color: #6e6e6e;
+}
+
+.form-control{
+    display: inline;
+    width: 200px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #212529;
+}
+
+.form-control:focus{
+    display: inline;
+    width: 200px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+    border-bottom: 1px solid blue;
+}
+
+#filter-by-geography p{
+    float: right;
+}
+
+#microsoft_partner_section{
+    background-color: $lightBlue;
+}
+
+#looking-for-help-section{
+    background-color: $lightYellow;
+}
+
+.w-15 {
+    width: 15% !important;
+}
+

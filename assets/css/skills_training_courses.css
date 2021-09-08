@@ -1,0 +1,424 @@
+.custom-width-75 {
+  width: 75% !important;
+}
+
+.custom-width-60 {
+  width: 60% !important;
+}
+
+.custom-width-75 {
+  width: 75% !important;
+}
+
+.custom-width-60 {
+  width: 60% !important;
+}
+
+.card {
+  border-radius: 0;
+}
+
+.card h6 {
+  line-height: 1.4rem;
+}
+
+.card label {
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.image-wrapper {
+  width: 100%;
+  min-height: 400px;
+  float: left;
+}
+
+.mini-card {
+  width: 100%;
+  float: left;
+  padding: 15px;
+}
+
+.page-wrapper, main {
+  width: 100%;
+  float: left;
+}
+
+.blue-bg {
+  background-color: #d0ddf7;
+}
+
+.what-is-oea-section, .newsletter-section, .contribute-section {
+  width: 100%;
+  padding: 30px 0;
+  background-color: #E5EEFF;
+  float: left;
+}
+
+.what-is-oea-section, .newsletter-section, .contribute-section {
+  background-color: #d0ddf7;
+}
+
+.get-started-section, .data-estate-section {
+  background-color: #fff3d5;
+}
+
+.challenges-section {
+  background-size: 100% 100% !important;
+  width: 100%;
+}
+
+.holder {
+  width: 100%;
+  float: left;
+}
+
+.newsletter-section {
+  background-size: cover !important;
+}
+
+.get-started-section {
+  width: 100%;
+}
+
+.contribute-section {
+  width: 100%;
+  float: left;
+}
+
+.customer-feedback-image {
+  width: 150px;
+  height: 150px;
+  background-color: #feb902;
+  padding: 0.3rem;
+  border: 10px solid #FFF;
+}
+
+.customer-quote {
+  color: #b7c8dd;
+}
+
+.skip-btn {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #FFF;
+  background-color: #eee;
+  color: #959595;
+  cursor: pointer;
+}
+
+.skip-btn__active {
+  background-color: #065BFA;
+  color: #FFF;
+}
+
+.customer-feedback-wrapper {
+  background-color: #FFFFFF;
+}
+
+.customer-feedback-wrapper p, .customer-feedback-wrapper small {
+  font-size: 0.78em;
+}
+
+.customer-feedback-wrapper small > span {
+  color: #065BFA;
+}
+
+.customer-feedback-wrapper .fa {
+  font-size: 10px;
+}
+
+.card-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card-inactive {
+  display: none;
+}
+
+.border-3 {
+  height: 40px;
+}
+
+.custom-width-75 {
+  width: 75% !important;
+}
+
+.custom-width-60 {
+  width: 60% !important;
+}
+
+.card {
+  border-radius: 0;
+}
+
+.card h6 {
+  line-height: 1.4rem;
+}
+
+.card label {
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.image-wrapper {
+  width: 100%;
+  min-height: 400px;
+  float: left;
+}
+
+.mini-card {
+  width: 100%;
+  float: left;
+  padding: 15px;
+}
+
+.page-wrapper, main {
+  width: 100%;
+  float: left;
+}
+
+.blue-bg {
+  background-color: #d0ddf7;
+}
+
+.what-is-oea-section, .newsletter-section, .contribute-section {
+  width: 100%;
+  padding: 30px 0;
+  background-color: #E5EEFF;
+  float: left;
+}
+
+.what-is-oea-section, .newsletter-section, .contribute-section {
+  background-color: #d0ddf7;
+}
+
+.get-started-section, .data-estate-section {
+  background-color: #fff3d5;
+}
+
+.challenges-section {
+  background-size: 100% 100% !important;
+  width: 100%;
+}
+
+.holder {
+  width: 100%;
+  float: left;
+}
+
+.newsletter-section {
+  background-size: cover !important;
+}
+
+.get-started-section {
+  width: 100%;
+}
+
+.contribute-section {
+  width: 100%;
+  float: left;
+}
+
+.customer-feedback-image {
+  width: 150px;
+  height: 150px;
+  background-color: #feb902;
+  padding: 0.3rem;
+  border: 10px solid #FFF;
+}
+
+.customer-quote {
+  color: #b7c8dd;
+}
+
+.skip-btn {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #FFF;
+  background-color: #eee;
+  color: #959595;
+  cursor: pointer;
+}
+
+.skip-btn__active {
+  background-color: #065BFA;
+  color: #FFF;
+}
+
+.customer-feedback-wrapper {
+  background-color: #FFFFFF;
+}
+
+.customer-feedback-wrapper p, .customer-feedback-wrapper small {
+  font-size: 0.78em;
+}
+
+.customer-feedback-wrapper small > span {
+  color: #065BFA;
+}
+
+.customer-feedback-wrapper .fa {
+  font-size: 10px;
+}
+
+.card-active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.card-inactive {
+  display: none;
+}
+
+.border-3 {
+  height: 40px;
+}
+
+.mt-md-10 {
+  margin-top: 0;
+}
+
+@media (min-width: 769px) {
+  .mt-md-10 {
+    margin-top: 5rem;
+  }
+}
+
+.join-oea-hero-image img {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 769px) {
+  .join-oea-hero-image img {
+    margin-left: 3rem;
+  }
+}
+
+.w-8 {
+  width: 8%;
+}
+
+.pt-10 {
+  padding-top: 5%;
+}
+
+.benefits-of-oea-section {
+  background-color: #FFF3D5;
+}
+
+.benefits-of-oea-section a {
+  color: #0b62e4;
+}
+
+.benefits-image img {
+  width: 15rem;
+  padding-top: 1rem;
+}
+
+@media (min-width: 769px) {
+  .benefits-image img {
+    width: 65%;
+    padding-top: 0;
+    padding-right: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .benefits-image img {
+    width: 100%;
+    padding-top: 5rem;
+    padding-right: 2rem;
+  }
+}
+
+.fa-check {
+  color: #003057;
+}
+
+.benefits-of-oea-card {
+  cursor: pointer;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: .25rem;
+  width: 100%;
+  border: 1px solid #065bfa;
+}
+
+.benefits-of-oea-card:hover {
+  border: 2px solid #065BFA;
+}
+
+.benefits-of-oea-card p {
+  margin-bottom: 0;
+}
+
+.skills-training-page-banner-section {
+  background-color: #d0ddf7;
+}
+
+.skills-training-page-banner-section a {
+  text-decoration: underline;
+  color: #065BFA;
+  font-weight: bold;
+}
+
+.training-courses-section .card p, .training-courses-section .card h5 {
+  line-height: 1.5rem;
+}
+
+.training-courses-section .card-header {
+  padding: .9rem 1rem;
+  background-color: #A8BFEA;
+  border-bottom: none;
+  border-radius: 5px 5px 0 0;
+}
+
+.training-courses-section .card-header img {
+  position: absolute;
+  top: -6px;
+  left: 0.4rem;
+}
+
+.training-courses-section .card-body {
+  padding: 0.5rem 1rem;
+}
+
+.training-courses-section .card-body p {
+  color: #6E6E6E;
+}
+
+.training-courses-section .card-footer {
+  padding: 0 1rem;
+  background-color: transparent;
+  border-top: none;
+}
+
+.training-courses-section .card-footer img {
+  width: 1.5rem;
+}
+
+.training-courses-section .card-footer p {
+  font-size: .7rem;
+  color: #065BFA;
+}
+
+.training-courses-section .card-footer .uppercase {
+  text-transform: uppercase;
+}
+/*# sourceMappingURL=skills_training_courses.css.map */
