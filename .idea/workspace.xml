@@ -21,9 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="883c08e2-ef2c-41d7-a771-9fd14e27e966" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_data/skills_and_training.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_data/skills_and_training.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/skills_and_training.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/skills_and_training.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/responsible-ai.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/responsible-ai.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/skills-and-training.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/skills-and-training.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,17 +69,17 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/imgs" />
-      <recent name="$PROJECT_DIR$/assets" />
-      <recent name="$PROJECT_DIR$/_sass" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/imgs" />
       <recent name="$PROJECT_DIR$/assets/imgs/posts" />
       <recent name="$PROJECT_DIR$/assets/imgs/customers" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/_posts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/imgs" />
+      <recent name="$PROJECT_DIR$/assets" />
+      <recent name="$PROJECT_DIR$/_sass" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -149,7 +149,9 @@
       <workItem from="1630738432285" duration="1925000" />
       <workItem from="1630972885725" duration="14269000" />
       <workItem from="1631050218355" duration="390000" />
-      <workItem from="1631122901931" duration="9532000" />
+      <workItem from="1631122901931" duration="10933000" />
+      <workItem from="1631202472980" duration="2864000" />
+      <workItem from="1631211300324" duration="3597000" />
     </task>
     <servers />
   </component>
@@ -198,19 +200,19 @@
     </state>
     <state x="370" y="224" key="MultipleFileMergeDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1630340472314" />
     <state x="370" y="224" key="MultipleFileMergeDialog/0.25.1440.875@0.25.1440.875" timestamp="1630270502162" />
-    <state x="100" y="125" width="1231" height="675" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1630357729295">
+    <state x="100" y="125" width="1231" height="675" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1631203391332">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="100" y="125" width="1231" height="675" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1630357729295" />
-    <state x="411" y="255" key="git4idea.merge.GitPullDialog" timestamp="1631133621371">
+    <state x="100" y="125" width="1231" height="675" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631203391332" />
+    <state x="411" y="255" key="git4idea.merge.GitPullDialog" timestamp="1631205375855">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631133621371" />
+    <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631205375855" />
     <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875@0.25.1440.875" timestamp="1630270485506" />
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631134143258">
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631203655203">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631134143258" />
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631203655203" />
     <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1631007510121" />
   </component>
 </project>
