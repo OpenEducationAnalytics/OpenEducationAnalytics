@@ -1,4 +1,5 @@
 @import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
 @import "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css";
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap");
 .custom-width-75 {
@@ -343,7 +344,7 @@
 }
 
 .benefits-of-oea-section a {
-  color: #0b62e4 ;
+  color: #0b62e4;
 }
 
 .benefits-image img {
@@ -927,6 +928,10 @@
   background-color: #FFF3D5;
 }
 
+.benefits-of-oea-section a {
+  color: #0b62e4;
+}
+
 .benefits-image img {
   width: 15rem;
   padding-top: 1rem;
@@ -981,6 +986,15 @@
   font-weight: bold;
 }
 
+.small-text {
+  font-size: 13px;
+}
+
+.role-avatar {
+  filter: grayscale(1);
+  width: 2rem;
+}
+
 .training-courses-section .card p, .training-courses-section .card h5 {
   line-height: 1.5rem;
 }
@@ -1017,11 +1031,12 @@
   text-transform: uppercase;
 }
 
-.sitemap-header{
+.sitemap-header {
   background-color: #d0ddf7;
 }
+
 .sitemap-category-list-item {
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
 }
 
 html, body {
@@ -1090,6 +1105,10 @@ p {
   color: #FFF;
 }
 
+.dropdown-menu {
+  border: 1px solid #065BFA;
+}
+
 section {
   width: 100%;
   padding: 30px 0;
@@ -1113,6 +1132,10 @@ footer img {
 .mini-nav {
   position: sticky;
   top: 80px;
+}
+
+.btn-outline-primary {
+  border: 2px solid #065BFA;
 }
 
 .mt-10 {

@@ -21,10 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="883c08e2-ef2c-41d7-a771-9fd14e27e966" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_use_case_process/define_the_process.md" beforeDir="false" afterPath="$PROJECT_DIR$/_use_case_process/define_the_process.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/imgs/img_use_case_process.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/img_use_case_process.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/skills-and-training.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/skills-and-training.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +60,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/imgs" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -139,7 +145,11 @@
       <workItem from="1630402863361" duration="100000" />
       <workItem from="1630426701474" duration="278000" />
       <workItem from="1630430246892" duration="159000" />
-      <workItem from="1630539303199" duration="704000" />
+      <workItem from="1630539303199" duration="1154000" />
+      <workItem from="1630738432285" duration="1925000" />
+      <workItem from="1630972885725" duration="14269000" />
+      <workItem from="1631050218355" duration="390000" />
+      <workItem from="1631122901931" duration="9532000" />
     </task>
     <servers />
   </component>
@@ -192,15 +202,15 @@
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="100" y="125" width="1231" height="675" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1630357729295" />
-    <state x="411" y="255" key="git4idea.merge.GitPullDialog" timestamp="1630378834473">
+    <state x="411" y="255" key="git4idea.merge.GitPullDialog" timestamp="1631133621371">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1630378834473" />
+    <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631133621371" />
     <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875@0.25.1440.875" timestamp="1630270485506" />
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1630539703429">
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631134143258">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1630539703429" />
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1630430287199" />
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631134143258" />
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1631007510121" />
   </component>
 </project>

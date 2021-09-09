@@ -12,6 +12,16 @@
   }
 }
 
+.small-text {
+  font-size: 13px;
+}
+
+.role-avatar {
+  filter: grayscale(1);
+  width: 2rem;
+
+}
+
 .training-courses-section {
   .card {
     //border: 1px solid rgba(0,0,0,.125);
