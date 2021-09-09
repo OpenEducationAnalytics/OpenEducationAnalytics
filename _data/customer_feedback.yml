@@ -1,0 +1,19 @@
+- name: Vüsal Khanlarov
+  position: 1
+  message: Whatever we do affects millions of people—not only those that are in school now, but parents and future generations. When we take any action, we have to understand that there is a great responsibility for tomorrow. Education is a system where you see changes very slowly, but when you plant a seed, it’s very difficult to roll it back. Before making any action, it’s important to understand what values you follow and why you do it.
+  image: img_profile_vusal.jpg
+  role: Head of Bureau on ICT for Education, Ministry of Education of the Republic of Azerbaijan.
+- name: Carrie Berger, Ph.D.
+  position: 2
+  message: Being able to gather, integrate, and visualize our student and financial data has helped us identify gaps in our services, specifically student-focused services. The easier it is to gather and visualize data, the more confident I am in the decisions I am making for the college.  The ability to gather and visualize data  needs to be super easy so we don’t have to hire more people to do it for us, essentially a democratization of data.
+    We need trusted AI that can provide insights into our systemic issues and help us create the culture we desire.
+  image: img_profile_carrie.jpg
+  role: Interim Dean, Associate Dean for Strategic Initiatives, Purdue Polytechnic Institute.
+- name: Pasi Silander
+  position: 3
+  message: Ethics is an end-to-end process. It starts with policymaking, then decision making, then design of software, then design of what data to use, then training algorithms, then how end users are using the data and results. The ethics governance for the whole end-to-end process is an essential part when building Learning Analytics and AI in Education.
+  image: img_profile_pasi.jpg
+  role: Head of ICT Development Programs, AI & Data Analytics, City of Helsinki Education Division.
+
+
+
