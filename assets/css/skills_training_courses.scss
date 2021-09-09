@@ -1,0 +1,75 @@
+@import "constants";
+@import "landing_page";
+@import "join-oea-page";
+
+.skills-training-page-banner-section {
+  background-color: #d0ddf7;
+
+  a {
+    text-decoration: underline;
+    color: #065BFA;
+    font-weight: bold;
+  }
+}
+
+.small-text {
+  font-size: 13px;
+}
+
+.role-avatar {
+  filter: grayscale(1);
+  width: 2rem;
+
+}
+
+.training-courses-section {
+  .card {
+    //border: 1px solid rgba(0,0,0,.125);
+    //border-radius: 6px;
+
+    p, h5 {
+      //font-size: 12.8px;
+      line-height: 1.5rem;
+    }
+  }
+
+  .card-header {
+    padding: .9rem 1rem;
+    background-color: #A8BFEA;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+
+    img {
+      position: absolute;
+      top: -6px;
+      left: 0.4rem;
+    }
+  }
+
+  .card-body {
+    padding: 0.5rem 1rem;
+
+    p {
+      color: #6E6E6E;
+    }
+  }
+
+  .card-footer {
+    padding: 0 1rem;
+    background-color: transparent;
+    border-top: none;
+
+    img {
+      width: 1.5rem;
+    }
+
+    p {
+      font-size: .7rem;
+      color: $primaryColor;
+    }
+
+    .uppercase {
+      text-transform: uppercase;
+    }
+  }
+}

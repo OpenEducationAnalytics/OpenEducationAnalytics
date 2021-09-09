@@ -1,0 +1,249 @@
+#### Nomenclature
+# PM - Project Manager
+# LF - Learners & Family
+# DAE - Data Architects Engineer
+# R - Researchers
+# DA - Data Analysts
+# ED - Educators
+# DTL - Data Team + Learners
+# S - Scientist
+
+
+- use_case: Define the problem
+  courses:
+    - name: Open Education Analytics Overview
+      url: https://www.youtube.com/watch?v=efNYbS4sC4g
+      roles: [Project Managers and Use Case Stakeholders,Data Team + Learners, Educators, Leaders and Families, Data Architects and Engineers,Data Analysts, Scientists, and Researchers]
+      description:  Learn more about how OEA can help you modernize your own data estate.
+      alias: "PM DTL ED LF DAE DA S R"
+    - name: OEA Responsible AI Overview
+      url: https://www.youtube.com/watch?v=1rEhGUpVs6E&t=2s
+      roles: [Project Managers and Use Case Stakeholders,Data Team + Learners, Educators, Leaders and Families, Data Architects and Engineers,Data Analysts, Scientists, and Researchers]
+      description: Principles of Responsible AI
+      alias: "PM DTL ED LF DAE DA S R"
+    - name: Use Case Template
+      url: https://github.com/microsoft/OpenEduAnalytics/raw/main/docs/Open%20Education%20Analytics%20Use%20Case%20Template.%20v1.docx
+      roles: [Project Managers and Use Case Stakeholders,Data Team + Learners, Educators, Leaders and Families]
+      description: A use case template for education systems to use as they plan how their data will be used and governed for specific analytics and AI purposes
+      alias: "PM DTL ED LF"
+- use_case: Setup the Modern Data Estate
+  courses:
+    - name: OEA Architecture Set up
+      url: https://www.youtube.com/watch?v=7QnRPHK1vXg
+      roles: [Data Architects and Engineers, Data Analysts, Scientists, and Researchers]
+      description:
+      alias: "DAE DA S R"
+    - name: OEA Setup Documentation
+      url: https://github.com/microsoft/OpenEduAnalytics
+      roles: [Data Architects and Engineers,Data Analysts, Scientists, and Researchers]
+      description:
+      alias: "DAE DA S R"
+    - name: Receive data with Azure Data Share and transforming with Azure Data Factory
+      url: https://docs.microsoft.com/en-us/learn/modules/receive-data-with-azure-data-share-transforming-with-azure-data-factory/
+      roles: [Data Architects and Engineers]
+      description: Learn how to ingest data from Azure Data Share into Azure Data Factory pipelines to build automated ingestion pipelines.
+      alias: "DAE"
+    - name: Azure Fundamentals Part 1 - Describe cloud concepts
+      url: https://docs.microsoft.com/en-us/learn/paths/az-900-describe-cloud-concepts/
+      roles: [Data Architects and Engineers]
+      description:  Azure fundamentals is a six-part series that teaches you basic cloud concepts, provides a streamlined overview of many Azure services, and guides you with hands-on exercises to deploy your very first services for free.
+      alias: "DAE"
+    - name: Azure for the Data Engineer
+      url: https://docs.microsoft.com/en-us/learn/paths/azure-for-the-data-engineer/
+      roles: [Data Architects and Engineers]
+      description: Explore how the world of data has evolved and how the advent of cloud technologies is providing new opportunities for business to explore.
+      alias: "DAE"
+    - name: Azure Data Fundamentals - Explore core data concept
+      url: https://docs.microsoft.com/en-us/learn/paths/azure-data-fundamentals-explore-core-data-concepts/
+      roles: [Data Architects and Engineers]
+      description: Learn the fundamentals of database concepts in a cloud environment, get basic skilling in cloud data services, and build your foundational knowledge of cloud data services within Microsoft Azure.
+      alias: "DAE"
+    - name: Introduction to Azure Synapse Analytics
+      url: https://docs.microsoft.com/en-us/learn/modules/introduction-azure-synapse-analytics/
+      roles: [Data Architects and Engineers, Data Analysts, Scientists, and Researcher]
+      description: Learn the features and components that Azure Synapse Analytics provides to provide a one stop shop for all your analytical needs.
+      alias: "DAE DA S R"
+    - name: Perform data engineering with Azure Synapse Apache Spark Pools
+      url: https://docs.microsoft.com/en-us/learn/paths/perform-data-engineering-with-azure-synapse-apache-spark-pools/
+      roles:  [Data Architects and Engineers]
+      description: Learn how to perform data engineering with Azure Synapse Apache Spark Pools, which enable you to boost the performance of big-data analytic applications by in-memory cluster computing.
+      alias: "DAE"
+    - name: Best practices for serverless SQL pool in Azure Synapse Analytics
+      url:  https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/best-practices-serverless-sql-pool
+      roles: [Data Architects and Engineers]
+      description: In this article, you'll find a collection of best practices for using serverless SQL pool. Serverless SQL pool is a resource in Azure Synapse Analytics.
+      alias: "DAE"
+    - name: Best practices for dedicated SQL pools in Azure Synapse Analytics
+      url: https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/best-practices-dedicated-sql-pool
+      roles: [Data Architects and Engineers]
+      description: This article provides a collection of best practices to help you achieve optimal performance for dedicated SQL pools in Azure Synapse Analytics.
+      alias: "DAE"
+    - name: Design a Modern Data Warehouse with Azure Synapse Analytics
+      url:  https://docs.microsoft.com/en-us/learn/modules/design-modern-data-warehouse-using-azure-synapse-analytics/
+      roles: [Data Architects and Engineers]
+      description: Learn how Azure Synapse Analytics enables you to build Data Warehouses using modern architecture patterns.
+      alias: "DAE"
+    - name: Work with Data Warehouses using Azure Synapse Analytics
+      url: https://docs.microsoft.com/en-us/learn/paths/work-with-data-warehouses-using-azure-synapse-analytics/
+      roles: [Data Architects and Engineers]
+      description: Explore the tools and techniques that can be used to work with Modern Data Warehouses productively and securely within Azure Synapse Analytics.
+      alias: "DAE"
+    - name: Implement a Data Warehouse with Azure Synapse Analytics
+      url:  https://docs.microsoft.com/en-us/learn/paths/implement-sql-data-warehouse/
+      roles: [Data Architects and Engineers]
+      description: Azure Synapse Analytics provides a relational big data store that can scale to Petabytes of data.
+      alias: "DAE"
+    - name: Data integration at scale with Azure Data Factory or Azure Synapse Pipelin
+      url: https://docs.microsoft.com/en-us/learn/paths/data-integration-scale-azure-data-factory/
+      roles: [Data Architects and Engineers]
+      description: In this learning path, the students will learn how to create and manage data pipelines in the cloud using Azure Data Factory.
+      alias: "DAE"
+- use_case: Explore and Model Data
+  courses:
+    - name: OEA overview for Analytics
+      url: https://www.youtube.com/watch?v=j_Y1nC2pyuY
+      roles: [Data Analysts, Scientists, and Researchers]
+      description: With the OEA reference architecture, you can explore and visualize data and build machine learning models.
+      alias: "DA S R"
+    - name: Education Data Visualization in Power BI
+      url: https://www.youtube.com/watch?v=XM-npn4G0JI&t=214s
+      roles: [Data Analysts, Scientists, and Researcher]
+      description: Create interactive dashboards for your education data use cases using PowerBI.
+      alias: "DA S R"
+    - name: Machine Learning (ML) in OEA
+      url: https://www.youtube.com/watch?v=DjWqWNuleuY
+      roles: [Data Analysts, Scientists, and Researchers]
+      description: Machine Learning in Synapse and ML Studio
+      alias: "DA S R"
+    - name: Realize integrated analytical solutions with Azure Synapse Analytic
+      url: https://docs.microsoft.com/en-us/learn/paths/realize-integrated-analytical-solutions-with-azure-synapse-analytics/
+      roles: [Data Analysts, Scientists, and Researchers, Data Architects and Engineers]
+      description: Learn how Azure Synapse Analytics enables you to perform different types of analytics through its’ components that can be used to build Modern Data Warehouses through to Advanced Analytical solutions.
+      alias: "DA S R DAE"
+    - name: Consume data with Power BI
+      url: https://docs.microsoft.com/en-us/learn/paths/consume-data-with-power-bi/
+      roles: [Data Analysts, Scientists, and Researchers]
+      description: Do you want to make business decisions backed by data? Learn how to do that in Power BI. Learn to work in Power BI to review and interact with this content to make business decisions.
+      alias: "DA S R"
+    - name: Create and use analytics reports with Power BI
+      url: https://docs.microsoft.com/en-us/learn/paths/create-use-analytics-reports-power-bi/
+      roles: [Data Analysts, Scientists, and Researchers]
+      description: This learning path introduces you to Power BI, and teaches you to use and build business intelligence reports.
+      alias: "DA S R"
+    - name: Model interpretability in Azure Machine Learning
+      url: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-machine-learning-interpretability
+      roles: [Data Analysts, Scientists, and Researchers]
+      description: Model interpretability is critical for data scientists, auditors, and business decision makers alike to ensure compliance with company policies, industry standards, and government regulations.
+      alias: "DA S R"
+    - name: Azure Synapse Analytics YouTube playlist
+      url: https://www.youtube.com/channel/UCsZ4IlYjjVxqe5OZ14tyh5g
+      roles: [Data Architects and Engineers, Data Analysts, Scientists, and Researchers]
+      description: Get familiar with the features that Azure Synapse Analytics provides to serve as a one stop shop for all your analytical needs
+      alias: "DAE DA S R"
+    - name: Machine learning fairness
+      url: https://docs.microsoft.com/en-us/azure/machine-learning/concept-fairness-ml
+      roles: [Data Analysts, Scientists, and Researcher]
+      description: Learn about machine learning fairness and how the Fairlearn open-source Python package can help you assess and mitigate unfairness issues in machine learning models.
+      alias: "DA S R"
+    - name: Create and use analytics reports with Power BI
+      url: https://docs.microsoft.com/en-us/learn/paths/create-use-analytics-reports-power-bi/
+      roles: [Data Analysts, Scientists, and Researcher]
+      description: This learning path introduces you to Power BI, and teaches you to use and build business intelligence reports.
+      alias: "DA S R"
+    - name: What is automated machine learning (AutoML)?
+      url: https://docs.microsoft.com/en-us/azure/machine-learning/concept-automated-ml
+      roles: [Data Analysts, Scientists, and Researchers]
+      description: Automated machine learning, also referred to as automated ML or AutoML, is the process of automating the time-consuming, iterative tasks of machine learning model development.
+      alias: "DA S R"
+    - name: Explain machine learning models with Azure Machine Learning
+      url: https://docs.microsoft.com/en-us/learn/modules/explain-machine-learning-models-with-azure-machine-learning/
+      roles: [Data Analysts, Scientists, and Researchers]
+      description: Many decisions made by organizations and automated systems today are based on predictions made by machine learning models.
+      alias: "DA S R"
+    - name: Detect and mitigate unfairness in models with Azure Machine Learning
+      url: https://docs.microsoft.com/en-us/learn/modules/detect-mitigate-unfairness-models-with-azure-machine-learning/
+      roles: [Data Analysts, Scientists, and Researchers]
+      description: Machine learning models can often encapsulate unintentional bias that results in unfairness. With Fairlearn and Azure Machine Learning, you can detect and mitigate unfairness in your models.
+      alias: "DA S R"
+    - name: Build and operate machine learning solutions with Azure Machine Learning
+      url: https://docs.microsoft.com/en-us/learn/paths/build-ai-solutions-with-azure-ml-service/
+      roles: [Data Analysts, Scientists, and Researchers]
+      description: Azure Machine Learning is a cloud platform for training, deploying, managing, and monitoring machine learning models.
+      alias: "DA S R"
+    - name: Cloud Analytics with Microsoft Azure
+      url: https://clouddamcdnprodep.azureedge.net/gdc/gdcT5fH16/original
+      roles: [Data Analysts, Scientists, and Researchers]
+      description: Transform your business with the power of analytics in Azure.
+      alias: "DA S R"
+    - name: Build data analytics solutions using Azure Synapse serverless SQL pools
+      url: https://docs.microsoft.com/en-us/learn/paths/build-data-analytics-solutions-using-azure-synapse-serverless-sql-pools/
+      roles: [Data Architects and Engineers, Data Analytics, Scienctists, Researchers]
+      description: Learn how to query and prepare data in an interactive way on files placed in Azure Storage.
+      alias: "DA DAE S R"
+- use_case: Communicate and Act
+  courses:
+    - name: OEA Responsible AI
+      url: https://www.youtube.com/watch?v=1rEhGUpVs6E&t=4s
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families, Data Architects and Engineers, Data Analysts, Scientists, and Researchers]
+      description: Principles of Responsible AI
+      alias: "PM DTL ED LF DAE DA S R"
+    - name: Responsible AI - Transparency
+      url: https://www.youtube.com/watch?v=q5CbK0Hs1pg
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: Microsoft Responsible AI - Transparency
+      alias: "PM DTL LF ED"
+    - name: Responsible AI - Fairness
+      url: https://www.youtube.com/watch?v=4bqrlZ-CyNs
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: Microsoft Responsible AI - Fairness
+      alias: "PM DTL LF ED"
+    - name: Responsible AI - Reliability and Safety
+      url: https://www.youtube.com/watch?v=i3akj3GHmdw
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: Microsoft Responsible AI - Reliability & Safety
+      alias: "PM DTL LF ED"
+    - name: Responsible AI - Inclusiveness
+      url: https://www.youtube.com/watch?v=aVgbsRn9zK8
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: Responsible AI - Inclusiveness
+      alias: "PM DTL LF ED"
+    - name: Responsible AI - Privacy & Security
+      url: https://www.youtube.com/watch?v=AZZdMgOe60k
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: Responsible AI - Privacy & Security
+      alias: "PM DTL LF ED"
+    - name: Responsible AI - Accountability
+      url: https://www.youtube.com/watch?v=5BQ2RE9kqvA
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: Responsible AI - Accountability
+      alias: "PM DTL LF ED"
+    - name: Insights for Leaders - Introduction
+      url: https://www.youtube.com/watch?v=2TalXKhCXj4
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: With the Insights (Preview) app for education leaders, you can get student activity data from across your organization right in Teams for Education.
+      alias: "PM DTL LF ED"
+    - name: Insight for Leaders - Install the App
+      url: https://www.youtube.com/watch?v=w2KVBd4s9rU
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: To use Insights for Leaders and display organization-wide data views, install it as an app in the app bar.
+      alias: "PM DTL LF ED"
+    - name: Insight for Leaders - Manage Users
+      url: https://www.youtube.com/watch?v=ChInlTMkPjk
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: Tenant administrators can add, view, and remove additional user permissions to Insights for Leaders.
+      alias: "PM DTL LF ED"
+    - name: How to Use Power Apps
+      url: https://docs.microsoft.com/en-us/users/microsoftpowerplatform-5978/collections/0ydh1eo884kdj
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: Get started building apps without coding. Start with a canvas or model-driven app, automate processes with Power Automate, and make your apps smarter with AI Builder and Power Virtual Agents.
+      alias: "PM DTL LF ED"
+    - name: How to use Dataverse (Common Data Model
+      url: https://docs.microsoft.com/en-us/learn/modules/get-started-with-powerapps-common-data-service/
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: Dataverse lets you securely store and manage data that's used by business applications. Standard and custom tables within Dataverse provide a secure and cloud-based storage option for your data.
+      alias: "PM DTL LF ED"
+    - name: Dataverse for Education
+      url: https://docs.microsoft.com/en-us/dynamics365/industry/accelerators/edu-overview
+      roles: [Project Managers and Use Case Stakeholders, Data Team + Learners, Educators, Leaders and Families]
+      description: Common Data Model helps customers eliminate data silos, enable powerful insights, and act on their own data.
+      alias: "PM DTL LF ED"

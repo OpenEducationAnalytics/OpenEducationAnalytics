@@ -1,0 +1,253 @@
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css";
+@import "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css";
+
+//Import Font
+//Google Fonts: Montserrat
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap');
+
+@import "landing_page";
+@import "get_started_page";
+@import "join-oea-page";
+@import "inspirations";
+@import "responsible_ai";
+@import "solution_partners";
+@import "skills_training_courses";
+@import "sitemap";
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $backgroundColor;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1, h2, h3 {
+  font-weight: bold;
+  line-height: 2.5rem;
+}
+
+h4, h5, h6 {
+  line-height: 1.8rem;
+  font-weight: bold;
+}
+
+p {
+  line-height: 1.45rem;
+  font-size: 0.95em;
+}
+
+.logo {
+  width: 70px;
+}
+
+.menu {
+  width: 30px;
+  margin: 10px 0;
+}
+
+.nav-link {
+  color: #000;
+  padding-top: 15px;
+  font-size: $appFontSize;
+}
+
+.bg-light {
+  background-color: #fff !important;
+  box-shadow: 1px 0px 5px #e1e1e1;
+}
+
+.form-control-lg .btn-lg {
+  height: 50px !important;
+  padding: 10px 30px !important;
+}
+
+
+//Button
+.btn-primary {
+  background-color: $buttonColor;
+  border-color: $buttonColor;
+}
+
+.btn-light {
+  color: #377bfb;
+  background-color: #e3e9f6;
+  border-color: #e3e9f6;
+
+  &:hover {
+    background-color: $buttonColor;
+    border-color: $buttonColor;
+    color: #FFF;
+  }
+}
+
+.dropdown-menu {
+  border: 1px solid $primaryColor;
+}
+
+section {
+  width: 100%;
+  padding: 30px 0;
+  float: left;
+}
+
+.logo-image-mini {
+  width: 70px;
+  height: 40px;
+}
+
+footer {
+  width: 100%;
+  padding: 20px 0;
+  float: left;
+
+  & img {
+    width: 50px;
+  }
+
+}
+
+.mini-nav {
+  position: sticky;
+  top: 80px;
+}
+
+.btn-outline-primary {
+  border: 2px solid $primaryColor;
+}
+
+//Bootstrap Utilities extension
+
+.mt-10 {
+  margin-top: 5rem;
+}
+
+.pt-10 {
+  margin-top: 5rem;
+}
+
+.img-object-container {
+  height: 235px;
+
+  img {
+    object-fit: cover;
+  }
+}
+
+.my-10 {
+  margin: 5rem 0;
+}
+
+// .active {
+//   //color: $buttonColor;
+// }
+
+.link {
+  color: $buttonColor;
+  cursor: pointer;
+}
+
+.btn-bold {
+  font-family: 'Montserrat', sans-serif;
+  font-size: $appFontSize;
+  font-weight: bold;
+}
+
+.btn-nav {
+  height: 35px;
+}
+
+.title-alt {
+  margin-top: 2rem;
+  line-height: 0.2em;
+}
+
+.youtube-red {
+  color: $youtubeRed;
+}
+
+.github-blue {
+  color: $gitHubBlue;
+}
+
+.azure-blue {
+  background-color: $microsoftAzureBlue !important;
+  color: #FFF;
+
+  &:hover {
+    color: #FFF;
+  }
+}
+
+.linkedin-blue {
+  color: $linkedinBlue;
+}
+
+.twitter-blue {
+  color: $twitterBlue;
+}
+
+.facebook-blue {
+  color: $facebookBlue;
+}
+
+code {
+  font-size: .875em;
+  color: #d63384;
+  word-wrap: break-word;
+}
+
+pre code {
+  background-color: #e9e9e9;
+  color: #323232;
+}
+
+.card {
+  border: 2px solid $primaryColor;
+  border-radius: $defaultBorderRadius;
+
+  &-with-hover {
+    &:hover {
+      background-color: $primaryColor;
+      color: #FFF !important;
+    }
+  }
+}
+
+#youtubeVideoModal {
+  background-color: rgb(0 0 0 / 91%);
+}
+
+blockquote {
+  margin: 0 0 1rem;
+  padding: 5px 15px;
+  font-style: italic;
+  background: #f1f5ff;
+}
+
+.micro-img {
+  width: 30px;
+}
+
+.container-offset {
+  margin-bottom: -84px;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  h1, h2, h3 {
+    line-height: 2.1rem;
+  }
+  h4, h5, h6 {
+    line-height: 1.6rem;
+  }
+}
+
+

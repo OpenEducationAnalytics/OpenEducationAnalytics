@@ -1,10 +1,502 @@
 ---
-# You don't need to edit this file, it's empty on purpose.
-# Edit theme's home layout instead if you wanna make some changes
-# See: https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-layout: home
-excerpt: "The open-source, modern data estate for education (global, P20W)."
-
-header:
-  overlay_image: /assets/images/banner1.png
+title: Home
+layout: default
 ---
+
+<div>
+    <!--Landing page banner section-->
+    <section class="mt-10">
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-md-8 col-lg-6 col-sm-10 col-xl-6 d-block d-lg-none d-xl-none mt-4 tex-md-center">
+                    <img src="assets/imgs/img_landing_page-header.svg" alt="Landing page header image"
+                         aria-label="Landing page header image"
+                         class="img-fluid w-70"/>
+                </div>
+
+                <div class="col-md-11 col-11 col-sm-10 col-lg-6 col-xl-6 mt-10">
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <h2>
+                                Using data to support every learner from classroom to career
+                            </h2>
+                        </li>
+                        <li>
+                            <p>
+                                Open Education Analytics (OEA) is an open source community coordinated by Microsoft
+                                Education.
+                                We collaborate with education systems across the world to develop modern data
+                                intelligence capabilities.
+                            </p>
+                        </li>
+                        <li class="mt-4">
+                            <p>
+                                Get started with the modern data estate using the OEA reference architecture,
+                                open-source modules, training, and use cases. Ensure
+                                responsible
+                                data and AI practices with our OEA toolkit. Join our community and contribute education
+                                data
+                                solutions.
+                            </p>
+                        </li>
+                        <li class="mt-4">
+                            <a href="{{ site.baseurl }}/get-started">
+                                <button class="btn btn-primary btn-lg form-control-lg btn-bold">Get Started</button>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xl-6 d-none d-lg-block">
+                    <img src="assets/imgs/img_landing_page-header.svg" alt="Landing page header image"
+                         aria-label="Landing page header image" class="img-fluid w-70"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--What is OEA section-->
+    <div class="w-100">
+        <img src="assets/imgs/img_blue_backdrop_top.svg" class="img-fluid w-100">
+    </div>
+    <section class="what-is-oea-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-11 col-sm-10 col-lg-6 col-xl-6  text-center">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h4>What is Open Education Analytics?</h4>
+                        </li>
+                        <li>
+                            <p>We aim to empower education systems around the world to use data, analytics and AI more
+                                effectively and ethically to improve learning.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                {% for item in site.whats_oea %}
+                <div class="col-11 col-md-5  col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 mt-3 mx-3 {{item.style}}">
+                    <div class="card h-100 p-2">
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <img src="{{ site.baseurl }}/{{item.image}}" class="img-fluid w-25"/>
+                                </li>
+                                <li class="mt-3">
+                                    <label>
+                                        {{item.title}}
+                                    </label>
+                                </li>
+                                <li>
+                                    <p>
+                                        {{item.content}}
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+    <div class="w-100">
+        <img src="assets/imgs/img_blue_backdrop_bottom.svg" class="img-fluid w-100">
+    </div>
+
+    <!--Challenges page section-->
+    <section class="challenges-section text-center">
+        <div class="holder py-5">
+            <div class="container">
+                <div class="row">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h4>Education Challenges with Data and AI</h4>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 col-sm-10 col-xl-10 col-lg-10">
+                        <div class="row justify-content-center">
+                            {% for item in site.challenges %}
+                            <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+                                <div class="mini-card text-start d-flex">
+                                    <span class="border border-danger border-3"></span>
+                                    <p class="px-2">
+                                        {{item.content}}
+                                    </p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--How OEA can modernize data estate section-->
+    <div class="w-100">
+        <img src="assets/imgs/img_yellow_backdrop_top.svg" class="img-fluid w-100">
+    </div>
+    <section class="data-estate-section text-center">
+        <div class="container">
+            <div class="row justify-content-center mb-3">
+                <div class="col-md-8 col-sm-10 col-12 col-xl-6 col-lg-6 text-center">
+                    <h4>How OEA Can Help You Modernize </br> Your Own Data Estate</h4>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                {% for item in site.modern_data_estate %}
+                <div class="col-md-6 col-sm-6 col-xl-3 col-lg-3 my-2">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <img src="{{ site.baseurl }}/{{item.image}}" class="img-fluid w-25"/>
+                                </li>
+                                <li>
+                                    <p>{{item.content}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <div class="w-100">
+        <img src="assets/imgs/img_yellow_backdrop_bottom.svg" class="img-fluid w-100">
+    </div>
+
+    <!--Success stories section-->
+    <section class="mt-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-sm-8 col-lg-6 col-xl-6 col-10 text-center">
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-center mb-2">
+                            <img src="{{ site.baseurl }}/assets/imgs/img_oea_logo.png" class="logo-image-mini"/>
+                            <h4 class="mx-2 mt-2">Success Stories</h4>
+                        </li>
+                        <li>
+                            <p>
+                                See how education systems collaborating in OEA are supercharging their data initiatives
+                                to improve learning.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6 mb-3">
+                    <div class="first-story">
+                        <img src="{{ site.baseurl }}/assets/imgs/img_landing_page_success_story_fresno.png"
+                             alt="Real Time Hybrid Learning Engagement in Fresno, California"
+                             class="img-fluid h-100 img-fluid w-100"/>
+                    </div>
+                </div>
+                <div class="col-md-6 align-self-center">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5>
+                                Real Time Hybrid Learning Engagement in Fresno, California
+                            </h5>
+                        </li>
+                        <li>
+                            <p>
+                                OEA worked with Fresno Unified School District to develop a Hybrid Engagement Module.
+                                The module provides templates for combining in-person
+                                attendance and student digital activity, providing a more holistic representation of
+                                student engagement.
+                            </p>
+                        </li>
+                        <li>
+                            <a href="https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/ContosoISD_hybrid_engagement"
+                               target="_blank">
+                                <h6 class="link">Set up the module</h6>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-6 mb-3 d-block d-lg-none d-xl-none d-md-none">
+                    <div class="second-story">
+                        <img src="{{ site.baseurl }}/assets/imgs/img_landing_page_success_story_helsinki.png"
+                             alt="See the data and AI journey in Helsinki, Finland"
+                             class="img-fluid h-100 img-fluid w-100"/>
+                    </div>
+                </div>
+                <div class="col-md-6 align-self-center">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h5>
+                                See the data and AI journey in Helsinki, Finland
+                            </h5>
+                        </li>
+                        <li>
+                            <p>
+                                Acknowledging that all students come from different backgrounds and have different
+                                skillsets, the City of Helsinki Education Division believes that personalising learning
+                                built on Ethical AI principles will help each learner succeed.
+                            </p>
+                        </li>
+                        <li>
+                            <h6 class="link" data-bs-toggle="modal" data-bs-target="#youtubeVideoModal">See the
+                                video</h6>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 d-none d-lg-block d-xl-block d-md-block">
+                    <div class="second-story">
+                        <img src="{{ site.baseurl }}/assets/imgs/img_landing_page_success_story_helsinki.png"
+                             alt="See the data and AI journey in Helsinki, Finland"
+                             class="img-fluid h-100 img-fluid w-100"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mt-4 w-100">
+                <div class="col-10 col-md-6 col-sm-6 col-lg-6 col-xl-8 text-center">
+                    <a href="{{ site.baseurl }}/inspiration">
+                        <h6 class="link">
+                            Click here to see more OEA success stories / case studies
+                        </h6>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!--Customer feedback section-->
+    <div class="w-100">
+        <img src="{{ site.baseurl }}/assets/imgs/img_blue_backdrop_top.svg" class="img-fluid w-100">
+    </div>
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-11 col-sm-10 col-md-11 col-lg-8 col-xl-7">
+                    <input type="hidden" id="customer_feedback_size" value="{{site.data.customer_feedback.size}}"/>
+                    <div class="customer-feedback-wrapper p-4 my-3 rounded-3">
+                        {% for item in site.data.customer_feedback %}
+                        <div {% if item.position== 1 %}
+                             class="row animate__animated animate__fadeIn text-center xx card-active customer_{{item.position}}"
+                             {% else %}
+                             class="row animate__animated animate__fadeIn text-center xx card-inactive customer_{{item.position}}"
+                             {% endif %}>
+                            <div class="col-md-3 g-0 align-self-center">
+                                <div class="customer-feedback-image rounded-circle mx-auto">
+                                    <img src="{{ site.baseurl }}/assets/imgs/customers/{{item.image}}"
+                                         class="img-fluid rounded-circle">
+                                </div>
+                            </div>
+                            <div class="col-md-9 text-start">
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-quote-left fa-2x customer-quote"></i></li>
+                                    <li>
+                                        <p>
+                                            {{item.message}}
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <em>
+                                            <small><span>{{item.name}}</span>, {{item.role}}</small>
+                                        </em>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="d-flex justify-content-between">
+                            <div class="indicator w-100">
+
+                            </div>
+                            <div class="d-flex buttons">
+                                <div class="d-flex skip-btn justify-content-evenly fa-1x text-center skip-left rounded-circle mx-1">
+                                    <i class="fas fa-caret-left align-self-center"></i>
+                                </div>
+                                <div class="d-flex skip-btn skip-right skip-btn__active justify-content-evenly text-center rounded-circle mx-1">
+                                    <i class="fas fa-caret-right align-self-center"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="w-100">
+        <img src="{{ site.baseurl }}/assets/imgs/img_blue_backdrop_bottom.svg" class="img-fluid w-100">
+    </div>
+
+    <!--Stakeholders section-->
+    <section class="text-center my-5">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8 col-sm-10 col-xl-6 col-lg-6 text-center">
+                    <h4>Who can benefit from OEA?</h4>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                {% assign beneficiaries = site.stakeholders | sort: "order" %}
+                {% for item in beneficiaries %}
+                <div class="col-10 col-sm-6 col-md-6 col-xl-4 col-lg-4 text-center p-3">
+                    <ul class="list-unstyled">
+                        <li>
+                            <img src="{{ site.baseurl }}/{{item.image}}" alt="{{item.name}} avatar"
+                                 class="img-fluid w-25"/>
+                        </li>
+                        <li><h6 class="title-alt">{{item.name}}</h6></li>
+                        <li>
+                            <p>
+                                {{item.content}}
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <div class="w-100">
+        <img src="{{ site.baseurl }}/assets/imgs/img_yellow_backdrop_top.svg" class="img-fluid w-100">
+    </div>
+    <section class="get-started-section text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <ul class="list-unstyled">
+                        <li>
+                            <h4>How to get started!</h4>
+                        </li>
+                        <li class="mb-5">
+                            <p>
+                                Here’s how you can help your organization get started on OEA:
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="mt-3 col-11 col-sm-11 col-md-6 col-lg-6 col-xl-5">
+                    <div class="card py-3 px-3 h-100">
+                        <div class="card-body">
+                            <ul class="list-unstyled text-start">
+                                <li><h5>Education Technology Leaders</h5></li>
+                                <li>
+                                    <label>See a list of Microsoft partners:</label>
+                                </li>
+                                <li>
+                                    <p>
+                                        We work with the best in the industry. Connect with a partner who can setup the
+                                        OEA architecture in your institution and bring your education use cases to life.
+                                    </p>
+                                </li>
+                                <li>
+                                    <a href="{{ site.baseurl }}/partners/" target="_blank">
+                                        <h6 class="link">
+                                            Find a Partner
+                                        </h6>
+                                    </a>
+                                </li>
+                                <li class="mt-4">
+                                    <label>Find materials to get started on your own:</label>
+                                </li>
+                                <li>
+                                    <p>
+                                        If your institution or system has in-house data engineers, researchers, and data
+                                        scientists, get them started using the OEA skills and training materials.
+                                    </p>
+                                </li>
+                                <li>
+                                    <a href="https://docs.microsoft.com/en-us/learn/" target="_blank">
+                                        <h6 class="link">
+                                            Find Training Resources
+                                        </h6>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3 col-11 col-sm-11 col-md-6 col-lg-6 col-xl-5">
+                    <div class="card py-3 px-3 h-100">
+                        <div class="card-body">
+                            <ul class="list-unstyled text-start">
+                                <li><h5>OEA Partners </h5></li>
+                                <li>
+                                    <label>Become an OEA Partner:</label>
+                                </li>
+                                <li>
+                                    <p>
+                                        Sign up to become an OEA Partner to build data solutions for large
+                                        education systems and OEA Community members from all over the world.
+                                    </p>
+                                </li>
+                                <li>
+                                    <a href="{{ site.baseurl }}/partners" target="_blank">
+                                        <h6 class="link">
+                                            Become an OEA Partner
+                                        </h6>
+                                    </a>
+                                </li>
+                                <li class="mt-4">
+                                    <label>See how OEA can transform your business:</label>
+                                </li>
+                                <li>
+                                    <p> We provide our OEA Partners with the necessary training, resources and
+                                        customer connections to ensure continued partner success.
+                                    </p>
+                                </li>
+                                <li>
+                                    <a href="{{ site.baseurl }}/partners">
+                                        <h6 class="link">
+                                            Partner Benefits
+                                        </h6>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="mb-3">
+        <img src="{{ site.baseurl }}/assets/imgs/curved_yellow_footer.png" class="img-fluid w-100">
+    </div>
+
+</div>
+
+<!-- Youtube Video Modal -->
+<div class="modal fade" id="youtubeVideoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header d-none">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0" id="yt-player">
+                <div class="ratio ratio-16x9">
+                    <iframe width="100%" height="485"
+                            src="https://www.youtube-nocookie.com/embed/dAbEfG4XdFA?controls=0&autoplay=0"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
