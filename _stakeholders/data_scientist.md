@@ -1,6 +1,0 @@
----
-name: Data Scientist
-image: assets/imgs/avatar_3.svg
-order: 2
----
-Transform, enrich and explore the data for advanced analytics and model building. 
