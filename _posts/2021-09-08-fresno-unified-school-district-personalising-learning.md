@@ -30,7 +30,6 @@ Being “good stewards of the data,” as Philip Neufeld says, is about more tha
 >
 >Executive Officer, Information Technology, Fresno Unified School District
 
-
 ##### Benefit of Open Education Analytics
 
 Through partnering with Microsoft and other countries in Open Education Analytics, new insights and learnings have emerged that have helped Fresno Unified School District progress towards their learning analytics objectives. The process takes time, but they are already seeing real progress. By the end of the second year of PLI, data were beginning to show strong evidence of the initiative’s positive impact on student performance in English language arts and mathematics, as well as increased levels of student’s digital collaboration. School and district leaders were able to understand the variation in outcomes between schools in the district and according to different student characteristics. 
@@ -40,4 +39,3 @@ Furthermore, processes are now in place that enable the district to ask increasi
 
 Fresno Unified School District recognises that their work is not over: the process of embedding learning analytics and evidence-based decision-making in schools is long. They have some immediate plans to create PowerBI visualizations and share insights within Teams and their ATLAS student information system and they will continue to seek feedback from stakeholders to make sure they are meeting the needs of users. 
 The future journey with learning analytics and AI is still open for the Fresno Unified School District. They still want to understand how rich data can help inform instruction and personalise learning for all students, thus enabling a system of modern learning for everyone. 
-

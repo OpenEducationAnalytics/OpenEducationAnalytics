@@ -25,34 +25,27 @@ if ((window.location.pathname.includes("skills-and-training"))) {
     }
 
     function showSelectedFilterText(element, value) {
+
+
         let q = ""
         switch (value) {
             case "All":
                 q = "All"
                 break;
             case "PM":
-                q = "Project Manager"
+                q = "Project Managers"
                 break;
-            case "LF":
-                q = "Learners & Family"
+            case "DSDA":
+                q = "Data Scientists and Data Analysts"
+                break;
+            case "DST":
+                q = "Data Strategy Team"
                 break;
             case "DAE":
-                q = "Data Architects Engineer"
-                break;
-            case "DA":
-                q = "Data Analysts"
-                break;
-            case "DTL":
-                q = "Data Team + Learners"
-                break;
-            case "S":
-                q = "Data Scientists"
-                break;
-            case "ED":
-                q = "Educators"
+                q = "Data Architects and Engineers"
                 break;
             case "R":
-                q = "Data Researchers"
+                q = "Researchers"
                 break;
         }
         element.innerText = q
