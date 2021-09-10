@@ -216,7 +216,7 @@
     - name: OEA Responsible AI
       url: https://www.youtube.com/watch?v=1rEhGUpVs6E&t=4s
       roles: [Project Managers, Data Strategy Team Data Architects and Engineers, Data Scientists and Analysts, Researchers]
-      description: Principles of Responsible AI
+      description: OEA shows how to ensure data and AI are used responsibly and ethically in education systems.
       image: ic_communicate.svg
       alias: "PM DST DAE DSDA R"
     - name: Responsible AI - Transparency
