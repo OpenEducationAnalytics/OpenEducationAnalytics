@@ -49,8 +49,7 @@
     - name: Azure Fundamentals Part 1 - Describe cloud concepts
       url: https://docs.microsoft.com/en-us/learn/paths/az-900-describe-cloud-concepts/
       roles: [Data Architects and Engineers]
-      description:  Azure fundamentals is a six-part series that teaches you basic cloud concepts, provides a streamlined 
-      of many Azure services, and guides you with hands-on exercises to deploy your very first services for free.
+      description:  Azure fundamentals is a six-part series that teaches you basic cloud concepts, provides a streamlined of many Azure services, and guides you with hands-on exercises to deploy your very first services for free.
       image: ic_setup.svg
       alias: "DAE"
     - name: Azure for the Data Engineer
