@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Open Education Analytics - July 2021 Newsletter
+title: OEA July 2021 Newsletter
 author: Author
 description: In this newsletter, we share updates about the how Nebraska DoE is using Azure Synapse and OEA to prioritize education equity and others.
 category: Newsletter
