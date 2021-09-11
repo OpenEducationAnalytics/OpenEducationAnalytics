@@ -16,7 +16,7 @@ Open Education Analytics (OEA) is a community of education systems, coordinated 
 
 <div class="container-wrapper text-center">
    <img src="{{ site.baseurl }}/assets/imgs/OEA_ref_arch_v0.4.png" class="img-fluid w-100" alt="The OEA Reference Architecture" />
-   <figcaption class="mt-2">The OEA Reference Architecture</figcaption>
+   <figcaption class="mt-2">Figure 1: The OEA Reference Architecture</figcaption>
 </div>
 
 ##### Data Analytics and AI
