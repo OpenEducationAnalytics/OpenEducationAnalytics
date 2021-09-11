@@ -30,7 +30,6 @@ This dashboard, which will soon be a module published on the OEA GitHub, combine
 >
 > Building a strong community is at the center of all successful open-source projects. OEA is designed in partnership with education customer communities worldwide who are already contributing back to OEA. Our initial worldwide “Project Constellation” community is expanding to regional OEA Communities in the US, Australia, Finland and worldwide.
 >
-
 > We work these communities directly and through our partners to identify their data and AI pain points, define common use cases, build data reports and ML models, and share great examples developed by community members. We also have an upcoming Deep Dive Synapse training for all our partners to position them to implement OEA for global education systems.
 
 
