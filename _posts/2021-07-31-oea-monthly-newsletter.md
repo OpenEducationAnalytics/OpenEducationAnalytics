@@ -20,7 +20,7 @@ We are currently working with the Fresno Unified School District in California t
 
 <div class="container-wrapper text-center">
    <img src="{{ site.baseurl }}/assets/imgs/img_landing_page_success_story_fresno.png" class="img-fluid w-100" alt="" />
-   <figcaption class="mt-2">Figure 2: Sample hybrid student engagement PowerBI dashboard</figcaption>
+   <figcaption class="mt-2">Figure 1: Sample hybrid student engagement PowerBI dashboard</figcaption>
 </div>
 
 This dashboard, which will soon be a module published on the OEA GitHub, combines data for student in-person attendance in school with their overall digital engagement across Fresno’s digital learning ecosystem (e.g. across all apps used by students for learning). This provides a more comprehensive view of student engagement in learning 24/7 than attendance data alone and ladders up to a long-term vision of student intervention targeting in the district.
@@ -47,7 +47,7 @@ OEA is building open-source technical assets like the OEA standard reference arc
 
 <div class="container-wrapper text-center">
    <img src="{{ site.baseurl }}/assets/imgs/OEA_ref_arch_v0.4.png" class="img-fluid w-100" alt="The OEA Reference Architecture" />
-   <figcaption class="mt-2">Figure 1: The OEA Reference Architecture</figcaption>
+   <figcaption class="mt-2">Figure 2: The OEA Reference Architecture</figcaption>
 </div>
 
 
