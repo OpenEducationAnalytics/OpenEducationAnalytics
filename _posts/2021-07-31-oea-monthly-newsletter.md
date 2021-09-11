@@ -2,7 +2,7 @@
 layout: post
 title: Open Education Analytics - July 2021 Newsletter
 author: Author
-description: In this newsletter, we share updates about the how Nebraska DoE is using Azure Synapse and OEA to prioritize education equity, the upcoming partner Synapse training and the massive demand for OEA among global education systems.
+description: In this newsletter, we share updates about the how Nebraska DoE is using Azure Synapse and OEA to prioritize education equity and others.
 category: Newsletter
 image: /assets/imgs/posts/img_july_2021_newsletter.png
 ---
@@ -12,12 +12,7 @@ image: /assets/imgs/posts/img_july_2021_newsletter.png
 Open Education Analytics (OEA) is a community of education systems, coordinated by Microsoft Education, collaborating to develop open-sourced data analytics solutions for the education sector built on Azure Synapse Analytics and PowerBI.
 
 - Github repository: <a href="https://github.com/microsoft/OpenEduAnalytics" target="_blank">https://github.com/microsoft/OpenEduAnalytics</a>
-- OEA Overview video: <a href="https://www.youtube.com/watch?v=efNYbS4sC4g" target="_blank">Open Education Analytics Overview and the Constellation Community - YouTube</a>
-
-<div class="container-wrapper text-center">
-   <img src="{{ site.baseurl }}/assets/imgs/OEA_ref_arch_v0.4.png" class="img-fluid w-100" alt="The OEA Reference Architecture" />
-   <figcaption class="mt-2">Figure 1: The OEA Reference Architecture</figcaption>
-</div>
+- OEA Overview video: <a href="https://www.youtube.com/watch?v=efNYbS4sC4g" target="_blank">Open Education Analytics Overview - YouTube</a>
 
 ##### Data Analytics and AI
 
@@ -49,6 +44,11 @@ We work directly with these communities to identify their data and AI pain point
 We have partnered with the Nebraska Department of Education on their statewide longitudinal data plan for rapid data modernization to prioritize education equity. With COVID widening the disparities among students in rural areas and those in urban areas, this project sought to democratize analytics especially for small rural districts across the state. This project dramatically reduced the time to value for analytics. Through this work, we are also developing an open-source Ed-Fi module for the OEA GitHub, so that other OEA community members can use the assets developed through the Nebraska project.
 
 OEA is building open-source technical assets like the OEA standard reference architecture for education analytics on Synapse. Assets include setup scripts, notebooks, pipelines and PowerBI templates, which are all available for free on the OEA GitHub. Our OEA partners and community members will be contributing more assets to the repository.
+
+<div class="container-wrapper text-center">
+   <img src="{{ site.baseurl }}/assets/imgs/OEA_ref_arch_v0.4.png" class="img-fluid w-100" alt="The OEA Reference Architecture" />
+   <figcaption class="mt-2">Figure 1: The OEA Reference Architecture</figcaption>
+</div>
 
 
 ##### Additional Resources
