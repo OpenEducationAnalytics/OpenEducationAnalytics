@@ -1181,6 +1181,11 @@ footer img {
   margin-top: 5rem;
 }
 
+@media (max-width: 1400px) {
+  .mt-10 {
+    margin-top: 3rem;
+  }
+}
 .pt-10 {
   margin-top: 5rem;
 }
