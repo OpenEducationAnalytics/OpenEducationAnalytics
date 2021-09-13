@@ -21,34 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="883c08e2-ef2c-41d7-a771-9fd14e27e966" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_best_practices_for_contributing/first_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_best_practices_for_contributing/first_item.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_best_practices_for_contributing/fourth_item.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/_best_practices_for_contributing/third_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_best_practices_for_contributing/third_item.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data/navigation.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_data/navigation.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data/oea_packages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_data/oea_packages.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data/oea_partners_looking_for_help.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_data/oea_partners_looking_for_help.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/_includes/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_layouts/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/default.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_layouts/page.html" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_modern_data_estate/first_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_modern_data_estate/first_item.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_stakeholders/data_project_manager.md" beforeDir="false" afterPath="$PROJECT_DIR$/_stakeholders/data_project_manager.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_stakeholders/data_scientist.md" beforeDir="false" afterPath="$PROJECT_DIR$/_stakeholders/data_scientist.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_use_case_process/explore_and_model_data.md" beforeDir="false" afterPath="$PROJECT_DIR$/_use_case_process/explore_and_model_data.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_use_case_process/set_up_modern_data_estate.md" beforeDir="false" afterPath="$PROJECT_DIR$/_use_case_process/set_up_modern_data_estate.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_whats_oea/first_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_whats_oea/first_item.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_whats_oea/second_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_whats_oea/second_item.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_whats_oea/third_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_whats_oea/third_item.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/constants.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/constants.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/contribute-to-oea.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/contribute-to-oea.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/get-started.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/get-started.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/inspiration.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/inspiration.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/responsible-ai.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/responsible-ai.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/skills-and-training.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/skills-and-training.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/solution-partners.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/solution-partners.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -66,6 +45,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1vuagMZuTGpAtloRUcJJnJO8bO2" />
@@ -179,6 +163,7 @@
       <workItem from="1631211300324" duration="5791000" />
       <workItem from="1631345574253" duration="7665000" />
       <workItem from="1631480130711" duration="4110000" />
+      <workItem from="1631571623708" duration="346000" />
     </task>
     <servers />
   </component>

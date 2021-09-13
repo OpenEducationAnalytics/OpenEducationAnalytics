@@ -1108,6 +1108,10 @@ p {
   width: 100%;
 }
 
+footer {
+  background-color: #f8f8f8;
+}
+
 .nav-link {
   color: #000;
   padding: 15px;
