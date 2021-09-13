@@ -1,12 +1,19 @@
 - name: Get Started
   link: /get-started/
+  id: ''
 - name: Contribute to OEA
   link: /contribute-to-oea/
+  id: ''
 - name: OEA Partners
   link: /partners/
+  id: ''
 - name: Responsible AI
   link: /responsible-ai/
+  id: ''
 - name: Skills and Training
   link: /skills-and-training/
+  id: ''
 - name: Inspiration
   link: /inspiration/
+  id: insp
+

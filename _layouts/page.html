@@ -8,7 +8,17 @@
     <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/png" href="{{ '/favicon.png' | prepend: site.baseurl }}">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2J804277LC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
+        gtag('js', new Date());
+        gtag('config', 'G-2J804277LC');
+    </script>
 </head>
 <body onload="load()">
 <div id="fb-root"></div>
@@ -26,6 +36,7 @@
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ site.baseurl }}/assets/js/main.js" crossorigin="anonymous" type="application/javascript"></script>
 <script src="{{ site.baseurl }}/assets/js/skills_and_training.js"></script>
 <script src="{{ site.baseurl }}/assets/js/join-oea-page.js"></script>
 <script src="{{ site.baseurl }}/assets/js/oea_partners.js"></script>

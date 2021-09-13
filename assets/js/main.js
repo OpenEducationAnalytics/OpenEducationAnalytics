@@ -1,3 +1,7 @@
+if (window.location.pathname.includes("blog/") || window.location.pathname.includes("newsletter/")) {
+    document.getElementById('insp').style.fontWeight = "bold";
+}
+
 var counter = (function () {
     var privateCounter = 1;
 
@@ -69,3 +73,18 @@ document.querySelector('.skip-left').addEventListener('click', function () {
     }
 
 })
+
+window.onscroll = function () {
+    myFunction()
+};
+
+var navbar = document.getElementById("filtered-text");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+    if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+    } else {
+        navbar.classList.remove("sticky");
+    }
+}

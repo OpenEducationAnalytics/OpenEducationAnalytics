@@ -21,10 +21,35 @@
   <component name="ChangeListManager">
     <list default="true" id="883c08e2-ef2c-41d7-a771-9fd14e27e966" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_data/skills_and_training.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_data/skills_and_training.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/skills_and_training.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/skills_and_training.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_best_practices_for_contributing/first_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_best_practices_for_contributing/first_item.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_best_practices_for_contributing/fourth_item.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/_best_practices_for_contributing/third_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_best_practices_for_contributing/third_item.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_data/navigation.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_data/navigation.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_data/oea_packages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_data/oea_packages.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_data/oea_partners_looking_for_help.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_data/oea_partners_looking_for_help.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/_includes/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/default.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/page.html" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_modern_data_estate/first_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_modern_data_estate/first_item.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_stakeholders/data_project_manager.md" beforeDir="false" afterPath="$PROJECT_DIR$/_stakeholders/data_project_manager.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_stakeholders/data_scientist.md" beforeDir="false" afterPath="$PROJECT_DIR$/_stakeholders/data_scientist.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_use_case_process/explore_and_model_data.md" beforeDir="false" afterPath="$PROJECT_DIR$/_use_case_process/explore_and_model_data.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_use_case_process/set_up_modern_data_estate.md" beforeDir="false" afterPath="$PROJECT_DIR$/_use_case_process/set_up_modern_data_estate.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_whats_oea/first_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_whats_oea/first_item.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_whats_oea/second_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_whats_oea/second_item.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_whats_oea/third_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_whats_oea/third_item.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/contribute-to-oea.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/contribute-to-oea.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/get-started.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/get-started.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/inspiration.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/inspiration.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/responsible-ai.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/responsible-ai.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/skills-and-training.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/skills-and-training.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/solution-partners.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/solution-partners.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +176,9 @@
       <workItem from="1631050218355" duration="390000" />
       <workItem from="1631122901931" duration="10933000" />
       <workItem from="1631202472980" duration="2864000" />
-      <workItem from="1631211300324" duration="3597000" />
+      <workItem from="1631211300324" duration="5791000" />
+      <workItem from="1631345574253" duration="7665000" />
+      <workItem from="1631480130711" duration="4110000" />
     </task>
     <servers />
   </component>
@@ -204,15 +231,16 @@
       <screen x="0" y="25" width="1440" height="875" />
     </state>
     <state x="100" y="125" width="1231" height="675" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631203391332" />
-    <state x="411" y="255" key="git4idea.merge.GitPullDialog" timestamp="1631205375855">
-      <screen x="0" y="25" width="1440" height="875" />
+    <state x="1988" y="302" key="git4idea.merge.GitPullDialog" timestamp="1631220729838">
+      <screen x="1440" y="25" width="1920" height="1055" />
     </state>
     <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631205375855" />
+    <state x="1988" y="302" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@1440.25.1920.1055" timestamp="1631220729838" />
     <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875@0.25.1440.875" timestamp="1630270485506" />
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631203655203">
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631485642174">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631203655203" />
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1631007510121" />
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631351351355" />
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1631485642174" />
   </component>
 </project>

@@ -2,4 +2,4 @@
 title: Modern Data Estate
 image: assets/imgs/ic_data.svg
 ---
-Ensure principles of responsible data and ethical AI guide your use cases.
+Ensure principles of [Responsible AI]({{ site.baseurl }}/responsible-ai) guide your use cases.

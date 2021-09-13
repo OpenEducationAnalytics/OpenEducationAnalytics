@@ -50,9 +50,15 @@ p {
   margin: 10px 0;
 }
 
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .nav-link {
   color: #000;
-  padding-top: 15px;
+  padding: 15px;
   font-size: $appFontSize;
 }
 

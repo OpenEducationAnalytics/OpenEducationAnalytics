@@ -8,7 +8,8 @@
 
                 <nav class="nav">
                     {% for item in site.data.navigation %}
-                    <a class="nav-link" {% if page.url== item.link %}style="color: #222;font-weight:bold;" {% endif %}
+                    <a id="{{item.id}}" class="nav-link" {% if page.url== item.link
+                       %}style="color: #222;font-weight:bold;" {% endif %}
                        aria-current="page"
                        href="{{ site.baseurl }}{{ item.link }}">{{item.name}}</a>
                     {% endfor %}
@@ -51,7 +52,7 @@
         <ul class="list-unstyled">
             {% for item in site.data.navigation %}
             <li>
-                <a class="nav-link" {% if page.url== item.link %}style="color: #222;font-weight:bold;" {% endif %}
+                <a  class="nav-link" {% if page.url== item.link %}style="color: #222;font-weight:bold;" {% endif %}
                    aria-current="page"
                    href="{{ site.baseurl }}{{ item.link }}">{{item.name}}</a>
             </li>
