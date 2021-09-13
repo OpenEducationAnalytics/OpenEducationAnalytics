@@ -6,7 +6,7 @@
 # DST - Data Strategy Team
 
 
-- use_case: Define the problem
+- use_case: Define the Problem
   courses:
     - name: Open Education Analytics Overview
       url: https://www.youtube.com/watch?v=efNYbS4sC4g
@@ -17,13 +17,13 @@
     - name: OEA Responsible AI Overview
       url: https://www.youtube.com/watch?v=1rEhGUpVs6E&t=2s
       roles: [Project Managers , Data Architects and Engineers,Data Scientists and Analysts, Researchers, Data Strategy Team]
-      description: Principles of Responsible AI
+      description: OEA shows how to ensure data and AI are used responsibly and ethically in education systems.
       image: ic_define_the_problem.svg
       alias: "PM DAE DSDA R DST"
     - name: Use Case Template
       url: https://github.com/microsoft/OpenEduAnalytics/raw/main/docs/Open%20Education%20Analytics%20Use%20Case%20Template.%20v1.docx
       roles: [Project Managers, Data Strategy Team]
-      description: A use case template for education systems to use as they plan how their data will be used and governed for specific analytics and AI purposes
+      description: A use case template for education systems to use as they plan how their data will be used and governed for specific analytics and AI purposes.
       image: ic_define_the_problem.svg
       alias: "PM DST"
 - use_case: Setup the Modern Data Estate
@@ -31,13 +31,13 @@
     - name: OEA Architecture Set up
       url: https://www.youtube.com/watch?v=7QnRPHK1vXg
       roles: [Data Architects and Engineers, Data Scientists and Analysts, Researchers]
-      description:
+      description: Using the OEA toolkit, education data teams and researchers can set up the modern data estate in minutes, using best in class architectures developed by Microsoft Education.
       image: ic_setup.svg
       alias: "DAE DSDA R"
     - name: OEA Setup Documentation
       url: https://github.com/microsoft/OpenEduAnalytics
       roles: [Data Architects and Engineers, Data Scientists and Analysts, Researchers]
-      description:
+      description: Using the OEA Setup on GitHub, education data teams can setup the modern data estate in minutes.
       image: ic_setup.svg
       alias: "DAE DSDA R"
     - name: Receive data with Azure Data Share and transforming with Azure Data Factory
@@ -49,7 +49,7 @@
     - name: Azure Fundamentals Part 1 - Describe cloud concepts
       url: https://docs.microsoft.com/en-us/learn/paths/az-900-describe-cloud-concepts/
       roles: [Data Architects and Engineers]
-      description:  Azure fundamentals is a six-part series that teaches you basic cloud concepts, provides a streamlined overview of many Azure services, and guides you with hands-on exercises to deploy your very first services for free.
+      description:  Azure fundamentals is a six-part series that teaches you basic cloud concepts, provides a streamlined of many Azure services, and guides you with hands-on exercises to deploy your very first services for free.
       image: ic_setup.svg
       alias: "DAE"
     - name: Azure for the Data Engineer
@@ -114,7 +114,7 @@
       alias: "DAE"
 - use_case: Explore and Model Data
   courses:
-    - name: OEA overview for Analytics
+    - name: OEA Overview for Analytics
       url: https://www.youtube.com/watch?v=j_Y1nC2pyuY
       roles: [Data Scientists and Analysts, Researchers]
       description: With the OEA reference architecture, you can explore and visualize data and build machine learning models.
@@ -215,43 +215,43 @@
     - name: OEA Responsible AI
       url: https://www.youtube.com/watch?v=1rEhGUpVs6E&t=4s
       roles: [Project Managers, Data Strategy Team Data Architects and Engineers, Data Scientists and Analysts, Researchers]
-      description: Principles of Responsible AI
+      description: OEA shows how to ensure data and AI are used responsibly and ethically in education systems.
       image: ic_communicate.svg
       alias: "PM DST DAE DSDA R"
     - name: Responsible AI - Transparency
       url: https://www.youtube.com/watch?v=q5CbK0Hs1pg
       roles: [Project Managers,  Data Strategy Team]
-      description: Microsoft Responsible AI - Transparency
+      description: Applying the Responsible AI principle on Transparency.
       image: ic_communicate.svg
       alias: "PM DST"
     - name: Responsible AI - Fairness
       url: https://www.youtube.com/watch?v=4bqrlZ-CyNs
       roles: [Project Managers, Data Strategy Team]
-      description: Microsoft Responsible AI - Fairness
+      description: Applying the Responsible AI principle on Fairness.
       image: ic_communicate.svg
       alias: "PM DST"
     - name: Responsible AI - Reliability and Safety
       url: https://www.youtube.com/watch?v=i3akj3GHmdw
       roles: [Project Managers,  Data Strategy Team]
-      description: Microsoft Responsible AI - Reliability & Safety
+      description: Applying the Responsible AI principle on Reliability and Safety.
       image: ic_communicate.svg
       alias: "PM DST"
     - name: Responsible AI - Inclusiveness
       url: https://www.youtube.com/watch?v=aVgbsRn9zK8
       roles: [Project Managers,  Data Strategy Team]
-      description: Responsible AI - Inclusiveness
+      description: Applying the Responsible AI principle on Inclusiveness.
       image: ic_communicate.svg
       alias: "PM DST"
     - name: Responsible AI - Privacy & Security
       url: https://www.youtube.com/watch?v=AZZdMgOe60k
       roles: [Project Managers,  Data Strategy Team]
-      description: Responsible AI - Privacy & Security
+      description: Applying the Responsible AI principle on Privacy & Security.
       image: ic_communicate.svg
       alias: "PM DST"
     - name: Responsible AI - Accountability
       url: https://www.youtube.com/watch?v=5BQ2RE9kqvA
       roles: [Project Managers,  Data Strategy Team]
-      description: Responsible AI - Accountability
+      description: Applying the Responsible AI principle on Accountability.
       image: ic_communicate.svg
       alias: "PM DST"
     - name: Insights for Leaders - Introduction

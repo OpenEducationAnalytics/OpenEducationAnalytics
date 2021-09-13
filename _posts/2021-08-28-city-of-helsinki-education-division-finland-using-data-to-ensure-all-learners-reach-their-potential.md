@@ -67,7 +67,7 @@ or categorising them in any way, such as by their learning style.
 
 
 
-[See the data and AI journey in Helsinki, Finland](https://www.youtube.com/watch?v=dAbEfG4XdFA)   
+[See the video on the data and AI journey in Helsinki, Finland](https://www.youtube.com/watch?v=dAbEfG4XdFA)   
 
 
 ##### Open Education Analytics 
