@@ -35,7 +35,7 @@ You can setup this fully functional reference architecture (which includes test 
 1) Run the setup script like this (substitute "mysuffix" with your preferred suffix, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
 `./OpenEduAnalytics/setup.sh mysuffix`
 
-(You can refer to this [setup video](https://www.youtube.com/watch?v=7QnRPHK1vXg) for a quick walkthrough of this process)
+(You can refer to this [setup video](https://www.youtube.com/watch?v=FxAYJamzUzQ) for a quick walkthrough of this process)
 
 ### Additional setup options
 By default, the setup script provisions Azure resources in the East US region, but you can choose other locations as well (eg, westus, northeurope).\
