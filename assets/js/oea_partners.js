@@ -13,67 +13,132 @@
 // ;
 
 if (window.location.pathname.includes("partners")) {
-    var all = document.getElementById('all');
+    // get filter text
+    var filter_text = document.getElementsByName('oeaRegions')[0];
+    // console.log(filter_text.value);
+
+
     var all_list = document.getElementById('all_list');
-
-    var asia = document.getElementById('asia');
     var asia_list = document.getElementById('asia_list');
-
-    var africa = document.getElementById('africa');
     var africa_list = document.getElementById('africa_list');
-
-    var america_list = document.getElementById('america_list');
+    var north_america_list = document.getElementById('north_america_list');
+    var south_america_list = document.getElementById('south_america_list');
+    var middle_east_list = document.getElementById('middle_east_list');
+    var australia_pacific_list = document.getElementById('australia_pacific_list');
     var europe_list = document.getElementById('europe_list');
-
+    var antartica_list = document.getElementById('antartica_list');
 
     asia_list.style.display = 'none';
     africa_list.style.display = 'none';
     all_list.style.display = 'flex';
-    america_list.style.display = 'none';
     europe_list.style.display = 'none';
+    north_america_list.style.display = 'none';
+    south_america_list.style.display = 'none';
+    antartica_list.style.display = 'none';
+    middle_east_list.style.display = 'none';
+    australia_pacific_list.style.display = 'none';
 
 
-    function addCheckedAttr(id) {
-        // console.log("flexxxxxxxxxx");
-        // document.getElementById('asia').setAttribute('checked', true);
-        // asia.checked = true;
-        switch (id) {
-            case 'asia':
+    function filterByRegion() {
+        switch (filter_text.value) {
+            case 'Asia':
                 asia_list.style.display = 'flex';
                 africa_list.style.display = 'none';
                 all_list.style.display = 'none';
-                america_list.style.display = 'none';
+                north_america_list.style.display = 'none';
+                south_america_list.style.display = 'none';
+                antartica_list.style.display = 'none';
+                middle_east_list.style.display = 'none';
+                australia_pacific_list.style.display = 'none';
                 europe_list.style.display = 'none';
                 break;
-            case 'all':
+            case 'Australia / Pacific':
                 asia_list.style.display = 'none';
                 africa_list.style.display = 'none';
-                all_list.style.display = 'flex';
-                america_list.style.display = 'none';
+                all_list.style.display = 'none';
+                north_america_list.style.display = 'none';
+                south_america_list.style.display = 'none';
+                antartica_list.style.display = 'none';
+                middle_east_list.style.display = 'none';
+                australia_pacific_list.style.display = 'flex';
                 europe_list.style.display = 'none';
                 break;
-            case 'africa':
+            case 'Africa':
                 asia_list.style.display = 'none';
                 africa_list.style.display = 'flex';
                 all_list.style.display = 'none';
-                america_list.style.display = 'none';
+                north_america_list.style.display = 'none';
+                south_america_list.style.display = 'none';
+                antartica_list.style.display = 'none';
+                middle_east_list.style.display = 'none';
+                australia_pacific_list.style.display = 'none';
                 europe_list.style.display = 'none';
                 break;
-            case 'america':
+            case 'North America / Central America /Caribbean':
                 asia_list.style.display = 'none';
                 africa_list.style.display = 'none';
                 all_list.style.display = 'none';
-                america_list.style.display = 'flex';
+                north_america_list.style.display = 'flex';
+                south_america_list.style.display = 'none';
+                antartica_list.style.display = 'none';
+                middle_east_list.style.display = 'none';
+                australia_pacific_list.style.display = 'none';
                 europe_list.style.display = 'none';
                 break;
-            case 'europe':
+            case 'Europe':
                 asia_list.style.display = 'none';
                 africa_list.style.display = 'none';
                 all_list.style.display = 'none';
-                america_list.style.display = 'none';
+                north_america_list.style.display = 'none';
+                south_america_list.style.display = 'none';
+                antartica_list.style.display = 'none';
+                middle_east_list.style.display = 'none';
+                australia_pacific_list.style.display = 'none';
                 europe_list.style.display = 'flex';
                 break;
+            case 'Antartica':
+                asia_list.style.display = 'none';
+                africa_list.style.display = 'none';
+                all_list.style.display = 'none';
+                north_america_list.style.display = 'none';
+                south_america_list.style.display = 'none';
+                antartica_list.style.display = 'flex';
+                middle_east_list.style.display = 'none';
+                australia_pacific_list.style.display = 'none';
+                europe_list.style.display = 'none';
+                break;
+            case 'Middle East':
+                asia_list.style.display = 'none';
+                africa_list.style.display = 'none';
+                all_list.style.display = 'none';
+                north_america_list.style.display = 'none';
+                south_america_list.style.display = 'none';
+                antartica_list.style.display = 'none';
+                middle_east_list.style.display = 'flex';
+                australia_pacific_list.style.display = 'none';
+                europe_list.style.display = 'none';
+                break;
+            case 'South America':
+                asia_list.style.display = 'none';
+                africa_list.style.display = 'none';
+                all_list.style.display = 'none';
+                north_america_list.style.display = 'none';
+                south_america_list.style.display = 'flex';
+                antartica_list.style.display = 'none';
+                middle_east_list.style.display = 'none';
+                australia_pacific_list.style.display = 'none';
+                europe_list.style.display = 'none';
+                break;
             default:
+                asia_list.style.display = 'none';
+                africa_list.style.display = 'none';
+                all_list.style.display = 'flex';
+                north_america_list.style.display = 'none';
+                south_america_list.style.display = 'none';
+                antartica_list.style.display = 'none';
+                middle_east_list.style.display = 'none';
+                australia_pacific_list.style.display = 'none';
+                europe_list.style.display = 'none';
                 break;
         }
 

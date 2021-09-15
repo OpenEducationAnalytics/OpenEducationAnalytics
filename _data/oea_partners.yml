@@ -23,7 +23,7 @@
   contact_person: Peter Pearson
   email: email@partner.com
   logo: pyramid.png
-  location: North America
+  location: North America / Central America /Caribbean
   website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
 
 - name: MoMo Company
@@ -45,11 +45,11 @@
   contact_person: Contact Person
   email: email@partner.com
   logo: kliky.PNG
-  location: Africa
+  location: Middle East
   website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
 
 - name: GenterX
-  contact_person: Contact Person
+  contact_person: Mary Osei
   email: email@partner.com
   logo: pyramid.png
   location: Africa
@@ -59,43 +59,43 @@
   contact_person: Constance Petters
   email: email@partner.com
   logo: logo.jpg
-  location: America
+  location: North America / Central America /Caribbean
   website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
 
 - name: Askong Company
   contact_person: Jeremy Fig
   email: email@partner.com
   logo: logo.jpg
-  location: Africa
+  location: Middle East
   website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
 
 - name: Kliky
   contact_person: Contact Person
   email: email@partner.com
   logo: kliky.PNG
-  location: America
+  location: North America / Central America /Caribbean
   website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
 
 - name: Data Towers
   contact_person: Contact Person
   email: email@partner.com
   logo: pyramid.png
-  location: Africa
+  location: South America
   website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
 
 
 - name: Peanacle
-  contact_person: Contact Person
+  contact_person: Jenny Mensah
   email: email@partner.com
   logo: pyramid.png
-  location: America
+  location: South America
   website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
 
 - name: VivaData
-  contact_person: Jenny Mensah
+  contact_person: Maison Guy
   email: email@partner.com
   logo: logo.jpg
-  location: Africa
+  location: South America
   website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
 
 - name: Shoqer
@@ -109,7 +109,7 @@
   contact_person: Karry Min
   email: email@partner.com
   logo: kliky.PNG
-  location: Africa
+  location:  Middle East
   website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
 
 - name: Tommy Kay
@@ -123,5 +123,47 @@
   contact_person: Contact Person
   email: email@partner.com
   logo: pyramid.png
+  location: Australia / Pacific
+  website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
+
+- name: AwesCom
+  contact_person: Karry Min
+  email: email@awesom.com
+  logo: pyramid.png
+  location:  Antartica
+  website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
+
+- name: Matrix
+  contact_person: Israel Larson
+  email: email@partner.com
+  logo: Kliky.PNG
   location: Asia
+  website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
+
+- name: Scifer
+  contact_person: Burney Page
+  email: email@partner.com
+  logo: logo.jpg
+  location: Australia / Pacific
+  website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
+
+- name: AwesCom
+  contact_person: Karry Min
+  email: email@awesom.com
+  logo: pyramid.png
+  location:  Antartica
+  website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
+
+- name: PurriGate
+  contact_person: Israel Larson
+  email: email@partner.com
+  logo: Kliky.PNG
+  location: Australia / Pacific
+  website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6
+
+- name: ShipValley
+  contact_person: Contact Person
+  email: email@partner.com
+  logo: logo.jpg
+  location: Antartica
   website: https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1:primaryr6

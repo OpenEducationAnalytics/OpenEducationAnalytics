@@ -127,40 +127,31 @@ permalink: /partners/
         </div>
 
 
-        <div class="row mt-3 justify-content-center text-center d-none">
-            <div class="col-md-9">
-                <div class="row g-0">
-                    <div class="col-md-3">
+        <div class="row mt-3 justify-content-center text-center">
+            <div class="col-md-10">
+                <div class="row g-0 justify-content-center">
+                    <div class="col-md-7">
                         <p><i class="fa fa-filter" aria-hidden="true"></i>
-                            <span>Filter by Geography</span></p>
-                    </div>
-                    <div class="col-md-1">
-                        <input type="radio" name="filter" id="all" value="all" checked
-                               onclick="addCheckedAttr('all')">
-                        <p class="d-inline">All</p>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="radio" name="filter" id="africa" value="africa" onclick="addCheckedAttr('africa')">
-                        <p class="d-inline">Africa</p>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="radio" name="filter" id="asia" value="asia" onclick="addCheckedAttr('asia')">
-                        <p class="d-inline">Asia</p>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="radio" name="filter" id="america" value="america"
-                               onclick="addCheckedAttr('america')">
-                        <p class="d-inline">America</p>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="radio" name="filter" id="europe" value="europe" onclick="addCheckedAttr('europe')">
-                        <p class="d-inline">Europe</p>
+                            <span> <strong>Filter by Region</strong> </span>
+                            <input class="form-control" list="regions" name="oeaRegions" placeholder="Select Region"  oninput="filterByRegion()"/>
+                            <datalist id="regions">
+                              <option value="Africa">
+                              <option value="Antartica">
+                              <option value="Asia">
+                              <option value="Australia / Pacific">
+                              <option value="Europe">
+                              <option value="Middle East">
+                              <option value="North America / Central America /Caribbean">
+                              <option value="South America">
+                            </datalist>
+                            
+                            </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row mt-3 justify-content-center d-none" id="all_list">
+        <div class="row mt-3 justify-content-center" id="all_list">
 
             {% for partner in site.data.oea_partners %}
             <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
@@ -290,11 +281,146 @@ permalink: /partners/
             {% endfor %}
         </div>
 
-        <div class="row mt-5 justify-content-center" id="america_list">
 
-            {% assign america_partners = site.data.oea_partners | where_exp: "item", "item.location == 'America'" %}
+        <div class="row mt-5 justify-content-center" id="south_america_list">
 
-            {% for partner in america_partners %}
+            {% assign south_america_partners = site.data.oea_partners | where_exp: "item", "item.location == 'South America'" %}
+
+            {% for partner in south_america_partners %}
+            <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <img src="{{site.baseurl}}/assets/imgs/partners/{{ partner.logo }}"
+                                     alt="" height="50" class="img-fluid w-25"/>
+                            </li>
+                            <li style="color: #055BFA;">
+                                <h6>{{ partner.name }}</h6>
+                            </li>
+                            <li>
+                                <h6 class="mb-0">{{ partner.contact_person }}</h6>
+                            </li>
+                            <li>
+                                <p class="mb-0">{{ partner.email }}</p>
+                            </li>
+                            <li class="grey-text">
+                                <p class="mb-0">{{ partner.location }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+        <div class="row mt-5 justify-content-center" id="middle_east_list">
+
+            {% assign middle_east_partners = site.data.oea_partners | where_exp: "item", "item.location == 'Middle East'" %}
+
+            {% for partner in middle_east_partners %}
+            <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <img src="{{site.baseurl}}/assets/imgs/partners/{{ partner.logo }}"
+                                     alt="" height="50" class="img-fluid w-25"/>
+                            </li>
+                            <li style="color: #055BFA;">
+                                <h6>{{ partner.name }}</h6>
+                            </li>
+                            <li>
+                                <h6 class="mb-0">{{ partner.contact_person }}</h6>
+                            </li>
+                            <li>
+                                <p class="mb-0">{{ partner.email }}</p>
+                            </li>
+                            <li class="grey-text">
+                                <p class="mb-0">{{ partner.location }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+
+        <div class="row mt-5 justify-content-center" id="antartica_list">
+
+            {% assign antartica_partners = site.data.oea_partners | where_exp: "item", "item.location == 'Antartica'" %}
+
+            {% for partner in antartica_partners %}
+            <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <img src="{{site.baseurl}}/assets/imgs/partners/{{ partner.logo }}"
+                                     alt="" height="50" class="img-fluid w-25"/>
+                            </li>
+                            <li style="color: #055BFA;">
+                                <h6>{{ partner.name }}</h6>
+                            </li>
+                            <li>
+                                <h6 class="mb-0">{{ partner.contact_person }}</h6>
+                            </li>
+                            <li>
+                                <p class="mb-0">{{ partner.email }}</p>
+                            </li>
+                            <li class="grey-text">
+                                <p class="mb-0">{{ partner.location }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+        <div class="row mt-5 justify-content-center" id="australia_pacific_list">
+
+            {% assign autralia_pacific_partners = site.data.oea_partners | where_exp: "item", "item.location == 'Australia / Pacific'" %}
+
+            {% for partner in autralia_pacific_partners %}
+            <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <img src="{{site.baseurl}}/assets/imgs/partners/{{ partner.logo }}"
+                                     alt="" height="50" class="img-fluid w-25"/>
+                            </li>
+                            <li style="color: #055BFA;">
+                                <h6>{{ partner.name }}</h6>
+                            </li>
+                            <li>
+                                <h6 class="mb-0">{{ partner.contact_person }}</h6>
+                            </li>
+                            <li>
+                                <p class="mb-0">{{ partner.email }}</p>
+                            </li>
+                            <li class="grey-text">
+                                <p class="mb-0">{{ partner.location }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+
+        <div class="row mt-5 justify-content-center" id="north_america_list">
+
+            {% assign north_america_partners = site.data.oea_partners | where_exp: "item", "item.location == 'North America / Central America /Caribbean'" %}
+
+            {% for partner in north_america_partners %}
             <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
                 <div class="card h-100">
                     <div class="card-body">
