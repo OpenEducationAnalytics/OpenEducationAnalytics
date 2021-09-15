@@ -10,7 +10,11 @@ SUBJECTS = ['Math - Algebra', 'Math - Geometry', 'English Language', 'History - 
 SCHOOL_TYPES = ['High', 'High', 'High']
 
 
-class M365DataGenerator:
+class MSInsightsDataGenerator:
+    """ This is a starting point for the data generator for the new MS Insights roster and activity format.
+        todo: Note that a fair amount of work is left for this to generate data that aligns with the new roster 
+        format as defined in the roster.v0.3.2.cdm.json spec, and the activity format as defined in activity.v0.1.0.cdm.json
+    """
     def __init__(self, activity_min_per_person=5, activity_max_per_person=20, students_per_school=100, classes_in_student_schedule=6, students_per_section=25, student_teacher_ratio=9, include_optional_fields=True,
                  fall_semester_start_date='2021-08-15', fall_semester_end_date='2021-12-15', spring_semester_start_date='2022-01-10', spring_semester_end_date='2022-05-10'):
         # Set a seed value in Faker so it generates the same values every time it's run
@@ -47,14 +51,21 @@ class M365DataGenerator:
             m365_data = self.format_m365_data(school_data)
             schools += m365_data.pop('Org')
             for key in m365_data.keys(): 
-                writer.write(f"m365/{key}.csv", m365_data[key])
+                writer.write(f"M365/roster/2021-07-12/{key}/part-00000-71379e08-1ce0-425f-9447-775b0dc134f1-example.csv", m365_data[key])
+            # Create empty files to reflect the empty files we currently get from MS Insights
+            empty_files_to_create = ['AadGroup', 'AadGroupMembership', 'AadUserPersonMapping', 'CourseGradeLevel', 'CourseSubject', ]
+            for entity in empty_files_to_create:
+                path_and_filename = f"M365/roster/2021-07-12/{entity}/part-00000-71379e08-1ce0-425f-9447-775b0dc134f1-example.csv"
+                writer.write(path_and_filename, '')
+
+
 
             writer.write('contoso_sis/attendance.csv', school_data.pop('_attendance'))
             writer.write('contoso_sis/section_marks.csv', school_data.pop('_section_marks'))
             writer.write('contoso_sis/students.csv', self.list_of_dict_to_csv(school_data['_students']))
 
-            self.create_and_write_activity_data(school_data['_students'], 'm365/Activity0p2.csv', writer)
-            self.create_and_write_activity_data(school_data['_teachers'], 'm365/Activity0p2.csv', writer)
+            self.create_and_write_activity_data(school_data['_students'], 'M365/activity/2021-07-12/ApplicationUsage.Part001.csv', writer)
+            self.create_and_write_activity_data(school_data['_teachers'], 'M365/activity/2021-07-12/ApplicationUsage.Part002.csv', writer)
 
         writer.write('m365/Org.csv', schools)
 
@@ -121,7 +132,7 @@ class M365DataGenerator:
 
         m365_data = {}
         m365_data['RefDefinition'] = REF_DEFINITION_CSV
-        m365_data['Calendar'] = self.obj_to_csv(school['_calendar']) + "\n"
+        #m365_data['Calendar'] = self.obj_to_csv(school['_calendar']) + "\n"
         m365_data['Org'] = f"edp_{school['SIS ID']},{school['Name']},{school['School Number']},{school['SIS ID']},{datetime_str},{datetime_str},True,edp_{parent_org_id},{ref_org_type_school},{source_system_id}\n"
         m365_data['StudentSectionMembership'] = school['_student_section_membership']
         m365_data['StaffSectionMembership'] = school['_staff_section_membership']

@@ -2,7 +2,9 @@ import datetime
 import random
 import math
 import pandas as pd
+import DataGenUtil
 from faker import Faker
+
 
 SUBJECTS = ['Math - Algebra', 'Math - Geometry', 'English Language', 'History - World History',
             'Science Biology', 'Health', 'Technology - Programming', 'Physical Education', 'Art', 'Music']
@@ -53,23 +55,34 @@ class ContosoDataGenerator:
         self.term_id = 1
         self.domain = '@Classrmtest86.org'
 
+    def generate_data(self, num_of_schools, writer):
+        schools = []
+        for n in range(num_of_schools):
+            school_data = self.create_school(n)
+            schools.append(school_data.pop('School'))
+            for key in school_data.keys(): 
+                data_str = DataGenUtil.list_of_dict_to_csv(school_data[key])
+                writer.write(f"contoso_sis/{key}.csv", data_str)
+
+        data_str = DataGenUtil.list_of_dict_to_csv(schools)
+        writer.write('contoso_sis/School.csv', data_str)        
+
     def create_school(self, school_id):
-        school_info = {
+        school_data = {}
+        school_data['School'] = {
             'SchoolID': school_id,
             'SchoolName': f"{self.faker.last_name()} {random.choice(SCHOOL_TYPES)}"
         }
-        school_data = {}
         school_data['Students'] = self.create_students(school_id)
         school_data['Courses'] = self.create_courses()
         school_data['Terms'] = self.create_terms()
         school_data['Attendance'], school_data['ClassAttendance'], school_data['DailyIncidents'] = self.create_daily_records(school_id, school_data)
-        return school_info, school_data
+        return school_data
 
     def create_students(self, school_id):
         students = []
         for n in range(self.students_per_school):
-            students.append(self.create_student(
-                school_id, self.student_id, 'student'))
+            students.append(self.create_student(school_id, self.student_id, 'student'))
             self.student_id += 1
         return students
 

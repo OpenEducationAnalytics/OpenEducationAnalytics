@@ -306,3 +306,19 @@ class DataLakeWriter:
 
     def write(self, path_and_filename, data_str, format='csv'):
         mssparkutils.fs.append(f"{self.root_destination}/{path_and_filename}", data_str, True) # Set the last parameter as True to create the file if it does not exist
+
+class FileWriter:
+    def __init__(self, root_destination=None):
+        if not root_destination: self.root_destination = ''
+        elif not root_destination.endswith('/'): self.root_destination = root_destination + '/'
+        else: self.root_destination = root_destination
+        self.writers = {}
+
+    def write(self, path_and_filename, data_str):
+        path_and_filename = self.root_destination + path_and_filename
+        if path_and_filename not in self.writers.keys():
+            if not os.path.exists(os.path.dirname(path_and_filename)):
+                os.makedirs(os.path.dirname(path_and_filename))
+            self.writers[path_and_filename] = open(path_and_filename, 'a')
+        
+        self.writers[path_and_filename].write(data_str)
