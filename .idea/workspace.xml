@@ -21,7 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="883c08e2-ef2c-41d7-a771-9fd14e27e966" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_use_case_process/explore_and_model_data.md" beforeDir="false" afterPath="$PROJECT_DIR$/_use_case_process/explore_and_model_data.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/img_responsible_ai.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/img_responsible_ai.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/contribute-to-oea.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/contribute-to-oea.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/solution-partners.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/solution-partners.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,17 +77,17 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/imgs" />
+      <recent name="$PROJECT_DIR$/assets" />
+      <recent name="$PROJECT_DIR$/_sass" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/imgs" />
       <recent name="$PROJECT_DIR$/assets/imgs/posts" />
       <recent name="$PROJECT_DIR$/assets/imgs/customers" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/_posts" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/imgs" />
-      <recent name="$PROJECT_DIR$/assets" />
-      <recent name="$PROJECT_DIR$/_sass" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -157,7 +163,7 @@
       <workItem from="1631345574253" duration="7665000" />
       <workItem from="1631480130711" duration="4110000" />
       <workItem from="1631571623708" duration="3436000" />
-      <workItem from="1631763174388" duration="7787000" />
+      <workItem from="1631763174388" duration="9354000" />
     </task>
     <servers />
   </component>
