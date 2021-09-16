@@ -13,10 +13,8 @@
 // ;
 
 if (window.location.pathname.includes("partners")) {
-    // get filter text
-    var filter_text = document.getElementsByName('oeaRegions')[0];
-    // console.log(filter_text.value);
 
+    var filtered_text = document.getElementById('filtered-text');
 
     var all_list = document.getElementById('all_list');
     var asia_list = document.getElementById('asia_list');
@@ -39,8 +37,9 @@ if (window.location.pathname.includes("partners")) {
     australia_pacific_list.style.display = 'none';
 
 
-    function filterByRegion() {
-        switch (filter_text.value) {
+    function filterByRegion(text) {
+        filtered_text.innerText = text;
+        switch (text) {
             case 'Asia':
                 asia_list.style.display = 'flex';
                 africa_list.style.display = 'none';
@@ -74,7 +73,7 @@ if (window.location.pathname.includes("partners")) {
                 australia_pacific_list.style.display = 'none';
                 europe_list.style.display = 'none';
                 break;
-            case 'North America / Central America /Caribbean':
+            case 'North America / Central America / Caribbean':
                 asia_list.style.display = 'none';
                 africa_list.style.display = 'none';
                 all_list.style.display = 'none';
