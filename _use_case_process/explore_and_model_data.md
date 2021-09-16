@@ -36,9 +36,9 @@ Use OEA <a href="https://github.com/microsoft/OpenEduAnalytics/tree/main/package
            {% for item in site.data.oea_packages %}
             <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 mt-3 mx-3">
                 <div class="card h-100">
-                                 <div class="card-body text-center my-auto">
-                                     <ul class="list-unstyled m-0">
-                                         <li>
+                                 <div class="card-body text-center my-auto d-flex">
+                                     <ul class="list-unstyled m-0 d-flex">
+                                         <li class="align-self-center">
                                              <p class="m-0">{{item.name}}</p>
                                          </li>
                                      </ul>
