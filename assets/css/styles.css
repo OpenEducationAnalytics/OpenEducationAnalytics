@@ -1180,9 +1180,15 @@ footer img {
 .mt-10 {
   margin-top: 5rem;
 }
+.mt-10-rev {
+  margin-top: 5rem;
+}
+.mt-10-alt {
+  margin-top: 5rem;
+}
 
 @media (max-width: 1400px) {
-  .mt-10 {
+  .mt-10-alt {
     margin-top: 3rem;
   }
 }

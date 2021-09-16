@@ -135,10 +135,18 @@ footer {
 
 .mt-10 {
   margin-top: 5rem;
+
+  &-rev {
+    margin-top: 5rem;
+  }
+
+  &-alt {
+    margin-top: 5rem;
+  }
 }
 
 @media (max-width: 1400px) {
-  .mt-10 {
+  .mt-10-alt {
     margin-top: 3rem;
   }
 }

@@ -20,9 +20,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="883c08e2-ef2c-41d7-a771-9fd14e27e966" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/_data/oea_applications.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_includes/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/_includes/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_layouts/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/_layouts/post.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/contribute-to-oea.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/contribute-to-oea.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/inspiration.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/inspiration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/responsible-ai.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/responsible-ai.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/skills-and-training.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/skills-and-training.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +166,8 @@
       <workItem from="1631211300324" duration="5791000" />
       <workItem from="1631345574253" duration="7665000" />
       <workItem from="1631480130711" duration="4110000" />
-      <workItem from="1631571623708" duration="2292000" />
+      <workItem from="1631571623708" duration="3436000" />
+      <workItem from="1631763174388" duration="1368000" />
     </task>
     <servers />
   </component>
@@ -216,10 +226,10 @@
     <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631205375855" />
     <state x="1988" y="302" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@1440.25.1920.1055" timestamp="1631220729838" />
     <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875@0.25.1440.875" timestamp="1631572107638" />
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631574034333">
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631764780455">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631351351355" />
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631764780455" />
     <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1631574034333" />
   </component>
 </project>
