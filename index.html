@@ -147,7 +147,7 @@ layout: default
                 <div class="row">
                     <ul class="list-unstyled">
                         <li>
-                            <h4>Real-world Applications of OEA</h4>
+                            <h4> Education systems in OEA are collaborating to develop</h4>
                         </li>
                     </ul>
                 </div>
@@ -155,13 +155,16 @@ layout: default
                     <div class="col-md-12 col-sm-10 col-xl-10 col-lg-10">
                         <div class="row justify-content-center">
                             {% for item in site.data.oea_applications %}
-                            <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6 my-2">
-                                <div class="card text-center p-3">
+
+                            <div class="col-10 col-sm-10 col-md-6 col-lg-4 col-xl-4">
+                                <div class="mini-card text-start d-flex">
+                                    <span class="border border-success border-3"></span>
                                     <p class="px-2">
                                         {{item.title}}
                                     </p>
                                 </div>
                             </div>
+
                             {% endfor %}
                         </div>
                     </div>

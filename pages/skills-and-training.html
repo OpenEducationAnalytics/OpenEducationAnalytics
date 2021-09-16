@@ -7,9 +7,9 @@ permalink: /skills-and-training/
 <div>
     <nav id="stickyFilterNav"
          class="navbar fixed-top navbar-light d-none animate__animated animate__fadeIn"
-         style="width:100%;height: 50px; background-color:#125bfa; float: left;margin-top: 4rem;">
+         style="width:100%; background-color:#125bfa; float: left;margin-top: 4rem;">
         <div class="container">
-            <div class="row justify-content-evenly align-items-center w-100">
+            <div class="row justify-content-evenly g-0 align-items-center w-100">
                 <div class="col text-start">
                     <h6 class="text-white p-0 m-0" id="filter-title">All</h6>
                 </div>
@@ -66,8 +66,8 @@ permalink: /skills-and-training/
             <div class="row">
                 <div class="col-md-12">
                     <div class="container px-0">
-                        <div class="row justify-content-between mb-3 mb-md-5">
-                            <div class="col-md-6 ">
+                        <div class="row justify-content-between mx-2 mx-lg-0 mx-xl-0 mx-md-2 mb-4 mb-md-5">
+                            <div class="col-md-6 g-0">
                                 <ul class="list-unstyled">
                                     <li>
                                         <h4>Skills Training Courses</h4>
@@ -129,7 +129,9 @@ permalink: /skills-and-training/
 
                         <div id="list-item-0">
                             {% for courses in site.data.skills_and_training %}
-                            <h5 class="my-3 course-title">{{courses.use_case}}</h5>
+                            <div class="col-11 col-md-6 col-sm-6 col-xl-3 col-lg-4">
+                                <h5 class="my-3 course-title mx-3 mx-lg-0 mx-xl-0 mx-md-2">{{courses.use_case}}</h5>
+                            </div>
                             <div class="mb-3 row justify-content-md-start justify-content-center justify-content-xl-start justify-content-lg-start justify-content-sm-start">
                                 {% for skill in courses.courses %}
 

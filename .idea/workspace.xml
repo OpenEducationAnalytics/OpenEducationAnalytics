@@ -21,10 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="883c08e2-ef2c-41d7-a771-9fd14e27e966" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/_includes/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/skills_and_training.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/skills_and_training.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/skills-and-training.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/skills-and-training.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/solution-partners.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/solution-partners.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +159,7 @@
       <workItem from="1631345574253" duration="7665000" />
       <workItem from="1631480130711" duration="4110000" />
       <workItem from="1631571623708" duration="3436000" />
-      <workItem from="1631763174388" duration="5458000" />
+      <workItem from="1631763174388" duration="7002000" />
     </task>
     <servers />
   </component>
@@ -219,10 +218,10 @@
     <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631765218709" />
     <state x="1988" y="302" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@1440.25.1920.1055" timestamp="1631220729838" />
     <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875@0.25.1440.875" timestamp="1631572107638" />
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631765497990">
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631771102912">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631765497990" />
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631771102912" />
     <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1631574034333" />
   </component>
 </project>

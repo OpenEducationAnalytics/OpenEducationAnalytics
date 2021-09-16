@@ -127,31 +127,32 @@ permalink: /partners/
         </div>
 
 
-        <div class="row mt-3 justify-content-center text-center">
+        <div class="row mt-3 d-none justify-content-center text-center">
             <div class="col-md-10">
                 <div class="row g-0 justify-content-center">
                     <div class="col-md-7">
                         <p><i class="fa fa-filter" aria-hidden="true"></i>
                             <span> <strong>Filter by Region</strong> </span>
-                            <input class="form-control" list="regions" name="oeaRegions" placeholder="Select Region"  oninput="filterByRegion()"/>
+                            <input class="form-control" list="regions" name="oeaRegions" placeholder="Select Region"
+                                   oninput="filterByRegion()"/>
                             <datalist id="regions">
-                              <option value="Africa">
-                              <option value="Antartica">
-                              <option value="Asia">
-                              <option value="Australia / Pacific">
-                              <option value="Europe">
-                              <option value="Middle East">
-                              <option value="North America / Central America /Caribbean">
-                              <option value="South America">
+                                <option value="Africa">
+                                <option value="Antartica">
+                                <option value="Asia">
+                                <option value="Australia / Pacific">
+                                <option value="Europe">
+                                <option value="Middle East">
+                                <option value="North America / Central America /Caribbean">
+                                <option value="South America">
                             </datalist>
-                            
-                            </p>
+
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row mt-3 justify-content-center" id="all_list">
+        <div class="row mt-3 d-none justify-content-center" id="all_list">
 
             {% for partner in site.data.oea_partners %}
             <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
@@ -182,7 +183,7 @@ permalink: /partners/
             {% endfor %}
         </div>
 
-        <div class="row mt-5 justify-content-center" id="asia_list">
+        <div class="row mt-5 d-none justify-content-center" id="asia_list">
 
             {% assign asia_partners = site.data.oea_partners | where_exp: "item", "item.location == 'Asia'" %}
 
@@ -215,7 +216,7 @@ permalink: /partners/
             {% endfor %}
         </div>
 
-        <div class="row mt-5 justify-content-center" id="europe_list">
+        <div class="row mt-5 d-none justify-content-center" id="europe_list">
 
             {% assign europe_partners = site.data.oea_partners | where_exp: "item", "item.location == 'Europe'" %}
 
@@ -248,7 +249,7 @@ permalink: /partners/
             {% endfor %}
         </div>
 
-        <div class="row mt-5 justify-content-center" id="africa_list">
+        <div class="row mt-5 d-none justify-content-center" id="africa_list">
 
             {% assign africa_partners = site.data.oea_partners | where_exp: "item", "item.location == 'Africa'" %}
 
@@ -281,10 +282,10 @@ permalink: /partners/
             {% endfor %}
         </div>
 
+        <div class="row mt-5 d-none justify-content-center" id="south_america_list">
 
-        <div class="row mt-5 justify-content-center" id="south_america_list">
-
-            {% assign south_america_partners = site.data.oea_partners | where_exp: "item", "item.location == 'South America'" %}
+            {% assign south_america_partners = site.data.oea_partners | where_exp: "item", "item.location == 'South
+            America'" %}
 
             {% for partner in south_america_partners %}
             <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
@@ -315,9 +316,10 @@ permalink: /partners/
             {% endfor %}
         </div>
 
-        <div class="row mt-5 justify-content-center" id="middle_east_list">
+        <div class="row mt-5 d-none justify-content-center" id="middle_east_list">
 
-            {% assign middle_east_partners = site.data.oea_partners | where_exp: "item", "item.location == 'Middle East'" %}
+            {% assign middle_east_partners = site.data.oea_partners | where_exp: "item", "item.location == 'Middle
+            East'" %}
 
             {% for partner in middle_east_partners %}
             <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
@@ -348,8 +350,7 @@ permalink: /partners/
             {% endfor %}
         </div>
 
-
-        <div class="row mt-5 justify-content-center" id="antartica_list">
+        <div class="row mt-5 d-none justify-content-center" id="antartica_list">
 
             {% assign antartica_partners = site.data.oea_partners | where_exp: "item", "item.location == 'Antartica'" %}
 
@@ -382,9 +383,10 @@ permalink: /partners/
             {% endfor %}
         </div>
 
-        <div class="row mt-5 justify-content-center" id="australia_pacific_list">
+        <div class="row mt-5 d-none justify-content-center" id="australia_pacific_list">
 
-            {% assign autralia_pacific_partners = site.data.oea_partners | where_exp: "item", "item.location == 'Australia / Pacific'" %}
+            {% assign autralia_pacific_partners = site.data.oea_partners | where_exp: "item", "item.location ==
+            'Australia / Pacific'" %}
 
             {% for partner in autralia_pacific_partners %}
             <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
@@ -415,10 +417,10 @@ permalink: /partners/
             {% endfor %}
         </div>
 
+        <div class="row mt-5 d-none justify-content-center" id="north_america_list">
 
-        <div class="row mt-5 justify-content-center" id="north_america_list">
-
-            {% assign north_america_partners = site.data.oea_partners | where_exp: "item", "item.location == 'North America / Central America /Caribbean'" %}
+            {% assign north_america_partners = site.data.oea_partners | where_exp: "item", "item.location == 'North
+            America / Central America /Caribbean'" %}
 
             {% for partner in north_america_partners %}
             <div class="col-11 col-md-5 col-sm-8 col-lg-3 col-xl-3 g-lg-0 g-xl-3 my-lg-3 my-2 my-xl-4 mx-xl-3 mx-lg-3 mx-1 my-2">
