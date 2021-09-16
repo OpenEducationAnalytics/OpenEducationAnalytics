@@ -27,28 +27,30 @@ if ((window.location.pathname.includes("skills-and-training"))) {
     function showSelectedFilterText(element, value) {
 
 
-        let q = ""
+        let selectedRole = ""
         switch (value) {
             case "All":
-                q = "All"
+                selectedRole = "All"
                 break;
             case "PM":
-                q = "Project Managers"
+                selectedRole = "Project Managers"
                 break;
             case "DSDA":
-                q = "Data Scientists and Data Analysts"
+                selectedRole = "Data Scientists and Data Analysts"
                 break;
             case "DST":
-                q = "Data Strategy Team"
+                selectedRole = "Data Strategy Team"
                 break;
             case "DAE":
-                q = "Data Architects and Engineers"
+                selectedRole = "Data Architects and Engineers"
                 break;
             case "R":
-                q = "Researchers"
+                selectedRole = "Researchers"
                 break;
         }
-        element.innerText = q
+        element.innerText = selectedRole
+        let filterTitle = document.getElementById('filter-title');
+        filterTitle.innerText = selectedRole
     }
 
     function sectionTitles(elements, action) {
@@ -73,6 +75,31 @@ if ((window.location.pathname.includes("skills-and-training"))) {
             elements[b].classList.add('d-block')
         }
     }
+
+
+    //Sticky Filter
+    const nav = document.querySelector('#stickyFilterNav');
+    let navTop = nav.offsetTop;
+
+    function fixedNav() {
+
+        // console.log(window.scrollY)
+        // console.log(navTop)
+
+        if (window.scrollY >= 720) {
+            nav.classList.remove('d-none');
+        } else {
+            nav.classList.add('d-none');
+        }
+    }
+
+    window.addEventListener('scroll', fixedNav);
+
+
+    function scrollToPosition() {
+        document.getElementById('filter-text-anchor').scrollIntoView();
+    }
+
 
 }
 

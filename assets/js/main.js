@@ -22,6 +22,7 @@ var counter = (function () {
     };
 })();
 
+
 //Right Scroll button
 document.querySelector('.skip-right').addEventListener('click', function () {
     let cardSize = parseInt(document.querySelector("#customer_feedback_size").value)
@@ -74,17 +75,3 @@ document.querySelector('.skip-left').addEventListener('click', function () {
 
 })
 
-window.onscroll = function () {
-    myFunction()
-};
-
-var navbar = document.getElementById("filtered-text");
-var sticky = navbar.offsetTop;
-
-function myFunction() {
-    if (window.pageYOffset >= sticky) {
-        navbar.classList.add("sticky")
-    } else {
-        navbar.classList.remove("sticky");
-    }
-}
