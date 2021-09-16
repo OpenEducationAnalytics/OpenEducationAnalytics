@@ -1,0 +1,10 @@
+- name: Clever
+  style: w-50
+  url: img_clever.png
+- name: Microsoft
+  style: w-75
+  url: img_microsoft.svg
+- name: Ed-fi
+  style: w-50
+  url: img_ed-fi.png
+

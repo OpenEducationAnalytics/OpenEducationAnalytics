@@ -1,0 +1,133 @@
+@import "constants";
+
+// Landing Page
+.card {
+  //border: 0;
+  border-radius: 0;
+
+  & h6 {
+    line-height: 1.4rem;
+  }
+
+  & label {
+    font-weight: bold;
+    margin: 5px 0;
+  }
+}
+
+.image-wrapper {
+  width: 100%;
+  min-height: 400px;
+  float: left;
+}
+
+.mini-card {
+  width: 100%;
+  float: left;
+  padding: 15px;
+}
+
+.page-wrapper, main {
+  width: 100%;
+  float: left;
+}
+
+.blue-bg {
+  background-color: $lightBlue;
+}
+
+.what-is-oea-section, .newsletter-section, .contribute-section {
+  width: 100%;
+  padding: 30px 0;
+  background-color: $customerFeedbackColorBox;
+  float: left;
+}
+
+.what-is-oea-section, .newsletter-section, .contribute-section {
+  background-color: $lightBlue;
+}
+
+.get-started-section, .data-estate-section {
+  background-color: $lightYellow;
+}
+
+.challenges-section {
+  background-size: 100% 100% !important;
+  width: 100%;
+}
+
+.holder {
+  width: 100%;
+  float: left;
+}
+
+.newsletter-section {
+  background-size: cover !important;
+}
+
+.get-started-section {
+  width: 100%;
+}
+
+.contribute-section {
+  width: 100%;
+  float: left;
+}
+
+//Customer-feedback
+.customer-feedback-image {
+  width: 150px;
+  height: 150px;
+  background-color: #feb902;
+  padding: 0.3rem;
+  border: 10px solid #FFF;
+}
+
+.customer-quote {
+  color: #b7c8dd;
+}
+
+.skip-btn {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #FFF;
+  background-color: #eee;
+  color: #959595;
+  cursor: pointer;
+
+  &__active {
+    background-color: $buttonColor;
+    color: #FFF;
+  }
+}
+
+.customer-feedback-wrapper {
+  background-color: #FFFFFF;
+
+  p, small {
+    font-size: $appSmallFontSize;
+  }
+
+  small > span {
+    color: $buttonColor;
+  }
+
+  & .fa {
+    font-size: 10px;
+  }
+}
+
+.card {
+  &-active {
+    display: flex;
+  }
+
+  &-inactive {
+    display: none;
+  }
+}
+
+
+.border-3 {
+  height: 40px;
+}

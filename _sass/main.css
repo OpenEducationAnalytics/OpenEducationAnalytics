@@ -1,0 +1,131 @@
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
+@import "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800;900&display=swap");
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #FFFFFF;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  line-height: 2.8rem;
+}
+
+p {
+  line-height: 1.65rem;
+}
+
+.logo {
+  width: 70px;
+}
+
+.nav-link {
+  color: #000;
+  padding-top: 15px;
+  font-size: 0.8em;
+}
+
+.bg-light {
+  background-color: #fffffff2 !important;
+}
+
+.btn-primary {
+  background-color: #065BFA;
+  border-color: #065BFA;
+}
+
+.card {
+  border-radius: 0;
+}
+.card h6 {
+  line-height: 1.4rem;
+}
+.card label {
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+section {
+  width: 100%;
+  padding: 100px 0;
+  float: left;
+}
+
+.image-wrapper {
+  width: 100%;
+  min-height: 400px;
+  background-color: #f6f6f6;
+  float: left;
+}
+
+.mini-card {
+  width: 100%;
+  float: left;
+}
+
+.page-wrapper, main {
+  width: 100%;
+  float: left;
+}
+
+.what-is-oea-section .customer-feedback-wrapper, .newsletter-section .customer-feedback-wrapper, .contribute-section .customer-feedback-wrapper {
+  width: 100%;
+  padding: 100px 0;
+  border-radius: 0.5rem;
+  background-color: #E5EEFF;
+  float: left;
+}
+.what-is-oea-section .what-is-oea-section, .what-is-oea-section .newsletter-section, .what-is-oea-section .contribute-section, .newsletter-section .what-is-oea-section, .newsletter-section .newsletter-section, .newsletter-section .contribute-section, .contribute-section .what-is-oea-section, .contribute-section .newsletter-section, .contribute-section .contribute-section {
+  background-color: #e5f5f3;
+}
+.what-is-oea-section .get-started-section, .what-is-oea-section .data-estate-section, .what-is-oea-section .system-principles-section, .newsletter-section .get-started-section, .newsletter-section .data-estate-section, .newsletter-section .system-principles-section, .contribute-section .get-started-section, .contribute-section .data-estate-section, .contribute-section .system-principles-section {
+  background-color: #fff3d5;
+}
+.what-is-oea-section .challenges-section, .newsletter-section .challenges-section, .contribute-section .challenges-section {
+  background-size: 100% 100% !important;
+  width: 100%;
+}
+.what-is-oea-section .holder, .newsletter-section .holder, .contribute-section .holder {
+  width: 100%;
+  float: left;
+}
+.what-is-oea-section .newsletter-section, .newsletter-section .newsletter-section, .contribute-section .newsletter-section {
+  background-size: cover !important;
+}
+.what-is-oea-section .get-started-section, .newsletter-section .get-started-section, .contribute-section .get-started-section {
+  width: 100%;
+}
+.what-is-oea-section .contribute-section, .newsletter-section .contribute-section, .contribute-section .contribute-section {
+  width: 100%;
+  float: left;
+}
+.what-is-oea-section .logo-image-mini, .newsletter-section .logo-image-mini, .contribute-section .logo-image-mini {
+  width: 70px;
+  height: 40px;
+}
+.what-is-oea-section footer, .newsletter-section footer, .contribute-section footer {
+  width: 100%;
+  padding: 20px 0;
+  float: left;
+}
+.what-is-oea-section footer img, .newsletter-section footer img, .contribute-section footer img {
+  width: 50px;
+}
+.what-is-oea-section .mt-10, .newsletter-section .mt-10, .contribute-section .mt-10 {
+  margin-top: 5rem;
+}
+.what-is-oea-section .btn-bold, .newsletter-section .btn-bold, .contribute-section .btn-bold {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+.what-is-oea-section .btn-nav, .newsletter-section .btn-nav, .contribute-section .btn-nav {
+  height: 35px;
+}
+
+/*# sourceMappingURL=main.css.map */
