@@ -20,8 +20,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="883c08e2-ef2c-41d7-a771-9fd14e27e966" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/imgs/city-education-icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/imgs/integration_systems_icon.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_data/oea_partners_looking_for_help.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_data/oea_partners_looking_for_help.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_what_can_you_contribute/fourth_item.md" beforeDir="false" afterPath="$PROJECT_DIR$/_what_can_you_contribute/fourth_item.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.css.map" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.css.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/community-members.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/community-members.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/computer_icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/computer_icon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/countries.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/countries.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/database_icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/database_icon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/documentation-icon.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/documentation-icon.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/ic_community.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/ic_community.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/ic_data.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/ic_data.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/ic_education.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/ic_education.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/ic_gear.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/ic_gear.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/ic_hand_gear.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/ic_hand_gear.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/ic_insight.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/ic_insight.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/ic_open_data.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/ic_open_data.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/modules-contributed.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/modules-contributed.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/imgs/school-outline.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/imgs/school-outline.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/contribute-to-oea.html" beforeDir="false" afterPath="$PROJECT_DIR$/pages/contribute-to-oea.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +180,7 @@
       <workItem from="1631345574253" duration="7665000" />
       <workItem from="1631480130711" duration="4110000" />
       <workItem from="1631571623708" duration="3436000" />
-      <workItem from="1631763174388" duration="10987000" />
+      <workItem from="1631763174388" duration="14550000" />
     </task>
     <servers />
   </component>
@@ -216,10 +239,10 @@
     <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631765218709" />
     <state x="1988" y="302" key="git4idea.merge.GitPullDialog/0.25.1440.875/1440.25.1920.1055@1440.25.1920.1055" timestamp="1631220729838" />
     <state x="411" y="255" key="git4idea.merge.GitPullDialog/0.25.1440.875@0.25.1440.875" timestamp="1631572107638" />
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631776428151">
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup" timestamp="1631793615458">
       <screen x="0" y="25" width="1440" height="875" />
     </state>
-    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631776428151" />
+    <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875/1440.25.1920.1055@0.25.1440.875" timestamp="1631793615458" />
     <state x="385" y="214" width="670" height="158" key="search.everywhere.popup/0.25.1440.875@0.25.1440.875" timestamp="1631574034333" />
   </component>
 </project>
