@@ -56,11 +56,6 @@ p {
   width: 100%;
 }
 
-
-footer {
-  background-color: $footerColor;
-}
-
 .nav-link {
   color: #000;
   padding: 15px;
@@ -136,13 +131,6 @@ footer {
 .mt-10 {
   margin-top: 5rem;
 }
-
-@media (max-width: 1400px) {
-  .mt-10 {
-    margin-top: 3rem;
-  }
-}
-
 
 .pt-10 {
   margin-top: 5rem;

@@ -1108,10 +1108,6 @@ p {
   width: 100%;
 }
 
-footer {
-  background-color: #f8f8f8;
-}
-
 .nav-link {
   color: #000;
   padding: 15px;
@@ -1181,11 +1177,6 @@ footer img {
   margin-top: 5rem;
 }
 
-@media (max-width: 1400px) {
-  .mt-10 {
-    margin-top: 3rem;
-  }
-}
 .pt-10 {
   margin-top: 5rem;
 }
