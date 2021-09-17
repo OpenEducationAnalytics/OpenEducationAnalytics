@@ -11,6 +11,8 @@ The [Cloud Adoption Framework](https://docs.microsoft.com/en-us/azure/cloud-adop
 
 OEA can get you started quickly, but when determining your overall cloud adoption strategy, the resources you're looking for are found via the Cloud Adoption Framework guidance.
 
+For guidance on Azure architectures for data workloads, see: [The Azure Well-Architected Framework for data workloads](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/data-management/well-architected-framework)
+
 # Cloud administration info
 The world of provisioning cloud resources and the ongoing monitoring and maintenance of those resources is a deep and growing discipline.
 

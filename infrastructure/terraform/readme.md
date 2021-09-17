@@ -7,7 +7,7 @@ For more info on Terraform and Azure:
 * [Basic info on Terraform (short intro)](https://docs.microsoft.com/en-us/learn/modules/cmu-orchestration/5-terraform)
 * [Terraform on Azure (marketing)](https://azure.microsoft.com/en-us/solutions/devops/terraform/#overview)
 * [Terraform on Azure (ref docs)](https://docs.microsoft.com/en-us/azure/developer/terraform/)
-* [github.com/hashicorp/terraform-provider-azurerm][https://github.com/hashicorp/terraform-provider-azurerm]
+* [github.com/hashicorp/terraform-provider-azurerm](https://github.com/hashicorp/terraform-provider-azurerm)
 
 The [Cloud Adoption Framework](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/) includes Terraform templates as a starting point.
 * [Terraform landing zones (Start small and expand)](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/terraform-landing-zone)
