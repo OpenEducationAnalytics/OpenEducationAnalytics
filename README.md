@@ -12,9 +12,7 @@ This repository contains a set of assets for setting up and walking through a re
 
 <img height="400" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_ref_arch_v0.4.png">
 
-The underlying Azure platform services are mature and well documented, but this set of assets utilizing those platform services is very much a work in progress and comes with no warranties nor SLA's, etc.
-
-That being said, this repository provides a great starting point for the development of your modern education data estate. And once you have your starting point, it's a matter of iterating and optimizing as you evolve your design and build out the solution you need.
+The underlying Azure platform services are mature and well documented, but this set of assets utilizing those platform services is very much a work in progress and comes with no warranties nor SLA's, etc. This repo should be considered as a starting point and accelerator for the development of your modern education data estate - and once you have your starting point, it's a matter of iterating and optimizing as you evolve your design and build out the solution you need.
 We look forward to growing this set of assets in conjunction with you - our customers and partners.
 
 ### What you need

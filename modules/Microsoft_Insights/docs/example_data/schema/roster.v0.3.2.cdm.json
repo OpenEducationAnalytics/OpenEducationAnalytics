@@ -1,0 +1,864 @@
+{
+  "jsonSchemaSemanticVersion": "1.2.0",
+  "imports": [
+    {
+      "corpusPath": "cdm:/foundations.cdm.json"
+    }
+  ],
+  "definitions": [
+    {
+      "entityName": "AadGroup",
+      "hasAttributes": [
+        {
+          "name": "ObjectId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "DisplayName",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "Mail",
+          "dataFormat": "String"
+        },
+        {
+          "name": "MailNickname",
+          "dataFormat": "String"
+        },
+        {
+          "name": "AnchorId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SectionId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "AadGroupMembership",
+      "hasAttributes": [
+        {
+          "name": "GroupObjectId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "Role",
+          "dataFormat": "String"
+        },
+        {
+          "name": "UserObjectId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "AadUser",
+      "hasAttributes": [
+        {
+          "name": "ObjectId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "AnchorId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "DisplayName",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "GivenName",
+          "dataFormat": "String"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "Mail",
+          "dataFormat": "String"
+        },
+        {
+          "name": "MailNickname",
+          "dataFormat": "String"
+        },
+        {
+          "name": "Role",
+          "dataFormat": "String"
+        },
+        {
+          "name": "Surname",
+          "dataFormat": "String"
+        },
+        {
+          "name": "UserPrincipalName",
+          "dataFormat": "String"
+        },
+        {
+          "name": "StudentId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "TeacherId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "AadUserPersonMapping",
+      "hasAttributes": [
+        {
+          "name": "ObjectId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "Course",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "AcademicYearSessionId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "ExternalId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "IsActiveInSession",
+          "dataFormat": "Boolean"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "Name",
+          "dataFormat": "String"
+        },
+        {
+          "name": "OrganizationId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SourceSystemId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "Code",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "CourseGradeLevel",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "CourseId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "RefGradeLevelId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "CourseSubject",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "CourseId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "RefAcademicSubjectId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "Enrollment",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "ExternalId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "IsActiveInSession",
+          "dataFormat": "Boolean"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefSectionRoleId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SectionId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SourceSystemId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "EntryDate",
+          "dataFormat": "String"
+        },
+        {
+          "name": "ExitDate",
+          "dataFormat": "String"
+        },
+        {
+          "name": "IsPrimaryStaffForSection",
+          "dataFormat": "Boolean"
+        }
+      ]
+    },
+    {
+      "entityName": "Organization",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "ExternalId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "Name",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefOrganizationTypeId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SourceSystemId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "Identifier",
+          "dataFormat": "String"
+        },
+        {
+          "name": "ParentOrganizationId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "Person",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "GivenName",
+          "dataFormat": "String"
+        },
+        {
+          "name": "MiddleName",
+          "dataFormat": "String"
+        },
+        {
+          "name": "PreferredGivenName",
+          "dataFormat": "String"
+        },
+        {
+          "name": "PreferredMiddleName",
+          "dataFormat": "String"
+        },
+        {
+          "name": "PreferredSurname",
+          "dataFormat": "String"
+        },
+        {
+          "name": "Surname",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "PersonDemographic",
+      "hasAttributes": [
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "BirthCity",
+          "dataFormat": "String"
+        },
+        {
+          "name": "BirthCountryCode",
+          "dataFormat": "String"
+        },
+        {
+          "name": "BirthDate",
+          "dataFormat": "String"
+        },
+        {
+          "name": "BirthState",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefSexId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "PersonDemographicEthnicity",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefEthnicityId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "PersonDemographicPersonFlag",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefPersonFlagId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "PersonDemographicRace",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefRaceId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "PersonEmailAddress",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "EmailAddress",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "PriorityOrder",
+          "dataFormat": "Int32"
+        },
+        {
+          "name": "RefEmailAddressTypeId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "PersonIdentifier",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "Identifier",
+          "dataFormat": "String"
+        },
+        {
+          "name": "IsPresentInSource",
+          "dataFormat": "Boolean"
+        },
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefIdentifierTypeId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SourceSystemId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "PersonOrganizationRole",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "ExternalId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "IsActiveInSession",
+          "dataFormat": "Boolean"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "OrganizationId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefRoleId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SessionId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SourceSystemId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "IsPrimary",
+          "dataFormat": "Boolean"
+        },
+        {
+          "name": "RefGradeLevelId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RoleEndDate",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RoleStartDate",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "PersonPhoneNumber",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "PhoneNumber",
+          "dataFormat": "String"
+        },
+        {
+          "name": "PriorityOrder",
+          "dataFormat": "Int32"
+        },
+        {
+          "name": "RefPhoneNumberTypeId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "PersonRelationship",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "PersonId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefPersonRelationshipId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RelatedPersonId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "RefDefinition",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "Code",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "Namespace",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefType",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SortOrder",
+          "dataFormat": "Int32"
+        }
+      ]
+    },
+    {
+      "entityName": "Section",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "ExternalId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "Name",
+          "dataFormat": "String"
+        },
+        {
+          "name": "OrganizationId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SourceSystemId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "Code",
+          "dataFormat": "String"
+        },
+        {
+          "name": "CourseId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "Location",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "SectionGradeLevel",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "RefGradeLevelId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SectionId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "SectionSession",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "IsActiveInSession",
+          "dataFormat": "Boolean"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "SectionId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SessionId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "SectionSubject",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "RefAcademicSubjectId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SectionId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "Session",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "EndDate",
+          "dataFormat": "String"
+        },
+        {
+          "name": "ExternalId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "Name",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefAcademicYearId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "RefSessionTypeId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "SourceSystemId",
+          "dataFormat": "String"
+        },
+        {
+          "name": "StartDate",
+          "dataFormat": "String"
+        },
+        {
+          "name": "ParentSessionId",
+          "dataFormat": "String"
+        }
+      ]
+    },
+    {
+      "entityName": "SourceSystem",
+      "hasAttributes": [
+        {
+          "name": "Id",
+          "dataFormat": "String"
+        },
+        {
+          "name": "FirstSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "LastSeenDateTime",
+          "dataFormat": "DateTime"
+        },
+        {
+          "name": "Name",
+          "dataFormat": "String"
+        }
+      ]
+    }
+  ]
+}
