@@ -1,4 +1,3 @@
-// az account set --subscription 7b9a4896-4541-483f-bdc7-d8f4ec6be3ee
 // az deployment group create --template-file oea.bicep --resource-group rg-oea-cisdggv04r
 
 param location string 
