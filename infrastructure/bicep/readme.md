@@ -1,0 +1,2 @@
+# Bicep
+If you are new to bicep, this Learning Path is a great way to get up to speed: [Build Azure infrastructure in a team env by using Bicep](https://docs.microsoft.com/en-us/learn/paths/bicep-collaborate/)
