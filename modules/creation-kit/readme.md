@@ -5,7 +5,7 @@ Provide an overview of the module.
 Define the problem you seek to solve using this module.
 
 ## Module Benefits
-List out the benefits and impact this module will have on learners and educators.
+List out the benefits and impact this module will have on learners, educators and the learning process.
 
 
 ## Module Components 
