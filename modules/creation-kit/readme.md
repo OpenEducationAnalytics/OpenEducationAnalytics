@@ -6,9 +6,9 @@ Define the problem you seek to solve using this module.
 
 
 ## Module Components 
-1. Pipelines (add link to the pipelines folder) for ingesting data from multiple sources into the data lake.
-2. Notebooks (add link to the notebooks folder) for cleaning, transforming, anonymizing and enriching data into the data warehouse.
-3. PowerBI templates (add link to the PowerBU folder) for exploring, visualizing and deriving insights from the data.
+1. Pipelines [add link to the pipelines folder] for ingesting data from multiple sources into the data lake.
+2. Notebooks [add link to the notebooks folder] for cleaning, transforming, anonymizing and enriching data into the data warehouse.
+3. PowerBI templates [add link to the PowerBU folder] for exploring, visualizing and deriving insights from the data.
 
 The [name of module] module [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md) 
 
