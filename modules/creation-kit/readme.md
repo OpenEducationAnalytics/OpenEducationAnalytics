@@ -4,13 +4,16 @@ Provide an overview of the module.
 ## Problem Statement
 Define the problem you seek to solve using this module.
 
-## Module Benefits 
+## Module Benefits
+List out the benefits and impact this module will have on learners and educators.
 
 
 ## Module Components 
 1. Pipelines [add link to the pipelines folder] for ingesting data from multiple sources into the data lake.
 2. Notebooks [add link to the notebooks folder] for cleaning, transforming, anonymizing and enriching data into the data warehouse.
 3. PowerBI templates [add link to the PowerBU folder] for exploring, visualizing and deriving insights from the data.
+
+[insert screenshot of Overview page of PowerBI template]
 
 The [name of module] module [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md) 
 
