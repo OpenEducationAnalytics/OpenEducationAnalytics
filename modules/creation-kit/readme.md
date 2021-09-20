@@ -2,7 +2,9 @@
 Provide an overview of the module.
 
 ## Problem Statement
-Define the problem you seek to solve using this module. 
+Define the problem you seek to solve using this module.
+
+## Module Benefits 
 
 
 ## Module Components 
@@ -11,6 +13,8 @@ Define the problem you seek to solve using this module.
 3. PowerBI templates [add link to the PowerBU folder] for exploring, visualizing and deriving insights from the data.
 
 The [name of module] module [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md) 
+
+This module was developed by [name of contributor] in partnership with [name of education system, if any]. The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
 # Legal Notices
 
