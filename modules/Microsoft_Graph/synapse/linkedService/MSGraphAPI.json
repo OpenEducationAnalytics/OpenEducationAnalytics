@@ -1,0 +1,21 @@
+{
+	"name": "GraphAPI",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://graph.microsoft.com",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "AadServicePrincipal",
+			"servicePrincipalId": "<needs to be set>",
+			"tenant": "<needs to be set>",
+			"aadResourceId": "https://graph.microsoft.com"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		},
+		"description": "Facilitates the connection to the Microsoft Graph API.\nFor more info see: https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph"
+	}
+}
