@@ -1,3 +1,5 @@
+N.B: Please follow the guidelines provided in the OEA Module Creation kit before starting the module creation process.
+
 # Name of Module
 Provide an overview of the module.
 
