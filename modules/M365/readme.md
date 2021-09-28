@@ -1,4 +1,6 @@
-# M365 module
+Note: This module is deprecated - refer to [Microsoft Insights module for the latest](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights)
+
+# M365 module (deprecated)
 This module provides a set of assets for the processing of roster and application usage data received from M365 via Azure Data Share.
 
 Note that the setup of [School Data Sync](https://sds.microsoft.com/) is a prerequisite for being able to receive this type of usage data from your M365 tenant.
