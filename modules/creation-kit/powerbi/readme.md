@@ -13,7 +13,7 @@ The [name of module] PowerBI template consists of 3 pages:
 - visual 3 name - description
 - visual 4 name - description
 
-3. **Page 2:** description of page.
+3. **Page 3:** description of page.
 - visual 1 name - description 
 - visual 2 name - description 
 - visual 3 name - description
