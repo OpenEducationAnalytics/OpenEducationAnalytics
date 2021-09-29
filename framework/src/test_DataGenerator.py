@@ -19,7 +19,7 @@ def test_ContosoDataGenerator():
 def test_M365DataGenerator():
     dg = M365DataGenerator.M365DataGenerator()
     writer = DataGenUtil.FileWriter(destination)
-    dg.generate_data(2, writer)
+    dg.generate_data(1, writer)
     
 def test_MSInsightsDataGenerator():
     dg = MSInsightsDataGenerator.MSInsightsDataGenerator()

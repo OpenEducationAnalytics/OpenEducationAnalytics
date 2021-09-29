@@ -83,16 +83,20 @@ az synapse spark pool create --name spark3p1sm --workspace-name $OEA_SYNAPSE --r
 
 echo "--> Update spark pool to include required libraries (note that this has to be done as a separate step or the create command will fail, despite what the docs say)."
 az synapse spark pool update --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --library-requirements $oea_path/framework/requirements.txt --no-wait
+[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 # 4) Create key vault for secure storage of credentials, and create app insights for logging
 echo "--> 4) Creating key vault: ${OEA_KEYVAULT}"
 echo "--> 4) Creating key vault: ${OEA_KEYVAULT}" 1>&3
 az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION
+[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 # give the Synapse workspace access to get secrets from the key vault, for use in Synapse pipelines
 az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get --object-id $synapse_principal_id
+[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 echo "--> Creating app-insights: $OEA_APP_INSIGHTS"
 az monitor app-insights component create --app $OEA_APP_INSIGHTS --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION
+[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 keyvault_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$OEA_KEYVAULT"
 app_insights_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/microsoft.insights/components/$OEA_APP_INSIGHTS"

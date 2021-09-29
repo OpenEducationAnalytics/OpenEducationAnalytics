@@ -12,7 +12,7 @@ org_id=$1
 this_file_path=$(dirname $(realpath $0))
 source $this_file_path/../../set_names.sh $org_id
 
-echo "--> Installing: $this_file_path, for resource group: $OEA_ERSOURCE_GROUP"
+echo "--> Installing: $this_file_path, for resource group: $OEA_RESOURCE_GROUP"
 module_path="$this_file_path/../../modules"
 
 # Install the required modules

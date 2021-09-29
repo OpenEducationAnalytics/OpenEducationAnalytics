@@ -196,11 +196,11 @@ class M365DataGenerator:
 
     def create_students(self, school_id):
         students = []
-        gender = random.choice(['Male', 'Female'])
-        if gender == 'Male': fname = self.faker.first_name_male()
-        else: fname = self.faker.first_name_female()
-
         for n in range(self.students_per_school):
+            gender = random.choice(['Male', 'Female'])
+            if gender == 'Male': fname = self.faker.first_name_male()
+            else: fname = self.faker.first_name_female()
+
             fname = self.faker.first_name()
             lname = self.faker.last_name()
             email = f"{fname.lower()}{lname.lower()}{self.student_id}{self.domain}"
