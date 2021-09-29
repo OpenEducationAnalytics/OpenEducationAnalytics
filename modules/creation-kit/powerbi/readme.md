@@ -27,9 +27,9 @@ This PowerBI module is made up of the following tables: calendar, dayactivity, s
 | | name of column | description of column |
 | | name of column | description of column |
 | | name of column | description of column |
-| | PersonId | Student unique id |
+| | name of column | description of column |
 | Table 2 | name of column | description of column |
 | | name of column | description of column |
 | | name of column | description of column |
 | | name of column | description of column |
-| | PersonId | Student unique id |
+| | name of column | description of column |
