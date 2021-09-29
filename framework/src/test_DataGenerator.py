@@ -33,5 +33,5 @@ def test_EdFiDataGenerator():
 
 #test_ContosoDataGenerator()
 #test_M365DataGenerator()
-test_EdFiDataGenerator()
+#test_EdFiDataGenerator()
 #test_MSInsightsDataGenerator()
