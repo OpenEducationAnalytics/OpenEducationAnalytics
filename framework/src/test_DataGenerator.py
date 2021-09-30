@@ -4,6 +4,7 @@ import DataGenUtil
 import ContosoDataGenerator
 import M365DataGenerator
 import MSInsightsDataGenerator
+import EdFiDataGenerator
 #import OneRosterDataGenerator
 
 destination = 'tmp_generated_data'
@@ -25,6 +26,12 @@ def test_MSInsightsDataGenerator():
     writer = DataGenUtil.FileWriter(destination)
     dg.generate_data(2, writer)
 
+def test_EdFiDataGenerator():
+    dg = EdFiDataGenerator.EdFiDataGenerator()
+    writer = DataGenUtil.FileWriter(destination)
+    dg.generate_data(2, writer)
+
 #test_ContosoDataGenerator()
-test_M365DataGenerator()
+#test_M365DataGenerator()
+#test_EdFiDataGenerator()
 #test_MSInsightsDataGenerator()
