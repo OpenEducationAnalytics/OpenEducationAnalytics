@@ -1,16 +1,17 @@
 import os
 
-def list_of_dict_to_csv(list_of_dict):
+def list_of_dict_to_csv(list_of_dict, includeHeaders = True):
     csv_str = ''
-    header = []
-    for column_name in list_of_dict[0].keys(): 
-        if not column_name.startswith('_'): header.append(column_name)
-    csv_str += ",".join(header) + "\n"
+    if includeHeaders == True:
+        header = []
+        for column_name in list_of_dict[0].keys(): 
+            if not column_name.startswith('_'): header.append(column_name)
+        csv_str += ",".join(header) + "\n"
 
     for row in list_of_dict:
         csv_str += obj_to_csv(row) + "\n"
 
-    return csv_str[:-1] # chop the final newline char
+    return csv_str
 
 def obj_to_csv(obj):
     csv = ''
