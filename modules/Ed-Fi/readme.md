@@ -17,5 +17,6 @@ If you want to setup a quick test Ed-Fi environment in Azure (including test dat
 
 For Ed-Fi documentation, see [Ed-Fi Tech Docs](https://techdocs.ed-fi.org/)
 
+To try out the Ed-Fi API, see [Ed-Fi ODS API](https://api.ed-fi.org/)
 
 
