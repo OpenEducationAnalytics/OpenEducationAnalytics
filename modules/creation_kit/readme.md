@@ -15,7 +15,7 @@ List out the impact and benefits this module will have on learners, educators an
 2. Notebooks [add link to the notebooks folder] for cleaning, transforming, anonymizing and enriching data into the data warehouse.
 3. PowerBI templates [add link to the PowerBI folder] for exploring, visualizing and deriving insights from the data.
 
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/b815432b0910d2e56abcd32e289a7b71f9a36441/modules/creation_kit/docs/demo_dashboard.png) 
+![image](https://github.com/microsoft/OpenEduAnalytics/blob/be6c0b4b278b863d3fa885b671ac2e4d0abb23da/modules/creation_kit/docs/sample_dashboard.png) 
 
 The [name of module] module [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md) 
 
