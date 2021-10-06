@@ -1,4 +1,5 @@
 import os
+import json
 
 def list_of_dict_to_csv(list_of_dict, includeHeaders = True):
     csv_str = ''
@@ -18,6 +19,18 @@ def obj_to_csv(obj):
     for key in obj:
         if not (key.startswith('_')): csv += str(obj[key]) + ','
     return csv[:-1]
+
+def list_of_dict_to_json(list_of_dict):
+    json_str = ''
+    for row in list_of_dict:
+        json_str += obj_to_json(row) + "\n"
+    return json_str
+
+def obj_to_json(obj):
+    json_dict = {}
+    for key in obj:
+        if not (key.startswith('_')): json_dict[key] = obj[key]
+    return json.dumps(json_dict)
 
 class FileWriter:
     def __init__(self, root_destination=None):
