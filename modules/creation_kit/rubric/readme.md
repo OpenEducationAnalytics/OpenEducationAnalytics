@@ -1,5 +1,5 @@
 # Quality Rubric
-Modules contributed to OEA are categorized in 2 levels: Approved and Advanced. 
+Modules contributed to OEA are categorized in 2 levels: [Approved](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/creation_kit/rubric/approved.md) and [Advanced](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/creation_kit/rubric/advanced.md). 
 
 The benchmark for OEA module creation is the Microsoft Graph Reports API module, which meets the requirements for the ‘Advanced’ level. This module can be used as a guideline for creating and submitting a new OEA module.
 
