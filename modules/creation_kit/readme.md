@@ -11,9 +11,9 @@ List out the impact and benefits this module will have on learners, educators an
 
 
 ## Module Components 
-1. Pipelines [add link to the pipelines folder] for ingesting data from multiple sources into the data lake.
-2. Notebooks [add link to the notebooks folder] for cleaning, transforming, anonymizing and enriching data into the data warehouse.
-3. PowerBI templates [add link to the PowerBI folder] for exploring, visualizing and deriving insights from the data.
+1. [Pipelines](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/pipelines) for ingesting data from multiple sources into the data lake.
+2. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/notebooks) for cleaning, transforming, anonymizing and enriching data into the data warehouse.
+3. [PowerBI templates](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
 
 ![image](https://github.com/microsoft/OpenEduAnalytics/blob/be6c0b4b278b863d3fa885b671ac2e4d0abb23da/modules/creation_kit/docs/sample_dashboard.png) 
 
