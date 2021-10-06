@@ -19,7 +19,7 @@ Sample out-of-the box assets for this OEA module include:
 2. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/notebooks) for cleaning, transforming, anonymizing and enriching data into the data warehouse.
 3. [PowerBI templates](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
 
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/be6c0b4b278b863d3fa885b671ac2e4d0abb23da/modules/creation_kit/docs/sample_dashboard.png) 
+![image](https://github.com/microsoft/OpenEduAnalytics/blob/0ef79e7554e897c70a25149dd5c6a32cc42c494f/modules/creation_kit/docs/Sample_PowerBI_Dashboard.png) 
 
 The [name of module] module [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md) 
 
