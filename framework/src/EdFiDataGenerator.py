@@ -32,14 +32,15 @@ class EdFiDataGenerator:
         return "uri://ed-fi.org/{}#{}".format(key,value)
 
     def generate_data(self, num_of_schools, writer):
-        for _ in range(num_of_schools):
-            school_data = self.create_school()
-           
-            writer.write(f'EdFi/School.json',obj_to_json(school_data))
-            writer.write(f'EdFi/Student.json',list_of_dict_to_json(school_data['_Students']))
-            writer.write(f'EdFi/StudentSchoolAssociation.json',list_of_dict_to_json(school_data['_StudentAssociation']))
-            writer.write(f'EdFi/Course.json',list_of_dict_to_json(school_data['_Courses']))
-            writer.write(f'EdFi/Calendar.json',obj_to_json(school_data['_Calendar'])+"\n")
+        edfi_data = [self.create_school() for _ in range(num_of_schools)]
+        edfi_data_formatted = self.format_edfi_data(edfi_data)
+    
+          
+        writer.write(f'EdFi/School.json','['+list_of_dict_to_json(edfi_data_formatted['Schools'])[:-2]+']')
+        writer.write(f'EdFi/Student.json','['+list_of_dict_to_json(edfi_data_formatted['Students'])[:-2]+']')
+        writer.write(f'EdFi/StudentSchoolAssociation.json','['+list_of_dict_to_json(edfi_data_formatted['StudentSchoolAssociations'])[:-2]+']')
+        writer.write(f'EdFi/Course.json','['+list_of_dict_to_json(edfi_data_formatted['Courses'])[:-2]+']')
+        writer.write(f'EdFi/Calendar.json','['+list_of_dict_to_json(edfi_data_formatted['Calendars'])[:-2]+']')
 
     def create_school(self):
         school_type = random.choice(SCHOOL_TYPES)
@@ -116,7 +117,7 @@ class EdFiDataGenerator:
 
     def create_student_school_associations(self,school):
         result = []
-        graduation_plan_ids = [gp['Id'] for gp in school['_GraduationPlan']]
+        graduation_plan_ids = [gp['Id'] for gp in school['_GraduationPlans']]
         for student in school['_Students']:
             result.append({
                 'Id': self.faker.uuid4().replace('-',''),
@@ -166,7 +167,7 @@ class EdFiDataGenerator:
                 "SchoolYear": self.school_year,
                 "Link": {
                     "rel": "SchoolYearType",
-                    "href": "/ed-fi/schoolYearTypes/{}".format(school['_SchoolYear']['Id'])
+                    "href": "/ed-fi/schoolYearTypes/{}".format(school['_SchoolYears']['Id'])
                 }
             },
             'CalendarTypeDescriptor': self.get_descriptor_string('calendarTypeDescriptor','Student Specific'),
@@ -257,7 +258,7 @@ class EdFiDataGenerator:
                     "SchoolYear": self.school_year,
                     "Link": {
                         "rel": "SchoolYearType",
-                        "href": "/ed-fi/schoolYearTypes/{}".format(school['_SchoolYear']['Id'])
+                        "href": "/ed-fi/schoolYearTypes/{}".format(school['_SchoolYears']['Id'])
                     }
                 },
                 "GraduationPlanTypeDescriptor": self.get_descriptor_string('GraduationPlanTypeDescriptor', random.choice(['Minimum','Recommended'])),
@@ -352,3 +353,20 @@ class EdFiDataGenerator:
             "visas": [],
             "_etag": self.faker.random_number(digits=10)
         }
+
+    def format_edfi_data(self,data):
+        result = {
+            'Schools':[],
+            'Students':[],
+            'Calendars':[],
+            'Courses':[],
+            'StudentSchoolAssociations':[]
+        }
+        for school in data:
+            result['Schools'].append({key: school[key] for key in school if not (key.startswith('_')) }) 
+            result['Students'] += school['_Students']
+            result['Courses'] += school['_Courses']
+            result['StudentSchoolAssociations'] += school['_StudentAssociations']
+            result['Calendars'].append(school['_Calendars'])
+        
+        return result

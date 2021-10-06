@@ -23,7 +23,7 @@ def obj_to_csv(obj):
 def list_of_dict_to_json(list_of_dict):
     json_str = ''
     for row in list_of_dict:
-        json_str += obj_to_json(row) + "\n"
+        json_str += obj_to_json(row) + ",\n"
     return json_str
 
 def obj_to_json(obj):
