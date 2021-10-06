@@ -14,6 +14,7 @@ List out the impact and benefits this module will have on learners, educators an
 - Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA
 
 ## Module Components 
+Sample out-of-the box assets for this OEA module include: 
 1. [Pipelines](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/pipelines) for ingesting data from multiple sources into the data lake.
 2. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/notebooks) for cleaning, transforming, anonymizing and enriching data into the data warehouse.
 3. [PowerBI templates](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
