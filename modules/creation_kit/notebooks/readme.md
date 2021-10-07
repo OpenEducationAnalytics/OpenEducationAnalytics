@@ -7,7 +7,7 @@ This notebook creates the following tables ([add names of tables]) into a new Sp
 ### Tables and Databases
 | Databases created | Tables created | Table purpose | Databases used   | Tables used
 | :------------- | :---------- | :---------- |:---------- | :---------- |
-| Database1 | Name of table created  |  Purpose of table | Name of database used | Name of table used |
+| Database 1 | Name of table created  |  Purpose of table | Name of database used | Name of table used |
 |  | Name of table created  |  Purpose of table | Name of database used | Name of table used |
-| Database2 | Name of table created  |  Purpose of table | Name of database used | Name of table used |
+| Database 2 | Name of table created  |  Purpose of table | Name of database used | Name of table used |
 |  | Name of table created  |  Purpose of table | Name of database used | Name of table used |
