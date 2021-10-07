@@ -21,10 +21,10 @@ def obj_to_csv(obj):
     return csv[:-1]
 
 def list_of_dict_to_json(list_of_dict):
-    json_str = ''
+    json_str = '['
     for row in list_of_dict:
         json_str += obj_to_json(row) + ",\n"
-    return json_str
+    return json_str[:-2] + ']'
 
 def obj_to_json(obj):
     json_dict = {}

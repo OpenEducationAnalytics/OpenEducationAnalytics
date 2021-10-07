@@ -36,11 +36,11 @@ class EdFiDataGenerator:
         edfi_data_formatted = self.format_edfi_data(edfi_data)
     
           
-        writer.write(f'EdFi/School.json','['+list_of_dict_to_json(edfi_data_formatted['Schools'])[:-2]+']')
-        writer.write(f'EdFi/Student.json','['+list_of_dict_to_json(edfi_data_formatted['Students'])[:-2]+']')
-        writer.write(f'EdFi/StudentSchoolAssociation.json','['+list_of_dict_to_json(edfi_data_formatted['StudentSchoolAssociations'])[:-2]+']')
-        writer.write(f'EdFi/Course.json','['+list_of_dict_to_json(edfi_data_formatted['Courses'])[:-2]+']')
-        writer.write(f'EdFi/Calendar.json','['+list_of_dict_to_json(edfi_data_formatted['Calendars'])[:-2]+']')
+        writer.write(f'EdFi/School.json',list_of_dict_to_json(edfi_data_formatted['Schools']))
+        writer.write(f'EdFi/Student.json',list_of_dict_to_json(edfi_data_formatted['Students']))
+        writer.write(f'EdFi/StudentSchoolAssociation.json',list_of_dict_to_json(edfi_data_formatted['StudentSchoolAssociations']))
+        writer.write(f'EdFi/Course.json',list_of_dict_to_json(edfi_data_formatted['Courses']))
+        writer.write(f'EdFi/Calendar.json',list_of_dict_to_json(edfi_data_formatted['Calendars']))
 
     def create_school(self):
         school_type = random.choice(SCHOOL_TYPES)
