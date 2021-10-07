@@ -9,12 +9,13 @@ OPERATIONAL_STATUS = ['Active','Inactive']
 CHARTER_STATUS = ['School Charter', 'Open Enrollment Charter', 'Not a Charter School']
 GRADE_LEVEL = ['First Grade','Second Grade','Third Grade','Fourth Grade','Fifth Grade','Sixth Grade','Seventh Grade','Eighth Grade','Ninth Grade','Tenth Grade','Eleventh Grade','Twelfth Grade']
 SCHOOL_TYPES = ['High School', 'Middle School', 'Elementary School']
-SUBJECT_NAMES = [('Math','Algebra'), ('Math','Geometry'), ('Language','English'), ('History','World History'),
-('Science','Biology'), ('Science','Health'), ('Technology',' Programming'), ('Physical Education','Sports'), ('Arts','Music')]
-
+SUBJECT_NAMES = [('Math','Algebra'), ('Math','Geometry'), ('Language','English'), ('History','World History'),('Science','Biology'), ('Science','Health'), ('Technology',' Programming'), ('Physical Education','Sports'), ('Arts','Music')]
+LEVELS_OF_EDUCATION = ['Some College No Degree', 'Doctorate', 'Bachelor\'s','Master\'s']
+PERSONAL_INFORMATION_VERIFICATION_DESCRIPTIONS = ['Entry in family Bible', 'Other official document', 'State-issued ID', 'Hospital certificate', 'Passport', 'Parents affidavit', 'Immigration document/visa', 'Drivers license']
+RACES = ['Asian' , 'Native Hawaiian - Pacific Islander', 'American Indian - Alaska Native', 'White']
 
 class EdFiDataGenerator:
-    def __init__(self,number_students_per_school=100, include_optional_fields=True, school_year='2021', credit_conversion_factor = 2.0, number_of_grades_per_school = 5, is_current_school_year = True, graduation_plans_per_school = 10):
+    def __init__(self,number_students_per_school=100, include_optional_fields=True, school_year='2021', credit_conversion_factor = 2.0, number_of_grades_per_school = 5, is_current_school_year = True, graduation_plans_per_school = 10, unique_id_length = 5):
         # Set a seed value in Faker so it generates same values every run.
         self.faker = Faker('en_US')
         Faker.seed(1)
@@ -27,6 +28,7 @@ class EdFiDataGenerator:
         self.credit_conversion_factor = credit_conversion_factor
         self.number_of_grades_per_school = number_of_grades_per_school
         self.is_current_school_year = is_current_school_year
+        self.unique_id_length = unique_id_length
 
     def get_descriptor_string(self, key, value):
         return "uri://ed-fi.org/{}#{}".format(key,value)
@@ -34,8 +36,8 @@ class EdFiDataGenerator:
     def generate_data(self, num_of_schools, writer):
         edfi_data = [self.create_school() for _ in range(num_of_schools)]
         edfi_data_formatted = self.format_edfi_data(edfi_data)
-    
-          
+
+
         writer.write(f'EdFi/School.json',list_of_dict_to_json(edfi_data_formatted['Schools']))
         writer.write(f'EdFi/Student.json',list_of_dict_to_json(edfi_data_formatted['Students']))
         writer.write(f'EdFi/StudentSchoolAssociation.json',list_of_dict_to_json(edfi_data_formatted['StudentSchoolAssociations']))
@@ -47,7 +49,7 @@ class EdFiDataGenerator:
         school_name = self.faker.city() + ' ' + school_type
         school = {
             'Id': self.faker.uuid4().replace('-',''),
-            'SchoolId': self.faker.random_number(digits=5),
+            'SchoolId': self.faker.random_number(digits = self.unique_id_length),
             'NameOfInstitution': school_name,
             'OperationalStatusDescriptor': self.get_descriptor_string('OperationalStatusDescriptor',random.choice(OPERATIONAL_STATUS)),
             'ShortNameOfInstitution': ''.join([word[0] for word in school_name.split()]),
@@ -93,7 +95,7 @@ class EdFiDataGenerator:
             fname = self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()
             students.append({
                 'Id': self.faker.uuid4().replace('-',''),
-                'StudentUniqueId': self.faker.random_number(digits=5),
+                'StudentUniqueId': self.faker.random_number(digits = self.unique_id_length),
                 "BirthCity": self.faker.city(),
                 "BirthDate": str(self.faker.date_between(start_date='-18y',end_date='-5y')),
                 "BirthSexDescriptor": self.get_descriptor_string('birthStateAbbreviationDescriptor', gender),
@@ -155,7 +157,7 @@ class EdFiDataGenerator:
     def create_calendars(self,school):
         return {
             'Id': self.faker.uuid4().replace('-',''),
-            'CalendarCode':self.faker.random_number(digits=5),
+            'CalendarCode':self.faker.random_number(digits = self.unique_id_length),
             "SchoolReference": {
                 "SchoolId": school['SchoolId'],
                 "Link": {
@@ -199,7 +201,7 @@ class EdFiDataGenerator:
                         "href": "/ed-fi/schools/{}".format(id)
                     }
                 },
-                "CourseCode": self.faker.random_number(digits=5),
+                "CourseCode": self.faker.random_number(digits = self.unique_id_length),
                 "AcademicSubjectDescriptor": self.get_descriptor_string('academicSubjectDescriptor', subject),
                 "CourseDefinedByDescriptor": self.get_descriptor_string('CourseDefinedByDescriptor','SEA'),
                 "CourseDescription": 'Description about {}'.format(course_name),
@@ -216,14 +218,14 @@ class EdFiDataGenerator:
                     },
                     {
                         "CourseIdentificationSystemDescriptor": self.get_descriptor_string('CourseIdentificationSystemDescriptor','State course code'),
-                        "IdentificationCode": self.faker.random_number(digits=5)
+                        "IdentificationCode": self.faker.random_number(digits = self.unique_id_length)
                     }
                 ],
                 "LearningObjectives": [],
                 "LearningStandards": [
                     {
                         "LearningStandardReference": {
-                            "LearningStandardId": self.faker.random_number(digits=5),
+                            "LearningStandardId": self.faker.random_number(digits = self.unique_id_length),
                             "Link": {
                                 "rel": "LearningStandard",
                                 "href": "/ed-fi/learningStandards/{}".format(self.faker.uuid4().replace('-',''))
@@ -294,32 +296,36 @@ class EdFiDataGenerator:
             for _ in ['Fax','Main']
         ]
 
-    #This is work in Progress.
     def create_staffs(self):
         gender = random.choice(GENDER)
         fname = self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()
         lname = self.faker.last_name()
         {
             "id": self.faker.uuid4().replace('-',''),
-            "staffUniqueId": self.faker.random_number(digits=5),
+            "staffUniqueId": self.faker.random_number(digits = self.unique_id_length),
             "birthDate": str(self.faker.date_between(start_date='-60y',end_date='-30y')),
             "firstName": fname,
-            "highestCompletedLevelOfEducationDescriptor": "uri://ed-fi.org/LevelOfEducationDescriptor#Some College No Degree",
+            "highestCompletedLevelOfEducationDescriptor": self.get_descriptor_string('LevelOfEducationDescriptor', value = random.choice(LEVELS_OF_EDUCATION)),
             "hispanicLatinoEthnicity": random.choice(BOOLEAN),
             "lastSurname": lname,
-            "loginId": '{}_{}'.format(fname,self.faker.random_number(digits=2)),
+            "loginId": '{}{}'.format(fname[0],lname.lower()),
             "personalTitlePrefix": 'Mr' if gender == 'Male' else 'Ms',
-            "sexDescriptor": "uri://ed-fi.org/SexDescriptor#Female",
-            "yearsOfPriorProfessionalExperience": random.choice(range(15)),
-            "_ext": {
-            "tpdm": {
-                "educatorPreparationPrograms": [],
-                "highlyQualifiedAcademicSubjects": []
-            }
-            },
-            "addresses": [],
+            "sexDescriptor": self.get_descriptor_string('SexDescriptor', value = gender),
+            "yearsOfPriorProfessionalExperience": random.choice(range(50)),
+            "addresses": self.create_address(),
             "ancestryEthnicOrigins": [],
-            "credentials": [],
+            "credentials": [
+                {
+                    "credentialReference": {
+                        "credentialIdentifier": self.faker.random_number(digits = 10),
+                        "stateOfIssueStateAbbreviationDescriptor": self.get_descriptor_string('StateAbbreviationDescriptor', 'TX'),
+                        "link": {
+                            "rel": "Credential",
+                            "href": "/ed-fi/credentials/" + self.faker.uuid4().replace('-','')
+                        }
+                    }
+                }
+            ],
             "electronicMails": [
             {
                 "electronicMailAddress": "{}{}@edfi.org".format(fname,lname),
@@ -329,28 +335,24 @@ class EdFiDataGenerator:
             "identificationCodes": [
             {
                 "staffIdentificationSystemDescriptor": self.get_descriptor_string('StaffIdentificationSystemDescriptor','State'),
-                "identificationCode": self.faker.random_number(digits=5)
+                "identificationCode": self.faker.random_number(digits = self.unique_id_length)
             }
             ],
             "identificationDocuments": [],
-            "internationalAddresses": [],
+            "internationalAddresses": self.create_address(),
             "languages": [],
             "otherNames": [self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()],
             "personalIdentificationDocuments": [
             {
                 "identificationDocumentUseDescriptor": "uri://ed-fi.org/IdentificationDocumentUseDescriptor#Personal Information Verification",
-                "personalInformationVerificationDescriptor": "uri://ed-fi.org/PersonalInformationVerificationDescriptor#Entry in family Bible"
+                "personalInformationVerificationDescriptor": self.get_descriptor_string('PersonalInformationVerificationDescriptor', value = random.choice(PERSONAL_INFORMATION_VERIFICATION_DESCRIPTIONS))
             }
             ],
             "races": [
             {
-                "raceDescriptor": self.get_descriptor_string('RaceDescriptor','Asian')
+                "raceDescriptor": self.get_descriptor_string('RaceDescriptor', value = random.choice(RACES))
             }
             ],
-            "recognitions": [],
-            "telephones": [],
-            "tribalAffiliations": [],
-            "visas": [],
             "_etag": self.faker.random_number(digits=10)
         }
 
@@ -363,10 +365,10 @@ class EdFiDataGenerator:
             'StudentSchoolAssociations':[]
         }
         for school in data:
-            result['Schools'].append({key: school[key] for key in school if not (key.startswith('_')) }) 
+            result['Schools'].append({key: school[key] for key in school if not (key.startswith('_')) })
             result['Students'] += school['_Students']
             result['Courses'] += school['_Courses']
             result['StudentSchoolAssociations'] += school['_StudentAssociations']
             result['Calendars'].append(school['_Calendars'])
-        
+
         return result
