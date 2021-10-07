@@ -26,9 +26,9 @@ This PowerBI module is made up of the following tables: [list table names]. The 
 ### Table details
 | Table | Column   | Description   |
 | :------------- | :---------- | :----------- |
-| Table 1 | name of column | description of column |
-| | name of column | description of column |
-| Table 2 | name of column | description of column |
-| | name of column | description of column |
-| | name of column | description of column |
+| Table 1 | Name of column | Description of column |
+| | Name of column | Description of column |
+| Table 2 | name of column | Description of column |
+| | Name of column | Description of column |
+| | Name of column | Description of column |
 
