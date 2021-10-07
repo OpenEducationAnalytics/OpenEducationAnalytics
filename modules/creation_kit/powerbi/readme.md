@@ -31,4 +31,7 @@ This PowerBI module is made up of the following tables: [list table names]. The 
 | Table 2 | name of column | Description of column |
 | | Name of column | Description of column |
 | | Name of column | Description of column |
+| Table 3 | name of column | Description of column |
+| | Name of column | Description of column |
+| | Name of column | Description of column |
 
