@@ -5,6 +5,11 @@ We currently offer a single setup option which utilizes the Azure CLI for the in
 - Enable better devops processes utilizing infrastructure-as-code
 - Provide a path from a simple starter setup to a full-blown enterprise scale architecture
 
+# Azure Reference Architecture: Analytics end-to-end
+The [Analytics end-to-end](https://docs.microsoft.com/en-us/azure/architecture/example-scenario/dataplate2e/data-platform-end-to-end) reference architecture (shown below) provides additional guidance on growing your analytics solution beyond the OEA starting point.
+
+<img src="https://docs.microsoft.com/en-us/azure/architecture/example-scenario/dataplate2e/media/azure-analytics-end-to-end.png">
+
 
 # Cloud Adoption Framework
 The [Cloud Adoption Framework](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/) provides implementation guidance, best practices, and tools that are proven guidance from Microsoft, designed to accelerate your cloud adoption journey.
