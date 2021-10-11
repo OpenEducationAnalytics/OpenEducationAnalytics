@@ -44,6 +44,11 @@ class EdFiDataGenerator:
         writer.write(f'EdFi/StudentSchoolAssociation.json',list_of_dict_to_json(edfi_data_formatted['StudentSchoolAssociations']))
         writer.write(f'EdFi/Course.json',list_of_dict_to_json(edfi_data_formatted['Courses']))
         writer.write(f'EdFi/Calendar.json',list_of_dict_to_json(edfi_data_formatted['Calendars']))
+        writer.write(f'EdFi/Sessions.json',list_of_dict_to_json(edfi_data_formatted['Sessions']))
+        writer.write(f'EdFi/StaffSchoolAssociations.json',list_of_dict_to_json(edfi_data_formatted['StaffSchoolAssociations']))
+        writer.write(f'EdFi/Sections.json',list_of_dict_to_json(edfi_data_formatted['Sections']))
+        writer.write(f'EdFi/Staffs.json',list_of_dict_to_json(edfi_data_formatted['Staffs']))
+
 
     def create_school(self):
         school_type = random.choice(SCHOOL_TYPES)
@@ -302,62 +307,61 @@ class EdFiDataGenerator:
     def create_staffs(self):
         staffs = []
         for _ in range(self.number_staffs_per_school):
-
             gender = random.choice(GENDER)
             fname = self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()
             lname = self.faker.last_name()
             staffs.append({
-                "id": self.faker.uuid4().replace('-',''),
-                "staffUniqueId": self.faker.random_number(digits = self.unique_id_length),
-                "birthDate": str(self.faker.date_between(start_date='-60y',end_date='-30y')),
-                "firstName": fname,
-                "highestCompletedLevelOfEducationDescriptor": self.get_descriptor_string('LevelOfEducationDescriptor', value = random.choice(LEVELS_OF_EDUCATION)),
-                "hispanicLatinoEthnicity": random.choice(BOOLEAN),
-                "lastSurname": lname,
-                "loginId": '{}{}'.format(fname[0],lname.lower()),
-                "personalTitlePrefix": 'Mr' if gender == 'Male' else 'Ms',
-                "sexDescriptor": self.get_descriptor_string('SexDescriptor', value = gender),
-                "yearsOfPriorProfessionalExperience": random.choice(range(50)),
-                "addresses": self.create_address(),
-                "ancestryEthnicOrigins": [],
-                "credentials": [
+                "Id": self.faker.uuid4().replace('-',''),
+                "StaffUniqueId": self.faker.random_number(digits = self.unique_id_length),
+                "BirthDate": str(self.faker.date_between(start_date='-60y',end_date='-30y')),
+                "FirstName": fname,
+                "HighestCompletedLevelOfEducationDescriptor": self.get_descriptor_string('LevelOfEducationDescriptor', value = random.choice(LEVELS_OF_EDUCATION)),
+                "HispanicLatinoEthnicity": random.choice(BOOLEAN),
+                "LastSurname": lname,
+                "LoginId": '{}{}'.format(fname[0],lname.lower()),
+                "PersonalTitlePrefix": 'Mr' if gender == 'Male' else 'Ms',
+                "SexDescriptor": self.get_descriptor_string('SexDescriptor', value = gender),
+                "YearsOfPriorProfessionalExperience": random.choice(range(50)),
+                "Addresses": self.create_address(),
+                "AncestryEthnicOrigins": [],
+                "Credentials": [
                     {
-                        "credentialReference": {
-                            "credentialIdentifier": self.faker.random_number(digits = 10),
-                            "stateOfIssueStateAbbreviationDescriptor": self.get_descriptor_string('StateAbbreviationDescriptor', 'TX'),
-                            "link": {
+                        "CredentialReference": {
+                            "CredentialIdentifier": self.faker.random_number(digits = 10),
+                            "StateOfIssueStateAbbreviationDescriptor": self.get_descriptor_string('StateAbbreviationDescriptor', 'TX'),
+                            "Link": {
                                 "rel": "Credential",
                                 "href": "/ed-fi/credentials/" + self.faker.uuid4().replace('-','')
                             }
                         }
                     }
                 ],
-                "electronicMails": [
-                {
-                    "electronicMailAddress": "{}{}@edfi.org".format(fname,lname),
-                    "electronicMailTypeDescriptor": self.get_descriptor_string('ElectronicMailTypeDescriptor','Work')
-                }
+                "ElectronicMails": [
+                    {
+                        "ElectronicMailAddress": "{}{}@edfi.org".format(fname,lname),
+                        "ElectronicMailTypeDescriptor": self.get_descriptor_string('ElectronicMailTypeDescriptor','Work')
+                    }
                 ],
-                "identificationCodes": [
-                {
-                    "staffIdentificationSystemDescriptor": self.get_descriptor_string('StaffIdentificationSystemDescriptor','State'),
-                    "identificationCode": self.faker.random_number(digits = self.unique_id_length)
-                }
+                "IdentificationCodes": [
+                    {
+                        "StaffIdentificationSystemDescriptor": self.get_descriptor_string('StaffIdentificationSystemDescriptor','State'),
+                        "IdentificationCode": self.faker.random_number(digits = self.unique_id_length)
+                    }
                 ],
-                "identificationDocuments": [],
-                "internationalAddresses": self.create_address(),
-                "languages": [],
-                "otherNames": [self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()],
-                "personalIdentificationDocuments": [
-                {
-                    "identificationDocumentUseDescriptor": "uri://ed-fi.org/IdentificationDocumentUseDescriptor#Personal Information Verification",
-                    "personalInformationVerificationDescriptor": self.get_descriptor_string('PersonalInformationVerificationDescriptor', value = random.choice(PERSONAL_INFORMATION_VERIFICATION_DESCRIPTIONS))
-                }
+                "IdentificationDocuments": [],
+                "InternationalAddresses": self.create_address(),
+                "Languages": [],
+                "OtherNames": [self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()],
+                "PersonalIdentificationDocuments": [
+                    {
+                        "IdentificationDocumentUseDescriptor": "uri://ed-fi.org/IdentificationDocumentUseDescriptor#Personal Information Verification",
+                        "PersonalInformationVerificationDescriptor": self.get_descriptor_string('PersonalInformationVerificationDescriptor', value = random.choice(PERSONAL_INFORMATION_VERIFICATION_DESCRIPTIONS))
+                    }
                 ],
-                "races": [
-                {
-                    "raceDescriptor": self.get_descriptor_string('RaceDescriptor', value = random.choice(RACES))
-                }
+                "Races": [
+                    {
+                        "RaceDescriptor": self.get_descriptor_string('RaceDescriptor', value = random.choice(RACES))
+                    }
                 ],
                 "_etag": self.faker.random_number(digits=10)
             })
@@ -538,43 +542,33 @@ class EdFiDataGenerator:
         staff_school_associations = []
         for staff in school['_Staffs']:
             staff_school_associations.append({
-                "id": self.faker.uuid4().replace('-',''),
-                "schoolReference": {
-                "schoolId": school['SchoolId'],
-                "link": {
-                    "rel": "School",
-                    "href": "/ed-fi/schools/{}".format(school['Id'])
-                }
+                "Id": self.faker.uuid4().replace('-',''),
+                "SchoolReference": {
+                    "SchoolId": school['SchoolId'],
+                    "Link": {
+                        "rel": "School",
+                        "href": "/ed-fi/schools/{}".format(school['Id'])
+                    }
                 },
-                "staffReference": {
-                "staffUniqueId": staff['staffUniqueId'],
-                "link": {
-                    "rel": "Staff",
-                    "href": "/ed-fi/staffs/{}".format(staff['Id'])
-                }
+                "StaffReference": {
+                    "StaffUniqueId": staff['StaffUniqueId'],
+                    "Link": {
+                        "rel": "Staff",
+                        "href": "/ed-fi/staffs/{}".format(staff['Id'])
+                    }
                 },
-                "programAssignmentDescriptor": "uri://ed-fi.org/ProgramAssignmentDescriptor#Regular Education",
-                "academicSubjects": [
-                {
-                    "academicSubjectDescriptor": "uri://ed-fi.org/AcademicSubjectDescriptor#English Language Arts"
-                }
+                "ProgramAssignmentDescriptor": self.get_descriptor_string('ProgramAssignmentDescriptor','Regular Education'),
+                "AcademicSubjects": [
+                    {
+                        "AcademicSubjectDescriptor": self.get_descriptor_string('AcademicSubjectDescriptor',random.choice(SUBJECT_NAMES)[0])
+                    }
                 ],
-                "gradeLevels": [
-                {
-                    "gradeLevelDescriptor": "uri://ed-fi.org/GradeLevelDescriptor#Eleventh grade"
-                },
-                {
-                    "gradeLevelDescriptor": "uri://ed-fi.org/GradeLevelDescriptor#Ninth grade"
-                },
-                {
-                    "gradeLevelDescriptor": "uri://ed-fi.org/GradeLevelDescriptor#Tenth grade"
-                },
-                {
-                    "gradeLevelDescriptor": "uri://ed-fi.org/GradeLevelDescriptor#Twelfth grade"
-                }
-                ],
-                "_etag": "5249195969291637665"
+                "GradeLevels": [
+                    {'GradeLevelDescriptor': self.get_descriptor_string('GradeLevelDescriptor',random.choice(GRADE_LEVEL))} for _ in range(4)
+            ],
+                "_etag": self.faker.random_number(digits=10)
             })
+        return staff_school_associations
 
     def format_edfi_data(self,data):
         result = {
@@ -582,7 +576,12 @@ class EdFiDataGenerator:
             'Students':[],
             'Calendars':[],
             'Courses':[],
-            'StudentSchoolAssociations':[]
+            'StudentSchoolAssociations':[],
+            'Staffs':[],
+            'Sections': [],
+            'StaffSchoolAssociations':[],
+            'Sessions':[]
+
         }
         for school in data:
             result['Schools'].append({key: school[key] for key in school if not (key.startswith('_')) })
@@ -590,5 +589,10 @@ class EdFiDataGenerator:
             result['Courses'] += school['_Courses']
             result['StudentSchoolAssociations'] += school['_StudentAssociations']
             result['Calendars'].append(school['_Calendars'])
+            result['Staffs'] += school['_Staffs']
+            result['Sections'] += school['_Sections']
+            result['StaffSchoolAssociations'] += school['_StaffSchoolAssociations']
+            result['Sessions'] += school['_Sessions']
+
 
         return result
