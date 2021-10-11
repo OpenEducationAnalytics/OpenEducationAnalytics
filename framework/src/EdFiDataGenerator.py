@@ -381,10 +381,10 @@ class EdFiDataGenerator:
                 }
             },
             "sessionName": "{} - {} Fall Semester".format(int(self.school_year) - 1, self.school_year ),
-            "beginDate": "",
-            "endDate": "",
+            "beginDate": "{}-08-{}".format(int(self.school_year) - 1, random.randint(1,30)),
+            "endDate": "{}-12-{}".format(int(self.school_year) - 1, random.randint(1,30)),
             "termDescriptor": self.get_descriptor_string('TermDescriptor', 'Fall Semester'),
-            "totalInstructionalDays": "",
+            "totalInstructionalDays": random.randint(60,130),
             "gradingPeriods": [
                 {
                     "gradingPeriodReference": {
@@ -442,10 +442,10 @@ class EdFiDataGenerator:
                 }
             },
             "sessionName": "{} - {} Spring Semester".format(int(self.school_year) - 1, self.school_year),
-            "beginDate": "",
-            "endDate": "",
+            "beginDate": "{}-01-{}".format(self.school_year, random.randint(1,30)),
+            "endDate": "{}-05-{}".format(self.school_year, random.randint(1,30)),
             "termDescriptor": self.get_descriptor_string('TermDescriptor', 'Spring Semester'),
-            "totalInstructionalDays": "",
+            "totalInstructionalDays": random.randint(60,130),
             "gradingPeriods": [
                 {
                     "gradingPeriodReference": {
