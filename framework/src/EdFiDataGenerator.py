@@ -49,6 +49,8 @@ class EdFiDataGenerator:
         writer.write(f'EdFi/StaffSchoolAssociations.json',list_of_dict_to_json(edfi_data_formatted['StaffSchoolAssociations']))
         writer.write(f'EdFi/Sections.json',list_of_dict_to_json(edfi_data_formatted['Sections']))
         writer.write(f'EdFi/Staffs.json',list_of_dict_to_json(edfi_data_formatted['Staffs']))
+        writer.write(f'EdFi/StudentSectionAssociations.json',list_of_dict_to_json(edfi_data_formatted['StudentSectionAssociations']))
+        writer.write(f'EdFi/StaffSectionAssociations.json',list_of_dict_to_json(edfi_data_formatted['StaffSectionAssociations']))
 
 
     def create_school(self):
@@ -95,7 +97,8 @@ class EdFiDataGenerator:
         school['_StaffSchoolAssociations'] = self.create_staff_school_associations(school)
         school['_Sessions'] = self.create_sessions(school)
         school['_Sections'] = self.create_sections(school)
-
+        school['_StaffSectionAssociations'] = self.create_staff_section_associations(school)
+        school['_StudentSectionAssociations'] = self.create_student_section_associations(school)
         return school
 
     def create_students(self):
@@ -498,7 +501,7 @@ class EdFiDataGenerator:
     def create_sections(self, school):
         sections = []
         for _ in range(self.number_sections_per_school):
-            semesterType = random.choice('Spring', 'Fall')
+            semesterType = random.choice(['Spring', 'Fall'])
             subjectName = random.choice(SUBJECT_NAMES)[1]
             subjectNumber = random.randint(1,5)
             sections.append({
@@ -555,31 +558,32 @@ class EdFiDataGenerator:
 
     def create_student_section_associations(self, school):
         student_section_associations = []
+        session = random.choice(school['_Sessions'])
         for student in school['_Students']:
             course = random.choice(school['_Courses'])
             section = random.choice(school['_Sections'])
             student_section_associations.append({
                     "Id": self.faker.uuid4().replace('-',''),
                     "SectionReference": {
-                        "LocalCourseCode": course['courseCode'],
+                        "LocalCourseCode": course['CourseCode'],
                         "SchoolId": school['SchoolId'],
                         "SchoolYear": self.school_year,
                         "SectionIdentifier": section['SectionIdentifier'],
-                        "SessionName": section['SessionName'],
+                        "SessionName": session['SessionName'],
                         "Link": {
                             "rel": "Section",
                             "href": "/ed-fi/sections/{}".format(section['Id'])
                         }
                     },
                     "StudentReference": {
-                        "StudentUniqueId": student['StudentId'],
+                        "StudentUniqueId": student['StudentUniqueId'],
                         "Link": {
                             "rel": "Student",
                             "href": "/ed-fi/students/{}".format(student['Id'])
                         }
                     },
-                    "BeginDate": section['BeginDate'],
-                    "EndDate": section['EndDate'],
+                    "BeginDate": session['BeginDate'],
+                    "EndDate": session['EndDate'],
                     "HomeroomIndicator": random.choice(BOOLEAN),
                     "_etag": self.faker.random_number(digits = 10)
                 })
@@ -588,6 +592,7 @@ class EdFiDataGenerator:
     def create_staff_section_associations(self,school):
         staff_section_associations = []
         for staff in school['_Staffs']:
+            session = random.choice(school['_Sessions'])
             section = random.choice(school['_Sections'])
             staff_section_associations.append({
                 "Id": self.faker.uuid4().replace('-',''),
@@ -595,23 +600,23 @@ class EdFiDataGenerator:
                     "LocalCourseCode": section['CourseOfferingReference']['LocalCourseCode'],
                     "SchoolId": school['SchoolId'],
                     "SchoolYear": self.school_year,
-                    "SectionIdentifier": section['SectionId'],
-                    "SessionName": section['SessionName'],
+                    "SectionIdentifier": section['SectionIdentifier'],
+                    "SessionName": session['SessionName'],
                     "Link": {
                         "rel": "Section",
                         "href": "/ed-fi/sections/{}".format(section['Id'])
                     }
                 },
                 "StaffReference": {
-                    "StaffUniqueId": staff['StaffId'],
+                    "StaffUniqueId": staff['StaffUniqueId'],
                     "Link": {
                         "rel": "Staff",
                         "href": "/ed-fi/staffs/{}".format(staff['Id'])
                     }
                 },
-                "BeginDate": section['BeginDate'],
+                "BeginDate": session['BeginDate'],
                 "ClassroomPositionDescriptor": "uri://ed-fi.org/ClassroomPositionDescriptor#Teacher of Record",
-                "EndDate": section['EndDate'],
+                "EndDate": session['EndDate'],
                 "_etag": self.faker.uuid4().replace('-','')
             })
         return staff_section_associations
@@ -659,7 +664,9 @@ class EdFiDataGenerator:
             'Staffs':[],
             'Sections': [],
             'StaffSchoolAssociations':[],
-            'Sessions':[]
+            'Sessions':[],
+            'StudentSectionAssociations':[],
+            'StaffSectionAssociations':[]
 
         }
         for school in data:
@@ -672,6 +679,8 @@ class EdFiDataGenerator:
             result['Sections'] += school['_Sections']
             result['StaffSchoolAssociations'] += school['_StaffSchoolAssociations']
             result['Sessions'] += school['_Sessions']
+            result['StudentSectionAssociations'] += school['_StudentSectionAssociations']
+            result['StaffSectionAssociations'] += school['_StaffSectionAssociations']
 
 
         return result
