@@ -15,7 +15,7 @@ PERSONAL_INFORMATION_VERIFICATION_DESCRIPTIONS = ['Entry in family Bible', 'Othe
 RACES = ['Asian' , 'Native Hawaiian - Pacific Islander', 'American Indian - Alaska Native', 'White']
 
 class EdFiDataGenerator:
-    def __init__(self,number_students_per_school=100, include_optional_fields=True, school_year='2021', credit_conversion_factor = 2.0, number_of_grades_per_school = 5, is_current_school_year = True, graduation_plans_per_school = 10, unique_id_length = 5):
+    def __init__(self,number_students_per_school=100, include_optional_fields=True, school_year='2021', credit_conversion_factor = 2.0, number_of_grades_per_school = 5, is_current_school_year = True, graduation_plans_per_school = 10, unique_id_length = 5, number_staffs_per_school = 50):
         # Set a seed value in Faker so it generates same values every run.
         self.faker = Faker('en_US')
         Faker.seed(1)
@@ -29,6 +29,7 @@ class EdFiDataGenerator:
         self.number_of_grades_per_school = number_of_grades_per_school
         self.is_current_school_year = is_current_school_year
         self.unique_id_length = unique_id_length
+        self.number_staffs_per_school = number_staffs_per_school
 
     def get_descriptor_string(self, key, value):
         return "uri://ed-fi.org/{}#{}".format(key,value)
@@ -86,6 +87,7 @@ class EdFiDataGenerator:
         school['_StudentAssociations'] = self.create_student_school_associations(school)
         school['_Staffs'] = self.create_staffs()
         school['_StaffSchoolAssociations'] = self.create_staff_school_associations(school)
+        school['_Sessions'] = self.create_sessions(school)
 
         return school
 
@@ -298,63 +300,238 @@ class EdFiDataGenerator:
         ]
 
     def create_staffs(self):
-        gender = random.choice(GENDER)
-        fname = self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()
-        lname = self.faker.last_name()
-        {
-            "id": self.faker.uuid4().replace('-',''),
-            "staffUniqueId": self.faker.random_number(digits = self.unique_id_length),
-            "birthDate": str(self.faker.date_between(start_date='-60y',end_date='-30y')),
-            "firstName": fname,
-            "highestCompletedLevelOfEducationDescriptor": self.get_descriptor_string('LevelOfEducationDescriptor', value = random.choice(LEVELS_OF_EDUCATION)),
-            "hispanicLatinoEthnicity": random.choice(BOOLEAN),
-            "lastSurname": lname,
-            "loginId": '{}{}'.format(fname[0],lname.lower()),
-            "personalTitlePrefix": 'Mr' if gender == 'Male' else 'Ms',
-            "sexDescriptor": self.get_descriptor_string('SexDescriptor', value = gender),
-            "yearsOfPriorProfessionalExperience": random.choice(range(50)),
-            "addresses": self.create_address(),
-            "ancestryEthnicOrigins": [],
-            "credentials": [
-                {
-                    "credentialReference": {
-                        "credentialIdentifier": self.faker.random_number(digits = 10),
-                        "stateOfIssueStateAbbreviationDescriptor": self.get_descriptor_string('StateAbbreviationDescriptor', 'TX'),
-                        "link": {
-                            "rel": "Credential",
-                            "href": "/ed-fi/credentials/" + self.faker.uuid4().replace('-','')
+        staffs = []
+        for _ in range(self.number_staffs_per_school):
+
+            gender = random.choice(GENDER)
+            fname = self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()
+            lname = self.faker.last_name()
+            staffs.append({
+                "id": self.faker.uuid4().replace('-',''),
+                "staffUniqueId": self.faker.random_number(digits = self.unique_id_length),
+                "birthDate": str(self.faker.date_between(start_date='-60y',end_date='-30y')),
+                "firstName": fname,
+                "highestCompletedLevelOfEducationDescriptor": self.get_descriptor_string('LevelOfEducationDescriptor', value = random.choice(LEVELS_OF_EDUCATION)),
+                "hispanicLatinoEthnicity": random.choice(BOOLEAN),
+                "lastSurname": lname,
+                "loginId": '{}{}'.format(fname[0],lname.lower()),
+                "personalTitlePrefix": 'Mr' if gender == 'Male' else 'Ms',
+                "sexDescriptor": self.get_descriptor_string('SexDescriptor', value = gender),
+                "yearsOfPriorProfessionalExperience": random.choice(range(50)),
+                "addresses": self.create_address(),
+                "ancestryEthnicOrigins": [],
+                "credentials": [
+                    {
+                        "credentialReference": {
+                            "credentialIdentifier": self.faker.random_number(digits = 10),
+                            "stateOfIssueStateAbbreviationDescriptor": self.get_descriptor_string('StateAbbreviationDescriptor', 'TX'),
+                            "link": {
+                                "rel": "Credential",
+                                "href": "/ed-fi/credentials/" + self.faker.uuid4().replace('-','')
+                            }
                         }
+                    }
+                ],
+                "electronicMails": [
+                {
+                    "electronicMailAddress": "{}{}@edfi.org".format(fname,lname),
+                    "electronicMailTypeDescriptor": self.get_descriptor_string('ElectronicMailTypeDescriptor','Work')
+                }
+                ],
+                "identificationCodes": [
+                {
+                    "staffIdentificationSystemDescriptor": self.get_descriptor_string('StaffIdentificationSystemDescriptor','State'),
+                    "identificationCode": self.faker.random_number(digits = self.unique_id_length)
+                }
+                ],
+                "identificationDocuments": [],
+                "internationalAddresses": self.create_address(),
+                "languages": [],
+                "otherNames": [self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()],
+                "personalIdentificationDocuments": [
+                {
+                    "identificationDocumentUseDescriptor": "uri://ed-fi.org/IdentificationDocumentUseDescriptor#Personal Information Verification",
+                    "personalInformationVerificationDescriptor": self.get_descriptor_string('PersonalInformationVerificationDescriptor', value = random.choice(PERSONAL_INFORMATION_VERIFICATION_DESCRIPTIONS))
+                }
+                ],
+                "races": [
+                {
+                    "raceDescriptor": self.get_descriptor_string('RaceDescriptor', value = random.choice(RACES))
+                }
+                ],
+                "_etag": self.faker.random_number(digits=10)
+            })
+        return staffs
+
+    def create_sessions(self, school):
+
+        return [{
+            "id": self.faker.uuid4().replace('-',''),
+            "schoolReference":{
+                "schoolId":school['SchoolId'],
+                "link":{
+                    "rel":"School",
+                    "href":"/ed-fi/schools/{}".format(school['Id'])
+                }
+            },
+            "schoolYearTypeReference": {
+                "SchoolYear": self.school_year,
+                "link": {
+                    "rel": "SchoolYearType",
+                    "href": "/ed-fi/schoolYearTypes/{}".format(school['_SchoolYears']['Id'])
+                }
+            },
+            "sessionName": "{} - {} Fall Semester".format(int(self.school_year) - 1, self.school_year ),
+            "beginDate": "",
+            "endDate": "",
+            "termDescriptor": self.get_descriptor_string('TermDescriptor', 'Fall Semester'),
+            "totalInstructionalDays": "",
+            "gradingPeriods": [
+                {
+                    "gradingPeriodReference": {
+                    "schoolId": school['SchoolId'],
+                    "schoolYear": self.school_year,
+                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#First Six Weeks",
+                    "periodSequence": 1,
+                    "link": {
+                        "rel": "GradingPeriod",
+                        "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                    }
+                },
+                {
+                    "gradingPeriodReference": {
+                    "schoolId": school['SchoolId'],
+                    "schoolYear": self.school_year,
+                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Second Six Weeks",
+                    "periodSequence": 2,
+                    "link": {
+                        "rel": "GradingPeriod",
+                        "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                    }
+                },
+                {
+                    "gradingPeriodReference": {
+                    "schoolId": school['SchoolId'],
+                    "schoolYear": self.school_year,
+                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Third Six Weeks",
+                    "periodSequence": 3,
+                    "link": {
+                        "rel": "GradingPeriod",
+                        "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
+                    }
                     }
                 }
             ],
-            "electronicMails": [
-            {
-                "electronicMailAddress": "{}{}@edfi.org".format(fname,lname),
-                "electronicMailTypeDescriptor": self.get_descriptor_string('ElectronicMailTypeDescriptor','Work')
-            }
-            ],
-            "identificationCodes": [
-            {
-                "staffIdentificationSystemDescriptor": self.get_descriptor_string('StaffIdentificationSystemDescriptor','State'),
-                "identificationCode": self.faker.random_number(digits = self.unique_id_length)
-            }
-            ],
-            "identificationDocuments": [],
-            "internationalAddresses": self.create_address(),
-            "languages": [],
-            "otherNames": [self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()],
-            "personalIdentificationDocuments": [
-            {
-                "identificationDocumentUseDescriptor": "uri://ed-fi.org/IdentificationDocumentUseDescriptor#Personal Information Verification",
-                "personalInformationVerificationDescriptor": self.get_descriptor_string('PersonalInformationVerificationDescriptor', value = random.choice(PERSONAL_INFORMATION_VERIFICATION_DESCRIPTIONS))
-            }
-            ],
-            "races": [
-            {
-                "raceDescriptor": self.get_descriptor_string('RaceDescriptor', value = random.choice(RACES))
-            }
+            "_etag": self.faker.random_number(digits=10)
+        },
+        {
+            "id": self.faker.uuid4().replace('-',''),
+            "schoolReference":{
+                "schoolId":school['SchoolId'],
+                "link":{
+                    "rel":"School",
+                    "href":"/ed-fi/schools/{}".format(school['Id'])
+                }
+            },
+            "schoolYearTypeReference": {
+                "SchoolYear": self.school_year,
+                "link": {
+                    "rel": "SchoolYearType",
+                    "href": "/ed-fi/schoolYearTypes/{}".format(school['_SchoolYears']['Id'])
+                }
+            },
+            "sessionName": "{} - {} Spring Semester".format(int(self.school_year) - 1, self.school_year),
+            "beginDate": "",
+            "endDate": "",
+            "termDescriptor": self.get_descriptor_string('TermDescriptor', 'Spring Semester'),
+            "totalInstructionalDays": "",
+            "gradingPeriods": [
+                {
+                    "gradingPeriodReference": {
+                    "schoolId": school['SchoolId'],
+                    "schoolYear": self.school_year,
+                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Fourth Six Weeks",
+                    "periodSequence": 4,
+                    "link": {
+                        "rel": "GradingPeriod",
+                        "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                    }
+                },
+                {
+                    "gradingPeriodReference": {
+                    "schoolId": school['SchoolId'],
+                    "schoolYear": self.school_year,
+                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Fifth Six Weeks",
+                    "periodSequence": 5,
+                    "link": {
+                        "rel": "GradingPeriod",
+                        "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                    }
+                },
+                {
+                    "gradingPeriodReference": {
+                    "schoolId": school['SchoolId'],
+                    "schoolYear": self.school_year,
+                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Sixth Six Weeks",
+                    "periodSequence": 6,
+                    "link": {
+                        "rel": "GradingPeriod",
+                        "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                    }
+                }
             ],
             "_etag": self.faker.random_number(digits=10)
+        }]
+
+    def create_sections(self):
+        return {
+            "id":"",
+            "courseOfferingReference":{
+                "localCourseCode": "ALG-1",
+                "schoolId": 255901001,
+                "schoolYear": 2011,
+                "sessionName": "2010-2011 Fall Semester",
+                "link": {
+                    "rel": "CourseOffering",
+                    "href": "/ed-fi/courseOfferings/b8d13c217987448f93f7c2ad9df295a6"
+                }
+            },
+            "locationReference":{
+            "classroomIdentificationCode": "220",
+            "schoolId": 255901001,
+            "link": {
+                "rel": "Location",
+                "href": "/ed-fi/locations/6e0e2ade0a0e487c80ca8a41f1849450"
+            }
+            },
+            "locationSchoolReference":"",
+            "sectionIdentifier":"",
+            "availableCredits":"",
+            "educationalEnvironmentDescriptor":"",
+            "sectionName":"",
+            "sequenceOfCourse":"",
+            "characteristics":"",
+            "classPeriods": [
+                {
+                "classPeriodReference": {
+                "schoolId": 255901001,
+                "classPeriodName": "02 - Traditional",
+                "link": {
+                    "rel": "ClassPeriod",
+                    "href": "/ed-fi/classPeriods/1635dc8273a54ed3a4f7be56366b816a"
+                }
+                }
+            }
+            ],
+            "courseLevelCharacteristics": [],
+            "offeredGradeLevels": [],
+            "programs": [],
+            "_etag": "5249285328760938689"
         }
 
     def create_staff_school_associations(self, school):
