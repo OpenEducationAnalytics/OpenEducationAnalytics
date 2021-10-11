@@ -85,6 +85,7 @@ class EdFiDataGenerator:
         school['_GraduationPlans'] = self.create_graduation_plans(school)
         school['_StudentAssociations'] = self.create_student_school_associations(school)
         school['_Staffs'] = self.create_staffs()
+        school['_StaffSchoolAssociations'] = self.create_staff_school_associations(school)
 
         return school
 
@@ -355,6 +356,48 @@ class EdFiDataGenerator:
             ],
             "_etag": self.faker.random_number(digits=10)
         }
+
+    def create_staff_school_associations(self, school):
+        staff_school_associations = []
+        for staff in school['_Staffs']:
+            staff_school_associations.append({
+                "id": self.faker.uuid4().replace('-',''),
+                "schoolReference": {
+                "schoolId": school['SchoolId'],
+                "link": {
+                    "rel": "School",
+                    "href": "/ed-fi/schools/{}".format(school['Id'])
+                }
+                },
+                "staffReference": {
+                "staffUniqueId": staff['staffUniqueId'],
+                "link": {
+                    "rel": "Staff",
+                    "href": "/ed-fi/staffs/{}".format(staff['Id'])
+                }
+                },
+                "programAssignmentDescriptor": "uri://ed-fi.org/ProgramAssignmentDescriptor#Regular Education",
+                "academicSubjects": [
+                {
+                    "academicSubjectDescriptor": "uri://ed-fi.org/AcademicSubjectDescriptor#English Language Arts"
+                }
+                ],
+                "gradeLevels": [
+                {
+                    "gradeLevelDescriptor": "uri://ed-fi.org/GradeLevelDescriptor#Eleventh grade"
+                },
+                {
+                    "gradeLevelDescriptor": "uri://ed-fi.org/GradeLevelDescriptor#Ninth grade"
+                },
+                {
+                    "gradeLevelDescriptor": "uri://ed-fi.org/GradeLevelDescriptor#Tenth grade"
+                },
+                {
+                    "gradeLevelDescriptor": "uri://ed-fi.org/GradeLevelDescriptor#Twelfth grade"
+                }
+                ],
+                "_etag": "5249195969291637665"
+            })
 
     def format_edfi_data(self,data):
         result = {
