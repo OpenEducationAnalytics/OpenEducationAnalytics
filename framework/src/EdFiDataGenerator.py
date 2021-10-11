@@ -1,144 +1,177 @@
 import random
-import math
 from DataGenUtil import *
+import json
 from faker import Faker
 
 GENDER = ['Male','Female']
 BOOLEAN = [True, False]
-SCHOOL_YEARS = ['2021','2022','2023','2024','2025']
-CITIES = ['Seattle','San Francisco','San Diego','Philadelphia','Chicago','Houston','New York','Los Angeles']
-GRADE_LEVEL = ['01','02','03','04','05','06','07','08','09','10','11','12']
+OPERATIONAL_STATUS = ['Active','Inactive']
+CHARTER_STATUS = ['School Charter', 'Open Enrollment Charter', 'Not a Charter School']
+GRADE_LEVEL = ['First Grade','Second Grade','Third Grade','Fourth Grade','Fifth Grade','Sixth Grade','Seventh Grade','Eighth Grade','Ninth Grade','Tenth Grade','Eleventh Grade','Twelfth Grade']
 SCHOOL_TYPES = ['High School', 'Middle School', 'Elementary School']
-SCHOOL_CATEGORY = ['All Levels', 'Elementary School', 'Secondary School', 'Junior High School']
-SUBJECT_NAMES = ['Math - Algebra', 'Math - Geometry', 'English Language', 'History - World History',
-'Science Biology', 'Health', 'Technology - Programming', 'Physical Education', 'Art', 'Music']
-COURSE_TYPES = ['Remedial', 'Basic', 'Honors', 'Ap', 'IB', 'Dual Credit', 'CTE']
-ORG_TYPES = ['national organization','school','local education agency','state education agency']
-
-#Placeholders- Need to updated
-GRAD_PLAN_TYPE = ['GP_1','GP_2','GP_3']
-CREDIT_TYPE = ['CT_1','CT_2','CT_3']
-EDUCATION_PLAN = ['EP_1','EP_2','EP_3']
-RESIDENCY_STATUS = ['RS_1','RS_2','RS_3']
+SUBJECT_NAMES = [('Math','Algebra'), ('Math','Geometry'), ('Language','English'), ('History','World History'),
+('Science','Biology'), ('Science','Health'), ('Technology',' Programming'), ('Physical Education','Sports'), ('Arts','Music')]
 
 
 class EdFiDataGenerator:
-    def __init__(self,number_students_per_school=100, include_optional_fields=True, 
-    school_year='2021', credit_conversion_factor = 2.0, number_of_grades_per_school = 5):
+    def __init__(self,number_students_per_school=100, include_optional_fields=True, school_year='2021', credit_conversion_factor = 2.0, number_of_grades_per_school = 5, is_current_school_year = True, graduation_plans_per_school = 10):
         # Set a seed value in Faker so it generates same values every run.
         self.faker = Faker('en_US')
         Faker.seed(1)
 
         self.include_optional_fields = include_optional_fields
+        self.graduation_plans_per_school = graduation_plans_per_school
         self.school_year = school_year
         self.country = 'United States of America'
         self.number_students_per_school = number_students_per_school
-        self.course_set_counter = 1
         self.credit_conversion_factor = credit_conversion_factor
         self.number_of_grades_per_school = number_of_grades_per_school
+        self.is_current_school_year = is_current_school_year
+
+    def get_descriptor_string(self, key, value):
+        return "uri://ed-fi.org/{}#{}".format(key,value)
 
     def generate_data(self, num_of_schools, writer):
-        for n in range(num_of_schools):
-            school_data = self.create_school(n)
-            includeHeaders = True if n==0 else False
-            writer.write(f'EdFi/School.csv',obj_to_csv(school_data)+"\n")
-            writer.write(f'EdFi/Student.csv',list_of_dict_to_csv(school_data['_Students'],includeHeaders = includeHeaders))
-            writer.write(f'EdFi/StudentSchoolAssociation.csv',list_of_dict_to_csv(school_data['_StudentAssociation'], includeHeaders = includeHeaders))
-            writer.write(f'EdFi/Course.csv',list_of_dict_to_csv(school_data['_Courses'], includeHeaders = includeHeaders))
-            writer.write(f'EdFi/Calendar.csv',obj_to_csv(school_data['_Calendar']))
+        edfi_data = [self.create_school() for _ in range(num_of_schools)]
+        edfi_data_formatted = self.format_edfi_data(edfi_data)
+    
+          
+        writer.write(f'EdFi/School.json',list_of_dict_to_json(edfi_data_formatted['Schools']))
+        writer.write(f'EdFi/Student.json',list_of_dict_to_json(edfi_data_formatted['Students']))
+        writer.write(f'EdFi/StudentSchoolAssociation.json',list_of_dict_to_json(edfi_data_formatted['StudentSchoolAssociations']))
+        writer.write(f'EdFi/Course.json',list_of_dict_to_json(edfi_data_formatted['Courses']))
+        writer.write(f'EdFi/Calendar.json',list_of_dict_to_json(edfi_data_formatted['Calendars']))
 
-    def create_school(self, school_id):
-        school =  {
-            'SchoolId': school_id,
-            'GradeLevel': random.choices(GRADE_LEVEL,k=self.number_of_grades_per_school),
-            'AdministrativeFundingControl': random.choice(['public', 'private']) if self.include_optional_fields else '',
-            'CharterApprovalSchoolYear': self.school_year if self.include_optional_fields else '',
-            'CharterStatus': random.choice(['School Charter', 'Open Enrollment Charter', 'Not a Charter School']) if self.include_optional_fields else '',
-            'LocalEducationAgency': {},
-            'SchoolCategory': random.choice(SCHOOL_TYPES) if self.include_optional_fields else '',
-            'TitleIPartASchoolDesignation': random.choice(['Not A Title I School']) if self.include_optional_fields else '' # Populate this
+    def create_school(self):
+        school_type = random.choice(SCHOOL_TYPES)
+        school_name = self.faker.city() + ' ' + school_type
+        school = {
+            'Id': self.faker.uuid4().replace('-',''),
+            'SchoolId': self.faker.random_number(digits=5),
+            'NameOfInstitution': school_name,
+            'OperationalStatusDescriptor': self.get_descriptor_string('OperationalStatusDescriptor',random.choice(OPERATIONAL_STATUS)),
+            'ShortNameOfInstitution': ''.join([word[0] for word in school_name.split()]),
+            'Website':''.join(['www.',school_name.lower().replace(' ',''),'.com']),
+            'AdministrativeFundingControlDescriptor': self.get_descriptor_string('AdministrativeFundingControlDescriptor',random.choice(['public', 'private']) + ' School'),
+            'CharterStatusDescriptor': self.get_descriptor_string('CharterStatusDescriptor',random.choice(CHARTER_STATUS)),
+            'SchoolTypeDescriptor': self.get_descriptor_string('SchoolTypeDescriptor','Regular'),
+            'TitleIPartASchoolDesignationDescriptor': self.get_descriptor_string('TitleIPartASchoolDesignationDescriptor','Not A Title I School'),
+            'Addresses': self.create_address() if self.include_optional_fields else '',
+            'EducationOrganizationCategories':[{'EducationOrganizationCategoryDescriptor': self.get_descriptor_string('educationOrganizationCategoryDescriptor','School')}],
+            'IdentificationCodes': [
+                {
+                    'educationOrganizationIdentificationSystemDescriptor': self.get_descriptor_string('educationOrganizationIdentificationSystemDescriptor','SEA'),
+                    'identificationCode': self.faker.random_number(digits=10)
+                }
+            ],
+            'InstitutionTelephones': self.create_telephones(),
+            'InternationalAddresses': [],
+            'SchoolCategories': [
+                {
+                    'SchoolCategoryDescriptor': self.get_descriptor_string('SchoolCategoryDescriptor',school_type)
+                }
+            ],
+            'gradeLevels': [
+                {'gradeLevelDescriptor': self.get_descriptor_string('GradeLevelDescriptor',random.choice(GRADE_LEVEL))} for _ in range(4)
+            ]
         }
-        school['_EducationOrganization'] = self.create_educational_org(school_id)
-        school['_Calendar'] = self.create_calendar(school_id)
+
+        school['_SchoolYears'] = self.create_school_years()
+        school['_Calendars'] = self.create_calendars(school)
         school['_Students'] = self.create_students()
-        school['_Courses'] = self.create_courses(school_id)
-        school['_StudentAssociation'] = self.create_student_school_association(school)
-        
+        school['_Courses'] = self.create_courses(school['SchoolId'],school['Id'],school_name)
+        school['_GraduationPlans'] = self.create_graduation_plans(school)
+        school['_StudentAssociations'] = self.create_student_school_associations(school)
+        school['_Staffs'] = self.create_staffs()
+
         return school
 
-    def create_educational_org(self,school_id):
-        school_name = self.faker.city() + ' ' + random.choice(SCHOOL_TYPES)
-        return {
-            'EducationOrganizationId': school_id,
-            'Address': self.create_address() if self.include_optional_fields else '',
-            'EducationOrganizationCategories': ["School"],
-            'OperationalStatus': random.choices(['active','inactive'],weights=[90,10])[0] if self.include_optional_fields else '',
-            'NameOfInstitution': school_name ,
-            'ShortNameOfInstitution': ''.join(x[0].upper() for x in school_name.split(' ')) if self.include_optional_fields else '',
-            'WebSite':'www.'+school_name.lower().replace(' ','')+random.choice(['.com','.org','.info']) if self.include_optional_fields else ''
-        }
     def create_students(self):
         students = []
-        for n in range(self.number_students_per_school):
-            students.append(self.create_student(n))
+        for _ in range(self.number_students_per_school):
+            gender = random.choice(GENDER)
+            fname = self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()
+            students.append({
+                'Id': self.faker.uuid4().replace('-',''),
+                'StudentUniqueId': self.faker.random_number(digits=5),
+                "BirthCity": self.faker.city(),
+                "BirthDate": str(self.faker.date_between(start_date='-18y',end_date='-5y')),
+                "BirthSexDescriptor": self.get_descriptor_string('birthStateAbbreviationDescriptor', gender),
+                "FirstName": fname,
+                "IdentificationDocuments": [],
+                "LastSurname": self.faker.last_name(),
+                "OtherNames": [
+                    {
+                        "OtherNameTypeDescriptor": self.get_descriptor_string('otherNameTypeDescriptor','Nickname'),
+                        "FirstName": self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female(),
+                        "PersonalTitlePrefix": 'Mr' if gender == 'Male' else 'Ms'
+                    }
+                ],
+                "PersonalIdentificationDocuments": [],
+                "PersonalTitlePrefix": 'Mr' if gender == 'Male' else 'Ms',
+                "Visas": [],
+                "_etag": self.faker.random_number(digits=10)
+        })
         return students
 
-    def create_student(self, student_id):
-        isBornInUSA = random.choices(BOOLEAN, weights=(90,10))[0]
-        gender = random.choice(GENDER)
-        fname = self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()
-        return {
-            'StudentUniqueId': 'stu_' + str(student_id),
-            'BirthData': {
-                'BirthCity': random.choice(CITIES),
-                'BirthCountry': self.country,
-                'BirthDate': str(self.faker.date_between(start_date='-20y',end_date='-5y')),
-                'BirthInternationalProvince': '' if isBornInUSA == True else  'India',
-                'BirthSex': gender,
-                'DateEnteredUS': '' if isBornInUSA == True else str(self.faker.date_between(start_date='-20y',end_date='-1y')),
-                'MultipleBirthStatus': random.choice(BOOLEAN)
-            },
-            'Citizenship': '' if self.include_optional_fields else '',# populate this
-            'Name': fname + ' ' + self.faker.last_name(),
-            'OtherName': [self.faker.first_name()] if self.include_optional_fields else []
-        }
 
-    def create_student_school_association(self,school):
+    def create_student_school_associations(self,school):
         result = []
+        graduation_plan_ids = [gp['Id'] for gp in school['_GraduationPlans']]
         for student in school['_Students']:
-            start_date = self.faker.date_between(start_date='-5y',end_date='today')
             result.append({
-                'EntryDate': str(start_date),
-                'SchoolId': school['SchoolId'],
-                'StudentId': student['StudentUniqueId'],
-                'AlternativeGraduationPlan': [self.create_graduation_plan(school)] if self.include_optional_fields else [],
-                'CalendarId': school['_Calendar']['CalendarCode'] if self.include_optional_fields else '',
-                'ClassOfSchoolYear':random.choice(SCHOOL_YEARS) if self.include_optional_fields else '',
-                'EducationPlan':random.choice(EDUCATION_PLAN) if self.include_optional_fields else '',
-                'EmployedWhileEnrolled':random.choice(BOOLEAN) if self.include_optional_fields else '',
-                'EntryGradeLevel':random.choice(GRADE_LEVEL),
-                'EntryGradeLevelReason':'',
-                'EntryType':'',
-                'ExitWithdrawDate':str(self.faker.date_between(start_date=start_date,end_date='today')) if self.include_optional_fields else '',
-                'ExitWithdrawType':'' ,
-                'FullTimeEquivalency':f"0.{random.choice(range(9))}{random.choice(range(9))}" if self.include_optional_fields else '',
-                'GraduationPlan': self.create_graduation_plan(school) if self.include_optional_fields else '',
-                'PrimarySchool':random.choice(BOOLEAN) if self.include_optional_fields else '',
-                'RepeatGradeIndicator': random.choice(BOOLEAN) if self.include_optional_fields else '',
-                'ResidencyStatus':random.choice(RESIDENCY_STATUS) if self.include_optional_fields else '',
-                'SchoolChoiceTransfer': random.choice(BOOLEAN) if self.include_optional_fields else '',
-                'SchoolYear': self.school_year if self.include_optional_fields else '',
-                'TermCompletionIndicator': random.choice(BOOLEAN) if self.include_optional_fields else '',
+                'Id': self.faker.uuid4().replace('-',''),
+                "GraduationPlanReference": {
+                    "EducationOrganizationId": school['SchoolId'],
+                    "GraduationPlanTypeDescriptor": "uri://ed-fi.org/GraduationPlanTypeDescriptor#Minimum",
+                    "GraduationSchoolYear": self.school_year,
+                    "Link": {
+                        "rel": "GraduationPlan",
+                        "href": '/ed-fi/graduationPlans/{}'.format(random.choice(graduation_plan_ids))
+                    }
+                },
+                "SchoolReference": {
+                    "SchoolId": school['SchoolId'],
+                    "Link": {
+                        "rel": "School",
+                        "href": '/ed-fi/schools/{}'.format(school['Id'])
+                    }
+                },
+                "StudentReference": {
+                    "StudentUniqueId": student['StudentUniqueId'],
+                    "Link": {
+                        "rel": "Student",
+                        "href": "/ed-fi/students/{}".format(student['Id'])
+                    }
+                },
+                "EntryDate": str(self.faker.date_between(start_date='-5y',end_date='today')),
+                "EntryGradeLevelDescriptor": "uri://ed-fi.org/GradeLevelDescriptor#{}".format(random.choice(GRADE_LEVEL)),
+                "AlternativeGraduationPlans": [],
+                "EducationPlans": [],
+                "_etag": self.faker.random_number(digits=10)
             })
         return result
 
-    def create_calendar(self,school_id):
+    def create_calendars(self,school):
         return {
-            'CalendarCode':'cal_' + str(school_id),
-            'SchoolId':school_id,
-            'SchoolYear':self.school_year,
-            'CalendarType':'',
-            'GradeLevel':random.choice(GRADE_LEVEL) if self.include_optional_fields else []
+            'Id': self.faker.uuid4().replace('-',''),
+            'CalendarCode':self.faker.random_number(digits=5),
+            "SchoolReference": {
+                "SchoolId": school['SchoolId'],
+                "Link": {
+                    "rel": "School",
+                    "href": "/ed-fi/schools/{}".format(school['Id'])
+                }
+            },
+            "SchoolYearTypeReference": {
+                "SchoolYear": self.school_year,
+                "Link": {
+                    "rel": "SchoolYearType",
+                    "href": "/ed-fi/schoolYearTypes/{}".format(school['_SchoolYears']['Id'])
+                }
+            },
+            'CalendarTypeDescriptor': self.get_descriptor_string('calendarTypeDescriptor','Student Specific'),
+            'GradeLevel': []
         }
 
     def create_address(self):
@@ -146,63 +179,194 @@ class EdFiDataGenerator:
         state = self.faker.state_abbr()
         for n in ['Physical', 'Mailing']:
             address.append({
-                'addressType':n,
-                'city':self.faker.city(),
-                'postalCode':self.faker.postcode(),
-                'stateAbbreviation':state,
-                'streetNumberName':self.faker.street_name()
+                'AddressType':n,
+                'City':self.faker.city(),
+                'PostalCode':self.faker.postcode(),
+                'StateAbbreviation':state,
+                'StreetNumberName':self.faker.street_name()
             })
         return address
 
-    def create_courses(self,school_id):
+    def create_courses(self,school_id,id,school_name):
         courses = []
-        for course_name in SUBJECT_NAMES:
+        for subject,course_name in SUBJECT_NAMES:
             courses.append({
-                'CourseCode':self.faker.uuid4(),
-                'CourseTitle': course_name,
-                'EducationOrganizationId': school_id,
-                'AcademicSubject': course_name if self.include_optional_fields else '',
-                'CourseDefinedBy':random.choice(ORG_TYPES) if self.include_optional_fields else '',
-                'CourseLevelCharacteristic': [random.choice(COURSE_TYPES)] if self.include_optional_fields else [],
-                'CourseDescription': f"A description of the content standards and goals covered in the {course_name} course",
-                'HighSchoolCourseRequirement': random.choice(BOOLEAN) if self.include_optional_fields else '',
-                'OfferedGradeLevel': [random.choices(GRADE_LEVEL,k=2)] if self.include_optional_fields else [],
-                'TimeRequiredForCompletion': random.choice(range(100,150)) if self.include_optional_fields else '',
-                'NumberOfParts': random.choice(range(1,8)) if self.include_optional_fields else '',
-                'MaximumAvailableCredits': random.choice([3,4,5]) if self.include_optional_fields else '',
-                'MinimumAvailableCredits': random.choice([1,2,3]) if self.include_optional_fields else '',
-                'MaxCompletionsForCredit': random.choice([1,2,3]) if self.include_optional_fields else '',
-                'LearningStandard': '',# Add method for creating learning standard
-                'DateCourseAdopted': str(self.faker.date_between(start_date='-5y',end_date='today')) if self.include_optional_fields else '',
-                'CourseIdentificationCode': '' #Add method for creating course identification system
+                "Id": self.faker.uuid4().replace('-',''),
+                "EducationOrganizationReference": {
+                    "EducationOrganizationId": school_id,
+                    "Link": {
+                        "rel": "School",
+                        "href": "/ed-fi/schools/{}".format(id)
+                    }
+                },
+                "CourseCode": self.faker.random_number(digits=5),
+                "AcademicSubjectDescriptor": self.get_descriptor_string('academicSubjectDescriptor', subject),
+                "CourseDefinedByDescriptor": self.get_descriptor_string('CourseDefinedByDescriptor','SEA'),
+                "CourseDescription": 'Description about {}'.format(course_name),
+                "CourseGPAApplicabilityDescriptor": self.get_descriptor_string('CourseGPAApplicabilityDescriptor',random.choice(['Applicable','Not Applicable'])),
+                "CourseTitle": course_name,
+                "HighSchoolCourseRequirement": random.choice(BOOLEAN),
+                "NumberOfParts": 1,
+                "CompetencyLevels": [],
+                "IdentificationCodes": [
+                    {
+                        "CourseIdentificationSystemDescriptor": self.get_descriptor_string('CourseIdentificationSystemDescriptor','LEA course code'),
+                        "CourseCatalogURL": "http://www.{}.edu/coursecatalog".format(school_name.lower().replace(' ','')),
+                        "IdentificationCode": '{}-{}'.format(course_name[0:3].upper(),random.choice(range(1,5)))
+                    },
+                    {
+                        "CourseIdentificationSystemDescriptor": self.get_descriptor_string('CourseIdentificationSystemDescriptor','State course code'),
+                        "IdentificationCode": self.faker.random_number(digits=5)
+                    }
+                ],
+                "LearningObjectives": [],
+                "LearningStandards": [
+                    {
+                        "LearningStandardReference": {
+                            "LearningStandardId": self.faker.random_number(digits=5),
+                            "Link": {
+                                "rel": "LearningStandard",
+                                "href": "/ed-fi/learningStandards/{}".format(self.faker.uuid4().replace('-',''))
+                            }
+                        }
+                    }
+                ],
+                "LevelCharacteristics": [
+                    {
+                        "CourseLevelCharacteristicDescriptor": self.get_descriptor_string('CourseLevelCharacteristicDescriptor','Core Subject')
+                    }
+                ],
+                "OfferedGradeLevels": [],
+                "_etag": self.faker.random_number(digits=10)
             })
         return courses
 
 
-    def create_graduation_plan(self, school):
-        self.course_set_counter += 1
+    def create_graduation_plans(self, school):
+        graduation_plans = []
+        for _ in range(self.graduation_plans_per_school):
+            graduation_plans.append({
+                'Id': self.faker.uuid4().replace('-',''),
+                "EducationOrganizationReference": {
+                    "EducationOrganizationId": school['SchoolId'],
+                    "link": {
+                        "rel": "School",
+                        "href": "/ed-fi/schools/{}".format(school['Id'])
+                    }
+                },
+                "GraduationSchoolYearTypeReference": {
+                    "SchoolYear": self.school_year,
+                    "Link": {
+                        "rel": "SchoolYearType",
+                        "href": "/ed-fi/schoolYearTypes/{}".format(school['_SchoolYears']['Id'])
+                    }
+                },
+                "GraduationPlanTypeDescriptor": self.get_descriptor_string('GraduationPlanTypeDescriptor', random.choice(['Minimum','Recommended'])),
+                "TotalRequiredCredits": random.choice(range(20,30)),
+                "CreditsByCourses": [],
+                "CreditsByCreditCategories": [
+                    {
+                        "CreditCategoryDescriptor": self.get_descriptor_string('CreditCategoryDescriptor','Honors'),
+                        "Credits": random.choice(range(5,15))
+                    }
+                ],
+                "CreditsBySubjects": [],
+                "RequiredAssessments": [],
+                "_etag": self.faker.random_number(digits=10)
+            })
+        return graduation_plans
+
+    def create_school_years(self):
         return {
-            'EducationOrganizationId':school['SchoolId'],
-            'GraduationPlanType': random.choice(GRAD_PLAN_TYPE),
-            'GraduationSchoolYear': int(self.school_year) + random.choice(range(1,4)),
-            'CreditsByCourse':[{
-                'CourseSetName':'CourseSet_{self.course_set_counter}',
-                'CourseId': [random.choice(school['_Courses'])['CourseCode'] for _ in range(3)],
-                'Credits': {
-                    'CreditConversion': self.credit_conversion_factor,
-                    'CreditType': random.choice(CREDIT_TYPE),
-                    'Credits': random.choice(range(2,5))
-                }
-            }] if self.include_optional_fields else [],
-            'CreditsBySubject': [{
-                'AcademicSubject': random.choice(SUBJECT_NAMES),
-                'Credits': random.choice(range(2,5))
-            }] if self.include_optional_fields else [],
-            'WhenTakenGradeLevel': random.choice(GRADE_LEVEL),
-            'IndividualPlan': random.choice(BOOLEAN),
-            'TotalRequiredCredits': {
-                    'CreditConversion': self.credit_conversion_factor,
-                    'CreditType': random.choice(CREDIT_TYPE),
-                    'Credits': random.choice(range(20,30))
-                }
+            'Id': self.faker.uuid4().replace('-',''),
+            'SchoolYear': self.school_year,
+            'CurrentSchoolYear': self.is_current_school_year,
+            'schoolYearDescription': 'Description about school year',
+            '_etag': self.faker.random_number(digits=10)
         }
+
+    def create_telephones(self):
+        return [
+            {
+                'InstitutionTelephoneNumberTypeDescriptor': self.get_descriptor_string('InstitutionTelephoneNumberTypeDescriptor', _),
+                "TelephoneNumber": self.faker.phone_number()
+            }
+            for _ in ['Fax','Main']
+        ]
+
+    #This is work in Progress.
+    def create_staffs(self):
+        gender = random.choice(GENDER)
+        fname = self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()
+        lname = self.faker.last_name()
+        {
+            "id": self.faker.uuid4().replace('-',''),
+            "staffUniqueId": self.faker.random_number(digits=5),
+            "birthDate": str(self.faker.date_between(start_date='-60y',end_date='-30y')),
+            "firstName": fname,
+            "highestCompletedLevelOfEducationDescriptor": "uri://ed-fi.org/LevelOfEducationDescriptor#Some College No Degree",
+            "hispanicLatinoEthnicity": random.choice(BOOLEAN),
+            "lastSurname": lname,
+            "loginId": '{}_{}'.format(fname,self.faker.random_number(digits=2)),
+            "personalTitlePrefix": 'Mr' if gender == 'Male' else 'Ms',
+            "sexDescriptor": "uri://ed-fi.org/SexDescriptor#Female",
+            "yearsOfPriorProfessionalExperience": random.choice(range(15)),
+            "_ext": {
+            "tpdm": {
+                "educatorPreparationPrograms": [],
+                "highlyQualifiedAcademicSubjects": []
+            }
+            },
+            "addresses": [],
+            "ancestryEthnicOrigins": [],
+            "credentials": [],
+            "electronicMails": [
+            {
+                "electronicMailAddress": "{}{}@edfi.org".format(fname,lname),
+                "electronicMailTypeDescriptor": self.get_descriptor_string('ElectronicMailTypeDescriptor','Work')
+            }
+            ],
+            "identificationCodes": [
+            {
+                "staffIdentificationSystemDescriptor": self.get_descriptor_string('StaffIdentificationSystemDescriptor','State'),
+                "identificationCode": self.faker.random_number(digits=5)
+            }
+            ],
+            "identificationDocuments": [],
+            "internationalAddresses": [],
+            "languages": [],
+            "otherNames": [self.faker.first_name_male() if gender == 'Male' else self.faker.first_name_female()],
+            "personalIdentificationDocuments": [
+            {
+                "identificationDocumentUseDescriptor": "uri://ed-fi.org/IdentificationDocumentUseDescriptor#Personal Information Verification",
+                "personalInformationVerificationDescriptor": "uri://ed-fi.org/PersonalInformationVerificationDescriptor#Entry in family Bible"
+            }
+            ],
+            "races": [
+            {
+                "raceDescriptor": self.get_descriptor_string('RaceDescriptor','Asian')
+            }
+            ],
+            "recognitions": [],
+            "telephones": [],
+            "tribalAffiliations": [],
+            "visas": [],
+            "_etag": self.faker.random_number(digits=10)
+        }
+
+    def format_edfi_data(self,data):
+        result = {
+            'Schools':[],
+            'Students':[],
+            'Calendars':[],
+            'Courses':[],
+            'StudentSchoolAssociations':[]
+        }
+        for school in data:
+            result['Schools'].append({key: school[key] for key in school if not (key.startswith('_')) }) 
+            result['Students'] += school['_Students']
+            result['Courses'] += school['_Courses']
+            result['StudentSchoolAssociations'] += school['_StudentAssociations']
+            result['Calendars'].append(school['_Calendars'])
+        
+        return result
