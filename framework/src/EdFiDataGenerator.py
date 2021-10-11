@@ -15,7 +15,7 @@ PERSONAL_INFORMATION_VERIFICATION_DESCRIPTIONS = ['Entry in family Bible', 'Othe
 RACES = ['Asian' , 'Native Hawaiian - Pacific Islander', 'American Indian - Alaska Native', 'White']
 
 class EdFiDataGenerator:
-    def __init__(self,number_students_per_school=100, include_optional_fields=True, school_year='2021', credit_conversion_factor = 2.0, number_of_grades_per_school = 5, is_current_school_year = True, graduation_plans_per_school = 10, unique_id_length = 5, number_staffs_per_school = 50):
+    def __init__(self,number_students_per_school=100, include_optional_fields=True, school_year='2021', credit_conversion_factor = 2.0, number_of_grades_per_school = 5, is_current_school_year = True, graduation_plans_per_school = 10, unique_id_length = 5, number_staffs_per_school = 50, number_sections_per_school = 10):
         # Set a seed value in Faker so it generates same values every run.
         self.faker = Faker('en_US')
         Faker.seed(1)
@@ -30,6 +30,7 @@ class EdFiDataGenerator:
         self.is_current_school_year = is_current_school_year
         self.unique_id_length = unique_id_length
         self.number_staffs_per_school = number_staffs_per_school
+        self.number_sections_per_school = number_sections_per_school
 
     def get_descriptor_string(self, key, value):
         return "uri://ed-fi.org/{}#{}".format(key,value)
@@ -93,6 +94,7 @@ class EdFiDataGenerator:
         school['_Staffs'] = self.create_staffs()
         school['_StaffSchoolAssociations'] = self.create_staff_school_associations(school)
         school['_Sessions'] = self.create_sessions(school)
+        school['_Sections'] = self.create_sections(school)
 
         return school
 
@@ -492,51 +494,64 @@ class EdFiDataGenerator:
             "_etag": self.faker.random_number(digits=10)
         }]
 
-    def create_sections(self):
-        return {
-            "id":"",
-            "courseOfferingReference":{
-                "localCourseCode": "ALG-1",
-                "schoolId": 255901001,
-                "schoolYear": 2011,
-                "sessionName": "2010-2011 Fall Semester",
-                "link": {
-                    "rel": "CourseOffering",
-                    "href": "/ed-fi/courseOfferings/b8d13c217987448f93f7c2ad9df295a6"
-                }
-            },
-            "locationReference":{
-            "classroomIdentificationCode": "220",
-            "schoolId": 255901001,
-            "link": {
-                "rel": "Location",
-                "href": "/ed-fi/locations/6e0e2ade0a0e487c80ca8a41f1849450"
-            }
-            },
-            "locationSchoolReference":"",
-            "sectionIdentifier":"",
-            "availableCredits":"",
-            "educationalEnvironmentDescriptor":"",
-            "sectionName":"",
-            "sequenceOfCourse":"",
-            "characteristics":"",
-            "classPeriods": [
+    def create_sections(self, school):
+        sections = []
+        for _ in range(self.number_sections_per_school):
+            semesterType = random.choice('Spring', 'Fall')
+            sectionName = random.choice(SUBJECT_NAMES)[1]
+            subjectNumber = random.randint(1,3)
+            sections.append({
+                "id": self.faker.uuid4().replace('-',''),
+                "courseOfferingReference": {
+                    "localCourseCode": "{}-{}".format(sectionName[0:3], subjectNumber),
+                    "schoolId": school['SchoolId'],
+                    "schoolYear": self.school_year,
+                    "sessionName": "{} - {} {} Semester".format(int(self.school_year) - 1, semesterType, self.school_year),
+                    "link": {
+                        "rel": "CourseOffering",
+                        "href": "/ed-fi/courseOfferings/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                },
+                "locationReference": {
+                    "classroomIdentificationCode": self.faker.random_number(digits = 3),
+                    "schoolId": school['SchoolId'],
+                    "link": {
+                        "rel": "Location",
+                        "href": "/ed-fi/locations/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                },
+                "locationSchoolReference": {
+                    "schoolId": school['SchoolId'],
+                    "link": {
+                        "rel": "School",
+                        "href": "/ed-fi/schools/{}".format(school['Id'])
+                    }
+                },
+                "sectionIdentifier": self.faker.uuid4().replace('-',''),
+                "availableCredits": random.randint(1,4),
+                "educationalEnvironmentDescriptor": self.get_descriptor_string('EducationalEnvironmentDescriptor','Classroom'),
+                "sectionName": "{} {}".format(sectionName, subjectNumber),
+                "sequenceOfCourse": random.randint(1,5),
+                "characteristics": [],
+                "classPeriods": [
                 {
-                "classPeriodReference": {
-                "schoolId": 255901001,
-                "classPeriodName": "02 - Traditional",
-                "link": {
-                    "rel": "ClassPeriod",
-                    "href": "/ed-fi/classPeriods/1635dc8273a54ed3a4f7be56366b816a"
+                    "classPeriodReference": {
+                    "schoolId": school['SchoolId'],
+                    "classPeriodName": "{} - Traditional".format(random.randint(1,5)),
+                    "link": {
+                        "rel": "ClassPeriod",
+                        "href": "/ed-fi/classPeriods/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                    }
                 }
-                }
-            }
-            ],
-            "courseLevelCharacteristics": [],
-            "offeredGradeLevels": [],
-            "programs": [],
-            "_etag": "5249285328760938689"
-        }
+                ],
+                "courseLevelCharacteristics": [],
+                "offeredGradeLevels": [],
+                "programs": [],
+                "_etag": self.faker.random_number(digits=10)
+            })
+        return sections
+
 
     def create_staff_school_associations(self, school):
         staff_school_associations = []
