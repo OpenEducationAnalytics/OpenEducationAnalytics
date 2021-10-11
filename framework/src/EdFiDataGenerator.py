@@ -15,7 +15,7 @@ PERSONAL_INFORMATION_VERIFICATION_DESCRIPTIONS = ['Entry in family Bible', 'Othe
 RACES = ['Asian' , 'Native Hawaiian - Pacific Islander', 'American Indian - Alaska Native', 'White']
 
 class EdFiDataGenerator:
-    def __init__(self,number_students_per_school=100, include_optional_fields=True, school_year='2021', credit_conversion_factor = 2.0, number_of_grades_per_school = 5, is_current_school_year = True, graduation_plans_per_school = 10, unique_id_length = 5, number_staffs_per_school = 50):
+    def __init__(self,number_students_per_school=100, include_optional_fields=True, school_year='2021', credit_conversion_factor = 2.0, number_of_grades_per_school = 5, is_current_school_year = True, graduation_plans_per_school = 10, unique_id_length = 5, number_staffs_per_school = 50, number_sections_per_school = 10):
         # Set a seed value in Faker so it generates same values every run.
         self.faker = Faker('en_US')
         Faker.seed(1)
@@ -30,6 +30,7 @@ class EdFiDataGenerator:
         self.is_current_school_year = is_current_school_year
         self.unique_id_length = unique_id_length
         self.number_staffs_per_school = number_staffs_per_school
+        self.number_sections_per_school = number_sections_per_school
 
     def get_descriptor_string(self, key, value):
         return "uri://ed-fi.org/{}#{}".format(key,value)
@@ -93,6 +94,7 @@ class EdFiDataGenerator:
         school['_Staffs'] = self.create_staffs()
         school['_StaffSchoolAssociations'] = self.create_staff_school_associations(school)
         school['_Sessions'] = self.create_sessions(school)
+        school['_Sections'] = self.create_sections(school)
 
         return school
 
@@ -200,6 +202,7 @@ class EdFiDataGenerator:
     def create_courses(self,school_id,id,school_name):
         courses = []
         for subject,course_name in SUBJECT_NAMES:
+            courseCode = '{}-{}'.format(course_name[0:3].upper(),random.choice(range(1,5)))
             courses.append({
                 "Id": self.faker.uuid4().replace('-',''),
                 "EducationOrganizationReference": {
@@ -209,7 +212,7 @@ class EdFiDataGenerator:
                         "href": "/ed-fi/schools/{}".format(id)
                     }
                 },
-                "CourseCode": self.faker.random_number(digits = self.unique_id_length),
+                "CourseCode": courseCode,
                 "AcademicSubjectDescriptor": self.get_descriptor_string('academicSubjectDescriptor', subject),
                 "CourseDefinedByDescriptor": self.get_descriptor_string('CourseDefinedByDescriptor','SEA'),
                 "CourseDescription": 'Description about {}'.format(course_name),
@@ -222,7 +225,7 @@ class EdFiDataGenerator:
                     {
                         "CourseIdentificationSystemDescriptor": self.get_descriptor_string('CourseIdentificationSystemDescriptor','LEA course code'),
                         "CourseCatalogURL": "http://www.{}.edu/coursecatalog".format(school_name.lower().replace(' ','')),
-                        "IdentificationCode": '{}-{}'.format(course_name[0:3].upper(),random.choice(range(1,5)))
+                        "IdentificationCode": courseCode
                     },
                     {
                         "CourseIdentificationSystemDescriptor": self.get_descriptor_string('CourseIdentificationSystemDescriptor','State course code'),
@@ -370,58 +373,58 @@ class EdFiDataGenerator:
     def create_sessions(self, school):
 
         return [{
-            "id": self.faker.uuid4().replace('-',''),
-            "schoolReference":{
-                "schoolId":school['SchoolId'],
-                "link":{
+            "Id": self.faker.uuid4().replace('-',''),
+            "SchoolReference":{
+                "SchoolId":school['SchoolId'],
+                "Link":{
                     "rel":"School",
                     "href":"/ed-fi/schools/{}".format(school['Id'])
                 }
             },
-            "schoolYearTypeReference": {
+            "SchoolYearTypeReference": {
                 "SchoolYear": self.school_year,
-                "link": {
+                "Link": {
                     "rel": "SchoolYearType",
                     "href": "/ed-fi/schoolYearTypes/{}".format(school['_SchoolYears']['Id'])
                 }
             },
-            "sessionName": "{} - {} Fall Semester".format(int(self.school_year) - 1, self.school_year ),
-            "beginDate": "",
-            "endDate": "",
-            "termDescriptor": self.get_descriptor_string('TermDescriptor', 'Fall Semester'),
-            "totalInstructionalDays": "",
-            "gradingPeriods": [
+            "SessionName": "{} - {} Fall Semester".format(int(self.school_year) - 1, self.school_year ),
+            "BeginDate": "{}-08-{}".format(int(self.school_year) - 1, random.randint(1,30)),
+            "EndDate": "{}-12-{}".format(int(self.school_year) - 1, random.randint(1,30)),
+            "TermDescriptor": self.get_descriptor_string('TermDescriptor', 'Fall Semester'),
+            "TotalInstructionalDays": random.randint(60,130),
+            "GradingPeriods": [
                 {
-                    "gradingPeriodReference": {
-                    "schoolId": school['SchoolId'],
-                    "schoolYear": self.school_year,
-                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#First Six Weeks",
-                    "periodSequence": 1,
-                    "link": {
+                    "GradingPeriodReference": {
+                    "SchoolId": school['SchoolId'],
+                    "SchoolYear": self.school_year,
+                    "GradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#First Six Weeks",
+                    "PeriodSequence": 1,
+                    "Link": {
                         "rel": "GradingPeriod",
                         "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
                     }
                     }
                 },
                 {
-                    "gradingPeriodReference": {
-                    "schoolId": school['SchoolId'],
-                    "schoolYear": self.school_year,
-                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Second Six Weeks",
-                    "periodSequence": 2,
-                    "link": {
+                    "GradingPeriodReference": {
+                    "SchoolId": school['SchoolId'],
+                    "SchoolYear": self.school_year,
+                    "GradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Second Six Weeks",
+                    "PeriodSequence": 2,
+                    "Link": {
                         "rel": "GradingPeriod",
                         "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
                     }
                     }
                 },
                 {
-                    "gradingPeriodReference": {
-                    "schoolId": school['SchoolId'],
-                    "schoolYear": self.school_year,
-                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Third Six Weeks",
-                    "periodSequence": 3,
-                    "link": {
+                    "GradingPeriodReference": {
+                    "SchoolId": school['SchoolId'],
+                    "SchoolYear": self.school_year,
+                    "GradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Third Six Weeks",
+                    "PeriodSequence": 3,
+                    "Link": {
                         "rel": "GradingPeriod",
                         "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
                     }
@@ -431,58 +434,58 @@ class EdFiDataGenerator:
             "_etag": self.faker.random_number(digits=10)
         },
         {
-            "id": self.faker.uuid4().replace('-',''),
-            "schoolReference":{
-                "schoolId":school['SchoolId'],
-                "link":{
+            "Id": self.faker.uuid4().replace('-',''),
+            "SchoolReference":{
+                "SchoolId":school['SchoolId'],
+                "Link":{
                     "rel":"School",
                     "href":"/ed-fi/schools/{}".format(school['Id'])
                 }
             },
-            "schoolYearTypeReference": {
+            "SchoolYearTypeReference": {
                 "SchoolYear": self.school_year,
-                "link": {
+                "Link": {
                     "rel": "SchoolYearType",
                     "href": "/ed-fi/schoolYearTypes/{}".format(school['_SchoolYears']['Id'])
                 }
             },
-            "sessionName": "{} - {} Spring Semester".format(int(self.school_year) - 1, self.school_year),
-            "beginDate": "",
-            "endDate": "",
-            "termDescriptor": self.get_descriptor_string('TermDescriptor', 'Spring Semester'),
-            "totalInstructionalDays": "",
-            "gradingPeriods": [
+            "SessionName": "{} - {} Spring Semester".format(int(self.school_year) - 1, self.school_year),
+            "BeginDate": "{}-01-{}".format(self.school_year, random.randint(1,30)),
+            "EndDate": "{}-05-{}".format(self.school_year, random.randint(1,30)),
+            "TermDescriptor": self.get_descriptor_string('TermDescriptor', 'Spring Semester'),
+            "TotalInstructionalDays": random.randint(60,130),
+            "GradingPeriods": [
                 {
-                    "gradingPeriodReference": {
-                    "schoolId": school['SchoolId'],
-                    "schoolYear": self.school_year,
-                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Fourth Six Weeks",
-                    "periodSequence": 4,
-                    "link": {
+                    "GradingPeriodReference": {
+                    "SchoolId": school['SchoolId'],
+                    "SchoolYear": self.school_year,
+                    "GradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Fourth Six Weeks",
+                    "PeriodSequence": 4,
+                    "Link": {
                         "rel": "GradingPeriod",
                         "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
                     }
                     }
                 },
                 {
-                    "gradingPeriodReference": {
-                    "schoolId": school['SchoolId'],
-                    "schoolYear": self.school_year,
-                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Fifth Six Weeks",
-                    "periodSequence": 5,
-                    "link": {
+                    "GradingPeriodReference": {
+                    "SchoolId": school['SchoolId'],
+                    "SchoolYear": self.school_year,
+                    "GradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Fifth Six Weeks",
+                    "PeriodSequence": 5,
+                    "Link": {
                         "rel": "GradingPeriod",
                         "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
                     }
                     }
                 },
                 {
-                    "gradingPeriodReference": {
-                    "schoolId": school['SchoolId'],
-                    "schoolYear": self.school_year,
-                    "gradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Sixth Six Weeks",
-                    "periodSequence": 6,
-                    "link": {
+                    "GradingPeriodReference": {
+                    "SchoolId": school['SchoolId'],
+                    "SchoolYear": self.school_year,
+                    "GradingPeriodDescriptor": "uri://ed-fi.org/GradingPeriodDescriptor#Sixth Six Weeks",
+                    "PeriodSequence": 6,
+                    "Link": {
                         "rel": "GradingPeriod",
                         "href": "/ed-fi/gradingPeriods/{}".format(self.faker.uuid4().replace('-',''))
                     }
@@ -492,51 +495,127 @@ class EdFiDataGenerator:
             "_etag": self.faker.random_number(digits=10)
         }]
 
-    def create_sections(self):
-        return {
-            "id":"",
-            "courseOfferingReference":{
-                "localCourseCode": "ALG-1",
-                "schoolId": 255901001,
-                "schoolYear": 2011,
-                "sessionName": "2010-2011 Fall Semester",
-                "link": {
-                    "rel": "CourseOffering",
-                    "href": "/ed-fi/courseOfferings/b8d13c217987448f93f7c2ad9df295a6"
-                }
-            },
-            "locationReference":{
-            "classroomIdentificationCode": "220",
-            "schoolId": 255901001,
-            "link": {
-                "rel": "Location",
-                "href": "/ed-fi/locations/6e0e2ade0a0e487c80ca8a41f1849450"
-            }
-            },
-            "locationSchoolReference":"",
-            "sectionIdentifier":"",
-            "availableCredits":"",
-            "educationalEnvironmentDescriptor":"",
-            "sectionName":"",
-            "sequenceOfCourse":"",
-            "characteristics":"",
-            "classPeriods": [
+    def create_sections(self, school):
+        sections = []
+        for _ in range(self.number_sections_per_school):
+            semesterType = random.choice('Spring', 'Fall')
+            subjectName = random.choice(SUBJECT_NAMES)[1]
+            subjectNumber = random.randint(1,5)
+            sections.append({
+                "Id": self.faker.uuid4().replace('-',''),
+                "CourseOfferingReference": {
+                    "LocalCourseCode": "{}-{}".format(subjectName[0:3].upper(), subjectNumber),
+                    "SchoolId": school['SchoolId'],
+                    "SchoolYear": self.school_year,
+                    "SessionName": "{} - {} {} Semester".format(int(self.school_year) - 1, semesterType, self.school_year),
+                    "Link": {
+                        "rel": "CourseOffering",
+                        "href": "/ed-fi/courseOfferings/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                },
+                "LocationReference": {
+                    "ClassroomIdentificationCode": self.faker.random_number(digits = 3),
+                    "SchoolId": school['SchoolId'],
+                    "Link": {
+                        "rel": "Location",
+                        "href": "/ed-fi/locations/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                },
+                "LocationSchoolReference": {
+                    "SchoolId": school['SchoolId'],
+                    "Link": {
+                        "rel": "School",
+                        "href": "/ed-fi/schools/{}".format(school['Id'])
+                    }
+                },
+                "SectionIdentifier": self.faker.uuid4().replace('-',''),
+                "AvailableCredits": random.randint(1,4),
+                "EducationalEnvironmentDescriptor": self.get_descriptor_string('EducationalEnvironmentDescriptor','Classroom'),
+                "SectionName": "{} {}".format(subjectName, subjectNumber),
+                "SequenceOfCourse": random.randint(1,5),
+                "Characteristics": [],
+                "ClassPeriods": [
                 {
-                "classPeriodReference": {
-                "schoolId": 255901001,
-                "classPeriodName": "02 - Traditional",
-                "link": {
-                    "rel": "ClassPeriod",
-                    "href": "/ed-fi/classPeriods/1635dc8273a54ed3a4f7be56366b816a"
+                    "ClassPeriodReference": {
+                    "SchoolId": school['SchoolId'],
+                    "ClassPeriodName": "{} - Traditional".format(random.randint(1,5)),
+                    "Link": {
+                        "rel": "ClassPeriod",
+                        "href": "/ed-fi/classPeriods/{}".format(self.faker.uuid4().replace('-',''))
+                    }
+                    }
                 }
-                }
-            }
-            ],
-            "courseLevelCharacteristics": [],
-            "offeredGradeLevels": [],
-            "programs": [],
-            "_etag": "5249285328760938689"
-        }
+                ],
+                "CourseLevelCharacteristics": [],
+                "OfferedGradeLevels": [],
+                "Programs": [],
+                "_etag": self.faker.random_number(digits=10)
+            })
+        return sections
+
+    def create_student_section_associations(self, school):
+        student_section_associations = []
+        for student in school['_Students']:
+            course = random.choice(school['_Courses'])
+            section = random.choice(school['_Sections'])
+            student_section_associations.append({
+                    "Id": self.faker.uuid4().replace('-',''),
+                    "SectionReference": {
+                        "LocalCourseCode": course['courseCode'],
+                        "SchoolId": school['SchoolId'],
+                        "SchoolYear": self.school_year,
+                        "SectionIdentifier": section['SectionIdentifier'],
+                        "SessionName": section['SessionName'],
+                        "Link": {
+                            "rel": "Section",
+                            "href": "/ed-fi/sections/{}".format(section['Id'])
+                        }
+                    },
+                    "StudentReference": {
+                        "StudentUniqueId": student['StudentId'],
+                        "Link": {
+                            "rel": "Student",
+                            "href": "/ed-fi/students/{}".format(student['Id'])
+                        }
+                    },
+                    "BeginDate": section['BeginDate'],
+                    "EndDate": section['EndDate'],
+                    "HomeroomIndicator": random.choice(BOOLEAN),
+                    "_etag": self.faker.random_number(digits = 10)
+                })
+        return student_section_associations
+
+    def create_staff_section_associations(self,school):
+        staff_section_associations = []
+        for staff in school['_Staffs']:
+            section = random.choice(school['_Sections'])
+            staff_section_associations.append({
+                "Id": self.faker.uuid4().replace('-',''),
+                "SectionReference": {
+                    "LocalCourseCode": section['CourseOfferingReference']['LocalCourseCode'],
+                    "SchoolId": school['SchoolId'],
+                    "SchoolYear": self.school_year,
+                    "SectionIdentifier": section['SectionId'],
+                    "SessionName": section['SessionName'],
+                    "Link": {
+                        "rel": "Section",
+                        "href": "/ed-fi/sections/{}".format(section['Id'])
+                    }
+                },
+                "StaffReference": {
+                    "StaffUniqueId": staff['StaffId'],
+                    "Link": {
+                        "rel": "Staff",
+                        "href": "/ed-fi/staffs/{}".format(staff['Id'])
+                    }
+                },
+                "BeginDate": section['BeginDate'],
+                "ClassroomPositionDescriptor": "uri://ed-fi.org/ClassroomPositionDescriptor#Teacher of Record",
+                "EndDate": section['EndDate'],
+                "_etag": self.faker.uuid4().replace('-','')
+            })
+        return staff_section_associations
+
 
     def create_staff_school_associations(self, school):
         staff_school_associations = []
