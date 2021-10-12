@@ -45,6 +45,8 @@ If you are running the setup for an environment in which you have Global Admin p
 
 By default, the provisioned Azure resources are named according to [recommended Azure naming standards](https://github.com/microsoft/OpenEduAnalytics/wiki/Design-Decisions), however you can directly modify [set_names.sh](https://github.com/microsoft/OpenEduAnalytics/blob/main/infrastructure/bash/set_names.sh) before running the setup if you want to specify an alternative set of resource names.
 
+Provisioned Azure resources are tagged with `oea_version`, if an Azure policy requires a specific tag(s) to be assigned when a resource is created these can be included via `$OEA_ADDITIONAL_TAGS` in [set_names.sh](https://github.com/microsoft/OpenEduAnalytics/blob/main/infrastructure/bash/set_names.sh) using the format `tagName=tagValue`, if multiple tags are required they need to be space separated. 
+
 ### Additional info
 You can get more info by reviewing the documentation available in the [docs](https://github.com/microsoft/OpenEduAnalytics/tree/main/docs) folder.
 This includes a Powerpoint deck with notes and a pdf version that can be viewed in the browser
