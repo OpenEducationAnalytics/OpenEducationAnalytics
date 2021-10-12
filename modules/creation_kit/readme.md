@@ -1,4 +1,5 @@
-N.B: Please follow the guidelines provided in the OEA Module Creation kit before starting the module creation process.
+> This folder has been populated with initial templates to help get you started. Please
+> make sure to update by following guidelines provided in the OEA Module Creation kit before starting the module creation process.
 
 # Name of Module
 Provide an overview of the module.
