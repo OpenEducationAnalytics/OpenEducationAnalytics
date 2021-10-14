@@ -3,7 +3,7 @@ Microsoft Graph Reports API can provide data from Microsoft Teams and other O365
 
 You can use this OEA Microsoft Graph Reports API module to incorporate O365 usage data into your organization's OEA data lakes.
 
-![alt text](https://github.com/cstohlmann/oea-graph-api/blob/main/docs/images/Graph%20visual.png)
+![Graph visual](https://github.com/microsoft/OpenEduAnalytics/blob/c663f9a342a134e940a106d4a5c3f453c9e78b78/modules/Microsoft_Graph/docs/images/Graph%20visual.png)
  <p align="center">
  <emp>
  (Microsoft documentation on Graph Reports API: https://docs.microsoft.com/en-us/graph/reportroot-concept-overview) 
