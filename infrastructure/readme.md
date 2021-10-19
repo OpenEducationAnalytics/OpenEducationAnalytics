@@ -5,11 +5,20 @@ We currently offer a single setup option which utilizes the Azure CLI for the in
 - Enable better devops processes utilizing infrastructure-as-code
 - Provide a path from a simple starter setup to a full-blown enterprise scale architecture
 
-# Azure Reference Architecture: Analytics end-to-end
+# Azure Reference Architectures
+The [Azure Architecture Center](https://docs.microsoft.com/en-us/azure/architecture/) provides a searchable catalog of resources on common architectures and best practices, including the ones listed here...
+
+## Analytics end-to-end
 The [Analytics end-to-end](https://docs.microsoft.com/en-us/azure/architecture/example-scenario/dataplate2e/data-platform-end-to-end) reference architecture (shown below) provides additional guidance on growing your analytics solution beyond the OEA starting point.
 
 <img src="https://docs.microsoft.com/en-us/azure/architecture/example-scenario/dataplate2e/media/azure-analytics-end-to-end.png">
 
+## Modern analytics architecture with Azure Databricks
+The [Modern analytics architecture with Azure Databricks]() reference architecture (show below) demonstrates how Azure Databricks can be used in conjunction with Azure Synapse. The key to this architecture is that both Azure Databricks and Azure Synapse work well with a shared Data Lake storage account and use Delta Lake effectively.
+
+So if you already have an investment in Azure Databricks, this architecture demonstrates how you can utilize Synapse Analytics and OEA in conjunction with your Azure Databricks setup.
+
+<img src="https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/media/azure-databricks-modern-analytics-architecture-diagram.png">
 
 # Cloud Adoption Framework
 The [Cloud Adoption Framework](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/) provides implementation guidance, best practices, and tools that are proven guidance from Microsoft, designed to accelerate your cloud adoption journey.
