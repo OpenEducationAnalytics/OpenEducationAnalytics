@@ -1,6 +1,7 @@
 # Pipeline
-This pipeline copies and stores the raw Graph API data to stage 1 storage in JSON format. 
 
-The tutorial explaining how to set up a pipeline to extract your own data or how to use this pipeline template, can be found [here](https://github.com/cstohlmann/oea-graph-api/blob/main/docs/documents/Graph%20Reports%20API%20Tutorial.pdf).
+This pipeline copies and stores the raw Graph API data to Stage 1 datalake storage in JSON format.  
 
-<strong> Notes: </strong> Within the pipeline template, the current pipeline can be manually triggered to pull your own data. The Graph Reports API REST source, pulls the weekly data for both the "M365" and "Teams" while "Users" is overriden. The Graph Reports API JSON sink, lands this data with the "M365" and "Teams" folders, where the folder is appended with current weekly data whenever that trigger is ran. 
+The tutorial explaining how to set up a pipeline to extract your own data or how to use this pipeline template, can be found [here](https://github.com/microsoft/OpenEduAnalytics/blob/c663f9a342a134e940a106d4a5c3f453c9e78b78/modules/Microsoft_Graph/docs/documents/Graph%20Reports%20API%20Tutorial.pdf).
+
+<strong> Notes: </strong> The pipeline template can be manually triggered to query data from the Graph Reports API. When triggered, the pipeline pulls data for the past week for both M365 and Teams Graph reports while the Users report is overwritten. M365 and Teams Graph report data is saved to Stage 1 of the data lake with a timestamp included in the filename.

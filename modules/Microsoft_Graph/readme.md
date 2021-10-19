@@ -3,7 +3,7 @@ Microsoft Graph Reports API can provide data from Microsoft Teams and other O365
 
 You can use this OEA Microsoft Graph Reports API module to incorporate O365 usage data into your organization's OEA data lakes.
 
-![alt text](https://github.com/cstohlmann/oea-graph-api/blob/main/docs/images/Graph%20visual.png)
+![Graph visual](https://github.com/microsoft/OpenEduAnalytics/blob/c663f9a342a134e940a106d4a5c3f453c9e78b78/modules/Microsoft_Graph/docs/images/Graph%20visual.png)
  <p align="center">
  <emp>
  (Microsoft documentation on Graph Reports API: https://docs.microsoft.com/en-us/graph/reportroot-concept-overview) 
@@ -37,13 +37,10 @@ Sample out-of-the box assets for this OEA module include:
 1. [Tutorial](https://github.com/cstohlmann/oea-graph-api/blob/main/docs/documents/Graph%20Reports%20API%20Tutorial.pdf): A tutorial of how to use this module within your own Synapse workspace, as well as demonstration to build custom queries to pull data for your education tenant from Microsoft Graph Reports API.
 2. [Sample Datasets](https://github.com/cstohlmann/oea-graph-api/tree/main/datasets): Ingest sample data to understand the utility and functionality of the notebook(s).
 3. [Pipeline(s)](https://github.com/cstohlmann/oea-graph-api/tree/main/pipelines): A pipeline which connects Microsoft Graph Reports API to the Synapse workspace.
-4. [Notebooks](https://github.com/cstohlmann/oea-graph-api/tree/main/notebooks): An example notebook on processing the data from stage 1 to stage 2 within Synapse. 
+4. [Notebooks](https://github.com/cstohlmann/oea-graph-api/tree/main/notebooks): An example notebook on processing the data from stage 1 to stage 2 within Synapse including pseudonymisation. 
 5. [PowerBI Templates](https://github.com/cstohlmann/oea-graph-api/tree/main/powerbi): A Power BI sample template making it easy to interact with Microsoft Graph Reports API data.
 
-![alt text](https://github.com/cstohlmann/oea-graph-api/blob/main/docs/images/Graph%20API%20Example%20Dashboard.PNG)
-<p align="center">
-    <em> <strong>(NEEDS TO BE CHANGED; WITH HASHED USERNAMES AND NO ACTUAL NAMES)</em></strong>
-</p>
+![Power BI template image](https://github.com/microsoft/OpenEduAnalytics/blob/c663f9a342a134e940a106d4a5c3f453c9e78b78/modules/Microsoft_Graph/docs/images/Graph%20API%20Example%20Dashboard.PNG)
 
 The Microsoft Graph Reports API module welcomes contributions.
 
