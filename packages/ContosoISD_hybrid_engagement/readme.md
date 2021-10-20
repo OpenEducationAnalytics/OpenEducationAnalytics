@@ -10,7 +10,7 @@ The Hybrid Engagement Package from OEA includes a set of modules for combining i
 
 The modules in this package can be combined with course completion, academic assessments, competency measures, mastery data, graduation rates, or other outcome data to identify how patterns of engagement relate to learning outcomes. With such combined data, schools and teachers can start to analyze whether new programs or interventions help to improve learning outcomes.  
 
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/64fb4f3b11c225f8c17e486a7174aa8b2684f1b2/packages/ContosoISD_hybrid_engagement/docs/hybrid_engagement_overview.png)
+![image](https://github.com/microsoft/OpenEduAnalytics/blob/64fb4f3b11c225f8c17e486a7174aa8b2684f1b2/packages/ContosoISD_hybrid_engagement/docs/images/hybrid_engagement_overview.png)
 
 This package was developed by Microsoft Education in partnership with Fresno Unified School District in California. The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
