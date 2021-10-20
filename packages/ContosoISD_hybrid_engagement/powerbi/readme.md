@@ -1,27 +1,31 @@
 # PowerBI template
 
 The hybrid student engagement PowerBI template consists of 3 pages:
-1. **District Attendance:** visualizes students' physical attendance and digital activity over time at a school level and for each grade. This page is made up of the following visuals:
+1. **Hybrid Engagement:** visualizes students' physical attendance and digital activity over time at a school level and for each grade. This page is made up of the following visuals:
 -  Attendance Percent over Time - shows the percent of students who attended in-person school and those who were digitally active over a period of time
 -  School Summary - shows the percent of students who attended in-person school, days they were digitally active and those who met the attendance threshold
 -  School Comparison - shows the average number of days students were present in-person in comparison to the average number of days they were digitally active at a school level
 - Grade Comparision - shows the percent of students who attended in-person school and those who were digitally active at a grade level  
 <br/><br/>
-2. **School Attendance:** visualizes students' physical attendance and digital activity for each school and groups them.
+![image](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/3feaac196010f11d3cc925eb773b731cd3c37dea/packages/ContosoISD_hybrid_engagement/docs/images/PowerBI1.png)
+<br/><br/>
+2. **School Hybrid Engagement:** visualizes students' physical attendance and digital activity for each school and groups them.
 - Student Attendance Comparision - shows the average number of days students were digitally active and the average number of days they attended in-person school
 - Grade Comparison - shows the average number of days students were digitally active and the average number of days they attended in-person school at a grade level
 <br/><br/>
-3. **District Digital Engagement:** drills down to the specific digital apps being used by students at a school level and for each grade.
+![image](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/07ce77615571981f6747e89c7d670b7a201cd8e5/packages/ContosoISD_hybrid_engagement/docs/images/PowerBI2.png)
+<br/><br/>
+3. **Digital Engagement:** drills down to the specific digital apps being used by students at a school level and for each grade.
 - Digital Engagement over Time - shows the percent of students who were active on Teams Assignments, Teams Meetings and Teams Communication over time
 - Time Spent on Microsoft Teams - shows the average time duration students spend on Teams at a grade level
 - Average Digital Engagement - shows the average number of active days of the digital apps
 <br/><br/>
-![image](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/a3885fd988323c2b43cb5bd266c21c284f242065/packages/ContosoISD_hybrid_engagement/docs/images/PowerBI4.png)
 
 ## Star schema
 This PowerBI module is made up of 4 tables: calendar, dayactivity, studentv2 and yearactivity. The dimension table is student and the fact tables are calendar, dayactivity and yearactivity.
 <br/><br/>
 ![image](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/a3885fd988323c2b43cb5bd266c21c284f242065/packages/ContosoISD_hybrid_engagement/docs/images/PowerBI3.png)
+<br/><br/>
 
 ### Table details
 | Table | Column   | Description   |
