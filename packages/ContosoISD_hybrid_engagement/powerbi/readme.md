@@ -16,12 +16,12 @@ The hybrid student engagement PowerBI template consists of 3 pages:
 - Time Spent on Microsoft Teams - shows the average time duration students spend on Teams at a grade level
 - Average Digital Engagement - shows the average number of active days of the digital apps
 <br/><br/>
-![image](https://github.com/ivybarley/hybrid-student-engagement/blob/5435a85156507a3d4ba41a0eb0734e92e14e695e/images/PowerBI4.png)
+![image](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/a3885fd988323c2b43cb5bd266c21c284f242065/packages/ContosoISD_hybrid_engagement/docs/images/PowerBI4.png)
 
 ## Star schema
 This PowerBI module is made up of 4 tables: calendar, dayactivity, studentv2 and yearactivity. The dimension table is student and the fact tables are calendar, dayactivity and yearactivity.
 <br/><br/>
-![image](https://github.com/ivybarley/hybrid-student-engagement/blob/66453f6baceec8930d7c3b96aa0187eca7c672a8/images/PowerBI3.png)
+![image](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/a3885fd988323c2b43cb5bd266c21c284f242065/packages/ContosoISD_hybrid_engagement/docs/images/PowerBI3.png)
 
 ### Table details
 | Table | Column   | Description   |
