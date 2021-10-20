@@ -30,6 +30,17 @@ This PowerBI module is made up of 4 tables: calendar, dayactivity, studentv2 and
 ### Table details
 | Table | Column   | Description   |
 | :------------- | :---------- | :----------- |
+| student | PersonId | Unique student id |
+| | ExternalId | Unique student external id |
+| | GradeLevel | Number representing the grade level |
+| | GradeName | Name of grade level |
+| | IsActive | Whether the student was an active student in that school or not |
+| | SchoolIdPrimary | Id for primary school |
+| | SchoolNamePrimary | Name of primary school |
+| | ELLStatus | English language learner status |
+| | Gender | Student gender |
+| | LowIncome | Low income classification |
+| | SpecialEducation | Special education status |
 | dayactivity | PersonId | Student unique id |
 |  | ExternalId | Student unique external id |
 |  | date | Date of activity |
@@ -52,13 +63,6 @@ This PowerBI module is made up of 4 tables: calendar, dayactivity, studentv2 and
 |  | DaysPresent | Number of days of in-person attendance in the year |
 |  | Present_Perc | Percentage of in-person attendance in the year |
 |  | Attn_Threshold_Met | Yearly attendance threshold was met. Threshold is set at 0.90 |
-| student | PersonId | Unique student id |
-| | ExternalId | Unique student external id |
-| | GradeLevel | Number representing the grade level |
-| | GradeName | Name of grade level |
-| | IsActive | Whether the student was an active student in that school or not |
-| | School_ID_Primary | Id for primary school |
-| | School_Name_Primary | Name of primary school |
 | calendar | Date | Date  |
 | | Year | Year  |
 | | Month | Month  |
