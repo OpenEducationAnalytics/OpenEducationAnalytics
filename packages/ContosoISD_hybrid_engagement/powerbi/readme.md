@@ -24,7 +24,7 @@ The hybrid student engagement PowerBI template consists of 3 pages:
 ## Star schema
 This PowerBI module is made up of 4 tables: calendar, dayactivity, studentv2 and yearactivity. The dimension table is student and the fact tables are calendar, dayactivity and yearactivity.
 <br/><br/>
-![image](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/a3885fd988323c2b43cb5bd266c21c284f242065/packages/ContosoISD_hybrid_engagement/docs/images/PowerBI3.png)
+![image](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/3da60000b27f53fc216ed53d9ca3ac555f7a8fce/packages/ContosoISD_hybrid_engagement/docs/images/PowerBIschema.PNG)
 <br/><br/>
 
 ### Table details
