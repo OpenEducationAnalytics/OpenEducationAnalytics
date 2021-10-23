@@ -3,8 +3,8 @@ import os
 import shutil
 import random
 import math
-import datetime
 import pandas as pd
+from datetime import datetime
 from faker import Faker
 
 SUBJECTS = ['Math - Algebra', 'Math - Geometry', 'English Language', 'History - World History',
@@ -55,8 +55,12 @@ class M365DataGenerator:
             writer.write('contoso_sis/section_marks.csv', school_data.pop('_section_marks'))
             writer.write('contoso_sis/students.csv', self.list_of_dict_to_csv(school_data['_students']))
 
-            self.create_and_write_activity_data(school_data['_students'], 'm365/Activity0p2.csv', writer)
-            self.create_and_write_activity_data(school_data['_teachers'], 'm365/Activity0p2.csv', writer)
+            start_date = datetime.strptime(self.fall_semester_start_date, "%Y-%m-%d")
+            end_date = datetime.strptime(self.spring_semester_end_date, "%Y-%m-%d")
+            if end_date > datetime.now(): end_date = datetime.now()
+
+            self.create_and_write_activity_data(school_data['_students'], start_date, end_date, 'm365/Activity0p2.csv', writer)
+            self.create_and_write_activity_data(school_data['_teachers'], start_date, end_date, 'm365/Activity0p2.csv', writer)
 
         writer.write('m365/Org.csv', schools)
 
@@ -329,7 +333,7 @@ class M365DataGenerator:
 
     def create_section_attendance(self, school_id, student_id, school_year, section_id, start_date, end_date):
         attendance = ''
-        date_range = pd.date_range(datetime.datetime.strptime(start_date, "%m/%d/%Y"), datetime.datetime.strptime(end_date, "%m/%d/%Y"))
+        date_range = pd.date_range(datetime.strptime(start_date, "%m/%d/%Y"), datetime.strptime(end_date, "%m/%d/%Y"))
         for single_date in date_range:
             attendance_code = random.choices(['P', 'A'], weights=(80,20))[0]
             if attendance_code == 'P':
@@ -356,7 +360,7 @@ class M365DataGenerator:
                 if (teacher_index == len(school['_teachers'])):
                     teacher_index = 0  # start over from the beginning of the list of teachers
 
-    def create_and_write_activity_data(self, people, path_and_filename, writer):
+    def create_and_write_activity_data(self, people, start_date, end_date, path_and_filename, writer):
         signal_id_counter = 100
         signal_types = ['VisitTeamChannel', 'ReactedWithEmoji', 'PostChannelMessage', 'ReplyChannelMessage', 'ExpandChannelMessage', 'CallRecordSummarized', 'FileAccessed', 'FileDownloaded',
                         'FileModified', 'FileUploaded', 'ShareNotificationRequested', 'CommentCreated', 'UserAtMentioned', 'AddedToSharedWithMe', 'CommentDeleted', 'Unlike']
@@ -370,7 +374,7 @@ class M365DataGenerator:
         for i in range(num_of_entries_for_person):
             for person in people:
                 signal_type = random.choice(signal_types)
-                start_time = f"{self.faker.date_time_between(start_date='-60d', end_date='now', tzinfo=None)}.0000000"
+                start_time = f"{self.faker.date_time_between_dates(start_date, end_date)}.0000000"
                 agent = random.choice(agents)
                 signal_id = self.faker.uuid4()
                 sis_class_id = random.choice(person['_section_ids'])
