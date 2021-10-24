@@ -3,7 +3,7 @@ Use this checklist to keep track of your progress.
 
 ### Documentation
 - [ ] Use general OEA templates for all assets (OEA Logo, Creative Commons License, partner logo - if applicable)
-- [ ] Readme file showing where all assets in module are. Assets should be organized in folders following OEA standards
+- [ ] Readme file showing where all assets in module are. Assets should be organized in folders
 - [ ] Description of data source and data dictionary
 - [ ] List any prerequisites for module (like subscriptions/licenses to data source needed)
 
