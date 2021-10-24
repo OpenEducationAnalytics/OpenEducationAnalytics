@@ -1,4 +1,4 @@
-> In this folder, upload the PowerBI template in .pbix format. Please provide descriptions of each page and visuals, as well as screenshots of the PowerBI dashboard and the semantic model in this readme file.
+> In this folder, you will find a draft PowerBI dashboard template. Use this template for your module's visualization and upload the updated .pbix file back to this folder. Please provide descriptions of each page and visuals, as well as screenshots of the PowerBI dashboard and the semantic model in this readme file.
 
 # PowerBI template
 
