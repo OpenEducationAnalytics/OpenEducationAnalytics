@@ -21,11 +21,11 @@ The [name of module] PowerBI template consists of [number] pages:
 ![image](https://github.com/microsoft/OpenEduAnalytics/blob/8ad9ac9c2e0dd63264e6d6287ed395477d86eab2/modules/creation_kit/docs/Sample_PowerBI_Dashboard.png)
 NB: This can be an image of one of the PowerBI pages.
 
-## Star schema
+## Semantic model
 This PowerBI module is made up of the following tables: [list table names]. The dimension table is [name of dimension table] and the fact tables are [list of fact tables].
 ![image](https://github.com/microsoft/OpenEduAnalytics/blob/9a32556822ebe0d59175a9ced231576bc8bf0a7b/modules/creation_kit/docs/Sample_PowerBI_Star_Schema.png)
 
-### Table details
+### Table Details
 | Table | Column   | Description   |
 | :------------- | :---------- | :----------- |
 | Table 1 | Name of column | Description of column |
