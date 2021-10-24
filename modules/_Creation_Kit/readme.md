@@ -10,8 +10,8 @@ Define the problem you seek to solve using this module.
 List out the impact and benefits this module will have on learners, educators and the learning process.
 
 ## Module Setup and Data Sources
-- Description of data sources: what it is used for, data available, data format, possible use cases or OEA packages it can be used for.
-- Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA.
+- Description of data sources: what it is used for, data available, data format and possible use cases or OEA packages it can be used for.
+- Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA, etc.
 
 ## Module Components 
 Sample out-of-the box assets for this OEA module include: 
