@@ -1,5 +1,5 @@
-> This folder has been populated with initial templates to help get you started. Please
-> make sure to update by following guidelines provided in the OEA Module Creation kit before starting the module creation process.
+> This folder has been populated with initial templates to help get you started with module creation. Please
+> make sure to update this folder and all its associated files and folders by following guidelines provided in the OEA Module Creation kit before starting the module creation process.
 
 # Name of Module
 Provide an overview of the module.
@@ -12,13 +12,13 @@ List out the impact and benefits this module will have on learners, educators an
 
 ## Module Setup and Data Sources
 - Description of data sources: what it is used for, data available, data format, possible use cases or OEA packages it can be used for.
-- Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA
+- Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA.
 
 ## Module Components 
 Sample out-of-the box assets for this OEA module include: 
-1. [Pipelines](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/pipelines) for ingesting data from multiple sources into the data lake.
-2. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/notebooks) for cleaning, transforming, anonymizing and enriching data into the data warehouse.
-3. [PowerBI templates](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
+1. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_Creation_Kit/pipeline) for ingesting data into the data lake and automating the various stages of the process.
+2. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_Creation_Kit/notebook) for cleaning, transforming, anonymizing and enriching data into the data warehouse.
+3. [PowerBI template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
 
 ![image](https://github.com/microsoft/OpenEduAnalytics/blob/0ef79e7554e897c70a25149dd5c6a32cc42c494f/modules/creation_kit/docs/Sample_PowerBI_Dashboard.png) 
 
