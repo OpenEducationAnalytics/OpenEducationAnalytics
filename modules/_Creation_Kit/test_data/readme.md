@@ -3,9 +3,9 @@
 # Test data
 
 ## Data dictionary
-|Category   |Column Name        |Description  |
+|Table Name   |Column Name        |Description  |
 |-----------|-------------------|-------------|
-|Category 1  | Name of column       |Description |
+|Table 1  | Name of column       |Description |
 |            | Name of column       |Description |                                                                 
-|Category 2  | Name of column     |Description |
+|Table 2  | Name of column     |Description |
 |  | Name of column      |Description |
