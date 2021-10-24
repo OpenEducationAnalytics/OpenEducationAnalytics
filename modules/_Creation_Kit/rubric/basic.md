@@ -1,4 +1,4 @@
-# Basic Module (meets minimum requirements)
+# Basic Module (Meets minimum requirements)
 Use this checklist to keep track of your progress. 
 
 > To check a box, place an x within the square bracket [] while in Edit mode. For the checked box to render properly, there shouldn't be any extra space within the square bracket.
