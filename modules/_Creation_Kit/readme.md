@@ -1,6 +1,5 @@
-> This folder has been populated with initial templates to help get you started with module creation. Please
-> make sure to update this folder and all its associated files and folders by following guidelines provided in the OEA Module Creation kit before starting the module creation process.
-
+> This folder has been populated with initial templates to help get you started with the module creation process. 
+> Please make sure to update this folder and all its associated files and folders by following the guidelines provided in the OEA Module Creation kit.
 # Name of Module
 Provide an overview of the module.
 
