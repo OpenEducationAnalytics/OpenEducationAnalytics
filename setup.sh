@@ -70,7 +70,7 @@ if [[ $? != 0 ]]; then
 fi
 
 # install the OEA framework assets
-$oea_path/framework/setup.sh $OEA_SYNAPSE
+$oea_path/framework/setup.sh $OEA_SYNAPSE $OEA_STORAGE_ACCOUNT $OEA_KEYVAULT
 
 workspace_url=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP | jq -r '.connectivityEndpoints | .web')
 echo "--> OEA setup is complete. Click on this url to work with your new Synapse workspace (via Synapse Studio): $workspace_url"

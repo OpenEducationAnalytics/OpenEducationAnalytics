@@ -6,7 +6,7 @@
         "annotations": [],
         "type": "AzureBlobFS",
         "typeProperties": {
-            "url": "https://replacethis.dfs.core.windows.net"
+            "url": "https://yourstorageaccount.dfs.core.windows.net"
         },
         "connectVia": {
             "referenceName": "AutoResolveIntegrationRuntime",
