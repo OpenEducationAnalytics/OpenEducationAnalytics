@@ -32,6 +32,6 @@ def test_EdFiDataGenerator():
     dg.generate_data(2, writer)
 
 #test_ContosoDataGenerator()
-#test_M365DataGenerator()
+test_M365DataGenerator()
 #test_EdFiDataGenerator()
 #test_MSInsightsDataGenerator()

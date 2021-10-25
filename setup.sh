@@ -60,7 +60,6 @@ fi
 echo "--> Setting up OEA (logging detailed setup messages to $logfile)"
 echo "--> Setting up OEA (logging detailed setup messages to $logfile)" 1>&3
 
-
 # setup the base architecture
 echo "--> Setting up the OEA base architecture."
 echo "--> Setting up the OEA base architecture." 1>&3
@@ -71,18 +70,7 @@ if [[ $? != 0 ]]; then
 fi
 
 # install the OEA framework assets
-echo "--> Setting up the OEA framework assets."
-echo "--> Setting up the OEA framework assets." 1>&3
-az synapse dataset create --workspace-name $OEA_SYNAPSE --name data_lake_binary --file @$oea_path/framework/synapse/dataset/data_lake_binary.json
-az synapse dataset create --workspace-name $OEA_SYNAPSE --name data_lake_csv --file @$oea_path/framework/synapse/dataset/data_lake_csv.json
-eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name OEA_py --file @$oea_path/framework/synapse/notebook/OEA_py.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name DataGen_py --file @$oea_path/framework/synapse/notebook/DataGen_py.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $OEA_SYNAPSE --name data_generation_example --file @$oea_path/framework/synapse/notebook/data_generation_example.ipynb --only-show-errors"
-
-# install the ContosoISD package
-echo "--> Setting up the example OEA package."
-echo "--> Setting up the example OEA package." 1>&3
-$oea_path/packages/ContosoISD/setup.sh $org_id
+$oea_path/framework/setup.sh $OEA_SYNAPSE $OEA_STORAGE_ACCOUNT $OEA_KEYVAULT
 
 workspace_url=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP | jq -r '.connectivityEndpoints | .web')
 echo "--> OEA setup is complete. Click on this url to work with your new Synapse workspace (via Synapse Studio): $workspace_url"
