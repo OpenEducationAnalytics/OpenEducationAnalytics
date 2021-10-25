@@ -4,7 +4,7 @@
 # OpenEduAnalytics
                                                                                                                         
 ### Overview
-Open Education Analytics (OEA) is a fully open-sourced ([Creative Commons](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE) and [MIT](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE-CODE)) data integration and analytics framework for the education sector built on [Synapse Analytics](https://azure.microsoft.com/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing role-based access control, and [Azure Purview](https://azure.microsoft.com/en-us/services/purview) for data discovery and governance.
+Open Education Analytics (OEA) is a fully open-sourced ([Creative Commons](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE) and [MIT](https://github.com/microsoft/OpenEduAnalytics/blob/main/LICENSE-CODE)) data integration and analytics framework for the education sector built on [Azure Synapse](https://azure.microsoft.com/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing role-based access control, and [Azure Purview](https://azure.microsoft.com/en-us/services/purview) for data discovery and governance.
 
 <img height="400" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_ref_arch_simple.png">
 
