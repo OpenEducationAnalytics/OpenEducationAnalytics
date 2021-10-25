@@ -1,4 +1,3 @@
-
 from delta.tables import DeltaTable
 from notebookutils import mssparkutils
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, ArrayType, TimestampType, BooleanType, ShortType
@@ -50,8 +49,12 @@ class OEA:
     def load(self, folder, table, stage=None, data_format='delta'):
         """ Loads a dataframe based on the path specified in the given args """
         if stage is None: stage = self.stage2p
-        df = spark.read.load(f"{stage}/{folder}/{table}", format=data_format)
-        return df
+        path = f"{stage}/{folder}/{table}"
+        try:
+            df = spark.read.load(f"{stage}/{folder}/{table}", format=data_format)
+            return df        
+        except AnalysisException as e:
+            raise ValueError("Failed to load. Are you sure you have the right path?\nMore info below:\n" + str(e))
 
     def load_from_stage1(self, path_and_filename, data_format='csv'):
         """ Loads a dataframe with data from stage1, based on the path specified in the given args """
@@ -171,6 +174,9 @@ class OEA:
             logger.warning("[OEA] Could not get list of folders in specified path: " + path + "\nThis may be because the path does not exist.")
         return dirs
 
+    def get_latest_folder(self, path):
+        return self.get_folders(path)[-1]
+
     # Remove a folder if it exists (defaults to use of recursive removal).
     def rm_if_exists(self, path, recursive_remove=True):
         try:
@@ -245,7 +251,7 @@ class OEA:
         if container == None: container = self.stage1np
         for entity_name, value in data.items():
             pdf = pd.DataFrame(value)
-            mssparkutils.fs.put(f"{container}/{folder}/{entity_name}.csv", pdf.to_csv(index=False), True) # True indicates overwrite mode  
+            mssparkutils.fs.put(f"{container}/{folder}/{entity_name}.csv", pdf.to_csv(index=False), True) # True indicates overwrite mode         
 
 class BaseOEAModule:
     """ Provides data processing methods for Contoso SIS data (the student information system for the fictional Contoso school district).  """
@@ -260,9 +266,9 @@ class BaseOEAModule:
         self.module_path = f"{oea.framework_path}/modules/{source_folder}"
         self.schemas = {}
    
-    def _process_entity_from_stage1(self, entity_name, format='csv', write_mode='overwrite', header='true'):
+    def _process_entity_from_stage1(self, path, entity_name, format='csv', write_mode='overwrite', header='true'):
         spark_schema = self.oea.to_spark_schema(self.schemas[entity_name])
-        df = spark.read.format(format).load(f"{self.stage1np}/{entity_name}", header=header, schema=spark_schema)
+        df = spark.read.format(format).load(f"{self.stage1np}/{path}/{entity_name}", header=header, schema=spark_schema)
 
         if self.pseudonymize:
             df_pseudo, df_lookup = self.oea.pseudonymize(df, self.schemas[entity_name])
@@ -298,27 +304,11 @@ class BaseOEAModule:
         self.oea.create_db(self.stage3np, format)
 
     def copy_test_data_to_stage1(self):
-        mssparkutils.fs.cp(self.module_path + '/test_data', self.stage1np, True)
-    
+        mssparkutils.fs.cp(self.module_path + '/test_data', self.stage1np, True)   
+
 class DataLakeWriter:
     def __init__(self, root_destination):
         self.root_destination = root_destination
 
     def write(self, path_and_filename, data_str, format='csv'):
         mssparkutils.fs.append(f"{self.root_destination}/{path_and_filename}", data_str, True) # Set the last parameter as True to create the file if it does not exist
-
-class FileWriter:
-    def __init__(self, root_destination=None):
-        if not root_destination: self.root_destination = ''
-        elif not root_destination.endswith('/'): self.root_destination = root_destination + '/'
-        else: self.root_destination = root_destination
-        self.writers = {}
-
-    def write(self, path_and_filename, data_str):
-        path_and_filename = self.root_destination + path_and_filename
-        if path_and_filename not in self.writers.keys():
-            if not os.path.exists(os.path.dirname(path_and_filename)):
-                os.makedirs(os.path.dirname(path_and_filename))
-            self.writers[path_and_filename] = open(path_and_filename, 'a')
-        
-        self.writers[path_and_filename].write(data_str)
