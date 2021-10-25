@@ -12,7 +12,7 @@ fi
 
 synapse_workspace=$1
 storage_account=$2
-key_vault_$3
+key_vault=$3
 this_file_path=$(dirname $(realpath $0))
 mkdir $this_file_path/tmp
 
@@ -32,9 +32,9 @@ eval "az synapse pipeline create --workspace-name $synapse_workspace --name OEA_
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name OEA_ex2_data_ingestion --file @$this_file_path/pipeline/OEA_ex2_data_ingestion.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name OEA_ex3_data_ingestion --file @$this_file_path/pipeline/OEA_ex3_data_ingestion.json"
 # install notebooks
-eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --file @$this_file_path/notebook/OEA_py.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name DataGen_py --file @$this_file_path/notebook/DataGen_py.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name data_generation_example --file @$this_file_path/notebook/data_generation_example.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --spark-pool-name spark3p1sm --file @$this_file_path/notebook/OEA_py.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name DataGen_py --spark-pool-name spark3p1sm --file @$this_file_path/notebook/DataGen_py.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name data_generation_example --spark-pool-name spark3p1sm --file @$this_file_path/notebook/data_generation_example.ipynb --only-show-errors"
 
 # install the ContosoISD package for an example the user can walk through
 echo "--> Setting up the example OEA package."
