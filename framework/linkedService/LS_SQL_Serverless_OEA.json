@@ -1,0 +1,14 @@
+{
+    "name": "LS_SQL_Serverless_OEA",
+    "properties": {
+        "annotations": [],
+        "type": "AzureSqlDatabase",
+        "typeProperties": {
+            "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=yoursynapseworkspace-ondemand.sql.azuresynapse.net;Initial Catalog=master"
+        },
+        "connectVia": {
+            "referenceName": "AutoResolveIntegrationRuntime",
+            "type": "IntegrationRuntimeReference"
+        }
+    }
+}

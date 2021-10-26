@@ -1,0 +1,86 @@
+{
+	"name": "_data_lake_info",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "spark1",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "python"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/7b9a4896-4541-483f-bdc7-d8f4ec6be3ee/resourceGroups/rg-oea-cisd3gg2core/providers/Microsoft.Synapse/workspaces/syn-oea-cisd3gg2core/bigDataPools/spark1",
+				"name": "spark1",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				}
+			}
+		},
+		"cells": [
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"<img align=\"right\" height=\"50\" src=\"https://microsoft.github.io/OpenEduAnalytics/assets/images/oea-logo-nobg.png\">\r\n",
+					"&nbsp\r\n",
+					"&nbsp\r\n",
+					"\r\n",
+					"---\r\n",
+					"\r\n",
+					"# OEA Map\r\n",
+					"This notebook provides documentation on the structure of the data lake and details on what data is brought in and how it's processed.\r\n",
+					"\r\n",
+					""
+				]
+			},
+			{
+				"cell_type": "markdown",
+				"metadata": {
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# M365\r\n",
+					"\r\n",
+					"M365 data is ingested through the Insights Premium product, and setup via the SDS admin pages.\r\n",
+					"\r\n",
+					"## Roster data\r\n",
+					"This is info about how roster data is received and processed.\r\n",
+					"\r\n",
+					"## Activity data\r\n",
+					"This is info about how roster data is received and processed."
+				]
+			}
+		]
+	}
+}
