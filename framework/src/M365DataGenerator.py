@@ -3,6 +3,8 @@ import os
 import shutil
 import random
 import math
+import pandas as pd
+from datetime import datetime
 from faker import Faker
 
 SUBJECTS = ['Math - Algebra', 'Math - Geometry', 'English Language', 'History - World History',
@@ -53,8 +55,12 @@ class M365DataGenerator:
             writer.write('contoso_sis/section_marks.csv', school_data.pop('_section_marks'))
             writer.write('contoso_sis/students.csv', self.list_of_dict_to_csv(school_data['_students']))
 
-            self.create_and_write_activity_data(school_data['_students'], 'm365/Activity0p2.csv', writer)
-            self.create_and_write_activity_data(school_data['_teachers'], 'm365/Activity0p2.csv', writer)
+            start_date = datetime.strptime(self.fall_semester_start_date, "%Y-%m-%d")
+            end_date = datetime.strptime(self.spring_semester_end_date, "%Y-%m-%d")
+            if end_date > datetime.now(): end_date = datetime.now()
+
+            self.create_and_write_activity_data(school_data['_students'], start_date, end_date, 'm365/Activity0p2.csv', writer)
+            self.create_and_write_activity_data(school_data['_teachers'], start_date, end_date, 'm365/Activity0p2.csv', writer)
 
         writer.write('m365/Org.csv', schools)
 
@@ -303,8 +309,8 @@ class M365DataGenerator:
         datetime_str = "8/13/2020 10:09:43 AM"
         mark_id = 1
         school['_student_section_membership'] = ''
-        school['_attendance'] = ''
-        school['_section_marks'] = ''
+        school['_attendance'] = 'id,student_id,school_year,school_id,attendance_date,all_day,Period,section_id,AttendanceCode,PresenceFlag,attendance_status,attendance_type,attendance_sequence\n'
+        school['_section_marks'] = 'id,student_id,section_id,school_year,term_id,numeric_grade_earned,alpha_grade_earned,is_final_grade,credits_attempted,credits_earned,grad_credit_type\n'
 
         for student in school['_students']:
             for term in school['_terms']:
@@ -317,13 +323,28 @@ class M365DataGenerator:
                         student['_section_ids'].append(spot_taken)
                         school['_student_section_membership'] += f"edp_ssm_{student['SIS ID']},,,ssm_{student['SIS ID']},{datetime_str},{datetime_str},True,edp_{student['SIS ID']},,{ref_student_section_role},edp_{spot_taken}\n"
                         num_enrollments += 1
-                        school['_attendance'] += f"att_{student['SIS ID']},{student['SIS ID']},{self.school_year},{school['SIS ID']},8/15/2020,No,1,{spot_taken},P,1,Present,ClassSectionAttendance,0\n"
+                        school['_attendance'] += self.create_section_attendance(school['SIS ID'], student['SIS ID'], self.school_year, spot_taken,term['Term StartDate'], term['Term EndDate'])
                         grade = self.get_random_grade()
                         credits_earned = 5
                         if grade[1] == 'F': credits_earned = 0
                         school['_section_marks'] += f"m{mark_id},{student['SIS ID']},{spot_taken},,{term['Term SIS ID']},{grade[0]},{grade[1]},No,5,{credits_earned},\n"
                         mark_id += 1
                     if (num_enrollments >= self.classes_in_student_schedule): break        
+
+    def create_section_attendance(self, school_id, student_id, school_year, section_id, start_date, end_date):
+        attendance = ''
+        date_range = pd.date_range(datetime.strptime(start_date, "%m/%d/%Y"), datetime.strptime(end_date, "%m/%d/%Y"))
+        for single_date in date_range:
+            attendance_code = random.choices(['P', 'A'], weights=(80,20))[0]
+            if attendance_code == 'P':
+                presence_flag = 1
+                attendance_status = 'Present'
+            else: 
+                presence_flag = 0
+                attendance_status = 'Absent'
+            attendance += f"att_{student_id},{student_id},{school_year},{school_id},{single_date.strftime('%d/%m/%Y')},No,1,{section_id},{attendance_code},{presence_flag},{attendance_status},ClassSectionAttendance,0\n"
+        return attendance
+
 
     def add_teacher_data(self, school):
         ref_staff_section_role = 'C943E793-2DB7-47C0-B187-A9ED65EEBD5B'
@@ -339,7 +360,7 @@ class M365DataGenerator:
                 if (teacher_index == len(school['_teachers'])):
                     teacher_index = 0  # start over from the beginning of the list of teachers
 
-    def create_and_write_activity_data(self, people, path_and_filename, writer):
+    def create_and_write_activity_data(self, people, start_date, end_date, path_and_filename, writer):
         signal_id_counter = 100
         signal_types = ['VisitTeamChannel', 'ReactedWithEmoji', 'PostChannelMessage', 'ReplyChannelMessage', 'ExpandChannelMessage', 'CallRecordSummarized', 'FileAccessed', 'FileDownloaded',
                         'FileModified', 'FileUploaded', 'ShareNotificationRequested', 'CommentCreated', 'UserAtMentioned', 'AddedToSharedWithMe', 'CommentDeleted', 'Unlike']
@@ -353,7 +374,7 @@ class M365DataGenerator:
         for i in range(num_of_entries_for_person):
             for person in people:
                 signal_type = random.choice(signal_types)
-                start_time = f"{self.faker.date_time_between(start_date='-60d', end_date='now', tzinfo=None)}.0000000"
+                start_time = f"{self.faker.date_time_between_dates(start_date, end_date)}.0000000"
                 agent = random.choice(agents)
                 signal_id = self.faker.uuid4()
                 sis_class_id = random.choice(person['_section_ids'])

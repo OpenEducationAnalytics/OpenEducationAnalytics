@@ -7,7 +7,7 @@ fi
 org_id=$1
 org_id_lowercase=${org_id,,}
 
-export OEA_VERSION="0.4+"
+export OEA_VERSION="0.5"
 export OEA_RESOURCE_GROUP="rg-oea-${org_id}"
 
 export OEA_SYNAPSE="syn-oea-${org_id_lowercase}"
@@ -17,4 +17,4 @@ export OEA_ML_WORKSPACE="mlw-oea-${org_id_lowercase}"
 export OEA_KEYVAULT="kv-oea-${org_id_lowercase}"
 export OEA_ML_STORAGE_ACCOUNT="stmloea${org_id_lowercase}"
 export OEA_APP_INSIGHTS="appi-oea-${org_id_lowercase}"
-
+export OEA_ADDITIONAL_TAGS=""

@@ -41,7 +41,7 @@ az group create -l $location -n $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERS
 # 2) Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
 echo "--> 2) Creating storage account: ${OEA_STORAGE_ACCOUNT}"
 echo "--> 2) Creating storage account: ${OEA_STORAGE_ACCOUNT}" 1>&3
-az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION \
+az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS \
   --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --default-action Allow
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
@@ -61,7 +61,7 @@ az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3p -
 echo "--> 3) Creating Synapse Workspace: $OEA_SYNAPSE (this is usually the longest step - it may take 5 to 10 minutes to complete)"
 echo "--> 3) Creating Synapse Workspace: $OEA_SYNAPSE (this is usually the longest step - it may take 5 to 10 minutes to complete)" 1>&3
 temporary_password="$(openssl rand -base64 12)" # Generate random password (because sql-admin-login-password is required, but not used in this solution)
-az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION \
+az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS \
   --storage-account $OEA_STORAGE_ACCOUNT --file-system synapse-workspace --location $location \
   --sql-admin-login-user eduanalyticsuser --sql-admin-login-password $temporary_password
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
@@ -82,20 +82,20 @@ az synapse spark pool create --name spark3p1sm --workspace-name $OEA_SYNAPSE --r
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 echo "--> Update spark pool to include required libraries (note that this has to be done as a separate step or the create command will fail, despite what the docs say)."
-az synapse spark pool update --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --library-requirements $oea_path/framework/requirements.txt --no-wait
+az synapse spark pool update --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --library-requirements $oea_path/framework/requirements.txt
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 # 4) Create key vault for secure storage of credentials, and create app insights for logging
 echo "--> 4) Creating key vault: ${OEA_KEYVAULT}"
 echo "--> 4) Creating key vault: ${OEA_KEYVAULT}" 1>&3
-az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION
+az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 # give the Synapse workspace access to get secrets from the key vault, for use in Synapse pipelines
 az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get --object-id $synapse_principal_id
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 echo "--> Creating app-insights: $OEA_APP_INSIGHTS"
-az monitor app-insights component create --app $OEA_APP_INSIGHTS --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION
+az monitor app-insights component create --app $OEA_APP_INSIGHTS --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 keyvault_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$OEA_KEYVAULT"

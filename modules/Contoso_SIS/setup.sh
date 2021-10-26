@@ -9,10 +9,9 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
-org_id=$1
+synapse_workspace=$1
 this_file_path=$(dirname $(realpath $0))
-echo "--> Installing: $this_file_path, in resource group: $OEA_RESOURCE_GROUP"
-source $this_file_path/../../set_names.sh $org_id
+echo "--> Installing: $this_file_path, in synapse workspace: $synapse_workspace"
 
 # copy test data set
 source="$this_file_path/test_data"

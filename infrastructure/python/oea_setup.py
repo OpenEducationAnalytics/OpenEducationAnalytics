@@ -1,27 +1,17 @@
 # need to run "pip install -r requirements.txt"
 import sys
-import secrets
 import string
 import logging
-import os, random
-import json
-import time
-#from azure.identity import AzureCliCredential
-#from azure.mgmt.resource import ResourceManagementClient
-#from azure.mgmt.keyvault import KeyVaultManagementClient
-#from azure.mgmt.synapse import SynapseManagementClient
-#from azure.synapse.artifacts import ArtifactsClient
-#from azure.mgmt.storage import StorageManagementClient
-#from azure.core.exceptions import HttpResponseError
+import os
+from datetime import datetime
+from azure.core.exceptions import HttpResponseError
+from AzureClient import AzureClient
+from msrest.exceptions import ValidationError
 
-# Add the framework/src dir to the python path
-sys.path.append(f"{os.path.dirname(os.path.abspath(__file__))}/framework/src")
-import AzureClient
-
-_oea_suffix = 'genetest11'
-_subscription_id = '9116e83a-48f0-4e84-80d8-7e73430608df'
+_oea_suffix = 'mytest14'
+_subscription_id = 'xxxx'
 _location = 'westus'
-_tenant_id = '178ab4db-1ad5-49ad-86a7-06a29409af8a'
+_tenant_id = 'xxxx'
 _resource_group_name = 'rg-oea-' + _oea_suffix
 _synapse_workspace_name = 'syn-oea-' + _oea_suffix
 _storage_account_name = 'stoea' + _oea_suffix
@@ -33,18 +23,14 @@ _oea_version = "0.4+"
 _tags = {'oea_version':_oea_version}
 _oea_path = '/home/global/clouddrive/OpenEduAnalytics'
 
-logger = logging.getLogger("setup_oea")
-logger.setLevel(logging.DEBUG)
+# Info on logging in Azure python sdk: https://docs.microsoft.com/en-us/azure/developer/python/azure-sdk-logging
+logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', filename='setup_oea_log_{:%Y_%m_%d__%H_%M}.log'.format(datetime.now()), level=logging.DEBUG)
+# uncomment this for verbose messages to be sent to console
+#logging.getLogger("").addHandler(logging.StreamHandler(sys.stdout))
+logger = logging.getLogger('oea_setup')
 logger.addHandler(logging.StreamHandler(sys.stdout))
 
-_azure_client = AzureClient.AzureClient(_tenant_id, _subscription_id, _location, _tags, _resource_group_name)
-
-# When running locally, first login to azure with: az login
-
-def get_synapse_principal_id(resource_group_name, synapse_workspace_name):
-    result = os.popen(f"az synapse workspace show --name {synapse_workspace_name} --resource-group {resource_group_name} --query identity.principalId -o tsv").read()
-    synapse_principal_id = result[:-1] #strip the newline character
-    return synapse_principal_id
+_azure_client = AzureClient(_tenant_id, _subscription_id, _location, _tags, _resource_group_name)
 
 def env_prep():
     # 0) Ensure that the resource providers are registered in the subscription (more info about this here: https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/error-register-resource-provider )
@@ -59,39 +45,45 @@ def env_prep():
     # and allow for az extensions to be installed as needed without prompting (extensions like azure-cli-ml and application-insights end up being installed)
     os.system("az config set extension.use_dynamic_install=yes_without_prompt")
 
+#_azure_client.create_notebook('C:/repos/OpenEduAnalytics/infrastructure/python/new_notebook.json', _synapse_workspace_name)
+logger.info("starting installation...")
 # 1) Create the resource group
 logger.info(f"--> 1) Creating resource group: {_resource_group_name}")
-_azure_client.create_resource_group(_resource_group_name)
-_azure_client.resource_group_name = _resource_group_name
+try:
+  _azure_client.create_resource_group(_resource_group_name)
+  #_azure_client.create_resource_group("this_is_a_test_$$_ ^^")
+  _azure_client.resource_group_name = _resource_group_name
+except ValidationError as e:
+    logger.error('Validation Error - failed to create resource group: ' + str(e))
+    exit()
 #todo: check to make sure the creation of the resource group actually happened
 
 # 2) Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
 logger.info(f"--> 2) Creating storage account: {_storage_account_name}")
-_azure_client.create_storage_account(_storage_account_name)
+storage_account = _azure_client.create_storage_account(_storage_account_name)
 logger.info("--> Creating storage account containers.")
-_azure_client.create_containers(_storage_account_name, ['oea-framework', 'synapse-workspace', 'stage1np', 'stage2np', 'stage2p', 'stage3np', 'stage3p'])
+#_azure_client.create_containers(_storage_account_name, ['oea-framework', 'synapse-workspace', 'stage1np', 'stage2np', 'stage2p', 'stage3np', 'stage3p'])
 
 # 3) Create Synapse workspace, configure firewall access, and create spark pool
 # todo: specify a name for the managed resource group that gets created
 logger.info(f"--> 3) Creating Synapse Workspace: {_synapse_workspace_name} (this is usually the longest step - it may take 5 to 10 minutes to complete)")
-_azure_client.create_synapse_workspace(_synapse_workspace_name, _storage_account_name)
-
+synapse_workspace = _azure_client.create_synapse_workspace(_synapse_workspace_name, _storage_account_name)
 # This permission is necessary to allow a data pipeline in Synapse to invoke notebooks.
 # In order to set this permission, the user has to have the role assignment of "Owner" on the Azure subscription.
-assignee = get_synapse_principal_id(_resource_group_name, _synapse_workspace_name)
-_azure_client.add_role_assignment_to_storage_account('Storage Blob Data Contributor', assignee)
+_azure_client.create_role_assignment('Storage Blob Data Contributor', storage_account.id, synapse_workspace.identity.principal_id)
 
 logger.info("--> Creating firewall rule for accessing Synapse Workspace.")
-_azure_client.add_firewall_rule_for_synapse(_synapse_workspace_name)
+_azure_client.add_firewall_rule_for_synapse('allowAll', '0.0.0.0', '255.255.255.255', _synapse_workspace_name)
 
 logger.info("--> Creating spark pool.")
-library_requirements = f"{_oea_path}/framework/requirements.txt"
-_azure_client.create_spark_pool(_synapse_workspace_name, "spark3p1sm", library_requirements)
+_azure_client.create_spark_pool(_synapse_workspace_name, "spark3p1sm")
+library_requirements = f"{os.path.dirname(__file__)}/requirements.txt"
+# todo: this doesn't seem to be working
+#_azure_client.update_spark_pool_with_requirements(_synapse_workspace_name, "spark3p1sm", library_requirements)
 
-# 4) Create key vault for secure storage of credentials, and create app insights for logging
+# 4) Create key vault for secure storage of credentials, and create app insights for logger
 logger.info(f"--> 4) Creating key vault: {_key_vault_name}")
-synapse_principal_id = get_synapse_principal_id(_resource_group_name, _synapse_workspace_name)
-access_policy_for_synapse = { 'tenant_id': _tenant_id, 'object_id': synapse_principal_id, 
+access_policy_for_synapse = { 'tenant_id': _tenant_id, 'object_id': synapse_workspace.identity.principal_id, 
                               'permissions': { 'secrets': ['get'] } 
                             }
 access_policy_for_user = { 'tenant_id': _tenant_id, 'object_id': _user_object_id,                
