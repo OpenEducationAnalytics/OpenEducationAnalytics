@@ -1,11 +1,11 @@
 # Sample Datasets
 
-Sample datasets provided in this module were created using the pipeline integration, landing 3 datasets into stage 1 of the data lake. The following queries were used for this example module, and utilized the beta version of Graph API:
- - Microsoft Users: ``` beta/users?$select=givenName,surname,userPrincipalName,id ```
- - Microsoft 365 Applications User Detail: ``` beta/reports/getM365AppUserDetail(period='D180')/content?$format=application/json ```
- - Teams Activity User Detail: ``` beta/reports/getTeamsUserActivityUserDetail(period='D180')?$format=application/json ```
+Sample datasets provided in this module were created using the pipeline integration, landing 3 datasets into stage 1 of the data lake, and then generating sample test data for demonstration. The following queries were used for this example module, and utilized the beta version of Graph Reports API:
+ - Microsoft Users: ``` beta/users ```
+ - Microsoft 365 Applications User Detail: ``` beta/reports/getM365AppUserDetail(period='D7')/content?$format=application/json ```
+ - Teams Activity User Detail: ``` beta/reports/getTeamsUserActivityUserDetail(period='D7')?$format=application/json ```
 
-Use this dataset by downloading the "GraphAPI" folder and uploading to your Synapse environment. Follow the tutorial documentation [here](https://github.com/cstohlmann/oea-graph-api/blob/main/docs/documents/Graph%20Reports%20API%20Tutorial.pdf) for implementing these datasets, and using them for the pipeline template provided in this Graph Reports API module.
+Use this dataset by downloading the "GraphAPI" folder and uploading to your Synapse environment. Follow the instructions [here](https://github.com/cstohlmann/oea-graph-api/tree/main/docs/documents) for implementing these datasets, and using them for the notebook provided in this Graph Reports API module.
 ### For more info on these queries
 | Resource | Description |
 | --- | --- |
