@@ -4,8 +4,9 @@
  1. To first familiarize yourself with this module and what data Graph Reports API can offer: you'll need to start by cloning the entire OEA repository through GitHub Desktop. 
  2. Then, navigate to the locally downloaded [datasets](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/datasets), [notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Graph/notebooks/GraphAPI_module_setup.ipynb), and [PowerBI dashboard template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Graph/powerbi/graphReportsAPI.pbix) within this module. 
 3. Next, upload the GraphAPI folder containing the datasets, and the notebook to your Azure Synapse environment.
-4. Run the notebook. Then, you can open up the PowerBI dashboard template (you'll want to use a DirectQuery of the serverless SQL database; [click here for information on how to do this](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsSolutionGuide.pdf)).
-5.  You can interact with the dashboard to gain understanding of what this template can provide within the scope of this module.
+     * You will find it much easier to upload the datasets through Microsoft Azure Storage Explorer, rather than doing it by hand.
+5. Run the notebook. Then, you can open up the PowerBI dashboard template (you'll want to use a DirectQuery of the serverless SQL database; [click here for information on how to do this](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OpenEduAnalyticsSolutionGuide.pdf)).
+6.  You can interact with the dashboard to gain understanding of what this template can provide within the scope of this module.
 ## Pipeline Template Setup
 1. To use your own data from Graph Reports API, you can start by navigating to our [pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Graph/pipelines/GraphAPI_Pipeline.zip) within your cloned environment.
      * <strong><em> Please note: you will need to upload the GitHub-Desktop-cloned version of the pipeline template; if you attempt to download the template directly from this module online, you will be unable to upload it within your Azure Synapse workspace. </strong></em>
