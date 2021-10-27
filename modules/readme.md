@@ -10,7 +10,7 @@ Some of the common OEA module assets include:
 - notebook for aggregating, transforming, enriching and exploring the data.
 - PowerBI template to visualize and explore the ‘ready’ data from the module’s data source and an initial semantic model.
 - test data to bring the module to life in non-production environments.
-- documentaions with descriptions, additional information and instructions on how to use the module.
+- documentaion with descriptions, additional information and instructions on how to use the module.
 
 An example of an OEA module is the [Microsoft Graph Reports API module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph) which provides a gateway to data and intelligence in Microsoft 365. This Graph Reports data is freely available to education customers using Office 365 and includes app usage data (Teams, OneDrive, Outlook, etc). This module leverages the OEA reference architecture to enable education systems to bring in the Microsoft Graph data to their own Azure data lake, to combine it with other datasets for analysis (e.g., Learning Management Systems (LMS), Student Information Systems (SIS), Assessment, or other digital learning apps).
 
