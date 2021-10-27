@@ -43,13 +43,13 @@ These dashboard examples represent only data from Microsoft Teams and O365. When
   - Microsoft Graph Reports API is free to access, and does not require a subscription. However, if you want to pull your own usage data from O365 and Teams (which is the primary focus of this module), these will require subscriptions for your education system.
 
 1. Import the [Graph Reports API pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/pipelines) into stage1np of your Synapse data lake, connect a Graph API linked service, and trigger the pipeline.
-2. Load and run the [Graph Reports API module notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/notebooks) into your Synapse workspace. One spark database (s2_graphapi) will be created.
-3. Download the Power BI template file [Graph Reports API](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/powerbi) and connect to your Synapse workspace serverless SQL endpoint.
+2. Load and run the [Graph Reports API module notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/notebooks) into your Synapse workspace. Two spark databases (s2np_graphapi and s2p_graphapi) will be created.
+3. Download the Power BI template file [Graph Reports API](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/powerbi) and connect to your Synapse workspace serverless SQL endpoint. We recommend using a directQuery from the s2p_graphapi database.
 
 
 ## Module Components
 Out-of-the box assets for this OEA module include: 
-1. [Tutorial](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Graph/docs/documents/Graph%20Reports%20API%20Tutorial.pdf): A tutorial of how to use this module within your own Synapse workspace, as well as demonstration to build custom queries to pull data for your education tenant from Microsoft Graph Reports API.
+1. [Tutorial/Instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/docs/documents): A tutorial and instructions of how to use this module within your own Synapse workspace, as well as demonstration to build custom queries to pull data for your education tenant from Microsoft Graph Reports API.
 2. [Sample Datasets](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/datasets): Ingest sample data to understand the utility and functionality of the notebook(s).
 3. [Pipeline(s)](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/pipelines): A pipeline which connects Microsoft Graph Reports API to the Synapse workspace.
 4. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/notebooks): An example notebook on processing the data from stage 1 to stage 2 within Synapse. 
