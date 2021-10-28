@@ -10,7 +10,7 @@
 ## Pipeline Template Setup
 1. To use your own data from Graph Reports API, you can start by navigating to our [pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Graph/pipelines/GraphAPI_Pipeline.zip) within your cloned environment.
      * <strong><em> Please note: you will need to upload the GitHub-Desktop-cloned version of the pipeline template; if you attempt to download the template directly from this module online, you will be unable to upload it within your Azure Synapse workspace. </strong></em>
-2. It is strongly advised that you delete all JSON files previously used (in the last step) from the sample datasets, as you may run into issues processing both your own data and the sample datasets when triggering the pipeline, and running the notebook.
+2. It is strongly advised that you delete all JSON files previously used (in the initial setup) from the sample datasets, as you may run into issues processing both your own data and the sample datasets when triggering the pipeline, and running the notebook.
 3. The tutorial explains a step-by-step process of setting your Synapse environment to land Graph Reports API data via managing the endpoints within a pipeline (go through steps 1-2, skip step 3, and follow from step 4 through the rest of the tutorial).
 4. After successfully running the notebook, you can open up the PowerBI dashboard template again - except this time the dashboard will be using <em> your own </em> data.
 ## Custom Pipeline Building
