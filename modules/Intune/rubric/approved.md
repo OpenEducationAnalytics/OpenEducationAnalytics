@@ -1,13 +1,11 @@
 # Approved Module (Curation approved for GitHub)
-Use this checklist to keep track of your progress.
-
-> To check a box, place an x within the square bracket [] while in Edit mode. For the checked box to render properly, there shouldn't be any extra space within the square bracket.
+Using this checklist to track the progress with this module. 
 
 ## Documentation
 - [ ] Use general OEA templates for all assets (OEA Logo, Creative Commons License, partner logo - if applicable.
-- [ ] Readme file showing where all assets in module are. Assets should be organized in folders.
+- [x] Readme file showing where all assets in module are. Assets should be organized in folders.
 - [ ] Description of data source: what it is used for, data available, data dictionary and possible use cases or OEA packages it can be used for.
-- [ ] Guidance on prerequisites for module (like subscriptions/licenses to data source needed).
+- [x] Guidance on prerequisites for module (like subscriptions/licenses to data source needed).
 
 ## Collect
 - [ ] Sample data set (flat files, eg: CSV).
@@ -19,7 +17,7 @@ Use this checklist to keep track of your progress.
 - [ ] Implement process_stage1_into_stage2().
 
 ## Communicate
-- [ ] PowerBI semantic model demonstrating entity relationships.
+- [x] PowerBI semantic model demonstrating entity relationships.
 - [ ] PowerBI dashboard with pages and visuals properly labeled. Each visual should also have tooltips with brief descriptions.
 
 ## Quality
