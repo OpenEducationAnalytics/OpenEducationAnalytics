@@ -3,12 +3,8 @@ Microsoft Intune is a cloud-based service that focuses on the management of devi
 
 You can use this Open Education Analytics (OEA) Microsoft Intune Reports module to incorporate device data into your organization's Synapse data lake.
 
- ![alt text](https://github.com/cstohlmann/oea-intune-module/blob/main/docs/images/Intune%20visual.png)
- <p align="center">
- <emp>
+ ![image](https://github.com/microsoft/OpenEduAnalytics/blob/bb54627d99d8ae8fcc4b575cdd040b9b61b6b730/modules/Intune/docs/images/Intune%20Diagram.png)
  (Microsoft documentation on Intune: https://docs.microsoft.com/en-us/mem/intune/fundamentals/what-is-intune) 
- </emp>
- </p>
 
 ## Problem Statement
 As education systems and institutions begin to incorporate more digital forms of learning, understanding the number of students without access to devices outside of school is vital. This "devices" data can be combined with other data sources (such as Azure Active Directory or Microsoft Education Insights data), to get a real time view of student use of devices especially outside physical school to ensure all students have sufficient ‘digital access’ for learning. This can also be combined with school and  class rosters, attendance, and grades from Student Information Systems to produce visualizations that help with intervention targeting. 
