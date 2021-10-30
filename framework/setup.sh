@@ -35,11 +35,11 @@ eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_AD
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_Azure_SQL_DB --file @$this_file_path/dataset/DS_Azure_SQL_DB.json"
 
 #  - setup pipelines
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_URL --file @$this_file_path/pipeline/Copy_from_URL.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_each_URL --file @$this_file_path/pipeline/Copy_from_each_URL.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_Azure_SQL_DB --file @$this_file_path/pipeline/Copy_from_Azure_SQL_DB.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_all_from_Azure_SQL_DB --file @$this_file_path/pipeline/Copy_all_from_Azure_SQL_DB.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_Contoso_test_data --file @$this_file_path/pipeline/Copy_Contoso_test_data.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_Azure_SQL_DB --file @$this_file_path/pipeline/Copy_from_Azure_SQL_DB.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_each_URL --file @$this_file_path/pipeline/Copy_from_each_URL.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_URL --file @$this_file_path/pipeline/Copy_from_URL.json"
 
 # install notebooks
 eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --spark-pool-name spark3p1sm --file @$this_file_path/notebook/OEA_py.ipynb --only-show-errors"
