@@ -17,16 +17,17 @@ this_file_path=$(dirname $(realpath $0))
 mkdir $this_file_path/tmp
 
 echo "--> Setting up the OEA framework assets."
-sed "s/yoursynapseworkspace/$synapse_workspace/" $this_file_path/linkedService/LS_SQL_Serverless_OEA.json > $this_file_path/tmp/LS_SQL_Serverless_OEA.json
-sed "s/yourstorageaccount/$storage_account/" $this_file_path/linkedService/LS_ADLS_OEA.json > $this_file_path/tmp/LS_ADLS_OEA.json
-sed "s/yourkeyvault/$key_vault/" $this_file_path/linkedService/LS_KeyVault_OEA.json > $this_file_path/tmp/LS_KeyVault_OEA.json
 
 # install integration assets
 #  - setup Linked Services 
-eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_ADLS_OEA --file @$this_file_path/tmp/LS_ADLS_OEA.json"
-eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_SQL_Serverless_OEA --file @$this_file_path/tmp/LS_SQL_Serverless_OEA.json"
-eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_KeyVault_OEA --file @$this_file_path/tmp/LS_KeyVault_OEA.json"
+eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_Azure_SQL_DB --file @$this_file_path/linkedService/LS_Azure_SQL_DB.json"
 eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_HTTP --file @$this_file_path/linkedService/LS_HTTP.json"
+sed "s/yoursynapseworkspace/$synapse_workspace/" $this_file_path/linkedService/LS_SQL_Serverless_OEA.json > $this_file_path/tmp/LS_SQL_Serverless_OEA.json
+eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_SQL_Serverless_OEA --file @$this_file_path/tmp/LS_SQL_Serverless_OEA.json"
+sed "s/yourstorageaccount/$storage_account/" $this_file_path/linkedService/LS_ADLS_OEA.json > $this_file_path/tmp/LS_ADLS_OEA.json
+eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_ADLS_OEA --file @$this_file_path/tmp/LS_ADLS_OEA.json"
+sed "s/yourkeyvault/$key_vault/" $this_file_path/linkedService/LS_KeyVault_OEA.json > $this_file_path/tmp/LS_KeyVault_OEA.json
+eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_KeyVault_OEA --file @$this_file_path/tmp/LS_KeyVault_OEA.json"
 
 #  - setup Datasets
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_ADLS_binary --file @$this_file_path/dataset/DS_ADLS_binary.json"
