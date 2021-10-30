@@ -1,39 +1,51 @@
 {
-    "name": "DS_ADLS_parquet",
+    "name": "DS_Azure_SQL_DB",
     "properties": {
-        "description": "Used for landing data in the data lake as in parquet format.\nDefaults to landing data in stage1np.\nNote that you cannot specify a filename because with parquet the filename should be auto-generated.\n",
         "linkedServiceName": {
-            "referenceName": "LS_ADLS_OEA",
-            "type": "LinkedServiceReference"
+            "referenceName": "LS_Azure_SQL_DB",
+            "type": "LinkedServiceReference",
+            "parameters": {
+                "dbServer": {
+                    "value": "@dataset().dbServer",
+                    "type": "Expression"
+                },
+                "dbName": {
+                    "value": "@dataset().dbName",
+                    "type": "Expression"
+                },
+                "userName": {
+                    "value": "@dataset().userName",
+                    "type": "Expression"
+                },
+                "keyVaultSecretName": {
+                    "value": "@dataset().keyVaultSecretName",
+                    "type": "Expression"
+                }
+            }
         },
         "parameters": {
-            "filesystem": {
+            "dbServer": {
                 "type": "string",
-                "defaultValue": "stage1np"
+                "defaultValue": "myserver.database.windows.net"
             },
-            "directory": {
-                "type": "string"
+            "dbName": {
+                "type": "string",
+                "defaultValue": "testdb"
+            },
+            "userName": {
+                "type": "string",
+                "defaultValue": "sqlAdmin"
+            },
+            "keyVaultSecretName": {
+                "type": "string",
+                "defaultValue": "sqlAdminPwd"
             }
         },
         "folder": {
             "name": "OEA_Framework"
         },
         "annotations": [],
-        "type": "Parquet",
-        "typeProperties": {
-            "location": {
-                "type": "AzureBlobFSLocation",
-                "folderPath": {
-                    "value": "@dataset().directory",
-                    "type": "Expression"
-                },
-                "fileSystem": {
-                    "value": "@dataset().filesystem",
-                    "type": "Expression"
-                }
-            },
-            "compressionCodec": "snappy"
-        },
+        "type": "AzureSqlTable",
         "schema": []
     },
     "type": "Microsoft.Synapse/workspaces/datasets"
