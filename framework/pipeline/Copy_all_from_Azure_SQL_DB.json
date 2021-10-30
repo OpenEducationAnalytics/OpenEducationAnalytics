@@ -1,0 +1,176 @@
+{
+    "name": "Copy_all_from_Azure_SQL_DB",
+    "properties": {
+        "activities": [
+            {
+                "name": "Get list of tables",
+                "type": "Lookup",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "AzureSqlSource",
+                        "sqlReaderQuery": "select schema_name(t.schema_id) as schema_name, t.name as table_name\nfrom sys.tables t",
+                        "queryTimeout": "02:00:00",
+                        "partitionOption": "None"
+                    },
+                    "dataset": {
+                        "referenceName": "DS_Azure_SQL_DB",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "dbServer": {
+                                "value": "@pipeline().parameters.dbServer",
+                                "type": "Expression"
+                            },
+                            "dbName": {
+                                "value": "@pipeline().parameters.dbName",
+                                "type": "Expression"
+                            },
+                            "userName": {
+                                "value": "@pipeline().parameters.userName",
+                                "type": "Expression"
+                            },
+                            "keyVaultSecretName": {
+                                "value": "@pipeline().parameters.keyVaultSecretName",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "firstRowOnly": false
+                }
+            },
+            {
+                "name": "Set currentDateTime",
+                "type": "SetVariable",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "currentDateTime",
+                    "value": {
+                        "value": "@{formatDateTime(convertTimeZone(utcnow(), 'UTC', pipeline().parameters.timezone), 'yyyy-MM-ddTHHmm_ss')}",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "ForEach1",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Get list of tables",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Set currentDateTime",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Get list of tables').output.value",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "Copy_from_Azure_SQL_DB",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "Copy_from_Azure_SQL_DB",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "dbServer": {
+                                        "value": "@pipeline().parameters.dbServer",
+                                        "type": "Expression"
+                                    },
+                                    "dbName": {
+                                        "value": "@pipeline().parameters.dbName",
+                                        "type": "Expression"
+                                    },
+                                    "userName": {
+                                        "value": "@pipeline().parameters.userName",
+                                        "type": "Expression"
+                                    },
+                                    "keyVaultSecretName": {
+                                        "value": "@pipeline().parameters.keyVaultSecretName",
+                                        "type": "Expression"
+                                    },
+                                    "query": {
+                                        "value": "select * from @{item().schema_name}.@{item().table_name}",
+                                        "type": "Expression"
+                                    },
+                                    "sinkFilesystem": {
+                                        "value": "@pipeline().parameters.sinkFilesystem",
+                                        "type": "Expression"
+                                    },
+                                    "sinkDirectory": {
+                                        "value": "@{pipeline().parameters.sinkDirectory}/@{variables('currentDateTime')}/@{item().table_name}",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "dbServer": {
+                "type": "string",
+                "defaultValue": "contosoisd3a.database.windows.net"
+            },
+            "dbName": {
+                "type": "string",
+                "defaultValue": "contoso_sis"
+            },
+            "userName": {
+                "type": "string",
+                "defaultValue": "sqladmin"
+            },
+            "keyVaultSecretName": {
+                "type": "string",
+                "defaultValue": "sqladmin-password"
+            },
+            "sinkFilesystem": {
+                "type": "string",
+                "defaultValue": "stage1np"
+            },
+            "sinkDirectory": {
+                "type": "string",
+                "defaultValue": "contoso_sis_db"
+            },
+            "timezone": {
+                "type": "string",
+                "defaultValue": "Eastern Standard Time"
+            }
+        },
+        "variables": {
+            "currentDateTime": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-10-29T22:15:07Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

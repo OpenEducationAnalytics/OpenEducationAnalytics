@@ -1,0 +1,53 @@
+{
+    "name": "Copy_Contoso_test_data",
+    "properties": {
+        "description": "Copies in the Contoso test data and lands it in stage1np.\nUse this pipeline as part of the Contoso example.",
+        "activities": [
+            {
+                "name": "Copy_from_each_URL - SIS test data",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "Copy_from_each_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "endpoints": {
+                            "value": "@json('[{\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/studentattendance.csv\",\"sinkDirectory\": \"contoso_sis\",\"sinkFilename\": \"studentattendance/studentattendance.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/studentdemographics.csv\",\"sinkDirectory\": \"contoso_sis\",\"sinkFilename\": \"studentdemographics/studentdemographics.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/studentsectionmark.csv\",\"sinkDirectory\": \"contoso_sis\",\"sinkFilename\": \"studentsectionmark/studentsectionmark.csv\"}]')",
+                            "type": "Expression"
+                        },
+                        "sinkFilesystem": "stage1np",
+                        "timezone": "Eastern Standard Time"
+                    }
+                }
+            },
+            {
+                "name": "Copy_from_each_URL - M365 test data",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "Copy_from_each_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "endpoints": {
+                            "value": "@json('[{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Activity/ApplicationUsage/Activity.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"Activity/Activity.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/Calendar.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"Calendar/Calendar.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/Course.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"Course/Course.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/Org.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"Org/Org.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/Person.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"Person/Person.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/PersonIdentifier.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"PersonIdentifier/PersonIdentifier.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/RefDefinition.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"RefDefinition/RefDefinition.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/Section.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"Section/Section.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/Session.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"Session/Session.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/StaffOrgAffiliation.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"StaffOrgAffiliation/StaffOrgAffiliation.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/StaffSectionMembership.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"StaffSectionMembership/StaffSectionMembership.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/StudentOrgAffiliation.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"StudentOrgAffiliation/StudentOrgAffiliation.csv\"},\n{\"URL\":\"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/M365/test_data/DIPData/Roster/StudentSectionMembership.csv\", \"sinkDirectory\":\"m365\", \"sinkFilename\":\"StudentSectionMembership/StudentSectionMembership.csv\"}]')",
+                            "type": "Expression"
+                        },
+                        "sinkFilesystem": "stage1np",
+                        "timezone": "Eastern Standard Time"
+                    }
+                }
+            }
+        ],
+        "annotations": [],
+        "lastPublishTime": "2021-10-28T13:57:38Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

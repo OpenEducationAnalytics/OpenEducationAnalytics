@@ -1,7 +1,7 @@
 {
-    "name": "DS_ADLS_binary",
+    "name": "DS_ADLS_parquet",
     "properties": {
-        "description": "Used for landing data in the data lake.\nDefaults to landing data in stage1np.\nNote that you can specify a full path in the filename param (eg, to land a file in a specific folder filename param can be 'contoso_sis/students/students.csv').\n",
+        "description": "Used for landing data in the data lake as in parquet format.\nDefaults to landing data in stage1np.\nNote that you cannot specify a filename because with parquet the filename should be auto-generated.\n",
         "linkedServiceName": {
             "referenceName": "LS_ADLS_OEA",
             "type": "LinkedServiceReference"
@@ -11,7 +11,7 @@
                 "type": "string",
                 "defaultValue": "stage1np"
             },
-            "filename": {
+            "directory": {
                 "type": "string"
             }
         },
@@ -19,20 +19,22 @@
             "name": "OEA_Framework"
         },
         "annotations": [],
-        "type": "Binary",
+        "type": "Parquet",
         "typeProperties": {
             "location": {
                 "type": "AzureBlobFSLocation",
-                "fileName": {
-                    "value": "@dataset().filename",
+                "folderPath": {
+                    "value": "@dataset().directory",
                     "type": "Expression"
                 },
                 "fileSystem": {
                     "value": "@dataset().filesystem",
                     "type": "Expression"
                 }
-            }
-        }
+            },
+            "compressionCodec": "snappy"
+        },
+        "schema": []
     },
     "type": "Microsoft.Synapse/workspaces/datasets"
 }
