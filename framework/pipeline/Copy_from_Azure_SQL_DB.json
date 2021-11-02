@@ -1,0 +1,125 @@
+{
+    "name": "Copy_from_Azure_SQL_DB",
+    "properties": {
+        "activities": [
+            {
+                "name": "Copy from Azure SQL DB",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "AzureSqlSource",
+                        "sqlReaderQuery": {
+                            "value": "@pipeline().parameters.query",
+                            "type": "Expression"
+                        },
+                        "queryTimeout": "02:00:00",
+                        "partitionOption": "None"
+                    },
+                    "sink": {
+                        "type": "ParquetSink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        },
+                        "formatSettings": {
+                            "type": "ParquetWriteSettings"
+                        }
+                    },
+                    "enableStaging": false,
+                    "translator": {
+                        "type": "TabularTranslator",
+                        "typeConversion": true,
+                        "typeConversionSettings": {
+                            "allowDataTruncation": true,
+                            "treatBooleanAsNumber": false
+                        }
+                    }
+                },
+                "inputs": [
+                    {
+                        "referenceName": "DS_Azure_SQL_DB",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "dbServer": {
+                                "value": "@pipeline().parameters.dbServer",
+                                "type": "Expression"
+                            },
+                            "dbName": {
+                                "value": "@pipeline().parameters.dbName",
+                                "type": "Expression"
+                            },
+                            "userName": {
+                                "value": "@pipeline().parameters.userName",
+                                "type": "Expression"
+                            },
+                            "keyVaultSecretName": {
+                                "value": "@pipeline().parameters.keyVaultSecretName",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "DS_ADLS_parquet",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@pipeline().parameters.sinkFilesystem",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "@pipeline().parameters.sinkDirectory",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ]
+            }
+        ],
+        "parameters": {
+            "dbServer": {
+                "type": "string",
+                "defaultValue": "contosoisd3a.database.windows.net"
+            },
+            "dbName": {
+                "type": "string",
+                "defaultValue": "contoso_sis"
+            },
+            "userName": {
+                "type": "string",
+                "defaultValue": "sqladmin"
+            },
+            "keyVaultSecretName": {
+                "type": "string",
+                "defaultValue": "sqladmin-password"
+            },
+            "query": {
+                "type": "string",
+                "defaultValue": "select * from person"
+            },
+            "sinkFilesystem": {
+                "type": "string",
+                "defaultValue": "stage1np"
+            },
+            "sinkDirectory": {
+                "type": "string",
+                "defaultValue": "contoso_sis_db/person"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-10-29T22:15:03Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
