@@ -23,7 +23,7 @@ This PowerBI module is made up of 1 table.
 | | DeviceId | The ID of the device. |
 | | DeviceName | The name of the device.  |
 | | LastCheckIn | The date and time the device was last accessed.  |
-| | LastCheckInDate | The date the device was last accesses. |
+| | LastCheckInDate | The date the device was last accessed. |
 | | ManagedBy | Who manages the device.  |
 | | OS | Type of operating system.  |
 | | OSVersion | Version of operating system.  |
