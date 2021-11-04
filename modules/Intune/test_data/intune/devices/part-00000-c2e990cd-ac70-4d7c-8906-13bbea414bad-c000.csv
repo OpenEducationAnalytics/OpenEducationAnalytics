@@ -1,0 +1,212 @@
+DeviceName,ManagedBy,Ownership,Compliance,OS,OSVersion,LastCheckIn,PrimaryUserUPN,DeviceID
+DESKTOP-M5HCKFC,Intune,Corporate,Compliant,Windows,10.0.21692.1000,2021-06-01 14:19:07.1733099,debrasmith1@contosoisd3.onmicrosoft.com,8feeb0b7-7e88-4ca2-9a12-9a79b604010e
+DESKTOP-KQOEDOR,Intune,Corporate,Compliant,macOS,10.0.22000.100,2021-08-05 18:09:59.1314562,brianmcdonald86@contosoisd3.onmicrosoft.com,5662e819-1ade-4de8-b013-155e8a9a2f0f
+DESKTOP-O1BG8QB,Intune,Personal,Compliant,iOS/iPadOS,10.0.21380.1,2021-07-19 20:53:28.0081679,jennifermayer2@contosoisd3.onmicrosoft.com,e911c8bc-31ac-4096-926b-d15a70bd5bd9
+HARLEYH-SVEDU,Intune,Personal,Compliant,Windows,10.0.21990.1,2021-06-03 06:48:05.7911489,melissaphelps32@contosoisd3.onmicrosoft.com,5318350b-d4e6-41ca-ba0c-3656cf85ec53
+cacarras_Windows_7/22/2021_11:10 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-07-23 00:58:12.0000000,abigaillong3@contosoisd3.onmicrosoft.com,20a894d2-0cdb-4a46-87e9-88f371f112a9
+DESKTOP-NJNOAB6,Intune,Corporate,Compliant,iOS/iPadOS,10.0.21382.1,2021-05-14 10:01:08.0000000,annaalvarado60@contosoisd3.onmicrosoft.com,88787e75-b837-4ad7-a190-4de321eece4f
+FLUBBERGHASTED,Intune,Personal,Compliant,macOS,10.0.22000.194,2021-10-10 15:28:00.0000000,josephkelley4@contosoisd3.onmicrosoft.com,5267644d-7869-4a29-b340-76695311129b
+adbr_Windows_10/1/2021_11:16 PM,Intune,Unknown,Not Evaluated,Windows,0.0.0.0,2021-10-02 00:34:02.0000000,justincooper74@contosoisd3.onmicrosoft.com,16552338-ad38-49bf-be03-61cc545360e1
+BEAU-LNVO-N23,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.65,2021-07-12 20:06:52.0000000,amberbuchanan5@contosoisd3.onmicrosoft.com,4dc2feb4-79ba-4d15-a3ad-8c7efdacbc8b
+TapValidation_Windows_9/21/2021_6:07 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-09-21 18:07:48.0000000,veronicacastro87@contosoisd3.onmicrosoft.com,5c21ded0-959c-49a1-bed2-263f25ef1f30
+JACKYZ-SP4-HAILEY,Intune,Corporate,Compliant,Windows,10.0.22468.1000,2021-10-08 04:09:03.0000000,maxwelljones6@contosoisd3.onmicrosoft.com,5230ebfd-a9f1-4b46-881a-4d2e254a9521
+troyh_Windows_10/7/2021_3:56 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-10-07 20:09:03.3168293,raynelson24@contosoisd3.onmicrosoft.com,2d3a14b0-234a-43a5-a13c-b89eeab40310
+hsynthgates_Windows_10/8/2021_8:01 PM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-10-08 20:49:03.0000000,rayjohnson7@contosoisd3.onmicrosoft.com,2d9ddac7-5d09-4909-b658-8519d2c6b376
+DESKTOP-6F3QKGO,Intune,Corporate,Compliant,macOS,10.0.22000.100,2021-07-27 22:55:36.0000000,jacobolson38@contosoisd3.onmicrosoft.com,1624430b-d098-4256-b88e-bbb4c87361b5
+DESKTOP-U47UG6E,Intune,Corporate,Compliant,Windows,10.0.22000.65,2021-08-07 02:09:54.1568344,chadjones8@contosoisd3.onmicrosoft.com,480cbbf8-6e78-4025-bf7b-94dffa147739
+SCOTTY-SG1,Intune,Corporate,Compliant,Windows,10.0.22000.51,2021-06-26 10:24:34.0000000,ambercook62@contosoisd3.onmicrosoft.com,e290e119-6b31-4ed8-b454-9332a7de1024
+MICAHM-EDU,Intune,Corporate,Compliant,Windows,10.0.22000.100,2021-10-01 18:41:52.0000000,peggyvargas9@contosoisd3.onmicrosoft.com,57106046-0d8c-41cd-a099-6cb4b7967851
+LUKES-HP-STREAM,Intune,Corporate,Compliant,Windows,10.0.22000.65,2021-07-09 18:27:06.0000000,stephenramirez12@contosoisd3.onmicrosoft.com,d085743e-bbc9-4482-8c7f-e8da614f6499
+HAMC-HP,Intune,Corporate,Compliant,macOS,10.0.22000.100,2021-07-29 18:47:04.4428483,mauricekhan10@contosoisd3.onmicrosoft.com,271d8ab4-c4f5-43dc-9d0f-08c6f6f1574a
+DESKTOP-7DNUJKK,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.160,2021-09-17 18:17:23.0000000,heatherlewis80@contosoisd3.onmicrosoft.com,fab05a09-d12d-46c3-83f3-350bd08333fb
+LAPTOP-1TOHA81H,Intune,Corporate,Compliant,macOS,10.0.21990.1,2021-06-10 23:22:02.0000000,paigetaylor11@contosoisd3.onmicrosoft.com,c17dc4fa-48b6-412b-a9ba-e1003dc29810
+LAPTOP-KTC5D46F,Intune,Corporate,Compliant,macOS,10.0.21990.1,2021-06-16 22:33:19.0000000,wandacervantes2@contosoisd3.onmicrosoft.com,ec52e252-40d6-4e6b-a608-7c4f01e1fd46
+Sudht-LCD,Intune,Corporate,Compliant,macOS,10.0.22000.176,2021-09-02 17:59:31.0000000,stephenramirez12@contosoisd3.onmicrosoft.com,1228d740-2f71-414c-9ed6-d1d43b425c7a
+LAPTOP-KV35F4C4,Intune,Personal,Compliant,Windows,10.0.22000.194,2021-09-30 06:52:19.0000000,angelicareid88@contosoisd3.onmicrosoft.com,3756aa46-3401-423a-a9b6-a0b1dcf4488f
+v-soboga_Windows_10/11/2021_4:42 PM,Intune,Unknown,Compliant,iOS/iPadOS,0.0.0.0,2021-10-11 19:02:56.0000000,reginacarter13@contosoisd3.onmicrosoft.com,803d1276-0c9c-48de-8c7f-a0e685db9dd0
+PINE,Intune,Corporate,Compliant,Windows,10.0.22118.1000,2021-06-28 06:57:05.0000000,shelbyberger1@contosoisd3.onmicrosoft.com,94792633-75fe-485b-8345-331032f381e1
+NZHSELFHOST,Intune,Corporate,Compliant,macOS,10.0.22000.120,2021-08-10 16:20:11.0000000,patriciadillon14@contosoisd3.onmicrosoft.com,b51778a8-4f3d-46fe-86b7-4824c3ef2c74
+GAYATRI,Intune,Corporate,Compliant,Windows,10.0.22127.1000,2021-07-15 11:59:20.0000000,jessicaedwards33@contosoisd3.onmicrosoft.com,18065563-1ee0-4022-af98-cb431aa11871
+DESKTOP-6EMN5A0,Intune,Corporate,Not Evaluated,Windows,10.0.22157.1000,2021-08-03 15:38:04.0000000,sandrasanchez15@contosoisd3.onmicrosoft.com,0e4440e1-b14d-4302-85ca-7f48bcc3ca9f
+DESKTOP-SD76DBQ,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-20 15:44:14.4378177,teresarobinson19@contosoisd3.onmicrosoft.com,6c1d5211-a278-4104-9b6a-d840bdf425b9
+JMW-EDU,Intune,Corporate,Compliant,macOS,10.0.22000.51,2021-07-02 16:12:57.0480906,melissalawson91@contosoisd3.onmicrosoft.com,50b95b49-942d-4cc3-8864-c7ab73cd1058
+bcross_Windows_10/11/2021_9:55 PM,Intune,Unknown,Compliant,iOS/iPadOS,0.0.0.0,2021-10-12 16:13:03.8803119,elizabethking17@contosoisd3.onmicrosoft.com,6478e559-cc96-4189-b0a7-86fb896c4824
+LAPTOP-M9DQ07SF,Intune,Personal,Compliant,macOS,10.0.21990.1,2021-10-13 09:03:19.3648520,bradypacheco28@contosoisd3.onmicrosoft.com,e134214c-77e6-4c5c-a2b3-81f052a9e00e
+LAPTOP-S8K7A7AA,Intune,Corporate,Compliant,macOS,10.0.21990.1,2021-06-16 18:51:10.6851832,joshuaelliott18@contosoisd3.onmicrosoft.com,05896c31-eb6a-44a0-bcb6-e88c0d44a5cc
+JANK-HAILEY,Intune,Corporate,Noncompliant,Windows,10.0.22000.100,2021-07-30 19:01:33.0000000,reginaldlogan22@contosoisd3.onmicrosoft.com,17f36d1f-350a-45c1-9d30-60cdb44dd6cf
+CB-HALEY2,Intune,Corporate,Compliant,macOS,10.0.22000.100,2021-07-27 22:48:42.4936369,teresarobinson19@contosoisd3.onmicrosoft.com,3bb757c4-0e39-4855-a7ac-b594231c568a
+BLINK,Intune,Corporate,Compliant,Windows,10.0.22000.132,2021-10-08 05:44:26.1986241,lisamckee21@contosoisd3.onmicrosoft.com,26cdf686-eb29-404f-9409-6b0ef163cb59
+EV2BB44,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.176,2021-09-17 18:36:03.9886625,ashleytodd20@contosoisd3.onmicrosoft.com,c68e6172-e6d2-4cb8-b739-52f1cb8de37d
+SAREEN-TENJIN,Intune,Personal,Compliant,Windows,10.0.22000.132,2021-09-15 04:58:31.0000000,jacobolson38@contosoisd3.onmicrosoft.com,07e9ee61-aa53-4bf5-80c3-f941ebff0fa3
+DESKTOP-CKDVB3S,Intune,Corporate,Compliant,macOS,10.0.22000.51,2021-07-02 06:28:37.0000000,shelbyberger1@contosoisd3.onmicrosoft.com,1ff1018f-d63c-4241-bc77-e321306609a1
+adbr_Windows_10/6/2021_5:42 PM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-10-06 20:00:00.0000000,ambercook62@contosoisd3.onmicrosoft.com,7a35cdac-d3b9-4343-942b-d22faaca51a0
+bcross_Windows_9/30/2021_11:32 PM,Intune,Unknown,Compliant,iOS/iPadOS,0.0.0.0,2021-09-30 23:35:01.0000000,lisamckee21@contosoisd3.onmicrosoft.com,283ff4d8-a323-4acf-8968-98846da2a970
+LAPTOP-75G15RQ9,Intune,Corporate,Compliant,macOS,10.0.22000.71,2021-07-19 21:00:36.0000000,patriciadillon14@contosoisd3.onmicrosoft.com,274513eb-1e90-4257-aa2b-67710dc22fa5
+CHRISGHAILEY,Intune,Corporate,Compliant,Windows,10.0.22000.160,2021-08-26 18:30:02.0000000,reginaldlogan22@contosoisd3.onmicrosoft.com,4340a77f-5a18-42b6-a70b-8b3395e15cb0
+anvo_Windows_10/8/2021_7:25 AM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-10-12 20:48:46.0000000,amberberger79@contosoisd3.onmicrosoft.com,243ff4f7-5dc6-4157-80b5-a588ac87bf46
+HAILEY,Intune,Corporate,Compliant,macOS,10.0.22000.100,2021-07-30 04:29:04.0000000,jacquelinecole23@contosoisd3.onmicrosoft.com,7b151247-0c42-428c-8624-5bca82b0418d
+LAPTOP-GMBEQG21,Intune,Personal,Compliant,iOS/iPadOS,10.0.19042.1237,2021-10-11 21:42:44.1448232,reginacarter13@contosoisd3.onmicrosoft.com,742019ed-1d9e-421d-bb15-8ccbe60cf242
+TapValidation_Windows_9/29/2021_4:10 PM,Intune,Unknown,Compliant,iOS/iPadOS,0.0.0.0,2021-09-29 16:13:02.0000000,raynelson24@contosoisd3.onmicrosoft.com,d915a2d6-8281-4bd2-b1e7-6b4eff62eeb6
+VIJAY,Intune,Corporate,Compliant,macOS,10.0.22137.1000,2021-07-05 12:44:02.0000000,jeremywright52@contosoisd3.onmicrosoft.com,6f0472da-94cf-469d-8436-eff6c686f133
+adbr_Windows_10/7/2021_9:25 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-10-07 21:28:01.0000000,andrewhunter25@contosoisd3.onmicrosoft.com,c4c92d6c-4f22-43b2-9ea0-c9d020745d33
+DESKTOP-C2DBFC3,Intune,Corporate,Compliant,Windows,10.0.22147.1000,2021-07-22 03:23:02.8151495,raynelson24@contosoisd3.onmicrosoft.com,ea4b2197-404e-4512-b19c-c1a1eff0ea88
+DESKTOP-987HJ3E,Intune,Corporate,Compliant,macOS,10.0.22000.176,2021-09-03 06:08:58.0000000,josephlynch26@contosoisd3.onmicrosoft.com,732af15e-b8e7-464b-9881-870b1bcc3ee3
+LAPTOP-T7GP0KV6,Intune,Corporate,Compliant,Windows,10.0.22000.160,2021-08-19 20:20:06.0000000,jeremywright52@contosoisd3.onmicrosoft.com,1b7c75c7-4a7b-453d-b778-2a774da5a5d2
+VHDX,Intune,Corporate,Compliant,Windows,10.0.22121.1000,2021-06-15 16:54:04.0000000,gabrieldudley27@contosoisd3.onmicrosoft.com,6bf79a16-f58b-4f76-8ede-b10c3ea1c3e8
+STEVEMAS-TEV2,Intune,Corporate,Compliant,Windows,10.0.22000.100,2021-08-04 05:07:06.0000000,jenniferdavenport34@contosoisd3.onmicrosoft.com,030bf5ba-26b5-4c5c-a609-458dbbb0119a
+S,Intune,Corporate,Compliant,Windows,10.0.22147.1000,2021-09-09 05:27:35.0000000,bradypacheco28@contosoisd3.onmicrosoft.com,526fcb66-fae0-4e9a-b89a-168ac98df863
+DVBB33,Intune,Corporate,Compliant,macOS,10.0.22000.176,2021-09-17 17:57:05.0000000,jeremywright52@contosoisd3.onmicrosoft.com,286050d5-3163-465c-8612-72300ec123e4
+SUDHT-TEN,Intune,Personal,Compliant,macOS,10.0.22000.194,2021-10-12 00:37:14.0000000,amyprice29@contosoisd3.onmicrosoft.com,ed97532b-180b-4897-b1de-84d21f02c36d
+E536E1607026445,Intune,Personal,Compliant,Windows,10.0.22117.1000,2021-06-18 16:06:03.0000000,jessicakim96@contosoisd3.onmicrosoft.com,98ae4cd4-4907-4dc7-ab02-905d862bf754
+hsynthgates_Windows_9/30/2021_2:18 PM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-10-06 01:40:22.0000000,stevenlarsen30@contosoisd3.onmicrosoft.com,90314a96-27b6-431b-982e-429f6cbedc1c
+DESKTOP-QI9NS82,Intune,Personal,Not Evaluated,macOS,10.0.21376.1000,2021-05-17 21:27:49.0000000,bradypacheco28@contosoisd3.onmicrosoft.com,f96c8c0a-f220-431a-ae0f-5fdadb9dd4b9
+scottt-student_Windows_10/13/2021_12:01 AM,Intune,Unknown,Compliant,Android,0.0.0.0,2021-10-13 00:19:01.2854421,johnbrown31@contosoisd3.onmicrosoft.com,473ee65a-0220-4189-8bb0-f07d9521b5be
+GVILLA-DEMO-LVO,Intune,Corporate,Compliant,Windows,10.0.22000.194,2021-09-22 02:38:37.0000000,melissaphelps32@contosoisd3.onmicrosoft.com,ae06de21-bc2f-432c-96f4-16e9440e9314
+LAPTOP-96FS5FS5,Intune,Corporate,Compliant,Windows,10.0.22000.1,2021-06-29 07:06:42.0000000,melissaphelps32@contosoisd3.onmicrosoft.com,17121057-be4b-4b02-b07d-7dd94617687b
+DESKTOP-5MEJI1U,Intune,Corporate,Compliant,macOS,10.0.22138.1001,2021-07-12 20:38:35.0705332,oliviahendricks77@contosoisd3.onmicrosoft.com,15e7ed07-227e-4f66-904e-dc3ec3f7ccb9
+DESKTOP-9IK2CQN,Intune,Corporate,Compliant,Windows,10.0.22000.1,2021-07-03 06:07:26.0000000,jessicaedwards33@contosoisd3.onmicrosoft.com,fd7d0425-a29c-4c41-b747-7717e711917e
+TapValidation_Windows_9/30/2021_4:53 PM,Intune,Unknown,Compliant,iOS/iPadOS,0.0.0.0,2021-09-30 16:56:03.0000000,angelabaxter71@contosoisd3.onmicrosoft.com,e631dbec-4d97-42b9-a65b-e77fdcb2f858
+LAPTOP-E973CVHH,Intune,Corporate,Compliant,Windows,10.0.22000.194,2021-10-07 22:06:33.0000000,jenniferdavenport34@contosoisd3.onmicrosoft.com,6df32019-be5f-4a5d-8d80-d6591201ad6d
+DESKTOP-UPNEC4G,Intune,Corporate,Compliant,Windows,10.0.22000.160,2021-08-23 17:03:04.0165356,caitlinpeters61@contosoisd3.onmicrosoft.com,de6af545-2842-4336-a425-f2963e2c387c
+AC2DF7CD7E21454,Intune,Personal,Compliant,Windows,10.0.22466.1000,2021-09-30 20:29:02.6610730,abigailsmith35@contosoisd3.onmicrosoft.com,2fc30eef-1e7b-4563-90a2-606cbd57ca5f
+DESKTOP-G88H3FI,Intune,Corporate,Compliant,Windows,10.0.22141.1000,2021-07-23 05:26:48.0000000,jessicashort3@contosoisd3.onmicrosoft.com,d005ae75-3214-4dbf-8c88-47600d081555
+DESKTOP-46F83OB,Intune,Corporate,Compliant,Windows,10.0.22000.160,2021-09-14 08:46:50.0000000,johnberry36@contosoisd3.onmicrosoft.com,ac12be3f-4188-4418-bedd-36fce2180a6a
+EV2BB33,Intune,Corporate,Compliant,macOS,10.0.22000.168,2021-09-14 05:32:24.0000000,troywilkinson67@contosoisd3.onmicrosoft.com,b90d9907-2c4c-433f-8835-9016f622241e
+DESKTOP-0PGD1QD,Intune,Corporate,Compliant,macOS,10.0.22137.1000,2021-07-21 15:56:01.0000000,jamesjones37@contosoisd3.onmicrosoft.com,667b1076-ff7a-4e8f-ab80-787828165be6
+adbr_Windows_10/6/2021_12:50 AM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-10-07 20:21:46.0000000,amyprice29@contosoisd3.onmicrosoft.com,6adfe064-e0fe-4c84-a9b6-35fbdafde04a
+egorabr_Windows_9/3/2021_1:40 AM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-09-03 01:40:35.0000000,jacobolson38@contosoisd3.onmicrosoft.com,840338d4-2dae-4025-b335-d1a1e8271bf0
+SFUDALLY_NPC,Intune,Personal,Compliant,macOS,10.0.22000.120,2021-08-11 09:14:06.0000000,davidtaylor44@contosoisd3.onmicrosoft.com,304249d6-2590-447a-9cca-46486b6ff6eb
+DESKTOP-IRUERNB,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.132,2021-08-18 22:34:17.0000000,lydiahunt39@contosoisd3.onmicrosoft.com,09ae9f63-7ca5-47bb-baf1-2128532582f7
+CALVINSCHOOL,Intune,Corporate,Compliant,Windows,10.0.22000.132,2021-08-13 19:10:48.0000000,josephkelley4@contosoisd3.onmicrosoft.com,2fa1a1d9-e1a4-4c60-8b3a-455531c077bf
+HPC,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22158.1000,2021-08-31 23:53:08.0000000,johnnysmith40@contosoisd3.onmicrosoft.com,530573e0-ddc9-4d22-b4ef-e7d88356be9a
+LAPTOP-BPEN0KO3,Intune,Corporate,Compliant,macOS,10.0.22000.132,2021-10-12 15:54:23.0000000,chadjones8@contosoisd3.onmicrosoft.com,94ea9e26-84c6-4439-9645-324864d46f21
+EV2BB77,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-28 17:51:51.4168905,wandacervantes2@contosoisd3.onmicrosoft.com,ebda2b7f-0455-4710-9fec-6b7d122aaf52
+JLiefke-TenjinEv2,Intune,Corporate,Compliant,macOS,10.0.21380.1001,2021-06-15 19:02:03.8877928,deniseestrada93@contosoisd3.onmicrosoft.com,f4dd854a-525a-4fa3-9791-cb9308518417
+tammieyang_Windows_10/8/2021_7:27 PM,Intune,Unknown,Compliant,Android,0.0.0.0,2021-10-08 20:45:03.0000000,davidwest41@contosoisd3.onmicrosoft.com,db49aa61-bc3e-4cab-8089-cdf07557ad15
+STEVEMAS-TDVF,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.194,2021-09-27 17:59:10.0000000,heatherlewis80@contosoisd3.onmicrosoft.com,b79b7cc5-d501-4290-8e93-0ec5422a8267
+SEGUN,Intune,Corporate,Compliant,Android,10.0.22000.120,2021-10-12 18:07:56.0000000,curtistodd42@contosoisd3.onmicrosoft.com,1cc44001-f38b-4332-9f0a-1f45bccf4470
+LAPTOP-0RFRMTDT,Intune,Personal,Compliant,iOS/iPadOS,10.0.22000.194,2021-10-12 17:13:39.0000000,stacythompson16@contosoisd3.onmicrosoft.com,9cc1b41a-6a6d-4525-abbd-9381fb11469c
+DESKTOP-UT4684C,Intune,Personal,Compliant,macOS,10.0.22000.37,2021-07-01 20:27:11.0000000,robertramirez43@contosoisd3.onmicrosoft.com,a73e9f0f-01cc-4d82-9387-9fa68fa4bc12
+S,Intune,Corporate,Compliant,Windows,10.0.22117.1000,2021-06-11 03:16:04.0000000,amandalong47@contosoisd3.onmicrosoft.com,bd7293fc-a194-4d48-bbf6-ea6ddaef3b79
+JLIEFKE-TAIKAN,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-22 16:35:34.7555047,davidtaylor44@contosoisd3.onmicrosoft.com,552c9e77-73fb-4b65-b0e5-8ba0061ff730
+S,Intune,Corporate,Compliant,macOS,10.0.22121.1000,2021-06-17 05:21:46.2008896,davidtaylor44@contosoisd3.onmicrosoft.com,9d2093cc-1b76-44db-85f9-7ab8f22d536e
+SFUDALLY_NPC,Intune,Personal,Compliant,macOS,10.0.22000.71,2021-07-18 18:28:51.5828324,tracipeterson45@contosoisd3.onmicrosoft.com,e1965237-dbc3-41c8-ae5a-caedd7c91e53
+TEACH,Intune,Corporate,Compliant,macOS,10.0.22000.51,2021-06-29 18:24:35.0000000,lisamckee21@contosoisd3.onmicrosoft.com,55355047-dd58-4779-9c47-9400ccaea9a4
+LAPTOP-JONRJ01J,Intune,Corporate,Compliant,macOS,10.0.21990.1,2021-06-10 08:35:04.0000000,nathancortez46@contosoisd3.onmicrosoft.com,7c3b923c-759a-44e3-894d-30df8da4f259
+DESKTOP-OQ7IBHD,Intune,Corporate,Compliant,macOS,10.0.22138.1000,2021-07-13 18:18:02.0000000,veronicacastro87@contosoisd3.onmicrosoft.com,5e9419a1-45c3-4c65-ae7e-6b5911c6777a
+FFCA229DEC14428,Intune,Personal,Compliant,macOS,10.0.22118.1000,2021-06-18 15:43:01.0000000,amandalong47@contosoisd3.onmicrosoft.com,7fea5732-dffe-4de0-9192-bdd5b03acc68
+DESKTOP-DBTTPA9,Intune,Corporate,Compliant,Windows,10.0.22136.1001,2021-07-07 20:37:02.0000000,melissaphelps32@contosoisd3.onmicrosoft.com,531c5d60-cf82-457e-91d9-32f0ec52f734
+IRIS,Intune,Corporate,Compliant,macOS,10.0.22142.1000,2021-09-27 16:53:05.0000000,williamcarpenter48@contosoisd3.onmicrosoft.com,3c57996b-5563-4303-bb6e-0d3d40d3c2de
+DESKTOP-EGV1O0R,Intune,Corporate,Compliant,Android,10.0.22000.176,2021-09-02 19:02:02.0000000,veronicacastro87@contosoisd3.onmicrosoft.com,73a24c89-7695-4410-97d3-885f8bce6574
+DVBB5,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-21 18:12:19.4217892,gloriafowler49@contosoisd3.onmicrosoft.com,401460a2-4af7-4193-9c1b-2f6f17dea72f
+DESKTOP-TAM8HHL,Intune,Corporate,Compliant,macOS,10.0.22000.1,2021-06-07 20:32:03.0000000,davidtaylor44@contosoisd3.onmicrosoft.com,241df36c-9a8e-4053-a2ce-1625dca3238e
+PATDERKS-CLOUD,Intune,Corporate,Compliant,macOS,10.0.22137.1000,2021-07-12 17:28:29.0000000,josephterrell50@contosoisd3.onmicrosoft.com,8a05488e-8768-45ac-af0b-7f000bbd09d2
+DESKTOP-ME7LFPC,Intune,Corporate,Compliant,Windows,10.0.22146.1000,2021-07-21 23:53:04.0000000,rayjohnson7@contosoisd3.onmicrosoft.com,cf7d823b-9ae3-4933-8747-08f3af80329f
+DESKTOP-S1GHNLF,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.100,2021-07-23 02:59:35.0000000,abigaillong3@contosoisd3.onmicrosoft.com,9c75779c-2d76-4bca-8560-be8d9aa0e0cc
+LAPTOP-1IP0KA43,Intune,Corporate,Compliant,Windows,10.0.21990.1,2021-06-08 20:48:22.0000000,jeremywright52@contosoisd3.onmicrosoft.com,fe75c1fd-40c9-435a-ae23-00e37c39a100
+LAPTOP-EP9VLJEU,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-28 18:46:03.0000000,amyprice29@contosoisd3.onmicrosoft.com,b36e9d18-3dd2-4333-95cb-5ece3a3188ba
+SURFACE-KID-01,Intune,Personal,Compliant,macOS,10.0.22000.184,2021-09-19 22:10:53.0000000,stephenbennett53@contosoisd3.onmicrosoft.com,5f719cbb-67ff-4ec0-a59b-0cd6646018e2
+DESKTOP-O9T9OH9,Intune,Corporate,Compliant,macOS,10.0.22000.41,2021-06-18 21:54:22.0000000,michaelbryant65@contosoisd3.onmicrosoft.com,af6380fd-0afe-4a46-aa46-84df8d6b9d1c
+DESKTOP-7C14D64,Intune,Corporate,Noncompliant,Windows,10.0.22000.132,2021-09-02 13:03:45.0000000,johnhampton54@contosoisd3.onmicrosoft.com,37231ae6-6a33-4958-ab35-acdb31c724d5
+DESKTOP-PUUTL89,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.71,2021-09-08 19:37:24.7839484,michaelbryant65@contosoisd3.onmicrosoft.com,70e7d653-c515-4e19-bc65-ef364aa29eec
+FRED,Intune,Corporate,Not Evaluated,macOS,10.0.22116.1000,2021-06-14 20:39:01.0000000,codybriggs55@contosoisd3.onmicrosoft.com,cd25f72a-490a-497f-90bc-81feb49d2e54
+DESKTOP-C5KBDDM,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-20 14:48:57.0000000,abigaillong3@contosoisd3.onmicrosoft.com,ce5aba28-5307-4e9e-88d4-27f2a24eeef3
+DESKTOP-RFBPF3R,Intune,Corporate,Compliant,macOS,10.0.22000.184,2021-09-12 01:22:56.0000000,tylerramirez56@contosoisd3.onmicrosoft.com,9419e865-a071-485d-b7d5-738a71748501
+LAPTOP-5UH4JTEP,Intune,Corporate,Compliant,Windows,10.0.21990.1,2021-06-11 19:34:08.0000000,caitlinpeters61@contosoisd3.onmicrosoft.com,72d70110-5c39-42a1-9b00-389875647c7e
+RESTORE-ME,Intune,Corporate,Not Evaluated,Windows,10.0.22132.1001,2021-07-07 23:52:39.0000000,rubenwiggins57@contosoisd3.onmicrosoft.com,17492cbe-5f79-4dcd-b2aa-7921bec3e3f0
+DESKTOP-7T9CLEA,Intune,Corporate,Compliant,macOS,10.0.22157.1000,2021-08-23 22:31:04.0435159,tracipeterson45@contosoisd3.onmicrosoft.com,e6971a71-d6d4-48f2-91d9-af0304a46e3b
+7200D34FCB5749D,Intune,Personal,Compliant,Windows,10.0.22144.1000,2021-07-28 09:06:03.0000000,davidwest41@contosoisd3.onmicrosoft.com,ed26f173-25cc-4e9a-aeb1-99d275f4f252
+HAILEYSOUTH,Intune,Corporate,Compliant,macOS,10.0.22000.100,2021-08-13 17:36:04.0000000,ernestanderson59@contosoisd3.onmicrosoft.com,55a1aa94-23a2-4832-bb1d-80faee8c9237
+DESKTOP-M3G10RP,Intune,Corporate,Compliant,Windows,10.0.22136.1001,2021-07-07 22:16:03.0000000,stevencline70@contosoisd3.onmicrosoft.com,d2db16f1-814e-4f6c-b5c5-a810b7409f3d
+DESKTOP-K8N1JE2,Intune,Corporate,Compliant,Windows,10.0.22000.176,2021-09-09 08:15:56.1473194,annaalvarado60@contosoisd3.onmicrosoft.com,a7d1515b-a02d-4a6f-aae1-68ea7c08ed69
+DESKTOP-9U5IM39,Intune,Corporate,Compliant,Windows,10.0.22118.1000,2021-07-08 04:29:26.0994255,brandonellis68@contosoisd3.onmicrosoft.com,86f37799-443e-41e1-9483-660b6d7774f5
+D1-EDU-ACER-2,Intune,Corporate,Compliant,macOS,10.0.22000.132,2021-08-19 16:24:17.8029685,jessicashort3@contosoisd3.onmicrosoft.com,a74915d4-7662-42ad-8f29-62dff8385ccb
+GVILLA-TAP-LVO1,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.176,2021-09-07 17:47:31.0000000,melissaphelps32@contosoisd3.onmicrosoft.com,91f995e2-f550-4a3c-b482-4eef24d985b2
+LAPTOP-IA16NROT,Intune,Corporate,Compliant,macOS,0.0.0.0,2021-09-17 21:15:11.7153155,caitlinpeters61@contosoisd3.onmicrosoft.com,16beaf11-c2dd-4ab4-bb74-cdcb79703ed8
+DESKTOP-DQCO04L,Intune,Corporate,Compliant,Windows,10.0.22000.184,2021-09-14 13:52:03.4248748,rayjohnson7@contosoisd3.onmicrosoft.com,803a2834-1e2c-4c20-85a6-12e8d4b99463
+KIWI,Intune,Corporate,Compliant,Windows,10.0.22130.1000,2021-07-01 06:27:04.0000000,ambercook62@contosoisd3.onmicrosoft.com,aa8a5573-208c-4c13-b5a0-1c635c77d900
+D8546809439C4C3,Intune,Personal,Compliant,macOS,10.0.22142.1000,2021-08-03 22:06:48.0000000,joshuaelliott18@contosoisd3.onmicrosoft.com,a9536420-7258-4b82-a856-c463c8ba4206
+S,Intune,Corporate,Compliant,macOS,10.0.22147.1000,2021-07-27 14:50:00.0000000,andreaberry63@contosoisd3.onmicrosoft.com,2a0a3103-2c97-45e4-8940-691a6b600019
+STEVEMAS-TEV1,Intune,Personal,Compliant,macOS,10.0.21990.1,2021-06-16 08:00:06.0000000,markhoward75@contosoisd3.onmicrosoft.com,90facdde-9c39-49ae-b326-a2f1a3d86a3e
+hsynthgates_Windows_10/7/2021_8:49 AM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-10-07 11:07:04.0000000,zacharyjohnson64@contosoisd3.onmicrosoft.com,c3a571be-de97-4aec-ad57-a7dd0be2ffc9
+DESKTOP-E8079BG,Intune,Corporate,Compliant,macOS,10.0.22449.1000,2021-09-10 10:56:03.0000000,troywilkinson67@contosoisd3.onmicrosoft.com,57096cdd-0b5e-477f-a3e1-a6399d21278b
+MONKEY42,Intune,Corporate,Compliant,Android,10.0.22000.184,2021-09-14 09:32:10.0037367,michaelbryant65@contosoisd3.onmicrosoft.com,95bd913a-d338-4f26-b00e-6e5a334f9a70
+eranmeg_Windows_10/7/2021_6:31 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-10-08 17:58:49.0000000,melissajohnson85@contosoisd3.onmicrosoft.com,1429e262-ad12-4eaf-ad61-f32f36eaa635
+LAPTOP-GF45OR7O,Intune,Personal,Compliant,Windows,10.0.21370.1001,2021-05-26 16:33:57.9880602,sheryljones66@contosoisd3.onmicrosoft.com,1fdc4a22-5782-4153-b005-39436190560e
+DESKTOP-TM31GBD,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-22 01:48:21.9956985,shelbyberger1@contosoisd3.onmicrosoft.com,e4970d49-2cda-4b2d-9eca-5dbfefda8dc1
+DESKTOP-OT2NP6B,Intune,Corporate,Compliant,Windows,10.0.22000.1,2021-06-07 14:52:09.1220370,troywilkinson67@contosoisd3.onmicrosoft.com,a67d904f-92e4-449f-b965-9bd24319b7aa
+gvilla_Windows_10/1/2021_6:41 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-10-01 19:59:02.0000000,philipwilliams97@contosoisd3.onmicrosoft.com,8ad18a7f-b144-403d-aeb2-af9ff3848892
+DESKTOP-C552M3D,Intune,Corporate,Noncompliant,Windows,10.0.22000.120,2021-08-11 16:00:44.0000000,brandonellis68@contosoisd3.onmicrosoft.com,9abce0db-f43a-4cd1-997c-c2d400eea066
+DESKTOP-U0B1RM2,Intune,Corporate,Compliant,macOS,10.0.22142.1000,2021-07-28 07:26:08.0000000,davidwest41@contosoisd3.onmicrosoft.com,3fe415f4-e732-4ad0-95df-7e9adfe07a0e
+DESKTOP-NVVOQ5V,Intune,Corporate,Compliant,Windows,10.0.22000.194,2021-10-13 07:38:03.3074440,kristinberg69@contosoisd3.onmicrosoft.com,42045575-105c-47c8-b591-30a7a6a0e528
+LAPTOP-5D3MB31M,Intune,Corporate,Compliant,iOS/iPadOS,10.0.21990.1,2021-06-18 17:55:32.0000000,davidtaylor44@contosoisd3.onmicrosoft.com,a99036c4-cfa9-4b3d-a452-8aa8e9b44b71
+TapValidation_Windows_9/29/2021_4:09 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-09-29 16:21:03.1549194,stevencline70@contosoisd3.onmicrosoft.com,4eb201bd-5b4e-4a26-8dbf-e2435a4c35cc
+DESKTOP-9T996NQ,Intune,Corporate,Compliant,macOS,10.0.22123.1000,2021-07-06 21:29:00.0000000,angelabaxter71@contosoisd3.onmicrosoft.com,ffff0742-9a99-40ad-a3d5-dcc32657dcd7
+TENJIN_1,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-24 17:09:07.0000000,angelabaxter71@contosoisd3.onmicrosoft.com,891a530f-34ea-490c-b57a-adfc36fdaea0
+DESKTOP-SHKAA5Q,Intune,Corporate,Compliant,Windows,10.0.22147.1000,2021-07-23 23:13:34.0000000,gloriafowler49@contosoisd3.onmicrosoft.com,a815a84b-7d86-4861-ae62-5013bf9184ee
+MicrosoftSummerCamp,Intune,Corporate,Noncompliant,macOS,10.0.22000.120,2021-08-21 17:33:07.9869921,williemartin72@contosoisd3.onmicrosoft.com,deb83c2a-6ad8-4bb5-b9ce-41e5138ee781
+DESKTOP-M3AALSJ,Intune,Corporate,Compliant,Windows,10.0.22000.1,2021-06-08 21:20:30.5461714,zacharyjohnson64@contosoisd3.onmicrosoft.com,f9d43c72-1d11-4b4d-807b-0af368af3bf6
+AVI_1378948,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.194,2021-09-28 19:20:29.9687524,jasoneaton73@contosoisd3.onmicrosoft.com,1d3c63e3-761f-49d8-b59f-db0ba6c1ebde
+TapValidation_Windows_9/29/2021_4:12 PM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-09-29 16:18:03.0000000,jessicakim96@contosoisd3.onmicrosoft.com,2781885c-1cca-4b00-a936-799e2063bd51
+LAPTOP-U4HTF5GN,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.176,2021-09-14 20:27:15.0000000,justincooper74@contosoisd3.onmicrosoft.com,4df45c99-7acf-4a8c-860d-59d943433323
+DESKTOP-MJKL0GJ,Intune,Corporate,Compliant,iOS/iPadOS,10.0.21381.1,2021-05-13 07:29:05.0000000,gabrieldudley27@contosoisd3.onmicrosoft.com,3260e949-6970-43e4-b817-be887b84d598
+DESKTOP-8MTEUDF,Intune,Corporate,Compliant,macOS,10.0.22000.132,2021-08-24 18:59:05.6064921,markhoward75@contosoisd3.onmicrosoft.com,c99f0115-7d37-4a48-bc4d-b791d71a9c44
+DESKTOP-0QJTU2B,Intune,Corporate,Compliant,macOS,10.0.22436.1000,2021-08-30 15:43:01.5652845,nathancortez46@contosoisd3.onmicrosoft.com,7d4e1a30-85f3-4cd2-862c-1046c859f176
+AHANAKIDSURFACE,Intune,Personal,Compliant,macOS,10.0.22000.194,2021-10-02 03:14:07.0000000,thomassmith76@contosoisd3.onmicrosoft.com,1f959648-c81e-4706-8e27-1b83e3287c91
+ASUS,Intune,Corporate,Compliant,Windows,10.0.22142.1000,2021-07-15 21:23:01.0149429,andreaberry63@contosoisd3.onmicrosoft.com,c1eccc97-5ebc-4ad8-89c8-b923f9d1a848
+DESKTOP-8KJVJDI,Intune,Corporate,Compliant,macOS,10.0.22141.1000,2021-07-20 15:33:04.9003960,oliviahendricks77@contosoisd3.onmicrosoft.com,e96c8523-cf2a-4e28-865c-5bce71fc626a
+DESKTOP-N05G193,Intune,Personal,Compliant,macOS,10.0.22000.37,2021-06-15 16:02:18.0000000,markhoward75@contosoisd3.onmicrosoft.com,d2e4a4a3-2d32-43d3-a4cd-4bd374b400b3
+DESKTOP-LL8F56I,Intune,Corporate,Compliant,macOS,10.0.22114.1000,2021-07-06 17:06:03.0000000,christinahanna78@contosoisd3.onmicrosoft.com,3e9368bd-0c8e-49b8-afa9-41cfa90dfc99
+aniketp_Windows_10/5/2021_4:25 AM,Intune,Unknown,Compliant,iOS/iPadOS,0.0.0.0,2021-10-05 22:43:05.1923518,reginaldlogan22@contosoisd3.onmicrosoft.com,52965d8c-86a0-499f-8494-83fdf1e7da78
+DESKTOP-PJ3NS4F,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.168,2021-09-10 13:24:36.0371710,amberberger79@contosoisd3.onmicrosoft.com,5d7c98e0-45d4-4d4b-ab2d-cdd57ec75d5e
+DESKTOP-9S6MNMA,Intune,Corporate,Compliant,macOS,10.0.22441.1000,2021-08-23 19:22:03.0000000,jessicaunderwood82@contosoisd3.onmicrosoft.com,f8f0f637-33e9-4169-8f9b-3ca6b10028d4
+louisma_Windows_10/6/2021_8:25 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-10-11 23:39:34.1975875,heatherlewis80@contosoisd3.onmicrosoft.com,1f04b05c-ab59-45aa-9fd6-c42e31b9ffa2
+SAM-T,Intune,Personal,Compliant,Windows,10.0.22000.194,2021-10-06 19:52:26.0000000,brianmcdonald86@contosoisd3.onmicrosoft.com,82756163-8311-45d2-8088-ea3e9b56f33b
+DESKTOP-DO1RIPV,Intune,Corporate,Compliant,macOS,10.0.22000.176,2021-09-07 09:18:08.0000000,sarahsantiago4@contosoisd3.onmicrosoft.com,f58f292f-2130-4ef4-bb39-a0b835697775
+jbruner_Windows_9/28/2021_8:47 PM,Intune,Unknown,Compliant,iOS/iPadOS,0.0.0.0,2021-09-28 21:35:03.0000000,mauricekhan10@contosoisd3.onmicrosoft.com,24cf21d3-9993-4190-8d6c-2f321a874119
+LAPTOP-MAQMTGTL,Intune,Personal,Compliant,Windows,10.0.21990.1,2021-06-16 03:54:33.0000000,marissamaddox81@contosoisd3.onmicrosoft.com,002b6f3f-428b-489b-b976-7874be2e2299
+GAYATRI,Intune,Corporate,Compliant,Windows,10.0.22000.194,2021-10-07 11:21:07.0000000,michaelbryant65@contosoisd3.onmicrosoft.com,f84cefa2-191b-414f-aff9-fd3e0d0feebf
+adbr_Windows_10/5/2021_10:37 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-10-07 20:32:44.0000000,jessicaunderwood82@contosoisd3.onmicrosoft.com,2e41746a-5e46-4960-9606-af9012cb0d1b
+timlin_Windows_9/28/2021_10:38 PM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-09-29 16:56:02.0000000,jessicaunderwood82@contosoisd3.onmicrosoft.com,90ef3ea0-a25c-4445-8c61-d1702d2a4870
+DESKTOP-HIO83EA,Intune,Corporate,Compliant,Windows,0.0.0.0,2021-09-09 13:35:56.0000000,seanmartin83@contosoisd3.onmicrosoft.com,63e717e5-c189-4366-8040-73e72f410e1e
+SFUDALLY_NPC,Intune,Personal,Compliant,macOS,10.0.22000.100,2021-07-23 01:41:43.0000000,angelicareid88@contosoisd3.onmicrosoft.com,72723928-f861-4c0e-8438-d40152775e79
+adbr_Windows_10/5/2021_10:12 PM,Intune,Unknown,Not Evaluated,Android,0.0.0.0,2021-10-05 22:27:05.0000000,jamienunez84@contosoisd3.onmicrosoft.com,4be00895-2681-4796-917a-1514e99c125c
+DESKTOP-FJD4C8F,Intune,Corporate,Compliant,Windows,10.0.22000.120,2021-10-12 02:29:49.0000000,stevenlarsen30@contosoisd3.onmicrosoft.com,fa48ef8c-d7f0-4767-bfa5-760f31721bb8
+v-sonika_Windows_10/8/2021_2:49 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-10-11 15:42:47.6484950,melissajohnson85@contosoisd3.onmicrosoft.com,6a74fe83-a7ff-4ebe-ad47-41b029696fff
+DEPENDENCYTEST,Intune,Corporate,Compliant,macOS,10.0.22449.1000,2021-08-31 00:25:00.0000000,jasoneaton73@contosoisd3.onmicrosoft.com,86fd0f82-b5ee-4871-abc0-b6880f4c8fdb
+v-mipuzi_Windows_7/16/2021_3:49 AM,Intune,Unknown,Compliant,iOS/iPadOS,0.0.0.0,2021-07-16 03:49:11.0000000,brianmcdonald86@contosoisd3.onmicrosoft.com,3128b4f2-5d08-498a-a87c-81cd299ca059
+DESKTOP-OFE1B32,Intune,Personal,Compliant,macOS,10.0.22000.184,2021-09-10 01:28:56.0000000,stevencline70@contosoisd3.onmicrosoft.com,b705ae64-17ff-4fe9-8d84-6cf6322a17e0
+NISEHY-DEV,Intune,Corporate,Compliant,Windows,10.0.22132.1001,2021-07-21 20:55:15.0000000,veronicacastro87@contosoisd3.onmicrosoft.com,dc8d855d-4dc5-4a65-a91c-47ba91cc8f62
+CCF19C51BD734F0,Intune,Personal,Compliant,Windows,10.0.22463.1001,2021-10-02 20:58:04.4063282,reginacarter13@contosoisd3.onmicrosoft.com,498595e2-ddcb-45c4-902a-9bf80f2ee6a7
+DESKTOP-R2ARLP2,Intune,Corporate,Compliant,macOS,10.0.22000.160,2021-09-01 15:57:08.7872089,angelicareid88@contosoisd3.onmicrosoft.com,01837421-084a-474d-95cf-9c5fb7a8e0a9
+anvo_Windows_10/6/2021_9:59 PM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-10-13 08:49:29.7854802,maxwelljones6@contosoisd3.onmicrosoft.com,d29436cc-4823-4f1a-ba12-a5da24d415e4
+GVILLA-EDU-TJN,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-29 22:16:25.0000000,caitlinguerrero89@contosoisd3.onmicrosoft.com,04d55207-6e15-4954-9da9-dc5806a110e1
+DESKTOP-9TN1M56,Intune,Corporate,Compliant,Android,10.0.22155.1000,2021-08-09 16:33:05.0000000,codybriggs55@contosoisd3.onmicrosoft.com,ef9b618a-2ddb-45ef-87f8-d37b7ba23468
+TapValidation_Windows_10/1/2021_10:57 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-10-04 18:00:48.0000000,ryanstokes90@contosoisd3.onmicrosoft.com,78b69e51-bc6b-4fab-9abe-c4c97b1a9392
+EV2BB444,Intune,Corporate,Compliant,Android,10.0.22000.194,2021-09-28 02:56:03.0000000,philipwilliams97@contosoisd3.onmicrosoft.com,5f1d83fb-5f2e-4d34-a87c-18c9fef91b2e
+DESKTOP-CIPO9G8,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-17 15:48:34.0000000,melissalawson91@contosoisd3.onmicrosoft.com,8900958d-92c7-467a-8a04-d61171e6ef93
+S,Intune,Corporate,Compliant,Windows,10.0.22122.1000,2021-06-18 02:25:01.0000000,amberberger79@contosoisd3.onmicrosoft.com,9246f544-f359-450b-9e58-3f81e294fe63
+DVBB3,Intune,Corporate,Compliant,Windows,10.0.22000.176,2021-09-12 22:23:55.0000000,thomasrice92@contosoisd3.onmicrosoft.com,f66e5e7c-9e91-45f9-adec-f5bcf7e06736
+v-mipuzi_Windows_9/29/2021_8:37 PM,Intune,Unknown,Compliant,iOS/iPadOS,0.0.0.0,2021-09-30 14:55:05.0000000,josephkelley4@contosoisd3.onmicrosoft.com,bf6a1031-bcad-49df-b9e6-ceef94583965
+HOME,Intune,Corporate,Compliant,iOS/iPadOS,10.0.22000.100,2021-08-05 22:28:22.9966809,deniseestrada93@contosoisd3.onmicrosoft.com,1fdf0758-2661-4db0-901a-7e848c6f9513
+ANIKET-ASUS,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-10-07 19:13:00.8511138,chadjones8@contosoisd3.onmicrosoft.com,07c56cfd-f542-4ef7-95c8-2570dfb39871
+stevemas_Windows_10/8/2021_5:18 PM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-10-08 18:21:03.0000000,bradleydickerson94@contosoisd3.onmicrosoft.com,32ce16a2-ca21-4661-9b71-fa24499d0384
+DESKTOP-B9AUA02,Intune,Corporate,Compliant,Windows,10.0.22132.1000,2021-07-01 14:06:05.0000000,jessicashort3@contosoisd3.onmicrosoft.com,d121c7a6-9dd8-42d6-bf87-ff8cada00126
+DESKTOP-ECL07O1,Intune,Personal,Compliant,macOS,10.0.22147.1000,2021-07-22 19:38:03.0000000,edwardjohnson95@contosoisd3.onmicrosoft.com,c33f5425-8401-4f4b-9230-27510593e90e
+SFUDALLY_NPC,Intune,Personal,Compliant,Windows,10.0.22000.71,2021-07-20 17:01:00.0000000,stephenbennett53@contosoisd3.onmicrosoft.com,f3fec3f3-1c10-4c4a-9225-26912414122f
+DESKTOP-STHRT0B,Intune,Corporate,Compliant,macOS,10.0.22000.160,2021-09-30 07:13:03.0000000,jessicakim96@contosoisd3.onmicrosoft.com,f3cb1efd-9507-4907-92cb-403963cc8646
+DESKTOP-H4UHAMF,Intune,Corporate,Compliant,macOS,10.0.22000.184,2021-09-10 14:23:02.0000000,philipwilliams97@contosoisd3.onmicrosoft.com,36783e22-92d8-4f96-ac8c-5adcc55c9370
+v-soboga_Windows_10/4/2021_4:22 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-10-05 16:17:23.0000000,philipwilliams97@contosoisd3.onmicrosoft.com,f267bb80-4474-4c80-b78b-c7c23bd6e3d6
+GERAEDU,Intune,Corporate,Compliant,Windows,10.0.22000.51,2021-06-24 04:54:01.0000000,veronicacastro87@contosoisd3.onmicrosoft.com,ce93ba16-8c27-4ad4-ba90-4b54c047161c
+scottt-student_Windows_10/5/2021_9:40 PM,Intune,Unknown,Compliant,iOS/iPadOS,0.0.0.0,2021-10-12 22:13:10.7473510,tammyschwartz98@contosoisd3.onmicrosoft.com,a378273e-b777-4b9e-bac8-1db8a90e7d9d
+v-soboga_Windows_10/12/2021_5:10 PM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-10-12 21:23:24.2901978,bradleydickerson94@contosoisd3.onmicrosoft.com,cdd44f98-8544-46ad-bd88-17f901265f7f
+timlin_Windows_9/29/2021_6:25 PM,Intune,Unknown,Compliant,macOS,0.0.0.0,2021-09-29 18:45:17.0000000,benjaminharrison99@contosoisd3.onmicrosoft.com,eb1c5737-37ea-4c68-a515-e9eccaac5c73
+DESKTOP-4U4TQEP,Intune,Corporate,Compliant,Windows,10.0.22000.71,2021-07-22 22:09:04.0000000,amyprice29@contosoisd3.onmicrosoft.com,2172f16e-f4e5-47d4-94ca-173652b73cfe
+adbr_Windows_10/7/2021_9:38 PM,Intune,Unknown,Compliant,Windows,0.0.0.0,2021-10-07 21:42:05.0000000,heatherarmstrong100@contosoisd3.onmicrosoft.com,bf39bce2-0fab-4cf1-be19-9165721fcbff
+DESKTOP-MTLDAK9,Intune,Corporate,Compliant,macOS,10.0.22140.1000,2021-07-12 23:38:01.0000000,lisaalexander51@contosoisd3.onmicrosoft.com,847b5f9d-2022-4564-88cf-e17304176a14
+LAPTOP-DP9SH4M0,Intune,Corporate,Compliant,Windows,10.0.22000.1,2021-06-24 20:49:26.0000000,ryanmendez5@contosoisd3.onmicrosoft.com,1561ddf2-38d4-4365-84b7-ebf15cc87734
+EV2BB7,Intune,Corporate,Compliant,macOS,10.0.22000.194,2021-09-20 15:17:05.0000000,jasoneaton73@contosoisd3.onmicrosoft.com,dfbed516-dd17-44b1-98ba-fd4c414ef06b
+LAPTOP-2839STV,Intune,Personal,Compliant,Windows,10.0.22118.1000,2021-10-12 16:13:03.8803119,debrasmith1@contosoisd3.onmicrosoft.com,a6383dc9-9f8e-4ca2-9318-afd9b604554e
+SMILEY2821,Intune,Unknown,Not Evaluated,iOS/iPadOS,0.0.0.0,2021-09-21 18:07:48.0000000,debrasmith1@contosoisd3.onmicrosoft.com,10c83379-b0a6-f632-d378-7ac9b603e724
+DESKTOP-UPD28,Intune,Unknown,Compliant,Windows,10.0.22000.120,2021-10-08 04:09:03.0000000,maxwelljones6@contosoisd3.onmicrosoft.com,dd61d4b8-35af-cc53-d298-1e977a8433aa
+LAPTOP-SHELL43,Intune,Personal,Compliant,Windows,10.0.22000.176,2021-09-17 18:36:03.9886625,shelbyberger1@contosoisd3.onmicrosoft.com,2442a3a8-c25d-920a-f031-ba196a8c93ff
