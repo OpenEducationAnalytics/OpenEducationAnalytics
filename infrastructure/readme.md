@@ -13,6 +13,11 @@ The [Analytics end-to-end](https://docs.microsoft.com/en-us/azure/architecture/e
 
 <img src="https://docs.microsoft.com/en-us/azure/architecture/example-scenario/dataplate2e/media/azure-analytics-end-to-end.png">
 
+## Big data analytics with enterprise-grade security
+The [bid data analytics with enterprise-grade security](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/articles/big-data-analytics-enterprise-grade-security) architecture demonstrates how to leverage Azure Virtual Network to create your own private network in the Azure public cloud and use Azure Private Endpoints to securely integrate managed cloud services.
+
+<img src="https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/media/big-data-analytics-enterprise-grade-security.png">
+
 ## Modern analytics architecture with Azure Databricks
 The [Modern analytics architecture with Azure Databricks]() reference architecture (show below) demonstrates how Azure Databricks can be used in conjunction with Azure Synapse. The key to this architecture is that both Azure Databricks and Azure Synapse work well with a shared Data Lake storage account and use Delta Lake effectively.
 
