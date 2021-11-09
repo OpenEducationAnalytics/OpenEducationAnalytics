@@ -3,7 +3,8 @@ This module provides a basic example of how to develop an OEA module with a set 
 
 This module demonstrates how to land and process different types of batch data, as described below...
 
-# Landing data in stage1 (extraction from source system, and initial landing in data lake)
+# Landing data in stage1 (extraction and landing)
+The process of data extraction from source systems as well as the process of landing that initial data set in the data lake is orchestrated through the use of [Synapse Pipelines (or Azure Data Factory)](https://docs.microsoft.com/en-us/azure/data-factory/concepts-pipelines-activities).
 As a part of the OEA standard approach, batch data is landed in stage1np under a parent folder that represents the data source followed by a folder with the current datetime stamp, followed by folders that represent tables (also referred to as entities). For example,
 
 <img src="https://user-images.githubusercontent.com/1812048/140954521-80894ca1-8719-464e-af6d-b889b2a8089b.png" width="400" />
