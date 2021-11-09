@@ -21,6 +21,12 @@ Ingesting data from stage1 into stage2 results in data that is "query-ready", me
 | is not pseudonymized | is divided into stage2np and stage2p denoting data that is pseudonymized and data that is not |
 | is not validated | has passed initial data validation |
 
+The process of ingesting data from stage1 into stage2 must satisfy this criteria:
+- always safe to run, without concern of double-ingesting data (referred to as idempotent)
+- knows how to pick up where it left off and process any data that has not yet been ingested (this means being able to process multiple batches of data, as well as being able to process a partial batch if batch processing was terminated in mid-batch for some reason)
+
+OEA utilizes (Spark structured streaming)[https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html] to satisfy the above criteria, in conjunction with (delta lake)[https://delta.io/].
+
 There are several categories of batched data sets, each of which requires a different type of ingestion logic.
 Below are some of the common categories:
 
