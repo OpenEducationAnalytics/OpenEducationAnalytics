@@ -18,11 +18,17 @@ This package will:
 - Allow students to share verified skills with employer 
 - Allow employer to verify that the student has completed the skills required for the job the student is applying for 
 
-This package utilizes student data from an education system’s Student Information System and Microsoft 365 data modules. This package was developed by Microsoft Education and Azure Active Directory Verified Credentials. The architecture and reference implementation for all modules is built on Azure Synapse Analytics - with Azure Data Lake Storage as the storage backbone, and Azure Active Directory providing the role-based access control. 
+This package utilizes student data from an education system’s Student Information System and Microsoft 365 data modules. 
 
-To set up the system, please follow these steps 
+This package was developed by Microsoft Education and Azure Active Directory Verified Credentials. The architecture and reference implementation for this package is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
+
+To set up the system, please follow these steps: 
 
 - Pipeline of data aggregation from multiple modules 
 - Setting up VC service 
 - Use Azure fx to write into VC 
-- Setting up website for student login/ 3rd party verifier – client api  
+- Setting up website for student login/ 3rd party verifier – client API  
+
+The source of data can be replaced with other types of identity access management data the institution uses. The verifying student learning package and its modules [welcomes contributions...](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md).
+
+Here is what this will look like fully set up from the student’s perspective:  
