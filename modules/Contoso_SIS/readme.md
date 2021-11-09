@@ -44,3 +44,5 @@ These are additional scenarios that need to have similar examples:
 - slowly changing dimensions type 2 (scd2)
 - field-level data validation errors
 
+# Publishing data to stage3 (data product release)
+The final stage in the data lake is reserved for published "data products" which are used by one or more reports, dashboards, ML models, or other services.
