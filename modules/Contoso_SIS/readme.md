@@ -4,7 +4,7 @@ This module provides a basic example of how to develop an OEA module with a set 
 This module demonstrates how to land and process different types of batch data, as described below...
 
 # Landing data in stage1
-As a part of the OEA standard approach, batch data is landed in stage1np under a parent folder that represents the data source followed by a folder with the current datetime stamp, followed by folders that represent tables (or entities). For example,
+As a part of the OEA standard approach, batch data is landed in stage1np under a parent folder that represents the data source followed by a folder with the current datetime stamp, followed by folders that represent tables (also referred to as entities). For example,
 
 <img src="https://user-images.githubusercontent.com/1812048/140954237-1e26ff96-804c-42ef-a097-d72eba0a9b1d.png" width="400" />
 
