@@ -1,0 +1,88 @@
+{
+    "name": "Copy_from_URL",
+    "properties": {
+        "description": "Copies data from the specified URL and lands it in the specified location in the data lake.",
+        "activities": [
+            {
+                "name": "copy from URL",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "BinarySource",
+                        "storeSettings": {
+                            "type": "HttpReadSettings",
+                            "requestMethod": "GET"
+                        },
+                        "formatSettings": {
+                            "type": "BinaryReadSettings"
+                        }
+                    },
+                    "sink": {
+                        "type": "BinarySink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        }
+                    },
+                    "enableStaging": false
+                },
+                "inputs": [
+                    {
+                        "referenceName": "DS_HTTP_binary",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "URL": {
+                                "value": "@pipeline().parameters.URL",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "DS_ADLS_binary",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@pipeline().parameters.sinkFilesystem",
+                                "type": "Expression"
+                            },
+                            "filename": {
+                                "value": "@pipeline().parameters.sinkFilename",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ]
+            }
+        ],
+        "parameters": {
+            "URL": {
+                "type": "string",
+                "defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/studentattendance.csv"
+            },
+            "sinkFilesystem": {
+                "type": "string",
+                "defaultValue": "stage1np"
+            },
+            "sinkFilename": {
+                "type": "string",
+                "defaultValue": "contoso_sis/example1/studentattendance.csv"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-10-28T13:57:30Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

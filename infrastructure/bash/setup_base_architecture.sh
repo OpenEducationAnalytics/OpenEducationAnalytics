@@ -90,8 +90,8 @@ echo "--> 4) Creating key vault: ${OEA_KEYVAULT}"
 echo "--> 4) Creating key vault: ${OEA_KEYVAULT}" 1>&3
 az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --location $location --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
-# give the Synapse workspace access to get secrets from the key vault, for use in Synapse pipelines
-az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get --object-id $synapse_principal_id
+# give the Synapse workspace access to list and get secrets from the key vault, for use in Synapse pipelines
+az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get list --object-id $synapse_principal_id
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 echo "--> Creating app-insights: $OEA_APP_INSIGHTS"

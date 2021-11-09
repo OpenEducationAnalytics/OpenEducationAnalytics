@@ -43,26 +43,27 @@ class M365DataGenerator:
 
     def generate_data(self, num_of_schools, writer):
         schools = ''
+        datetime_str = datetime.now().strftime('%Y-%m-%dT%H%M_%S')
 
         for n in range(num_of_schools):
             school_data = self.create_school(n)
             m365_data = self.format_m365_data(school_data)
             schools += m365_data.pop('Org')
             for key in m365_data.keys(): 
-                writer.write(f"m365/{key}.csv", m365_data[key])
+                writer.write(f'm365/{datetime_str}/{key}/part1.csv', m365_data[key])
 
-            writer.write('contoso_sis/attendance.csv', school_data.pop('_attendance'))
-            writer.write('contoso_sis/section_marks.csv', school_data.pop('_section_marks'))
-            writer.write('contoso_sis/students.csv', self.list_of_dict_to_csv(school_data['_students']))
+            writer.write(f'contoso_sis/{datetime_str}/studentattendance/part1.csv', school_data.pop('_attendance'))
+            writer.write(f'contoso_sis/{datetime_str}/studentsectionmark/part1.csv', school_data.pop('_section_marks'))
+            writer.write(f'contoso_sis/{datetime_str}/students/part1.csv', self.list_of_dict_to_csv(school_data['_students']))
 
             start_date = datetime.strptime(self.fall_semester_start_date, "%Y-%m-%d")
             end_date = datetime.strptime(self.spring_semester_end_date, "%Y-%m-%d")
             if end_date > datetime.now(): end_date = datetime.now()
 
-            self.create_and_write_activity_data(school_data['_students'], start_date, end_date, 'm365/Activity0p2.csv', writer)
-            self.create_and_write_activity_data(school_data['_teachers'], start_date, end_date, 'm365/Activity0p2.csv', writer)
+            self.create_and_write_activity_data(school_data['_students'], start_date, end_date, f'm365/{datetime_str}/Activity/part1.csv', writer)
+            self.create_and_write_activity_data(school_data['_teachers'], start_date, end_date, f'm365/{datetime_str}/Activity/part2.csv', writer)
 
-        writer.write('m365/Org.csv', schools)
+        writer.write(f'm365/{datetime_str}/Org/part1.csv', schools)
 
     def create_school(self, school_id):
         school_id = 'sch' + str(school_id)

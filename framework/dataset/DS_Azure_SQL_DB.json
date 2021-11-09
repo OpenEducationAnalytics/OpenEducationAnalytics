@@ -1,0 +1,52 @@
+{
+    "name": "DS_Azure_SQL_DB",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "LS_Azure_SQL_DB",
+            "type": "LinkedServiceReference",
+            "parameters": {
+                "dbServer": {
+                    "value": "@dataset().dbServer",
+                    "type": "Expression"
+                },
+                "dbName": {
+                    "value": "@dataset().dbName",
+                    "type": "Expression"
+                },
+                "userName": {
+                    "value": "@dataset().userName",
+                    "type": "Expression"
+                },
+                "keyVaultSecretName": {
+                    "value": "@dataset().keyVaultSecretName",
+                    "type": "Expression"
+                }
+            }
+        },
+        "parameters": {
+            "dbServer": {
+                "type": "string",
+                "defaultValue": "myserver.database.windows.net"
+            },
+            "dbName": {
+                "type": "string",
+                "defaultValue": "testdb"
+            },
+            "userName": {
+                "type": "string",
+                "defaultValue": "sqlAdmin"
+            },
+            "keyVaultSecretName": {
+                "type": "string",
+                "defaultValue": "sqlAdminPwd"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "type": "AzureSqlTable",
+        "schema": []
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

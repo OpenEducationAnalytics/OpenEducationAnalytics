@@ -15,6 +15,9 @@
                 "type": "string"
             }
         },
+        "folder": {
+            "name": "OEA_Framework"
+        },
         "annotations": [],
         "type": "Binary",
         "typeProperties": {
@@ -30,5 +33,6 @@
                 }
             }
         }
-    }
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
 }
