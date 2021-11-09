@@ -6,9 +6,7 @@ This module demonstrates how to land and process different types of batch data, 
 # Landing data in stage1
 As a part of the OEA standard approach, batch data is landed in stage1np under a parent folder that represents the data source followed by a folder with the current datetime stamp, followed by folders that represent tables (or entities). For example,
 
-<img src="https://user-images.githubusercontent.com/1812048/140947318-c4eb3535-9af3-4add-923a-3e8a3cccb144.png" width="400" />
-
-<img src="https://user-images.githubusercontent.com/1812048/140947537-a60a8587-e8fb-4709-a01f-75045f056f0f.png" width="400" />
+<img src="https://user-images.githubusercontent.com/1812048/140953178-1a5563e5-4384-430b-9944-23b491d64bc2.png" width="400" />
 
 Note that there can be multiple data files in each of the table folders. This allows for landing data in a multi-threaded way, where you end up with a list of data files that need to be processed for that table.
 
