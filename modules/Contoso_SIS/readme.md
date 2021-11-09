@@ -5,11 +5,11 @@ This module demonstrates how to land and process different types of batch data, 
 
 # Landing data in stage1 (extraction and landing)
 The process of data extraction from source systems as well as the process of landing that initial data set in the data lake is orchestrated through the use of [Synapse Pipelines (or Azure Data Factory)](https://docs.microsoft.com/en-us/azure/data-factory/concepts-pipelines-activities).
-As a part of the OEA standard approach, batch data is landed in stage1np under a parent folder that represents the data source followed by a folder with the current datetime stamp, followed by folders that represent tables (also referred to as entities). For example,
+As a part of the OEA standard approach, batch data is landed in stage1np under a parent folder that represents the data source followed by a folder that represents the table (also referred to as the entity), followed by a folder with the current datetime stamp. For example,
 
-<img src="https://user-images.githubusercontent.com/1812048/140954521-80894ca1-8719-464e-af6d-b889b2a8089b.png" width="400" />
+<img src="https://user-images.githubusercontent.com/1812048/140988761-ebbee1d3-1320-4b83-b47a-1178661299b4.png" width="400" />
 
-Note that there can be multiple data files in each of the table folders. This allows for landing data in a multi-threaded way, where you end up with a list of data files that need to be processed for that table.
+Note that there can be multiple data files in each of the timestamped folders. This allows for landing data in a multi-threaded way, where you end up with a list of data files that need to be processed for that table.
 
 # Ingesting data into stage2 (initial data prep)
 Ingesting data from stage1 into stage2 results in data that is "query-ready", meaning that batch data sets have been merged into query-ready tables in the data lake.
