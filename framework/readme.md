@@ -38,7 +38,7 @@ Once ingested into stage2, the folder structure looks like this:
 And running the included pipeline called Create_SQL_DB creates the SQL serverless metadata to allow for querying against this data via SQL serverless compute.
 The created db looks like this:
 
-<img src="https://user-images.githubusercontent.com/1812048/141126878-3db189ff-d75b-40bc-a675-8ae4689d7975.png" width="200" />
+<img src="https://user-images.githubusercontent.com/1812048/141126878-3db189ff-d75b-40bc-a675-8ae4689d7975.png" width="300" />
 
 There are several categories of batched data sets, each of which requires a different type of ingestion logic.
 Below are some of the common categories:
