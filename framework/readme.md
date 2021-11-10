@@ -31,6 +31,10 @@ The process of ingesting data from stage1 into stage2 must satisfy this criteria
 
 OEA utilizes [Spark structured streaming](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html) to satisfy the above criteria, in conjunction with [delta lake](https://delta.io/).
 
+Once ingested into stage2, the folder structure looks like this:
+
+<img src="https://user-images.githubusercontent.com/1812048/141123537-20fd70c8-eff0-4f8e-aac4-1691e61fa44e.png" width="400" />
+
 There are several categories of batched data sets, each of which requires a different type of ingestion logic.
 Below are some of the common categories:
 
