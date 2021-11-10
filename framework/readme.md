@@ -33,7 +33,7 @@ OEA utilizes [Spark structured streaming](https://spark.apache.org/docs/latest/s
 
 Once ingested into stage2, the folder structure looks like this:
 
-<img src="https://user-images.githubusercontent.com/1812048/141123537-20fd70c8-eff0-4f8e-aac4-1691e61fa44e.png" width="400" />
+<img src="https://user-images.githubusercontent.com/1812048/141123537-20fd70c8-eff0-4f8e-aac4-1691e61fa44e.png" width="400" /> <img src="https://user-images.githubusercontent.com/1812048/141124569-7a00b480-72d4-4b00-bfa2-e4fed8654a06.png" width="400" />
 
 There are several categories of batched data sets, each of which requires a different type of ingestion logic.
 Below are some of the common categories:
