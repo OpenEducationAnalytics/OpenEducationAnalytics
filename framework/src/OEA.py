@@ -102,6 +102,38 @@ class OEA:
         spark_schema = StructType(fields)
         return spark_schema
 
+    def ingest_incremental_csv_data(self, source_system, tablename, schema, partition_by, primary_key='id', has_header=True):
+        """ Processes incremental batch data from stage1 into stage2 """
+        source_path = f'{self.stage1np}/{source_system}/{tablename}'
+        p_destination_path = f'{self.stage2p}/{source_system}/{tablename}_pseudo'
+        np_destination_path = f'{self.stage2np}/{source_system}/{tablename}_lookup'
+        logger.info(f'Processing incremental data from: {source_path} and writing out to: {p_destination_path}')
+
+        spark_schema = self.to_spark_schema(schema)
+        if has_header: header_flag = 'true'
+        else: header_flag = 'false'
+        df = spark.readStream.csv(source_path + '/**/*.csv', header=header_flag, schema=spark_schema)
+        #df = spark.read.csv(source_path + '/**/*.csv', header=header_flag, schema=spark_schema)
+        #display(df)
+        df = df.dropDuplicates([primary_key])
+        df_pseudo, df_lookup = self.pseudonymize(df, schema)
+
+        if len(df_pseudo.columns) == 0:
+            logger.info('No data to be written to stage2p')
+        else:        
+            query = df_pseudo.writeStream.format("delta").outputMode("append").trigger(once=True).option("checkpointLocation", source_path + '/_checkpoints_p').partitionBy(partition_by)
+            query = query.start(p_destination_path)
+            query.awaitTermination()   # block until query is terminated, with stop() or with error; A StreamingQueryException will be thrown if an exception occurs.
+            logger.info(query.lastProgress)
+
+        if len(df_lookup.columns) == 0:
+            logger.info('No data to be written to stage2np')
+        else:
+            query2 = df_lookup.writeStream.format("delta").outputMode("append").trigger(once=True).option("checkpointLocation", source_path + '/_checkpoints_np').partitionBy(partition_by)
+            query2 = query2.start(np_destination_path)
+            query2.awaitTermination()   # block until query is terminated, with stop() or with error; A StreamingQueryException will be thrown if an exception occurs.
+            logger.info(query2.lastProgress)        
+
     def pseudonymize(self, df, schema): #: list[list[str]]):
         """ Performs pseudonymization of the given dataframe based on the provided schema.
             For example, if the given df is for an entity called person, 
@@ -121,6 +153,8 @@ class OEA:
                 df_lookup = df_lookup.withColumn(col_name + "_pseudonym", F.sha2(F.concat(F.col(col_name), F.lit(self.salt)), 256))
             elif op == "mask" or op == 'm':
                 df_pseudo = df_pseudo.withColumn(col_name, F.lit('*'))
+            elif op == "partition-by":
+                pass # make no changes for this column so that it will be in both dataframes and can be used for partitioning
             elif op == "no-op" or op == 'x':
                 df_lookup = df_lookup.drop(col_name)
 
@@ -175,7 +209,9 @@ class OEA:
         return dirs
 
     def get_latest_folder(self, path):
-        return self.get_folders(path)[-1]
+        folders = oea.get_folders(path)
+        if len(folders) > 0: return folders[-1]
+        else: return None
 
     # Remove a folder if it exists (defaults to use of recursive removal).
     def rm_if_exists(self, path, recursive_remove=True):
@@ -192,9 +228,9 @@ class OEA:
         return (m.group(1), m.group(2))
 
     def parse_source_path(self, path):
-        """ Parses a path that looks like this: abfss://stage2@stoeacisd3ggimpl3.dfs.core.windows.net/ms_insights
+        """ Parses a path that looks like this: abfss://stage2p@stoeacisd3ggimpl3.dfs.core.windows.net/ms_insights
             and returns a dictionary like this: {'stage_num': '2', 'ss': 'ms_insights'}
-            Note that it will also return a 'stage_num' of 2 if the path is stage2p - this is by design because the spark db with the s2 prefix will be used for data in stage2 and stage2p.
+            Note that it will also return a 'stage_num' of 2 if the path is stage2p or stage2np - this is by design because the spark db with the s2 prefix will be used for data in stage2 and stage2p.
         """
         m = re.match(r".*:\/\/stage(?P<stage_num>\d+)[n]?[p]?@[^/]+\/(?P<ss>[^/]+)", path)
         return m.groupdict()
@@ -213,6 +249,12 @@ class OEA:
         logger.info(result)
         return result
 
+    def create_stage2_lake_db(self, source_directory):
+        source_path = f'{self.stage2p}/{source_directory}'
+        self.create_db(source_path)
+        source_path = f'{self.stage2pn}/{source_directory}'
+        self.create_db(source_path)
+
     def drop_db(self, db_name):
         """ Drop all tables in a db, then drop the db. """
         df = spark.sql('SHOW TABLES FROM ' + db_name)
@@ -222,6 +264,20 @@ class OEA:
         result = "Database dropped: " + db_name
         logger.info(result)
         return result         
+
+    def create_sql_db(self, source_path, source_format='DELTA'):
+        """ Creates the script for creating db based on the given path (assumes that every folder in the given path is a table).
+            Note that a spark db that points to source data in the delta format can't be queried via SQL serverless pool. More info here: https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/resources-self-help-sql-on-demand#delta-lake
+        """
+        source_info = self.parse_source_path(source_path)
+        db_name = f"s{source_info['stage_num']}_{source_info['ss']}"
+        spark.sql(f"CREATE DATABASE IF NOT EXISTS {db_name}")
+        dirs = self.get_folders(source_path)
+        for table_name in dirs:
+            spark.sql(f"create table if not exists {db_name}.{table_name} using {source_format} location '{source_path}/{table_name}'")
+        result = "Database created: " + db_name
+        logger.info(result)
+        return result
 
     # List installed packages
     def list_packages(self):
@@ -256,6 +312,7 @@ class OEA:
 class BaseOEAModule:
     """ Provides data processing methods for Contoso SIS data (the student information system for the fictional Contoso school district).  """
     def __init__(self, oea, source_folder, pseudonymize = True):
+        self.source_folder = source_folder
         self.pseudonymize = pseudonymize
         self.oea = oea
         self.stage1np = f"{oea.stage1np}/{source_folder}"
@@ -295,13 +352,13 @@ class BaseOEAModule:
         self.delete_stage2()
         self.delete_stage3()
 
-    def create_stage2_db(self, format='DELTA'):
-        self.oea.create_db(self.stage2p, format)
-        self.oea.create_db(self.stage2np, format)
+    def create_stage2_lake_db(self, format='DELTA'):
+        self.oea.create_lake_db(self.stage2p, format)
+        self.oea.create_lake_db(self.stage2np, format)
 
-    def create_stage3_db(self, format='DELTA'):
-        self.oea.create_db(self.stage3p, format)
-        self.oea.create_db(self.stage3np, format)
+    def create_stage3_lake_db(self, format='DELTA'):
+        self.oea.create_lake_db(self.stage3p, format)
+        self.oea.create_lake_db(self.stage3np, format)
 
     def copy_test_data_to_stage1(self):
         mssparkutils.fs.cp(self.module_path + '/test_data', self.stage1np, True)   
