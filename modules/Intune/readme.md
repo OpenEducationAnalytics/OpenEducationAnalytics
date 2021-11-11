@@ -1,23 +1,23 @@
 # Microsoft Intune Reports Module
-Microsoft Intune is a cloud-based service that focuses on the management of devices connected to a system. Microsoft Intune provides a wealth of options, from setting up which websites the devices within a system can access, to extracting data of all the devices linked to that system through the management of Microsoft Graph API endpoints. For the purpose of this module, we will be focusing on the collection and use of the "devices" data within Azure Synapse Analytics. 
+Microsoft Intune is a cloud-based service that helps education systems manage devices connected to their education system. Microsoft Intune enables an IT staff to set up the websites that the devices within a system can access and to extract data from the devices enrolled in and managed by Intune. For the purpose of this module, we will be focusing on the collection and use of device data within Azure Synapse Analytics (not website data). 
 
-You can use this Open Education Analytics (OEA) Microsoft Intune Reports module to incorporate device data into your organization's Synapse data lake.
+You can use this Open Education Analytics (OEA) Microsoft Intune Reports module to include device data in your organization's Synapse data lake.
 
  ![image](https://github.com/microsoft/OpenEduAnalytics/blob/bb54627d99d8ae8fcc4b575cdd040b9b61b6b730/modules/Intune/docs/images/Intune%20Diagram.png)
  (Microsoft documentation on Intune: https://docs.microsoft.com/en-us/mem/intune/fundamentals/what-is-intune) 
 
 ## Problem Statement
-As education systems and institutions begin to incorporate more digital forms of learning, understanding the number of students without access to devices outside of school is vital. This "devices" data can be combined with other data sources (such as Azure Active Directory or Microsoft Education Insights data), to get a real time view of student use of devices especially outside physical school to ensure all students have sufficient ‘digital access’ for learning. This can also be combined with school and  class rosters, attendance, and grades from Student Information Systems to produce visualizations that help with intervention targeting. 
+As education systems and institutions use more digital tools for teaching and learning, understanding the number of students without access to devices outside of school is vital. This ‘devices’ data can be combined with other data sources (such as Azure Active Directory or Microsoft Education Insights data), to get a real time view of student use of technology, especially outside the physical setting of a school or campus, to ensure all students have sufficient ‘digital access’ for learning. The device level data from this module can also be combined with school and class rosters, attendance, and grades from Student Information Systems to produce insights that can support very targeted use of resources to ensure digital access for learning is available for all students. 
 
-Microsoft Intune Reports data can be used for many different education purposes:
+Microsoft Intune Reports data can be used for many different education purposes: 
   -	School and district dashboards for education leaders to observe trends in student device access and inclusion outside of school. 
   - Reports on students with multiple devices registered and ownership of the devices. 
-  -	School dashboards on a statistical breakdown of operating systems (OSs) being used by students.
+  -	School dashboards or reports on the operating systems (OSs) being used on students’ devices. 
 
-Ingesting data using this Microsoft Intune module provides solutions to these scenarios, as well as many more instances to extract the devices used for and within school systems.
+Using this Microsoft Intune module will accelerate the development of these types of dashboards and reports.
 
 ## Module Impact 
-This Microsoft Intune module for OEA will leverage Azure Synapse Analytics to aid education systems in bringing this data to their own Azure data lake for analysis. This includes a pipeline for extracting device data from Microsoft Intune through the Microsoft Graph API endpoint manager, providing a more detailed and accurate representation of student device accessibility outside of school. The PowerBI template included in this module can be used by system and school leaders to show:
+This Microsoft Intune module for OEA will leverage Azure Synapse Analytics to aid education systems in bringing this data to their own Azure data lake for analysis. This includes a pipeline for extracting device data from Microsoft Intune through the Microsoft Graph API endpoint manager, providing a more detailed and accurate representation of student device use outside of school. The PowerBI template included in this module can be used by system and school leaders to show:
 
   - Which devices are linked to an education system:
      * Number of students with more than one device
@@ -25,11 +25,11 @@ This Microsoft Intune module for OEA will leverage Azure Synapse Analytics to ai
      * Number of devices based on different OSs (i.e. Windows, iOS/iPadOS, macOS, Android)
      * Number of devices based on ownership (i.e. Corporate/School, Personal, Unknown)
 
-This dashboard example represent only data from Microsoft Intune. When this data is combined with other data sources, they can illustrate how device patterns can relate to student demographics, etc. With such combined data, education systems can start to analyze whether new programs or interventions help to improve teaching and learning with digital tools.  
+This dashboard example represents only data from Microsoft Intune. When this data is combined with other data sources, they can illustrate how device patterns can relate to student demographics, etc. With such combined data, education systems can start to analyze whether new programs or interventions help to improve teaching and learning with digital tools.  
 
 ## Module Setup and Data Sources
 ### Data Sources
- - Microsoft Intune Reports is used to collect "devices" data, as mentioned above. The data available includes all devices connected within a system, as well as the primary user principal name (UPN) connected to the device, and their last check in date/time on this device. 
+ - Microsoft Intune Reports is used to collect "devices" data, as mentioned above. The data available includes all devices enrolled in Intune and connected within a system, as well as the primary user principal name (UPN) connected to the device, and their last check in date/time on this device. 
  - This data is formatted in CSV files; both the sample datasets and your own data ingested through the pipeline are landed in this format. 
 
 ### Module Setup
