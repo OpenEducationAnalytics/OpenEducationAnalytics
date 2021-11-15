@@ -18,7 +18,7 @@ mkdir $this_file_path/tmp
 
 echo "--> Setting up the OEA framework assets."
 
-# install integration assets
+# 1) install integration assets
 #  - setup Linked Services 
 sed "s/yourkeyvault/$key_vault/" $this_file_path/linkedService/LS_KeyVault_OEA.json > $this_file_path/tmp/LS_KeyVault_OEA.json
 eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_KeyVault_OEA --file @$this_file_path/tmp/LS_KeyVault_OEA.json"
@@ -31,6 +31,7 @@ eval "az synapse linked-service create --workspace-name $synapse_workspace --nam
 
 #  - setup Datasets
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_ADLS_binary --file @$this_file_path/dataset/DS_ADLS_binary.json"
+eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_ADLS_binary_folder --file @$this_file_path/dataset/DS_ADLS_binary_folder.json"
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_HTTP_binary --file @$this_file_path/dataset/DS_HTTP_binary.json"
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_ADLS_parquet --file @$this_file_path/dataset/DS_ADLS_parquet.json"
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_Azure_SQL_DB --file @$this_file_path/dataset/DS_Azure_SQL_DB.json"
@@ -40,14 +41,20 @@ eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_each_URL --file @$this_file_path/pipeline/Copy_from_each_URL.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_Azure_SQL_DB --file @$this_file_path/pipeline/Copy_from_Azure_SQL_DB.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_all_from_Azure_SQL_DB --file @$this_file_path/pipeline/Copy_all_from_Azure_SQL_DB.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_Contoso_test_data --file @$this_file_path/pipeline/Copy_Contoso_test_data.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name call_oea_framework --file @$this_file_path/pipeline/call_oea_framework.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name create_lake_db --file @$this_file_path/pipeline/create_lake_db.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name create_sql_db --file @$this_file_path/pipeline/create_sql_db.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name example_main_pipeline --file @$this_file_path/pipeline/example_main_pipeline.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name reset_all_for_source --file @$this_file_path/pipeline/reset_all_for_source.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name reset_ingestion_of_table --file @$this_file_path/pipeline/reset_ingestion_of_table.json"
 
-# install notebooks
+# 2) install notebooks
 eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --spark-pool-name spark3p1sm --file @$this_file_path/notebook/OEA_py.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_connector --spark-pool-name spark3p1sm --file @$this_file_path/notebook/OEA_connector.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name DataGen_py --spark-pool-name spark3p1sm --file @$this_file_path/notebook/DataGen_py.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name data_generation_example --spark-pool-name spark3p1sm --file @$this_file_path/notebook/data_generation_example.ipynb --only-show-errors"
 
-# install the ContosoISD package for an example the user can walk through
+# 3) install the ContosoISD package for an example the user can walk through
 echo "--> Setting up the example OEA package."
 $this_file_path/../packages/ContosoISD/setup.sh $synapse_workspace
 echo "--> Setup complete. The OEA assets have been installed in the specified synapse workspace: $synapse_workspace"

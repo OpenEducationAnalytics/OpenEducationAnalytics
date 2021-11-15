@@ -1,0 +1,174 @@
+{
+    "name": "example_main_pipeline",
+    "properties": {
+        "description": "Example pipeline demonstrating typical orchestration of data extraction, landing, ingestion, and creation of lake and sql db's.",
+        "activities": [
+            {
+                "name": "Extract from source - land in stage1np",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "Copy_from_each_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "endpoints": {
+                            "value": "@json('[{\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/batch1/studentattendance.csv\",\"sinkDirectory\": \"contoso_sis/studentattendance\",\"sinkFilename\": \"part1.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/batch1/studentdemographics.csv\",\"sinkDirectory\": \"contoso_sis/studentdemographics\",\"sinkFilename\": \"part1.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/batch1/studentsectionmark.csv\",\"sinkDirectory\": \"contoso_sis/studentsectionmark\",\"sinkFilename\": \"part1.csv\"}]')",
+                            "type": "Expression"
+                        },
+                        "sinkFilesystem": "stage1np",
+                        "timezone": "Eastern Standard Time"
+                    }
+                }
+            },
+            {
+                "name": "ingest into stage2p and 2np",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Extract from source - land in stage1np",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "OEA_connector",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "object_name": {
+                            "value": "contoso_sis",
+                            "type": "string"
+                        },
+                        "method_name": {
+                            "value": "ingest",
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
+            },
+            {
+                "name": "If create_sql_db",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "ingest into stage2p and 2np",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@pipeline().parameters.create_sql_db",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "create_sql_db",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "create_sql_db",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "storageAccount": {
+                                        "value": "@pipeline().parameters.storageAccount",
+                                        "type": "Expression"
+                                    },
+                                    "sourceDirectory": {
+                                        "value": "@pipeline().parameters.sourceDirectory",
+                                        "type": "Expression"
+                                    },
+                                    "stage": "2"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "If create_lake_db",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "ingest into stage2p and 2np",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@pipeline().parameters.create_lake_db",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "create_lake_db",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "create_lake_db",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "stageNum": "2",
+                                    "sourceDirectory": {
+                                        "value": "@pipeline().parameters.sourceDirectory",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "storageAccount": {
+                "type": "string",
+                "defaultValue": "stoeacisd3gg1"
+            },
+            "sourceDirectory": {
+                "type": "string",
+                "defaultValue": "contoso_sis"
+            },
+            "create_sql_db": {
+                "type": "bool",
+                "defaultValue": false
+            },
+            "create_lake_db": {
+                "type": "bool",
+                "defaultValue": false
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": []
+    }
+}

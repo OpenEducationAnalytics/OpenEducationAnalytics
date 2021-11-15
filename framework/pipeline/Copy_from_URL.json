@@ -48,7 +48,7 @@
                 ],
                 "outputs": [
                     {
-                        "referenceName": "DS_ADLS_binary",
+                        "referenceName": "DS_ADLS_binary_file",
                         "type": "DatasetReference",
                         "parameters": {
                             "filesystem": {
@@ -79,7 +79,7 @@
             }
         },
         "folder": {
-            "name": "OEA_Framework"
+            "name": "OEA_Framework/Extracts"
         },
         "annotations": [],
         "lastPublishTime": "2021-10-28T13:57:30Z"

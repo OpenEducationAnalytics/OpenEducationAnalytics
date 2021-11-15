@@ -3,7 +3,7 @@ from notebookutils import mssparkutils
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, ArrayType, TimestampType, BooleanType, ShortType
 from pyspark.sql import functions as F
 from pyspark.sql.utils import AnalysisException
-import logging
+from opencensus.ext.azure.log_exporter import AzureLogHandler, logging
 import pandas as pd
 import sys
 import re
@@ -30,8 +30,15 @@ class OEA:
         self.stage3np = 'abfss://stage3np@' + self.storage_account + '.dfs.core.windows.net'
         self.stage3p = 'abfss://stage3p@' + self.storage_account + '.dfs.core.windows.net'
         self.framework_path = 'abfss://oea-framework@' + self.storage_account + '.dfs.core.windows.net'
+        self.registered_modules = {}
 
         logger.debug("OEA initialized.")
+
+    def path(self, container_name, directory_path=None):
+        if directory_path:
+            return f'abfss://{container_name}@{self.storage_account}.dfs.core.windows.net/{directory_path}'
+        else:
+            return f'abfss://{container_name}@{self.storage_account}.dfs.core.windows.net'            
 
     def _initialize_logger(self, instrumentation_key, logging_level):
         logging.lastResort = None
@@ -44,7 +51,12 @@ class OEA:
         handler.setLevel(logging_level)
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         handler.setFormatter(formatter)
-        logger.addHandler(handler) 
+        logger.addHandler(handler)
+
+        if instrumentation_key:
+            # Setup logging to go to app insights (more info here: https://github.com/balakreshnan/Samples2021/blob/main/Synapseworkspace/opencensuslog.md#azure-synapse-spark-logs-runtime-errors-to-application-insights)
+            self.logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=' + instrumentation_key))
+
 
     def load(self, folder, table, stage=None, data_format='delta'):
         """ Loads a dataframe based on the path specified in the given args """
@@ -235,49 +247,49 @@ class OEA:
         m = re.match(r".*:\/\/stage(?P<stage_num>\d+)[n]?[p]?@[^/]+\/(?P<ss>[^/]+)", path)
         return m.groupdict()
     
-    def create_db(self, source_path, source_format='DELTA'):
-        """ Creates a spark db based on the given path (assumes that every folder in the given path is a table).
+    def create_lake_db(self, stage_num, source_dir, source_format='DELTA'):
+        """ Creates a spark db that points to data in the given stage under the specified source directory (assumes that every folder in the source_dir is a table).
+            Example: create_lake_db(2, 'contoso_sis')
             Note that a spark db that points to source data in the delta format can't be queried via SQL serverless pool. More info here: https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/resources-self-help-sql-on-demand#delta-lake
         """
-        source_info = self.parse_source_path(source_path)
-        db_name = f"s{source_info['stage_num']}_{source_info['ss']}"
-        spark.sql(f"CREATE DATABASE IF NOT EXISTS {db_name}")
+        db_name = f's{stage_num}_{source_dir}'
+        spark.sql(f'CREATE DATABASE IF NOT EXISTS {db_name}')
+        self.create_lake_views(db_name, self.path(f'stage{stage_num}p', source_dir), source_format)
+        self.create_lake_views(db_name, self.path(f'stage{stage_num}np', source_dir), source_format)
+        result = "Database created: " + db_name
+        logger.info(result)
+        return result        
+
+    def create_lake_views(self, db_name, source_path, source_format):
         dirs = self.get_folders(source_path)
         for table_name in dirs:
             spark.sql(f"create table if not exists {db_name}.{table_name} using {source_format} location '{source_path}/{table_name}'")
-        result = "Database created: " + db_name
-        logger.info(result)
-        return result
 
-    def create_stage2_lake_db(self, source_directory):
-        source_path = f'{self.stage2p}/{source_directory}'
-        self.create_db(source_path)
-        source_path = f'{self.stage2pn}/{source_directory}'
-        self.create_db(source_path)
-
-    def drop_db(self, db_name):
-        """ Drop all tables in a db, then drop the db. """
-        df = spark.sql('SHOW TABLES FROM ' + db_name)
-        for row in df.rdd.collect():
-            spark.sql(f"DROP TABLE IF EXISTS {db_name}.{row['tableName']}")
-        spark.sql(f"DROP DATABASE IF EXISTS {db_name}")
+    def drop_lake_db(self, db_name):
+        spark.sql(f'DROP DATABASE IF EXISTS {db_name} CASCADE')
         result = "Database dropped: " + db_name
         logger.info(result)
-        return result         
+        return result       
 
-    def create_sql_db(self, source_path, source_format='DELTA'):
-        """ Creates the script for creating db based on the given path (assumes that every folder in the given path is a table).
-            Note that a spark db that points to source data in the delta format can't be queried via SQL serverless pool. More info here: https://docs.microsoft.com/en-us/azure/synapse-analytics/sql/resources-self-help-sql-on-demand#delta-lake
-        """
-        source_info = self.parse_source_path(source_path)
-        db_name = f"s{source_info['stage_num']}_{source_info['ss']}"
-        spark.sql(f"CREATE DATABASE IF NOT EXISTS {db_name}")
+    def create_sql_db(self, stage_num, source_dir, source_format='DELTA'):
+        """ Prints out the sql script needed for creating a sql serverless db and set of views. """
+        db_name = f'sqls{stage_num}_{source_dir}'
+        cmd += '-- Create a new sql script then execute the following in it:'
+        cmd += f"IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = '{db_name}')\nBEGIN\n  CREATE DATABASE {db_name};\nEND;\nGO\n"
+        cmd += f"USE {db_name};\nGO\n\n"
+        cmd += self.create_sql_views(self.path(f'stage{stage_num}p', source_dir), source_format)
+        cmd += self.create_sql_views(self.path(f'stage{stage_num}np', source_dir), source_format)
+        print(cmd)
+
+    def create_sql_views(self, source_path, source_format):
+        cmd = ''      
         dirs = self.get_folders(source_path)
         for table_name in dirs:
-            spark.sql(f"create table if not exists {db_name}.{table_name} using {source_format} location '{source_path}/{table_name}'")
-        result = "Database created: " + db_name
-        logger.info(result)
-        return result
+            cmd += f"CREATE OR ALTER VIEW {table_name} AS\n  SELECT * FROM OPENROWSET(BULK '{source_path}/{table_name}', FORMAT='{source_format}') AS [r];\nGO\n"
+        return cmd
+
+    def drop_sql_db(self, db_name):
+        print('Click on the menu next to the SQL db and select "Delete"')
 
     # List installed packages
     def list_packages(self):
@@ -311,10 +323,9 @@ class OEA:
 
 class BaseOEAModule:
     """ Provides data processing methods for Contoso SIS data (the student information system for the fictional Contoso school district).  """
-    def __init__(self, oea, source_folder, pseudonymize = True):
+    def __init__(self, source_folder, pseudonymize = True):
         self.source_folder = source_folder
         self.pseudonymize = pseudonymize
-        self.oea = oea
         self.stage1np = f"{oea.stage1np}/{source_folder}"
         self.stage2np = f"{oea.stage2np}/{source_folder}"
         self.stage2p = f"{oea.stage2p}/{source_folder}"
@@ -322,30 +333,30 @@ class BaseOEAModule:
         self.stage3p = f"{oea.stage3p}/{source_folder}"
         self.module_path = f"{oea.framework_path}/modules/{source_folder}"
         self.schemas = {}
-   
+
     def _process_entity_from_stage1(self, path, entity_name, format='csv', write_mode='overwrite', header='true'):
-        spark_schema = self.oea.to_spark_schema(self.schemas[entity_name])
+        spark_schema = oea.to_spark_schema(self.schemas[entity_name])
         df = spark.read.format(format).load(f"{self.stage1np}/{path}/{entity_name}", header=header, schema=spark_schema)
 
         if self.pseudonymize:
-            df_pseudo, df_lookup = self.oea.pseudonymize(df, self.schemas[entity_name])
+            df_pseudo, df_lookup = oea.pseudonymize(df, self.schemas[entity_name])
             df_pseudo.write.format('delta').mode(write_mode).save(f"{self.stage2p}/{entity_name}")
             if len(df_lookup.columns) > 0:
                 df_lookup.write.format('delta').mode(write_mode).save(f"{self.stage2np}/{entity_name}_lookup")
         else:
-            df = self.oea.fix_column_names(df)   
+            df = oea.fix_column_names(df)   
             df.write.format('delta').mode(write_mode).save(f"{self.stage2np}/{entity_name}")
 
     def delete_stage1(self):
-        self.oea.rm_if_exists(self.stage1np)
+        oea.rm_if_exists(self.stage1np)
 
     def delete_stage2(self):
-        self.oea.rm_if_exists(self.stage2np)
-        self.oea.rm_if_exists(self.stage2p)
+        oea.rm_if_exists(self.stage2np)
+        oea.rm_if_exists(self.stage2p)
 
     def delete_stage3(self):
-        self.oea.rm_if_exists(self.stage3np)
-        self.oea.rm_if_exists(self.stage3p)                
+        oea.rm_if_exists(self.stage3np)
+        oea.rm_if_exists(self.stage3p)                
 
     def delete_all_stages(self):
         self.delete_stage1()
@@ -353,12 +364,12 @@ class BaseOEAModule:
         self.delete_stage3()
 
     def create_stage2_lake_db(self, format='DELTA'):
-        self.oea.create_lake_db(self.stage2p, format)
-        self.oea.create_lake_db(self.stage2np, format)
+        oea.create_lake_db(self.stage2p, format)
+        oea.create_lake_db(self.stage2np, format)
 
     def create_stage3_lake_db(self, format='DELTA'):
-        self.oea.create_lake_db(self.stage3p, format)
-        self.oea.create_lake_db(self.stage3np, format)
+        oea.create_lake_db(self.stage3p, format)
+        oea.create_lake_db(self.stage3np, format)
 
     def copy_test_data_to_stage1(self):
         mssparkutils.fs.cp(self.module_path + '/test_data', self.stage1np, True)   
@@ -369,3 +380,5 @@ class DataLakeWriter:
 
     def write(self, path_and_filename, data_str, format='csv'):
         mssparkutils.fs.append(f"{self.root_destination}/{path_and_filename}", data_str, True) # Set the last parameter as True to create the file if it does not exist
+
+oea = OEA()
