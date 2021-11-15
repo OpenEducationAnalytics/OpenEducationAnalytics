@@ -1,5 +1,5 @@
 {
-    "name": "DS_ADLS_binary",
+    "name": "DS_ADLS_binary_file",
     "properties": {
         "description": "Used for landing data in the data lake.\nDefaults to landing data in stage1np.\nNote that you can specify a full path in the filename param (eg, to land a file in a specific folder filename param can be 'contoso_sis/students/students.csv').\n",
         "linkedServiceName": {
