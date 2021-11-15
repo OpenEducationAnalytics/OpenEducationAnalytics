@@ -20,7 +20,7 @@ If you're working in an existing OEA environment and want to import these update
 `./OpenEduAnalytics/framework/setup.sh <synapse workspace name> <storage account name> <keyvault name>` \
 for example: `./OpenEduAnalytics/framework/setup.sh syn-oea-cisd3a stoeacisd3a kv-oea-cisd3a`
 
-You can also choose to import framework assets manually by:
+You can also choose to import framework assets manually from within synapse studio by doing the following:
 - Click 'Develop' in the left nav, click on the '+' and select 'Import', then select the .ipynb files under framework/notebook
 - Click 'Integrate' in the left nav, click on the '+' and select 'Import from pipeline template', then select the .zip files under framework/template (this will require additional setup because there are dependencies to linked-services in these pipelines, so those will have to also be manually setup).
 
