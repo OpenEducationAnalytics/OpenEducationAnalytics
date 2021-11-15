@@ -16,7 +16,7 @@ If you're working in an existing OEA environment and want to import these update
 1) Download this repo to your Azure clouddrive (if you've already downloaded the repo earlier, you can just update it by going into your OpenEduAnalytics dir and using the command: `git pull`) \
 `cd clouddrive`\
 `git clone https://github.com/microsoft/OpenEduAnalytics`
-1) Run the framework setup script like this (substitute "mysuffix" with your preferred suffix, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
+1) Run the framework setup script like this: \
 `./OpenEduAnalytics/framework/setup.sh <synapse workspace name> <storage account name> <keyvault name>` \
 for example: `./OpenEduAnalytics/framework/setup.sh syn-oea-cisd3a stoeacisd3a kv-oea-cisd3a`
 
