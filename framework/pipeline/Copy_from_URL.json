@@ -1,1 +1,88 @@
-{"$schema":"http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#","contentVersion":"1.0.0.0","parameters":{"workspaceName":{"type":"string","metadata":"Workspace name","defaultValue":"syn-oea-cisd3gg1"},"LS_HTTP":{"type":"string"},"LS_ADLS_OEA":{"type":"string"}},"variables":{"workspaceId":"[concat('Microsoft.Synapse/workspaces/', parameters('workspaceName'))]"},"resources":[{"name":"[concat(parameters('workspaceName'), '/Copy_from_URL')]","type":"Microsoft.Synapse/workspaces/pipelines","apiVersion":"2019-06-01-preview","properties":{"description":"Copies data from the specified URL and lands it in the specified location in the data lake.","activities":[{"name":"copy from URL","type":"Copy","dependsOn":[],"policy":{"timeout":"7.00:00:00","retry":0,"retryIntervalInSeconds":30,"secureOutput":false,"secureInput":false},"userProperties":[],"typeProperties":{"source":{"type":"BinarySource","storeSettings":{"type":"HttpReadSettings","requestMethod":"GET"},"formatSettings":{"type":"BinaryReadSettings"}},"sink":{"type":"BinarySink","storeSettings":{"type":"AzureBlobFSWriteSettings"}},"enableStaging":false},"inputs":[{"referenceName":"DS_HTTP_binary","type":"DatasetReference","parameters":{"URL":{"value":"@pipeline().parameters.URL","type":"Expression"}}}],"outputs":[{"referenceName":"DS_ADLS_binary_file","type":"DatasetReference","parameters":{"filesystem":{"value":"@pipeline().parameters.sinkFilesystem","type":"Expression"},"filename":{"value":"@pipeline().parameters.sinkFilename","type":"Expression"}}}]}],"policy":{"elapsedTimeMetric":{},"cancelAfter":{}},"parameters":{"URL":{"type":"string","defaultValue":"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/studentattendance.csv"},"sinkFilesystem":{"type":"string","defaultValue":"stage1np"},"sinkFilename":{"type":"string","defaultValue":"contoso_sis/example1/studentattendance.csv"}},"folder":{"name":"OEA_Framework/Extracts"},"annotations":[],"lastPublishTime":"2021-10-28T13:57:30Z"},"dependsOn":["[concat(variables('workspaceId'), '/datasets/DS_HTTP_binary')]","[concat(variables('workspaceId'), '/datasets/DS_ADLS_binary_file')]"]},{"name":"[concat(parameters('workspaceName'), '/DS_HTTP_binary')]","type":"Microsoft.Synapse/workspaces/datasets","apiVersion":"2019-06-01-preview","properties":{"description":"Retrieves data from an http endpoint.\nThe data can be in any format - the binary dataset allows us to pull any payload without affecting it.","linkedServiceName":{"referenceName":"[parameters('LS_HTTP')]","type":"LinkedServiceReference","parameters":{"baseURL":{"value":"@dataset().URL","type":"Expression"}}},"parameters":{"URL":{"type":"string"}},"folder":{"name":"OEA_Framework"},"annotations":[],"type":"Binary","typeProperties":{"location":{"type":"HttpServerLocation"}}},"dependsOn":[]},{"name":"[concat(parameters('workspaceName'), '/DS_ADLS_binary_file')]","type":"Microsoft.Synapse/workspaces/datasets","apiVersion":"2019-06-01-preview","properties":{"description":"Used for landing data in the data lake.\nDefaults to landing data in stage1np.\nNote that you can specify a full path in the filename param (eg, to land a file in a specific folder filename param can be 'contoso_sis/students/students.csv').\n","linkedServiceName":{"referenceName":"[parameters('LS_ADLS_OEA')]","type":"LinkedServiceReference"},"parameters":{"filesystem":{"type":"string","defaultValue":"stage1np"},"filename":{"type":"string"}},"folder":{"name":"OEA_Framework"},"annotations":[],"type":"Binary","typeProperties":{"location":{"type":"AzureBlobFSLocation","fileName":{"value":"@dataset().filename","type":"Expression"},"fileSystem":{"value":"@dataset().filesystem","type":"Expression"}}}},"dependsOn":[]}]}
+{
+    "name": "Copy_from_URL",
+    "properties": {
+        "description": "Copies data from the specified URL and lands it in the specified location in the data lake.",
+        "activities": [
+            {
+                "name": "copy from URL",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "BinarySource",
+                        "storeSettings": {
+                            "type": "HttpReadSettings",
+                            "requestMethod": "GET"
+                        },
+                        "formatSettings": {
+                            "type": "BinaryReadSettings"
+                        }
+                    },
+                    "sink": {
+                        "type": "BinarySink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        }
+                    },
+                    "enableStaging": false
+                },
+                "inputs": [
+                    {
+                        "referenceName": "DS_HTTP_binary",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "URL": {
+                                "value": "@pipeline().parameters.URL",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "DS_ADLS_binary_file",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@pipeline().parameters.sinkFilesystem",
+                                "type": "Expression"
+                            },
+                            "filename": {
+                                "value": "@pipeline().parameters.sinkFilename",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ]
+            }
+        ],
+        "parameters": {
+            "URL": {
+                "type": "string",
+                "defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/studentattendance.csv"
+            },
+            "sinkFilesystem": {
+                "type": "string",
+                "defaultValue": "stage1np"
+            },
+            "sinkFilename": {
+                "type": "string",
+                "defaultValue": "contoso_sis/example1/studentattendance.csv"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework/Extracts"
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-10-28T13:57:30Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

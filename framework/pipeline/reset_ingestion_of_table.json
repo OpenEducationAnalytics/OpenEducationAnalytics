@@ -1,1 +1,150 @@
-{"$schema":"http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#","contentVersion":"1.0.0.0","parameters":{"workspaceName":{"type":"string","metadata":"Workspace name","defaultValue":"syn-oea-cisd3gg1"},"LS_ADLS_OEA":{"type":"string"}},"variables":{"workspaceId":"[concat('Microsoft.Synapse/workspaces/', parameters('workspaceName'))]"},"resources":[{"name":"[concat(parameters('workspaceName'), '/reset_ingestion_of_table')]","type":"Microsoft.Synapse/workspaces/pipelines","apiVersion":"2019-06-01-preview","properties":{"description":"Deletes the ingestion for the specified system and table - in order to start over when testing during implementation.","activities":[{"name":"delete _checkpoints_p","type":"Delete","dependsOn":[],"policy":{"timeout":"7.00:00:00","retry":0,"retryIntervalInSeconds":30,"secureOutput":false,"secureInput":false},"userProperties":[],"typeProperties":{"dataset":{"referenceName":"DS_ADLS_binary_folder","type":"DatasetReference","parameters":{"filesystem":"stage1np","directory":{"value":"@{pipeline().parameters.sourceSystem}/@{pipeline().parameters.tablename}/_checkpoints_p","type":"Expression"}}},"enableLogging":false,"storeSettings":{"type":"AzureBlobFSReadSettings","recursive":true,"enablePartitionDiscovery":false}}},{"name":"delete _checkpoints_np","type":"Delete","dependsOn":[],"policy":{"timeout":"7.00:00:00","retry":0,"retryIntervalInSeconds":30,"secureOutput":false,"secureInput":false},"userProperties":[],"typeProperties":{"dataset":{"referenceName":"DS_ADLS_binary_folder","type":"DatasetReference","parameters":{"filesystem":"stage1np","directory":{"value":"@{pipeline().parameters.sourceSystem}/@{pipeline().parameters.tablename}/_checkpoints_np","type":"Expression"}}},"enableLogging":false,"storeSettings":{"type":"AzureBlobFSReadSettings","recursive":true,"enablePartitionDiscovery":false}}},{"name":"delete from stage2np","type":"Delete","dependsOn":[],"policy":{"timeout":"7.00:00:00","retry":0,"retryIntervalInSeconds":30,"secureOutput":false,"secureInput":false},"userProperties":[],"typeProperties":{"dataset":{"referenceName":"DS_ADLS_binary_folder","type":"DatasetReference","parameters":{"filesystem":"stage2np","directory":{"value":"@{pipeline().parameters.sourceSystem}/@{pipeline().parameters.tablename}","type":"Expression"}}},"enableLogging":false,"storeSettings":{"type":"AzureBlobFSReadSettings","recursive":true,"enablePartitionDiscovery":false}}},{"name":"delete from stage2p","type":"Delete","dependsOn":[],"policy":{"timeout":"7.00:00:00","retry":0,"retryIntervalInSeconds":30,"secureOutput":false,"secureInput":false},"userProperties":[],"typeProperties":{"dataset":{"referenceName":"DS_ADLS_binary_folder","type":"DatasetReference","parameters":{"filesystem":"stage2p","directory":{"value":"@{pipeline().parameters.sourceSystem}/@{pipeline().parameters.tablename}","type":"Expression"}}},"enableLogging":false,"storeSettings":{"type":"AzureBlobFSReadSettings","recursive":true,"enablePartitionDiscovery":false}}}],"policy":{"elapsedTimeMetric":{},"cancelAfter":{}},"parameters":{"sourceSystem":{"type":"string","defaultValue":"contoso_sis"},"tablename":{"type":"string","defaultValue":"studentattendance"}},"folder":{"name":"OEA_Framework/Reset"},"annotations":[]},"dependsOn":["[concat(variables('workspaceId'), '/datasets/DS_ADLS_binary_folder')]"]},{"name":"[concat(parameters('workspaceName'), '/DS_ADLS_binary_folder')]","type":"Microsoft.Synapse/workspaces/datasets","apiVersion":"2019-06-01-preview","properties":{"linkedServiceName":{"referenceName":"[parameters('LS_ADLS_OEA')]","type":"LinkedServiceReference"},"parameters":{"filesystem":{"type":"string"},"directory":{"type":"string"}},"folder":{"name":"OEA_Framework"},"annotations":[],"type":"Binary","typeProperties":{"location":{"type":"AzureBlobFSLocation","folderPath":{"value":"@dataset().directory","type":"Expression"},"fileSystem":{"value":"@dataset().filesystem","type":"Expression"}}}},"dependsOn":[]}]}
+{
+    "name": "reset_ingestion_of_table",
+    "properties": {
+        "description": "Deletes the ingestion for the specified system and table - in order to start over when testing during implementation.",
+        "activities": [
+            {
+                "name": "delete _checkpoints_p",
+                "type": "Delete",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_ADLS_binary_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": "stage1np",
+                            "directory": {
+                                "value": "@{pipeline().parameters.sourceSystem}/@{pipeline().parameters.tablename}/_checkpoints_p",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "enableLogging": false,
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    }
+                }
+            },
+            {
+                "name": "delete _checkpoints_np",
+                "type": "Delete",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_ADLS_binary_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": "stage1np",
+                            "directory": {
+                                "value": "@{pipeline().parameters.sourceSystem}/@{pipeline().parameters.tablename}/_checkpoints_np",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "enableLogging": false,
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    }
+                }
+            },
+            {
+                "name": "delete from stage2np",
+                "type": "Delete",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_ADLS_binary_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": "stage2np",
+                            "directory": {
+                                "value": "@{pipeline().parameters.sourceSystem}/@{pipeline().parameters.tablename}",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "enableLogging": false,
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    }
+                }
+            },
+            {
+                "name": "delete from stage2p",
+                "type": "Delete",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_ADLS_binary_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": "stage2p",
+                            "directory": {
+                                "value": "@{pipeline().parameters.sourceSystem}/@{pipeline().parameters.tablename}",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "enableLogging": false,
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "sourceSystem": {
+                "type": "string",
+                "defaultValue": "contoso_sis"
+            },
+            "tablename": {
+                "type": "string",
+                "defaultValue": "studentattendance"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework/Reset"
+        },
+        "annotations": []
+    }
+}
