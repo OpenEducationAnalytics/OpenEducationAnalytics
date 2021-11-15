@@ -5,7 +5,20 @@ As we work with customers and partners and grow the catalog of modules and packa
 
 OEA is an "opinionated framework" that provides value and simplicity through the use of "convention over configuration" - this is very much in the spirit of the [principles followed by the Rails framework](https://rubyonrails.org/doctrine/). By relying on a standard architecture and a standard approach, the OEA framework can be smart about how to handle common scenarios.
 
-What follows is a description of some of the conventions followed when landing, ingesting, prepping, and publishing data sets within OEA.
+See the info below for a description of some of the conventions followed when landing, ingesting, prepping, and publishing data sets within OEA.
+
+# Setup
+If you're setting up a new OEA environment, you can follow the [setup instructions on the main page](https://github.com/microsoft/OpenEduAnalytics#setup) and these framework assets will automatically be installed as part of that process.
+
+If you're working in an existing OEA environment and want to import these updated framework assets, you'll need to do the following:
+1) Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
+[![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
+1) Download this repo to your Azure clouddrive (if you've already downloaded the repo earlier, you can just update it by going into your OpenEduAnalytics dir and using the command: `git pull`) \
+`cd clouddrive`\
+`git clone https://github.com/microsoft/OpenEduAnalytics`
+1) Run the framework setup script like this (substitute "mysuffix" with your preferred suffix, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
+`./OpenEduAnalytics/framework/setup.sh <synapse workspace name> <storage account name> <keyvault name>` \
+for example: `./OpenEduAnalytics/framework/setup.sh syn-oea-cisd3a stoeacisd3a kv-oea-cisd3a`
 
 # Landing data in stage1 (extraction and landing)
 The process of data extraction from source systems as well as the process of landing that initial data set in the data lake is orchestrated through the use of [Synapse Pipelines (or Azure Data Factory)](https://docs.microsoft.com/en-us/azure/data-factory/concepts-pipelines-activities).
