@@ -7,10 +7,10 @@ OEA is an "opinionated framework" that provides value and simplicity through the
 
 See the info below for a description of some of the conventions followed when landing, ingesting, prepping, and publishing data sets within OEA.
 
-# Setup
+# Setup of framework assets
 If you're setting up a new OEA environment, you can follow the [setup instructions on the main page](https://github.com/microsoft/OpenEduAnalytics#setup) and these framework assets will automatically be installed as part of that process.
 
-If you're working in an existing OEA environment and want to import these updated framework assets, you'll need to do the following:
+If you're working in an existing OEA environment and want to import these updated framework assets, you'll need to do the following (this assumes that you're synapse workspace is in Live mode - if it's connected to a repo, you'll need to disconnect from the git repository, run this setup, then reconnect to the git repository and import your changes).
 1) Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
 1) Download this repo to your Azure clouddrive (if you've already downloaded the repo earlier, you can just update it by going into your OpenEduAnalytics dir and using the command: `git pull`) \
@@ -19,6 +19,10 @@ If you're working in an existing OEA environment and want to import these update
 1) Run the framework setup script like this (substitute "mysuffix" with your preferred suffix, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
 `./OpenEduAnalytics/framework/setup.sh <synapse workspace name> <storage account name> <keyvault name>` \
 for example: `./OpenEduAnalytics/framework/setup.sh syn-oea-cisd3a stoeacisd3a kv-oea-cisd3a`
+
+You can also choose to import framework assets manually by:
+- Click 'Develop' in the left nav, click on the '+' and select 'Import', then select the .ipynb files under framework/notebook
+- Click 'Integrate' in the left nav, click on the '+' and select 'Import from pipeline template', then select the .zip files under framework/template (this will require additional setup because there are dependencies to linked-services in these pipelines, so those will have to also be manually setup).
 
 # Landing data in stage1 (extraction and landing)
 The process of data extraction from source systems as well as the process of landing that initial data set in the data lake is orchestrated through the use of [Synapse Pipelines (or Azure Data Factory)](https://docs.microsoft.com/en-us/azure/data-factory/concepts-pipelines-activities).
