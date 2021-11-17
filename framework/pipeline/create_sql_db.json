@@ -50,7 +50,7 @@
                     "referenceName": "LS_SQL_Serverless_OEA",
                     "type": "LinkedServiceReference",
                     "parameters": {
-                        "databaseName": "master"
+                        "dbName": "master"
                     }
                 }
             },
@@ -130,7 +130,12 @@
                                 "secureOutput": false,
                                 "secureInput": false
                             },
-                            "userProperties": [],
+                            "userProperties": [
+                                {
+                                    "name": "command",
+                                    "value": "CREATE OR ALTER VIEW @{item().name} AS SELECT * FROM OPENROWSET( BULK 'https://@{pipeline().parameters.storageAccount}.dfs.core.windows.net/stage@{pipeline().parameters.stage}p/@{pipeline().parameters.sourceDirectory}/@{item().name}', FORMAT='DELTA' ) AS [r]"
+                                }
+                            ],
                             "typeProperties": {
                                 "storedProcedureName": "[dbo].[sp_executesql]",
                                 "storedProcedureParameters": {
@@ -147,7 +152,7 @@
                                 "referenceName": "LS_SQL_Serverless_OEA",
                                 "type": "LinkedServiceReference",
                                 "parameters": {
-                                    "databaseName": {
+                                    "dbName": {
                                         "value": "@variables('sqlDBName')",
                                         "type": "Expression"
                                     }
@@ -233,7 +238,12 @@
                                 "secureOutput": false,
                                 "secureInput": false
                             },
-                            "userProperties": [],
+                            "userProperties": [
+                                {
+                                    "name": "command",
+                                    "value": "CREATE OR ALTER VIEW @{item().name} AS SELECT * FROM OPENROWSET( BULK 'https://@{pipeline().parameters.storageAccount}.dfs.core.windows.net/stage@{pipeline().parameters.stage}p/@{pipeline().parameters.sourceDirectory}/@{item().name}', FORMAT='DELTA' ) AS [r]"
+                                }
+                            ],
                             "typeProperties": {
                                 "storedProcedureName": "[dbo].[sp_executesql]",
                                 "storedProcedureParameters": {
@@ -250,7 +260,7 @@
                                 "referenceName": "LS_SQL_Serverless_OEA",
                                 "type": "LinkedServiceReference",
                                 "parameters": {
-                                    "databaseName": {
+                                    "dbName": {
                                         "value": "@variables('sqlDBName')",
                                         "type": "Expression"
                                     }
@@ -284,6 +294,8 @@
         "folder": {
             "name": "OEA_Framework/Ingest"
         },
-        "annotations": []
-    }
+        "annotations": [],
+        "lastPublishTime": "2021-11-17T16:18:07Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
 }

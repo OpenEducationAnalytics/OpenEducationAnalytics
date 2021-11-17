@@ -54,7 +54,8 @@ eval "az synapse pipeline create --workspace-name $synapse_workspace --name rese
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name reset_ingestion_of_table --file @$this_file_path/pipeline/reset_ingestion_of_table.json"
 
 
-# 4) install the ContosoISD package for an example the user can walk through
-echo "--> Setting up the example OEA package."
-$this_file_path/../packages/ContosoISD/setup.sh $synapse_workspace
-echo "--> Setup complete. The OEA assets have been installed in the specified synapse workspace: $synapse_workspace"
+# 4) install the ContosoSIS_py notebook for use with the 'example_main_pipeline' that comes with the framework
+eval "az synapse notebook import --workspace-name $synapse_workspace --name ContosoSIS_py --spark-pool-name spark3p1sm --file @$this_file_path/../modules/Contoso_SIS/notebook/ContosoSIS_py.ipynb --only-show-errors"
+
+echo "--> Setup complete. The OEA framework assets have been installed in the specified synapse workspace: $synapse_workspace"
+
