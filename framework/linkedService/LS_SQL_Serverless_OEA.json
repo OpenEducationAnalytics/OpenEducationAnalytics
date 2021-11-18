@@ -11,7 +11,7 @@
         "annotations": [],
         "type": "AzureSqlDatabase",
         "typeProperties": {
-            "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=syn-oea-cisdggv05j-ondemand.sql.azuresynapse.net;Initial Catalog=@{linkedService().dbName}"
+            "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=yoursynapseworkspace-ondemand.sql.azuresynapse.net;Initial Catalog=@{linkedService().dbName}"
         },
         "connectVia": {
             "referenceName": "AutoResolveIntegrationRuntime",
