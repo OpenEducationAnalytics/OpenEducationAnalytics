@@ -1,6 +1,6 @@
 from delta.tables import DeltaTable
 from notebookutils import mssparkutils
-from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, ArrayType, TimestampType, BooleanType, ShortType
+from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, ArrayType, TimestampType, BooleanType, ShortType, DateType
 from pyspark.sql import functions as F
 from pyspark.sql.utils import AnalysisException
 from opencensus.ext.azure.log_exporter import AzureLogHandler, logging
