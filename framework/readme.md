@@ -24,7 +24,7 @@ You can also choose to import framework assets manually from within synapse stud
 - Click 'Develop' in the left nav, click on the '+' and select 'Import', then select the .ipynb files under framework/notebook
 - Click 'Integrate' in the left nav, click on the '+' and select 'Import from pipeline template', then select the .zip files under framework/template (this will require additional setup because there are dependencies to linked-services in these pipelines, so those will have to also be manually setup).
 
-# Landing data in stage1 (extraction and landing)
+# I. Landing data in stage1 (extraction and landing)
 The process of data extraction from source systems as well as the process of landing that initial data set in the data lake is orchestrated through the use of [Synapse Pipelines (or Azure Data Factory)](https://docs.microsoft.com/en-us/azure/data-factory/concepts-pipelines-activities).
 As a part of the OEA standard approach, batch data is landed in stage1np under a parent folder that represents the data source followed by a folder that represents the table (also referred to as the entity), followed by a folder with the current datetime stamp. For example,
 
@@ -32,7 +32,7 @@ As a part of the OEA standard approach, batch data is landed in stage1np under a
 
 Note that there can be multiple data files in each of the timestamped folders. This allows for landing data in a multi-threaded way, where you end up with a list of data files that need to be processed for that table.
 
-# Ingesting data into stage2 (initial data prep)
+# II. Ingesting data into stage2 (initial data prep)
 Ingesting data from stage1 into stage2 results in data that is "query-ready", meaning that batch data sets have been merged into query-ready tables in the data lake.
 
 | **Data in stage1:**         | **Data in stage2:**     | 
@@ -76,5 +76,8 @@ These are additional scenarios that need to have similar examples:
 - slowly changing dimensions type 2 (scd2)
 - field-level data validation errors
 
-# Publishing data to stage3 (data product release)
+# III. Processing data within stage2
+The work of exploring, refining, enriching, aggregating, analyzing, and processing in general is done within stage2 - with results being written back to stage2.
+
+# IV. Publishing data to stage3 (data product release)
 The final stage in the data lake is reserved for published "data products" which are used by one or more reports, dashboards, ML models, or other services.
