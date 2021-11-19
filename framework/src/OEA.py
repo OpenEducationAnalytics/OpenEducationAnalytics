@@ -30,7 +30,14 @@ class OEA:
         self.stage3np = 'abfss://stage3np@' + self.storage_account + '.dfs.core.windows.net'
         self.stage3p = 'abfss://stage3p@' + self.storage_account + '.dfs.core.windows.net'
         self.framework_path = 'abfss://oea-framework@' + self.storage_account + '.dfs.core.windows.net'
-        self.registered_modules = {}
+
+        # Initialize framework db
+        spark.sql(f"CREATE DATABASE IF NOT EXISTS oea")
+        spark.sql(f"CREATE TABLE IF NOT EXISTS oea.env (name string not null, value string not null, description string) USING DELTA LOCATION '{self.framework_path}/db/env'")
+        df = spark.sql("select value from oea.env where name='storage_account'")
+        if df.first(): spark.sql(f"UPDATE oea.env set value='{self.storage_account}' where name='storage_account'")
+        else: spark.sql(f"INSERT INTO oea.env VALUES ('storage_account', '{self.storage_account}', 'The name of the data lake storage account for this OEA instance.')")
+        spark.sql(f"CREATE TABLE IF NOT EXISTS OEA.watermark (source string not null, entity string not null, watermark timestamp not null) USING DELTA LOCATION '{self.framework_path}/db/watermark'")
 
         logger.debug("OEA initialized.")
 
@@ -38,7 +45,7 @@ class OEA:
         if directory_path:
             return f'abfss://{container_name}@{self.storage_account}.dfs.core.windows.net/{directory_path}'
         else:
-            return f'abfss://{container_name}@{self.storage_account}.dfs.core.windows.net'            
+            return f'abfss://{container_name}@{self.storage_account}.dfs.core.windows.net'
 
     def _initialize_logger(self, instrumentation_key, logging_level):
         logging.lastResort = None
@@ -57,6 +64,16 @@ class OEA:
             # Setup logging to go to app insights (more info here: https://github.com/balakreshnan/Samples2021/blob/main/Synapseworkspace/opencensuslog.md#azure-synapse-spark-logs-runtime-errors-to-application-insights)
             self.logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=' + instrumentation_key))
 
+    def get_value_from_db(self, query):
+        df = spark.sql(query)
+        if df.first(): return df.first()[0]
+        else: return None
+
+    def get_last_watermark(self, source, entity):
+        return self.get_value_from_db(f"select w.watermark from oea.watermark w where w.source='{source}' and w.entity='{entity}' order by w.watermark desc")
+
+    def insert_watermark(self, source, entity, watermark_datetime):
+        spark.sql(f"insert into oea.watermark values ('{source}', '{entity}', '{watermark_datetime}')")
 
     def load(self, folder, table, stage=None, data_format='delta'):
         """ Loads a dataframe based on the path specified in the given args """
@@ -320,6 +337,17 @@ class OEA:
         for entity_name, value in data.items():
             pdf = pd.DataFrame(value)
             mssparkutils.fs.put(f"{container}/{folder}/{entity_name}.csv", pdf.to_csv(index=False), True) # True indicates overwrite mode         
+
+    def create_empty_dataframe(self, schema):
+        """ Creates an empty dataframe based on the given schema which is specified as an array of column names and sql types.
+            eg, schema = [['data_source','string'], ['entity','string'], ['watermark','timestamp']]
+        """
+        fields = []
+        for col_name, col_type in schema:
+            fields.append(StructField(col_name, globals()[col_type.lower().capitalize() + "Type"](), True))
+        spark_schema = StructType(fields)
+        df = spark.createDataFrame(spark.sparkContext.emptyRDD(), spark_schema)
+        return df
 
 class BaseOEAModule:
     """ Provides data processing methods for Contoso SIS data (the student information system for the fictional Contoso school district).  """
