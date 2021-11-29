@@ -1,0 +1,265 @@
+{
+    "name": "Incremental_query_ingest_to_Stage1np",
+    "properties": {
+        "description": "Ingest new or updated rows only from database using external watermark table\n\nParameters Description:\nData_Source_Table_Name : Table Name\nData_Source_WaterMarkColumn : Column of the table used to determine watermark (For Ex. : LastModifiedDate)\nData_Destination_Directory : Directory of the storage account where stage1np is stored.\n",
+        "activities": [
+            {
+                "name": "LookupCurrentWaterMark",
+                "description": "Retrieve the current maximum value in watermark column of source data store",
+                "type": "Lookup",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "AzureSqlSource",
+                        "sqlReaderQuery": {
+                            "value": "@concat('select MAX(',pipeline().parameters.Data_Source_WaterMarkColumn, ') as NewWatermarkValue from ',pipeline().parameters.Data_Source_Table_Name)",
+                            "type": "Expression"
+                        },
+                        "queryTimeout": "02:00:00",
+                        "partitionOption": "None"
+                    },
+                    "dataset": {
+                        "referenceName": "DS_Azure_SQL_DB",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "dbServer": {
+                                "value": "@pipeline().parameters.DbServer",
+                                "type": "Expression"
+                            },
+                            "dbName": {
+                                "value": "@pipeline().parameters.DbName",
+                                "type": "Expression"
+                            },
+                            "userName": {
+                                "value": "@pipeline().parameters.Username",
+                                "type": "Expression"
+                            },
+                            "keyVaultSecretName": {
+                                "value": "@pipeline().parameters.KeyVaultSecretValue",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "name": "DeltaCopyfromDB",
+                "description": "Copy activity to use query to filter the delta data by > last high-watermark and <= current high-watermark from source database, and then only copy the changes to the destination store.",
+                "type": "Copy",
+                "dependsOn": [
+                    {
+                        "activity": "LookupCurrentWaterMark",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "GetLastWatermark",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "AzureSqlSource",
+                        "sqlReaderQuery": {
+                            "value": "select * from @{pipeline().parameters.Data_Source_Table_Name} where @{pipeline().parameters.Data_Source_WaterMarkColumn} > '@{activity('GetLastWatermark').output.status.Output.result.exitValue}' and @{pipeline().parameters.Data_Source_WaterMarkColumn} <= '@{activity('LookupCurrentWaterMark').output.firstRow.NewWatermarkValue}'",
+                            "type": "Expression"
+                        },
+                        "queryTimeout": "02:00:00",
+                        "partitionOption": "None"
+                    },
+                    "sink": {
+                        "type": "ParquetSink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        },
+                        "formatSettings": {
+                            "type": "ParquetWriteSettings"
+                        }
+                    },
+                    "enableStaging": false,
+                    "dataIntegrationUnits": 0
+                },
+                "inputs": [
+                    {
+                        "referenceName": "DS_Azure_SQL_DB",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "dbServer": {
+                                "value": "@pipeline().parameters.DbServer",
+                                "type": "Expression"
+                            },
+                            "dbName": {
+                                "value": "@pipeline().parameters.DbName",
+                                "type": "Expression"
+                            },
+                            "userName": {
+                                "value": "@pipeline().parameters.Username",
+                                "type": "Expression"
+                            },
+                            "keyVaultSecretName": {
+                                "value": "@pipeline().parameters.KeyVaultSecretValue",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "DS_ADLS_parquet",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": "stage1np",
+                            "directory": {
+                                "value": "@pipeline().parameters.Data_Destination_Directory",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "GetLastWatermark",
+                "description": "Gets the last watermark value available in the external control table.",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "OEA_connector",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "object_name": {
+                            "value": "oea",
+                            "type": "string"
+                        },
+                        "method_name": {
+                            "value": "get_last_watermark",
+                            "type": "string"
+                        },
+                        "kwargs": {
+                            "value": {
+                                "value": "{'source':\"@{pipeline().parameters.Data_Source}\",'entity':\"@{pipeline().parameters.Entity}\"}",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
+            },
+            {
+                "name": "UpdateLastWatermark",
+                "description": "Updates the latest watermark value to the external control table.",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "DeltaCopyfromDB",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "OEA_connector",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "object_name": {
+                            "value": "oea",
+                            "type": "string"
+                        },
+                        "method_name": {
+                            "value": "insert_watermark",
+                            "type": "string"
+                        },
+                        "kwargs": {
+                            "value": {
+                                "value": "{'source':\"@{pipeline().parameters.Data_Source}\",'entity':\"@{pipeline().parameters.Entity}\",'watermark_datetime':\"@{activity('LookupCurrentWaterMark').output.firstRow.NewWatermarkValue}\"}",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
+            }
+        ],
+        "parameters": {
+            "Data_Source_Table_Name": {
+                "type": "String",
+                "defaultValue": "edfi.Student"
+            },
+            "Data_Source_WaterMarkColumn": {
+                "type": "String",
+                "defaultValue": "LastModifiedDate"
+            },
+            "Data_Destination_Container": {
+                "type": "String",
+                "defaultValue": "stage1np"
+            },
+            "Data_Destination_Directory": {
+                "type": "String",
+                "defaultValue": "contoso_sis_db/person"
+            },
+            "Data_Source": {
+                "type": "string",
+                "defaultValue": "edfi"
+            },
+            "Entity": {
+                "type": "string",
+                "defaultValue": "Student"
+            },
+            "DbName": {
+                "type": "string",
+                "defaultValue": "contoso_sis"
+            },
+            "DbServer": {
+                "type": "string",
+                "defaultValue": "contosoisd3a.database.windows.net"
+            },
+            "Username": {
+                "type": "string",
+                "defaultValue": "sqladmin"
+            },
+            "KeyVaultSecretValue": {
+                "type": "string",
+                "defaultValue": "sqladmin-password"
+            }
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-11-29T13:02:15Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
