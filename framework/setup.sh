@@ -39,7 +39,7 @@ eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_Az
 eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --spark-pool-name spark3p1sm --file @$this_file_path/notebook/OEA_py.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name 1_read_me --spark-pool-name spark3p1sm --file @$this_file_path/notebook/1_read_me.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name 2_batch_processing_demo --spark-pool-name spark3p1sm --file @$this_file_path/notebook/2_batch_processing_demo.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name 3_data_generation_example --spark-pool-name spark3p1sm --file @$this_file_path/notebook/3_data_generation_example.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name 3_data_generation_demo --spark-pool-name spark3p1sm --file @$this_file_path/notebook/3_data_generation_demo.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_connector --spark-pool-name spark3p1sm --file @$this_file_path/notebook/OEA_connector.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name DataGen_py --spark-pool-name spark3p1sm --file @$this_file_path/notebook/DataGen_py.ipynb --only-show-errors"
 
@@ -51,7 +51,8 @@ eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name call_oea_framework --file @$this_file_path/pipeline/call_oea_framework.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name create_lake_db --file @$this_file_path/pipeline/create_lake_db.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name create_sql_db --file @$this_file_path/pipeline/create_sql_db.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name example_main_pipeline --file @$this_file_path/pipeline/example_main_pipeline.json"
+sed "s/yourstorageaccount/$storage_account/" $this_file_path/pipeline/example_main_pipeline.json > $this_file_path/tmp/example_main_pipeline.json
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name example_main_pipeline --file @$this_file_path/tmp/example_main_pipeline.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name reset_all_for_source --file @$this_file_path/pipeline/reset_all_for_source.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name reset_ingestion_of_table --file @$this_file_path/pipeline/reset_ingestion_of_table.json"
 
