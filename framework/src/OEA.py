@@ -2,6 +2,7 @@ from delta.tables import DeltaTable
 from notebookutils import mssparkutils
 from pyspark.sql.types import StructType, StructField, StringType, IntegerType, DoubleType, ArrayType, TimestampType, BooleanType, ShortType, DateType
 from pyspark.sql import functions as F
+from pyspark.sql import SparkSession
 from pyspark.sql.utils import AnalysisException
 from opencensus.ext.azure.log_exporter import AzureLogHandler, logging
 import pandas as pd
@@ -9,21 +10,25 @@ import sys
 import re
 import json
 import datetime
+import pytz
 import random
 import io
 
 logger = logging.getLogger('OEA')
 
 class OEA:
-    def __init__(self, storage_account='', instrumentation_key='', salt='', logging_level=logging.DEBUG):
+    def __init__(self, storage_account='', instrumentation_key=None, salt='', logging_level=logging.DEBUG):
         if storage_account:
             self.storage_account = storage_account
         else:
             oea_id = mssparkutils.env.getWorkspaceName()[8:] # extracts the OEA id for this OEA instance from the synapse workspace name (based on OEA naming convention)
             self.storage_account = 'stoea' + oea_id # sets the name of the storage account based on OEA naming convention
+            self.keyvault = 'kv-oea-' + oea_id
+        self.keyvault_linked_service = 'LS_KeyVault_OEA'
         self.serverless_sql_endpoint = mssparkutils.env.getWorkspaceName() + '-ondemand.sql.azuresynapse.net'
         self._initialize_logger(instrumentation_key, logging_level)
         self.salt = salt
+        self.timezone = 'EST'
         self.stage1np = 'abfss://stage1np@' + self.storage_account + '.dfs.core.windows.net'
         self.stage2np = 'abfss://stage2np@' + self.storage_account + '.dfs.core.windows.net'
         self.stage2p = 'abfss://stage2p@' + self.storage_account + '.dfs.core.windows.net'
@@ -40,12 +45,20 @@ class OEA:
         spark.sql(f"CREATE TABLE IF NOT EXISTS OEA.watermark (source string not null, entity string not null, watermark timestamp not null) USING DELTA LOCATION '{self.framework_path}/db/watermark'")
 
         logger.debug("OEA initialized.")
-
+    
     def path(self, container_name, directory_path=None):
         if directory_path:
             return f'abfss://{container_name}@{self.storage_account}.dfs.core.windows.net/{directory_path}'
         else:
             return f'abfss://{container_name}@{self.storage_account}.dfs.core.windows.net'
+
+    def convert_path(self, path):
+        """ Converts the given path into a valid url.
+            eg, convert_path('stage1np/contoso_sis/student/*') # returns abfss://stage1np@storageaccount.dfs.core.windows.net/contoso_sis/student/*
+        """
+        path_args = path.split('/')
+        stage = path_args.pop(0)
+        return self.path(stage, '/'.join(path_args))            
 
     def _initialize_logger(self, instrumentation_key, logging_level):
         logging.lastResort = None
@@ -62,7 +75,7 @@ class OEA:
 
         if instrumentation_key:
             # Setup logging to go to app insights (more info here: https://github.com/balakreshnan/Samples2021/blob/main/Synapseworkspace/opencensuslog.md#azure-synapse-spark-logs-runtime-errors-to-application-insights)
-            self.logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=' + instrumentation_key))
+            logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=' + instrumentation_key))
 
     def get_value_from_db(self, query):
         df = spark.sql(query)
@@ -75,6 +88,27 @@ class OEA:
     def insert_watermark(self, source, entity, watermark_datetime):
         spark.sql(f"insert into oea.watermark values ('{source}', '{entity}', '{watermark_datetime}')")
 
+    def get_secret(self, secret_name):
+        """ Retrieves the specified secret from the keyvault.
+            This method assumes that the keyvault linked service has been setup and is accessible.
+        """
+        sc = SparkSession.builder.getOrCreate()
+        token_library = sc._jvm.com.microsoft.azure.synapse.tokenlibrary.TokenLibrary
+        value = token_library.getSecret(self.keyvault, secret_name, self.keyvault_linked_service)        
+        return value
+
+    def delete(self, path):
+        oea.rm_if_exists(self.convert_path(path))
+
+    def land(self, data_source, entity, df, partition_label='', format_str='csv', header=True, mode='overwrite'):
+        """ Lands data in stage1np. If partition label is not provided, the current datetime is used with the label of 'batchdate'.
+            eg, land('contoso_isd', 'student', data, 'school_year=2021')
+        """
+        tz = pytz.timezone(self.timezone)
+        datetime_str = datetime.datetime.now(tz).replace(microsecond=0).isoformat()
+        datetime_str = datetime_str.replace(':', '') # Path names can't have a colon - https://github.com/apache/hadoop/blob/trunk/hadoop-common-project/hadoop-common/src/site/markdown/filesystem/introduction.md#path-names
+        df.write.format(format_str).save(self.path('stage1np', f'{data_source}/{entity}/{partition_label}/batchdate={datetime_str}'), header=header, mode=mode)
+
     def load(self, folder, table, stage=None, data_format='delta'):
         """ Loads a dataframe based on the path specified in the given args """
         if stage is None: stage = self.stage2p
@@ -83,12 +117,34 @@ class OEA:
             df = spark.read.load(f"{stage}/{folder}/{table}", format=data_format)
             return df        
         except AnalysisException as e:
-            raise ValueError("Failed to load. Are you sure you have the right path?\nMore info below:\n" + str(e))
+            raise ValueError("Failed to load. Are you sure you have the right path?\nMore info below:\n" + str(e)) 
 
-    def load_from_stage1(self, path_and_filename, data_format='csv'):
+    def load_csv(self, path, header=True):
+        """ Loads a dataframe based on the path specified 
+            eg, df = load_csv('stage1np/example/student/*')
+        """
+        url_path = self.convert_path(path)
+        try:
+            df = spark.read.load(url_path, format='csv', header=header)
+            return df        
+        except AnalysisException as e:
+            raise ValueError(f"Failed to load from: {url_path}. Are you sure you have the right path?\nMore info below:\n" + str(e))
+
+    def load_delta(self, path):
+        """ Loads a dataframe based on the path specified 
+            eg, df = load_delta('stage2np/example/student/*')
+        """
+        url_path = self.convert_path(path)
+        try:
+            df = spark.read.load(url_path, format='delta')
+            return df        
+        except AnalysisException as e:
+            raise ValueError(f"Failed to load from: {url_path}. Are you sure you have the right path?\nMore info below:\n" + str(e))
+
+    def load_from_stage1(self, path_and_filename, data_format='csv', header=True):
         """ Loads a dataframe with data from stage1, based on the path specified in the given args """
         path = f"{self.stage1np}/{path_and_filename}"
-        df = spark.read.load(path, format=data_format)
+        df = spark.read.load(path, format=data_format, header=header)
         return df        
 
     def load_sample_from_csv_file(self, path_and_filename, header=True, stage=None):
@@ -131,26 +187,28 @@ class OEA:
         spark_schema = StructType(fields)
         return spark_schema
 
-    def ingest_incremental_csv_data(self, source_system, tablename, schema, partition_by, primary_key='id', has_header=True):
+    def ingest_incremental_data(self, source_system, tablename, schema, partition_by, primary_key='id', data_format='csv', has_header=True):
         """ Processes incremental batch data from stage1 into stage2 """
         source_path = f'{self.stage1np}/{source_system}/{tablename}'
         p_destination_path = f'{self.stage2p}/{source_system}/{tablename}_pseudo'
         np_destination_path = f'{self.stage2np}/{source_system}/{tablename}_lookup'
         logger.info(f'Processing incremental data from: {source_path} and writing out to: {p_destination_path}')
 
-        spark_schema = self.to_spark_schema(schema)
         if has_header: header_flag = 'true'
         else: header_flag = 'false'
-        df = spark.readStream.csv(source_path + '/**/*.csv', header=header_flag, schema=spark_schema)
-        #df = spark.read.csv(source_path + '/**/*.csv', header=header_flag, schema=spark_schema)
+        spark_schema = self.to_spark_schema(schema)
+        df = spark.readStream.load(source_path + '/*', format=data_format, header=header_flag, schema=spark_schema)
+        #df = spark.read.load(source_path + '/*', format=data_format, header=header_flag, schema=spark_schema)
         #display(df)
-        df = df.dropDuplicates([primary_key])
+        #df = df.withColumn('batchdate', F.to_timestamp(df.batchdate, "yyyy-MM-dd'T'HHmmssZ"))
+        df = df.dropDuplicates([primary_key]) # drop duplicates across batches. More info: https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#streaming-deduplication
+        
         df_pseudo, df_lookup = self.pseudonymize(df, schema)
 
         if len(df_pseudo.columns) == 0:
             logger.info('No data to be written to stage2p')
         else:        
-            query = df_pseudo.writeStream.format("delta").outputMode("append").trigger(once=True).option("checkpointLocation", source_path + '/_checkpoints_p').partitionBy(partition_by)
+            query = df_pseudo.writeStream.format("delta").outputMode("append").trigger(once=True).option("checkpointLocation", source_path + '/_checkpoints/incremental_p').partitionBy(partition_by)
             query = query.start(p_destination_path)
             query.awaitTermination()   # block until query is terminated, with stop() or with error; A StreamingQueryException will be thrown if an exception occurs.
             logger.info(query.lastProgress)
@@ -158,10 +216,78 @@ class OEA:
         if len(df_lookup.columns) == 0:
             logger.info('No data to be written to stage2np')
         else:
-            query2 = df_lookup.writeStream.format("delta").outputMode("append").trigger(once=True).option("checkpointLocation", source_path + '/_checkpoints_np').partitionBy(partition_by)
+            query2 = df_lookup.writeStream.format("delta").outputMode("append").trigger(once=True).option("checkpointLocation", source_path + '/_checkpoints/incremental_np').partitionBy(partition_by)
             query2 = query2.start(np_destination_path)
             query2.awaitTermination()   # block until query is terminated, with stop() or with error; A StreamingQueryException will be thrown if an exception occurs.
             logger.info(query2.lastProgress)        
+
+    def _merge_into_table(self, df, destination_path, checkpoints_path, condition):
+        """ Merges data from the given dataframe into the delta table at the specified destination_path, based on the given condition.
+            If not delta table exists at the specified destination_path, a new delta table is created and the data from the given dataframe is inserted.
+            eg, merge_into_table(df_lookup, np_destination_path, source_path + '/_checkpoints/delta_np', "current.id_pseudonym = updates.id_pseudonym")
+        """
+        if DeltaTable.isDeltaTable(spark, destination_path):      
+            dt = DeltaTable.forPath(spark, destination_path)
+            def upsert(batch_df, batchId):
+                dt.alias("current").merge(batch_df.alias("updates"), condition).whenMatchedUpdateAll().whenNotMatchedInsertAll().execute()                
+            query = df.writeStream.format("delta").foreachBatch(upsert).outputMode("update").trigger(once=True).option("checkpointLocation", checkpoints_path)
+        else:
+            logger.info(f'Delta table does not yet exist at {destination_path} - creating one now and inserting initial data.')
+            query = df.writeStream.format("delta").outputMode("append").trigger(once=True).option("checkpointLocation", checkpoints_path)
+        query = query.start(destination_path)
+        query.awaitTermination()   # block until query is terminated, with stop() or with error; A StreamingQueryException will be thrown if an exception occurs.
+        logger.info(query.lastProgress)    
+
+    def ingest_delta_data(self, source_system, tablename, schema, partition_by, primary_key='id', data_format='csv', has_header=True):
+        """ Processes delta batch data from stage1 into stage2 """
+        source_path = f'{self.stage1np}/{source_system}/{tablename}'
+        p_destination_path = f'{self.stage2p}/{source_system}/{tablename}_pseudo'
+        np_destination_path = f'{self.stage2np}/{source_system}/{tablename}_lookup'
+        logger.info(f'Processing delta data from: {source_path} and writing out to: {p_destination_path}')
+
+        if has_header: header_flag = 'true'
+        else: header_flag = 'false'
+        spark_schema = self.to_spark_schema(schema)
+        df = spark.readStream.load(source_path + '/*', format=data_format, header=header_flag, schema=spark_schema)
+        
+        df_pseudo, df_lookup = self.pseudonymize(df, schema)
+
+        if len(df_pseudo.columns) == 0:
+            logger.info('No data to be written to stage2p')
+        else:
+            self._merge_into_table(df_pseudo, p_destination_path, source_path + '/_checkpoints/delta_p', "current.id_pseudonym = updates.id_pseudonym")
+
+        if len(df_lookup.columns) == 0:
+            logger.info('No data to be written to stage2np')
+        else:
+            self._merge_into_table(df_lookup, np_destination_path, source_path + '/_checkpoints/delta_np', "current.id_pseudonym = updates.id_pseudonym")
+
+    def ingest_snapshot_data(self, source_system, tablename, schema, partition_by, primary_key='id', data_format='csv', has_header=True):
+        """ Processes snapshot batch data from stage1 into stage2 """
+        source_path = f'{self.stage1np}/{source_system}/{tablename}'
+        latest_batch = self.get_latest_folder(source_path)
+        source_path = source_path + '/' + latest_batch
+        p_destination_path = f'{self.stage2p}/{source_system}/{tablename}_pseudo'
+        np_destination_path = f'{self.stage2np}/{source_system}/{tablename}_lookup'
+        logger.info(f'Processing snapshot data from: {source_path} and writing out to: {p_destination_path}')
+
+        if has_header: header_flag = 'true'
+        else: header_flag = 'false'
+        spark_schema = self.to_spark_schema(schema)
+        df = spark.read.load(source_path, format=data_format, header=header_flag, schema=spark_schema)
+        df = df.dropDuplicates([primary_key]) # More info: https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#streaming-deduplication
+        
+        df_pseudo, df_lookup = self.pseudonymize(df, schema)
+
+        if len(df_pseudo.columns) == 0:
+            logger.info('No data to be written to stage2p')
+        else:
+            df_pseudo.write.save(p_destination_path, format='delta', mode='overwrite', partitionBy=partition_by) 
+
+        if len(df_lookup.columns) == 0:
+            logger.info('No data to be written to stage2np')
+        else:
+            df_lookup.write.save(np_destination_path, format='delta', mode='overwrite', partitionBy=partition_by) 
 
     def pseudonymize(self, df, schema): #: list[list[str]]):
         """ Performs pseudonymization of the given dataframe based on the provided schema.
@@ -204,6 +330,8 @@ class OEA:
         return tableExists
 
     def ls(self, path):
+        if not path.startswith("abfss:"):
+            path = self.convert_path(path)
         folders = []
         files = []
         try:
@@ -238,7 +366,7 @@ class OEA:
         return dirs
 
     def get_latest_folder(self, path):
-        folders = oea.get_folders(path)
+        folders = self.get_folders(path)
         if len(folders) > 0: return folders[-1]
         else: return None
 
@@ -348,6 +476,11 @@ class OEA:
         spark_schema = StructType(fields)
         df = spark.createDataFrame(spark.sparkContext.emptyRDD(), spark_schema)
         return df
+
+    def delete_data_source(self, data_source):
+        self.rm_if_exists(self.convert_path(f'stage1np/{data_source}'))
+        self.rm_if_exists(self.convert_path(f'stage2np/{data_source}'))
+        self.rm_if_exists(self.convert_path(f'stage2p/{data_source}'))
 
 class BaseOEAModule:
     """ Provides data processing methods for Contoso SIS data (the student information system for the fictional Contoso school district).  """
