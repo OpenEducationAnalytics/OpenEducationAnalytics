@@ -49,10 +49,10 @@ These dashboard examples represent only data from Microsoft Teams and O365. When
 
 ## Module Components
 Out-of-the box assets for this OEA module include: 
-1. [Tutorial/Instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/docs/documents): A tutorial and instructions of how to use this module within your own Synapse workspace, setting up the pipelines, as well as demonstration to build custom queries to pull data for your education tenant from Microsoft Graph Reports API.
-2. [Sample Datasets](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/test_data): Ingest sample data to understand the utility and functionality of the notebook(s).
-3. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/pipeline): A pipeline which connects Microsoft Graph Reports API to the Synapse workspace.
-4. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/notebook): An example notebook on processing the data from stage 1 to stage 2 within Synapse. 
+1. [Tutorial](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/docs): A tutorial and instructions of how to use this module within your own Synapse workspace, importing pipeline templatesand notebooks, as well as demonstration to build custom queries to pull data for your education tenant from Microsoft Graph Reports API.
+2. [Sample Datasets](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/test_data): Ingest sample data to understand the utility and functionality of the pipelines and notebooks.
+3. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/pipeline): 3 pipeline templates - One main pipeline for data extraction, ingestion, and enrichment to stage 2, one which extracts Microsoft Graph reports API data to the Synapse workspace, and one that extracts the test data provided within this module to the Synapse workspace. 
+4. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/notebook): 2 notebooks - A class notebook that defines the functions of data ingestion/processing the data from stage 1 to stage 2 within Synapse (GraphAPI_py), and a ingestion notebook used to process the data by calling the functions in the class notebook (GraphAPI_module_ingestion).
 5. [PowerBI Templates](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/powerbi): A Power BI sample template making it easy to interact with Microsoft Graph Reports API data.
 
 ![alt text](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/Microsoft_Graph/docs/images/Graph%20API%20Example%20Dashboard.png)
