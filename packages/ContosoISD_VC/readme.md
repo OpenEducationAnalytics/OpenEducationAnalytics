@@ -1,34 +1,34 @@
-# Verified Credentials Package for Personalized Learner Records
+# Verifiable Credentials Package for Digital Learner Records
+A learner’s knowledge, skills, and capabilities are often not fully represented by a transcript or a test score. Today, learners acquire knowledge and skills from multiple sources – courses from their schools or colleges, courses from outside providers (e.g. Coursera, EdX, LinkedIn Learning), internships, and throughout life on jobs. Learners need to be able to present a more comprehensive picture of their knowledge, capabilities, and skills  from across these different experiences. 
 
-We know that a student’s capabilities cannot be fully represented by a transcript and GPA from a single source. Today’s students learn and acquire capabilities from multiple sources – coursework through institutions, coursework through other curriculum providers (e.g. LinkedIn Learning), internships, and jobs. A comprehensive and personalized picture of their knowledge, capabilities, and skills, will best position students for academic and career success.  
+This OEA Package enables learning organizations that have set up the OEA Azure Synapse environment to combine data from their student information system with the Verifiable Credentials service from Microsoft Azure, so they can more easily issue verifiable credentials to students.  
 
-Verified credential solving problem….verification of claims of knowledge and skills, enabling systems to share records between different schools, unified place for learner record 
+New technologies such as Distributed Identity and Verifiable Credentials provide a means for a learner to collect credentials from different learning experiences, where those credentials are issued by different schools or learning organizations and can be verified digitally. These digital claims of knowledge and skills enable people and organizations to share learning records, while providing data privacy controls for the learner.  
 
-This complete picture can also be supported by verified credentials that confirm a student’s capabilities by the issuing institution or organization. The combination of a learner’s list of capabilities, supported with verified credentials, creates a record that students can share with potential employers or institutions for applications and background check verification.  
 
-The verifying student learning package allows students to accept and confirm the verified credentials they have earned and that have been issued to them by institutions or organizations. Students can then share the appropriate credentials with another institution or organization for multiple use cases, including school and job applications. The institution or employer can review and verify the skills and credentials the student earned, in support of their application.  
+Use cases in education for Verifiable Credentials include: 
 
-This package will: 
+- Schools or universities issuing digital transcripts or credentials for specific course completions to students, who can share them in school admissions processes or potential employers 
+- Schools sharing learner records for students who move between schools within a district, state, or country 
+- Expanding the range of knowledge and skills that can be represented for a student, beyond standard curriculum or transcripts 
 
-- Allow institutions or schools to easily set up the learner profile data to be able to issue verified credentials to students based on triggered events, such as course completions 
-- Allow students to receive and accept skills they have acquired by an issuing organization (e.g. a school) 
-- Allow students to maintain and manage a list of the skills they have learned from various organizations (e.g. schools and employers)  
-- Allow institutions to issue verified credentials to students, based on the courses they have successfully completed  
-- Allow employers to ask for verification of student’s skills 
-- Allow students to share verified skills with employer 
-- Allow employer to verify that the student has completed the skills required for the job the student is applying for 
+The Verifiable Credentials package allows students to accept and confirm the verified credentials they have earned and that have been issued to them by institutions or organizations. Students can then share the appropriate credentials with another institution or organization, including school and job applications. The institution or employer can then digitally verify the skills and credentials the student earned, in support of their application. 
 
-This package utilizes student data from an education system’s Student Information System and Microsoft 365 data modules. 
+This OEA package will: 
 
-This package was developed by Microsoft Education and Azure Active Directory Verified Credentials. The architecture and reference implementation for this package is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
+- Allow institutions or schools to easily set up the learner profile data in their OEA Azure Synapse environment to be able to issue verified credentials to students based on triggered events, such as course completions 
+- Allow students to receive and accept verifiable credentials for skills they have acquired by an issuing organization (e.g., a school) 
+- Allow students to maintain and manage a collection of the skills they have learned from various organizations (e.g. schools and employers) from their mobile phones 
+
+This package utilizes student data from an education system’s Student Information System their Azure Active Directory identity service. 
+
+This package was developed by Microsoft Education and Azure Active Directory Verified Credentials.  The architecture and reference implementation for this package is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
 To set up the system, please follow these steps: 
 
 - Pipeline of data aggregation from multiple modules 
 - Setting up VC service 
 - Use Azure fx to write into VC 
-- Setting up website for student login/ 3rd party verifier – client API  
+- Setting up website for student login/ 3rd party verifier – client API 
 
-The source of data can be replaced with other types of identity access management data the institution uses. The verifying student learning package and its modules [welcomes contributions...](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md).
-
-Here is what this will look like fully set up from the student’s perspective:  
+The source of data can be replaced with other types of identity access management data the institution uses. The verifying student learning package and its modules [welcomes contributions...](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md).
