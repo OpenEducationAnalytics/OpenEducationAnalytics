@@ -42,9 +42,10 @@ These dashboard examples represent only data from Microsoft Teams and O365. When
 
   - Microsoft Graph Reports API is free to access, and does not require a subscription. However, if you want to pull your own usage data from O365 and Teams (which is the primary focus of this module), these will require subscriptions for your education system.
 
-1. Import the [Graph Reports API pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/pipeline) into your Synapse workspace, connect a Graph API linked service, and trigger the pipeline.
-2. Load and run the [Graph Reports API module notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/notebook) into your Synapse workspace. Two spark databases (s2np_graphapi and s2p_graphapi) will be created.
-3. Download the Power BI template file [Graph Reports API](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/powerbi) and connect to your Synapse workspace serverless SQL endpoint. We recommend using a directQuery from the s2p_graphapi database.
+1. Make sure that your Synapse environment is using the latest OEA framework version
+2. Import the [GraphAPI_main_pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/pipeline) into your Synapse workspace.
+3. Import the [Graph Reports API module notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/notebook) into your Synapse workspace. Connect the GraphAPI_module_ingestion notebook to the GraphAPI main pipeline template (as outlined in the tutorial), and trigger the main pipeline. Two databases will be created upon the successful trigger: s2_graph_api and sqls2_graph_api.
+4. Download the Power BI template file [Graph API Module Dashboard](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/powerbi) and connect to your Synapse workspace serverless SQL endpoint. You will want to change the dashboard template from Import to a directQuery from the sqls2_graph_api database.
 
 
 ## Module Components
