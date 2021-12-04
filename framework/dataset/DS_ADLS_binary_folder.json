@@ -1,0 +1,35 @@
+{
+    "name": "DS_ADLS_binary_folder",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "LS_ADLS_OEA",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": {
+            "filesystem": {
+                "type": "string"
+            },
+            "directory": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "type": "Binary",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "folderPath": {
+                    "value": "@dataset().directory",
+                    "type": "Expression"
+                },
+                "fileSystem": {
+                    "value": "@dataset().filesystem",
+                    "type": "Expression"
+                }
+            }
+        }
+    }
+}

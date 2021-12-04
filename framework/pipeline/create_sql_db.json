@@ -1,0 +1,301 @@
+{
+    "name": "create_sql_db",
+    "properties": {
+        "activities": [
+            {
+                "name": "set sqlDBName",
+                "type": "SetVariable",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "sqlDBName",
+                    "value": {
+                        "value": "sqls@{pipeline().parameters.stage}_@{pipeline().parameters.sourceDirectory}",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Stored procedure1",
+                "type": "SqlServerStoredProcedure",
+                "dependsOn": [
+                    {
+                        "activity": "set sqlDBName",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "storedProcedureName": "[dbo].[sp_executesql]",
+                    "storedProcedureParameters": {
+                        "command": {
+                            "value": {
+                                "value": "IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = '@{variables('sqlDBName')}') \nBEGIN\n  CREATE DATABASE @{variables('sqlDBName')}; \nEND;",
+                                "type": "Expression"
+                            },
+                            "type": "String"
+                        }
+                    }
+                },
+                "linkedServiceName": {
+                    "referenceName": "LS_SQL_Serverless_OEA",
+                    "type": "LinkedServiceReference",
+                    "parameters": {
+                        "dbName": "master"
+                    }
+                }
+            },
+            {
+                "name": "get folders in stageXp",
+                "type": "GetMetadata",
+                "dependsOn": [
+                    {
+                        "activity": "Stored procedure1",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_ADLS_binary_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "stage@{pipeline().parameters.stage}p",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "@pipeline().parameters.sourceDirectory",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "fieldList": [
+                        "childItems"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "BinaryReadSettings"
+                    }
+                }
+            },
+            {
+                "name": "ForEach1",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "get folders in stageXp",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('get folders in stageXp').output.childItems",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "create or alter view for pseduonymized tables",
+                            "type": "SqlServerStoredProcedure",
+                            "dependsOn": [],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [
+                                {
+                                    "name": "command",
+                                    "value": "CREATE OR ALTER VIEW @{item().name} AS SELECT * FROM OPENROWSET( BULK 'https://@{pipeline().parameters.storageAccount}.dfs.core.windows.net/stage@{pipeline().parameters.stage}p/@{pipeline().parameters.sourceDirectory}/@{item().name}', FORMAT='DELTA' ) AS [r]"
+                                }
+                            ],
+                            "typeProperties": {
+                                "storedProcedureName": "[dbo].[sp_executesql]",
+                                "storedProcedureParameters": {
+                                    "command": {
+                                        "value": {
+                                            "value": "CREATE OR ALTER VIEW @{item().name} AS\nSELECT * FROM OPENROWSET(\nBULK 'https://@{pipeline().parameters.storageAccount}.dfs.core.windows.net/stage@{pipeline().parameters.stage}p/@{pipeline().parameters.sourceDirectory}/@{item().name}',\nFORMAT='DELTA'\n) AS [r]",
+                                            "type": "Expression"
+                                        },
+                                        "type": "String"
+                                    }
+                                }
+                            },
+                            "linkedServiceName": {
+                                "referenceName": "LS_SQL_Serverless_OEA",
+                                "type": "LinkedServiceReference",
+                                "parameters": {
+                                    "dbName": {
+                                        "value": "@variables('sqlDBName')",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "get folders in stageXnp",
+                "type": "GetMetadata",
+                "dependsOn": [
+                    {
+                        "activity": "Stored procedure1",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_ADLS_binary_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "stage@{pipeline().parameters.stage}np",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "@pipeline().parameters.sourceDirectory",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "fieldList": [
+                        "childItems"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "BinaryReadSettings"
+                    }
+                }
+            },
+            {
+                "name": "ForEach2",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "get folders in stageXnp",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('get folders in stageXnp').output.childItems",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "create or alter view for lookup tables",
+                            "type": "SqlServerStoredProcedure",
+                            "dependsOn": [],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [
+                                {
+                                    "name": "command",
+                                    "value": "CREATE OR ALTER VIEW @{item().name} AS SELECT * FROM OPENROWSET( BULK 'https://@{pipeline().parameters.storageAccount}.dfs.core.windows.net/stage@{pipeline().parameters.stage}p/@{pipeline().parameters.sourceDirectory}/@{item().name}', FORMAT='DELTA' ) AS [r]"
+                                }
+                            ],
+                            "typeProperties": {
+                                "storedProcedureName": "[dbo].[sp_executesql]",
+                                "storedProcedureParameters": {
+                                    "command": {
+                                        "value": {
+                                            "value": "CREATE OR ALTER VIEW @{item().name} AS\nSELECT * FROM OPENROWSET(\nBULK 'https://@{pipeline().parameters.storageAccount}.dfs.core.windows.net/stage@{pipeline().parameters.stage}np/@{pipeline().parameters.sourceDirectory}/@{item().name}',\nFORMAT='DELTA'\n) AS [r]",
+                                            "type": "Expression"
+                                        },
+                                        "type": "String"
+                                    }
+                                }
+                            },
+                            "linkedServiceName": {
+                                "referenceName": "LS_SQL_Serverless_OEA",
+                                "type": "LinkedServiceReference",
+                                "parameters": {
+                                    "dbName": {
+                                        "value": "@variables('sqlDBName')",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "storageAccount": {
+                "type": "string",
+                "defaultValue": "stoeacisd3gg1"
+            },
+            "sourceDirectory": {
+                "type": "string",
+                "defaultValue": "contoso_sis"
+            },
+            "stage": {
+                "type": "string",
+                "defaultValue": "2"
+            }
+        },
+        "variables": {
+            "sqlDBName": {
+                "type": "String",
+                "defaultValue": "sqls2_mydb"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework/Ingest"
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-11-17T16:18:07Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

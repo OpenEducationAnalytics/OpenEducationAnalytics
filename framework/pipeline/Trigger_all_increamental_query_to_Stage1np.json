@@ -1,0 +1,88 @@
+{
+    "name": "Trigger_all_increamental_query_to_Stage1np",
+    "properties": {
+        "description": "Can trigger incremental ingestion for multiple entities simultaneously.\n\nParameter Description:\nEntities_To_Ingest : Json array with the following as endpoints.\n\nEntity,\nTableName,\nDirectory,\nSource,\nWatermarkColumnName",
+        "activities": [
+            {
+                "name": "Trigger pipeline for individual entity",
+                "description": "For each loop for every entry in the JSON Array parameter",
+                "type": "ForEach",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.Entities_To_Ingest",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "ExecuteEntityQuery",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "Incremental_query_ingest_to_Stage1np",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "Data_Source_Table_Name": {
+                                        "value": "@item().TableName",
+                                        "type": "Expression"
+                                    },
+                                    "Data_Source_WaterMarkColumn": {
+                                        "value": "@item().WatermarkColumnName",
+                                        "type": "Expression"
+                                    },
+                                    "Data_Destination_Container": "stage1np",
+                                    "Data_Destination_Directory": {
+                                        "value": "@item().Directory",
+                                        "type": "Expression"
+                                    },
+                                    "Data_Source": {
+                                        "value": "@item().Source",
+                                        "type": "Expression"
+                                    },
+                                    "Entity": {
+                                        "value": "@item().Entity",
+                                        "type": "Expression"
+                                    },
+                                    "DbName": "contoso_sis",
+                                    "DbServer": "contosoisd3a.database.windows.net",
+                                    "Username": "sqladmin",
+                                    "KeyVaultSecretValue": "sqladmin-password"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "Entities_To_Ingest": {
+                "type": "array",
+                "defaultValue": [
+                    {
+                        "Entity": "Student",
+                        "WatermarkColumnName": "LastModifiedDate",
+                        "Source": "contoso_sis",
+                        "TableName": "contoso_sis.Student",
+                        "Directory": "contoso_sis"
+                    },
+                    {
+                        "Entity": "School",
+                        "WatermarkColumnName": "LastModifiedDate",
+                        "Source": "contoso_sis",
+                        "TableName": "contoso_sis.School",
+                        "Directory": "contoso_sis"
+                    }
+                ]
+            }
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-11-29T13:08:04Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

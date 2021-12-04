@@ -1,0 +1,63 @@
+{
+    "name": "create_lake_db",
+    "properties": {
+        "activities": [
+            {
+                "name": "create_lake_db",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [
+                    {
+                        "name": "kwargs",
+                        "value": "{'stage_num':@{pipeline().parameters.stageNum},'source_dir':@{pipeline().parameters.sourceDirectory}"
+                    }
+                ],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "OEA_connector",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "object_name": {
+                            "value": "oea",
+                            "type": "string"
+                        },
+                        "method_name": {
+                            "value": "create_lake_db",
+                            "type": "string"
+                        },
+                        "kwargs": {
+                            "value": {
+                                "value": "{'stage_num':@{pipeline().parameters.stageNum},'source_dir':'@{pipeline().parameters.sourceDirectory}'}",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
+            }
+        ],
+        "parameters": {
+            "stageNum": {
+                "type": "string",
+                "defaultValue": "2"
+            },
+            "sourceDirectory": {
+                "type": "string",
+                "defaultValue": "contoso_sis"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework/Ingest"
+        },
+        "annotations": []
+    }
+}

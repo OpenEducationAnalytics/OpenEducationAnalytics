@@ -21,6 +21,7 @@
                         "type": "Expression"
                     },
                     "isSequential": false,
+                    "batchCount": 3,
                     "activities": [
                         {
                             "name": "Copy_from_URL",
@@ -102,7 +103,7 @@
             }
         },
         "folder": {
-            "name": "OEA_Framework"
+            "name": "OEA_Framework/Extracts"
         },
         "annotations": [],
         "lastPublishTime": "2021-10-28T13:57:35Z"

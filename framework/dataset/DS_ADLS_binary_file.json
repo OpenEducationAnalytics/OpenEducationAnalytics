@@ -1,0 +1,38 @@
+{
+    "name": "DS_ADLS_binary_file",
+    "properties": {
+        "description": "Used for landing data in the data lake.\nDefaults to landing data in stage1np.\nNote that you can specify a full path in the filename param (eg, to land a file in a specific folder filename param can be 'contoso_sis/students/students.csv').\n",
+        "linkedServiceName": {
+            "referenceName": "LS_ADLS_OEA",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": {
+            "filesystem": {
+                "type": "string",
+                "defaultValue": "stage1np"
+            },
+            "filename": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "type": "Binary",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "fileName": {
+                    "value": "@dataset().filename",
+                    "type": "Expression"
+                },
+                "fileSystem": {
+                    "value": "@dataset().filesystem",
+                    "type": "Expression"
+                }
+            }
+        }
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

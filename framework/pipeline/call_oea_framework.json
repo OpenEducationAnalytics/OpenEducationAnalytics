@@ -1,0 +1,251 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaceName": {
+            "type": "string",
+            "metadata": "Workspace name",
+            "defaultValue": "syn-oea-cisd3gg1"
+        }
+    },
+    "variables": {
+        "workspaceId": "[concat('Microsoft.Synapse/workspaces/', parameters('workspaceName'))]"
+    },
+    "resources": [
+        {
+            "name": "[concat(parameters('workspaceName'), '/call_oea_framework')]",
+            "type": "Microsoft.Synapse/workspaces/pipelines",
+            "apiVersion": "2019-06-01-preview",
+            "properties": {
+                "description": "Simplifies the invoking of methods on the OEA framework or supporting modules.",
+                "activities": [
+                    {
+                        "name": "OEA_connector",
+                        "type": "SynapseNotebook",
+                        "dependsOn": [],
+                        "policy": {
+                            "timeout": "7.00:00:00",
+                            "retry": 0,
+                            "retryIntervalInSeconds": 30,
+                            "secureOutput": false,
+                            "secureInput": false
+                        },
+                        "userProperties": [],
+                        "typeProperties": {
+                            "notebook": {
+                                "referenceName": "OEA_connector",
+                                "type": "NotebookReference"
+                            },
+                            "parameters": {
+                                "object_name": {
+                                    "value": {
+                                        "value": "@pipeline().parameters.object_name",
+                                        "type": "Expression"
+                                    },
+                                    "type": "string"
+                                },
+                                "method_name": {
+                                    "value": {
+                                        "value": "@pipeline().parameters.method_name",
+                                        "type": "Expression"
+                                    },
+                                    "type": "string"
+                                },
+                                "kwargs": {
+                                    "value": {
+                                        "value": "@pipeline().parameters.kwargs",
+                                        "type": "Expression"
+                                    },
+                                    "type": "string"
+                                }
+                            },
+                            "snapshot": true
+                        }
+                    }
+                ],
+                "policy": {
+                    "elapsedTimeMetric": {},
+                    "cancelAfter": {}
+                },
+                "parameters": {
+                    "object_name": {
+                        "type": "string",
+                        "defaultValue": "oea"
+                    },
+                    "method_name": {
+                        "type": "string"
+                    },
+                    "kwargs": {
+                        "type": "string"
+                    }
+                },
+                "folder": {
+                    "name": "OEA_Framework"
+                },
+                "annotations": []
+            },
+            "dependsOn": [
+                "[concat(variables('workspaceId'), '/notebooks/OEA_connector')]"
+            ]
+        },
+        {
+            "name": "[concat(parameters('workspaceName'), '/OEA_connector')]",
+            "type": "Microsoft.Synapse/workspaces/notebooks",
+            "apiVersion": "2019-06-01-preview",
+            "properties": {
+                "nbformat": 4,
+                "nbformat_minor": 2,
+                "bigDataPool": {
+                    "referenceName": "spark4v3p1",
+                    "type": "BigDataPoolReference"
+                },
+                "sessionProperties": {
+                    "driverMemory": "28g",
+                    "driverCores": 4,
+                    "executorMemory": "28g",
+                    "executorCores": 4,
+                    "numExecutors": 4,
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": "false",
+                        "spark.dynamicAllocation.minExecutors": "4",
+                        "spark.dynamicAllocation.maxExecutors": "4",
+                        "spark.autotune.trackingId": "5ade5ffe-bea4-43fb-b58c-360511467e90"
+                    }
+                },
+                "metadata": {
+                    "saveOutput": true,
+                    "enableDebugMode": false,
+                    "kernelspec": {
+                        "name": "synapse_pyspark",
+                        "display_name": "Synapse PySpark"
+                    },
+                    "language_info": {
+                        "name": "python"
+                    },
+                    "a365ComputeOptions": {
+                        "id": "/subscriptions/7b9a4896-4541-483f-bdc7-d8f4ec6be3ee/resourceGroups/rg-oea-CISD3GG1/providers/Microsoft.Synapse/workspaces/syn-oea-cisd3gg1/bigDataPools/spark4v3p1",
+                        "name": "spark4v3p1",
+                        "type": "Spark",
+                        "endpoint": "https://syn-oea-cisd3gg1.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/spark4v3p1",
+                        "auth": {
+                            "type": "AAD",
+                            "authResource": "https://dev.azuresynapse.net"
+                        },
+                        "sparkVersion": "3.1",
+                        "nodeCount": 10,
+                        "cores": 4,
+                        "memory": 28
+                    }
+                },
+                "cells": [
+                    {
+                        "cell_type": "markdown",
+                        "metadata": {
+                            "nteract": {
+                                "transient": {
+                                    "deleting": false
+                                }
+                            }
+                        },
+                        "source": [
+                            "# OEA connector\n",
+                            "This notebook provides a way for invoking methods on the OEA framework or supporting modules from a pipeline.\n",
+                            "\n",
+                            "When setting up a new module, be sure to include a new cell below that imports that module, so that its methods can be invoked by pipelines."
+                        ]
+                    },
+                    {
+                        "cell_type": "code",
+                        "metadata": {
+                            "jupyter": {
+                                "source_hidden": false,
+                                "outputs_hidden": false
+                            },
+                            "nteract": {
+                                "transient": {
+                                    "deleting": false
+                                }
+                            },
+                            "tags": [
+                                "parameters"
+                            ]
+                        },
+                        "source": [
+                            "# These values should be passed in from the pipeline that is using this notebook as an activity.\r\n",
+                            "# Note that kwargs allows you to pass in a dict of params, but the dict has to specified as a string when invoked from a pipeline.\r\n",
+                            "# Also note that you can refer to attributes of an object in the params, for example: {'path':oea.stage2np}\r\n",
+                            "object_name = 'oea'\r\n",
+                            "method_name = ''\r\n",
+                            "kwargs = '{}'"
+                        ],
+                        "outputs": [],
+                        "execution_count": null
+                    },
+                    {
+                        "cell_type": "code",
+                        "metadata": {
+                            "jupyter": {
+                                "outputs_hidden": false,
+                                "source_hidden": false
+                            },
+                            "nteract": {
+                                "transient": {
+                                    "deleting": false
+                                }
+                            },
+                            "collapsed": true
+                        },
+                        "source": [
+                            "%run /OEA_py"
+                        ],
+                        "outputs": [],
+                        "execution_count": null
+                    },
+                    {
+                        "cell_type": "code",
+                        "metadata": {
+                            "jupyter": {
+                                "outputs_hidden": false,
+                                "source_hidden": false
+                            },
+                            "nteract": {
+                                "transient": {
+                                    "deleting": false
+                                }
+                            },
+                            "collapsed": true
+                        },
+                        "source": [
+                            "%run /ContosoSIS_py"
+                        ],
+                        "outputs": [],
+                        "execution_count": null
+                    },
+                    {
+                        "cell_type": "code",
+                        "metadata": {
+                            "jupyter": {
+                                "source_hidden": false,
+                                "outputs_hidden": false
+                            },
+                            "nteract": {
+                                "transient": {
+                                    "deleting": false
+                                }
+                            }
+                        },
+                        "source": [
+                            "obj = eval(object_name)\r\n",
+                            "kwargs = eval(kwargs)\r\n",
+                            "m = getattr(obj, method_name)\r\n",
+                            "m(**kwargs)"
+                        ],
+                        "outputs": [],
+                        "execution_count": null
+                    }
+                ]
+            },
+            "dependsOn": []
+        }
+    ]
+}

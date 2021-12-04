@@ -3,11 +3,28 @@ The OEA framework is a comprised of data pipelines and data processing scripts t
 
 As we work with customers and partners and grow the catalog of modules and packages within the OEA architecture, patterns of common use cases and common best practices emerge. This allows us to enhance and refine the framework to incorporate additional functionality and abstractions to make everything easier.
 
-OEA is an "opinionated framework" that provides value and simplicity through the use of "convention over configuration" - this is very much in the spirit of the [principles followed by the Rails framework](https://rubyonrails.org/doctrine/). By relying on a standard architecture and a standard approach, the OEA framework can be smart about how to handle common scenarios.
+OEA is an "opinionated framework" that provides value and simplicity through the use of ["convention over configuration"](https://rubyonrails.org/doctrine/#convention-over-configuration) (which is one of several key [principles established by the Rails framework](https://rubyonrails.org/doctrine/)). By relying on a standard architecture and a standard approach, the OEA framework can be smart about how to handle common scenarios.
 
-What follows is a description of some of the conventions followed when landing, ingesting, prepping, and publishing data sets within OEA.
+See the info below for a description of some of the conventions followed when landing, ingesting, prepping, and publishing data sets within OEA.
 
-# Landing data in stage1 (extraction and landing)
+# Setup of framework assets
+If you're setting up a new OEA environment, you can follow the [setup instructions on the main page](https://github.com/microsoft/OpenEduAnalytics#setup) and these framework assets will automatically be installed as part of that process.
+
+If you're working in an existing OEA environment and want to import these updated framework assets, you'll need to do the following (this assumes that you're synapse workspace is in Live mode - if it's connected to a repo, you'll need to disconnect from the git repository, run this setup, then reconnect to the git repository and import your changes).
+1) Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
+[![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
+1) Download this repo to your Azure clouddrive (if you've already downloaded the repo earlier, you can just update it by going into your OpenEduAnalytics dir and using the command: `git pull`) \
+`cd clouddrive`\
+`git clone https://github.com/microsoft/OpenEduAnalytics`
+1) Run the framework setup script like this: \
+`./OpenEduAnalytics/framework/setup.sh <synapse workspace name> <storage account name> <keyvault name>` \
+for example: `./OpenEduAnalytics/framework/setup.sh syn-oea-cisd3a stoeacisd3a kv-oea-cisd3a`
+
+You can also choose to import framework assets manually from within synapse studio by doing the following:
+- Click 'Develop' in the left nav, click on the '+' and select 'Import', then select the .ipynb files under framework/notebook
+- Click 'Integrate' in the left nav, click on the '+' and select 'Import from pipeline template', then select the .zip files under framework/template (this will require additional setup because there are dependencies to linked-services in these pipelines, so those will have to also be manually setup).
+
+# I. Landing data in stage1 (extraction and landing)
 The process of data extraction from source systems as well as the process of landing that initial data set in the data lake is orchestrated through the use of [Synapse Pipelines (or Azure Data Factory)](https://docs.microsoft.com/en-us/azure/data-factory/concepts-pipelines-activities).
 As a part of the OEA standard approach, batch data is landed in stage1np under a parent folder that represents the data source followed by a folder that represents the table (also referred to as the entity), followed by a folder with the current datetime stamp. For example,
 
@@ -15,7 +32,7 @@ As a part of the OEA standard approach, batch data is landed in stage1np under a
 
 Note that there can be multiple data files in each of the timestamped folders. This allows for landing data in a multi-threaded way, where you end up with a list of data files that need to be processed for that table.
 
-# Ingesting data into stage2 (initial data prep)
+# II. Ingesting data into stage2 (initial data prep)
 Ingesting data from stage1 into stage2 results in data that is "query-ready", meaning that batch data sets have been merged into query-ready tables in the data lake.
 
 | **Data in stage1:**         | **Data in stage2:**     | 
@@ -59,5 +76,8 @@ These are additional scenarios that need to have similar examples:
 - slowly changing dimensions type 2 (scd2)
 - field-level data validation errors
 
-# Publishing data to stage3 (data product release)
+# III. Processing data within stage2
+The work of exploring, refining, enriching, aggregating, analyzing, and processing in general is done within stage2 - with results being written back to stage2.
+
+# IV. Publishing data to stage3 (data product release)
 The final stage in the data lake is reserved for published "data products" which are used by one or more reports, dashboards, ML models, or other services.
