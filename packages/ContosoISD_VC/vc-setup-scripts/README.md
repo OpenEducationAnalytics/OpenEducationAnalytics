@@ -10,7 +10,7 @@ First, you need to make sure that you are using Azure Active Directory P2. If yo
 ## Verify you can see Enterprise Application Verifiable Credentials Issuer Service
 Second, you need to make sure you see the application named `Verifiable Credentials Issuer Service` in the `Enterprise Application` section in the AAD blade. Switch to Type = `Microsoft Application` and search for it.
  
-![Verifiable Credentials Issuer Service](https://github.com/ivybarley/OpenEduAnalytics/blob/main/docs/pics/admin-screenshot-search-apps.png)
+![Verifiable Credentials Issuer Service](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/admin-screenshot-search-apps.png)
 
 ## Run the deployment script
 In order to run this script, you need to have access to an Azure subscription that uses the intended Azure Active Directory as its authorative directory. If the subscription you intend to use is protected by another directory, you will not be able to issue credentials.
@@ -49,7 +49,7 @@ You need to go portal.azure.com for the application that was created, see `-VCCr
 
 Next step is to complete the Verifiable Credentials configuration in portal.azure.com in the [VC blade](https://portal.azure.com/?Microsoft_AAD_DecentralizedIdentity=preview#blade/Microsoft_AAD_DecentralizedIdentity/InitialMenuBlade/cardsListBlade).
 
-![Getting Started](https://github.com/ivybarley/OpenEduAnalytics/blob/main/docs/pics/admin-screenshot-vc-getting-started.png)
+![Getting Started](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/admin-screenshot-vc-getting-started.png)
 
 In the `Getting Started` section, you define
 - Organization name
@@ -58,7 +58,7 @@ In the `Getting Started` section, you define
 
 In the `Credentials` section, you configure the Verifiable Credential you want to issue. The name you give to the credential should match the `-VCType` parameter you used when you invoked the powershell script above.
 
-![Getting Started](https://github.com/ivybarley/OpenEduAnalytics/blob/main/docs/pics/admin-screenshot-create-credential.png)
+![Getting Started](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/admin-screenshot-create-credential.png)
 
 ## Design and Upload your VC Rules and Display files to your Azure Storage Account
 
