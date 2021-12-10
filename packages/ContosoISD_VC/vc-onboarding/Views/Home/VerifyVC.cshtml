@@ -1,0 +1,135 @@
+﻿@{
+    ViewData["Title"] = "Verify Verifiable Credential";
+}
+<p>Learn about Azure AD Verifiable Credentials <a href="https://aka.ms/verifyonce">here</a>.</p>
+
+<div class="text-center">
+
+    <img id="vcLogo" src="~/api/logo.png" height=200px; />
+    <h1 id="vcType">YOURVCTYPE Credential Issuance</h1>
+    <h3 id="vcDescription"></h3>
+    <div id="message-wrapper" class="margin-bottom-75 margin-top-75" style="display: none">
+        <i class="fas fa-user-check green icon-text-large margin-bottom-25"></i>
+        <div id="message"></div>
+        <div id="did-wrapper" style="display:none">
+            <div id="id-claims">
+                <table id="tableClaims" class="table-hover table-condensed table-striped" style="margin:0 auto">
+                    <thead style="background-color:darkgray">
+                        <th>Claim</th>
+                        <th>Value</th>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                    <tfoot style="background-color:darkgray">
+                        <td>DID</td>
+                        <td><a id="idIon" href="https://identity.foundation/ion/explorer/?did=" target="_blank">View DID with identity.foundation/explorer</a></td>
+                    </tfoot>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+
+    <button type="button" id="sign-in" class="button">PRESENT CREDENTIAL</button>
+
+    <div id="qrText" style="display:none;">
+        <p class="small-text">
+            <img src="~/authenticator-icon.png" alt="Authenticator icon" class="icon-small" style="width:30px"><br>
+            Scan with Microsoft Authenticator
+        </p>
+    </div>
+    <a id="deeplink" style="display: none;margin-top: 10px;">Tap to open Authenticator on mobile</a>
+    <div id="qrcodeFrame" style="background:white;display:none">
+        <div id="qrcode" style="text-align: center; padding:25px; width:50%; margin:0 auto;"></div>
+    </div>
+
+    <script src="~/js/qrcode.min.js"></script>
+
+    <script>
+        var signIn = document.getElementById('sign-in');
+        var qrcode = new QRCode("qrcode", { width: 300, height: 300 });
+
+        var apiEndpoint = window.location.origin;
+        var respPresReq = null;
+        var credentialType = "";
+        var cardTitle = "";
+
+        signIn.addEventListener('click', () => {
+            document.getElementById('message-wrapper').style.display = "block";
+            document.getElementById('message').innerHTML = "Preparing QR code...";
+            document.getElementById('sign-in').style.display = "none";
+            fetch(apiEndpoint + '/api/presentation-request')
+                .then(response => response.text())
+                .catch(error => document.getElementById("message").innerHTML = error)
+                .then(response => {
+                    if (response.length > 0) {
+                        console.log(response)
+                        respPresReq = JSON.parse(response);
+                        qrcode.makeCode(respPresReq.url);
+                        document.getElementById('qrText').style.display = "block";
+                        document.getElementById('qrcodeFrame').style.display = "block";
+                        document.getElementsByTagName("img")[2].src = respPresReq.qrCode;
+                        //document.getElementById('qrcodeImg').src = resp.qrCode;
+                        //document.getElementById('qrcodeImg').style.display = "block";                        
+                        document.getElementById('message').innerHTML = "Waiting for scanning of QR code...";
+                    }
+                })
+
+            var checkStatus = setInterval(function () {
+                fetch(apiEndpoint + '/api/presentation-response-status?id=' + respPresReq.id)
+                    .then(response => response.text())
+                    .catch(error => document.getElementById("message").innerHTML = error)
+                    .then(response => {
+                        if (response.length > 0) {
+                            console.log(response)
+                            respMsg = JSON.parse(response);
+                            document.getElementById('message-wrapper').style.display = "block";
+                            document.getElementById('qrText').style.display = "none";
+                            document.getElementById('qrcodeFrame').style.display = "none";
+                            document.getElementById('qrcode').style.display = "none";
+                            document.getElementById('sign-in').textContent = 'Verify Again';
+                            // respMsg.status == 1 -> QR Code scanned
+                            if (respMsg.status == 1) {
+                                document.getElementById('message').innerHTML = respMsg.message;
+                            }
+                            // respMsg.status == 2 -> VC presented and validated
+                            if (respMsg.status == 2) {
+                                document.getElementById('message').innerHTML = respMsg.message + " validated successfully";
+                                clearInterval(checkStatus);
+                                document.getElementById('did-wrapper').style.display = "block";
+                                document.getElementById('idIon').href = "https://identity.foundation/ion/explorer/?did=" + respMsg.did;
+                                var tbodyRef = document.getElementById('tableClaims').getElementsByTagName('tbody')[0]
+                                //var idx = 0;
+                                for (var idx = 0; idx < Object.keys(respMsg.claims).length; idx++) {
+                                    var claimName = Object.keys(respMsg.claims)[idx];
+                                    var claimValue = respMsg.claims[Object.keys(respMsg.claims)[idx]];
+                                    var tRow = tbodyRef.insertRow();
+                                    tRow.insertCell().appendChild( document.createTextNode( claimName ) );
+                                    tRow.insertCell().appendChild( document.createTextNode( claimValue ) );
+                                }
+                            }
+                        }
+                    })
+            }, 3000);
+
+        })
+
+        var credentialType;
+        fetch( window.location.origin + '/api/echo')
+            .then(response => response.text())
+            .catch(error => document.getElementById("message").innerHTML = error)
+            .then(response => {
+                if (response.length > 0) {
+                    var data = JSON.parse(response);
+                    credentialType = data.credentialType;
+                    cardTitle = data.displayCard.title;
+                    document.getElementById('vcType').innerText = data.credentialType + " Verification";
+                    document.getElementById('vcDescription').innerText = data.displayCard.description;
+                    document.title = data.credentialType + ' Verifiable Credentials';
+                }
+            })
+
+    </script>
+
+</div>
