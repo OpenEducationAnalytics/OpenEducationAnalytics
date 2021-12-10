@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>This sample illustrates the following</p>
+    <div style="text-align:left">
+        <ul>
+            <li>
+                An ASP.Net Core webapp that uses Authentication.
+                <br />This requires you to <strong>sign in</strong> to authenticate your self before you can Issue VCs.
+                <br />The IDP is configured to be the sample fabrikam Azure AD B2C tenant by default, but you can change it to be your B2C instance or an Azure AD tenant.
+            </li>
+            <br />
+            <li>
+                <strong>Issuing Azure AD Verifiable Credentials</strong> based on your current signed in user.
+                <br />The claims from your current user are passed as claims to the VC issuance process.
+            </li>
+            <br />
+            <li>Then, for testing, you can <strong> verify your Azure AD Verifiable Credentials</strong> in the Verify VC tab</li>
+        </ul>
+
+        <p>The sample exposes APIs that are used as callbacks from the Microsoft VC Service, so issuing and verifying VCs will not work on localhost. You need an app proxy, like nginx or ngrok, or deploy it to something like Azure AppServices.</p>
+        <p>The redirect_uri for Azure AD or Azure AD B2C works with localhost.</p>
+    </div>
+</div>

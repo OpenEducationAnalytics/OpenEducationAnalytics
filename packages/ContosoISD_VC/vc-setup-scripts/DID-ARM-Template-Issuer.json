@@ -1,0 +1,251 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "KeyVaultName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the Key Vault to be created."
+              }
+          },
+        "skuName": {
+            "type": "string",
+            "defaultValue": "Standard",
+            "allowedValues": [
+              "Standard",
+              "Premium"
+            ],
+            "metadata": {
+              "description": "The SKU of the vault to be created."
+            }
+        },
+        "AADTenantId": {
+            "type": "string",
+            "metadata": {
+                "description": "The id of your Azure AD tenant"
+            }  
+        },
+        "AdminUserObjectId": {
+            "type": "string",
+            "metadata": {
+                "description": "The objectId of your user who will have full permissions in the Key Vault Access Policies"
+            }  
+        },
+        "VerifiableCredentialsIssuerServicePrincipalObjectId": {
+            "type": "string",
+            "metadata": {
+                "description": "The Service Principle id of the Enterprise Application 'Verifiable Credentials Issuer Service'"
+            }  
+        },
+        "VerifiableCredentialsRequestServicePrincipalObjectId": {
+            "type": "string",
+            "metadata": {
+                "description": "The Service Principle id of the Enterprise Application 'Verifiable Credentials Request Service'"
+            }  
+        },        
+        "IssuerAppServicePrincipalObjectId": {
+            "type": "string",
+            "metadata": {
+                "description": "The Service Principal id of your Issuer app - the app that will issue VCs."
+            }  
+        },
+        "StorageAccountName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of your storage account that will hold your DID Rules and Display file"
+            }  
+        },
+        "StorageAccountContainerName": {
+            "type": "string",
+            "defaultValue": "didstg",
+            "metadata": {
+                "description": "The container name in your storage account that will hold your DID Rules and Display file"
+            }  
+        }
+    },
+    "variables": {
+        "PublicStorageAccountContainerName" : "[concat(parameters('StorageAccountContainerName'), 'public')]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.KeyVault/vaults",
+            "apiVersion": "2016-10-01",
+            "name": "[parameters('KeyVaultName')]",
+            "location": "westeurope",
+            "properties": {
+                "sku": {
+                    "family": "A",
+                    "name": "[parameters('skuName')]"
+                },
+                "tenantId": "[parameters('AADTenantId')]",
+                "accessPolicies": [
+                    {
+                        "tenantId": "[parameters('AADTenantId')]",
+                        "objectId": "[parameters('IssuerAppServicePrincipalObjectId')]",
+                        "permissions": {
+                            "keys": [
+                                "Get",
+                                "Create",
+                                "Sign"
+                            ],
+                            "secrets": [],
+                            "certificates": []
+                        }
+                    },
+                    {
+                        "tenantId": "[parameters('AADTenantId')]",
+                        "objectId": "[parameters('AdminUserObjectId')]",
+                        "permissions": {
+                            "keys": [
+                                "Get",
+                                "List",
+                                "Update",
+                                "Create",
+                                "Import",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "Sign"
+                            ],
+                            "secrets": [
+                                "Get",
+                                "List",
+                                "Set",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore"
+                            ],
+                            "certificates": [
+                                "Get",
+                                "List",
+                                "Update",
+                                "Create",
+                                "Import",
+                                "Delete",
+                                "Recover",
+                                "Backup",
+                                "Restore",
+                                "ManageContacts",
+                                "ManageIssuers",
+                                "GetIssuers",
+                                "ListIssuers",
+                                "SetIssuers",
+                                "DeleteIssuers"
+                            ]
+                        }
+                    },
+                    {
+                        "tenantId": "[parameters('AADTenantId')]",
+                        "objectId": "[parameters('VerifiableCredentialsIssuerServicePrincipalObjectId')]",
+                        "permissions": {
+                            "keys": [
+                                "Get",
+                                "List",
+                                "Create",
+                                "Import",
+                                "Verify",
+                                "Sign",
+                                "Update",
+                                "Delete"
+                            ],
+                            "secrets": [
+                                "Get",
+                                "List",
+                                "Set"
+                            ],
+                            "certificates": []
+                        }
+                    },
+                    {
+                        "tenantId": "[parameters('AADTenantId')]",
+                        "objectId": "[parameters('VerifiableCredentialsRequestServicePrincipalObjectId')]",
+                        "permissions": {
+                            "keys": [
+                                "Get",
+                                "Sign"
+                            ],
+                            "secrets": [
+                                "Get"
+                            ],
+                            "certificates": []
+                        }
+                    }
+                ],
+                "enabledForDeployment": false,
+                "enabledForDiskEncryption": false,
+                "enabledForTemplateDeployment": false,
+                "enableSoftDelete": true
+            }
+        },
+
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2020-08-01-preview",
+            "name": "[parameters('StorageAccountName')]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": false,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
+                        "blob": {
+                            "keyType": "Account",
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "2020-08-01-preview",
+            "name": "[concat(parameters('StorageAccountName'), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
+            ],
+            "sku": {
+                "name": "Standard_LRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "enabled": false
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2020-08-01-preview",
+            "name": "[concat(parameters('StorageAccountName'), '/default/', parameters('StorageAccountContainerName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('StorageAccountName'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('StorageAccountName'))]"
+            ],
+            "properties": {
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        }
+    ]
+}
