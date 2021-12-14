@@ -17,8 +17,8 @@
 
 ## Compute
 - [x] Define schema for initial data prep and pseudonymization.
-- [ ] Implement process_stage1_into_stage2().
-- [ ] Follows OEA framework script.
+- [x] Implement process_stage1_into_stage2().
+- [x] Follows OEA framework script.
 - [x] Add data validation, cleaning, aggregation and enrichment.
 - [ ] Implement process_stage2_into_stage3().
 
@@ -27,6 +27,6 @@
 - [x] PowerBI dashboard with pages and visuals properly labeled. Each visual should also have tooltips with brief descriptions.
 
 ## Quality
-- [ ] Module deployment takes less than 30 minutes.
+- [x] Module deployment takes less than 30 minutes.
 - [x] Follows coding standards and useful comments in code.
 - [ ] 2 or more customers deployed successfully before publishing.

@@ -5,7 +5,7 @@ Sample datasets provided in this module were created using the pipeline integrat
  - Microsoft 365 Applications User Detail: ``` beta/reports/getM365AppUserDetail(period='D7')/content?$format=application/json ```
  - Teams Activity User Detail: ``` beta/reports/getTeamsUserActivityUserDetail(period='D7')?$format=application/json ```
 
-Use this dataset by downloading the "GraphAPI" folder and uploading to your Synapse environment. Follow the instructions [here](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/docs/documents) for implementing these datasets, and using them for the notebook provided in this Graph Reports API module.
+Use these datasets by importing the GraphAPI_main_pipeline, and triggering the pipeline - this will automatically extract this data, run the notebook for processing, and create the two corresponding databases for this module. For more information, read the tutorial documentation [here](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/docs).
 ### For more info on these queries
 | Resource | Description |
 | --- | --- |
