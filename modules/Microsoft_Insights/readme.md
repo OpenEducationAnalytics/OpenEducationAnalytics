@@ -39,24 +39,23 @@ This Education Insights Premium module will leverage the OEA Azure Synapse envir
 
 ### Module Setup
 
- - Education Insights Premium is available for purchase. Contact your Microsoft account manager or fill out this form for more information. \[THIS FORM LINK NEEDS TO BE ADDED\]
+ - Education Insights Premium is available for purchase. Contact your Microsoft account manager or fill out this form for more information.
  - The setup of [School Data Sync](https://sds.microsoft.com/) is a prerequisite for Education Insights Premium.
     * In order to begin receiving usage data from M365, the first step is to initiate the Data Share feature within [School Data Sync](https://sds.microsoft.com/). This feature is in Private Preview and is not visible by default - check with your account manager to have the feature enabled for your tenant.
     * You can find short videos about School Data Sync and Education Insights Premium on the [Microsoft School Data Sync channel](https://www.youtube.com/channel/UCA8ZOC7eTfzLlkcFW3imkHg/featured).
  - In order to install this module:
-     1. Connect your Synpase workspace to the Azure Data Share for M365 data.
-     2. Import the MSInsights_py.ipynb and process_MSInsights_data.ipynb notebooks into Synapse Studio.
-     3. Then, open and run the process_MSInsights_data notebook.
-     4. After the Insights data is processed, open up the PowerBI Insights dashboard template provided, and connect to your Synapse workspace serverless SQL endpoint.
+     1. Connect your Synpase workspace to the Azure Data Share for M365 data. [Click here](https://docs.microsoft.com/en-us/schooldatasync/how-to-deploy-sds-for-insights) to learn how to set up SDS to pull in the data to your Synapse workspace.
+     2. Import the Insights_py.ipynb and Insights_module_ingestion.ipynb notebooks into your Synapse Studio, as well as the Insights_main_pipeline template.
+     3. Then, after Insights data has been landed in your Synapse data lake, trigger the Insights_main_pipeline to ingest your data and create two stage 2 databases: s2_insights and sqls2_insights.
+     4. After the Insights data is ingested, open up the PowerBI Insights dashboard template provided, and connect to your Synapse workspace serverless SQL endpoint. You will want to do a directQuery of the sqls2_insights database.
 
  
 ## Module Components
-Sample out-of-the box assets for this OEA module include: 
-1. [Tutorial](https://github.com/cstohlmann/oea-ms_insights-module/tree/main/docs): A tutorial on how to use this module within your own Synapse workspace.
-2. [Test data](https://github.com/cstohlmann/oea-ms_insights-module/tree/main/test_data): Ingest sample data to understand the utility and functionality of the notebooks.
-3. Pipeline: 
-4. [Notebook](https://github.com/cstohlmann/oea-ms_insights-module/tree/main/notebook): Example notebooks on processing the data from stage 1 to stage 2 within Synapse. 
-5. [PowerBI template](https://github.com/cstohlmann/oea-ms_insights-module/tree/main/powerbi): A Power BI sample template making it easy to interact with Microsoft Insights data.
+Out-of-the box assets for this OEA module include: 
+1. [Test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/test_data): Ingest sample data to understand the utility and functionality of the notebooks and piplines.
+2. Pipeline: 3 pipeline templates - One main pipeline for ingestion of the Insights data and creation of the stage 2 databases, one main pipeline for the Insights test data which extracts the test data provided, ingests, and creates the stage 2 databases, and one that extracts the test data provided within this module to the Synapse workspace.
+3. [Notebook](https://github.com/cstohlmann/oea-ms_insights-module/tree/main/notebook): 2 notebooks - A class notebook that defines the functions of data ingestion/processing the data from stage 1 to stage 2 within Synapse (Insights_py), and a ingestion notebook used to process the data by calling the functions in the class notebook (Insights_module_ingestion).
+
  <p align="center">
   <strong><em>[INSERT POWERBI DASHBOARD TEMPLATE PICTURE HERE]</em></strong>
  </p>
