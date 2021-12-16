@@ -53,8 +53,8 @@ This Education Insights Premium module will leverage the OEA Azure Synapse envir
 ## Module Components
 Out-of-the box assets for this OEA module include: 
 1. [Test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/test_data): Ingest sample data to understand the utility and functionality of the notebooks and piplines.
-2. Pipeline: 3 pipeline templates - One main pipeline for ingestion of the Insights data and creation of the stage 2 databases, one main pipeline for the Insights test data which extracts the test data provided, ingests, and creates the stage 2 databases, and one that extracts the test data provided within this module to the Synapse workspace.
-3. [Notebook](https://github.com/cstohlmann/oea-ms_insights-module/tree/main/notebook): 2 notebooks - A class notebook that defines the functions of data ingestion/processing the data from stage 1 to stage 2 within Synapse (Insights_py), and a ingestion notebook used to process the data by calling the functions in the class notebook (Insights_module_ingestion).
+2. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/pipeline): 3 pipeline templates - One main pipeline for ingestion of the Insights data and creation of the stage 2 databases, one main pipeline for the Insights test data which extracts the test data provided, ingests, and creates the stage 2 databases, and one that extracts the test data provided within this module to the Synapse workspace.
+3. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/notebook): 2 notebooks - A class notebook that defines the functions of data ingestion/processing the data from stage 1 to stage 2 within Synapse (Insights_py), and a ingestion notebook used to process the data by calling the functions in the class notebook (Insights_module_ingestion).
 
  <p align="center">
   <strong><em>[INSERT POWERBI DASHBOARD TEMPLATE PICTURE HERE]</em></strong>
