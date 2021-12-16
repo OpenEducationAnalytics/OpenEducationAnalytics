@@ -1,4 +1,4 @@
-> This folder has been populated with initial templates to help get you started with the module creation process. Please make sure to update this folder and all its associated files and folders by following the guidelines provided in the [OEA Module Creation Kit](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Module_Creation_Kit.docx) document.
+> This folder has been populated with initial templates to help get you started with the module creation process. Please make sure to update this folder and all its associated files and folders by following the guidelines provided in the [OEA Module Creation Kit](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Module_Creation_Kit_v1.docx) document.
 # Name of Module
 Provide an overview of the module.
 
