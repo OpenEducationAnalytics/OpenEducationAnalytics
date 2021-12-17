@@ -77,7 +77,7 @@ az synapse workspace firewall-rule create --name allowAll --workspace-name $OEA_
 
 echo "--> Creating spark pool."
 az synapse spark pool create --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
-  --spark-version 3.1 --node-count 3 --node-size Small --min-node-count 3 --max-node-count 10 \
+  --spark-version 3.1 --node-count 3 --node-size Small --min-node-count 2 --max-node-count 5 \
   --enable-auto-scale true --delay 15 --enable-auto-pause true --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
