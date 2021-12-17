@@ -1,0 +1,23 @@
+name: dev-oea-modeling
+channels:
+  - defaults
+  - anaconda
+  - conda-forge
+dependencies:
+  - python=3.6
+  - scikit-learn
+  - pip
+  - pip:
+    - mlflow==1.22.*
+    - azureml-mlflow==1.36.*
+    - azureml-dataset-runtime==1.36.*
+    - azureml-interpret==1.36.*
+    - azureml-contrib-fairness==1.36.*
+    - fairlearn==0.7.*
+    - lightgbm==3.3.*
+    - hyperopt==0.2.7
+    - raiwidgets==0.13.0
+    - kaleido==0.2.1
+    - plotly==5.4.*
+    - matplotlib==3.3.*
+    - pytest==6.2.*
