@@ -1,15 +1,15 @@
 > This folder has been populated with initial templates to help get you started with the module creation process. Please make sure to update this folder and all its associated files and folders by following the guidelines provided in the [OEA Module Creation Kit](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Module_Creation_Kit_v1.docx) document.
 # Name of Module
-Provide an overview of the module.
+Integrated Postsecondary Education Data System (IPEDS) Peer Benchmark Module.
 
 ## Problem Statement
-Define the problem you seek to solve using this module.
+he purpose of this solution is to share techniques for leveraging meaningful data on publicly available data for dissemination to key university stakeholders (Board of Trustees, faculty, administers, students, and staff). The primary foci of the presentation will be to: 1) leverage The Integrated Postsecondary Education Data System (IPEDS) data through data visualization to provide longitudinal analysis of undergraduate and graduate enrollment, tuition, post-graduate outcomes for recent graduates and 2) to determine if there are patterns across benchmarked data with selected feeder institutions.  Findings will inform key university stakeholders key institutional data patterns, such as enrollment, retention and graduation outcomes of recent graduates, and potential demand for institutional programs.
 
 ## Module Impact
-List out the impact and benefits this module will have on learners, educators and the learning process.
+this solution will provide insight into how Higher Education can utilize Microsoft Power BI to leverage national and institutional enrollment, admission, outcomes, academic affairs, and budget data to develop a data-informed culture that leverages data for data-informed decision-making.  Participants will gain first-hand knowledge on how to leverage national and institutional data to allow internal and external stakeholders to have a shared understanding of key longitudinal metrics.  Presenters will demonstrate national and institutional level aid dashboards and discuss potential uses for each.
 
 ## Module Setup and Data Sources
-- Description of data sources: what it is used for, data available, data format and possible use cases or OEA packages it can be used for.
+- Description of data sources: The Integrated Postsecondary Education Data System (IPEDS) is the National Center for Education Statistics’ (NCES) core postsecondary education data collection program. IPEDS provides institution level data of postsecondary education in the United States (the 50 states and the District of Columbia) and other jurisdictions, such as the U.S. Virgin Islands. .
 - Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA, etc.
 
 ## Module Components 
