@@ -23,7 +23,7 @@ Sample out-of-the box assets for this OEA module include:
 2. [Test data](https://github.com/dochines/OpenEduAnalytics/tree/main/modules/IPEDS/test_data) for setting up the module in your test environment.
 
 
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/_Creation_Kit/docs/images/Sample_PowerBI_Dashboard.png) 
+![image](https://github.com/dochines/OpenEduAnalytics/blob/4281a8c8ee44d5c8c3f343e6a583c824394e87ea/modules/IPEDS/docs/images/Institution%20Summary.jpg) 
 
 The IPEDS module [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md) 
 
