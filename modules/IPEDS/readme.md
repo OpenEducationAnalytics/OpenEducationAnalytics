@@ -15,7 +15,9 @@ The purpose of this solution is to share techniques for leveraging meaningful da
 This solution will provide insight into how Higher Education can utilize Microsoft Power BI to leverage national and institutional enrollment, admission, outcomes, academic affairs, and budget data to develop a data-informed culture that leverages data for data-informed decision-making.  Participants will gain first-hand knowledge on how to leverage national and institutional data to allow internal and external stakeholders to have a shared understanding of key longitudinal metrics.  Presenters will demonstrate national and institutional level aid dashboards and discuss potential uses for each.
 
 ## Module Setup and Data Sources
-The Integrated Postsecondary Education Data System (IPEDS) is the National Center for Education Statistics’ (NCES) core postsecondary education data collection program. IPEDS provides institution level data of postsecondary education in the United States (the 50 states and the District of Columbia) and other jurisdictions, such as the U.S. Virgin Islands. .
+The Integrated Postsecondary Education Data System (IPEDS) is the National Center for Education Statistics’ (NCES) core postsecondary education data collection program. IPEDS provides institution level data of postsecondary education in the United States (the 50 states and the District of Columbia) and other jurisdictions, such as the U.S. Virgin Islands.
+
+Data source for this module is an Excel sheet.
 
 ## Module Components 
 Sample out-of-the box assets for this OEA module include: 
