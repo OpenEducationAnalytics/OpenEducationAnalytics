@@ -9,26 +9,26 @@ The IPEDS PowerBI template consists of 7 pages:
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/2ebb3caeb6975076fbee7cf98db0f9bf46bd7722/modules/IPEDS/docs/images/Institution%20Selection.jpg)
 
 2. **Institution Summary Page:** The focus of this page is to provide a holistic view of the intersectionality of the key area of every institution (Admissions, Enrollment, Tuition, Revenue, and Student Success). This view provides a visually guided framework for how key stakeholders at every level of the institution can engage in a meaning conversation of data trends related to key strategic areas.  The most currently available eight years of IPEDS data are shown for each metric. 
-- Applicants, Admitted, Enrolled - applicants, admits, and enrollment by year
-- First Time in College Enrollment - first-time, full-time enrollment by year
-- Published in-state tuition & fees - published in-state tuition and fees by year
-- Avg. institutional grant aid to FTFT undergrads - average institutional grant aid to first-time, full-time undergraduates by year
-- Undergraduate and Graduate Enrollment - enrollment (undergraduate and graduate) by year
-- Net Revenue per FTE - net revenue per full-time equivalent by year
-- Full-time Retention Rate - first-time, full-time retention rate by year
-- Graduation rate - Bachelor degree attainment - four-year and six-year graduation rates by year
+- Applicants, Admitted, Enrolled: applicants, admits, and enrollment by year
+- First Time in College Enrollment: first-time, full-time enrollment by year
+- Published in-state tuition & fees: published in-state tuition and fees by year
+- Avg. institutional grant aid to FTFT undergrads: average institutional grant aid to first-time, full-time undergraduates by year
+- Undergraduate and Graduate Enrollment: enrollment (undergraduate and graduate) by year
+- Net Revenue per FTE: net revenue per full-time equivalent by year
+- Full-time Retention Rate: first-time, full-time retention rate by year
+- Graduation rate - Bachelor degree attainment:four-year and six-year graduation rates by year
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/Institution%20Summary.jpg)
 
 
 3. **Key Metric Comparison Page:** This page mirrors the prior page, with the addition of aggregate comparison data based on the selected peer institutions. The teal values represent the focus institution’s data while the grey values represent the average data value of the selected peer group. This view allows stakeholders to engage in a meaning conversation of institutional data trends in comparison to peer institutions. Users can hover over the Selected Peer information icon at the top of the screen to view the list of selected peer institutions. The most currently available eight years of IPEDS data are shown for each metric. 
-- Applicants - applicants, admits, and enrollment by year 
-- First Time in College Enrollment - first-time, full-time enrollment by year
-- Published in-state tuition & fees - published in-state tuition and fees by year
-- Avg. institutional grant aid to FTFT undergrads -	average institutional grant aid to first-time, full-time undergraduates by year
-- Undergraduate Enrollment -	enrollment (undergraduate and graduate) by year
-- Net Revenue per FTE -	net revenue per full-time equivalent by year
-- Full-time Retention Rate -	first-time, full-time retention rate by year
-- 6-year Graduation rate - Bachelor degree attainment -	six-year graduation rates by year
+- Applicants: applicants, admits, and enrollment by year 
+- First Time in College Enrollment: first-time, full-time enrollment by year
+- Published in-state tuition & fees: published in-state tuition and fees by year
+- Avg. institutional grant aid to FTFT undergrads:	average institutional grant aid to first-time, full-time undergraduates by year
+- Undergraduate Enrollment:	enrollment (undergraduate and graduate) by year
+- Net Revenue per FTE:	net revenue per full-time equivalent by year
+- Full-time Retention Rate:	first-time, full-time retention rate by year
+- 6-year Graduation rate: Bachelor degree attainment -	six-year graduation rates by year
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/e0c283bc2c151c58e1a051e0af9d5b5dbc5c67cc/modules/IPEDS/docs/images/Key%20Metric%20Comparison.jpg)
 
 
