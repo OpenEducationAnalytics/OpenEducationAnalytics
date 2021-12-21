@@ -19,7 +19,7 @@ The IPEDS PowerBI template consists of 7 pages:
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/Institution%20Summary.jpg)
 
 
-3. **Key Metric Comparison Page:*
+3. **Key Metric Comparison Page:**
 - Applicants - applicants, admits, and enrollment by year 
 - First Time in College Enrollment - first-time, full-time enrollment by year
 - Published in-state tuition & fees - published in-state tuition and fees by year
@@ -31,14 +31,15 @@ The IPEDS PowerBI template consists of 7 pages:
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/e0c283bc2c151c58e1a051e0af9d5b5dbc5c67cc/modules/IPEDS/docs/images/Key%20Metric%20Comparison.jpg)
 
 
-4. **Page 4:** Undergraduate Enrollment.
-- visual 1 name - Card 1: undergraduate enrollment at the focus institutions
-- visual 2 name - Card 2: average undergraduate enrollment for selected peer group
-- visual 3 name - Card 3: enrollment difference between focus institution and average of selected peers
-- visual 4 name -	Card 4: net revenue per full-time equivalent at the focus institution 
-- visual 5 name -	Card 5: potential gain/loss in revenue if the focus institution had same enrollment as peer group (enrollment difference x net revenue per FTE) 
-- visual 6 name -	Bar chart: undergraduate enrollment at each of the peer institutions 
-- visual 7 name -	Pie chart: percent of peer institutions with higher and lower undergraduate enrollment than the focus institution 
+4. **Undergraduate Enrollment:** 
+- Undergraduate Enrollment @ our Institutions: undergraduate enrollment at the focus institutions
+- Average Undergraduate Enrollment @ Peer Institutions: average undergraduate enrollment for selected peer group
+- Difference from Average of Peer Institutions: enrollment difference between focus institution and average of selected peers
+- Net Revenue per FTE @ our Institution : net revenue per full-time equivalent at the focus institution 
+- Potential Gain/Loss if at Same as Average of Peer Institutions: potential gain/loss in revenue if the focus institution had same enrollment as peer group (enrollment difference x net revenue per FTE) 
+- Peer Institutions: undergraduate enrollment at each of the peer institutions 
+- Percent of Peer Institutions with Higher/Lower UG Enrollment: percent of peer institutions with higher and lower undergraduate enrollment than the focus institution 
+![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/Undergraduate%20Enrollment.jpg)
 
 5. **Page 5:** Retention Rates.
 - visual 1 name - Card 1: Card 1: retention rate at the focus institutions
