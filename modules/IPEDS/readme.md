@@ -25,7 +25,7 @@ Sample out-of-the box assets for this OEA module include:
 
 ![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/_Creation_Kit/docs/images/Sample_PowerBI_Dashboard.png) 
 
-The [name of module] module [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md) 
+The IPEDS module [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md) 
 
 This module was developed by [TRIVIUM BI](https://www.triviumbi.com/). The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
