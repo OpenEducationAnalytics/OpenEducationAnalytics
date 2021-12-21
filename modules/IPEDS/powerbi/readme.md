@@ -41,7 +41,7 @@ The IPEDS PowerBI template consists of 7 pages:
 - Percent of Peer Institutions with Higher/Lower UG Enrollment: percent of peer institutions with higher and lower undergraduate enrollment than the focus institution 
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/Undergraduate%20Enrollment.jpg)
 
-5. **Retention Rates** .
+5. **Retention Rates:**
 - Retention rate @ our Institution: retention rate at the focus institutions
 - Average Retention Rate @ Peer Institutions: average retention rate for selected peer group
 - Difference from Average of Peer Institutions: difference between focus institution retention rate and average of selected peers
@@ -51,7 +51,7 @@ The IPEDS PowerBI template consists of 7 pages:
 - Percent of Peer Institutions with Higher/Lower Retention Rates: percent of peer institutions with higher and lower retention rates than the focus institution
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/Retention%20Rates.jpg)
 
-5. **Page 6:** In-State Tuition and Fees.
+5. **In-State Tuition and Fees:** 
 - visual 1 name - Card 1: Card 1: retention rate at the focus institutions
 - visual 2 name - Card 2: average retention rate for selected peer group
 - visual 3 name - Card 3: difference between focus institution retention rate and average of selected peers
@@ -59,8 +59,9 @@ The IPEDS PowerBI template consists of 7 pages:
 - visual 5 name -	Card 5: potential gain/loss in revenue if the focus institution had same enrollment as peer group (enrollment difference x net revenue per FTE) 
 - visual 6 name -	Bar chart: retention rate at each of the peer institutions 
 - visual 7 name -	Pie chart: percent of peer institutions with higher and lower retention rates than the focus institution
+![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/In-State%20Tuition%20and%20Fees.jpg)
 
-5. **Page 7:** Instructional Expenses per FTE.
+5. **Page 7:** Instructional Expenses per FTE
 - visual 1 name - Card 1: Card 1: instructional expenses per FTE at the focus institutions
 - visual 2 name - Card 2: average instructional expenses per FTE for selected peer group
 - visual 3 name - Card 3: difference between focus institution instructional expenses per FTE and average of selected peers
