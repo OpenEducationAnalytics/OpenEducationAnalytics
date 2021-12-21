@@ -1,20 +1,21 @@
 # PowerBI template
 
-The [name of module] PowerBI template consists of 7 pages:
+The IPEDS PowerBI template consists of 7 pages:
 **Institution Selection Page:** 
 - Primary Institution - primary institutions from the list provided
 - Peer Institutions - peer institutions from the list provided
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/2ebb3caeb6975076fbee7cf98db0f9bf46bd7722/modules/IPEDS/docs/images/Institution%20Selection.jpg)
 
-2. **Page 2:** Institution Summary .
-- visual 1 name - applicants, admits, and enrollment by year
-- visual 2 name - first-time, full-time enrollment by year
-- visual 3 name - published in-state tuition and fees by year
-- visual 4 name - average institutional grant aid to first-time, full-time undergraduates by year
-- visual 5 name -enrollment (undergraduate and graduate) by year
-- visual 6 name -net revenue per full-time equivalent by year
-- visual 7 name -first-time, full-time retention rate by year
-- visual 8 name -four-year and six-year graduation rates by year
+2. **Institution Summary Page:** 
+- Applicants, Admitted, Enrolled - applicants, admits, and enrollment by year
+- First Time in College Enrollment - first-time, full-time enrollment by year
+- Published in-state tuition & fees - published in-state tuition and fees by year
+- Avg. institutional grant aid to FTFT undergrads - average institutional grant aid to first-time, full-time undergraduates by year
+- Undergraduate and Graduate Enrollment - enrollment (undergraduate and graduate) by year
+- Net Revenue per FTE - net revenue per full-time equivalent by year
+- Full-time Retention Rate - first-time, full-time retention rate by year
+- Graduation rate - Bachelor degree attainment - four-year and six-year graduation rates by year
+![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/Institution%20Summary.jpg)
 
 
 3. **Page 3:** Key Metric Comparison.
