@@ -1,6 +1,8 @@
-> This folder has been populated with initial templates to help get you started with the module creation process. Please make sure to update this folder and all its associated files and folders by following the guidelines provided in the [OEA Module Creation Kit](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/OEA_Module_Creation_Kit_v1.docx) document.
-# Name of Module
-Integrated Postsecondary Education Data System (IPEDS) Peer Benchmark Module.
+# Integrated Postsecondary Education Data System (IPEDS) Peer Benchmark Module
+According to [The Institute of Education Sciences](https://nces.ed.gov/ipeds/DFR/2021/ReportHTML.aspx?unitid=107460), the Integrated Postsecondary Education Data System (IPEDS) is a system of survey components that collects data from all institutions that provide postsecondary education and are eligible to receive Title IV funding across the United States and other U.S. jurisdictions.
+
+These data are used at the federal and state level for policy analysis and development; at the institutional level for benchmarking and peer analysis; and by students and parents, through the [College Navigator](https://nces.ed.gov/collegenavigator/), an online tool to aid in the college search process. Additional information about IPEDS can be found on [the website](https://nces.ed.gov/ipeds).
+
 
 ## Problem Statement
 he purpose of this solution is to share techniques for leveraging meaningful data on publicly available data for dissemination to key university stakeholders (Board of Trustees, faculty, administers, students, and staff). The primary foci of the presentation will be to: 1) leverage The Integrated Postsecondary Education Data System (IPEDS) data through data visualization to provide longitudinal analysis of undergraduate and graduate enrollment, tuition, post-graduate outcomes for recent graduates and 2) to determine if there are patterns across benchmarked data with selected feeder institutions.  Findings will inform key university stakeholders key institutional data patterns, such as enrollment, retention and graduation outcomes of recent graduates, and potential demand for institutional programs.
