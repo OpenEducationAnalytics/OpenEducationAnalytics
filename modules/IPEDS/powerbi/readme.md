@@ -1,7 +1,8 @@
 # PowerBI template
 
 The IPEDS PowerBI template consists of 7 pages:
-**Institution Selection Page:** 
+
+1. **Institution Selection Page:** 
 - Primary Institution - primary institutions from the list provided
 - Peer Institutions - peer institutions from the list provided
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/2ebb3caeb6975076fbee7cf98db0f9bf46bd7722/modules/IPEDS/docs/images/Institution%20Selection.jpg)
@@ -18,15 +19,17 @@ The IPEDS PowerBI template consists of 7 pages:
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/Institution%20Summary.jpg)
 
 
-3. **Page 3:** Key Metric Comparison.
-- visual 1 name - applicants, admits, and enrollment by year 
-- visual 2 name - first-time, full-time enrollment by year
-- visual 3 name - published in-state tuition and fees by year
-- visual 4 name -	average institutional grant aid to first-time, full-time undergraduates by year
-- visual 5 name -	enrollment (undergraduate and graduate) by year
-- visual 6 name -	net revenue per full-time equivalent by year
-- visual 7 name -	first-time, full-time retention rate by year
-- visual 8 name -	four-year and six-year graduation rates by year
+3. **Key Metric Comparison Page:*
+- Applicants - applicants, admits, and enrollment by year 
+- First Time in College Enrollment - first-time, full-time enrollment by year
+- Published in-state tuition & fees - published in-state tuition and fees by year
+- Avg. institutional grant aid to FTFT undergrads -	average institutional grant aid to first-time, full-time undergraduates by year
+- Undergraduate Enrollment -	enrollment (undergraduate and graduate) by year
+- Net Revenue per FTE -	net revenue per full-time equivalent by year
+- Full-time Retention Rate -	first-time, full-time retention rate by year
+- 6-year Graduation rate - Bachelor degree attainment -	six-year graduation rates by year
+![image](https://github.com/dochines/OpenEduAnalytics/blob/e0c283bc2c151c58e1a051e0af9d5b5dbc5c67cc/modules/IPEDS/docs/images/Key%20Metric%20Comparison.jpg)
+
 
 4. **Page 4:** Undergraduate Enrollment.
 - visual 1 name - Card 1: undergraduate enrollment at the focus institutions
