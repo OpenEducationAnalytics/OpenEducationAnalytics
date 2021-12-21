@@ -1,11 +1,10 @@
-> In this folder, you will find a draft PowerBI dashboard template. Download this template and use it for your module's visualization and upload the updated .pbix file back to this folder. Please provide descriptions of each page and visuals, as well as screenshots of the PowerBI dashboard and the semantic model in this readme file.
-
 # PowerBI template
 
-The [name of module] PowerBI template consists of [7] pages:
-1. **Page 1:** Institution Selection.
-- visual 1 name - Primary Institution
-- visual 2 name - Peer Institutions 
+The [name of module] PowerBI template consists of 7 pages:
+**Institution Selection Page:** 
+- Primary Institution - primary institutions from the list provided
+- Peer Institutions - peer institutions from the list provided
+![image](https://github.com/dochines/OpenEduAnalytics/blob/2ebb3caeb6975076fbee7cf98db0f9bf46bd7722/modules/IPEDS/docs/images/Institution%20Selection.jpg)
 
 2. **Page 2:** Institution Summary .
 - visual 1 name - applicants, admits, and enrollment by year
