@@ -1,4 +1,4 @@
-# Contoso SIS module
+# Example SIS module
 This module provides a basic example of how to develop an OEA module with a set of assets for the processing of data from a specific source system. In this case the source system is a fictional Student Information System (SIS) from the fictional Contoso school district.
 
 # Module Setup
