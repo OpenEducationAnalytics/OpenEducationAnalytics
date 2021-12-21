@@ -51,7 +51,7 @@ The IPEDS PowerBI template consists of 7 pages:
 - Percent of Peer Institutions with Higher/Lower Retention Rates: percent of peer institutions with higher and lower retention rates than the focus institution
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/Retention%20Rates.jpg)
 
-5. **In-State Tuition and Fees:** 
+6. **In-State Tuition and Fees:** 
 - visual 1 name - Card 1: Card 1: retention rate at the focus institutions
 - visual 2 name - Card 2: average retention rate for selected peer group
 - visual 3 name - Card 3: difference between focus institution retention rate and average of selected peers
@@ -61,21 +61,21 @@ The IPEDS PowerBI template consists of 7 pages:
 - visual 7 name -	Pie chart: percent of peer institutions with higher and lower retention rates than the focus institution
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/In-State%20Tuition%20and%20Fees.jpg)
 
-5. **Page 7:** Instructional Expenses per FTE
-- visual 1 name - Card 1: Card 1: instructional expenses per FTE at the focus institutions
-- visual 2 name - Card 2: average instructional expenses per FTE for selected peer group
-- visual 3 name - Card 3: difference between focus institution instructional expenses per FTE and average of selected peers
-- visual 4 name -	Card 4: Fall full-time equivalent enrollment (FTE) at focus institution 
-- visual 5 name -	Card 5: potential gain/loss in revenue if the focus institution had same instructional expenses per FTE as peer group (instructional expenses per FTE difference x Fall FTE) 
-- visual 6 name -	Bar chart: instructional expenses per FTE at each of the peer institutions 
-- visual 7 name -	Pie chart: percent of peer institutions with higher and lower instructional expenses per FTE than the focus institution
+7. **Instructional Expenses per FTE:** 
+- Expenses per FTE @ our Institution: instructional expenses per FTE at the focus institutions
+- Average Expenses per FTE @ Peer Institutions: average instructional expenses per FTE for selected peer group
+- Difference from Average of Peer Institutions: difference between focus institution instructional expenses per FTE and average of selected peers
+- Fall FTE @ our Institution: Fall full-time equivalent enrollment (FTE) at focus institution 
+- Potential Gain/Loss if at Same as Average of Peer Institutions: potential gain/loss in revenue if the focus institution had same instructional expenses per FTE as peer group (instructional expenses per FTE difference x Fall FTE) 
+- Peer Institutions: instructional expenses per FTE at each of the peer institutions 
+- Percent of Peer Institutions with Higher/Lower Expenses per FTEE: percent of peer institutions with higher and lower instructional expenses per FTE than the focus institution
 
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/_Creation_Kit/docs/images/Sample_PowerBI_Dashboard.png)
-NB: This can be an image of one of the PowerBI pages.
+![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/Instructional%20Expenses%20per%20FTE.jpg)
+
 
 ## Semantic Model
 This PowerBI module is made up of the following tables: [list table names]. The dimension table is [name of dimension table] and the fact tables are [list of fact tables].
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/_Creation_Kit/docs/images/Sample_PowerBI_Semantic_Model.png)
+![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/PowerBI%20Semantic%20Model.jpg)
 
 ### Table Details
 | Table | Column   | Description   |
