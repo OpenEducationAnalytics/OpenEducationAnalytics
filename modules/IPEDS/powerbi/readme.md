@@ -75,7 +75,7 @@ The IPEDS PowerBI template consists of 7 pages:
 
 
 ## Semantic Model
-This PowerBI module is made up of the following tables: [list table names]. The dimension table is [name of dimension table] and the fact tables are [list of fact tables].
+This PowerBI module is made up of the following tables: PBIDta - Peers and PBIData - Focus.
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/PowerBI%20Semantic%20Model.jpg)
 
 ### Table Details
