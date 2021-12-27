@@ -1,7 +1,7 @@
 # Test data
 
 ## Data dictionary
-|Column Name        |Description  |
+|Variable Name        | Variable Description  |
 |-------------------|-------------|
 | Admissions total   |Number of first-time, degree/certificate-seeking undergraduate students who applied, were admitted, and enrolled (full or part time) at your institution for the most recent fall period available. Include early decision, early action, and students who began studies during the summer prior to that fall. This is applicable to institutions that have no open admission policy for entering first-time undergraduate students |
 | Applicants total       |Number of first-time, degree/certificate-seeking undergraduate students who applied, were admitted, and enrolled (full or part time) at your institution for the most recent fall period available. Include early decision, early action, and students who began studies during the summer prior to that fall. This is applicable to institutions that have no open admission policy for entering first-time undergraduate students |                                                                 
