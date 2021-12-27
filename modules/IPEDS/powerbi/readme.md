@@ -53,13 +53,13 @@ The IPEDS PowerBI template consists of 7 pages:
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/Retention%20Rates.jpg)
 
 6. **In-State Tuition and Fees:** This page provides an overview of in-state undergraduate tuition and fees for the most recent IPEDS data year in comparison to the selected peer group. 
-- visual 1 name - Card 1: in-state tuition and fees at the focus institutions
-- visual 2 name - Card 2: average in-state tuition and fees for selected peer group
-- visual 3 name - Card 3: difference between focus institution in-state tuition and fees and average of selected peers
-- visual 4 name -	Card 4: Fall full-time equivalent enrollment (FTE) at focus institution
-- visual 5 name -	Card 5: potential gain/loss in revenue if the focus institution had same in-state tuition and fees as peer group (tuition and fees difference x Fall FTE)  
-- visual 6 name -	Bar chart: in-state tuition and fees at each of the peer institutions 
-- visual 7 name -	Pie chart: percent of peer institutions with higher and lower in-state tuition and fees than the focus institution
+- Tuition & Fees @ our Institution: in-state tuition and fees at the focus institutions
+- Average Tuition & Fees @ Peer Institutions: average in-state tuition and fees for selected peer group
+- Difference from Average of Peer Institutions: difference between focus institution in-state tuition and fees and average of selected peers
+- Fall FTE @ our Institution: Fall full-time equivalent enrollment (FTE) at focus institution
+- Potential Gain/Loss if at Same as Average of Peer Instittutions: potential gain/loss in revenue if the focus institution had same in-state tuition and fees as peer group (tuition and fees difference x Fall FTE)  
+- Peer Institutions: in-state tuition and fees at each of the peer institutions 
+- Percent of Peer Institutions with Higher/Lower Tuition &  Fees: percent of peer institutions with higher and lower in-state tuition and fees than the focus institution
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/In-State%20Tuition%20and%20Fees.jpg)
 
 7. **Instructional Expenses per FTE:** This page provides an overview of instructional expenses per full-time equivalent student (FTE) for the most recent IPEDS data year in comparison to the selected peer group. 
