@@ -1,7 +1,4 @@
 # Approved Module (Curation approved for GitHub)
-Use this checklist to keep track of your progress.
-
-> To check a box, place an x within the square bracket [] while in Edit mode. For the checked box to render properly, there shouldn't be any extra space within the square bracket.
 
 ## Documentation
 - [x] Use general OEA templates for all assets (OEA Logo, Creative Commons License, partner logo - if applicable.
