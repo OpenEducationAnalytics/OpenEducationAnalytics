@@ -79,7 +79,7 @@ This PowerBI module is made up of the following tables: PBIDta - Peers and PBIDa
 ![image](https://github.com/dochines/OpenEduAnalytics/blob/9056d4b48fa1a7cf129df4b4b28b575124914f1e/modules/IPEDS/docs/images/PowerBI%20Semantic%20Model.jpg)
 
 ### Table Details
-| Variable Name | Description |
+| Variable Name | Variable Description |
 | --- | --- |
 | Admissions total | Number of first-time, degree/certificate-seeking undergraduate students who applied, were admitted, and enrolled (full or part time) at your institution for the most recent fall period available. Include early decision, early action, and students who began studies during the summer prior to that fall. This is applicable to institutions that have no open admission policy for entering first-time undergraduate students. |
 | Applicants total | Number of first-time, degree/certificate-seeking undergraduate students who applied, were admitted, and enrolled (full or part time) at your institution for the most recent fall period available. Include early decision, early action, and students who began studies during the summer prior to that fall. This is applicable to institutions that have no open admission policy for entering first-time undergraduate students.  |
