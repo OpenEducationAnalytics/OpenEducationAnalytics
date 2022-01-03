@@ -150,7 +150,7 @@
         "parameters": {
             "storageAccount": {
                 "type": "string",
-                "defaultValue": "yourstorageaccountyourstorageaccount"
+                "defaultValue": "yourstorageaccount"
             },
             "sourceDirectory": {
                 "type": "string",
