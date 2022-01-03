@@ -14,7 +14,20 @@
                     "secureOutput": false,
                     "secureInput": false
                 },
-                "userProperties": [],
+                "userProperties": [
+                    {
+                        "name": "URL",
+                        "value": "@pipeline().parameters.URL"
+                    },
+                    {
+                        "name": "sinkFilesystem",
+                        "value": "@pipeline().parameters.sinkFilesystem"
+                    },
+                    {
+                        "name": "sinkFilename",
+                        "value": "@pipeline().parameters.sinkFilename"
+                    }
+                ],
                 "typeProperties": {
                     "source": {
                         "type": "BinarySource",
@@ -82,7 +95,7 @@
             "name": "OEA_Framework/Extracts"
         },
         "annotations": [],
-        "lastPublishTime": "2021-10-28T13:57:30Z"
+        "lastPublishTime": "2022-01-03T19:18:12Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
