@@ -16,7 +16,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "endpoints": {
-                            "value": "@json('[{\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/batch1/studentattendance.csv\",\"sinkDirectory\": \"contoso_sis/studentattendance\",\"sinkFilename\": \"part1.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/batch1/studentdemographics.csv\",\"sinkDirectory\": \"contoso_sis/studentdemographics\",\"sinkFilename\": \"part1.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/batch1/studentsectionmark.csv\",\"sinkDirectory\": \"contoso_sis/studentsectionmark\",\"sinkFilename\": \"part1.csv\"}]')",
+                            "value": "@json('[{\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Student%20and%20School%20Data%20Systems/test_data/batch1/studentattendance.csv\",\"sinkDirectory\": \"contoso_sis/studentattendance\",\"sinkFilename\": \"part1.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Student%20and%20School%20Data%20Systems/test_data/batch1/studentdemographics.csv\",\"sinkDirectory\": \"contoso_sis/studentdemographics\",\"sinkFilename\": \"part1.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Student%20and%20School%20Data%20Systems/test_data/batch1/studentsectionmark.csv\",\"sinkDirectory\": \"contoso_sis/studentsectionmark\",\"sinkFilename\": \"part1.csv\"}]')",
                             "type": "Expression"
                         },
                         "sinkFilesystem": "stage1np",
@@ -57,8 +57,7 @@
                             "value": "ingest",
                             "type": "string"
                         }
-                    },
-                    "snapshot": true
+                    }
                 }
             },
             {
@@ -159,16 +158,18 @@
             },
             "create_sql_db": {
                 "type": "bool",
-                "defaultValue": false
+                "defaultValue": true
             },
             "create_lake_db": {
                 "type": "bool",
-                "defaultValue": false
+                "defaultValue": true
             }
         },
         "folder": {
             "name": "OEA_Framework"
         },
-        "annotations": []
-    }
+        "annotations": [],
+        "lastPublishTime": "2022-01-03T19:19:23Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
 }
