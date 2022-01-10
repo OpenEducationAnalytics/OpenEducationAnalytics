@@ -76,5 +76,5 @@ workspace_url=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $
 echo "--> OEA setup is complete. Click on this url to work with your new Synapse workspace (via Synapse Studio): $workspace_url"
 echo "--> OEA setup is complete. Click on this url to work with your new Synapse workspace (via Synapse Studio): $workspace_url" 1>&3
 
-echo $'    Once in Synapse Studio, click on Develop, select the notebook called ContosoISD_example, and follow the directions shown there.'
-echo $'    Once in Synapse Studio, click on Develop, select the notebook called ContosoISD_example, and follow the directions shown there.' 1>&3
+echo $'    Once in Synapse Studio, click on Develop, select the notebook called 1_read_me, and follow the directions shown there.'
+echo $'    Once in Synapse Studio, click on Develop, select the notebook called 1_read_me, and follow the directions shown there.' 1>&3
