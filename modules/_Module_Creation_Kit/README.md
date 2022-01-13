@@ -15,8 +15,8 @@ List out the impact and benefits this module will have on learners, educators an
 ## Module Components 
 Sample out-of-the box assets for this OEA module include: 
 1. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_Module_Creation_Kit/pipeline) for ingesting data into the data lake and automating the various stages of the process.
-2. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_Module_Creation_Ki/notebook) for cleaning, transforming, anonymizing and enriching the data.
-3. [PowerBI template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_Module_Creation_Ki/powerbi) for exploring, visualizing and deriving insights from the data.
+2. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_Module_Creation_Kit/notebook) for cleaning, transforming, anonymizing and enriching the data.
+3. [PowerBI template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_Module_Creation_Kit/powerbi) for exploring, visualizing and deriving insights from the data.
 
 [include links to any other assets like tutorials, test data, etc you are providing as part of this module.]
 
