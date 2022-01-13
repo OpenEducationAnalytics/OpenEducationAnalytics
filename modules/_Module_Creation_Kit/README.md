@@ -21,7 +21,7 @@ Sample out-of-the box assets for this OEA module include:
 [include links to any other assets like tutorials, test data, etc you are providing as part of this module.]
 
 
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/_Creation_Kit/docs/images/Sample_PowerBI_Dashboard.png) 
+![image](https://github.com/microsoft/OpenEduAnalytics/blob/4ff0b253ae6a0d3a7f70e31eb26148c1735fae11/modules/_Module_Creation_Kit/docs/images/Sample_PowerBI_Dashboard.png) 
 
 The [name of module] module [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md) 
 
