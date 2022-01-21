@@ -41,7 +41,10 @@
                             "type": "string"
                         }
                     },
-                    "snapshot": true
+                    "sparkPool": {
+                        "referenceName": "spark3p1sm",
+                        "type": "BigDataPoolReference"
+                    }
                 }
             }
         ],
@@ -58,6 +61,8 @@
         "folder": {
             "name": "OEA_Framework/Ingest"
         },
-        "annotations": []
-    }
+        "annotations": [],
+        "lastPublishTime": "2022-01-15T22:36:53Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
 }
