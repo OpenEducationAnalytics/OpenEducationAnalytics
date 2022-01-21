@@ -57,6 +57,10 @@
                             "value": "ingest",
                             "type": "string"
                         }
+                    },
+                    "sparkPool": {
+                        "referenceName": "spark3p1sm",
+                        "type": "BigDataPoolReference"
                     }
                 }
             },
@@ -150,7 +154,7 @@
         "parameters": {
             "storageAccount": {
                 "type": "string",
-                "defaultValue": "yourstorageaccount"
+                "defaultValue": "stoeacisd3v06rc2"
             },
             "sourceDirectory": {
                 "type": "string",
@@ -169,7 +173,7 @@
             "name": "OEA_Framework"
         },
         "annotations": [],
-        "lastPublishTime": "2022-01-03T19:19:23Z"
+        "lastPublishTime": "2022-01-15T22:37:17Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
