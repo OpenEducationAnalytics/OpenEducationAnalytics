@@ -1,0 +1,53 @@
+{
+    "name": "LS_OnPrem_SFTP_CSV",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "LS_OnPrem_SFTP",
+            "type": "LinkedServiceReference",
+            "parameters": {
+                "sftpServer": {
+                    "value": "@dataset().sftpServer",
+                    "type": "Expression"
+                },
+                "username": {
+                    "value": "@dataset().userName",
+                    "type": "Expression"
+                },
+                "keyVaultSecretName": {
+                    "value": "@dataset().keyVaultSecretName",
+                    "type": "Expression"
+                }
+            }
+        },
+        "parameters": {
+            "sftpServer": {
+                "type": "string"
+            },
+            "sftpFolderName": {
+                "type": "string"
+            },
+            "userName": {
+                "type": "string"
+            },
+            "keyVaultSecretName": {
+                "type": "string"
+            }
+        },
+        "annotations": [],
+        "type": "DelimitedText",
+        "typeProperties": {
+            "location": {
+                "type": "SftpLocation",
+                "folderPath": {
+                    "value": "@dataset().sftpFolderName",
+                    "type": "Expression"
+                }
+            },
+            "columnDelimiter": ",",
+            "escapeChar": "\\",
+            "quoteChar": "\""
+        },
+        "schema": []
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}
