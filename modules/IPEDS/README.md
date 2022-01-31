@@ -10,7 +10,7 @@ Higher education institutions are surrounded by data. In a relatively short time
 
 ## Module Impact
 The purpose of this solution is to share techniques for leveraging meaningful data on publicly available data for dissemination to key university stakeholders (Board of Trustees, faculty, administers, students, and staff). The primary foci of the presentation will be to: 
-1) leverage The Integrated Postsecondary Education Data System (IPEDS) data through data visualization to provide longitudinal analysis of undergraduate and graduate enrollment, tuition, post-graduate outcomes for recent graduates.
+1) leverage the Integrated Postsecondary Education Data System (IPEDS) data through data visualization to provide longitudinal analysis of undergraduate and graduate enrollment, tuition, post-graduate outcomes for recent graduates.
 2) determine if there are patterns across benchmarked data with selected feeder institutions.  Findings will inform key university stakeholders key institutional data patterns, such as enrollment, retention and graduation outcomes of recent graduates, and potential demand for institutional programs.
 
 This solution will provide insight into how Higher Education can utilize Microsoft Power BI to leverage national and institutional enrollment, admission, outcomes, academic affairs, and budget data to develop a data-informed culture that leverages data for data-informed decision-making.  Participants will gain first-hand knowledge on how to leverage national and institutional data to allow internal and external stakeholders to have a shared understanding of key longitudinal metrics.  Presenters will demonstrate national and institutional level aid dashboards and discuss potential uses for each.
