@@ -7,7 +7,7 @@ There are several important prerequisites for using this module:
 
 1. Education Insights Premium requires a license fee.
 2. Education Insights Premium requires the implementation of School Data Sync on O365, which provides school and class roster data, to enable its reports in Teams.
-3. At present, the feature of Education Insights Premium that allows data to be exported to an OEA data environment is in private preview, so a special agreement must be signed to accept the terms of this feature that is not yet in General Availability. To request the private preview agreement and have the Education Insights Premium data export feature enabled, please email the request to Alex Freemon (Alex.Freemon@microsoft.com) with the subject line "Inquiry on Education Insights Premium ADS feature for OEA". 
+3. At present, the feature of Education Insights Premium that allows data to be exported to an OEA data environment is in private preview, so a special agreement must be signed to accept the terms of this feature that is not yet in General Availability. To request the private preview agreement and have the Education Insights Premium data export feature enabled, please email the request to the OEA team (OpenEduAnalyticsteam@microsoft.com) with the subject line "Inquiry on Education Insights Premium ADS feature for OEA". 
 
 <p align="center">
   <img src="https://github.com/cstohlmann/oea-ms_insights-module/blob/main/docs/images/insights%20visual.png?raw=true" alt="Microsoft Insights Visual"/>
@@ -55,10 +55,9 @@ Out-of-the box assets for this OEA module include:
 1. [Test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/test_data): Ingest sample data to understand the utility and functionality of the notebooks and piplines.
 2. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/pipeline): 3 pipeline templates - One main pipeline for ingestion of the Insights data and creation of the stage 2 databases, one main pipeline for the Insights test data which extracts the test data provided, ingests, and creates the stage 2 databases, and one that extracts the test data provided within this module to the Synapse workspace.
 3. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/notebook): 2 notebooks - A class notebook that defines the functions of data ingestion/processing the data from stage 1 to stage 2 within Synapse (Insights_py), and a ingestion notebook used to process the data by calling the functions in the class notebook (Insights_module_ingestion).
+4. [PowerBI Template](https://github.com/cstohlmann/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights_Premium/powerbi): A Power BI sample template making it easy to interact and understand Microsoft Education Insights Premium and SDS data.
 
- <p align="center">
-  <strong><em>[INSERT POWERBI DASHBOARD TEMPLATE PICTURE HERE]</em></strong>
- </p>
+![alt text](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights_Premium/docs/images/Insights%20Module%20Sample%20Dashboard.png)
  
  <p align="center">
   <em>(This dashboard example represents only data from Microsoft Insights Premium.)</em>
