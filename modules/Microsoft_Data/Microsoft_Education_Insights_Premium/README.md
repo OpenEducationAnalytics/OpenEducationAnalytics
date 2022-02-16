@@ -56,9 +56,7 @@ Out-of-the box assets for this OEA module include:
 2. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/pipeline): 3 pipeline templates - One main pipeline for ingestion of the Insights data and creation of the stage 2 databases, one main pipeline for the Insights test data which extracts the test data provided, ingests, and creates the stage 2 databases, and one that extracts the test data provided within this module to the Synapse workspace.
 3. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/notebook): 2 notebooks - A class notebook that defines the functions of data ingestion/processing the data from stage 1 to stage 2 within Synapse (Insights_py), and a ingestion notebook used to process the data by calling the functions in the class notebook (Insights_module_ingestion).
 
- <p align="center">
-  <strong><em>[INSERT POWERBI DASHBOARD TEMPLATE PICTURE HERE]</em></strong>
- </p>
+![alt text](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights_Premium/docs/images/Insights%20Module%20Sample%20Dashboard.png)
  
  <p align="center">
   <em>(This dashboard example represents only data from Microsoft Insights Premium.)</em>
