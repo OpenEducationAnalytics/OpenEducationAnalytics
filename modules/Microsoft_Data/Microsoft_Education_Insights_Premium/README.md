@@ -39,7 +39,7 @@ This Education Insights Premium module will leverage the OEA Azure Synapse envir
 
 ### Module Setup
 
- - Education Insights Premium is available for purchase. Contact your Microsoft account manager or fill out this form for more information.
+ - Education Insights Premium is available for purchase. Please email your purchase request to the OEA team (OpenEduAnalyticsteam@microsoft.com) with the subject line "Purchase Education Insights Premium".
  - The setup of [School Data Sync](https://sds.microsoft.com/) is a prerequisite for Education Insights Premium.
     * In order to begin receiving usage data from M365, the first step is to initiate the Data Share feature within [School Data Sync](https://sds.microsoft.com/). This feature is in Private Preview and is not visible by default - check with your account manager to have the feature enabled for your tenant.
     * You can find short videos about School Data Sync and Education Insights Premium on the [Microsoft School Data Sync channel](https://www.youtube.com/channel/UCA8ZOC7eTfzLlkcFW3imkHg/featured).
