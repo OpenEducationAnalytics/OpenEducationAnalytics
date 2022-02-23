@@ -20,7 +20,7 @@ Open your synapse workspace and do the following:
 # Module Components
 This module provides an example of landing 3 different types of batch data in stage1np of the data lake, and the process of pseudonymizing and ingesting that data into the stage2p & stage2np delta lake.
 
-## 1) Incremental data
+## Incremental data
 daily-participation and resoure-usage data represents incremental data. The data will be partitioned by DATE and the primary key will be SIS_ID. 
 
 The Clever module [welcomes contributions...](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md).
