@@ -4,6 +4,7 @@ Sample datasets provided in this module were created using the pipeline integrat
  - Microsoft Users: ``` beta/users ```
  - Microsoft 365 Applications User Detail: ``` beta/reports/getM365AppUserDetail(period='D7')/content?$format=application/json ```
  - Teams Activity User Detail: ``` beta/reports/getTeamsUserActivityUserDetail(period='D7')?$format=application/json ```
+ - Sign In Audit Logs: ``` beta/auditLogs/signIns ```
 
 Use these datasets by importing the GraphAPI_main_pipeline, and triggering the pipeline - this will automatically extract this data, run the notebook for processing, and create the two corresponding databases for this module. For more information, read the tutorial documentation [here](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/docs).
 ### For more info on these queries
@@ -11,5 +12,6 @@ Use these datasets by importing the GraphAPI_main_pipeline, and triggering the p
 | --- | --- |
 | [Microsoft Graph query documentation](https://docs.microsoft.com/en-us/graph/) | landing page of all documentation about Graph and queries that can be made |
 | [Microsoft Users](https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-beta&tabs=http) | resource doc on the User details query |
-| [Microsoft 365 Applications User Detail](https://docs.microsoft.com/en-us/graph/api/reportroot-getm365appuserdetail?view=graph-rest-beta&tabs=http) | resource doc on the M365 App User details query |
+| [Microsoft 365 Applications User Detail](https://docs.microsoft.com/en-us/graph/api/reportroot-getm365appuserdetail?view=graph-rest-beta&tabs=http) | resource doc on the M365 App User Details query |
 | [Teams Activity User Detail](https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-beta) | resource doc on the Teams Activity User details query |
+| [Sign In Audit Logs](https://docs.microsoft.com/en-us/graph/api/resources/signin?view=graph-rest-beta) | resource doc on the Sign In Audit Logs query |
