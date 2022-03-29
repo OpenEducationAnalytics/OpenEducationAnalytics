@@ -8,7 +8,7 @@ Below contains the data dictionary of all the data that is provided from this te
 |-----------|-------------------|-------------|-------------|
 | Activity | Common | SignalType | SharePoint: [Like, Unlike, FileAccessed, FileModified, FileDownloaded, FileUploaded, ShareNotificationRequested, AddedToSharedWithMe, CommentCreated, CommentDeleted, UserAtMentioned] |
 | | | | Teams Channel: [PostChannelMessage, ReplyChannelMessage, VisitTeamChannel, ExpandChannelMessage, ReactedWithEmoji] |
-| | | | Teams Meetings: [CallRecordSummarized], Assignment Services: [AssignmentEvent, SubmissionEvent], OneNote: [OneNotePageChanged] |
+| | | | Teams Meetings: [CallRecordSummarized], Assignment Services: [AssignmentEvent, SubmissionEvent], OneNote: [OneNotePageChanged], Reading Progress: [ReadingAssignment, ReadingSubmission], Reflect: [FeedbackSubmitted, CardPosted] |
 | | | StartTime | Action time |
 | | | UserAgent | Device information |
 | | | SignalId | Can only be used to remove potential signal duplications |
