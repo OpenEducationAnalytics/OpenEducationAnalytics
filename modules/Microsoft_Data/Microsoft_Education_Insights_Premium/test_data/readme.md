@@ -28,8 +28,8 @@ Below contains the data dictionary of all the data that is provided from this te
 | | | Grade | Optional. Submission grade points. E.g.: 100 (when action=Returned) |
 | | Files | SourceFileExtension | For File* signals, captures the type of file:  Aspx, docx, webm, mp4, .docx, .webm, jpg, pptx etc. |
 | | Meetings | Meeting Duration | Duration in seconds the student spent in the meeting |
-| | Meetings | Meeting session Id  | The meeting session Id  |
-| | Meetings | Meeting type  | The meeting type  |
+| | | Meeting session Id  | The meeting session Id  |
+| | | Meeting type  | The meeting type  |
 | Roster | AadGroup |  |  |
 | | AadGroupMembership | | |
 | | AadUser | | |
