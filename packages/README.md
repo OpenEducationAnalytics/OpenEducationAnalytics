@@ -1,5 +1,5 @@
 # packages
-A package in the OpenEduAnalytics architecture is a set of technical assets that work with multiple data sources (such as OEA Modules) to support an analytics or AI use case.  
+A package in the OpenEduAnalytics architecture is a set of technical assets that work with multiple data sources (such as [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules)) to support an analytics or AI use case.  
 
 Modules and packages have a similar set of technical assets, but modules focus on moving only one data source into an Azure Data Lake, and transforming that data to prepare it for analytics. Packages generally use one or more modules and focus on using those data sources to provide insight or outputs on a specific education challenge or topic.  
 
