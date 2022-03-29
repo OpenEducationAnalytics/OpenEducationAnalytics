@@ -20,13 +20,16 @@ Below contains the data dictionary of all the data that is provided from this te
 | | | ActorRole | Student - only for tenants running SDS |
 | | | SchemaVersion | Technical, used to track data changes or bugs in the export |
 | | Assignments | AssignmentId | GUID, identifies the assignment. Can be used to access Graph for additional information |
-| | | SubmissionId | GUID, identifies the student submission. Can be used to access Graph for additional information. |
+| | | SubmissionId | GUID, identifies the student submission. Can be used to access Graph for additional information |
+| | | SubmissionCreatedTime | The time the submission was created |
 | | | Action | Assigned, Updated, Returned, Visited, Submitted, Unsubmitted, Deleted, FeedbackSubmitted |
 | | | DueDate | Assignments due date |
 | | | ClassCreationDate | Time the class was created (might be empty for now) |
 | | | Grade | Optional. Submission grade points. E.g.: 100 (when action=Returned) |
 | | Files | SourceFileExtension | For File* signals, captures the type of file:  Aspx, docx, webm, mp4, .docx, .webm, jpg, pptx etc. |
 | | Meetings | Meeting Duration | Duration in seconds the student spent in the meeting |
+| | Meetings | Meeting session Id  | The meeting session Id  |
+| | Meetings | Meeting type  | The meeting type  |
 | Roster | AadGroup |  |  |
 | | AadGroupMembership | | |
 | | AadUser | | |
