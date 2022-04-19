@@ -1,8 +1,9 @@
 # Microsoft School Transformation Survey
 As part of Microsoft’s commitment to empower every educator to do more, we have created the new [School Transformation Survey (STS)](https://github.com/MicrosoftEduIndustry/sts) to help schools begin their education transformation and to measure their progress.
 
-The [School Transformation Survey](https://github.com/MicrosoftEduIndustry/sts) is a free, self hosted survey that measures the perceptions of educators and leaders on the current state of innovative teaching practices in their schools or classrooms. 
-It is a self-review and serves as an important first step in raising awareness of each school’s current state of transformation.
+The [School Transformation Survey](https://github.com/MicrosoftEduIndustry/sts) is a free, self hosted survey that measures the perceptions of educators and leaders on the current state of innovative teaching practices in their schools or classrooms. It is a self-review and serves as an important first step in raising awareness of each school’s current state of transformation.
+
+Data from the School Transformation Survey can be added to an OEA Azure data lake and used in analytics as part of use cases where school and pedagogy data would be of value.
 
 The report presents the results of surveys of leaders and educators. The survey measures participants’ perception of innovative teaching practices in the school, 
 including how digital technologies are used in learning and school support for innovative practices. The goal of the survey is to provide tools for schools 
