@@ -71,7 +71,8 @@ This module was developed by [Kwantum Analytics](https://www.kwantumanalytics.co
 | Resource | Description |
 | --- | --- |
 | [Overview of Microsoft Education Insights](https://docs.microsoft.com/en-us/microsoftteams/class-insights) | Intro to Education Insights, what it can do, and what it can provide. |
-| [Syncing SIS Data with Education Insights](https://docs.microsoft.com/en-us/microsoftteams/education-insights-sis-data-sync) | Reference to how to sync SIS data with Education Insights, and includes information on how to integrate SIS data through SDS. |
+| [Syncing SIS Data with Education Insights](https://docs.microsoft.com/en-us/microsoftteams/education-insights-sis-data-sync) | Reference to understand how to sync SIS data with Education Insights, and includes information on how to integrate SIS data through SDS. |
+| [Activity Table/Data Ingested Schema Information](https://docs.microsoft.com/en-us/schooldatasync/ads-activity-signals-export-for-oea-insights-module) | Reference to learn about the schema details of ADS activity data ingested into stage 1. |
 
 
 # Legal Notices
