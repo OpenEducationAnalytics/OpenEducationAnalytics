@@ -7,7 +7,8 @@ There are several important prerequisites for using this module:
 
 1. Education Insights Premium requires a license fee.
 2. Education Insights Premium requires the implementation of School Data Sync on O365, which provides school and class roster data, to enable its reports in Teams.
-3. At present, the feature of Education Insights Premium that allows data to be exported to an OEA data environment is in private preview, so a special agreement must be signed to accept the terms of this feature that is not yet in General Availability. To request the private preview agreement and have the Education Insights Premium data export feature enabled, please email the request to the OEA team (OpenEduAnalyticsteam@microsoft.com) with the subject line "Inquiry on Education Insights Premium ADS feature for OEA". 
+3. At present, the feature of Education Insights Premium that allows data to be exported to an OEA data environment is in private preview, so a special agreement must be signed to accept the terms of this feature that is not yet in General Availability. To request the private preview agreement and have the Education Insights Premium data export feature enabled, please email the request to the OEA team (OpenEduAnalyticsteam@microsoft.com) with the subject line "Inquiry on Education Insights Premium 
+feature for OEA". 
 
 <p align="center">
   <img src="https://github.com/cstohlmann/oea-ms_insights-module/blob/main/docs/images/insights%20visual.png?raw=true" alt="Microsoft Insights Visual"/>
@@ -72,7 +73,7 @@ This module was developed by [Kwantum Analytics](https://www.kwantumanalytics.co
 | --- | --- |
 | [Overview of Microsoft Education Insights](https://docs.microsoft.com/en-us/microsoftteams/class-insights) | Intro to Education Insights, what it can do, and what it can provide. |
 | [Syncing SIS Data with Education Insights](https://docs.microsoft.com/en-us/microsoftteams/education-insights-sis-data-sync) | Reference to understand how to sync SIS data with Education Insights, and includes information on how to integrate SIS data through SDS. |
-| [Activity Table/Data Ingested Schema Information](https://docs.microsoft.com/en-us/schooldatasync/ads-activity-signals-export-for-oea-insights-module) | Reference to learn about the schema details of ADS activity data ingested into stage 1. |
+| [Activity Table/Data Ingested Schema Information](https://docs.microsoft.com/en-us/schooldatasync/ads-activity-signals-export-for-oea-insights-module) | Reference to learn about the schema details of Insights Premium Export activity data ingested into stage 1. |
 
 
 # Legal Notices
