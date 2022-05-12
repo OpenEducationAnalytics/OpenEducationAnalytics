@@ -13,7 +13,7 @@ There are several important prerequisites for using this module:
   <img src="https://github.com/cstohlmann/oea-ms_insights-module/blob/main/docs/images/insights%20visual.png?raw=true" alt="Microsoft Insights Visual"/>
 </p>
 
- (Microsoft documentation on Education Insights Premium: [Education Insights Premium in Microsoft Teams - Microsoft Education Center](https://education.microsoft.com/en-us/resource/3978f2d8)) 
+ (Microsoft documentation on Education Insights Premium: [Education Insights Premium in Microsoft Teams - Microsoft Education Center](https://docs.microsoft.com/en-us/schooldatasync/enabling-insights-premium-export)) 
  
 ## Problem Statement: Digital Learning Insights
 As education systems shift to digital applications and platforms to support learning, it is important for education systems and educators to be able to see patterns of student digital activity across those applications and platforms. Most students use many different applications and platforms. This module provides data from education-specific applications in O365. This data can be combined with other digital activity data from other applications and platforms used in learning to develop "digital learning insights" across the ecosystem of applications and platforms a student uses.
