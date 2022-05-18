@@ -9,6 +9,8 @@ The [OEA Chronic Absenteeism Package - Use Case Documentation](https://github.co
  - and implementing principles of responsible data and AI in the process of predictive modelling. 
 The use case document was completed in collaboration with through a partnership between Microsoft Education, [Kwantum Analytics](https://www.kwantumanalytics.com/), and [Fresno Unified School District](https://www.fresnounified.org/) in Fresno, California.
 
+<ins> Important Note:</ins> It is strongly recommended to education systems or institutions planning to use this package establish that they establish a process for obtaining student, family, guardian, teacher, faculty, and staff **consent for using this type of student absense data**. This consent should be part of the system or institution’s **broader data governance policy** that clearly specifies who can have access to what data, under what conditions, for what purposes, and for what length of time.
+
 ## Package Asset Use Instructions
 
 The Chronic Absenteeism Package provides multiple assets to help accellerate the implementation of chronic absence predictive models in education.

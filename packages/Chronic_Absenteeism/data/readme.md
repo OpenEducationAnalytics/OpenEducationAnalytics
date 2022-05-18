@@ -1,84 +1,44 @@
-# Data Dependencies
-This section of the package provides details regarding the schema changes made during data curation for the Power BI dashboard, and how other data sources or modules can be modified and used in place of other modules used out-of-the-box.
 
- - <strong>(Current) schema changes to be noted:</strong> Activity table(s).
- - <strong>Module/Data source initially used:</strong> Education Insights Activity table.
- - <strong>Data products created:</strong> Activity tables <em>(i.e. Event, SoftwareApplication, and AggregateMeasure)</em>. 
-<p align="center">
- <em><strong>
- [CONSIDER ADDING PICTURE OF SCHEMA/COLUMN MAPPINGS] 
-  </em></strong>
- </p>
- 
-## Module/Data Source Dependencies
-The data sources most frequently needed and used for developing insights into Chronic Absenteeism include:
- - SIS or MS Data: Attendance, school, department, course rosters, class's subject, grade level, student behavior, and demographics as needed
- - School climate or student well-being data
- - LMS Data (assignment grades, assignment engagement, marks or grades)
- - Digital learning platform \& app use data
- - Health, medical, and disabilities data
- - Transportation and school-move data
+# Data Sources
 
-For the Chronic Absenteeism Use Case developed with Fresno Unified, several OEA modules were used:
-1. Student Information System (SIS) Data module using [Ed-Fi Data Standard Module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Education_Data_Standards/Ed-Fi),
-2. [Microsoft Education Insights Module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights_Premium) for LMS Data,
-3. [iReady](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady) for student outcome data, and
-4. [Clever](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever) for other digital learning app use data.
+This package combines multiple data sources which were identified through [research](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/Chronic_Absenteeism/docs/OEA%20Chronic%20Abs%20Package%20-%20Use%20Case%20Doc.pdf) as strongly related to absenteeism: 
+* **School Information System (SIS)**: Student school, grade, and roster data
+* **Barriers to students**: Transportation data, distance from school, school changes, student illness
+* **School experiences**: School suspension, disciplinary, behavior, and learning outcome data
+* **Engagement data**: School attendance, digital engagement
 
-## Notes and Planning for v1.0 Activity Relationship Table:
+## Digital Engagement Data
 
-### First-Draft Concepts:
-<em> Currently, thinking of using 3 first-draft relationship tables </em> 
-1. Event Class/Table <strong>(USING THIS ONE)</strong>:
+To quanity a student involvment in school, three digital signals were considered. Values were normalized by grade and teacher to account for various uses of these technologies in the classroom.
+* **M365 [Education Insights Premium](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights_Premium)**: Digital activity related to M365 applications
+* **[Clever](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever)**: Learning ap activity
+* **[iReady](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady)**: Math and english learning activity
 
-     Current idea is to use this as basic, fast first iteration. Column assignments/details:
-```
-    1. id - (column SignalID from Insights Activity table)
-    2. type - ToolUseEvent class... [MAPS TO TABLE 2 BELOW]
-    3. actor - (column AadId from Insights Roster table|column ActorId from Insights Activity table)
-    4. action - Used
-    5. object - SoftwareApp class (AppNames column from Insights Activity table)
-    6. eventTime - TimeStamp Type
-    7. generated - AggregateMeasures class... [MAPS TO TABLE 4 BELOW]
-    8. edApp - (thinking might use column AppName from Insights Activity table; if we create a single SoftwareApp item, being "Insights")
-```
-2. SoftwareApplication Class/Table <strong>(USING THIS ONE)</strong>:
+## Predictive Model Results
 
-```
-    1. type ("Term" Type) - 
-    2. host (String Type) - 
-    3. ipAddress (String Type) - 
-    4. userAgent (String Type) - 
-    5. version (String Type) - (column schemaVersion from Insights Activity table)
-```
+Predictive models developed for this package use [Azure Machine Learning Studio](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-machine-learning-studio) and [AutoML](https://www.automl.org/automl/). Models were trained an assessed using [Azure Machine Learning Studio](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-machine-learning-studio). Model predictions were explained using [Interpret ML](https://interpret.ml/). PowerBI dashboards were used to assess model fairness. Specifically, the following data signals were generated by models used.
+* **Predictions**: Probability (0-100%) and class predictions (chronic absent or not) were stored and used for dashboard visualizations.
+* **Explanations**: Model expanations were generated for all predictions. That is, for each predition, model variable importance was assessed and scored. These explanations help identify which model variables are most important for predictions of chronic absense. 
+* **Accuracies**: To assess model quality, model predictions were made where true outcomes of chornic absense were already known. Model accuracy can then be computed.
 
-3. ToolUseEvent Table <strong>(IGNORE THIS TABLE FOR NOW)</strong>:
+## Power BI Data Model
 
-```
-    1. Event - ToolUseEvent
-    2. Actor - StudentId
-    3. Action - Used
-    4. Object - SoftwareApplication
-    5. Generated - AggregateMeasureCollection
-```
-4. AggregateMeasure Class/Table <strong>(USING THIS ONE)</strong>
+Below is a view of the data model used in Power BI visualizations. The primary tables and relationships can be seen.
+* **model_pbi Table**: Data used to train predictive model and model results.
+* **studentattendanceaggregate Table**: Time dependent records of student attendance.
+* **model_log Table**: Log of all model assessment results used for model development.
+* **attendancegroups Table**: Grouping of attendance codes.
+* **school_location Table**: School locations for visualizations.
+* Various order and recoding tables.
 
-```
-    1. type
-    2. metricValue - (column meetingDuration from Insights Activity table)
-```
-5. Action Class/Table <strong>(TO BE ADDED IN FUTURE DRAFTS??)</strong>
+![](https://github.com/microsoft/OpenEduAnalytics/blob/9cdecd763c0c05a32276bc64e991ed7d068e8f3b/packages/Chronic_Absenteeism/docs/images/powerBiDataModel.png)
 
-    <em><strong>[TO BE ADDED]</em></strong>
-    
-    Intention would be to add this additional table to discern the various SignalTypes from various Apps (making the data served to PowerBI more granular).
-    
+## Additional Data Sources
 
-### References:
-| Resource | Description |
+Implementations of this package can use several [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules) to help ingest data sources that are typically used to understand patterns of chronic absenteeism (see below for list of relevant OEA modules).  
+
+| OEA Module | Description |
 | --- | --- |
-| [ToolUseEvent Table](https://www.imsglobal.org/spec/caliper/v1p2#ToolUseEvent) | Information and specs on ToolUseEvent table. |
-| [Event Class/Table](https://www.imsglobal.org/spec/caliper/v1p2#Event) | Information and specs on Event class. |
-| [SoftwareApplication Class/Table](https://www.imsglobal.org/spec/caliper/v1p2#softwareapplication) | Information and specs on SoftwareApplication class. |
-| [AggregationMeasure Class/Table](https://www.imsglobal.org/spec/caliper/v1p2#AggregateMeasureCollection ) | Information and specs on Aggregation Measure |
-
+| [Ed-Fi Data Standards](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Education_Data_Standards/Ed-Fi) | For typical Student Information System (SIS) data, including detailed student attendance, demographic, digital activity, and academic data. |
+| [Microsoft Digital Engagement](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data) | Such as M365 [Education Insights Premium](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights_Premium), or [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Graph) data. |
+| [Digital Learning Apps and Platforms](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms) | [Clever](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever) for learning ap data and [iReady](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady) for language and math assessments and learning activities. |
