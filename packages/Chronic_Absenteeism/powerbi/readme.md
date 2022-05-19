@@ -8,7 +8,7 @@ The OEA Chronic Absenteeism Package includes example Power BI dashboards which w
 
 ## Overview of Chronic Absence
 
-| ![Overview of Chronic Absence](https://github.com/cstohlmann/oea-at-risk-package/blob/667210e51a66995dc32aa8e7dc6e7565470ac2d3/Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Dashboard%20Overview.png#right  "Overview of Chronic Absence") |
+| ![Overview of Chronic Absence](https://github.com/microsoft/OpenEduAnalytics/blob/a5fee2b2da94dbe0b7edc57f3b2cbb6103dbe7ba/packages/Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Dashboard%20Overview.png "Overview of Chronic Absence") |
 |:--:|
 | <b> Summary of the status of chronic absence in the district by absence level and school. </b>|
 
