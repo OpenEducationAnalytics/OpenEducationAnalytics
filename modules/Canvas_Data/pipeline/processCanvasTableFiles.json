@@ -1,0 +1,107 @@
+{
+    "name": "processCanvasTableFiles",
+    "properties": {
+        "activities": [
+            {
+                "name": "ForEach Source File",
+                "type": "ForEach",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.sourceFiles",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "Copy files to Stage2",
+                            "type": "Copy",
+                            "dependsOn": [],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "source": {
+                                    "type": "DelimitedTextSource",
+                                    "storeSettings": {
+                                        "type": "AzureBlobFSReadSettings",
+                                        "recursive": false,
+                                        "enablePartitionDiscovery": false
+                                    },
+                                    "formatSettings": {
+                                        "type": "DelimitedTextReadSettings"
+                                    }
+                                },
+                                "sink": {
+                                    "type": "ParquetSink",
+                                    "storeSettings": {
+                                        "type": "AzureBlobFSWriteSettings"
+                                    },
+                                    "formatSettings": {
+                                        "type": "ParquetWriteSettings"
+                                    }
+                                },
+                                "enableStaging": false,
+                                "translator": {
+                                    "value": "@pipeline().parameters.tableTranslator",
+                                    "type": "Expression"
+                                }
+                            },
+                            "inputs": [
+                                {
+                                    "referenceName": "Stage1npData_CanvasDataFormat",
+                                    "type": "DatasetReference",
+                                    "parameters": {
+                                        "FileName": {
+                                            "value": "@item()",
+                                            "type": "Expression"
+                                        },
+                                        "FolderName": {
+                                            "value": "@toLower('')",
+                                            "type": "Expression"
+                                        }
+                                    }
+                                }
+                            ],
+                            "outputs": [
+                                {
+                                    "referenceName": "Stage2npData_Parquet",
+                                    "type": "DatasetReference",
+                                    "parameters": {
+                                        "Folder": {
+                                            "value": "@toLower('')",
+                                            "type": "Expression"
+                                        },
+                                        "FileName": {
+                                            "value": "@replace(item(), '.gz', '')",
+                                            "type": "Expression"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "sourceFiles": {
+                "type": "array"
+            },
+            "tableTranslator": {
+                "type": "object"
+            }
+        },
+        "folder": {
+            "name": "CanvasData"
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-10-24T23:58:14Z"
+    },
+    "type": "Microsoft.DataFactory/factories/pipelines"
+}

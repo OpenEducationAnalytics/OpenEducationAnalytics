@@ -1,0 +1,156 @@
+{
+    "name": "processCanvasDataFiles",
+    "properties": {
+        "activities": [
+            {
+                "name": "Start GetTranslator Func",
+                "type": "AzureFunctionActivity",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "functionName": "triggerorchestrator/TypeMapGenerationOrchestrator",
+                    "method": "POST",
+                    "body": {
+                        "value": "{\n\"tables\": @{pipeline().parameters.TableList},\n\"schema\": @{pipeline().parameters.Schema}\n}",
+                        "type": "Expression"
+                    }
+                },
+                "linkedServiceName": {
+                    "referenceName": "Canvas Data Lake Sync",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "Wait until complete",
+                "type": "Until",
+                "dependsOn": [
+                    {
+                        "activity": "Start GetTranslator Func",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@not(or(equals(activity('Check GetTranslator Status').output.runtimeStatus, 'Pending'), equals(activity('Check GetTranslator Status').output.runtimeStatus, 'Running')))",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "Wait 5 seconds for translator",
+                            "type": "Wait",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "waitTimeInSeconds": 5
+                            }
+                        },
+                        {
+                            "name": "Check GetTranslator Status",
+                            "type": "WebActivity",
+                            "dependsOn": [
+                                {
+                                    "activity": "Wait 5 seconds for translator",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "url": {
+                                    "value": "@activity('Start GetTranslator Func').output.statusQueryGetUri",
+                                    "type": "Expression"
+                                },
+                                "connectVia": {
+                                    "referenceName": "AutoResolveIntegrationRuntime",
+                                    "type": "IntegrationRuntimeReference"
+                                },
+                                "method": "GET"
+                            }
+                        }
+                    ],
+                    "timeout": "7.00:00:00"
+                }
+            },
+            {
+                "name": "Process Each Table",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Wait until complete",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.TableList",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "Execute ProcessTableFiles",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "processCanvasTableFiles",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "sourceFiles": {
+                                        "value": "@pipeline().parameters.FilesForTable[item()]",
+                                        "type": "Expression"
+                                    },
+                                    "tableTranslator": {
+                                        "value": "@activity('Check GetTranslator Status').output.output[item()]",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "TableList": {
+                "type": "array"
+            },
+            "Schema": {
+                "type": "object"
+            },
+            "FilesForTable": {
+                "type": "object"
+            }
+        },
+        "folder": {
+            "name": "CanvasData"
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-10-24T23:58:14Z"
+    },
+    "type": "Microsoft.DataFactory/factories/pipelines"
+}
