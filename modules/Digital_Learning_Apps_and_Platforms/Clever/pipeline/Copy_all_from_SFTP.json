@@ -1,0 +1,114 @@
+{
+    "name": "Copy_all_from_SFTP",
+    "properties": {
+        "activities": [
+            {
+                "name": "ForEach2",
+                "type": "ForEach",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.SftpFolderNames",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "batchCount": 3,
+                    "activities": [
+                        {
+                            "name": "Execute Copy_from_SFTP",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "Copy_from_SFTP",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "sftpServer": {
+                                        "value": "@pipeline().parameters.sftpServer",
+                                        "type": "Expression"
+                                    },
+                                    "SftpFolderName": {
+                                        "value": "@item().sftpFolderName",
+                                        "type": "Expression"
+                                    },
+                                    "userName": {
+                                        "value": "@pipeline().parameters.userName",
+                                        "type": "Expression"
+                                    },
+                                    "keyVaultSecretName": {
+                                        "value": "@pipeline().parameters.keyVaultSecretName",
+                                        "type": "Expression"
+                                    },
+                                    "sinkFilesystem": {
+                                        "value": "@pipeline().parameters.sinkFilesystem",
+                                        "type": "Expression"
+                                    },
+                                    "sinkDirectory": {
+                                        "value": "@pipeline().parameters.sinkDirectory",
+                                        "type": "Expression"
+                                    },
+                                    "timezone": {
+                                        "value": "@pipeline().parameters.timezone",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "sftpServer": {
+                "type": "string",
+                "defaultValue": "reports-sftp.clever.com"
+            },
+            "SftpFolderNames": {
+                "type": "array",
+                "defaultValue": [
+                    {
+                        "sftpFolderName": "daily-participation"
+                    },
+                    {
+                        "sftpFolderName": "resource-usage"
+                    }
+                ]
+            },
+            "userName": {
+                "type": "string",
+                "defaultValue": "CleverUsername"
+            },
+            "keyVaultSecretName": {
+                "type": "string",
+                "defaultValue": "CleverSFTPPassword"
+            },
+            "sinkFilesystem": {
+                "type": "string",
+                "defaultValue": "stage1np"
+            },
+            "sinkDirectory": {
+                "type": "string",
+                "defaultValue": "Clever"
+            },
+            "timezone": {
+                "type": "string",
+                "defaultValue": "Pacific Standard Time"
+            }
+        },
+        "variables": {
+            "currentDateTime": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework/Extracts"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-01-21T00:14:40Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

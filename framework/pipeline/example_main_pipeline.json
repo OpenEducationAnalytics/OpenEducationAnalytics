@@ -16,7 +16,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "endpoints": {
-                            "value": "@json('[{\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/batch1/studentattendance.csv\",\"sinkDirectory\": \"contoso_sis/studentattendance\",\"sinkFilename\": \"part1.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/batch1/studentdemographics.csv\",\"sinkDirectory\": \"contoso_sis/studentdemographics\",\"sinkFilename\": \"part1.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Contoso_SIS/test_data/batch1/studentsectionmark.csv\",\"sinkDirectory\": \"contoso_sis/studentsectionmark\",\"sinkFilename\": \"part1.csv\"}]')",
+                            "value": "@json('[{\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Student_and_School_Data_Systems/test_data/batch1/studentattendance.csv\",\"sinkDirectory\": \"contoso_sis/studentattendance\",\"sinkFilename\": \"part1.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Student_and_School_Data_Systems/test_data/batch1/studentdemographics.csv\",\"sinkDirectory\": \"contoso_sis/studentdemographics\",\"sinkFilename\": \"part1.csv\"}, {\"URL\": \"https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/Student_and_School_Data_Systems/test_data/batch1/studentsectionmark.csv\",\"sinkDirectory\": \"contoso_sis/studentsectionmark\",\"sinkFilename\": \"part1.csv\"}]')",
                             "type": "Expression"
                         },
                         "sinkFilesystem": "stage1np",
@@ -58,7 +58,10 @@
                             "type": "string"
                         }
                     },
-                    "snapshot": true
+                    "sparkPool": {
+                        "referenceName": "spark3p1sm",
+                        "type": "BigDataPoolReference"
+                    }
                 }
             },
             {
@@ -151,7 +154,7 @@
         "parameters": {
             "storageAccount": {
                 "type": "string",
-                "defaultValue": "yourstorageaccount"
+                "defaultValue": "stoeacisd3v06rc2"
             },
             "sourceDirectory": {
                 "type": "string",
@@ -159,16 +162,18 @@
             },
             "create_sql_db": {
                 "type": "bool",
-                "defaultValue": false
+                "defaultValue": true
             },
             "create_lake_db": {
                 "type": "bool",
-                "defaultValue": false
+                "defaultValue": true
             }
         },
         "folder": {
             "name": "OEA_Framework"
         },
-        "annotations": []
-    }
+        "annotations": [],
+        "lastPublishTime": "2022-01-15T22:37:17Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
 }
