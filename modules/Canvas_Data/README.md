@@ -1,4 +1,4 @@
-> **Note:** This module is still in development. This release should be considered 'beta' and may contain bugs. Please raise all issues on the GitHub site.
+> **Note:** This module is still in development and has not been tested in a live environment yet. This release should be considered 'beta' and may contain bugs. Please raise all issues on GitHub.
 
 # Canvas Data Module
 This module allows you to source data from the [Canvas Data v1 API](https://portal.inshosteddata.com/docs/api) including course information, user activity data, assignment results, etc.
