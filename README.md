@@ -10,7 +10,7 @@ Open Education Analytics (OEA) is a fully open-sourced ([Creative Commons](https
 
 This repository contains a set of assets for setting up and walking through a reference implementation of the OEA reference architecture.
 
-<img height="400" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_ref_arch_v0.5.png">
+<img height="400" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_ref_arch_current.png">
 
 The underlying Azure platform services are mature and well documented, but this set of assets utilizing those platform services is very much a work in progress and comes with no warranties nor SLA's, etc. Each organization implementing these assets is responsible for adhering to their own data governance framework and ensuring security and privacy of their data. General guidance for this is provided through the Training Resources listed below. This repo should be considered as a starting point and accelerator for the development of your modern education data estate - and once you have your starting point, it's a matter of iterating and optimizing as you evolve your design and build out the solution you need. We look forward to growing this set of assets in conjunction with you - our customers and partners.
 
@@ -32,7 +32,7 @@ You can setup this fully functional reference architecture (which includes test 
 1) Run the setup script like this (substitute "mysuffix" with your preferred suffix, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
 `./OpenEduAnalytics/setup.sh mysuffix`
 
-(You can refer to this [setup video](https://www.youtube.com/watch?v=FxAYJamzUzQ) for a quick walkthrough of this process)
+(You can refer to this [setup video](https://youtu.be/m0Y88bQ644E) for a quick walkthrough of this process)
 
 ### Additional setup options
 By default, the setup script provisions Azure resources in the East US region, but you can choose other locations as well (eg, westus, northeurope).\

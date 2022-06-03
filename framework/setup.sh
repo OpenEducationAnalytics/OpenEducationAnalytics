@@ -58,7 +58,7 @@ eval "az synapse pipeline create --workspace-name $synapse_workspace --name rese
 
 
 # 4) install the ContosoSIS_py notebook for use with the 'example_main_pipeline' that comes with the framework
-eval "az synapse notebook import --workspace-name $synapse_workspace --name ContosoSIS_py --spark-pool-name spark3p1sm --file @$this_file_path/../modules/Contoso_SIS/notebook/ContosoSIS_py.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name ContosoSIS_py --spark-pool-name spark3p1sm --file @$this_file_path/../modules/Student_and_School_Data_Systems/notebook/ContosoSIS_py.ipynb --only-show-errors"
 
 echo "--> Setup complete. The OEA framework assets have been installed in the specified synapse workspace: $synapse_workspace"
 

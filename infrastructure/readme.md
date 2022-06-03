@@ -5,6 +5,16 @@ We currently offer a single setup option which utilizes the Azure CLI for the in
 - Enable better devops processes utilizing infrastructure-as-code
 - Provide a path from a simple starter setup to a full-blown enterprise scale architecture
 
+# Infrastructure Folder Structure
+```text
+|--- infrastructure
+     |--- bash        - basic OEA setup, using cloudshell
+     |--- bicep       - guidance on use of bicep for OEA setup
+     |--- python      - (work in progress) conversion of basic OEA setup to python
+     |--- terraform   - guidance on use of Terraform for Azure provisioning
+```
+
+
 # Azure Reference Architectures
 The [Azure Architecture Center](https://docs.microsoft.com/en-us/azure/architecture/) provides a searchable catalog of resources on common architectures and best practices, including the ones listed here...
 

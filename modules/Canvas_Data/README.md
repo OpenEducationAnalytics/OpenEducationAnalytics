@@ -1,4 +1,4 @@
-> **Note:** This module is still in development. This release should be considered 'beta' and may contain bugs. Please raise all issues on the GitHub site.
+> **Note:** This module is still in development and has not been tested in a live environment yet. This release should be considered 'beta' and may contain bugs. Please raise all issues on GitHub.
 
 # Canvas Data Module
 This module allows you to source data from the [Canvas Data v1 API](https://portal.inshosteddata.com/docs/api) including course information, user activity data, assignment results, etc.
@@ -11,9 +11,9 @@ Education instutions increasingly rely on virtual learning environments (VLEs) s
 For many institutions, this has become even more relevent with the COVID-19 pandemic given the need to support study-from-home scenarios where students may no longer be physically present in a classroom.
 
 ## Module Impact
-This module will provide you access to all tables present in [Canvas Data v1](https://portal.inshosteddata.com/docs) including user activity, course informaiton, assesmsent results, etc. Examples where you might use this data include:
+This module will provide you access to all tables present in [Canvas Data v1](https://portal.inshosteddata.com/docs) including user activity, course information, assessment results, etc. Examples where you might use this data include:
 - Student/course engagement reporting - e.g. are students particpating in courses, do they need additional support, etc.
-- Assessment reporting - average grade aross school/regon/other boundary (perhaps correlated with other data)
+- Assessment reporting - average grade across school/region/other boundary (perhaps correlated with other data)
 - VLE usage across teachers/school/region etc. - are some areas 'championing' digital learning, or do others need additional training & support.
 
 ## Module Setup and Data Sources
@@ -29,7 +29,7 @@ Please see `./docs/Setup.md` for deployment instructions
 
 
 ## Module Components 
-The nature of the Canvas Data API makes it difficult to query directly from Synapse in a reliable and repeatable way. As such this module makes use of several Azure Services outside of the standard notebook/pipeline structure.
+The nature of the Canvas Data API makes it difficult to query directly from Synapse in a reliable and repeatable way. As such, this module makes use of several Azure Services outside of the standard notebook/pipeline structure.
 
 Components include:
 
