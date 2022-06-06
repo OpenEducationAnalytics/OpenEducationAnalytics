@@ -18,7 +18,7 @@ This module will provide you access to all tables present in [Canvas Data v1](ht
 
 ## Module Setup and Data Sources
 - This module provides access to all [Canvas Data v1](https://portal.inshosteddata.com/docs) tables in stage2np. Files are currently stored in parquet (not Delta) format to keep the load process simple.
-- Note the tables are **not** pseudonimised (e.g. available in stage2p) just yet. An updated pipeline will be provided in a later release for this.
+- Note the tables are **not** pseuodonymized (e.g. available in stage2p) just yet. An updated pipeline will be provided in a later release for this.
 - To use the module, you will require:
   - An instance of Canvas with the data API's enabled.
   - An Azure Subscription where we can deploy the Azure Durable Function used to download files.
