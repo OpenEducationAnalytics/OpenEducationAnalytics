@@ -13,7 +13,7 @@ For many institutions, this has become even more relevent with the COVID-19 pand
 ## Module Impact
 This module will provide you access to all tables present in [Canvas Data v1](https://portal.inshosteddata.com/docs) including user activity, course information, assessment results, etc. Examples where you might use this data include:
 - Student/course engagement reporting - e.g. are students particpating in courses, do they need additional support, etc.
-- Assessment reporting - average grade across school/region/other boundary (perhaps correlated with other data)
+- Assessment reporting - average grade across school/region/other boundary (perhaps correlated with other data).
 - VLE usage across teachers/school/region etc. - are some areas 'championing' digital learning, or do others need additional training & support.
 
 ## Module Setup and Data Sources
