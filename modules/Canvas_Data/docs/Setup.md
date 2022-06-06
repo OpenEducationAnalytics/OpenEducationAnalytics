@@ -108,7 +108,7 @@ This is the Copy Activity sink used to load data into stage2.
 
 Again, this could be performed through a Spark Notebook (which would enable Delta format) - this has been avoided in the interest of keeping the process simple.
 
-Canvas Data also maintains a full history of records, so the temporal analysis afforded by Delta Lake is in this case redundant.
+Canvas Data also maintains a full history of records, so the temporal analysis afforded by Delta Lake is in this case is redundant.
 
 In Synapse, press the '+' icon to add a new asset, select 'Integration dataset' (called Data Source in ADF).
  - Select 'Azure Data Lake Storage Gen2' as the connection type
