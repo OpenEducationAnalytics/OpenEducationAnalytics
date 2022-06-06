@@ -25,7 +25,7 @@ The Azure Funcion is required as it's used to synchronise files from the Canvas 
 - Wait for the deployment to finish. This may take ~10 minutes.
 - Navigate to your Azure Portal and search for the resource group name you specified. Within the resource group you should see the Azure function, storage account and app insights instance.
 - Open the function app and confirm you can see a list of functions under the 'Functions' blade. 
-- Open the 'App Keys' blade and create a new host key titled OEA. Make note of the key value - this will ne beeded to setup the linked service in Synapse.
+- Open the 'App Keys' blade and create a new host key titled OEA. Make note of the key value - this will be needed to setup the linked service in Synapse.
 
 # Give the Function access to your Data Lake
 The Azure Function deployed above requires read/write access to the stage1np/CanvasData folder and execute to the root of the stage1np container.
