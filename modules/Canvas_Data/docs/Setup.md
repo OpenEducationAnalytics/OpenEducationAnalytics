@@ -47,7 +47,7 @@ To grant access to your Data Lake:
 You must include at least the CanvasData_CreateTables notebook for the pipeline to run, and can optionally import CanvasData_CreateEngagementView if required.
 
 For each notebook that you import:
- - Open Synapse and navigate to the Develop tab
+ - Open Synapse and navigate to the Develop tab.
  - Press the '+' icon in the top left and select import from the drop-down menu.
  - Navigate to Canvas_Data/notebook/ and select the relevant .ipynb file.
  - Once imported, pick your spark pool from the dropdown (tested on Spark v3) and press 'publish' to save changes.
@@ -65,14 +65,14 @@ This linked service is used to invoke the Azure Durable Function and download fi
 
 Setup as follows:
 1. Open your Synapse/ADF workspace as an administrator. The account must also have reader access to the Azure Function and Resource Group.
-2. Navigate to 'Manage' -> 'Linked Services'
-3. Click 'New', and search for / select 'Azure Function'
-4. Press 'Continue'
-5. Enter 'Canvas Data Lake Sync' as the name
-6. Under 'Azure Function App selection method', leave it on "From Azure subscription"
+2. Navigate to 'Manage' -> 'Linked Services'.
+3. Click 'New', and search for / select 'Azure Function'.
+4. Press 'Continue'.
+5. Enter 'Canvas Data Lake Sync' as the name.
+6. Under 'Azure Function App selection method', leave it on "From Azure subscription".
 7. Navigate to the Azure Subscription and Function App Url where you deployed Canvas Data Lake Sync.
-8. Either enter the Function Key here, or (if prefferred) select 'Azure Key Vault' and select the key vault linked service and secret name.
-9. Press Commit
+8. Either enter the Function Key here, or (if preferred) select 'Azure Key Vault' and select the key vault linked service and secret name.
+9. Press Commit.
 
 ### **Data Lake Storage**
 This linked service is needed so that the pipeline can interact with lake data. If using Synapse, you likely already have this setup as [Synapse Workspace Name]-workspaceDefaultStorage.
@@ -92,11 +92,11 @@ This dataset is used to read data landed by the Azure Function in stage1 to stag
 This could be performed through a Synapse Notebook as well but in the interest of simplicity it is currently orchestrated through a Copy Activity.
 
 In Synapse, press the '+' icon to add a new asset, select 'Integration dataset' (called Data Source in ADF).
- - Select 'Azure Data Lake Storage Gen2' as the connection type
- - Select 'DelimtedText' as the source type
+ - Select 'Azure Data Lake Storage Gen2' as the connection type.
+ - Select 'DelimtedText' as the source type.
  - Name the dataset 'Stage1npData_CanvasDataFormat'
  - Select your ADLS instance under 'linked service'
- - Click OK & save the dataset.
+ - Click OK and save the dataset.
  - Navigate to the dataset and open the 'Parameters' tab.
  - Create two parameters - FileName [type String] and FolderName [type String]
  - Open the 'Connection' tab and enter details as follows:  ![screenshot](images/pipeline-setup-CanvasDataFormat.png)
@@ -115,7 +115,7 @@ In Synapse, press the '+' icon to add a new asset, select 'Integration dataset' 
  - Select 'Parquet' as the source type
  - Name the dataset 'Stage2npData_Parquet'
  - Select your ADLS instance under 'linked service'
- - Click OK & save the dataset.
+ - Click OK and save the dataset.
  - Navigate to the dataset and open the 'Parameters' tab.
  - Create two parameters - FileName [type String] and Folder [type String]
  - Open the 'Connection' tab and enter details as follows: ![screenshot](images/pipeline-setup-Stage2npParquet.png)
@@ -144,10 +144,8 @@ At this stage you should have everything required to run the pipeline. Open Syna
 # Scheduling the pipeline.
 A trigger can be added to the syncCanvasData pipeline to re-load Canvas data on a schedule - open the pipeline in Synapse, click Triggers -> new/edit triggers and follow the prompts.
 
-It is sugggested the schedule is no more frequent than daily (Instructure only referesh the data daily) and that the execution is scheduled *after* 2am mountain time as this is when Instructure expect the data export to finish (as of time of writing).
+It is sugggested the schedule is no more frequent than daily (Instructure only referesh the data daily) and that the execution is scheduled *after* 2am Mountain Time as this is when Instructure expect the data export to finish (as of time of writing).
 
-# Deploy the PowerBI Template
-> TODO: Populate with steps for the engagement report template.
 
 # Troubleshooting
-See `Troubleshooting.md` in this folder.
+See [Troubleshooting](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Canvas_Data/docs/Troubleshooting.md) in this folder (incomplete).
