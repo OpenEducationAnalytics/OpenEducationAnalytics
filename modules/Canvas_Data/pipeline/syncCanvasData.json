@@ -1,0 +1,219 @@
+{
+    "name": "syncCanvasData",
+    "properties": {
+        "activities": [
+            {
+                "name": "Sync Files",
+                "type": "AzureFunctionActivity",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "functionName": "triggerorchestrator/CanvasSynchronisationOrchestrator",
+                    "method": "GET",
+                    "body": {
+                        "value": "'{}'",
+                        "type": "Expression"
+                    }
+                },
+                "linkedServiceName": {
+                    "referenceName": "Canvas Data Lake Sync",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "Wait for sync",
+                "type": "Until",
+                "dependsOn": [
+                    {
+                        "activity": "Sync Files",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@not(or(equals(activity('Check Sync Status').output.runtimeStatus, 'Pending'), equals(activity('Check Sync Status').output.runtimeStatus, 'Running')))",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "Wait 5 seconds for sync",
+                            "type": "Wait",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "waitTimeInSeconds": 5
+                            }
+                        },
+                        {
+                            "name": "Check Sync Status",
+                            "type": "WebActivity",
+                            "dependsOn": [
+                                {
+                                    "activity": "Wait 5 seconds for sync",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "url": {
+                                    "value": "@activity('Sync Files').output.statusQueryGetUri",
+                                    "type": "Expression"
+                                },
+                                "connectVia": {
+                                    "referenceName": "AutoResolveIntegrationRuntime",
+                                    "type": "IntegrationRuntimeReference"
+                                },
+                                "method": "GET"
+                            }
+                        }
+                    ],
+                    "timeout": "7.00:00:00"
+                }
+            },
+            {
+                "name": "If Files Downloaded",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "Wait for sync",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@greater(length(array(activity('Check Sync Status').output.output.updatedTableNames)), 0)",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "Execute processCanvasDataFiles",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "processCanvasDataFiles",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": false,
+                                "parameters": {
+                                    "TableList": {
+                                        "value": "@activity('Check Sync Status').output.output.updatedTableNames",
+                                        "type": "Expression"
+                                    },
+                                    "Schema": {
+                                        "value": "@activity('Check Sync Status').output.output.schema.schema",
+                                        "type": "Expression"
+                                    },
+                                    "FilesForTable": {
+                                        "value": "@activity('Check Sync Status').output.output.newFilesForTable",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "If Files Deleted",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "Wait for sync",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@greater(length(array(activity('Check Sync Status').output.output.filesDeleted)), 0)",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "Execute Delete Stage2",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "deleteCanvasStage2Files",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": false,
+                                "parameters": {
+                                    "stage1FileList": {
+                                        "value": "@activity('Check Sync Status').output.output.filesDeleted",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Create Spark Tables",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "If Files Downloaded",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "If Files Deleted",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "CanvasData_CreateTables",
+                        "type": "NotebookReference"
+                    },
+                    "snapshot": true
+                }
+            }
+        ],
+        "folder": {
+            "name": "EduAnalytics/SourcePipelines/CanvasData"
+        },
+        "annotations": []
+    }
+}

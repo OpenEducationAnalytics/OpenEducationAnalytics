@@ -1,0 +1,324 @@
+{
+    "name": "reprocessAllStage2CanvasData",
+    "properties": {
+        "activities": [
+            {
+                "name": "Lookup CanvasData Items",
+                "type": "GetMetadata",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "Stage1npData_CanvasDataFormat",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "FileName": "*.gz",
+                            "FolderName": "CanvasData"
+                        }
+                    },
+                    "fieldList": [
+                        "childItems"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "DelimitedTextReadSettings"
+                    }
+                }
+            },
+            {
+                "name": "Filter for Folders",
+                "type": "Filter",
+                "dependsOn": [
+                    {
+                        "activity": "Lookup CanvasData Items",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Lookup CanvasData Items').output.childItems",
+                        "type": "Expression"
+                    },
+                    "condition": {
+                        "value": "@contains(item().type, 'Folder')",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Lookup Schema",
+                "type": "Lookup",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "JsonSource",
+                        "storeSettings": {
+                            "type": "AzureBlobFSReadSettings",
+                            "recursive": false,
+                            "enablePartitionDiscovery": false
+                        },
+                        "formatSettings": {
+                            "type": "JsonReadSettings"
+                        }
+                    },
+                    "dataset": {
+                        "referenceName": "Stage1npData_JSON",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "Folder": "CanvasData",
+                            "FileName": {
+                                "value": "@pipeline().parameters.SchemaFileName",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Start GetTranslator Func",
+                "type": "AzureFunctionActivity",
+                "dependsOn": [
+                    {
+                        "activity": "Lookup Schema",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Extract TableList",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "functionName": "triggerorchestrator/TypeMapGenerationOrchestrator",
+                    "method": "POST",
+                    "body": {
+                        "value": "{\n\"tables\": @{variables('TableList')},\n\"schema\": @{activity('Lookup Schema').output.firstRow.schema}\n}",
+                        "type": "Expression"
+                    }
+                },
+                "linkedServiceName": {
+                    "referenceName": "Canvas Data Lake Sync",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "Wait until complete",
+                "type": "Until",
+                "dependsOn": [
+                    {
+                        "activity": "Start GetTranslator Func",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@not(or(equals(activity('Check GetTranslator Status').output.runtimeStatus, 'Pending'), equals(activity('Check GetTranslator Status').output.runtimeStatus, 'Running')))",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "Wait 5 seconds",
+                            "type": "Wait",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "waitTimeInSeconds": 5
+                            }
+                        },
+                        {
+                            "name": "Check GetTranslator Status",
+                            "type": "WebActivity",
+                            "dependsOn": [
+                                {
+                                    "activity": "Wait 5 seconds",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "url": {
+                                    "value": "@activity('Start GetTranslator Func').output.statusQueryGetUri",
+                                    "type": "Expression"
+                                },
+                                "method": "GET"
+                            }
+                        }
+                    ],
+                    "timeout": "7.00:00:00"
+                }
+            },
+            {
+                "name": "Extract TableList",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Filter for Folders",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Filter for Folders').output.Value",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "Append TableList",
+                            "type": "AppendVariable",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "variableName": "TableList",
+                                "value": {
+                                    "value": "@item().name",
+                                    "type": "Expression"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Process Each Folder",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Wait until complete",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@variables('TableList')",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "Execute ProcessTableFiles",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [
+                                {
+                                    "activity": "Get files for table",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "processCanvasTableFiles",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "sourceFiles": {
+                                        "value": "@activity('Get files for table').output.files",
+                                        "type": "Expression"
+                                    },
+                                    "tableTranslator": {
+                                        "value": "@activity('Check GetTranslator Status').output.output[item()]",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "name": "Get files for table",
+                            "type": "AzureFunctionActivity",
+                            "dependsOn": [],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "functionName": {
+                                    "value": "@concat('GetFilesWithPrefix?searchPrefix=CanvasData/', item())",
+                                    "type": "Expression"
+                                },
+                                "method": "GET"
+                            },
+                            "linkedServiceName": {
+                                "referenceName": "Canvas Data Lake Sync",
+                                "type": "LinkedServiceReference"
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "SchemaFileName": {
+                "type": "string",
+                "defaultValue": "Schema_4.2.9"
+            }
+        },
+        "variables": {
+            "TableList": {
+                "type": "Array"
+            }
+        },
+        "folder": {
+            "name": "CanvasData"
+        },
+        "annotations": [],
+        "lastPublishTime": "2021-10-25T00:08:36Z"
+    },
+    "type": "Microsoft.DataFactory/factories/pipelines"
+}
