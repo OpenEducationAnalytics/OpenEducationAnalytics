@@ -9,9 +9,9 @@
 # Deploy the Azure Function
 The Azure Funcion is required as it's used to synchronise files from the Canvas Data API.
 
-- Clone this repository to your PC
+- Clone this repository to your PC.
 - With the OEA folder, open the [vars-template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Canvas_Data/function/deploy/vars-template.tfvars) file.
-- Fill in all the variable fields with values to suite your environment and policy / governance requirements. It is recommended you follow the [Cloud Adoption Framework Naming Conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming) for naming your Azure resources.
+- Fill in all the variable fields with values to suit your environment and policy / governance requirements. It is recommended you follow the [Cloud Adoption Framework Naming Conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming) for naming your Azure resources.
 - Open PowerShell and navigate (using Change-Location) to `oea/modules/Canvas_Data/function/deploy`
 - Type:
   ```
