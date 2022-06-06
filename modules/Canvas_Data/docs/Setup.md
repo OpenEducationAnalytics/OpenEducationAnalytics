@@ -4,26 +4,26 @@
 - The ID of an Azure Subscription where we can deploy the Azure Durable Function used to download files.
 - [Terraform CLI](https://www.terraform.io/cli) and [Azure Core Function Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v4%2Cwindows%2Ccsharp%2Cportal%2Cbash) installed on your machine for the initial deployment.
 - A Synapse environment as deployed by the base OEA install where the pipeline can be configured.
-- A Canvas environment with [Canvas Data enabled](https://community.canvaslms.com/t5/Canvas-Data-Users/Canvas-Data-FAQ/ta-p/251184), and API credentials as per [this page](https://community.canvaslms.com/t5/Admin-Guide/How-do-I-obtain-an-API-access-token-in-the-Canvas-Data-Portal/ta-p/157#:~:text=%20%20%201%20Open%20Account.%20Click%20the,the%20Create%20Credentials%20button.%20However%2C%20generating...%20More%20)
+- A Canvas environment with [Canvas Data enabled](https://community.canvaslms.com/t5/Canvas-Data-Users/Canvas-Data-FAQ/ta-p/251184), and API credentials as per [this page](https://community.canvaslms.com/t5/Admin-Guide/How-do-I-obtain-an-API-access-token-in-the-Canvas-Data-Portal/ta-p/157#:~:text=%20%20%201%20Open%20Account.%20Click%20the,the%20Create%20Credentials%20button.%20However%2C%20generating...%20More%20).
 
 # Deploy the Azure Function
 The Azure Funcion is required as it's used to synchronise files from the Canvas Data API.
 
 - Clone this repository to your PC
-- With the OEA folder, open [./modules/Canvas_Data/function/deploy/vars-template.tfvars](function/deploy/vars-template.tfvars)
-- Fill in all the variable fields with values to suite your environment and policy / govnernance requirements. It is recommended you follow the [Cloud Adoption Framework Naming Conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming) for naming your Azure resources.
+- With the OEA folder, open the [vars-template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Canvas_Data/function/deploy/vars-template.tfvars) file.
+- Fill in all the variable fields with values to suite your environment and policy / governance requirements. It is recommended you follow the [Cloud Adoption Framework Naming Conventions](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming) for naming your Azure resources.
 - Open PowerShell and navigate (using Change-Location) to `oea/modules/Canvas_Data/function/deploy`
 - Type:
   ```
   terraform init
   terraform plan -var-file=vars-template.tfvars
   ```
-- Review the plan output and ensure it's creating the appropriate resources (and not performing any deletions etc.)
+- Review the plan output and ensure it's creating the appropriate resources (and not performing any deletions etc).
 - Type:  `terraform deploy -var-file=vars-template.tfvars` to start the deployment. Follow any prompts.
   > **Warning:** At this point the .tfstate files within the  *deploy* directory can contain sensitive information including passwords and authentication keys.
   > Do not share this folder / place it into source control etc. 
 - Wait for the deployment to finish. This may take ~10 minutes.
-- Navigate to your Azure Portal and search for the resource group name you specified. Within the resource group you should see the azure function, storage account and app insights instance.
+- Navigate to your Azure Portal and search for the resource group name you specified. Within the resource group you should see the Azure function, storage account and app insights instance.
 - Open the function app and confirm you can see a list of functions under the 'Functions' blade. 
 - Open the 'App Keys' blade and create a new host key titled OEA. Make note of the key value - this will ne beeded to setup the linked service in Synapse.
 
