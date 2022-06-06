@@ -33,16 +33,13 @@ The nature of the Canvas Data API makes it difficult to query directly from Syna
 
 Components include:
 
-1. An [Azure Durable Function]() instance that provides:
-   - Functions to compare Canvas Data to stage1np data and identify missing files (deltas)
+1. An [Azure Durable Function](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Canvas_Data/function) instance that provides:
+   - Functions to compare Canvas Data to stage1np data and identify missing files (deltas).
    - Functions to download new files and delete old (obsolete) ones.
    - Type translation generators that provide type translators for the ADF Copy Activity.
-2. Several [Pipelines](./pipelines) for orchestrating & scheduling the data load into the lake, and the transform into stage2np.
-3. A sample [notebook](./notebooks) that creates a user activity table in stage3np.
-3. **(Not yet added)** A sample PowerBI template that demonstrates how the module can be used to assess student engagement etc.
+2. Several [Pipelines](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Canvas_Data/pipeline) for orchestrating & scheduling the data load into the lake, and the transform into stage2np.
+3. A sample [notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Canvas_Data/notebook) that creates a user activity table in stage3np.
 
-## PowerBI Screenshot
-> TODO Add engagement PBI screenshot here.
 
 ## Contributions & Authors
 
@@ -60,13 +57,13 @@ In our environment, most days did not exceed $0.20 USD per day. A full reload of
 
 Note the pricing does not consider the cost of hosting data in your Data Lake, Synapse overheads, spark pools, etc. - just the additional function and associated storage.
 
-As always, it is suggested you monitor & review costs within your own environment.
+As always, it is suggested you monitor and review costs within your own environment.
 
 ### **Performance**
 
 The Azure Durable Function has been designed with asynchronous I/O and scalability in mind. It does not download files directly, and instead invokes [start_copy_from_url](https://docs.microsoft.com/en-us/azure/developer/python/sdk/storage/azure-storage-blob/azure.storage.blob.blobclient?view=storage-py-v12#start-copy-from-url-source-url--metadata-none--incremental-copy-false----kwargs-) using the Python SDK.
 
-In our testing, the function was able to download ~7 years woth of data (200 GB) in under 10 minutes. Processing the data into stage2 took 1-2 hours total due to the type conversion from CSV (strings) to Parquet.
+In our testing, the function was able to download ~7 years worth of data (200 GB) in under 10 minutes. Processing the data into stage2 took 1-2 hours total due to the type conversion from CSV (strings) to Parquet.
 
 Loads are incremental (only new/changes files are processed), so subsequent runs are significantly quicker - typically in the order of minutes.
 
