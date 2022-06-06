@@ -25,7 +25,7 @@ This module will provide you access to all tables present in [Canvas Data v1](ht
   - [Terraform CLI](https://www.terraform.io/cli) and [Azure Core Function Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v4%2Cwindows%2Ccsharp%2Cportal%2Cbash) installed on your machine for the initial deployment.
   - A Synapse environment as deployed by the base OEA install where the pipeline can be configured.
 
-Please see `./docs/Setup.md` for deployment instructions
+Please see the [Setup docs](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Canvas_Data/docs/Setup.md) for deployment instructions.
 
 
 ## Module Components 
