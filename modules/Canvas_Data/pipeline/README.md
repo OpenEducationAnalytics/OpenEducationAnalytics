@@ -1,7 +1,7 @@
 # Pipelines
 
 ## Description
-The following pipelines are included as part of this module.
+The following pipelines are included as part of this module:
 
 | Pipeline | Description |
 | -------- | ----------- |
@@ -11,5 +11,5 @@ The following pipelines are included as part of this module.
 | processCanvasDataFiles | Takes multiple canvas data files (for multiple tables) and processes them into stage2 by calling processCanvasTableFiles. |
 | deleteCanvasStage2Files | Takes a list of orphaned/deleted stage1 files and ensures their equivalent stage2 file has been cleaned up / removed. |
 
-For setup instructions, see `../docs/Setup.md`.
+For setup instructions, see the [Setup docs](https://github.com/ivybarley/OpenEduAnalytics/blob/main/modules/Canvas_Data/docs/Setup.md).
 
