@@ -10,7 +10,7 @@ A description of each module follows.
 
 This notebook is used to create Spark tables for all Canvas Data in your environment. It is invoked automatically by the syncCanvasData Pipeline but can be customised and run on-demand as well. It's written using PySpark (Python)
 
-By default, this notebook creates a 'CanvasData' database with a spark table for all of the tables listed in the CanvasData docs [here](https://portal.inshosteddata.com/docs/api) - assuming the table has data in your environment.
+By default, this notebook creates a 'CanvasData' database with a Spark table for all of the tables listed in the CanvasData docs [here](https://portal.inshosteddata.com/docs/api) - assuming the table has data in your environment.
 
 ## CanvasData_CreateEngagementView
 
