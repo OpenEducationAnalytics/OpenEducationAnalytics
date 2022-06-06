@@ -34,8 +34,8 @@ The function is deployed with an Azure managed identity by default.
 
 To grant access to your Data Lake:
 
- - Navigate to the Azure Function instance
- - Open the 'Identity' blade
+ - Navigate to the Azure Function instance.
+ - Open the 'Identity' blade.
  - Ensure 'System assigned' identity is turned ON.
  - Copy the Object (principal) ID.
  - Open Azure Storage Explorer (either in the Azure Portal or the desktop app) and navigate to your OEA storage account.
