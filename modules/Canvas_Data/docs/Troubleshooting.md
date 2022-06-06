@@ -1,1 +1,1 @@
-> TODO: Add any commonly encountered issues & solutions here.
+> TODO: Add any commonly encountered issues and solutions here.
