@@ -111,8 +111,8 @@ Again, this could be performed through a Spark Notebook (which would enable Delt
 Canvas Data also maintains a full history of records, so the temporal analysis afforded by Delta Lake is in this case is redundant.
 
 In Synapse, press the '+' icon to add a new asset, select 'Integration dataset' (called Data Source in ADF).
- - Select 'Azure Data Lake Storage Gen2' as the connection type
- - Select 'Parquet' as the source type
+ - Select 'Azure Data Lake Storage Gen2' as the connection type.
+ - Select 'Parquet' as the source type.
  - Name the dataset 'Stage2npData_Parquet'
  - Select your ADLS instance under 'linked service'
  - Click OK and save the dataset.
