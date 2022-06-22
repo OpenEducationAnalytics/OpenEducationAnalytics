@@ -2,8 +2,6 @@
 
 Digital Activity is considered as any data source that collects (web-based or desktop-based) application usage. These data sources can widely vary from what exactly the data consists of, thus this schema-standard definition makes the data ingestable for OEA data products (such as packages).
 
-### Last Modified: June 2022
-
 ## Introduction to Digital Activity Schema Standard
 
 Digital activity is largely useful for gauging past and current student engagement with online content assigned within their class(es). This approach of digital activity schema standardization can be used to help refine data tables to exclusively pull relevant data to aid solving a particular problem - as seen from the packages by OEA. 
@@ -15,11 +13,9 @@ This OEA standard-schema product currently provides:
 
 ## Standardization Model and Reference 
 
-<em><strong>[USE "Event" OR "ToolUseProfile" FOR CALIPER REFERENCE?]</em></strong>
+The development of this standard is modeled after and came from [IMS Global Caliper](https://www.imsglobal.org/spec/caliper/v1p2#tool-use-profile) - specifically in regards to the "ToolUseEvent" Caliper standard. 
 
-The development of this standard is modeled after and came from [IMS Global Caliper](https://www.imsglobal.org/spec/caliper/v1p2#Event) - specifically in regards to the "Event" Caliper standard. 
-
-This standard is defined as any generic action of the established relationship between "actor"s (in this case, usually students) and "object"s (often the application in which data has been collected). This notebook currently maps the original data source columns collected, onto (typically, about) 8 columns:
+This standard is defined as any software application usage action of the established relationship between "actor"s (in this case, usually students) and "object"s (the application in which data has been collected) - which can contain various "entities", the various applications that the software collects data from. This notebook currently maps the original data source columns collected, onto (typically, about) 8 columns:
 
 | Column | Description |
 | --- | --- |
