@@ -35,7 +35,7 @@ Currently, this digital activity schema standardization can be applied to the fo
 - The iReady Module.
 
 
-### Technical Assets
+## Technical Assets
 
 This OEA standard-schema product currently provides:
  - [Notebooks](https://github.com/cstohlmann/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Activity/notebook): two notebooks - one "digital activity schema standard" class notebook (used for calling the necessary functions for standardizing a data source with digital activity), and one processing notebook (used for demonstration of the utility of this schema standardization).
