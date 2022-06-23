@@ -4,8 +4,12 @@ Digital Activity data includes any source that collects application usage data. 
 
 ## Caliper Analytics Specification
 
-The [IMS Caliper Analytics®]((https://www.imsglobal.org/spec/caliper/v1p2)) is a technical specification that describes a structured set of vocabulary that assists institutions in collecting learning and usage data from digital resources and learning tools. This data can be used to present information to students, instructors, advisers, and administrators to drive effective decision making and promote learner success.
+[IMS Caliper Analytics](https://www.imsglobal.org/spec/caliper/v1p2) is a technical specification that describes a structured set of vocabulary that assists institutions in collecting learning and usage data from digital resources and learning tools. This data can be used to present information to students, instructors, advisers, and administrators to drive effective decision making and promote learner success.
 
+The Digital Engagement Schema adapts the [ToolUseEvent](https://www.imsglobal.org/spec/caliper/v1p2#tooluseevent) standard to any basic digital activity within an education environment.
+
+
+![Caliper ToolUseEvent overview](https://www.imsglobal.org/sites/default/files/specs/images/caliper/1p2/caliper-tool_use_event_used_progress-v1p2.png)
 
 Digital activity is largely useful for gauging past and current student engagement with online content assigned within their class(es). This approach of digital activity schema standardization can be used to help refine data tables to exclusively pull relevant data to aid solving a particular problem - as seen from the packages by OEA. 
 
