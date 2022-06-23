@@ -19,12 +19,12 @@ The OEA Digital Activity Schema consists of a single table which any digital act
 | event_actor | Student, teacher, or staff identifier. |
 | event_object | Name of the original data source such as M365. |
 | event_eventTime | Date/timestamp of the digital activity. |
-| entity_type | Type of entity which activity signal belongs to. |
-| softwareApplication_version | The appication version from the data source. |
-| generated_aggregateMeasure_metric_timeOnTask | time on task in seconds |
-| generated_aggregateMeasure_metric_numAccess | number of accesses |
-| generated_aggregateMeasure_metric_used | used the application true or false |
-| generated_aggregateMeasure_metric_activityReportPeriod | activity data collected is reported over this number of days |
+| entity_type | Type of entity which activity signal belongs to. (nullable) |
+| softwareApplication_version | The appication version from the data source. (nullable) |
+| generated_aggregateMeasure_metric_timeOnTask | Time on task in seconds. (nullable) |
+| generated_aggregateMeasure_metric_numAccess | Number of accesses.  (nullable) |
+| generated_aggregateMeasure_metric_used | Used the application true or false.  (nullable) |
+| generated_aggregateMeasure_metric_activityReportPeriod | Activity data collected is reported over this number of days.  (nullable) |
 
 ## Related [OEA Modules](https://github.com/cstohlmann/OpenEduAnalytics/tree/main/modules)
 
