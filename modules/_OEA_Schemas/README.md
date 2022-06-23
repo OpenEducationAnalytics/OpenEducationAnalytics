@@ -10,3 +10,5 @@ OEA data schemas integrate parts of these education data standards into common d
 
 - [Digital Engagement Schema](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Engagement_Schema): Student and staff engagement with education technology (i.e. M365, tablet learning aps, learning management systems). Data of this type is typically log data for application logins and interactions.)
 - [Attendance Schema](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Attendance_Schema): Student daily attendance and absence records.
+
+OEA data schemas are typically applied to data in Stage 2 (such as processed [OEA module](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules) data). Data processed into an OEA schema can then be integrated into a given use case.
