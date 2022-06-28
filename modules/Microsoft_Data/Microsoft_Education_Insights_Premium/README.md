@@ -1,5 +1,5 @@
 # Microsoft Education Insights Module
-Microsoft [Education Insights Premium](https://education.microsoft.com/en-us/resource/3978f2d8) is a new service in Microsoft Teams for Education that provides data on learners digital activity in O365 applications like Teams, OneNote, OneDrive and Sharepoint. It includes data on education-specific apps like Assignments, Reading Progress, and Reflect. 
+Microsoft [Education Insights Premium](https://support.microsoft.com/topic/leader-s-guide-to-education-insights-premium-8738d1b1-4e1c-49bd-9e8d-b5292474c347) is a new service in Microsoft Teams for Education that provides data on learners digital activity in O365 applications like Teams, OneNote, OneDrive and Sharepoint. It includes data on education-specific apps like Assignments, Reading Progress, and Reflect. 
 
 Using this module, data from Education Insights Premium can be exported into your organization's OEA data lakes to combine it with other datasets for a variety of use cases. 
 
