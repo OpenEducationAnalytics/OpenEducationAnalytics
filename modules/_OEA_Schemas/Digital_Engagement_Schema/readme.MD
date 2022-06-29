@@ -38,5 +38,6 @@ See the demo processing notebook in the [Notebooks](https://github.com/cviddenKw
 
 ## Technical Assets
 
-This OEA standard-schema product currently provides:
- - [Notebooks](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Activity/notebook): two notebooks - one "digital activity schema standard" class notebook (used for calling the necessary functions for standardizing a data source with digital activity), and one processing notebook (used for demonstration of the utility of this schema standardization).
+This OEA Digital Engagement Schema provides the following assets.:
+ - [Notebooks](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Activity/notebook): two notebooks - one "digital activity schema standard" class notebook (used for calling the necessary functions for standardizing a data source with digital activity), and one demo processing notebook (used for demonstration of the utility of this schema standardization).
+ - [Pipeline](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Activity/pipeline): Sample pipeline used to process digital engagement data into this schema.
