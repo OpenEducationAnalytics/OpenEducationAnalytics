@@ -34,7 +34,7 @@ The OEA Digital Engagement Schema can be applied to the following OEA Modules:
 - [Clever](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Clever) Module, and
 - [iReady](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/iReady) Module.
 
-See the demo processing notebook in the [Notebooks](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Activity/notebook) resource.
+See the demo processing notebook in the [Notebooks](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Activity/notebook) resource for an example of schema application.
 
 ## Technical Assets
 
