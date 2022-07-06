@@ -9,7 +9,7 @@ Two databases are created by running the main pipeline (which is connected to th
 ## Stage2p and Stage2np
 The p represents the pseudonymized table associated with each query, whereas the np represents the lookup/non-pseudonymized table (i.e. \_pseudo vs. \_lookup). When executing the notebooks, the initial data is ingested, where the JSON tables are flattened with minor additional changes. 
 
-The final tables written to stage 2p/np are then created into a SQL view, at the *third* stage of the pipeline. These notebooks create the final tables served to the SQL database and the lake database (see more [here](https://github.com/cstohlmann/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Graph/pipeline)).
+The final tables written to stage 2p/np are then created into a SQL view, at the *third* stage of the pipeline. These notebooks create the final tables served to the SQL database and the lake database (see more [here](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Graph/pipeline)).
 
 ## Databases and Tables
 | Databases Created | Tables Created | Table Purpose | 
