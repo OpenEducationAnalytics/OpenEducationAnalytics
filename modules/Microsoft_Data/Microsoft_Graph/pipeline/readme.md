@@ -5,7 +5,7 @@ Included in this folder is a zip file "GraphAPI_main_pipeline" which is the main
 
 This pipeline copies and stores the raw Graph API data to Stage 1 datalake storage in JSON format.  
 
-The tutorial explaining how to set up a pipeline to extract your own data or how to use this pipeline template, can be found [here](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/docs).
+The tutorial explaining how to set up a pipeline to extract your own data or how to use this pipeline template, can be found [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf).
 
 ## Main Pipeline
 The [main pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/pipeline/GraphAPI_main_pipeline.zip) consists of 1 main sub-pipeline, and 3 additional activities outlined in the below image.
