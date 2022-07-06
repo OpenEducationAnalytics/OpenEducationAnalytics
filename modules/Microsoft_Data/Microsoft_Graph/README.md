@@ -60,7 +60,7 @@ Out-of-the box assets for this OEA module include:
 
 Explanation of Module Dashboard  | Usage Summary
 :-------------------------:|:-------------------------:
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/images/Graph%20API%20Explanation%20Page.png)  |  ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/images/Graph%20API%20Dashboard%20Sample.png) 
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/images/Graph%20API%20Explanation%20Page.png)  |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/images/Graph%20API%20Dashboard%20Sample.png) 
 
 The Microsoft Graph Reports API module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md). For any questions or feedback on this module, please refer to the [Graph Reports API Module Discussion/Q&A thread](https://github.com/microsoft/OpenEduAnalytics/discussions/54). For any problems seen in this module, please submit a new issue to the [Issues tab](https://github.com/microsoft/OpenEduAnalytics/issues).
 
