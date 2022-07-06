@@ -49,6 +49,8 @@ These dashboard examples represent only data from Microsoft Teams and O365. When
 3. Import the [Graph Reports API module notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/notebook) into your Synapse workspace. Connect the GraphAPI_module_ingestion notebook to the GraphAPI main pipeline template (as outlined in the tutorial), and trigger the main pipeline. Two databases will be created upon the successful trigger: s2_graph_api and sqls2_graph_api.
 4. Download the Power BI template file [Graph API Module Dashboard](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/powerbi) and connect to your Synapse workspace serverless SQL endpoint. You will want to change the dashboard template from Import to a directQuery from the sqls2_graph_api database.
 
+After completing the setup of this module, the original Graph Reports API schemas can be manipulated and transformed into the [OEA schema standard for digital engagement](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Engagement_Schema). Refer to the documentation and assets to see how this module can be extended and standardized for package-use.
+
 
 ## Module Components
 Out-of-the box assets for this OEA module include: 
