@@ -5,21 +5,21 @@ Included in this folder is a zip file "GraphAPI_main_pipeline" which is the main
 
 This pipeline copies and stores the raw Graph API data to Stage 1 datalake storage in JSON format.  
 
-The tutorial explaining how to set up a pipeline to extract your own data or how to use this pipeline template, can be found [here](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/docs).
+The tutorial explaining how to set up a pipeline to extract your own data or how to use this pipeline template, can be found [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf).
 
 ## Main Pipeline
 The [main pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/pipeline/GraphAPI_main_pipeline.zip) consists of 1 main sub-pipeline, and 3 additional activities outlined in the below image.
 
-![Main Synapse Pipeline](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/images/Graph%20API%20main%20pipeline.png "Main Pipeline")
+![Main Synapse Pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/images/Graph%20API%20main%20pipeline.png "Main Pipeline")
 
 ## Step 1: Test data or Production-level data ingestion
 The [sub-pipeline out-of-the-box](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/pipeline/Extracts/GraphAPI_copy_test_data.zip) ingests the test data contained within this module. This pipeline copies all test data to stage 1np of the data lake, once ran. See the [module test data folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Graph/test_data) for more information.
 
-![Test Data Ingestion Pipeline](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/images/Graph%20API%20copy%20test%20data%20pipeline.png "Test Data Ingestion Pipeline")
+![Test Data Ingestion Pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/images/Graph%20API%20copy%20test%20data%20pipeline.png "Test Data Ingestion Pipeline")
 
 To ingest production-level data, the [sub-pipline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/pipeline/Extracts/GraphAPI_data_ingestion.zip) will look similar to as seen below. Attach this to the first "execute pipeline" activity in the main pipeline, customize the queries as needed, then trigger the main pipeline to ingest your own Graph data to stage 1 and 2.
 
-![Production Data Ingestion Pipeline](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/images/Graph%20API%20ingest%20production%20data%20pipeline.png "Production Data Ingestion Pipeline")
+![Production Data Ingestion Pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Graph/docs/images/Graph%20API%20ingest%20production%20data%20pipeline.png "Production Data Ingestion Pipeline")
 
 ### Query Documentation References
 | Resource | Description |

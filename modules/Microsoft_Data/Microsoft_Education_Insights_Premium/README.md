@@ -49,6 +49,7 @@ This Education Insights Premium module will leverage the OEA Azure Synapse envir
      3. Then, after Insights data has been landed in your Synapse data lake, trigger the Insights_main_pipeline to ingest your data and create two stage 2 databases: s2_insights and sqls2_insights.
      4. After the Insights data is ingested, open up the PowerBI Insights dashboard template provided, and connect to your Synapse workspace serverless SQL endpoint. You will want to do a directQuery of the sqls2_insights database.
 
+After completing the setup of this module, the original Education Insights activity schema can be manipulated and transformed into the [OEA schema standard for digital engagement](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Engagement_Schema). Refer to the documentation and assets to see how this module can be extended and standardized for package-use.
  
 ## Module Components
 Out-of-the box assets for this OEA module include: 
