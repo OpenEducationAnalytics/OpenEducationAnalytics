@@ -37,6 +37,15 @@ This package can use several [OEA Modules](https://github.com/microsoft/OpenEduA
 | Internet Connectivity Data | Such as [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Graph) data. |
 | Device Assignment Data | Such as [Microsoft Intune](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Intune) data. |
 
+
+## Package Setup Instructions
+
+To implement your own Digital Equity of Access Package, complete the following: 
+- Install the most recent version of the OEA reference achitecture via the [OEA setup instructions](https://github.com/microsoft/OpenEduAnalytics#setup).
+- Examine available data sources in Stage2p. See [above](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/Digital_Equity_of_Access#data-sources) for related data sources.
+- Use a pipeline such the example [Package Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/Digital_Equity_of_Access/pipelines) to combined data sources into a Power BI star schema model like the example provided in the [Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/Digital_Equity_of_Access/data) page. 
+- Create a Power BI dashboard to explore Digital Equity of Access. Note the example [Package Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/Digital_Equity_of_Access/pipelines) creates a SQL view which can be accessed via your Synapse workspace serveless SQL endpoint. Example dashboard concepts are [provided in this package](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/packages/Digital_Equity_of_Access/powerbi).
+
 ## Package Components
 
 This Digital Equity of Access package was developed by [Kwantum Analytics](https://www.kwantumanalytics.com/) in partnership with [Fresno Unified School District](https://www.fresnounified.org/) in Fresno, California. The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
