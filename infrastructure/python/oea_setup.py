@@ -18,7 +18,7 @@ _storage_account_name = 'stoea' + _oea_suffix
 _key_vault_name = 'kv-oea-' + _oea_suffix
 _app_insights_name = 'appi-oea-' + _oea_suffix
 
-_user_object_id = os.popen("az ad signed-in-user show --query objectId -o tsv").read()[:-1] # the last char is a newline, so we strip that off
+_user_object_id = os.popen("az ad signed-in-user show --query id -o tsv").read()[:-1] # the last char is a newline, so we strip that off
 _oea_version = "0.4+"
 _tags = {'oea_version':_oea_version}
 _oea_path = '/home/global/clouddrive/OpenEduAnalytics'

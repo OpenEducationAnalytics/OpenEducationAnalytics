@@ -15,7 +15,7 @@ subscription_id=$4
 oea_path=$5
 logfile=$6
 storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT"
-user_object_id=$(az ad signed-in-user show --query objectId -o tsv)
+user_object_id=$(az ad signed-in-user show --query id -o tsv)
 
 # 0) Ensure that the resource providers are registered in the subscription (more info about this here: https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/error-register-resource-provider )
 az provider register --namespace 'Microsoft.Sql'
