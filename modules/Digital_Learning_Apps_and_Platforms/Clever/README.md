@@ -1,6 +1,6 @@
 # Clever Module
 
-[Clever](https://clever.com/) offers single sign-on access to their digital learning applications for K-12 students and teachers. This Clever module, developed by the [Fresno Unified School District](https://www.fresnounified.org/), provides application usage data for all the applications used by an education system that sign on through Clever. The data is retrieved through the [Participation Reports](https://support.clever.com/hc/s/articles/360049642311) which can be either manually downloaded or [automated SFTP delivery](https://support.clever.com/hc/s/articles/360049642311?language=en_US#ExportingReports). Clever Participation Reports data will allow education leaders to see which applications are being used for learning. 
+[Clever](https://clever.com/) offers single sign-on access to their digital learning applications for K-12 students and teachers. This Clever OEA module, developed by the [Fresno Unified School District](https://www.fresnounified.org/), provides application usage data for all the applications used by an education system that sign on through Clever. The data is retrieved through the [Participation Reports](https://support.clever.com/hc/s/articles/360049642311) which can be either manually downloaded or [automated SFTP delivery](https://support.clever.com/hc/s/articles/360049642311?language=en_US#ExportingReports). Clever Participation Reports data will allow education leaders to see which applications are being used for learning. 
 
 ## Problem Statement
 
