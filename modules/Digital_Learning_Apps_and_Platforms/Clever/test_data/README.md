@@ -10,25 +10,52 @@ Test data is provided for students only, though there are Clever Participation R
 
 ### Daily Participation Table
 
-|Column Name | Description |
+|Column Name | Data Type | Description |
 |-----------|-------------|
-| date |	Date when user was active in the district timezone |
-| sis_id | The SIS ID (student_id) associated with the Clever record for the user. If the user's record is no longer active in Clever, the SIS ID field will display as blank. |
-| clever_user_id	| The Clever ID for the user. |
-| clever_school_id | The Clever ID of the school associated with the Clever record for the user. |
-| active |	User was active on Clever on this date. | 
-|num_logins |	The number of times the user accessed resources through Clever during the day. |
-| num_resources_accessed | The number of unique resources accessed through Clever during the day. |
-| school_name |	The name of the primary school assigned for the user. |
+| date | Date |	Date when user was active in the district timezone |
+| sis_id | String | The SIS ID (student_id) associated with the Clever record for the user. If the user's record is no longer active in Clever, the SIS ID field will display as blank. |
+| clever_user_id	| String | The Clever ID for the user. |
+| clever_school_id | String | The Clever ID of the school associated with the Clever record for the user. |
+| active | Boolean |	User was active on Clever on this date. | 
+|num_logins | Integer |	The number of times the user accessed resources through Clever during the day. |
+| num_resources_accessed | Integer | The number of unique resources accessed through Clever during the day. |
+| school_name | String |	The name of the primary school assigned for the user. |
 
 Notes: 
 1) The active use of Clever is currently defined if the user performs any of the following actions:
-- Log into their district Clever account
-- Access an application by clicking on the app icon in the Clever Portal
-- Access an application through an Instant Login Link
-- Logged in to an application using a Log in with Clever button
-- Accessing any link added to the Clever portal by the district, school, or teacher
+  - Log into their district Clever account
+  - Access an application by clicking on the app icon in the Clever Portal
+  - Access an application through an Instant Login Link
+  - Logged in to an application using a Log in with Clever button
+  - Accessing any link added to the Clever portal by the district, school, or teacher
+2) The following columns are pseudonomized in the test data and production data will appear different:
+  - sis_id
+  - clerver_user_id
+  - clever_school_id
+3) See the [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311) documentation for more details.
 
-|            | Name of column       |Description |                                                                 
-| Resource Usage  | Name of column     |Description |
-|  | Name of column      |Description |
+### Resource Usage Table
+
+|Column Name | Data Type | Description |
+|-----------|-------------|
+| date | Date |	Date when user was active in the district timezone. |
+| sis_id | String |	The SIS ID (student_id) associated with the Clever record for the user. If the user's record is no longer active in Clever, the SIS ID field will display as blank. |
+| clever_user_id | String |	The Clever ID for the user. |
+| clever_school_id | String |	The Clever ID of the school associated with the Clever record for the use. |
+| resource_type | String |	The type of resource accessed by the user. | 
+| resource_name | String |	The name of the resource on the portal. Could be the URL in case an unnamed link was added to the Clever portal. |
+| resource_id | String |	The Clever ID of the resource accessed by the user. Useful in case the name of the resource is changed. |
+| num_access | Integer | The number of times the specific resource was accessed through Clever during the day. |
+| school_name | String | The name of the primary school assigned for the user. |
+
+Notes: 
+1) Resource_type can be one of:
+  - clever-district-added
+  - clever-teacher-added
+  - district-link
+  - teacher-link
+2) The following columns are pseudonomized in the test data and production data will appear different:
+  - sis_id
+  - clerver_user_id
+  - clever_school_id
+3) See the [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311) documentation for more details.
