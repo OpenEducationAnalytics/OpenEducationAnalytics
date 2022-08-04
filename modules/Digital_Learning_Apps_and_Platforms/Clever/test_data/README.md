@@ -11,7 +11,7 @@ Test data is provided for students only, though there are Clever Participation R
 ### Daily Participation Table
 
 |Column Name | Data Type | Description |
-|-----------|-------------|
+|-----------|-----------|-----------|
 | date | Date |	Date when user was active in the district timezone |
 | sis_id | String | The SIS ID (student_id) associated with the Clever record for the user. If the user's record is no longer active in Clever, the SIS ID field will display as blank. |
 | clever_user_id	| String | The Clever ID for the user. |
@@ -37,7 +37,7 @@ Notes:
 ### Resource Usage Table
 
 |Column Name | Data Type | Description |
-|-----------|-------------|
+|-----------|-----------|-----------|
 | date | Date |	Date when user was active in the district timezone. |
 | sis_id | String |	The SIS ID (student_id) associated with the Clever record for the user. If the user's record is no longer active in Clever, the SIS ID field will display as blank. |
 | clever_user_id | String |	The Clever ID for the user. |
