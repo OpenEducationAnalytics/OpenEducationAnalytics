@@ -28,10 +28,7 @@ Notes:
   - Access an application through an Instant Login Link
   - Logged in to an application using a Log in with Clever button
   - Accessing any link added to the Clever portal by the district, school, or teacher
-2) The following columns are pseudonomized in the test data and production data will appear different:
-  - sis_id
-  - clerver_user_id
-  - clever_school_id
+2) The following columns are pseudonomized in the test data and production data will appear different: sis_id, clerver_user_id, clever_school_id
 3) See the [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311) documentation for more details.
 
 ### Resource Usage Table
@@ -49,13 +46,6 @@ Notes:
 | school_name | String | The name of the primary school assigned for the user. |
 
 Notes: 
-1) Resource_type can be one of:
-  - clever-district-added
-  - clever-teacher-added
-  - district-link
-  - teacher-link
-2) The following columns are pseudonomized in the test data and production data will appear different:
-  - sis_id
-  - clerver_user_id
-  - clever_school_id
+1) Resource_type can be one of: clever-district-added, clever-teacher-added, district-link, teacher-link
+2) The following columns are pseudonomized in the test data and production data will appear different: sis_id, clerver_user_id, clever_school_id
 3) See the [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311) documentation for more details.
