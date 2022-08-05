@@ -4,22 +4,19 @@
 
 ## Problem Statement
 
-UPDATE
-- understand student digital learning environment
-- measure student progress and impact on learning
-
-This module provides a basic example of how to develop an OEA module with a set of assets for the processing of data from a specific source system. In this case the source system is Clever. The module will connect to Clever's SFTP server and pull csv files from daily-participationand resource-usage. The Clever pipeline will only bring over new csv files.
+Collecting data related to digital learning activity is crucial to understanding the academic success and struggle of students. As digital learning continues to become more prevalent, understanding the resources that students use is fundamental to supporting student success, both in and out of the classroom. For this module, the digital learning source system is [Clever](https://clever.com/). The module Synapse pipeline will connect to Clever's SFTP server and pull csv files from daily participation and resource usage reports. 
 
 ## Module Impact
 
-UPDATE
-- access to learning app data for students and teachers
-- quickly visualize data with power bi example
-- easily combine with other data sources
-
-List out the impact and benefits this module will have on learners, educators and the learning process.
+This Clever OEA module will aid K-12 education systems in bringing digital learning activity data to their Azure data lake for analysis. Module Synapse pipelins will download raw Clever report data and process the data so it is standardized and queryable. The module Power BI templates allows users to immediately explore the data and start developing custom dashboards enabling education systems to better understand the digital learning environment of students. 
 
 ## Module Setup and Data Sources
+
+Module Setup:
+1. Import the Clever_main_pipeline template into your Synapse workspace.
+2. Import the [Clever module class notebook]() into your Synapse workspace. After ensuring your Synapse workspace contains both the Clever module notebooks (Clever_py and Clever_module_ingestion), trigger the main pipeline. Two databases will be created upon the successful trigger: s2_clever and sqls2_clever.
+3. Download the Power BI template file Clever Module Dashboard and connect to your Synapse workspace serverless SQL endpoint. You will want to change the dashboard template from Import to a directQuery from the sqls2_clever database.
+
 
 - Description of data sources: what it is used for, data available, data format and possible use cases or OEA packages it can be used for.
 - link to data page
