@@ -1,10 +1,10 @@
 # Clever Module
 
-[Clever](https://clever.com/) offers single sign-on access to their digital learning applications for K-12 students and teachers. This Clever OEA module, developed by the [Fresno Unified School District](https://www.fresnounified.org/), provides application usage data for all the applications used by an education system that sign on through Clever. The data is retrieved through the [Participation Reports](https://support.clever.com/hc/s/articles/360049642311) which can be either manually downloaded or [automated SFTP delivery](https://support.clever.com/hc/s/articles/360049642311?language=en_US#ExportingReports). Clever Participation Reports data will allow education leaders to see which applications are being used for learning. 
+[Clever](https://clever.com/) offers single sign-on access to their digital learning applications for K-12 students and teachers. This Clever OEA module, developed by the [Fresno Unified School District](https://www.fresnounified.org/), provides education ap usage data for all the applications used by an education system which sign on through Clever. Data is retrieved through the [Participation Reports](https://support.clever.com/hc/s/articles/360049642311) which can be either manually downloaded or [automated via SFTP delivery](https://support.clever.com/hc/s/articles/360049642311?language=en_US#ExportingReports). Clever Participation Reports data will enapble education leaders to see the impact app usage on student learning. 
 
 ## Problem Statement
 
-Collecting data related to digital learning activity is crucial to understanding the academic success and struggle of students. As digital learning continues to become more prevalent, understanding the resources that students use is fundamental to supporting student success, both in and out of the classroom. For this module, the digital learning source system is [Clever](https://clever.com/). The module Synapse pipeline will connect to Clever's SFTP server and pull csv files from daily participation and resource usage reports. 
+Collecting data related to digital learning activity is crucial to understanding the academic success and struggle of students. As digital learning continues to become more prevalent, understanding the resources that students use is fundamental to supporting student success, both inside and outside of the classroom. For this module, the digital learning source system is [Clever](https://clever.com/). The module Synapse pipeline will connect to Clever's SFTP server and pull csv files from daily participation and resource usage reports. 
 
 ## Module Impact
 
@@ -12,7 +12,7 @@ This Clever OEA module will aid K-12 education systems in bringing digital learn
 
 ## Module Setup and Data Sources
 
-Module Setup:
+### Module Setup:
 1. Import the Clever_main_pipeline template into your Synapse workspace.
 2. Import the [Clever module class notebook]() into your Synapse workspace. After ensuring your Synapse workspace contains both the Clever module notebooks (Clever_py and Clever_module_ingestion), trigger the main pipeline. Two databases will be created upon the successful trigger: s2_clever and sqls2_clever.
 3. Download the Power BI template file Clever Module Dashboard and connect to your Synapse workspace serverless SQL endpoint. You will want to change the dashboard template from Import to a directQuery from the sqls2_clever database.
@@ -25,15 +25,7 @@ Module Setup:
 - reference general setup directions page
 - instructions specific to this module
 
-Setting up this module requires the importing of assets into your Synapse workspace.
-
-Open your synapse workspace and do the following:
-1) Import notebook/Clever_py.ipynb
-2) Import pipeline/Clever.json
-3) Import pipeline/Copy_all_from_SFTP.json
-4) Import pipeline/Copy_from_SFTP.json
-5) Import pipeline/LS_OnPrem_SFTP.json
-6) Import pipeline/LS_OnPrem_SFTP_CSV.json
+### Data Sources
 
 ## Module Components 
 
