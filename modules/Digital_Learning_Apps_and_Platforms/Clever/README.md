@@ -8,7 +8,7 @@ Collecting data related to digital learning activity is crucial to understanding
 
 This Clever OEA module will aid K-12 education systems in bringing digital learning activity data to their Azure data lake for analysis. Module Synapse pipelins will download raw Clever report data and process the data so it is standardized and queryable. The module Power BI templates allows users to immediately explore the data and start developing custom dashboards enabling education systems to better understand the digital learning environment of students. 
 
-## Module Setup:
+## Module Setup
 
 1. Import the Clever_main_pipeline template into your Synapse workspace.
 2. Import the [Clever module class notebook]() into your Synapse workspace. After ensuring your Synapse workspace contains both the Clever module notebooks (Clever_py and Clever_module_ingestion), trigger the main pipeline. Two databases will be created upon the successful trigger: s2_clever and sqls2_clever.
@@ -18,7 +18,7 @@ This Clever OEA module will aid K-12 education systems in bringing digital learn
 - reference general setup directions page
 - instructions specific to this module
 
-## Data Sources:
+## Data Sources
 
 ## Module Components 
 
