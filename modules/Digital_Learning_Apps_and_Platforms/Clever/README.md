@@ -30,7 +30,7 @@ Out-of-the box assets for this OEA module include:
 
 Explanation  | Usage Summary
 :-------------------------:|:-------------------------:
-![](https://github.com/cstohlmann/oea-clever-module/blob/main/docs/images/Clever%20Module%20Explanation%20Page.png)  |  ![](https://github.com/cstohlmann/oea-clever-module/blob/main/docs/images/Clever%20Module%20Dashboard%20Sample.png) 
+![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/bfa1b9a34017e387fb34f15adf0836b8bd7c1cd5/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/Clever%20Module%20Explanation%20Page.png)  |  ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/bfa1b9a34017e387fb34f15adf0836b8bd7c1cd5/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/Clever%20Module%20Dashboard%20Sample.png) 
 
 The Clever module [welcomes contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md) 
 
