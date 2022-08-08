@@ -25,7 +25,7 @@ This Clever OEA module will aid K-12 education systems in bringing digital learn
 - reference general setup directions page
 - instructions specific to this module
 
-### Data Sources
+### Data Sources:
 
 ## Module Components 
 
