@@ -17,11 +17,18 @@ This Clever OEA module will aid K-12 education systems in bringing digital learn
 5. Verify that the module pipeline landed data into stage 1 and 2 and SQL databases were created. See the [module pipeline page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline) for detailed instructions.
 6. Download the [module Power BI template file](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/powerbi). Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/powerbi) page for instructions for switching the Power BI template data source to import from your Synapse workspace data source.
 
-Note: The above instructions will setup the Clever OEA module using the [module test data](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/test_data). See the [module pipeline page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline) for instructions on switching the pipeline data source to production data from the Clever Participation Reports SFTP delivery.
+#### Note: 
+The above instructions will setup the Clever OEA module using the [module test data](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/test_data). See the [module pipeline page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline) for instructions on switching the pipeline data source to production data from the Clever Participation Reports SFTP delivery.
 
 ## Data Sources
 
-## Module Components 
+This module imports data which matches the format of the two [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311).
+- [Daily Participation Report](https://support.clever.com/hc/s/articles/360049642311?language=en_US#step2) Participation reports provide a daily snapshot that summarizes usage for students, teachers, and staff in your district, including those that may be inactive. 
+- [Resource Usage Report](https://support.clever.com/hc/s/articles/360049642311?language=en_US#h_7698d144-7ceb-4d63-88b8-e9ca2aa378d2) provide a daily snapshot of each resource accessed by a user on a given day and are available for active students, teachers, and staff. 
+
+See the [module test data page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/test_data) for details on data format and contents.
+
+## Module Components
 
 Out-of-the box assets for this OEA module include: 
 1. [Sample Datasets](): Ingest sample data to understand the utility and functionality of the pipelines and notebooks.
@@ -37,7 +44,7 @@ The Clever module [welcomes contributions.](https://github.com/microsoft/OpenEdu
 
 This module was developed by the Fresno Unified School District in California. The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
-#### Additional Information
+## Additional Information
 
 | Resource | Description |
 | --- | --- |
