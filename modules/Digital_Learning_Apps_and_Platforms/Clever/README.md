@@ -18,7 +18,7 @@ This Clever OEA module will aid K-12 education systems in bringing digital learn
 6. Download the [module Power BI template file](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/powerbi). Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/powerbi) page for instructions for switching the Power BI template data source to import from your Synapse workspace data source.
 
 #### Note: 
-The above instructions will setup the Clever OEA module using the [module test data](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/test_data). See the [module pipeline page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline) for instructions on switching the pipeline data source to production data from the Clever Participation Reports SFTP delivery.
+The above instructions will setup the Clever OEA module using the [module test data](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/test_data), but the same pipeline can be used for production data. See the [module pipeline page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline) for instructions on switching the pipeline data source to production data from the Clever Participation Reports SFTP delivery.
 
 ## Data Sources
 
@@ -31,12 +31,14 @@ See the [module test data page](https://github.com/cviddenKwantum/OpenEduAnalyti
 ## Module Components
 
 Out-of-the box assets for this OEA module include: 
-1. [Sample Datasets](): Ingest sample data to understand the utility and functionality of the pipelines and notebooks.
-2. [Pipeline](): 3 pipeline templates - One main pipeline for data extraction and ingestion to stage 2, one sub-pipeline which lands Clever data to the Synapse workspace data lake, and another sub-pipeline that extracts the test data provided within this module to the Synapse workspace.
-3. [Notebook](): 2 notebooks - A class notebook that defines the functions of data ingestion/processing the data from stage 1 to stage 2 within Synapse (Clever_py), and an ingestion notebook used to process the data by calling the functions in the class notebook (Clever_module_ingestion).
-4. [PowerBI template](): A Power BI sample template making it easy to interact with Clever data. See below for examples of developed PowerBI dashboard pages.
+1. [Test Data](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/test_data): Artificially generated test data which supports the module pipeline and Power BI template. Test data matches the Clever [Participation Reports](https://support.clever.com/hc/s/articles/360049642311) format exactly.
+2. [Pipeline Template](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline): One main pipeline template which lands data into Stage 1 and processes into Stage 2. Stage 2 data is then made available via a serveless SQL endpoint.
+3. [Notebooks](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/notebook): 
+- [Clever_py.ipynb](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/notebook/Clever_py.ipynb): A module python class notebook that defines the data schemas and basic functions of data ingestion and processing from Stage 1 to Stage 2.
+- [Clever_module_ingestion.ipynb](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/notebook/Clever_module_ingestion.ipynb): Module data ingestion notebook which depends on the the module class. The pipeline template incoperates this notebook. 
+4. [PowerBI template](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/powerbi): A Power BI template which explores data in a basic way. The Power BI file is pre=loaded with test data making it easy to quickly interact with Clever data. See instructions on the [module PowerBI page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/powerbi) to switch the dashboard data source to direct query from your Synapse workspace. Screenshots of the Power BI template are below.
 
-Explanation  | Usage Summary
+Dashboard Explanation  | Dashboard Usage Summary
 :-------------------------:|:-------------------------:
 ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/bfa1b9a34017e387fb34f15adf0836b8bd7c1cd5/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/Clever%20Module%20Explanation%20Page.png)  |  ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/bfa1b9a34017e387fb34f15adf0836b8bd7c1cd5/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/Clever%20Module%20Dashboard%20Sample.png) 
 
