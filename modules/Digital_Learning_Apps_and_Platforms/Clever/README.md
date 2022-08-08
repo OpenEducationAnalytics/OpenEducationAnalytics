@@ -10,9 +10,12 @@ This Clever OEA module will aid K-12 education systems in bringing digital learn
 
 ## Module Setup
 
-1. Import the [Clever_main_pipeline template](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline) into your Synapse workspace.
-2. Import the [Clever module class notebook](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/notebook/Clever_py.ipynb) into your Synapse workspace. 3. Trigger the main pipeline. Two databases will be created upon the successful trigger: s2_clever and sqls2_clever.
-4. Download the Power BI template file Clever Module Dashboard and connect to your Synapse workspace serverless SQL endpoint. You will want to change the dashboard template from Import to a directQuery from the sqls2_clever database.
+1. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics#what-you-need).
+2. Setup the [most recent version of OEA](https://github.com/microsoft/OpenEduAnalytics#setup). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/notebook/OEA_py.ipynb).
+3. Import the [Clever module class notebook](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/notebook/Clever_py.ipynb) into your Synapse workspace. This notebook contains data schema information and data writing functions needed to support module pipelines. 
+4. Import the [Clever_main_pipeline template](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline) into your Synapse workspace and execute the pipeline. See the [module pipeline page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline) for detailed instructions.
+5. Trigger the main pipeline. Two databases will be created upon the successful trigger: s2_clever and sqls2_clever.
+6. Download the Power BI template file Clever Module Dashboard and connect to your Synapse workspace serverless SQL endpoint. You will want to change the dashboard template from Import to a directQuery from the sqls2_clever database.
 
 - Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA, etc.
 - reference general setup directions page
