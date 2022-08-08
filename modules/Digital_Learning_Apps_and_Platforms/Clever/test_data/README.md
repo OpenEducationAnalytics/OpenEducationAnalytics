@@ -8,7 +8,7 @@ Test data is provided for students only, though there are Clever Participation R
 
 ## Data dictionary
 
-### Daily Participation Table
+### [Daily Participation Table](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/test_data/test_data/daily-participation/Students/Students.csv)
 
 |Column Name | Data Type | Description |
 |-----------|-----------|-----------|
@@ -21,6 +21,10 @@ Test data is provided for students only, though there are Clever Participation R
 | num_resources_accessed | Integer | The number of unique resources accessed through Clever during the day. |
 | school_name | String |	The name of the primary school assigned for the user. |
 
+| Daily Participation Test Data  | 
+|:-------------------------:|
+| ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/test_data_dailypart.png)  |
+
 Notes: 
 1) The active use of Clever is currently defined if the user performs any of the following actions:
   - Log into their district Clever account
@@ -31,7 +35,7 @@ Notes:
 2) The following columns are pseudonomized in the test data and production data will appear different: sis_id, clerver_user_id, clever_school_id
 3) See the [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311) documentation for more details.
 
-### Resource Usage Table
+### [Resource Usage Table](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/test_data/test_data/resource-usage/Students/Students.csv)
 
 |Column Name | Data Type | Description |
 |-----------|-----------|-----------|
@@ -44,6 +48,10 @@ Notes:
 | resource_id | String |	The Clever ID of the resource accessed by the user. Useful in case the name of the resource is changed. |
 | num_access | Integer | The number of times the specific resource was accessed through Clever during the day. |
 | school_name | String | The name of the primary school assigned for the user. |
+
+| Resource Usage Test Data  | 
+|:-------------------------:|
+| ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/test_data_resourceusage.png)  |
 
 Notes: 
 1) Resource_type can be one of: clever-district-added, clever-teacher-added, district-link, teacher-link
