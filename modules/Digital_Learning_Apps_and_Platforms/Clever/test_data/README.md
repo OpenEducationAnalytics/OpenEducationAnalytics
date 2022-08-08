@@ -27,11 +27,11 @@ Test data is provided for students only, though there are Clever Participation R
 
 Notes: 
 1) The active use of Clever is currently defined if the user performs any of the following actions:
-  - Log into their district Clever account
-  - Access an application by clicking on the app icon in the Clever Portal
-  - Access an application through an Instant Login Link
-  - Logged in to an application using a Log in with Clever button
-  - Accessing any link added to the Clever portal by the district, school, or teacher
+    - Log into their district Clever account
+    - Access an application by clicking on the app icon in the Clever Portal
+    - Access an application through an Instant Login Link
+    - Logged in to an application using a Log in with Clever button
+    - Accessing any link added to the Clever portal by the district, school, or teacher
 2) The following columns are pseudonomized in the test data and production data will appear different: sis_id, clerver_user_id, clever_school_id
 3) See the [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311) documentation for more details.
 
