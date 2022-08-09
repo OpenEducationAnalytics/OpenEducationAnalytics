@@ -4,6 +4,8 @@ The Clever module Power BI template enables users to quickly explore Clever Part
 - [Power BI with test data](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/powerbi/Clever%20Module%20Dashboard%20TestData.pbix): Power BI templated with module test data imported locally. 
 - [Power BI with direct query](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/powerbi/Clever%20Module%20Dashboard%20DirectQuery.pbix): Power BI template connected to a Synapse workspace data source. See instructions below to setup.
 
+See [setup instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/powerbi#setup-instructions) below for details.
+
 ## Dashboard Explanation
 
 The Clever module Power BI template consists of a single dashboard which summarizes student app usage.
