@@ -15,7 +15,7 @@ The Clever module Power BI template enables users to quickly explore Clever Part
 - Download the PBIX file with direct query here: [LINK](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/powerbi/Clever%20Module%20Dashboard%20DirectQuery.pbix)
 - The dashboard visuals may not load. You will need to switch your Synapse workspace serverless SQL endpoint by:
     - Select menu item File > Options and settings > Data source settings
-![PBI Menu](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20data%20source.png=100x).
+![PBI Menu](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20data%20source.png){width=50}.
     - Select Change Source...
     - Enter your Synapse workspace SQL server endpoint. This can be found on your Synapse workspace information page in the Azure portal.
 
