@@ -41,10 +41,8 @@ This Power BI data module consists of the two Clever Participation Report tables
 </kbd>
 
     - Select Change Source...
-<kbd> 
-    <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20change%20source.png" width="600"> 
-</kbd>
-
+| <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20change%20source.png" width="600"> | 
+|-|
     - Enter your Synapse workspace SQL server endpoint. This can be found on your Synapse workspace information page in the Azure portal.
 <kbd> 
     <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20sql%20endpt.png" width="600">
