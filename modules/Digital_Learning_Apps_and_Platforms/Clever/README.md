@@ -44,7 +44,7 @@ Dashboard Explanation  | Dashboard Usage Summary
 
 ## Additional Information
 
-While this module leverages Celver  [Participation Reports](https://support.clever.com/hc/s/articles/360049642311), more data is available via the [Clever API](https://dev.clever.com/docs/api-overview) feed.
+While this module leverages Clever  [Participation Reports](https://support.clever.com/hc/s/articles/360049642311), more data is available via the [Clever API](https://dev.clever.com/docs/api-overview) feed.
 
 | Resource | Description |
 | --- | --- |
