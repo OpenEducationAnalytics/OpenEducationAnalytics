@@ -9,7 +9,7 @@ For production data, this module pipeline can be automated triggered (i.e. daily
 
 ## Pipeline Setup Instructions
 
-#### Test Data Pipeline Instructions
+### Test Data Pipeline Instructions
 
 1. Complete the first steps of the [Clever module setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever#module-setup-instructions)
 2. Download the [Clever pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline/clever_pipeline_template.zip) locally to your computer.
@@ -21,8 +21,12 @@ For production data, this module pipeline can be automated triggered (i.e. daily
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20para%20storage%20account.png" width="600">
 7. Trigger the pipeline mannually.
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20trigger.png" width="600">
+8. Once the pipeline has successfully executed, verify that:
+     - Data has landed in Stage 1np
+     - Data has been processed to Stages 2p and 2np
+     - SQL database has been created
 
-#### Productions Data Pipeline Instructions
+### Productions Data Pipeline Instructions
 
 ## Pipeline Components Explanation
 
