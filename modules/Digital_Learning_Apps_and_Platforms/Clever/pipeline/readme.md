@@ -1,7 +1,20 @@
 # Pipelines
-### Overview
 
-## Main Pipeline
+This module uses a Synapse pipeline to:
+1. Land Clever Participation Report data (either test or production data) into Stage 1np.
+2. Process data into Stages 2np and 2p.
+3. Create a SQL database to query Stage 2np and 2p data via Power BI.
+
+For production data, this pipeline can be automated triggered (i.e. daily or weekly) to keep your Synapse data lake up-to-date.
+
+## Pipeline Setup Instructions
+
+#### Test Data Pipeline
+
+#### Productions Data Pipeline
+
+## Pipeline Components Explanation
+
 The main pipeline consists of 1 main sub-pipeline, and 3 additional activities outlined in the image below.
 
 <strong><em>[INSERT IMAGE HERE]</strong></em>
