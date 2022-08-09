@@ -1,4 +1,4 @@
-# PowerBI Template
+# Power BI Template
 The Clever PowerBI template consists of 1 page:
 
 1. <strong> App Usage Summary Dashboard </strong>: visualizes all student activities (login and resource usage) collected by Clever.
