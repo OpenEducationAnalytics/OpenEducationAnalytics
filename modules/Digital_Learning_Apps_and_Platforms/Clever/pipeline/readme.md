@@ -11,8 +11,8 @@ For production data, this pipeline can be automated triggered (i.e. daily or wee
 
 #### Test Data Pipeline Instructions
 
-1. Complete the first steps of the [Clever module setup instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever#module-setup-instructions)
-2. Download the [Clever pipeline template](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline/clever_pipeline_template.zip) locally to your computer.
+1. Complete the first steps of the [Clever module setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever#module-setup-instructions)
+2. Download the [Clever pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline/clever_pipeline_template.zip) locally to your computer.
 3. Upload the pipeline template to your Synapse workspace.
 4. Assign the Synapse linked services needed to support the pipeline template.
 5. Trigger the pipeline mannually.
