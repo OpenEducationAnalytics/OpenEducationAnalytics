@@ -24,8 +24,12 @@ For production data, this module pipeline can be automated triggered (i.e. daily
 8. Once the pipeline has successfully executed, verify that:
 
 - Data has landed in Stage 1np
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20land%20stage1.png" width="600">
 - Data has been processed to Stages 2p and 2np
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20stage2p.png" width="600">
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20stage2np.png" width="600">
 - SQL database has been created
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20sql.png" width="600">
 
 ### Productions Data Pipeline Instructions
 
