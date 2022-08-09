@@ -37,14 +37,22 @@ This Power BI data module consists of the two Clever Participation Report tables
 - The dashboard visuals may not load. You will need to switch your Synapse workspace serverless SQL endpoint by:
     - Select menu item File > Options and settings > Data source settings.
 
-<kbd> <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20data%20source.png" width="600"> </kbd>
+<kbd> 
+    <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20data%20source.png" width="600"> 
+</kbd>
 
     - Select Change Source...
     
-<kbd> <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20change%20source.png" width="600"> </kbd>
+<kbd> 
+    <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20change%20source.png" width="600"> 
+</kbd>
 
     - Enter your Synapse workspace SQL server endpoint. This can be found on your Synapse workspace information page in the Azure portal.
     
-<kbd> <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20sql%20endpt.png" width="600"> </kbd>
+<kbd> 
+    <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pbi%20sql%20endpt.png" width="600">
+</kbd>
 
-<kbd> <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/synapse%20sql%20enpt.png" width="600"> </kbd>
+<kbd> 
+    <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/synapse%20sql%20enpt.png" width="600"> 
+</kbd>
