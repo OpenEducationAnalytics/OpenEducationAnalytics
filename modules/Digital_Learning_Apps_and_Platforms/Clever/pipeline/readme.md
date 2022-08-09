@@ -31,7 +31,10 @@ For production data, this module pipeline can be automated triggered (i.e. daily
 - SQL database has been created
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20sql.png" width="600">
 
-### Productions Data Pipeline Instructions
+### Production Data Pipeline Instructions
+
+1. Complete the [Test Data Pipeline Instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline#test-data-pipeline-instructions)
+2.  
 
 ## Pipeline Components Explanation
 
