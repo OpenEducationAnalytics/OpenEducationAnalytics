@@ -27,9 +27,11 @@ Two sets of instructions are included:
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20linked%20services.png" width="600">
 6. Change the clever_main_pipeline storageAccount parameter to be your storage account name.
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20para%20storage%20account.png" width="600">
-7. Trigger the pipeline mannually.
+7. Select a spark pool for the ingest_into_stage2p_and_2np notebook.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20spark%20pool.png" width="600">
+8. Trigger the pipeline mannually.
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20trigger.png" width="600">
-8. Once the pipeline has successfully executed, verify that:
+9. Once the pipeline has successfully executed, verify that:
 
 - Data has landed in Stage 1np
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20land%20stage1.png" width="600">
