@@ -37,8 +37,25 @@ For production data, this module pipeline can be automated triggered (i.e. daily
 
 ### Production Data Pipeline Instructions
 
-1. Complete the [Test Data Pipeline Instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline#test-data-pipeline-instructions).
+1. Complete the [Test Data Pipeline Instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline#test-data-pipeline-instructions), but do not execute the pipeline yet.
 2. Review the Clever Participation Report [instructions for exporting reports](https://support.clever.com/hc/s/articles/360049642311?language=en_US#ExportingReports).
 3. Create a [SFTP Synapse linked service](https://docs.microsoft.com/en-us/azure/data-factory/connector-sftp?tabs=data-factory#linked-service-properties).
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20prod%20linked%20service.png" width="600">
-4. Download the Clever module pipeline template for the [production data ingestion](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline/Extracts/clever_data_ingestion.zip) and import into your Synapse workspace.
+4. Download the Clever module pipeline template for the [production data ingestion](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline/Extracts) and import into your Synapse workspace. You will see a new sub-pipeline added to the pipeline Extracts folder.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20prod%20land.png" width="600">
+5. Open the clever_main_pipeline. Delete the initial clever_copy_test_data subpipeline and replace with the clever_data_ingestion pipeline. The final results is shown below.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20overview%20prod.png" width="600">
+6. Trigger the pipeline mannually.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20trigger.png" width="600">
+7. Once the pipeline has successfully executed, verify that:
+
+- Data has landed in Stage 1np
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20land%20stage1.png" width="600">
+- Data has been processed to Stages 2p and 2np
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20stage2p.png" width="600">
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20stage2np.png" width="600">
+- SQL database has been created
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20sql.png" width="600">
+
+
+
