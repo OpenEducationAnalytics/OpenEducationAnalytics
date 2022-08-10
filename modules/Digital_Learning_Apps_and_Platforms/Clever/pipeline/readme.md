@@ -5,46 +5,61 @@ This module uses a Synapse pipeline to:
 2. Process data into Stages 2np and 2p.
 3. Create a SQL database to query Stage 2np and 2p data via Power BI.
 
-For production data, this pipeline can be automated triggered (i.e. daily or weekly) to keep your Synapse data lake up-to-date.
+Module Pipeline for Test Data  | Module Pipeline for Production Data
+:-------------------------:|:-------------------------:
+![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20overview.png) |  ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20overview%20prod.png)  
+
+For production data, this module pipeline can be automated triggered (i.e. daily or weekly) to keep your Synapse data lake up-to-date.
 
 ## Pipeline Setup Instructions
 
-#### Test Data Pipeline Instructions
+Two sets of instructions are included:
+1. [Test data pipeline instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline#test-data-pipeline-instructions)
+2. [Production data pipeline instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline#production-data-pipeline-instructions)
 
-1. Complete the first steps of the [Clever module setup instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever#module-setup-instructions)
-2. Download the [Clever pipeline template](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline/clever_pipeline_template.zip) locally to your computer.
-3. Upload the pipeline template to your Synapse workspace.
-4. Assign the Synapse linked services needed to support the pipeline template.
-5. Trigger the pipeline mannually.
+### Test Data Pipeline Instructions
 
-#### Productions Data Pipeline Instructions
+1. Complete the first steps of the [Clever module setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever#module-setup-instructions)
+2. Download the [Clever pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline/clever_pipeline_template.zip) locally to your computer.
+3. Import the pipeline template to your Synapse workspace.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20template%20upload.png" width="600">
+5. Assign the Synapse linked services needed to support the pipeline template.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20linked%20services.png" width="600">
+6. Change the clever_main_pipeline storageAccount parameter to be your storage account name.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20para%20storage%20account.png" width="600">
+7. Trigger the pipeline mannually.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20trigger.png" width="600">
+8. Once the pipeline has successfully executed, verify that:
 
-## Pipeline Components Explanation
+- Data has landed in Stage 1np
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20land%20stage1.png" width="600">
+- Data has been processed to Stages 2p and 2np
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20stage2p.png" width="600">
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20stage2np.png" width="600">
+- SQL database has been created
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20sql.png" width="600">
 
-The main pipeline consists of 1 main sub-pipeline, and 3 additional activities outlined in the image below.
+### Production Data Pipeline Instructions
 
-<strong><em>[INSERT IMAGE HERE]</strong></em>
+1. Complete the [Test Data Pipeline Instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline#test-data-pipeline-instructions), but do not execute the pipeline yet.
+2. Review the Clever Participation Report [instructions for exporting reports](https://support.clever.com/hc/s/articles/360049642311?language=en_US#ExportingReports).
+3. Create a [SFTP Synapse linked service](https://docs.microsoft.com/en-us/azure/data-factory/connector-sftp?tabs=data-factory#linked-service-properties).
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20prod%20linked%20service.png" width="600">
+4. Download the Clever module pipeline template for the [production data ingestion](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline/Extracts) and import into your Synapse workspace. You will see a new sub-pipeline added to the pipeline Extracts folder.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20prod%20land.png" width="600">
+5. Open the clever_main_pipeline. Delete the initial clever_copy_test_data subpipeline and replace with the clever_data_ingestion pipeline. The final results is shown below.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20overview%20prod.png" width="600">
+6. Trigger the pipeline mannually.
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20trigger.png" width="600">
+7. Once the pipeline has successfully executed, verify that:
 
-## Step 1: Test data or Production-level data ingestion
-The sub-pipeline out-of-the-box ingests the test data contained within this module. This pipeline copies all test data to stage 1np of the data lake, once ran. See the module test data folder for more information on the test data.
+- Data has landed in Stage 1np
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20land%20stage1.png" width="600">
+- Data has been processed to Stages 2p and 2np
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20stage2p.png" width="600">
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20stage2np.png" width="600">
+- SQL database has been created
+<img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20sql.png" width="600">
 
-<strong><em>[INSERT IMAGE HERE]</strong></em>
 
-To ingest production-level data, the sub-pipline will look similar to what is seen below. Attach this to the first "execute pipeline" activity in the main pipeline, customize the queries as needed, then trigger the main pipeline to ingest your own Clever data to stage 1 and 2.
 
-<strong><em>[INSERT IMAGE HERE]</strong></em>
-
-## Step 2: Execute Module Ingestion Notebook
-
-The second step in the main pipeline triggers the Clever_module_ingestion.ipynb, which takes the Clever data landed in stage 1np, and processes the data using the functions outlined in the Clever class notebook.
-
-This pipeline activity will pseudonymize from the data landed in stage 1, along with replacing hyphens in the table names with underscores (as per OEA standard practice), then writes the data out to stage 2p and stage 2np.
-
-## Step 3: Create SQL and Lake Databases
-
-Lastly, this module main pipeline creates a final SQL view of the data ingested in stage 2p/2np. The SQL database will be used to bring data to the Power BI module dashboard. The Lake database can be used for data exploration.
-
-### Additional Notes:
-
-- As the module currently stands, this only accounts for processing of the two Clever tables: ```daily-participation``` and ```resource-usage```. The class notebook and pipelines can be modified to account for landing and ingesting additional Clever tables.
-- The class notebook only ingests and processes "Students" Clever data. The class notebook can also be modified to process Teachers and Staff data as needed.
