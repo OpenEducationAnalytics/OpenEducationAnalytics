@@ -13,6 +13,10 @@ For production data, this module pipeline can be automated triggered (i.e. daily
 
 ## Pipeline Setup Instructions
 
+Two sets of instructions are included:
+1. [Test data pipeline instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline#test-data-pipeline-instructions)
+2. [Production data pipeline instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever/pipeline#production-data-pipeline-instructions)
+
 ### Test Data Pipeline Instructions
 
 1. Complete the first steps of the [Clever module setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/Clever#module-setup-instructions)
