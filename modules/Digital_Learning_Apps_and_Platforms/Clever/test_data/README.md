@@ -1,6 +1,6 @@
 # Test data
 
-This module includes artifically generated data which matches the format of the two [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311).
+This module includes artificially generated data which matches the format of the two [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311).
 - [Daily Participation Report](https://support.clever.com/hc/s/articles/360049642311?language=en_US#step2) Participation reports provide a daily snapshot that summarizes usage for students, teachers, and staff in your district, including those that may be inactive. 
 - [Resource Usage Report](https://support.clever.com/hc/s/articles/360049642311?language=en_US#h_7698d144-7ceb-4d63-88b8-e9ca2aa378d2) provide a daily snapshot of each resource accessed by a user on a given day and are available for active students, teachers, and staff. 
 
