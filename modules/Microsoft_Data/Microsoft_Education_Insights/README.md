@@ -31,43 +31,49 @@ Microsoft Insights data can be used for a variety of analytics purposes, includi
 6. Verify that the module pipeline landed data into stage 1 and 2 and SQL databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/pipeline) for detailed instructions.
 7. Download the [module Power BI template file](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi). Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi) page for instructions for switching the Power BI template data source to import from your Synapse workspace data source.
 
+#### Note: 
+
+The above instructions will setup the Microsoft Education Insights OEA module using the [module test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/test_data), but the same pipeline can be used for production data. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/pipeline) for instructions on switching the pipeline data source to production data from the Clever Participation Reports SFTP delivery.
+
+#### OEA Digital Engagement Schema:
+
 After completing the setup of this module, the MS Education Insights activity schema can be transformed into the [OEA schema standard for digital engagement](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Engagement_Schema). Refer to the documentation and assets to see how this module can be extended and standardized for OEA package-use.
 
 ## Data Sources
-Ingesting data using this Insights module provides data to fulfill these types of use cases. Data from this module can be combined with data from other OEA modules to provide richer picture of digital learning in an education system:
- - [Microsoft Graph Reports API Module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph) (includes data from other O365 applications)
- - [Intune for Education Module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Intune) (includes data on devices managed by Intune)
- - Other Digital Learning Insights modules will be added to OEA modules here. 
 
-This Education Insights module will leverage the OEA Azure Synapse environment to help education systems to export their Education Insights data into their own Azure data lake for further analytics. 
-- O365 and Microsoft Teams applications from the education system's O365 tenant (single subscription).
-- [School Data Sync](https://sds.microsoft.com/) class and school roster data.
-- The data ingested is formatted as a CSV file.
+This module imports digital activity and roster data for and education system via [School Data Sync](https://sds.microsoft.com/).
+- ***Digital Activity Data*** provides a log of M365 signal activity from apps including Sharepoint, Teams Channel, Teams Meetings, Assignment Services, OneNote, Reading Progress, and Reflect.
+- ***Rostering Data*** is concerned with students, teachers, courses, and schools relationships.
+- ***Azure Active Directory Data*** provides people details and group memberships.
+
+See the [module test data page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/test_data) for details on data format and contents.
 
 ## Module Components
 Out-of-the box assets for this OEA module include: 
-1. [Test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/test_data): Ingest sample data to understand the utility and functionality of the notebooks and piplines.
-2. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/pipeline): 3 pipeline templates - One main pipeline for ingestion of the Insights data and creation of the stage 2 databases, one main pipeline for the Insights test data which extracts the test data provided, ingests, and creates the stage 2 databases, and one that extracts the test data provided within this module to the Synapse workspace.
-3. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/notebook): 2 notebooks - A class notebook that defines the functions of data ingestion/processing the data from stage 1 to stage 2 within Synapse (Insights_py), and a ingestion notebook used to process the data by calling the functions in the class notebook (Insights_module_ingestion).
-4. [PowerBI Template](https://github.com/cstohlmann/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights_Premium/powerbi): A Power BI sample template making it easy to interact and understand Microsoft Education Insights and SDS data.
+1. [Test Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/test_data): Artificially generated test data which supports the module pipeline and Power BI template. Test data matches the [School Data Sync](https://sds.microsoft.com/) format exactly.
+2. [Pipeline Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/pipeline): One main pipeline template which lands data into the Stage 1 data lake (for raw data) and processes into the Stage 2 data lake (for structured, queryable data). Stage 2 data is then made available via a serverless SQL endpoint.
+3. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Insights/notebook): 
+    - [Insights_py.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/notebook/Insights_py.ipynb): A module python class notebook that defines the data schemas and basic functions of data ingestion and processing from Stage 1 to Stage 2.
+    - [Insights_module_ingestion.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/notebook/Insights_module_ingestion.ipynb): Module data ingestion notebook which depends on the module class. The pipeline template incoporates this notebook. 
+4. [PowerBI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi): A Power BI template which explores data in a basic way. The Power BI file is pre-loaded with test data making it easy to quickly interact with data. See instructions on the [module PowerBI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi) to switch the dashboard data source to direct query from your Synapse workspace. Screenshots of the Power BI template are below.
 
-![alt text](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights_Premium/docs/images/Insights%20Module%20Sample%20Dashboard.png)
- 
- <p align="center">
-  <em>(This dashboard example represents only data from Microsoft Insights.)</em>
- </p>
- 
-The Microsoft Insights module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md).
+Dashboard Explanation  | Dashboard Usage Summary-
+:-------------------------:|:-------------------------:
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/docs/images/Insights%20Module%20Star%20Schema.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/docs/images/Insights%20Module%20Sample%20Dashboard.png)  
+## Additional Information
 
-This module was developed by [Kwantum Analytics](https://www.kwantumanalytics.com/). The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
-
-#### Additional Information
 | Resource | Description |
 | --- | --- |
 | [Overview of Microsoft Education Insights](https://docs.microsoft.com/en-us/microsoftteams/class-insights) | Intro to Education Insights, what it can do, and what it can provide. |
 | [Syncing SIS Data with Education Insights](https://docs.microsoft.com/en-us/microsoftteams/education-insights-sis-data-sync) | Reference to understand how to sync SIS data with Education Insights, and includes information on how to integrate SIS data through SDS. |
 | [Activity Table/Data Ingested Schema Information](https://docs.microsoft.com/en-us/schooldatasync/ads-activity-signals-export-for-oea-insights-module) | Reference to learn about the schema details of Insights Export activity data ingested into stage 1. |
 
+
+## Contributions from the Community
+ 
+The Microsoft Insights module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md).
+
+This module was developed by [Kwantum Analytics](https://www.kwantumanalytics.com/). The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
 # Legal Notices
 Microsoft and any contributors grant you a license to the Microsoft documentation and other content
