@@ -34,6 +34,12 @@ Microsoft Insights data can be used for a variety of analytics purposes, includi
 After completing the setup of this module, the MS Education Insights activity schema can be transformed into the [OEA schema standard for digital engagement](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_OEA_Schemas/Digital_Engagement_Schema). Refer to the documentation and assets to see how this module can be extended and standardized for OEA package-use.
 
 ## Data Sources
+Ingesting data using this Insights module provides data to fulfill these types of use cases. Data from this module can be combined with data from other OEA modules to provide richer picture of digital learning in an education system:
+ - [Microsoft Graph Reports API Module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph) (includes data from other O365 applications)
+ - [Intune for Education Module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Intune) (includes data on devices managed by Intune)
+ - Other Digital Learning Insights modules will be added to OEA modules here. 
+
+This Education Insights module will leverage the OEA Azure Synapse environment to help education systems to export their Education Insights data into their own Azure data lake for further analytics. 
 - O365 and Microsoft Teams applications from the education system's O365 tenant (single subscription).
 - [School Data Sync](https://sds.microsoft.com/) class and school roster data.
 - The data ingested is formatted as a CSV file.
