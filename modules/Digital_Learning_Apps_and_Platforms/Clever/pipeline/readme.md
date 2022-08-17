@@ -1,15 +1,20 @@
 # Pipelines
 
 This module uses a Synapse pipeline to:
-1. Land Clever Participation Report data (either test or production data) into Stage 1np.
+1. Land Clever Participation Report data (either test or production data) into Stage 1np data lake.
 2. Process data into Stages 2np and 2p.
 3. Create a SQL database to query Stage 2np and 2p data via Power BI.
+
+Notes:
+- "np" stands for non-pseudonomized data and "p" for pseudonomized data. 
+- Data columns contianing personal identifiable information (PII) are identified in the data schemas located in the [module class notebook](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/notebook/Clever_py.ipynb)
+- As data is processed from Stage 1np to Stages 2np and 2p, data is separated into pseudonomized data which PII columns hashed (Stage 2p) and lookup tables containing PII (Stage 2np). Non-pseudonmized data will then be protected at higher security levels.
 
 Module Pipeline for Test Data  | Module Pipeline for Production Data
 :-------------------------:|:-------------------------:
 ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20overview.png) |  ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20overview%20prod.png)  
 
-For production data, this module pipeline can be automated triggered (i.e. daily or weekly) to keep your Synapse data lake up-to-date.
+For production data, this module pipeline can be automatically triggered (i.e. daily or weekly) to keep your Synapse data lake up-to-date.
 
 ## Pipeline Setup Instructions
 
@@ -29,9 +34,9 @@ Two sets of instructions are included:
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20para%20storage%20account.png" width="600">
 7. Select a spark pool for the ingest_into_stage2p_and_2np notebook.
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20spark%20pool.png" width="600">
-8. Trigger the pipeline mannually.
+8. Trigger the pipeline manually.
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20trigger.png" width="600">
-9. Once the pipeline has successfully executed, verify that:
+9. Once the pipeline has been successfully executed, verify that:
 
 - Data has landed in Stage 1np
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20land%20stage1.png" width="600">
@@ -51,9 +56,9 @@ Two sets of instructions are included:
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20prod%20land.png" width="600">
 5. Open the clever_main_pipeline. Delete the initial clever_copy_test_data subpipeline and replace with the clever_data_ingestion pipeline. The final results is shown below.
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20overview%20prod.png" width="600">
-6. Trigger the pipeline mannually.
+6. Trigger the pipeline manually.
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20trigger.png" width="600">
-7. Once the pipeline has successfully executed, verify that:
+7. Once the pipeline has been successfully executed, verify that:
 
 - Data has landed in Stage 1np
 <img src="https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/pipeline%20land%20stage1.png" width="600">

@@ -1,7 +1,9 @@
-### Module Installation Process
+# Documentation
 
- - In order to install this module:
-     1. Connect your Synpase workspace to the Azure Data Share for M365 data. [Click here](https://docs.microsoft.com/en-us/schooldatasync/how-to-deploy-sds-for-insights) to learn how to set up SDS to pull in the data to your Synapse workspace.
-     2. Import the Insights_py.ipynb and Insights_module_ingestion.ipynb notebooks into your Synapse Studio, as well as the Insights_main_pipeline template.
-     3. Then, after Insights data has been landed in your Synapse data lake, trigger the Insights_main_pipeline to ingest your data and create two stage 2 databases: s2_insights and sqls2_insights.
-     4. After the Insights data is ingested, open up the PowerBI Insights dashboard template provided, and connect to your Synapse workspace serverless SQL endpoint. You will want to do a directQuery of the sqls2_insights database.
+See the [main Module readme](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights) for complete documentation of this module and technical assets. Some useful links are listed below for easy access.
+
+| Resource | Description |
+| --- | --- |
+| [Overview of Microsoft Education Insights](https://docs.microsoft.com/en-us/microsoftteams/class-insights) | Intro to Education Insights, what it can do, and what it can provide. |
+| [Syncing SIS Data with Education Insights](https://docs.microsoft.com/en-us/microsoftteams/education-insights-sis-data-sync) | Reference to understand how to sync SIS data with Education Insights, and includes information on how to integrate SIS data through SDS. |
+| [Activity Table/Data Ingested Schema Information](https://docs.microsoft.com/en-us/schooldatasync/ads-activity-signals-export-for-oea-insights-module) | Reference to learn about the schema details of Insights Export activity data ingested into stage 1. |
