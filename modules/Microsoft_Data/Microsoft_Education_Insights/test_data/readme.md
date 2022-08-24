@@ -9,11 +9,10 @@ This module includes artificially generated data which matches the format of the
 
 ### [Activity Table](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/test_data/activity/2021-06-02/ApplicationUsage.csv)
 
-See full details on the [icrosoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-activity)
+See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-activity)
 
 |Column Name | Data Type | Description |
 |-----------|-----------|-----------|
-
 | SignalType | String | M365 app usage signals such as FileDownloaded, CommentCreated, VisitTeamChannel, AssignmentEvent, ReadingSubmission |
 | StartTime |	DateTime |	Action time |
 | UserAgent |	String |	Device information |
