@@ -50,8 +50,6 @@ See full details on the [Microsoft SDS documentation](https://docs.microsoft.com
 |:-------------------------:|
 | ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/docs/images/testdata_activity.png)  |
 
-
-
 ### [Roster Tables](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/test_data/roster/2021-09-05T06-16-22)
 
 See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-rostering)
@@ -81,3 +79,15 @@ See full details on the [Microsoft SDS documentation](https://docs.microsoft.com
 | Academic Groups | CourseSubject | Contains the most-recently sourced set of data for a Course. |
 | Affiliations | PersonOrganizationRole | The relationship between a Person, Organization and Session (time). |
 | Affiliations | Enrollment | The relationship between a Person and a Section. Time (what is current right now) is also important and is determined by the Section Session relationship. The presence of SectionSession table indicates that enrollments span possibly non-contiguous Sessions. |
+
+
+### [Azure Active Directory Tables](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/test_data/roster/2021-09-05T06-16-22)
+
+See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-azure-ad)
+
+| Table Name | Description |
+|-----------|-----------|
+| AADUser | Representation of user records for accounts in Azure AD. |
+| AADUserPersonMapping | Present only when Roster data is also present. Mapping between AADUser entries and roster Person entries. |
+| AADGroup | Representation of group records in Azure AD. |
+| AADGroupMembership | Representation of mapping between AADGroup and AADUser in Azure AD. |
