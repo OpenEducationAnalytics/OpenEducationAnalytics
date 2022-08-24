@@ -26,7 +26,7 @@ See full details on the [Microsoft SDS documentation](https://docs.microsoft.com
 | SchemaVersion | Real | Technical, used to track data changes or bugs in the export |
 | AssignmentId | String | GUID, identifies the assignment. Can be used to access Graph for more information. |
 | SubmissionId | String | GUID, identifies the student submission. Can be used to access Graph for more information. |
-| SubmissionCreatedTime	DateTime	Time the submission was created.
+| SubmissionCreatedTime | DateTime | Time the submission was created. |
 | Action | String | Assigned (also for Reading Progress), Updated, Returned, Visited (also for Reading Progress), Submitted, Unsubmitted, Deleted, FeedbackSubmitted (also for Reflect), CardPosted (Reflect), EditMiscue (Reading Progress), Submit (Reading Progress), Attempt (Reading Progress) |
 | DueDate |	DateTime | Assignments due date |
 | ClassCreationDate | DateTime | Time the class was created |
