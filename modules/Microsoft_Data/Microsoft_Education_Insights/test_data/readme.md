@@ -48,14 +48,36 @@ See full details on the [Microsoft SDS documentation](https://docs.microsoft.com
 
 | Activity Table Test Data  | 
 |:-------------------------:|
-| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/Clever/docs/images/test_data_dailypart.png)  |
+| ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/docs/images/testdata_activity.png)  |
 
-Notes: 
-1) The active use of Clever is currently defined if the user performs any of the following actions:
-    - Log into their district Clever account
-    - Access an application by clicking on the app icon in the Clever Portal
-    - Access an application through an Instant Login Link
-    - Logged in to an application using a Log in with Clever button
-    - Accessing any link added to the Clever portal by the district, school, or teacher
-2) The following columns are pseudonomized in the test data and production data will appear different: sis_id, clerver_user_id, clever_school_id
-3) See the [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311) documentation for more details.
+
+
+### [Roster Tables](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/test_data/roster/2021-09-05T06-16-22)
+
+See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-rostering)
+
+| Domain | Table Name | Description |
+|-----------|-----------|-----------|
+| System | SourceSystem | Indicates which external system the data is coming from. |
+| System | RefDefinition |  List of Values (ENUMS) used throughout the system. |
+| System | RefTranslation | Allows IT to give translated text for Enums that are added to the system. |
+| Time | Session | Represents time in the system. Roles, Sections, and other key objects MUST have a session to identify when objects are available in the system. |
+| Organizations | Organization | Represents institution entities. Organizations aren't linked to a session. Only the person's association to an organization and role is linked to a session. |
+| People | Person | Rrepresents person records. These aren't linked to a session. Only the person's association to an organization and role is linked to a session. |
+| People | PersonRelationship | Indicates a relationship between two people. The relationship is stored in one direction. For instance, if the relationship contact is parent/guardian, the child will be represented by the PersonId column while the contact will be represented in the RelatedPersonId column. |
+| People | PersonIdentifier | Person can have multiple identifiers from multiple systems. The identifier from the SIS/SMS, Azure AD, etc. are all stored in this table. |
+| People | PersonEmailAddress | Contains the last updated set of information for a given Person. |
+| People | PersonPhoneNumber | Contains the last updated set of information for a given Person. |
+| People | PersonDemographic | Lifetime is tied to the updated cadence of Person; once Person is no longer being updated, no changes will happen to PersonDemographic or any downstream table. |
+| People | PersonDemographicEthnicity | Contains the last updated set of information for a given Person. |
+| People | PersonDemographicRace | Contains the last updated set of information for a given Person. |
+| People | PersonDemographicPersonFlag | Contains the last updated set of information for a given Person. |
+| Academic Groups | Section | Course section records. |
+| Academic Groups |SectionSession  | Intersection table between Section and Session. The relationship is many to many. |
+| Academic Groups | SectionGradeLevel | Contains the last read version of a given subject. |
+| Academic Groups | SectionSubject | Contains the last-provided set of subjects for a given section. |
+| Academic Groups | Course | Course records. |
+| Academic Groups | CourseGradeLevel | Contains the most-recently sourced set of data for a Course. |
+| Academic Groups | CourseSubject | Contains the most-recently sourced set of data for a Course. |
+| Affiliations | PersonOrganizationRole | The relationship between a Person, Organization and Session (time). |
+| Affiliations | Enrollment | The relationship between a Person and a Section. Time (what is current right now) is also important and is determined by the Section Session relationship. The presence of SectionSession table indicates that enrollments span possibly non-contiguous Sessions. |
