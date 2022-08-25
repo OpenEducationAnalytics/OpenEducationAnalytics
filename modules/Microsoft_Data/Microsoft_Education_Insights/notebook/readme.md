@@ -1,13 +1,11 @@
-# Notebook
-All tables generated in this module can be replicated in your Azure environment using this notebook. Upload this notebook to the Develop tab of your [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/), attach to your configured Spark pool and run. This editable notebook is written in PySpark and covers the general use cases of the Microsoft Education Insights. You can bring in data from other data sources and customize this notebook to meet the needs of your organization.
+# Notebooks
 
-This notebook creates the following tables ([add names of tables]) into a new Spark database called [name of Spark database]. These are the databases and tables used to create each of the tables:
+This module incorporates two notebooks needed to support the main [module pipeline](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/pipeline). Both notebooks depend on the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/notebook/OEA_py.ipynb) which is a part of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework).
 
+## Module Python Class Notebook: [Insights_py.ipynb](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/notebook/Insights_py.ipynb)
 
-### Tables and Databases
-| Databases created | Tables created | Table purpose | Databases used   | Tables used
-| :------------- | :---------- | :---------- |:---------- | :---------- |
-| Database 1 | Name of table created  |  Purpose of table | Name of database used | Name of table used |
-|  | Name of table created  |  Purpose of table | Name of database used | Name of table used |
-| Database 2 | Name of table created  |  Purpose of table | Name of database used | Name of table used |
-|  | Name of table created  |  Purpose of table | Name of database used | Name of table used |
+The module python class notebook that defines the data schemas and pseudonomization. Basic functions for data ingestion and processing from Stage 1 to Stage 2 data lakes are also included.
+
+## Module Data Ingestion Notebook: [Insights_module_ingestion.ipynb](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/notebook/Insights_module_ingestion.ipynb)
+
+Module data ingestion notebook which depends on the module class. The pipeline template incoporates this notebook. 
