@@ -3,7 +3,7 @@
 [i-Ready](https://www.curriculumassociates.com) offers assessments and personalized instruction for K-12 students. This app tracks learning progress in reading and mathematics with breakdowns of lesson material, and assessment scoring. This i-Ready OEA module provides ingestion and processing of two primary data sources:
 - [Diagnostic Assessment](https://www.curriculumassociates.com/programs/i-ready-assessment/diagnostic)  
 - [Personalized Instruction Assessment](https://www.curriculumassociates.com/programs/i-ready-learning/personalized-instruction) 
-
+See the [data sources](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady#data-sources) section below for details.
 ![alt text](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/iReady/docs/images/iReady%20landing%20readme%20picture.png)
 
 ## Problem Statement and Module Impact
