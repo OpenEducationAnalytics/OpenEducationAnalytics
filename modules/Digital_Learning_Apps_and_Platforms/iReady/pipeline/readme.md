@@ -7,7 +7,7 @@ This module uses a Synapse pipeline to:
 
 Module Pipeline for Test Data  | Module Pipeline for Production Data
 :-------------------------:|:-------------------------:
-![](https://github.com/cstohlmann/oea-iready-module/blob/main/docs/images/iReady%20prod%20data%20pipeline%20screenshot.png) |  ![](https://github.com/cstohlmann/oea-iready-module/blob/main/docs/images/iReady%20test%20data%20pipeline%20screenshot.png)  
+https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/iReady/docs/images/iReady%20test%20data%20pipeline%20screenshot.png) |  ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/iReady/docs/images/iReady%20prod%20data%20pipeline%20screenshot.png)  
 
 <strong><em>Notes:</strong></em>
  - The pictures above are screenshots of the two "Extracts" or sub-pipelines.
