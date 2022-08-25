@@ -38,12 +38,12 @@ This module imports data which matches the format of four [i-Ready Diagnostic an
 - <strong>Diagnostic Results Report</strong> provides the implications and i-Ready analyses of student diagnostic assessments. These include metrics used for gauging the successes/struggles of student learning (e.g. [Annual Stretch Growth Measure](https://www.curriculumassociates.com/access-and-equity/providing-a-path-to-proficiency-for-every-student)). The assessment data also provides test results in specific areas of student-learning domains within ELA and Math. 
 - <strong>Personalized Instruction by Lesson Report</strong> provides the results surrounding student personalized instruction assessments. This table essentially serves as an overview of the <em>Comprehensive Student Lesson Activity with Standards</em> tables, without the matching of state standards.
 
-All test data comes in the format of CSV files, which is the format as the exported i-Ready data tables. See the [module test data page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady/test_data) for additional details on data format and contents.
+All test data comes in the format of CSV files with schema matching how [i-Ready data is manually downloaded](https://support.curriculumassociates.com/s/article/How-do-I-export-i-Ready-data). See the [module test data page](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady/test_data) for additional details on data format and contents.
 
 ## Module Components
 
 Out-of-the box assets for this OEA module include: 
-1. [Test Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady/test_data): Artificially generated test data which supports the module pipeline and Power BI template. Test data matches the i-Ready Diagnostic and Personalized Instruction Assessments data format exactly.
+1. [Test Data](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady/test_data): Artificially generated test data which supports the module pipeline and Power BI template. Test data matches the i-Ready Diagnostic and Personalized Instruction Assessments data format exactly.
 2. [Pipeline Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady/pipeline): One main pipeline template which lands data into Stage 1 and processes into Stage 2. Stage 2 data is then made available via a serveless SQL endpoint.
     - One sub-pipeline template that extracts on-premises i-Ready production data, and lands the data into Stage 1 of the data lake.
 3. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady/notebook): 
@@ -53,19 +53,17 @@ Out-of-the box assets for this OEA module include:
 
 Dashboard Explanation  | Dashboard Student Lesson Results Summary
 :-------------------------:|:-------------------------:
-![](https://github.com/cstohlmann/oea-iready-module/blob/main/docs/images/iReady%20Module%20Dashboard%20Explanation.png) |  ![](https://github.com/cstohlmann/oea-iready-module/blob/main/docs/images/iReady%20Module%20Dashboard%20p1.png)  
+![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/iReady/docs/images/iReady%20Module%20Dashboard%20Explanation.png) |  ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/iReady/docs/images/iReady%20Module%20Dashboard%20p1.png)  
 
 ## Additional Information
-
-While this module leverages i-Ready [Diagnostic](https://www.curriculumassociates.com/programs/i-ready-assessment/diagnostic) and [Instruction Assessments](https://www.curriculumassociates.com/programs/i-ready-learning/personalized-instruction), more data is available via different [i-Ready Assessment packages](https://www.curriculumassociates.com/programs/i-ready-assessment).
 
 | Resource | Description |
 | --- | --- |
 | [Overview of i-Ready](https://www.curriculumassociates.com/) | Intro to i-Ready, what it can do, and how it can be used. |
-| [i-Ready Assessment Products](https://www.curriculumassociates.com/programs/i-ready-assessment) | Overview of i-Ready Assessment Products offered by Curriculum Associates. |
+| [i-Ready Assessment](https://www.curriculumassociates.com/programs/i-ready-assessment) | Overview of i-Ready Assessment. |
+| [i-Ready Pesonalized Instruction](https://www.curriculumassociates.com/programs/i-ready-learning/personalized-instruction) | Overview of i-Ready Personalized Instruction. |
 | [i-Ready Diagnostic Assessment Details](https://www.cde.state.co.us/uip/i-ready-assessment-description) | Third-party description of the applications and use of the i-Ready Diagnostic Assessments. |
-| [Explanation of i-Ready Data Migration](https://support.schooldata.net/hc/en-us/articles/230874107-i-Ready-Extract-Procedure-for-Manual-Upload) | Third-party partial setup explanation for the migration of i-Ready Assessment data. |
-
+| [i-Ready data manual download](https://support.curriculumassociates.com/s/article/How-do-I-export-i-Ready-data) | Instructions to download i-Ready data for your school or district |
 
 ## Contributions from the Community
 
