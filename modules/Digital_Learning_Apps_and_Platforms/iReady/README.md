@@ -1,8 +1,11 @@
 # i-Ready Module
 
-[i-Ready](https://www.curriculumassociates.com/programs/i-ready-assessment) offers a variety of assessments for K-12 students, which tracks learning progress in reading and mathematics, breakdowns of assessment material, and assessment scoring. This i-Ready OEA module provides ingestion and processing of [Diagnostic Assessment](https://www.curriculumassociates.com/programs/i-ready-assessment/diagnostic) and [Personalized Instruction Assessment](https://www.curriculumassociates.com/programs/i-ready-learning/personalized-instruction) data. Data is retrieved from on-premises servers through the use of pipelines; this data is expected to be manually downloaded and uploaded to these servers. i-Ready Assessment data will enable education leaders to see the results of pedagogical practices impact on student learning. 
+[i-Ready](https://www.curriculumassociates.com) offers assessments and personalized instruction for K-12 students. This app tracks learning progress in reading and mathematics with breakdowns of lesson material, and assessment scoring. This i-Ready OEA module provides ingestion and processing of two primary data sources:
+- [Diagnostic Assessment](https://www.curriculumassociates.com/programs/i-ready-assessment/diagnostic)  
+- [Personalized Instruction Assessment](https://www.curriculumassociates.com/programs/i-ready-learning/personalized-instruction) 
+Once [i-Ready data is manually downloaded](https://support.curriculumassociates.com/s/article/How-do-I-export-i-Ready-data) to either on-premises servers or directly to your Azure data lake, this module uses a Synapse pipeline to process and standardize data as well as makes data queryable via a serverless SQL endpoint
 
-![alt text](https://github.com/cstohlmann/oea-iready-module/blob/main/docs/images/iReady%20landing%20readme%20picture.png)
+![alt text](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Digital_Learning_Apps_and_Platforms/iReady/docs/images/iReady%20landing%20readme%20picture.png)
 
 ## Problem Statement and Module Impact
 
