@@ -58,9 +58,9 @@ Out-of-the box assets for this OEA module include:
     - [Insights_module_ingestion.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/notebook/Insights_module_ingestion.ipynb): Module data ingestion notebook which depends on the module class. The pipeline template incoporates this notebook. 
 4. [PowerBI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi): A Power BI template which explores data in a basic way. The Power BI file is pre-loaded with test data making it easy to quickly interact with data. See instructions on the [module PowerBI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi) to switch the dashboard data source to direct query from your Synapse workspace. Screenshots of the Power BI template are below.
 
-Dashboard Data Model  | Dashboard Usage Summary
-:-------------------------:|:-------------------------:
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/docs/images/Insights%20Module%20Star%20Schema.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/docs/images/Insights%20Module%20Sample%20Dashboard.png)  
+Dashboard Data Model  | Dashboard Explanation | Digital Engagement in Teams Summary
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/docs/images/Insights%20Module%20Star%20Schema.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/docs/images/Insights%20Module%20Explanation%20Page.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/docs/images/Insights%20Module%20Sample%20Dashboard.png)   
 ## Additional Information
 
 | Resource | Description |
