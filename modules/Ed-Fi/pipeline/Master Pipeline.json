@@ -1,0 +1,274 @@
+{
+    "name": "Master Pipeline",
+    "properties": {
+        "activities": [
+            {
+                "name": "Get Runner Config",
+                "type": "Lookup",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "JsonSource",
+                        "storeSettings": {
+                            "type": "AzureBlobFSReadSettings",
+                            "recursive": true,
+                            "enablePartitionDiscovery": false
+                        },
+                        "formatSettings": {
+                            "type": "JsonReadSettings"
+                        }
+                    },
+                    "dataset": {
+                        "referenceName": "DS_JSON_File",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "stage": "1",
+                            "path": {
+                                "value": "Landing/Transactional/@{pipeline().parameters.SourceSystemName}",
+                                "type": "Expression"
+                            },
+                            "fileName": "Runner_Config.json"
+                        }
+                    },
+                    "firstRowOnly": false
+                }
+            },
+            {
+                "name": "Land Ed-Fi Data to Stage1",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Get Runner Config",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Get Runner Config').output.value",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "batchCount": 5,
+                    "activities": [
+                        {
+                            "name": "Land Data from Ed-Fi Instance to ALDS",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "Land All Entities to Stage1",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "ClientID": {
+                                        "value": "@item().ClientId",
+                                        "type": "Expression"
+                                    },
+                                    "BaseURL": {
+                                        "value": "@pipeline().parameters.BaseURL",
+                                        "type": "Expression"
+                                    },
+                                    "Directory": {
+                                        "value": "@pipeline().parameters.SourceSystemName",
+                                        "type": "Expression"
+                                    },
+                                    "SecretName": {
+                                        "value": "@item().ClientSecretName",
+                                        "type": "Expression"
+                                    },
+                                    "SchoolYear": {
+                                        "value": "@item().SchoolYear",
+                                        "type": "Expression"
+                                    },
+                                    "InstanceId": {
+                                        "value": "@item().InstanceId\n",
+                                        "type": "Expression"
+                                    },
+                                    "ApiVersion": {
+                                        "value": "@item().ApiVersion",
+                                        "type": "Expression"
+                                    },
+                                    "isInitialLoad": {
+                                        "value": "@pipeline().parameters.IsInitialLoad",
+                                        "type": "Expression"
+                                    },
+                                    "DistrictId": {
+                                        "value": "@item().DistrictId",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Ingest Ed-Fi Data to Stage2",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Land Ed-Fi Data to Stage1",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Get Runner Config').output.value",
+                        "type": "Expression"
+                    },
+                    "isSequential": true,
+                    "activities": [
+                        {
+                            "name": "Trigger Dataflow for Ingestion",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "Trigger All Entities",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "BaseURL": {
+                                        "value": "@pipeline().parameters.BaseURL",
+                                        "type": "Expression"
+                                    },
+                                    "ApiVersion": {
+                                        "value": "@item().ApiVersion",
+                                        "type": "Expression"
+                                    },
+                                    "InstanceId": {
+                                        "value": "@item().InstanceId",
+                                        "type": "Expression"
+                                    },
+                                    "directory": {
+                                        "value": "@pipeline().parameters.SourceSystemName",
+                                        "type": "Expression"
+                                    },
+                                    "DistrictId": {
+                                        "value": "@item().DistrictId",
+                                        "type": "Expression"
+                                    },
+                                    "SchoolYear": {
+                                        "value": "@item().SchoolYear",
+                                        "type": "Expression"
+                                    },
+                                    "IncludeDescriptors": false,
+                                    "WorkspaceName": "syn-oea-cisd-edfi1"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Create Serverless SQL DB",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Ingest Ed-Fi Data to Stage2",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Get Runner Config').output.value",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "Create SQL DB",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "Setup Database from New Stages",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "StorageAccount": {
+                                        "value": "@pipeline().parameters.StorageAccount",
+                                        "type": "Expression"
+                                    },
+                                    "BaseURL": {
+                                        "value": "@pipeline().parameters.BaseURL",
+                                        "type": "Expression"
+                                    },
+                                    "DbName": {
+                                        "value": "sqls2_@{pipeline().parameters.SourceSystemName}_@{item().SchoolYear}",
+                                        "type": "Expression"
+                                    },
+                                    "FileSystem": {
+                                        "value": "Standardized/Transactional/@{pipeline().parameters.SourceSystemName}/DistrictId=@{item().DistrictId}/SchoolYear=@{item().SchoolYear}/",
+                                        "type": "Expression"
+                                    },
+                                    "Schemas": {
+                                        "value": "@createArray('edfi', 'analytics')",
+                                        "type": "Expression"
+                                    },
+                                    "StageNum": "2"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "SourceSystemName": {
+                "type": "String",
+                "defaultValue": "Testing"
+            },
+            "IsInitialLoad": {
+                "type": "bool",
+                "defaultValue": false
+            },
+            "BaseURL": {
+                "type": "string",
+                "defaultValue": "https://api.edgraph.dev"
+            },
+            "StorageAccount": {
+                "type": "String",
+                "defaultValue": "stoeacisdedfi1"
+            }
+        },
+        "variables": {
+            "PipelineName": {
+                "type": "String"
+            },
+            "AccessToken": {
+                "type": "String"
+            },
+            "DistrictId": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "EdFi/Single District Per Instance"
+        },
+        "annotations": []
+    }
+}
