@@ -1,0 +1,92 @@
+{
+	"name": "Process deletes",
+	"properties": {
+		"folder": {
+			"name": "EdFi"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "LS_datalake",
+						"type": "LinkedServiceReference"
+					},
+					"name": "s2deltaSource"
+				},
+				{
+					"linkedService": {
+						"referenceName": "LS_datalake",
+						"type": "LinkedServiceReference"
+					},
+					"name": "s1deletes"
+				}
+			],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "LS_datalake",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AlterRow2"
+				},
+				{
+					"name": "exists1"
+				}
+			],
+			"scriptLines": [
+				"parameters{",
+				"     SourceTable as string ('schools'),",
+				"     directory as string,",
+				"     schoolYear as string,",
+				"     districtId as string,",
+				"     entity as string ('schools')",
+				"}",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'delta',",
+				"     fileSystem: 'stage2',",
+				"     folderPath: (\"Standardized/Transactional/{$directory}/v5.3/General/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$SourceTable}\")) ~> s2deltaSource",
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     enableCdc: true,",
+				"     mode: 'read',",
+				"     skipInitialLoad: false,",
+				"     format: 'json',",
+				"     fileSystem: 'stage1',",
+				"     folderPath: (\"Landing/Transactional/{$directory}/v5.3/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$entity}/Deletes/\"),",
+				"     documentForm: 'documentPerLine') ~> s1deletes",
+				"exists1 alterRow(deleteIf(true())) ~> AlterRow2",
+				"s2deltaSource, s1deletes exists(toString(byName('id')) == toString(byName('Id')),",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists1",
+				"AlterRow2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delta',",
+				"     fileSystem: 'stage2',",
+				"     folderPath: (\"Standardized/Transactional/{$directory}/v5.3/General/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$SourceTable}\"),",
+				"     mergeSchema: false,",
+				"     autoCompact: false,",
+				"     optimizedWrite: false,",
+				"     vacuum: 0,",
+				"     deletable:true,",
+				"     insertable:false,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     keys:['id'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2"
+			]
+		}
+	}
+}

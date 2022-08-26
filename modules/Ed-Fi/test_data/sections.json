@@ -1,0 +1,427 @@
+[
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "ALG-1",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "aa6d2be1bea74b85a6600cac75f0bdfe",
+    "availableCredits": 3,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Geometry 0",
+    "sequenceOfCourse": 5,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "ALG-1",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "961bdfe6f56143f9a8c90b4729caca51",
+    "availableCredits": 3,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Health 2",
+    "sequenceOfCourse": 4,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "ALG-2",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "3e57be4a5ebb43b090f1105ab672dfed",
+    "availableCredits": 2,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Sports 0",
+    "sequenceOfCourse": 5,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "ALG-2",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "42913153e4e941ebb74e1dc4c5eec9c9",
+    "availableCredits": 3,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Geometry 0",
+    "sequenceOfCourse": 5,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ALG-1",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "6ad5ee8fe9e44b02982178e675a50c03",
+    "availableCredits": 2,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "World History 1",
+    "sequenceOfCourse": 5,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ALG-1",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "9ac2911ae7bb48a0abd01617e032ef01",
+    "availableCredits": 1,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "English 4",
+    "sequenceOfCourse": 3,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ALG-2",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "0862b77241d948329479bbca45b80482",
+    "availableCredits": 2,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Algebra 2",
+    "sequenceOfCourse": 3,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ALG-2",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "43e767914ceb4377b506e07a16de4c32",
+    "availableCredits": 3,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Algebra 2",
+    "sequenceOfCourse": 4,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-BIO",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "45362c91bc454a5484dafa1377f3e085",
+    "availableCredits": 3,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Health 4",
+    "sequenceOfCourse": 4,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-BIO",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "9716c4d63aed4734938839cc0a35c11b",
+    "availableCredits": 4,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "World History 3",
+    "sequenceOfCourse": 5,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-CHEM",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "045844f05cf54de09418caea92adc8de",
+    "availableCredits": 4,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "World History 3",
+    "sequenceOfCourse": 1,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-CHEM",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "148b7bce153443d68b90875eff727087",
+    "availableCredits": 4,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Geometry 1",
+    "sequenceOfCourse": 3,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ENG-1",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "63143f1fe1104b4ab76dbdd4f5c93dc3",
+    "availableCredits": 2,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "World History 4",
+    "sequenceOfCourse": 3,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ENG-1",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "197e81158e36408e89523c75e15e8197",
+    "availableCredits": 4,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Music 2",
+    "sequenceOfCourse": 5,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ENG-2",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "85ecfeb1dd3c48b3ab0c8373aad2c557",
+    "availableCredits": 3,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Algebra 1",
+    "sequenceOfCourse": 2,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ENG-2",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "87b1c864fb2346888bdbbe8a0b413584",
+    "availableCredits": 4,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Health 2",
+    "sequenceOfCourse": 5,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ENG-3",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "c2d4b15e286e4fc18ced6e2d80af2e29",
+    "availableCredits": 2,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": " Programming 2",
+    "sequenceOfCourse": 3,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ENG-3",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "b1311137aadf43b59525186a21c8d853",
+    "availableCredits": 1,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Geometry 1",
+    "sequenceOfCourse": 3,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ENG-4",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "509d918ea6934041bff831d7b23b8fd1",
+    "availableCredits": 3,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Sports 0",
+    "sequenceOfCourse": 3,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-ENG-4",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "00a1593aba624fb49e0e5938aea731f4",
+    "availableCredits": 1,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "English 3",
+    "sequenceOfCourse": 3,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-GEOM",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "2da3f5e91a1f4af08e00da687b5db4f7",
+    "availableCredits": 2,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Health 2",
+    "sequenceOfCourse": 4,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-GEOM",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "ec033b4694214b9f893e433307fe696d",
+    "availableCredits": 4,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Biology 4",
+    "sequenceOfCourse": 2,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-GOVT",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "9cefae2d12ce431d8e5a34805571a2fa",
+    "availableCredits": 4,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Geometry 4",
+    "sequenceOfCourse": 4,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-GOVT",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Spring Semester"
+    },
+    "sectionIdentifier": "ccc0d0ab89514290893ffc9d89dfc7d0",
+    "availableCredits": 2,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": " Programming 2",
+    "sequenceOfCourse": 1,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  },
+  {
+    "courseOfferingReference": {
+      "localCourseCode": "AP-PHYSICS",
+      "schoolId": 255901001,
+      "schoolYear": 2018,
+      "sessionName": "2017 - 2018 Fall Semester"
+    },
+    "sectionIdentifier": "1577a102e4ce4f269f9f55ee15f9145d",
+    "availableCredits": 1,
+    "educationalEnvironmentDescriptor": "uri://ed-fi.org/EducationalEnvironmentDescriptor#Classroom",
+    "sectionName": "Health 3",
+    "sequenceOfCourse": 5,
+    "characteristics": [],
+    "courseLevelCharacteristics": [],
+    "offeredGradeLevels": [],
+    "programs": []
+  }
+]
