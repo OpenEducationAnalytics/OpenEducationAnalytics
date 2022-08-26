@@ -1,14 +1,14 @@
 # Power BI Template
 
 The Microsoft Insights module Power BI template enables users to quickly explore data. There are two options for exploring this module Power BI template.
-- [Power BI with test data](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Education%20Insights%20Module%20Dashboard.pbix): Power BI templated with module test data imported locally. 
-- [Power BI with direct query](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Education%20Insights%20Module%20Dashboard.pbix): Power BI template connected to a Synapse workspace data source. See instructions below to setup.
+- [Power BI with test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Insights%20Module%20Dashboard%20TestData.pbix): Power BI templated with module test data imported locally. 
+- [Power BI with direct query](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Insights%20Module%20Dashboard%20DirectQuery.pbix): Power BI template connected to a Synapse workspace data source. See instructions below to setup.
 
-See [Power BI setup instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/readme.md#power-bi-setup-instructions) below for details.
+See [Power BI setup instructions](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/readme.md#power-bi-setup-instructions) below for details.
 
 ## Dashboard Explanation
 
-The Microsot Insights module Power BI template consists of a single dashboard which summarizes student app usage.
+The Microsot Insights module Power BI template consists of a single dashboard which summarizes student usage digital engagement in Teams.
 
 #### Digital Activity Dashboard:
  - Visualizes all user activities in Microsoft Teams and the types of digital engagement.
@@ -28,13 +28,13 @@ The dimension tables are all tables except the TechActivity table and the fact t
 
 ## Power BI Setup Instructions
 
-#### [Power BI with imported test data](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Education%20Insights%20Module%20Dashboard.pbix):
-- Download the PBIX file with test data here: [LINK](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Education%20Insights%20Module%20Dashboard.pbix)
+#### [Power BI with imported test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Insights%20Module%20Dashboard%20TestData.pbix):
+- Download the PBIX file with test data here: [LINK](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Insights%20Module%20Dashboard%20TestData.pbix)
 - Open the link locally on your computer and explore module test data. 
 
-#### [Power BI with direct query of data on your data lake](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Education%20Insights%20Module%20Dashboard.pbix):
-- Complete the [module setup instructions](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights#module-setup-instructions).
-- Download the PBIX file with direct query here: [LINK](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Education%20Insights%20Module%20Dashboard.pbix)
+#### [Power BI with direct query of data on your data lake](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Insights%20Module%20Dashboard%20DirectQuery.pbix):
+- Complete the [module setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights#module-setup-instructions).
+- Download the PBIX file with direct query here: [LINK](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/powerbi/Insights%20Module%20Dashboard%20DirectQuery.pbix)
 - The dashboard visuals may not load. You will need to switch your Synapse workspace serverless SQL endpoint by:
     - Select menu item File > Options and settings > Data source settings.
 <kbd> 
