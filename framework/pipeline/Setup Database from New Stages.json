@@ -52,7 +52,7 @@
                                 }
                             },
                             "linkedServiceName": {
-                                "referenceName": "LS_Serverless",
+                                "referenceName": "LS_SQL_Serverless_OEA",
                                 "type": "LinkedServiceReference",
                                 "parameters": {
                                     "DbName": {
@@ -90,7 +90,7 @@
                     }
                 },
                 "linkedServiceName": {
-                    "referenceName": "LS_Serverless",
+                    "referenceName": "LS_SQL_Serverless_OEA",
                     "type": "LinkedServiceReference",
                     "parameters": {
                         "DbName": {
@@ -184,7 +184,7 @@
                                 }
                             },
                             "linkedServiceName": {
-                                "referenceName": "LS_Serverless",
+                                "referenceName": "LS_SQL_Serverless_OEA",
                                 "type": "LinkedServiceReference",
                                 "parameters": {
                                     "DbName": {
@@ -229,7 +229,7 @@
             }
         },
         "folder": {
-            "name": "EdFi/Single District Per Instance/Common"
+            "name": "OEA_Framework/Ingest"
         },
         "annotations": []
     }
