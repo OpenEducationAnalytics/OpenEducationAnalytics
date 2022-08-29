@@ -29,11 +29,8 @@
                         "type": "Expression"
                     },
                     "authentication": {
-                        "resource": "https://dev.azuresynapse.net",
-                        "credential": {
-                            "referenceName": "Credential1",
-                            "type": "CredentialReference"
-                        }
+                        "type": "MSI",
+                        "resource": "https://dev.azuresynapse.net"
                     }
                 }
             },
@@ -165,7 +162,7 @@
             }
         },
         "folder": {
-            "name": "EdFi/Single District Per Instance/Common"
+            "name": "OEA_Framework/Ingest"
         },
         "annotations": []
     }
