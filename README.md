@@ -20,5 +20,5 @@ If you're new to OEA and want to learn about how to get started, take a look at:
 ---
 <br/><br/>
 
-*legal info: [Legal Notices](https://github.com/microsoft/OpenEduAnalytics/tree/main/license#legal-notices)*
+*legal info: [Legal Notices](https://github.com/microsoft/OpenEduAnalytics/tree/main/license#legal-notices)*<br/>
 *info on contributing: [Contributing](https://github.com/microsoft/OpenEduAnalytics/blob/main/license/CONTRIBUTING.md)*<br/>
