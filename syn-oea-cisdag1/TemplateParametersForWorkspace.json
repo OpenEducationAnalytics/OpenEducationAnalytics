@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "syn-oea-cisdag1"
+		},
+		"LS_Azure_SQL_DB_connectionString": {
+			"value": ""
+		},
+		"LS_SQL_Serverless_OEA_connectionString": {
+			"value": ""
+		},
+		"LS_datalake_accountKey": {
+			"value": ""
+		},
+		"syn-oea-cisdag1-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"LS_ADLS_OEA_properties_typeProperties_url": {
+			"value": "https://yourstorageaccount.dfs.core.windows.net"
+		},
+		"LS_HTTP_properties_typeProperties_url": {
+			"value": "@{linkedService().baseURL}"
+		},
+		"LS_KeyVault_OEA_properties_typeProperties_baseUrl": {
+			"value": "https://yourkeyvault.vault.azure.net/"
+		},
+		"LS_REST_properties_typeProperties_url": {
+			"value": "@{linkedService().BaseURL}"
+		},
+		"LS_REST_properties_typeProperties_userName": {
+			"value": "@{linkedService().ClientId}"
+		},
+		"LS_datalake_properties_typeProperties_url": {
+			"value": "https://stoeacisdedfi1.dfs.core.windows.net/"
+		},
+		"syn-oea-cisdag1-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://stoeacisdag1.dfs.core.windows.net"
+		}
+	}
+}
