@@ -12,7 +12,7 @@ The goal is to **empower the ecosystem** by:
 1) making it easy to setup a modern lakehouse in Azure
 1) facilitating the sharing of common assets (data pipelines, transformation scripts, dashboards, etc) 
 
-<br/><br/><br/><br/>
+<br/><br/>
 
 To find out more about the growing ecosystem around OEA, including info about partners and customers that are using OEA today, visit our homepage at: [openeducationanalytics.org](https://openeducationanalytics.org)
 
