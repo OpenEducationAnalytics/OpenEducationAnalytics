@@ -20,6 +20,5 @@ If you're new to OEA and want to learn about how to get started, take a look at:
 ---
 <br/><br/>
 
-*open source contributions, managed by [Microsoft Open Source](https://opensource.microsoft.com/)*<br/>
-*info on contributing: [Contributing](https://opensource.microsoft.com/)*<br/>
-*legal info: [Legal Notices](https://opensource.microsoft.com/)*
+*legal info: [Legal Notices](https://github.com/microsoft/OpenEduAnalytics/tree/main/license#legal-notices)*
+*info on contributing: [Contributing](https://github.com/microsoft/OpenEduAnalytics/blob/main/license/CONTRIBUTING.md)*<br/>
