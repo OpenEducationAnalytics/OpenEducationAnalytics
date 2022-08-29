@@ -12,9 +12,11 @@ The goal is to **empower the ecosystem** by:
 1) making it easy to setup a modern lakehouse in Azure
 1) facilitating the sharing of common assets (data pipelines, transformation scripts, dashboards, etc) 
 
-<br/><br/>
+<br/><br/><br/><br/>
 
-If you're new to OEA and want to learn about how to get started, take a look at: [getting_started](https://github.com/microsoft/OpenEduAnalytics/tree/main/getting_started)
+To find out more about the growing ecosystem around OEA, including info about partners and customers that are using OEA today, visit our homepage at: [openeducationanalytics.org](https://openeducationanalytics.org)
+
+If you're new to OEA and want to learn about the technical details of how to get started, take a look at: [getting_started](https://github.com/microsoft/OpenEduAnalytics/tree/main/getting_started)
 
 
 ---
