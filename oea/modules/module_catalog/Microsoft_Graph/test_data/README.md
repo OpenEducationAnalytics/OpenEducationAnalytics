@@ -7,13 +7,13 @@ Sample datasets provided in this module were created using the pipeline integrat
  - Microsoft 365 Applications User Detail: ``` beta/reports/getM365AppUserDetail(period='D7')/content?$format=application/json ```
  - Teams Activity User Detail: ``` beta/reports/getTeamsUserActivityUserDetail(period='D7')?$format=application/json ```
 
-Use these datasets by importing the [GraphAPI_main_pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Graph/pipeline), and triggering the pipeline - this will automatically extract this data, run the notebook for processing, and create the two corresponding databases for this module. For more information, read the tutorial documentation [here](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Graph/docs).
+Use these datasets by importing the [GraphAPI_main_pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Graph/pipeline), and triggering the pipeline - this will automatically extract this data, run the notebook for processing, and create the two corresponding databases for this module. For more information, read the tutorial documentation [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf).
 
 ## Data Transformation
 
 Initial, raw data (both test and production data) for this module are landed in JSON format in stage 1. Executing the main pipeline (which runs the module notebooks) explodes/flattens these tables into tabular delta format. 
 
-For more information about the data ingestion and processing, visit this module's [notebooks folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Graph/notebook) and the [pipelines folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Graph/pipeline).
+For more information about the data ingestion and processing, visit this module's [notebooks folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Graph/notebook) and the [pipelines folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Graph/pipeline).
 
 ## Data Dictionary 
 
