@@ -11,7 +11,7 @@ The main objective of this module is to provide analytics over education data sp
     1) Clone and setup the latest version of OEA. You need to publish all the assets from v0.7 in your synapse workspace.
     2) You need to create a Runner_Config.json file which contains high level metadata about the various Ed-Fi instances, that needs to be processed. This file needs
     to be saved at "Stage1/Landing/Transactional/{SourceSystemName}". Here's a sample file - [Runner_Config.json](docs/Runner_Config.json)
-    3) Generate and publish the required assets for the Ed-Fi Module. Please refer [this](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Ed-Fi#generating-synapse-resources) for more information on this.
+    3) Generate and publish the required assets for the Ed-Fi Module. Please refer "Generating Synapse Resources" section for more information on this.
     4) Import the resources from the Ed-Fi module in OEA repository into the Synapse workspace and publish them. Please refer this for more information on the Ed-Fi Module assets.
     5) Run the "Master Pipeline" by providing the input parameters to process the Ed-Fi Data to lake house.
 
