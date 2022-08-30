@@ -60,7 +60,7 @@ Out-of-the box assets for this OEA module include:
 
 Dashboard Data Model  | Dashboard Explanation | Digital Engagement in Teams Summary
 :-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/Insights%20Module%20Star%20Schema.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/Insights%20Module%20Explanation%20Page.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/Insights%20Module%20Sample%20Dashboard.png)   
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/Insights%20Module%20Star%20Schema.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/Insights%20Module%20Explanation%20Page.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/Insights%20Module%20Sample%20Dashboard.png)   
 ## Additional Information
 
 | Resource | Description |
