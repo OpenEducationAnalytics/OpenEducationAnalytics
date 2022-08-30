@@ -23,8 +23,8 @@ Microsoft Insights data can be used for a variety of analytics purposes, includi
 
 ## Module Setup Instructions
 
-1. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/getting_started).
-2. Setup the [most recent version of OEA](https://github.com/microsoft/OpenEduAnalytics/tree/main/getting_started). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/framework/notebook/OEA_py.ipynb).
+1. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/getting_started#what-you-need).
+2. Setup the [most recent version of OEA](https://github.com/microsoft/OpenEduAnalytics/tree/main/getting_started#setup). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/framework/notebook/OEA_py.ipynb).
 3. Setup [School Data Sync](https://sds.microsoft.com/) to begin receiving usage data from M365. You can find videos about School Data Sync and Education Insights on the [Microsoft School Data Sync Youtube channel](https://www.youtube.com/channel/UCA8ZOC7eTfzLlkcFW3imkHg/featured).
 4. Within SDS, [enable the education data lake export](https://docs.microsoft.com/en-us/schooldatasync/enable-education-data-lake-export) to land data in Stage 1 of your data lake.
 5. Import the [Insights module class notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_py.ipynb) into your Synapse workspace. This notebook contains data schema information and data writing functions needed to support module pipelines. 
