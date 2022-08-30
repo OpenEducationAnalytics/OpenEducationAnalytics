@@ -10,14 +10,18 @@ The main pipeline has 3 major components:
 
 # OEA Dependencies
 1) Pipelines:
-   -> Copy data from REST API to ADLS
-   -> Trigger Pipeline and wait on Completion
-   -> Setup Database from New Stages
+   Copy data from REST API to ADLS
+   - Trigger Pipeline and wait on Completion
+   - Setup Database from New Stages
 2) Datasets:
-   -> DS_REST
-   -> DS_JSON
-   -> DS_JSON_file
+   - DS_REST
+   - DS_JSON
+   - DS_JSON_file
 3) Linked Services:
-   -> LS_HTTP
-   -> LS_Keyvault_OEA
-   -> LS_SQL_Serverless_OEA
+   - LS_HTTP
+   - LS_Keyvault_OEA
+   - LS_SQL_Serverless_OEA
+
+# Note
+1) The Azure synapse workspace you are working in, should have the managed identity Storage Blob Data Contributor permission to the Storage account we are trying to connect. You must add this policy in the Access Control section in the respective Storage account. Failing to do so might lead to a 403 (Forbidden) error.
+2)
