@@ -1,6 +1,6 @@
 # Documentation
 
-See the [main Module readme](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Digital_Learning_Apps_and_Platforms/iReady) for complete documentation of this module and technical assets. Some useful links are listed below for easy access.
+See the [main Module readme](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/iReady) for complete documentation of this module and technical assets. Some useful links are listed below for easy access.
 
 | Resource | Description |
 | --- | --- |
