@@ -7,7 +7,7 @@ This module includes artificially generated data which matches the format of the
 
 ## Data dictionary
 
-### [Activity Table](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/test_data/activity/2021-06-02/ApplicationUsage.csv)
+### [Activity Table](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/test_data/activity/2021-06-02/ApplicationUsage.csv)
 
 See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-activity)
 
@@ -48,9 +48,9 @@ See full details on the [Microsoft SDS documentation](https://docs.microsoft.com
 
 | Activity Table Test Data  | 
 |:-------------------------:|
-| ![](https://github.com/cviddenKwantum/OpenEduAnalytics/blob/main/modules/Microsoft_Data/Microsoft_Education_Insights/docs/images/testdata_activity.png)  |
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/testdata_activity.png)  |
 
-### [Roster Tables](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/test_data/roster/2021-09-05T06-16-22)
+### [Roster Tables](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/test_data/roster/2021-09-05T06-16-22)
 
 See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-rostering)
 
@@ -81,7 +81,7 @@ See full details on the [Microsoft SDS documentation](https://docs.microsoft.com
 | Affiliations | Enrollment | The relationship between a Person and a Section. Time (what is current right now) is also important and is determined by the Section Session relationship. The presence of SectionSession table indicates that enrollments span possibly non-contiguous Sessions. |
 
 
-### [Azure Active Directory Tables](https://github.com/cviddenKwantum/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Microsoft_Education_Insights/test_data/roster/2021-09-05T06-16-22)
+### [Azure Active Directory Tables](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/test_data/roster/2021-09-05T06-16-22)
 
 See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-azure-ad)
 
