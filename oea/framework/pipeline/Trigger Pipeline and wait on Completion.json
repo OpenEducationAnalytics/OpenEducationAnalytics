@@ -75,11 +75,8 @@
                                 },
                                 "method": "GET",
                                 "authentication": {
-                                    "resource": "https://dev.azuresynapse.net",
-                                    "credential": {
-                                        "referenceName": "Credential1",
-                                        "type": "CredentialReference"
-                                    }
+                                    "type": "MSI",
+                                    "resource": "https://dev.azuresynapse.net"
                                 }
                             }
                         },

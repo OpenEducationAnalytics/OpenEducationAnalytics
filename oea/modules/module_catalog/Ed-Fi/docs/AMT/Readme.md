@@ -1,0 +1,5 @@
+# AMT
+
+[AMT](https://techdocs.ed-fi.org/display/EDFITOOLS/AMT+Overview) is a set of SQL Views that can help data analysts to understand and access data in the Ed-Fi ODS / API in a better way. While the traditional AMT works on the ODS SQL Server Database, we have modified it to make it work with the SQL Serverless DB created on the data residing in Stage2 in DELTA format.
+
+A point worth noting here is that the AMT views provided here works when the transformation logic for Stage2 (metadata file) is same as the sample metadata file provided in the [Ed-Fi Schema section](../../../../../schemas/schema_catalog/Ed-Fi/docs/metadata/part-00000-394fc185-b1c4-4344-97bc-8b4d73e03771-c000.csv). Any change in transformation logic in the metadata file used for creating dataflows, will change the schema for the data in Stage2 which might impact the SQL scripts. Make sure to handle such customizations.

@@ -16,7 +16,7 @@
                 "userProperties": [],
                 "typeProperties": {
                     "items": {
-                        "value": "@take(activity('Check Descriptor Condition').output.Value, 1)",
+                        "value": "@activity('Check Descriptor Condition').output.Value",
                         "type": "Expression"
                     },
                     "isSequential": true,

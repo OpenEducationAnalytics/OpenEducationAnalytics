@@ -17,7 +17,7 @@ The main objective of this module is to provide analytics over education data sp
 
 
 # Generating Synapse Resources
-Ingesting data from Stage1 to Stage2 requires a bunch of assets in a template. Each entity endpoint (excluding descriptors) in the Ed-Fi has its own Dataflow to handle customized Transformation logic which includes flattening JSON objects, unrolling JSON arrays and renaming columns. The other reason to have dedicated dataflows is to have the ability to provide Schema-on-Read (Specifying schema for data in Stage1) for all the entities. To create these individual dataflows and trigger pipelines, we developed an utility to bulk create all of these resources for you.
+Ingesting data from Stage1 to Stage2 requires a bunch of assets in a template. Each entity endpoint (excluding descriptors) in the Ed-Fi has its own Dataflow to handle customized Transformation logic which includes flattening JSON objects, unrolling JSON arrays and renaming columns. Another reason to have dedicated dataflows is to have the ability to provide Schema-on-Read (Specifying schema for data in Stage1) for all the entities. To create these individual dataflows and trigger pipelines, we developed an utility to bulk create all of these resources for you.
 
 Steps to create Synapse resources:
 
@@ -30,4 +30,5 @@ Steps to create Synapse resources:
 
 1) For all the Ed-Fi instances, you need to create applications in the Admin App with the required permissions (Mostly, read access for all entities). The pipeline cna run into authorization issues if you do not have the required permissions.
 2) The client secrets for all the Ed-Fi instances should be stored in Azure key vault as secrets and the name of these secrets have to be provided in the Runner_Config.json file.
+3) Always remember to publish any assets before trying to use them. Debug mode is only used while developing.
 
