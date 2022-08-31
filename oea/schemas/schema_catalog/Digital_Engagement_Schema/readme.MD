@@ -21,7 +21,7 @@ The OEA Digital Engagement Schema consists of a single table which any digital a
 | event_eventTime | Date/timestamp of the digital activity. |
 | entity_type | Type of entity which activity signal belongs to. (nullable) |
 | softwareApplication_version | The appication version from the data source. (nullable) |
-| generated_aggregateMeasure_metric_timeOnTask | Time on task in seconds. (nullable) |
+| generated_aggregateMeasure_metric_timeOnTaskSec | Time on task in seconds. (nullable) |
 | generated_aggregateMeasure_metric_numAccess | Number of accesses.  (nullable) |
 | generated_aggregateMeasure_metric_used | Used the application true or false.  (nullable) |
 | generated_aggregateMeasure_metric_activityReportPeriod | Activity data collected is reported over this number of days.  (nullable) |
