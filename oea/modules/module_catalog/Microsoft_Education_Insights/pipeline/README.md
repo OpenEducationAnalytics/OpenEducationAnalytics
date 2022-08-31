@@ -30,7 +30,7 @@ Two sets of instructions are included:
 <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_import_template.png" width="600">
 4. Assign the Synapse linked services needed to support the pipeline template.
 <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_linked_services.png" width="600">
-5. Change the clever_main_pipeline storageAccount parameter to be your storage account name.
+5. Change the insights_main_pipeline storageAccount parameter to be your storage account name.
 <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_storage_acct.png" width="600">
 6. Select a spark pool for the ingest_into_stage2p_and_2np notebook.
 <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_spark_pool.png" width="600">
