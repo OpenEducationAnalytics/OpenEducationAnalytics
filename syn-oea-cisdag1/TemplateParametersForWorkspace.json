@@ -24,7 +24,7 @@
 			"value": "@{linkedService().baseURL}"
 		},
 		"LS_KeyVault_OEA_properties_typeProperties_baseUrl": {
-			"value": "https://yourkeyvault.vault.azure.net/"
+			"value": "https://kv-oea-cisdag1.vault.azure.net/"
 		},
 		"LS_REST_properties_typeProperties_url": {
 			"value": "@{linkedService().BaseURL}"

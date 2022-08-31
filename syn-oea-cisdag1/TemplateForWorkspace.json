@@ -33,7 +33,7 @@
 		},
 		"LS_KeyVault_OEA_properties_typeProperties_baseUrl": {
 			"type": "string",
-			"defaultValue": "https://yourkeyvault.vault.azure.net/"
+			"defaultValue": "https://kv-oea-cisdag1.vault.azure.net/"
 		},
 		"LS_REST_properties_typeProperties_url": {
 			"type": "string",
