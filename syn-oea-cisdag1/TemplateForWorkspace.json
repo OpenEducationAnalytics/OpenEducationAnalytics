@@ -1204,7 +1204,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "3dba2c96-8d8e-4dc6-b9ab-971b7f1a4916"
+							}
 						}
 					},
 					{
@@ -1339,7 +1342,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "8a7af659-c060-4a7f-9960-e66f109fb0bd"
+							}
 						}
 					},
 					{
@@ -1474,7 +1480,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "0cac4d1d-7e08-4d38-ab16-2e4cf0607031"
+							}
 						}
 					},
 					{
@@ -1609,7 +1618,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "8b196558-97da-4922-a740-7db4b60fd105"
+							}
 						}
 					},
 					{
@@ -1744,7 +1756,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "3f9b7ef0-a7b3-4910-bbd1-3990f4be3949"
+							}
 						}
 					},
 					{
@@ -1879,7 +1894,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "7d0744ae-58ff-48f2-8eac-ba8a0123c13b"
+							}
 						}
 					},
 					{
@@ -2014,7 +2032,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "3654dd59-af27-4863-8c7b-8d17aa7656dc"
+							}
 						}
 					},
 					{
@@ -2149,7 +2170,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "56d065e2-45b5-411a-9aa7-ac171ddac1fb"
+							}
 						}
 					},
 					{
@@ -2284,7 +2308,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "af062af2-9776-45b4-995f-47205b676dd0"
+							}
 						}
 					},
 					{
@@ -2419,7 +2446,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "16394f62-dbc9-4329-a611-ea133e1ef3b1"
+							}
 						}
 					},
 					{
@@ -2554,7 +2584,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "9d57a1fe-d149-473c-acfa-fce037e47c3e"
+							}
 						}
 					},
 					{
@@ -2689,7 +2722,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "456361e3-050c-49e4-83ad-7209607bb1f4"
+							}
 						}
 					},
 					{
@@ -2824,7 +2860,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "2b74e959-95c7-429b-863b-e8c1f66a706e"
+							}
 						}
 					},
 					{
@@ -2959,7 +2998,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "97ae138e-4b16-4ea7-84d8-72bc9ab5faa2"
+							}
 						}
 					},
 					{
@@ -3094,7 +3136,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "d1374c68-75da-4b92-8404-e05e6adf3b7d"
+							}
 						}
 					},
 					{
@@ -3229,7 +3274,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "f1de04e0-7b05-48bf-9bf3-a57e5cb917a8"
+							}
 						}
 					},
 					{
@@ -3364,7 +3412,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "bd2aeb45-3d26-4e56-bc32-3810a6881ef7"
+							}
 						}
 					},
 					{
@@ -3499,7 +3550,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "883f3bbb-0283-4e1a-a382-ddfa5350c791"
+							}
 						}
 					},
 					{
@@ -3634,7 +3688,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "b43012d4-556c-4c59-a18b-bb622776d1c9"
+							}
 						}
 					},
 					{
@@ -3769,7 +3826,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "3b9f1e26-cc42-4fa1-a487-286c6f1db260"
+							}
 						}
 					},
 					{
@@ -3904,7 +3964,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "192faf26-0477-4316-a452-f11810429494"
+							}
 						}
 					},
 					{
@@ -4039,7 +4102,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "4b8b09ee-f1f1-4681-95ac-0349f908a659"
+							}
 						}
 					},
 					{
@@ -4174,7 +4240,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "aa1b913c-7cec-450e-b0a7-0fb805947961"
+							}
 						}
 					},
 					{
@@ -4309,7 +4378,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "780a2025-cfe5-47fc-9ebb-f4558081fa61"
+							}
 						}
 					},
 					{
@@ -4444,7 +4516,10 @@
 								"coreCount": 8,
 								"computeType": "General"
 							},
-							"traceLevel": "Fine"
+							"traceLevel": "Fine",
+							"continuationSettings": {
+								"customizedCheckpointKey": "ffbb6a6b-0561-4690-8558-a96c6078d0c6"
+							}
 						}
 					},
 					{
