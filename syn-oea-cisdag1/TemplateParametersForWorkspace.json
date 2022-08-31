@@ -18,7 +18,7 @@
 			"value": ""
 		},
 		"LS_ADLS_OEA_properties_typeProperties_url": {
-			"value": "https://yourstorageaccount.dfs.core.windows.net"
+			"value": "https://stoeacisdag2.dfs.core.windows.net"
 		},
 		"LS_HTTP_properties_typeProperties_url": {
 			"value": "@{linkedService().baseURL}"
