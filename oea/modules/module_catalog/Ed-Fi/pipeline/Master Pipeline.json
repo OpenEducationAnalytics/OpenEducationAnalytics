@@ -78,7 +78,7 @@
                                         "type": "Expression"
                                     },
                                     "BaseURL": {
-                                        "value": "@pipeline().parameters.BaseURL",
+                                        "value": "@item().BaseURL",
                                         "type": "Expression"
                                     },
                                     "Directory": {
@@ -147,7 +147,7 @@
                                 "waitOnCompletion": true,
                                 "parameters": {
                                     "BaseURL": {
-                                        "value": "@pipeline().parameters.BaseURL",
+                                        "value": "@item().BaseURL",
                                         "type": "Expression"
                                     },
                                     "ApiVersion": {
@@ -170,8 +170,14 @@
                                         "value": "@item().SchoolYear",
                                         "type": "Expression"
                                     },
-                                    "IncludeDescriptors": false,
-                                    "WorkspaceName": "syn-oea-cisd-edfi1"
+                                    "IncludeDescriptors": {
+                                        "value": "@item().includeDescriptors",
+                                        "type": "Expression"
+                                    },
+                                    "WorkspaceName": {
+                                        "value": "@pipeline().parameters.WorkspaceName",
+                                        "type": "Expression"
+                                    }
                                 }
                             }
                         }
@@ -214,7 +220,7 @@
                                         "type": "Expression"
                                     },
                                     "BaseURL": {
-                                        "value": "@pipeline().parameters.BaseURL",
+                                        "value": "@item().BaseURL",
                                         "type": "Expression"
                                     },
                                     "DbName": {
@@ -253,6 +259,10 @@
             "StorageAccount": {
                 "type": "String",
                 "defaultValue": "stoeacisdedfi1"
+            },
+            "WorkspaceName": {
+                "type": "string",
+                "defaultValue": "syn-oea-cisdag1"
             }
         },
         "variables": {

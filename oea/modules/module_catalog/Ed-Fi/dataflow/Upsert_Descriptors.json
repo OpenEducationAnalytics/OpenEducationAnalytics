@@ -9,7 +9,7 @@
 			"sources": [
 				{
 					"linkedService": {
-						"referenceName": "LS_datalake",
+						"referenceName": "LS_ADLS_OEA",
 						"type": "LinkedServiceReference"
 					},
 					"name": "SourceJSON"
@@ -18,7 +18,7 @@
 			"sinks": [
 				{
 					"linkedService": {
-						"referenceName": "LS_datalake",
+						"referenceName": "LS_ADLS_OEA",
 						"type": "LinkedServiceReference"
 					},
 					"name": "SinkDELTA"
