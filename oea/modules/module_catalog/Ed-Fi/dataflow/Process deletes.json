@@ -9,14 +9,14 @@
 			"sources": [
 				{
 					"linkedService": {
-						"referenceName": "LS_datalake",
+						"referenceName": "LS_ADLS_OEA",
 						"type": "LinkedServiceReference"
 					},
 					"name": "s2deltaSource"
 				},
 				{
 					"linkedService": {
-						"referenceName": "LS_datalake",
+						"referenceName": "LS_ADLS_OEA",
 						"type": "LinkedServiceReference"
 					},
 					"name": "s1deletes"
@@ -25,7 +25,7 @@
 			"sinks": [
 				{
 					"linkedService": {
-						"referenceName": "LS_datalake",
+						"referenceName": "LS_ADLS_OEA",
 						"type": "LinkedServiceReference"
 					},
 					"name": "sink2"
