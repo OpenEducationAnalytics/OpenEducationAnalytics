@@ -25,10 +25,11 @@ logfile="oea_setup_${datetime}.log"
 exec 3>&1 1>>${logfile} 2>&1
 
 # The assumption here is that this script is in the base path of the OpenEduAnalytics project.
-oea_path=$(dirname $(realpath $0))
+root_path=$(dirname $(dirname $(realpath $0)))
+framework_path="${root_path}/oea/framework"
 
 org_id=$1
-source $oea_path/infrastructure/bash/set_names.sh $org_id
+source $root_path/getting_started/infrastructure/bash/set_names.sh $org_id
 
 location=$2
 location=${location:-eastus}
@@ -63,14 +64,14 @@ echo "--> Setting up OEA (logging detailed setup messages to $logfile)" 1>&3
 # setup the base architecture
 echo "--> Setting up the OEA base architecture."
 echo "--> Setting up the OEA base architecture." 1>&3
-$oea_path/infrastructure/bash/setup_base_architecture.sh $org_id $location $include_groups $subscription_id $oea_path $logfile
+$root_path/getting_started/infrastructure/bash/setup_base_architecture.sh $org_id $location $include_groups $subscription_id $framework_path $logfile
 # exit out if setup_base_architecture failed
 if [[ $? != 0 ]]; then
   exit 1
 fi
 
 # install the OEA framework assets
-$oea_path/framework/setup.sh $OEA_SYNAPSE $OEA_STORAGE_ACCOUNT $OEA_KEYVAULT
+$framework_path/setup.sh $OEA_SYNAPSE $OEA_STORAGE_ACCOUNT $OEA_KEYVAULT
 
 workspace_url=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP | jq -r '.connectivityEndpoints | .web')
 echo "--> OEA setup is complete. Click on this url to work with your new Synapse workspace (via Synapse Studio): $workspace_url"
