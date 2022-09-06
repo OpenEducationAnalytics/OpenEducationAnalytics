@@ -32,7 +32,7 @@ org_id=$1
 source $root_path/getting_started/infrastructure/bash/set_names.sh $org_id
 
 location=$2
-location=${location:-westus}
+location=${location:-eastus}
 include_groups=$3
 include_groups=${include_groups,,}
 include_groups=${include_groups:-false}
