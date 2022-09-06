@@ -16,12 +16,10 @@ The goal is to **empower the ecosystem** by:
 
 To find out more about the growing ecosystem around OEA, including info about partners and customers that are using OEA today, visit our homepage at: [openeducationanalytics.org](https://openeducationanalytics.org)
 
-If you're new to OEA and want to learn about the technical details of how to get started, take a look at: [getting_started](https://github.com/microsoft/OpenEduAnalytics/tree/main/getting_started)
-
 
 ---
 <br/><br/>
 *Note that OEA is built on mature Azure platform services which provide their own SLA's, but OEA itself is an open-source set of resources that come with no warranties nor SLA's. Each organization utilizing these assets is responsible for adhering to their own data governance practices and ensuring security and privacy of their data. This repo should be considered as a starting point and accelerator for the development of your modern education data estate.*
 
-*legal info: [Legal Notices](https://github.com/microsoft/OpenEduAnalytics/tree/main/license#legal-notices)*<br/>
-*info on contributing: [Contributing](https://github.com/microsoft/OpenEduAnalytics/blob/main/license/CONTRIBUTING.md)*<br/>
+*legal info: [Legal Notices](https://github.com/microsoft/OpenEduAnalytics/tree/main/docs/license#legal-notices)*<br/>
+*info on contributing: [Contributing](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md)*<br/>
