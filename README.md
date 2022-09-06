@@ -1,7 +1,7 @@
 <img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
 # Open Education Analytics                                                                                                                     
-Open Education Analytics (OEA) is a fully [open-sourced](https://github.com/microsoft/OpenEduAnalytics/tree/main/license) data integration and analytics framework for the education sector, as well as catalogs of assets contributed by customers and partners around the world - for K-12 as well as Higher Education.
+Open Education Analytics (OEA) is a fully [open-sourced](https://github.com/microsoft/OpenEduAnalytics/tree/main/docs/license) data integration and analytics framework for the education sector, as well as catalogs of assets contributed by customers and partners around the world - for K-12 as well as Higher Education.
 
 <img align="right" height="300" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_top_level.png">
 
