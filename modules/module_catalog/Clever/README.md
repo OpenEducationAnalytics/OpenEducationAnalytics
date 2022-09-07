@@ -1,3 +1,5 @@
+<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+
 # Clever Module
 
 [Clever](https://clever.com/) offers single sign-on access to digital learning applications managed by an education system such as a district or higher education institution. This Clever OEA module, developed by the [Fresno Unified School District](https://www.fresnounified.org/) in Fresno, California USA, provides education app usage data for all the applications used by an education system which sign on or authenticate through Clever. Data is retrieved through the [Participation Reports](https://support.clever.com/hc/s/articles/360049642311) which can be either manually downloaded or [automated via SFTP delivery](https://support.clever.com/hc/s/articles/360049642311?language=en_US#ExportingReports). Clever Participation Reports data can enable education leaders to see the impact of app usage on student learning if combined with learning outcome data (e.g., assessments, completions, graduation). 
