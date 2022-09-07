@@ -1,3 +1,5 @@
+<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+
 # i-Ready Module
 
 [i-Ready](https://www.curriculumassociates.com) offers assessments and personalized instruction for K-12 students. This app tracks learning progress in reading and mathematics with breakdowns of lesson material, and assessment scoring. This i-Ready OEA module provides ingestion and processing of two primary data sources:
