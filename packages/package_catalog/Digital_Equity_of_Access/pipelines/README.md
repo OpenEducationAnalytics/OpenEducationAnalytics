@@ -4,7 +4,7 @@ The OEA Chronic Absenteeism Package implements all data processing, machine lear
 
 ## Main Pipeline
 
-The [main pipeline](https://github.com/cviddenKwantum/oea-digital-learning-insights/blob/main/Digital_Equity_of_Access/pipelines/MainPipeline_support_VSTS.zip) consists of 3 sub-pipelines outlined in the below image. 
+The [main pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Digital_Equity_of_Access/pipelines/MainPipeline_support_VSTS.zip) consists of 3 sub-pipelines outlined in the below image. 
 
 ![Main Synapse Pipeline](https://github.com/cviddenKwantum/oea-digital-learning-insights/blob/main/Digital_Equity_of_Access/docs/images/p_main.png "Main Pipeline")
 
