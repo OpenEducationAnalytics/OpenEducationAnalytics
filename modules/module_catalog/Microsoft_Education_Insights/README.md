@@ -1,20 +1,22 @@
+<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+
 # Microsoft Education Insights Module
 
-[Microsoft Education Insights](https://docs.microsoft.com/en-us/microsoftteams/class-insights) is a free service in Microsoft Teams for Education that provides data on learners digital activity in O365 applications like Teams, OneNote, OneDrive and Sharepoint. It includes data on education-specific apps like Assignments, Reading Progress, and Reflect. 
+[Microsoft Education Insights](https://docs.microsoft.com/en-us/microsoftteams/class-insights) is an analytics service in Microsoft Teams for Education that provides data on learners digital activity in O365 applications like Teams, OneNote, OneDrive and Sharepoint. It includes data on education-specific apps like Assignments, Reading Progress, and Reflect. 
 
-Using this module, data from Education Insights can be exported into your organization's OEA data lakes to combine it with other datasets for a variety of use cases. 
+Using this module, data from Education Insights can be exported into your organization's OEA data lakes to combine it with other datasets for a variety of use cases, including Digital Learning Analytics. 
 
-Education Insights, now generally available, requires the implementation of [Microsoft School Data Sync](https://sds.microsoft.com/) on O365, which provides school and class roster data, to enable its reports in Teams.
+Education Insights requires the implementation of [Microsoft School Data Sync](https://sds.microsoft.com/) on O365, which provides school and class roster data, to enable its reports in Teams.
 
 <p align="center">
-  <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights%20visual.png" alt="Microsoft Insights Visual"/>
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_data_ingestion_map.png" alt="Microsoft Insights Visual"/>
 </p>
 
  (Microsoft documentation on Education Insights: [Education Insights in Microsoft Teams - Microsoft Education Center](https://docs.microsoft.com/en-us/schooldatasync/enabling-insights-premium-export)) 
  
 ## Problem Statement and Module Impact
 
-As education systems shift to digital applications and platforms to support learning, it is important for education systems and educators to be able to see patterns of student digital activity across those applications and platforms. Most students use many different applications and platforms. This module provides data from education-specific applications in O365. This data can be combined with other digital activity data from other applications and platforms used in learning to develop "digital learning insights" across the ecosystem of applications and platforms a student uses.
+As education systems shift to digital applications and platforms to support learning, it is important for them to be able to see patterns of student digital activity across those applications and platforms. Most students use many different applications and platforms. This module provides data from education-specific applications in O365. This data can be combined with other digital activity data from other applications and platforms used in learning to develop "digital learning insights" across the ecosystem of applications and platforms a student uses.
 
 Microsoft Insights data can be used for a variety of analytics purposes, including:
  - School and district dashboards for education leaders to identify variability in student activity in learning applications and platforms. 
@@ -23,14 +25,18 @@ Microsoft Insights data can be used for a variety of analytics purposes, includi
 
 ## Module Setup Instructions
 
-1. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework).
-2. Setup the [most recent version of OEA](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
-3. Setup [School Data Sync](https://sds.microsoft.com/) to begin receiving usage data from M365. You can find videos about School Data Sync and Education Insights on the [Microsoft School Data Sync Youtube channel](https://www.youtube.com/channel/UCA8ZOC7eTfzLlkcFW3imkHg/featured).
-4. Within SDS, [enable the education data lake export](https://docs.microsoft.com/en-us/schooldatasync/enable-education-data-lake-export) to land data in Stage 1 of your data lake.
-5. Import the [Insights module class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_py.ipynb) into your Synapse workspace. This notebook contains data schema information and data writing functions needed to support module pipelines. 
-6. Import the [Insights module pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/pipeline) into your Synapse workspace and execute the pipeline. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/pipeline) for detailed instructions.
-7. Verify that the module pipeline landed data into stage 1 and 2 and SQL databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline) for detailed instructions.
-8. Download the [module Power BI template file](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/powerbi). Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/powerbi) page for instructions for switching the Power BI template data source to import from your Synapse workspace data source.
+<p align="center">
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_module_setup_visual.png" alt="Microsoft Insights Setup Instructions"/>
+</p>
+
+<ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup the [most recent version of OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
+
+1. Setup [School Data Sync](https://sds.microsoft.com/) to begin receiving usage data from M365. You can find videos about School Data Sync and Education Insights on the [Microsoft School Data Sync Youtube channel](https://www.youtube.com/channel/UCA8ZOC7eTfzLlkcFW3imkHg/featured).
+2. Within School Data Sync, [enable the education data lake export](https://docs.microsoft.com/en-us/schooldatasync/enable-education-data-lake-export) to land data in Stage 1 of your data lake.
+3. Import the [Insights module class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_py.ipynb) into your Synapse workspace. This notebook contains data schema information and data writing functions needed to support module pipelines. 
+4. Import the [Insights module pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/pipeline) into your Synapse workspace and execute the pipeline. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/oea/modules/module_catalog/Microsoft_Education_Insights/pipeline) for detailed instructions.
+5. Verify that the module pipeline landed data into stage 1 and 2 and SQL databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline) for detailed instructions.
+6. Download the [module Power BI template file](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/powerbi). Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/powerbi) page for instructions for switching the Power BI template data source to import from your Synapse workspace data source.
 
 #### Note: 
 
