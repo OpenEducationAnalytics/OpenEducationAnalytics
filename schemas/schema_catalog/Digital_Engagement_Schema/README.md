@@ -1,3 +1,5 @@
+<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+
 # Digital Engagement Schema
 
 Digital Engagement data includes any source that collects application usage data. While data sources and formats can widely vary, Digital Activity data is typically in log format including a timestamp, user id, and activity information. The OEA Digital Activity Schema standard adopts the [Caliper Analytics Specification](https://www.imsglobal.org/spec/caliper/v1p2) in a simplified way suitable for typical education use cases.
