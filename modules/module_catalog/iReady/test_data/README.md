@@ -14,8 +14,8 @@ This module includes artifically generated data which matches the format of the 
 
 ## Data dictionary
 
-### [Comprehensive Student Lesson Activity with Standards ELA Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/test_data/test_data/comprehensive_student_lesson_activity_with_standards_ela/ela.csv)
-### [Comprehensive Student Lesson Activity with Standards Math Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/test_data/test_data/comprehensive_student_lesson_activity_with_standards_math/math.csv)
+### [Comprehensive Student Lesson Activity with Standards ELA Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/test_data/test_data/comprehensive_student_lesson_activity_with_standards_ela/ela.csv)
+### [Comprehensive Student Lesson Activity with Standards Math Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/test_data/test_data/comprehensive_student_lesson_activity_with_standards_math/math.csv)
 
 <details><summary>Expand Data Dictionary for: Comprehensive Student Lesson Activity with Standards</summary>
 <p>
@@ -47,7 +47,7 @@ This module includes artifically generated data which matches the format of the 
 
 | Comprehensive Student Lesson Activity with Standards Test Data  | 
 |:-------------------------:|
-| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/docs/images/test_data_screenshots/iReady_test_data_snapshot_comprehensive.png)  |
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/docs/images/test_data_screenshots/iReady_test_data_snapshot_comprehensive.png)  |
 
 Notes: 
 
@@ -56,8 +56,8 @@ Notes:
 </p>
 </details>
 
-### [Personalized Instruction by Lesson ELA Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/test_data/test_data/personalized_instruction_by_lesson_ela/ela.csv)
-### [Personalized Instruction by Lesson Math Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/test_data/test_data/personalized_instruction_by_lesson_math/math.csv)
+### [Personalized Instruction by Lesson ELA Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/test_data/test_data/personalized_instruction_by_lesson_ela/ela.csv)
+### [Personalized Instruction by Lesson Math Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/test_data/test_data/personalized_instruction_by_lesson_math/math.csv)
 
 <details><summary>Expand Data Dictionary for: Personalized Instruction by Lesson</summary>
 <p>
@@ -86,7 +86,7 @@ Notes:
 
 | Personalized Instruction by Lesson Test Data  | 
 |:-------------------------:|
-| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/docs/images/test_data_screenshots/iReady_test_data_snapshot_personalized.png)  |
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/docs/images/test_data_screenshots/iReady_test_data_snapshot_personalized.png)  |
 
 Notes: 
 
@@ -95,8 +95,8 @@ Notes:
 </p>
 </details>
 
-### [Diagnostic and Instruction ELA YTD Window Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/test_data/test_data/diagnostic_and_instruction_ela_ytd_window/ela.csv)
-### [Diagnostic and Instruction Math YTD Window Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/test_data/test_data/diagnostic_and_instruction_math_ytd_window/math.csv)
+### [Diagnostic and Instruction ELA YTD Window Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/test_data/test_data/diagnostic_and_instruction_ela_ytd_window/ela.csv)
+### [Diagnostic and Instruction Math YTD Window Table](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/test_data/test_data/diagnostic_and_instruction_math_ytd_window)
 
 <details><summary>Expand Data Dictionary for: Diagnostic and Instruction YTD Window</summary>
 <p>
@@ -152,7 +152,7 @@ Notes:
 
 | Diagnostic and Instruction YTD Window Test Data  | 
 |:-------------------------:|
-| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/docs/images/test_data_screenshots/iReady_test_data_snapshot_diagnostic_and_instruction.png)  |
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/docs/images/test_data_screenshots/iReady_test_data_snapshot_diagnostic_and_instruction.png)  |
 
 Notes: 
 
@@ -168,7 +168,7 @@ Notes:
 </p>
 </details>
 
-### [Diagnostic Results ELA Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/test_data/test_data/diagnostic_results_ela/ela.csv)
+### [Diagnostic Results ELA Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/test_data/test_data/diagnostic_results_ela/ela.csv)
 
 <details><summary>Expand Data Dictionary for: Diagnostic Results ELA</summary>
 <p>
@@ -205,7 +205,7 @@ Notes:
 
 | Diagnostic Results ELA Test Data  | 
 |:-------------------------:|
-| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/docs/images/test_data_screenshots/iReady_test_data_snapshot_diagnostic_results.png)  |
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/docs/images/test_data_screenshots/iReady_test_data_snapshot_diagnostic_results.png)  |
 
 Notes:
 
@@ -215,7 +215,7 @@ Notes:
 </p>
 </details>
 
-### [Diagnostic Results Math Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/test_data/test_data/diagnostic_results_math/math.csv)
+### [Diagnostic Results Math Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/test_data/test_data/diagnostic_results_math/math.csv)
 
 <details><summary>Expand Data Dictionary for: Diagnostic Results Math</summary>
 <p>
@@ -251,7 +251,7 @@ Notes:
 
 | Diagnostic Results Math Test Data  | 
 |:-------------------------:|
-| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/iReady/docs/images/test_data_screenshots/iReady_test_data_snapshot_diagnostic_results.png)  |
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/docs/images/test_data_screenshots/iReady_test_data_snapshot_diagnostic_results.png)  |
 
 Notes:
 
