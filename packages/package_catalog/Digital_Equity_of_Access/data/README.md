@@ -19,7 +19,7 @@ This definition can vary across education institutions.
 
 Student devices were district-issued and maintained in a device management system named Destiny. This data includes the device serial number, the type of device (e.g. laptop or tablet), the student ID the device was issued to, the status of the device, when the device was checked out, etc.
 
-The [Intune Reports Module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Microsoft_Data/Intune) can be used as an alternative to understand the patterns of accessibility of students, based on whether they've been assigned devices. Other exploratory methods of analysis can be used to see if students benefit from issuing devices, and backing suggestions for other means of intervention or student-support.
+The [Intune Reports Module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Intune) can be used as an alternative to understand the patterns of accessibility of students, based on whether they've been assigned devices. Other exploratory methods of analysis can be used to see if students benefit from issuing devices, and backing suggestions for other means of intervention or student-support.
 
 ## Power BI Data Model
 
@@ -30,4 +30,4 @@ Below is a view of the data model used in Power BI visualizations. The primary t
 * **destiny Table**: Data used to relay student device assignment by the education system.
 * **school_locations Table**: Data used to create maps of school locations. 
 
-![](https://github.com/cviddenKwantum/oea-digital-learning-insights/blob/main/Digital_Equity_of_Access/docs/images/pbi_datamodel.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Digital_Equity_of_Access/docs/images/pbi_datamodel.png)
