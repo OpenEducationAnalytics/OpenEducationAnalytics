@@ -1,3 +1,5 @@
+<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+
 # Student Support Package: Predicting Chronic Absenteeism 
 
 The OEA Chronic Absenteeism Package provides a set of assets which support an education system in developing their own predictive model to address chronic absenteeism. There are two main components of this package: 
