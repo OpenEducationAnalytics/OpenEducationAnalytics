@@ -8,7 +8,7 @@ Test data is provided for students only, although there are Clever Participation
 
 ## Data dictionary
 
-### [Daily Participation Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Clever/test_data/test_data/daily-participation/Students/Students.csv)
+### [Daily Participation Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Clever/test_data/test_data/daily-participation/Students/Students.csv)
 
 |Column Name | Data Type | Description |
 |-----------|-----------|-----------|
@@ -23,7 +23,7 @@ Test data is provided for students only, although there are Clever Participation
 
 | Daily Participation Test Data  | 
 |:-------------------------:|
-| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Clever/docs/images/test_data_dailypart.png)  |
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Clever/docs/images/test_data_dailypart.png)  |
 
 Notes: 
 1) The active use of Clever is currently defined if the user performs any of the following actions:
@@ -35,7 +35,7 @@ Notes:
 2) The following columns are pseudonymized in the test data and production data will appear different: sis_id, clever_user_id, clever_school_id
 3) See the [Clever Participation Reports](https://support.clever.com/hc/s/articles/360049642311) documentation for more details.
 
-### [Resource Usage Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Clever/test_data/test_data/resource-usage/Students/Students.csv)
+### [Resource Usage Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Clever/test_data/test_data/resource-usage/Students/Students.csv)
 
 |Column Name | Data Type | Description |
 |-----------|-----------|-----------|
@@ -51,7 +51,7 @@ Notes:
 
 | Resource Usage Test Data  | 
 |:-------------------------:|
-| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/oea/modules/module_catalog/Clever/docs/images/test_data_resourceusage.png)  |
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Clever/docs/images/test_data_resourceusage.png)  |
 
 Notes: 
 1) Resource_type can be one of: clever-district-added, clever-teacher-added, district-link, teacher-link
