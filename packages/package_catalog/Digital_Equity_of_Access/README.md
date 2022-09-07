@@ -1,4 +1,7 @@
+<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+
 # Digital Learning Insights Package: Equity of Digital Access
+
 The OEA Digital Equity of Access Package provides a set of assets which support an education system in developing their own data solution to address inequities in digital access. There are two main components of this package:
 
 1. <ins>Guidance and documentation:</ins> The [OEA Equity of Digital Access Package - Use Case Documentation](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Digital_Equity_of_Access/docs/OEA%20Digital%20Learning%20Package%20-%20Access%20Use%20Case.pdf) provides guidance on the end-to-end process of developing a successful Equity of Access use-case project, including how to engage stakeholders in the project, prior research on the use case problem domain and theory, how to map data sources to the theory of the problem, and how to implement Microsoft’s Principles of Responsible Data and AI. <em> It is highly recommended this document be reviewed by any education system considering using this package, and that the documentation be revised to the specific data and decisions for that system’s context. </em>
