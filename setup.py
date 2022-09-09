@@ -32,7 +32,7 @@ _logger.info('Completed setting up infrastructure.')
 
 # Instantiate OEAFrameworkInstaller class to install the Base OEA framework in your Synapse workspace.
 _logger.info('Installing Base OEA Framework in Synapse workspace.')
-oea_installer = OEAFrameworkInstaller(azure_client, resource_provisioner.storage_account, resource_provisioner.keyvault, resource_provisioner.synapse_workspace_name, _logger)
+oea_installer = OEAFrameworkInstaller(azure_client, resource_provisioner.storage_account, resource_provisioner.keyvault, resource_provisioner.synapse_workspace_name, 'framework/synapse', _logger)
 oea_installer.install()
 _logger.info('Successfully Installed Base OEA Framework.')
 
