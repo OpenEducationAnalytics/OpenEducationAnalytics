@@ -1,4 +1,6 @@
 # need to run "pip install -r requirements.txt"
+from asyncio.windows_utils import pipe
+from dis import dis
 import sys
 import secrets
 import string
@@ -7,7 +9,7 @@ import json
 import logging
 from uuid import uuid4
 from datetime import datetime
-from azure.identity import AzureCliCredential
+from azure.identity import AzureCliCredential, DefaultAzureCredential
 from azure.mgmt.authorization import AuthorizationManagementClient
 from azure.mgmt.authorization.v2018_09_01_preview import models as authorization_model
 from azure.mgmt.resource import ResourceManagementClient
@@ -33,6 +35,7 @@ class AzureClient:
         self.resource_group = None
         self.key_vault_client = None
         self.resource_client = None
+        self.graph_rbac_client = None
         self.authorization_client = None
         self.storage_client = None
         self.artifacts_client = {}
@@ -63,7 +66,7 @@ class AzureClient:
     def get_artifacts_client(self, synapse_workspace_name):
         if not synapse_workspace_name in self.artifacts_client:
             self.artifacts_client[synapse_workspace_name] = ArtifactsClient(self.credential, f"https://{synapse_workspace_name}.dev.azuresynapse.net")
-        return self.artifacts_client[synapse_workspace_name]        
+        return self.artifacts_client[synapse_workspace_name]
 
     def get_role(self, role_name, resource_id):
         auth_client = AuthorizationManagementClient(self.credential, self.subscription_id)
@@ -78,7 +81,7 @@ class AzureClient:
         #if not availability_result.name_available:
         #    logger.error(f"Key Vault name {key_vault_name} is not available. Try another name.")
         #    exit()
-        
+
         poller = self.get_key_vault_client().vaults.begin_create_or_update(self.resource_group_name, key_vault_name,
             {
                 'location': self.location,
@@ -90,13 +93,31 @@ class AzureClient:
             }
     )
 
-    def create_notebook_with_ipynb(self, notebook_name, notebook_filename, synapse_workspace_name):
-        # todo: remove hardcoded url - this is just an example
-        with open(notebook_filename) as f: 
-            notebook_dict = json.load(f)
-        artifacts_client = self.get_artifacts_client(synapse_workspace_name)
-        poller = artifacts_client.notebook.begin_create_or_update_notebook(notebook_name, {'name':notebook_name, 'properties':notebook_dict} )
+    """
+    # This is not working as the GraphRbacManagementClient is expecting a credential with an
+    # attribute "signed_session" while AzureCliCredential does not provide one.
+    def create_aad_group(self, display_name, nick_name):
+        poller = self.get_graph_rbac_client().groups.create(
+            {
+                'display_name':display_name,
+                'mail_nickname':nick_name
+            }
+        )
         return poller
+    """
+
+    def create_or_update_dataflow(self, synapse_workspace, dataflow_file_path):
+        with open(dataflow_file_path) as f: dataflow_dict = json.load(f)
+        poller = self.get_artifacts_client(synapse_workspace).dataflow.begin_create_or_update_dataflow(dataflow_dict['name'], dataflow_dict)
+        return poller
+
+    def create_or_update_pipeline(self, synapse_workspace, pipeline_file_path, pipeline_name):
+        with open(pipeline_file_path) as f: pipeline_dict = json.load(f)
+        poller = self.get_artifacts_client(synapse_workspace).pipeline.begin_create_or_update_pipeline(pipeline_name, pipeline_dict)
+        return poller
+
+    def create_notebook_with_ipynb(self, notebook_name, file_path, synapse_workspace_name):
+        os.system(f"az synapse notebook create --workspace-name {synapse_workspace_name} --name {notebook_name} --file @{file_path} -o none")
 
     def create_notebook(self, notebook_filename, synapse_workspace_name):
         """ Creates synapse notebook from json (using the json from git when Synapse studio is connected to a repo) """
@@ -104,8 +125,6 @@ class AzureClient:
         with open(notebook_filename) as f: notebook_dict = json.load(f)
         self.validate_notebook_json(notebook_dict)
         logger.info(f"Creating notebook: {notebook_dict['name']}")
-        logger.info(artifacts_client.notebook.__class__)
-        logger.info(dir(artifacts_client.notebook))
         poller = artifacts_client.notebook.begin_create_or_update_notebook(notebook_dict['name'], notebook_dict)
         return poller #AzureOperationPoller
 
@@ -116,7 +135,6 @@ class AzureClient:
         for cell in nb_json['properties']['cells']:
             if not 'metadata' in cell: cell['metadata'] = {}
         if 'bigDataPool' in nb_json['properties']:
-            print('here') 
             nb_json['properties'].pop('bigDataPool', None) #Remove bigDataPool if it's there
 
     #create_notebook('new_notebook.json', 'syn-oea-cisdggv04r')
@@ -144,7 +162,7 @@ class AzureClient:
         """ https://docs.microsoft.com/en-us/python/api/azure-mgmt-synapse/azure.mgmt.synapse.aio.operations.workspacesoperations?view=azure-python#begin-create-or-update-resource-group-name--str--workspace-name--str--workspace-info--azure-mgmt-synapse-models--models-py3-workspace----kwargs-----azure-core-polling--async-poller-asynclropoller--forwardref---models-workspace--- """
         default_data_lake_storage = DataLakeStorageAccountDetails(account_url=f"https://{storage_account_name}.dfs.core.windows.net", filesystem="synapse-workspace")
 
-        poller = self.get_synapse_client().workspaces.begin_create_or_update(self.resource_group_name, synapse_workspace_name, 
+        poller = self.get_synapse_client().workspaces.begin_create_or_update(self.resource_group_name, synapse_workspace_name,
             {
                 "location" : self.location,
                 "tags" : self.tags,
@@ -167,7 +185,7 @@ class AzureClient:
             #exit()
 
         poller = storage_client.storage_accounts.begin_create(self.resource_group_name, storage_account_name,
-            {           
+            {
                 "location" : self.location,
                 "tags" : self.tags,
                 "kind": "StorageV2",
@@ -190,25 +208,27 @@ class AzureClient:
         for name in container_names:
             container = storage_client.blob_containers.create(self.resource_group_name, storage_account_name, name, {})
 
-    def create_linked_service(self):
-        #os.system("az synapse linked-service create --workspace-name syn-oea-cisdggv04r --name MSGraphAPI2 --file @./MSGraphAPI.json")
-        pass
+    def create_linked_service(self, workspace_name, linked_service_name, file_path):
+        os.system(f"az synapse linked-service create --workspace-name {workspace_name} --name {linked_service_name} --file @{file_path} -o none")
+
+    def create_dataset(self, workspace_name, dataset_name, file_path):
+        os.system(f"az synapse dataset create --workspace-name {workspace_name} --name {dataset_name} --file @{file_path} -o none")
 
 
     def add_role_assignment_to_resource(self, role_name, resource_id, principal_id):
         role = self.get_role(role_name, resource_id)
-        self.get_authorization_client().role_assignments.create(resource_id, uuid4(), 
+        self.get_authorization_client().role_assignments.create(resource_id, uuid4(),
             authorization_model.RoleAssignmentCreateParameters(role_definition_id=role.id, principal_id=principal_id)
         )
         return
-    
+
     def create_role_assignment(self, role_name, resource_id, principal_id):
         # https://docs.microsoft.com/en-us/python/api/azure-mgmt-authorization/azure.mgmt.authorization.v2020_10_01_preview.operations.roleassignmentsoperations?view=azure-python#create-scope--role-assignment-name--parameters----kwargs-
         role = self.get_role(role_name, resource_id)
         try:
-            self.get_authorization_client().role_assignments.create(resource_id, uuid4(), 
+            self.get_authorization_client().role_assignments.create(resource_id, uuid4(),
                 authorization_model.RoleAssignmentCreateParameters(
-                    role_definition_id=role.id, 
+                    role_definition_id=role.id,
                     principal_id=principal_id)
             )
         except ResourceExistsError as e:
@@ -220,10 +240,10 @@ class AzureClient:
         #os.system(f"az synapse workspace firewall-rule create --name allowAll --workspace-name {synapse_workspace_name} --resource-group {self.resource_group_name} --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255")
         ip_firewall_rule_info = IpFirewallRuleInfo(name=rule_name, start_ip_address=start_ip_address, end_ip_address=end_ip_address)
         #poller = self.get_synapse_client().ip_firewall_rules.begin_create_or_update(self.resource_group_name, synapse_workspace_name, rule_name, ip_firewall_rule_info)
-        poller = self.get_synapse_client().ip_firewall_rules.begin_create_or_update(self.resource_group_name, synapse_workspace_name, rule_name, 
+        poller = self.get_synapse_client().ip_firewall_rules.begin_create_or_update(self.resource_group_name, synapse_workspace_name, rule_name,
             {
-                "name" : rule_name, 
-                "start_ip_address" : start_ip_address, 
+                "name" : rule_name,
+                "start_ip_address" : start_ip_address,
                 "end_ip_address" : end_ip_address
             }
         )
@@ -234,8 +254,8 @@ class AzureClient:
         #os.system(f"az synapse spark pool create --name {spark_pool_name} --workspace-name {synapse_workspace_name} --resource-group {self.resource_group_name} "
         #           "--spark-version 3.1 --node-count 3 --node-size Small --min-node-count 3 --max-node-count 10 --enable-auto-scale true --delay 15 --enable-auto-pause true")
         #Now update spark pool to include required libraries (note that this has to be done as a separate step or the create command will fail, despite what the docs say)
-        #os.system(f"az synapse spark pool update --name {spark_pool_name} --workspace-name {synapse_workspace_name} --resource-group {self.resource_group_name} --library-requirements {library_requirements} --no-wait")       
-        poller = self.get_synapse_client().big_data_pools.begin_create_or_update(self.resource_group_name, synapse_workspace_name, spark_pool_name, 
+        #os.system(f"az synapse spark pool update --name {spark_pool_name} --workspace-name {synapse_workspace_name} --resource-group {self.resource_group_name} --library-requirements {library_requirements} --no-wait")
+        poller = self.get_synapse_client().big_data_pools.begin_create_or_update(self.resource_group_name, synapse_workspace_name, spark_pool_name,
             BigDataPoolResourceInfo(
                 tags = self.tags,
                 location = self.location,
@@ -250,15 +270,15 @@ class AzureClient:
         # todo: now install the requirements file, this can only be done after the pool has been created
         #echo "--> Update spark pool to include required libraries (note that this has to be done as a separate step or the create command will fail, despite what the docs say)."
         #az synapse spark pool update --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --library-requirements $oea_path/framework/requirements.txt --no-wait
-        #[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }        
+        #[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
         result = poller.result() # wait for completion of spark pool
 
 
-        return 
+        return
 
     def update_spark_pool_with_requirements(self, synapse_workspace_name, spark_pool_name, library_requirements_path_and_filename):
         with open(library_requirements_path_and_filename, 'r') as f: lib_contents = f.read()
-        poller = self.get_synapse_client().big_data_pools.update(self.resource_group_name, synapse_workspace_name, spark_pool_name, 
+        poller = self.get_synapse_client().big_data_pools.update(self.resource_group_name, synapse_workspace_name, spark_pool_name,
             BigDataPoolPatchInfo (
                 library_requirements = LibraryRequirements(filename=os.path.basename(library_requirements_path_and_filename), content=lib_contents)
             )
@@ -267,4 +287,4 @@ class AzureClient:
     def create_random_password():
         password = secrets.choice(string.ascii_uppercase) + secrets.choice(string.digits) + secrets.choice(['*', '%', '#', '@'])
         for _ in range(9): password += secrets.choice(string.ascii_lowercase)
-        return password    
+        return password
