@@ -1,6 +1,6 @@
 <img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
-# Open Education Analytics                                                                                                                     
+# Open Education Analytics
 Open Education Analytics (OEA) is a fully [open-sourced](https://github.com/microsoft/OpenEduAnalytics/tree/main/docs/license) data integration and analytics framework for the education sector, as well as catalogs of assets contributed by customers and partners around the world - for K-12 as well as Higher Education.
 
 <img align="right" height="300" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_top_level.png">
@@ -10,7 +10,23 @@ Open Education Analytics (OEA) is a fully [open-sourced](https://github.com/micr
 The goal is to **empower the ecosystem** by:
 
 1) making it easy to setup a modern lakehouse in Azure
-1) facilitating the sharing of common assets (data pipelines, transformation scripts, dashboards, etc) 
+1) facilitating the sharing of common assets (data pipelines, transformation scripts, dashboards, etc)
+
+# Setting up OEA
+
+**Requirements** : You need to have an active Azure Subscription with **"Owner"** permissions
+
+There are currently 2 methods to install the OEA framework.
+
+For both the methods, you first need to clone this repository into your Azure Cloud Shell - (git clone   https://github.com/microsoft/OpenEduAnalytics.git) and change directory into it.
+1) Bash
+   * Execute the Bash Script "setup.sh" - (./setup.sh)
+
+1) Python
+   * Create a virtual environment - (virtualenv {venv})
+   * activate the virtual environment - (./venv/scripts/output)
+   * Install the required dependencies - (pip install -r framework/infrastructure/python/requirements.txt)
+   * Run the setup script - (python setup.sh)
 
 <br/><br/>
 
