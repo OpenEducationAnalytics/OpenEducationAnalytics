@@ -44,6 +44,7 @@ do
 done
 # 3) setup pipelines
 sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/pipeline/example_main_pipeline.json > $this_file_path/tmp/example_main_pipeline.json
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name example_main_pipeline --file @$this_file_path/tmp/example_main_pipeline.json"
 for file in $this_file_path/synapse/pipeline/*
 do
     filename=$(basename "$file")
