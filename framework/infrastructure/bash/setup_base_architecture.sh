@@ -12,7 +12,7 @@ org_id=$1
 location=$2
 include_groups=$3
 subscription_id=$4
-framework_path=$5
+oea_path=$5
 logfile=$6
 storage_account_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT"
 user_object_id=$(az ad signed-in-user show --query id -o tsv)
@@ -82,7 +82,7 @@ az synapse spark pool create --name spark3p1sm --workspace-name $OEA_SYNAPSE --r
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 echo "--> Update spark pool to include required libraries (note that this has to be done as a separate step or the create command will fail, despite what the docs say)."
-az synapse spark pool update --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --library-requirements $framework_path/requirements.txt
+az synapse spark pool update --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --library-requirements $oea_path/framework/requirements.txt
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 # 4) Create key vault for secure storage of credentials, and create app insights for logging
