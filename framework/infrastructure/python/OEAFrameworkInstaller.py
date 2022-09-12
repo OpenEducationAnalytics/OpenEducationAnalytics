@@ -83,16 +83,16 @@ class OEAFrameworkInstaller:
 
     def install(self):
         self.logger.info('--> 1) Installing Linked Services')
-        #self.install_linked_services()
+        self.install_linked_services()
 
         self.logger.info('--> 2) Installing Datasets')
-        #self.install_datasets()
+        self.install_datasets()
 
         self.logger.info('--> 3) Installing Notebooks')
         self.install_notebooks()
 
         self.logger.info('--> 4) Installing Pipelines')
-        #self.install_pipelines()
+        self.install_pipelines()
 
         self.logger.info('--> 5) Installing Dataflows')
-        #self.install_dataflows()
+        self.install_dataflows()
