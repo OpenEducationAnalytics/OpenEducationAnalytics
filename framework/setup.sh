@@ -21,37 +21,37 @@ echo "--> Setting up the OEA framework assets."
 
 # 1) install integration assets
 #  - setup Linked Services
-sed "s/yourkeyvault/$key_vault/" $this_file_path/linkedService/LS_KeyVault_OEA.json > $this_file_path/tmp/LS_KeyVault_OEA.json
-sed "s/yourstorageaccount/$storage_account/" $this_file_path/linkedService/LS_ADLS_OEA.json > $this_file_path/tmp/LS_ADLS_OEA.json
-sed "s/yoursynapseworkspace/$synapse_workspace/" $this_file_path/linkedService/LS_SQL_Serverless_OEA.json > $this_file_path/tmp/LS_SQL_Serverless_OEA.json
-for file in $this_file_path/linkedService/*
+sed "s/yourkeyvault/$key_vault/" $this_file_path/synapse/linkedService/LS_KeyVault_OEA.json > $this_file_path/tmp/LS_KeyVault_OEA.json
+sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/linkedService/LS_ADLS_OEA.json > $this_file_path/tmp/LS_ADLS_OEA.json
+sed "s/yoursynapseworkspace/$synapse_workspace/" $this_file_path/synapse/linkedService/LS_SQL_Serverless_OEA.json > $this_file_path/tmp/LS_SQL_Serverless_OEA.json
+for file in $this_file_path/synapse/linkedService/*
 do
     filename=$(basename "$file")
-    eval "az synapse linked-service create --workspace-name $synapse_workspace --name ${filename:: -5} --file @$this_file_path/linkedService/$filename"
+    eval "az synapse linked-service create --workspace-name $synapse_workspace --name ${filename:: -5} --file @$this_file_path/synapse/linkedService/$filename"
 done
 
 #  - setup Datasets
-for file in $this_file_path/dataset/*
+for file in $this_file_path/synapse/dataset/*
 do
     filename=$(basename "$file")
-    eval "az synapse dataset create --workspace-name $synapse_workspace --name ${filename:: -5} --file @$this_file_path/dataset/$filename"
+    eval "az synapse dataset create --workspace-name $synapse_workspace --name ${filename:: -5} --file @$this_file_path/synapse/dataset/$filename"
 done
 # 2) install notebooks
-for file in $this_file_path/notebook/*
+for file in $this_file_path/synapse/notebook/*
 do
     filename=$(basename "$file")
-    eval "az synapse notebook import --workspace-name $synapse_workspace --name ${filename:: -6} --spark-pool-name spark3p1sm --file @$this_file_path/notebook/$filename --only-show-errors"
+    eval "az synapse notebook import --workspace-name $synapse_workspace --name ${filename:: -6} --spark-pool-name spark3p1sm --file @$this_file_path/synapse/notebook/$filename --only-show-errors"
 done
 # 3) setup pipelines
-sed "s/yourstorageaccount/$storage_account/" $this_file_path/pipeline/example_main_pipeline.json > $this_file_path/tmp/example_main_pipeline.json
-for file in $this_file_path/pipeline/*
+sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/pipeline/example_main_pipeline.json > $this_file_path/tmp/example_main_pipeline.json
+for file in $this_file_path/synapse/pipeline/*
 do
     filename=$(basename "$file")
-    eval "az synapse pipeline create --workspace-name $synapse_workspace --name ${filename:: -5} --file @$this_file_path/pipeline/$filename"
+    eval "az synapse pipeline create --workspace-name $synapse_workspace --name ${filename:: -5} --file @$this_file_path/synapse/pipeline/$filename"
 done
 
 # 4) install the ContosoSIS_py notebook for use with the 'example_main_pipeline' that comes with the framework
-eval "az synapse notebook import --workspace-name $synapse_workspace --name ContosoSIS_py --spark-pool-name spark3p1sm --file @$this_file_path/../modules/Student_and_School_Data_Systems/notebook/ContosoSIS_py.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name ContosoSIS_py --spark-pool-name spark3p1sm --file @$this_file_path/../modules/module_catalog/Student_and_School_Data_Systems/notebook/ContosoSIS_py.ipynb --only-show-errors"
 
 echo "--> Setup complete. The OEA framework assets have been installed in the specified synapse workspace: $synapse_workspace"
 
