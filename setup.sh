@@ -28,7 +28,7 @@ exec 3>&1 1>>${logfile} 2>&1
 oea_path=$(dirname $(realpath $0))
 
 org_id=$1
-source $oea_path/infrastructure/bash/set_names.sh $org_id
+source $oea_path/framework/infrastructure/bash/set_names.sh $org_id
 
 location=$2
 location=${location:-eastus}
@@ -63,7 +63,7 @@ echo "--> Setting up OEA (logging detailed setup messages to $logfile)" 1>&3
 # setup the base architecture
 echo "--> Setting up the OEA base architecture."
 echo "--> Setting up the OEA base architecture." 1>&3
-$oea_path/infrastructure/bash/setup_base_architecture.sh $org_id $location $include_groups $subscription_id $oea_path $logfile
+$oea_path/framework/infrastructure/bash/setup_base_architecture.sh $org_id $location $include_groups $subscription_id $oea_path $logfile
 # exit out if setup_base_architecture failed
 if [[ $? != 0 ]]; then
   exit 1
