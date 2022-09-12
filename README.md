@@ -17,8 +17,9 @@ The goal is to **empower the ecosystem** by:
 
 To find out more about the growing ecosystem around OEA, including info about partners and customers that are using OEA today, visit our homepage at: [openeducationanalytics.org](https://openeducationanalytics.org)
 
-# Setting up OEA
 <br/>
+
+# Setting up OEA
 ### What you need
 To setup an environment with OpenEduAnalytics, you'll need:
 * an Azure subscription (if you don't have an Azure subscription, you can set up a [free subscription here](https://azure.microsoft.com/free), or check the [current list of Azure offers](https://azure.microsoft.com/en-us/support/legal/offer-details/))
