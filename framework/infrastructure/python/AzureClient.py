@@ -25,7 +25,7 @@ logger = logging.getLogger('AzureClient')
 
 class AzureClient:
     """ todo: consider removing self.resource_group_name - it should probably be passed in as needed """
-    def __init__(self, tenant_id, subscription_id, location, default_tags = None, resource_group_name = None):
+    def __init__(self, tenant_id, subscription_id, location = 'eastus', default_tags = None, resource_group_name = None):
         self.credential = AzureCliCredential()
         self.tenant_id = tenant_id
         self.subscription_id = subscription_id
@@ -108,7 +108,7 @@ class AzureClient:
 
     def create_or_update_dataflow(self, synapse_workspace, dataflow_file_path):
         with open(dataflow_file_path) as f: dataflow_dict = json.load(f)
-        poller = self.get_artifacts_client(synapse_workspace).dataflow.begin_create_or_update_dataflow(dataflow_dict['name'], dataflow_dict)
+        poller = self.get_artifacts_client(synapse_workspace).data_flow.begin_create_or_update_dataflow(dataflow_dict['name'], dataflow_dict)
         return poller
 
     def create_or_update_pipeline(self, synapse_workspace, pipeline_file_path, pipeline_name):
@@ -137,7 +137,30 @@ class AzureClient:
         if 'bigDataPool' in nb_json['properties']:
             nb_json['properties'].pop('bigDataPool', None) #Remove bigDataPool if it's there
 
-    #create_notebook('new_notebook.json', 'syn-oea-cisdggv04r')
+    def delete_notebook(self, notebook_name, synapse_workspace_name):
+        """ Deletes the synapse notebook from the workspace."""
+        poller = self.get_artifacts_client(synapse_workspace_name).notebook.delete_notebook(notebook_name)
+        return poller
+
+    def delete_pipeline(self, pipeline_name, synapse_workspace_name):
+        """ Deletes the Synapse pipeline from the workspace."""
+        poller = self.get_artifacts_client(synapse_workspace_name).pipeline.delete_pipeline(pipeline_name)
+        return poller
+
+    def delete_dataflow(self, dataflow_name, synapse_workspace_name):
+        """ Deletes the Synapse pipeline from the workspace."""
+        poller = self.get_artifacts_client(synapse_workspace_name).data_flow.delete_dataflow(dataflow_name)
+        return poller
+
+    def delete_linked_service(self, linked_service_name, synapse_workspace_name):
+        """ Deletes the Synapse Linked Service from the workspace."""
+        poller = self.get_artifacts_client(synapse_workspace_name).linked_service.delete_linked_service(linked_service_name)
+        return poller
+
+    def delete_dataset(self, dataset_name, synapse_workspace_name):
+        """ Deletes the Synapse Dataset from the workspace."""
+        poller = self.get_artifacts_client(synapse_workspace_name).dataset.delete_dataset(dataset_name)
+        return poller
 
     def delete_resource_group(self, name):
         self.get_resource_client().resource_groups.begin_delete(name)
