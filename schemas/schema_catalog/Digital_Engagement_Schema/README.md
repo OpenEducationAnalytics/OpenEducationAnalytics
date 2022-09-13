@@ -36,28 +36,31 @@ The OEA Digital Engagement Schema consists of a single table which any digital a
 
 <ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup the [most recent version of OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
 
-To standardize digital engagment data into the OEA Digital Engagement Schema, complete the following steps. 
+To standardize digital engagment data into the OEA Digital Engagement Schema, complete the following steps:
 
 - Examine available digital engagement data in Stage2p. Examples of digital engagement data listed [below](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema#related-oea-modules)
 - Import the [Schema_DigitalActivity_py](https://github.com/microsoft/OpenEduAnalytics/blob/main/schemas/schema_catalog/Digital_Engagement_Schema/notebook/Schema_DigitalActivity_py.ipynb) python class to process data in the [DigitalActivity_main_pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/pipeline). The main step here is to map the source data schema to the Digital Engagment Schema. Examples of data processing are given in the class notebook. 
-- Import the [Digital Activity Schema pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/pipeline) into your Synapse workspace and execute the pipeline; ensure you are standardizing data from the modules desired. See the [schema pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/pipeline) for detailed instructions.
+- Import the [Digital Activity Schema pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/pipeline) into your Synapse workspace and execute the pipeline; ensure you are standardizing data from the desired modules. See the [schema pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/pipeline) for detailed instructions.
 - Verify that standardized Digital Engagement data is stored in Stage2p in the digital_activity folder.
 - Set up the schema standardization to be used for the packages/use cases needed.
 
 ## Related [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog)
 
 The OEA Digital Engagement Schema can be applied to the following OEA Modules:
-- [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) Module - Activity table
-- [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph) Module - Microsoft 365 Applications User Detail and Teams Activity User Detail tables
-- [Clever](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever) Module - Daily Participation and Resource Usage tables and
-- [i-Ready](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady) Module - Comprehensive Student Lesson Activity with Standards (ELA and Math) tables.
+
+| Module | Applicable Tables |
+| --- | --- |
+| [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) Module | The ApplicationUsage/"TechActivity" table. |
+| [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph) Module | The Microsoft 365 Applications User Detail and Teams Activity User Detail tables. |
+| [Clever](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever) Module | The Daily Participation and Resource Usage tables. |
+| [i-Ready](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady) Module | The Comprehensive Student Lesson Activity with Standards (ELA and Math) tables. |
 
 See the demo processing notebook in the [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema/notebook) resource for an example of standard schema application.
 
 ## Technical Assets
 
-This OEA Digital Engagement Schema provides the following assets.:
- - [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema/notebook): two notebooks 
-       - one "digital activity schema standard" class notebook (used for calling the necessary functions for standardizing a data source with digital activity), and 
-       - one demo processing notebook (used for demonstration of the utility of this schema standardization).
+This OEA Digital Engagement Schema provides the following assets:
+ - [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema/notebook):
+     * one [digital activity schema standard](https://github.com/microsoft/OpenEduAnalytics/blob/main/schemas/schema_catalog/Digital_Engagement_Schema/notebook/Schema_DigitalActivity_py.ipynb) class notebook (contains the necessary functions for standardizing a data source with digital activity), and 
+     * one [demo processing notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/schemas/schema_catalog/Digital_Engagement_Schema/notebook/Schema_DigitalActivity_Demo.ipynb) (used for demonstration of the schema-standardization utility and functionality).
  - [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema/pipeline): Sample main pipeline used to process digital engagement data into this schema.
