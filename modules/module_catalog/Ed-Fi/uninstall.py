@@ -25,4 +25,4 @@ if(__name__ == '__main__'):
     subscription_id = sys.argv[1]
     synapse_workspace_name = sys.argv[2]
     _azure_client = AzureClient(tenant_id, subscription_id)
-    uninstall(_azure_client, synapse_workspace_name)
+    uninstall(synapse_workspace_name, _azure_client)

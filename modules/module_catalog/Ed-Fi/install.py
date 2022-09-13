@@ -22,4 +22,4 @@ if(__name__ == '__main__'):
     subscription_id = sys.argv[1]
     synapse_workspace_name = sys.argv[2]
     _azure_client = AzureClient(tenant_id, subscription_id)
-    install(_azure_client, synapse_workspace_name)
+    install(synapse_workspace_name, _azure_client)
