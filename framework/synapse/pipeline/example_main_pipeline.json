@@ -154,7 +154,7 @@
         "parameters": {
             "storageAccount": {
                 "type": "string",
-                "defaultValue": "stoeacisd3v06rc2"
+                "defaultValue": "yourstorageaccount"
             },
             "sourceDirectory": {
                 "type": "string",
