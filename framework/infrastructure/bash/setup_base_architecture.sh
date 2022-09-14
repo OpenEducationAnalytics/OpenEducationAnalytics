@@ -42,7 +42,7 @@ az group create -l $location -n $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERS
 echo "--> 2) Creating storage account: ${OEA_STORAGE_ACCOUNT}"
 echo "--> 2) Creating storage account: ${OEA_STORAGE_ACCOUNT}" 1>&3
 az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STORAGE_ACCOUNT} --location $location --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS \
-  --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --default-action Allow
+  --kind StorageV2 --sku Standard_RAGRS --enable-hierarchical-namespace true --access-tier Hot --allow-blob-public-access false --default-action Allow
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 echo "--> Creating storage account containers."
