@@ -3,6 +3,7 @@ import sys
 import os
 sys.path.append(os.path.join(os.getcwd(), 'framework\\infrastructure\\python\\'))
 from AzureClient import AzureClient
+from OEAModuleInstaller import OEAModuleInstaller
 from AzureResourceProvisioner import AzureResourceProvisioner
 from OEAFrameworkInstaller import OEAFrameworkInstaller
 import logging
@@ -36,3 +37,7 @@ oea_installer = OEAFrameworkInstaller(azure_client, resource_provisioner.storage
 oea_installer.install()
 _logger.info('Successfully Installed Base OEA Framework.')
 
+#Install Modules
+_logger.info('Installing the Required modules in Azure Synapse workspace.')
+module_installer = OEAModuleInstaller(resource_provisioner.synapse_workspace_name, _logger)
+module_installer.install(azure_client)
