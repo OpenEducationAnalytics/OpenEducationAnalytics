@@ -4,6 +4,10 @@
 
 [Clever](https://clever.com/) offers single sign-on access to digital learning applications managed by an education system such as a district or higher education institution. This Clever OEA module, developed by the [Fresno Unified School District](https://www.fresnounified.org/) in Fresno, California USA, provides education app usage data for all the applications used by an education system which sign on or authenticate through Clever. Data is retrieved through the [Participation Reports](https://support.clever.com/hc/s/articles/360049642311) which can be either manually downloaded or [automated via SFTP delivery](https://support.clever.com/hc/s/articles/360049642311?language=en_US#ExportingReports). Clever Participation Reports data can enable education leaders to see the impact of app usage on student learning if combined with learning outcome data (e.g., assessments, completions, graduation). 
 
+<p align="center">
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Clever/docs/images/clever_data_ingestion_map.png" alt="Clever Data Ingestion Visual"/>
+</p>
+
 ## Problem Statement and Module Impact
 
 Collecting data related to digital learning activity is crucial to understanding the academic engagement of students. As digital learning becomes more prevalent, understanding the digital resources that students use is fundamental to supporting student success, both inside and outside of the classroom. 
@@ -12,12 +16,16 @@ This Clever OEA module will aid K-12 education systems in bringing digital learn
 
 ## Module Setup Instructions
 
-1. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework).
-2. Setup the [most recent version of OEA](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
-3. Import the [Clever module class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Clever/notebook/Clever_py.ipynb) into your Synapse workspace. This notebook contains data schema information and data writing functions needed to support module pipelines. 
-4. Import the [Clever pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Clever/pipeline/clever_pipeline_template.zip) into your Synapse workspace and execute the pipeline. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/pipeline) for detailed instructions.
-5. Verify that the module pipeline landed data into stage 1 and 2 and SQL databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/pipeline) for detailed instructions.
-6. Download the module [module Power BI template file](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/powerbi) file. Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/powerbi) for instructions for switching the Power BI test data source to import from your Synapse workspace Clever data source. 
+<p align="center">
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Clever/docs/images/clever_module_setup_visual.png" alt="Clever Setup Instructions"/>
+</p>
+
+<ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup the [most recent version of OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
+
+1. Import the [Clever module class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Clever/notebook/Clever_py.ipynb) into your Synapse workspace. This notebook contains data schema information and data writing functions needed to support module pipelines. 
+2. Import the [Clever pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Clever/pipeline/clever_pipeline_template.zip) into your Synapse workspace and execute the pipeline. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/pipeline) for detailed instructions.
+3. Verify that the module pipeline landed data into stage 1 and 2 and SQL databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/pipeline) for detailed instructions.
+4. Download the module [module Power BI template file](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/powerbi) file. Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/powerbi) for instructions for switching the Power BI test data source to import from your Synapse workspace Clever data source. 
 
 #### Note: 
 The above instructions will setup the Clever OEA module using the [module test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/test_data), but the same pipeline can be used for production data. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/pipeline) for instructions on switching the pipeline data source to production data from the Clever Participation Reports SFTP delivery.
