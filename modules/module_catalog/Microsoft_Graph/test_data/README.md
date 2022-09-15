@@ -1,30 +1,31 @@
 # Test Data
 
-### Overview 
-
-Sample datasets provided in this module were created using the pipeline integration, landing 3 datasets into stage 1 of the data lake, and then generating sample test data for demonstration. The following queries were used for this example module, and utilized the beta version of Graph Reports API:
+This module includes artificially generated data which matches the format of the three queries used in this module (utilizing the beta version of Graph Reports API):
  - Microsoft Users: ``` beta/users ```
  - Microsoft 365 Applications User Detail: ``` beta/reports/getM365AppUserDetail(period='D7')/content?$format=application/json ```
  - Teams Activity User Detail: ``` beta/reports/getTeamsUserActivityUserDetail(period='D7')?$format=application/json ```
 
-Use these datasets by importing the [GraphAPI_main_pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline), and triggering the pipeline - this will automatically extract this data, run the notebook for processing, and create the two corresponding databases for this module. For more information, read the tutorial documentation [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf).
-
-## Data Transformation
-
-Initial, raw data (both test and production data) for this module are landed in JSON format in stage 1. Executing the main pipeline (which runs the module notebooks) explodes/flattens these tables into tabular delta format. 
-
-For more information about the data ingestion and processing, visit this module's [notebooks folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/notebook) and the [pipelines folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline).
+For more detailed explanations, read the tutorial documentation [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf). For more information on these queries and others that can be used, [click here](https://docs.microsoft.com/en-us/graph/) to learn more.
 
 ## Data Dictionary 
 
-Below contains the data dictionary of all the data that is provided from this test data. This can also be used to better understand what your data provides within the scope of using this module to incorporate your own data.
+### [Users Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/test_data/GraphAPI/Users/part-00000-cae42818-3572-4824-b396-58587ad01616-c000.json)
 
-| Table Type | Table Name | Column Name | Description |
+See full details on the [Microsoft Graph Users Beta Query](https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-beta&tabs=http)
+
+| Domain | Table Name | Column Name | Description |
 | --- | --- | --- | --- |
 | SIS | users | surname | user last name |
 | | | givenName | user first name |
 | | | userPrincipalName | user email identifier |
 | | | id | user ID |
+
+### [M365 Applications User Detail](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data/GraphAPI/M365_App_User_Detail)
+
+See full details on the [Microsoft Graph M365 Applications User Detail Beta Query](https://docs.microsoft.com/en-us/graph/api/reportroot-getm365appuserdetail?view=graph-rest-beta&tabs=http)
+
+| Domain | Table Name | Column Name | Description |
+| --- | --- | --- | --- |
 | O365 Activity| m365_app_user_detail | reportRefreshDate | Date the report was generated |
 | | | userPrincipalName | user email identifier |
 | | | lastActivationDate | Date of last O365 App Activation |
@@ -44,6 +45,13 @@ Below contains the data dictionary of all the data that is provided from this te
 | | | powerPoint(Mac)(Mobile)(Web)(Windows) | Boolean expression of if this app has been used |
 | | | teams(Mac)(Mobile)(Web)(Windows) | Boolean expression of if this app has been used |
 | | | word(Mac)(Mobile)(Web)(Windows) | Boolean expression of if this app has been used |
+
+### [Teams Activity User Detail](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data/GraphAPI/Teams_Activity_User_Detail)
+
+See full details on the [Microsoft Graph Teams Activity User Detail Beta Query](https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-beta)
+
+| Domain | Table Name | Column Name | Description |
+| --- | --- | --- | --- |
 | Teams Activity | teams_activity_user_detail | reportRefreshDate | Refer to the query documentation [here](https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-beta) for details on the columns of this table |
 | | | userPrincipalName | |
 | | | lastActivityDate | |
@@ -67,12 +75,3 @@ Below contains the data dictionary of all the data that is provided from this te
 | | | screenShareDuration | |
 | | | teamChatMessageCount | |
 | | | videoDuration | |
-
-
-### For more info on these queries
-| Resource | Description |
-| --- | --- |
-| [General Microsoft Graph query documentation](https://docs.microsoft.com/en-us/graph/) | landing page of all documentation about Graph and queries that can be made |
-| [Microsoft Users](https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-beta&tabs=http) | resource doc on the User details query |
-| [Microsoft 365 Applications User Detail](https://docs.microsoft.com/en-us/graph/api/reportroot-getm365appuserdetail?view=graph-rest-beta&tabs=http) | resource doc on the M365 App User details query |
-| [Microsoft Teams Activity User Detail](https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-beta) | resource doc on the Teams Activity User details query |
