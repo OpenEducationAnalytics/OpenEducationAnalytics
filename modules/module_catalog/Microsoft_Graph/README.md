@@ -7,14 +7,17 @@ You can use this OEA Microsoft Graph Reports API module to incorporate O365 usag
 
 *Watch <a href="https://youtu.be/K01h-QsMX9c" target="_blank">overview video </a> of the Microsoft Graph Reports API Module.*
 
-![alt text](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20visual.png)
+<p align="center">
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/graph_data_ingestion_map.png" alt="Microsoft Graph Data Ingestion Visual"/>
+</p>
+
  <p align="center">
  <em>
  (Microsoft documentation on Graph Reports API: https://docs.microsoft.com/en-us/graph/reportroot-concept-overview) 
  </em>
  </p>
 
-## Problem Statement
+## Problem Statement and Module Impact
 As education systems and institutions use more digital learning platforms, services, and applications as part of the teaching and learning process, they need data on how and when students and educators are using those tools. This “usage” data can be combined with other data sources, such as assessment or financial data, to analyze the relationship between the tools, learning, and costs, for example. 
 
 Microsoft Graph Reports API data can be used for many different education purposes:
@@ -23,47 +26,49 @@ Microsoft Graph Reports API data can be used for many different education purpos
   -	School dashboards on which O365 apps are being used.
   -	Class dashboards for teachers to see students’ attendance in Teams Meetings and participation in chat; or student use of PowerPoint, Word, or Excel.  
 
-Pulling data using this Microsoft Graph Reports API module provides solutions to these scenarios, as well as many more instances to extract a wide variety of activities that students engage in, while online.
-  
-## Module Impact 
-This Microsoft Graph Reports API module for OEA will leverage the Azure Synapse environment to aid education systems in bringing this data to their own Azure data lake for analysis. This includes a pipeline for extracting digital activity from Microsoft Teams and some O365 apps, providing a more detailed and accurate representation of online teaching and learning activities. The PowerBI templates included in this module can be used by system and school leaders to show:
-
-  - Which apps are being used across the entire O365 tenant, over time and by time of day.
-     * Number of Teams meetings in the O365 tenant participated in by all users over time
-     * Time of day of Teams meetings
-     * Number of people per meeting
-     * Number of private and Team chat messages over time and by time of day
+Pulling data using this Microsoft Graph Reports API module provides solutions to these scenarios, as well as many more instances to extract a wide variety of activities that students engage in, while online. 
 
 These dashboard examples represent only data from Microsoft Teams and O365. When this data is combined with other data sources, they can illustrate how patterns of digital activity relate to learning outcomes. With such combined data, education systems can start to analyze whether new programs or interventions help to improve teaching and learning with digital tools.  
 
-## Data Sources and Module Setup 
-### Data Sources
 
- - The Graph Reports API data sources are used for ingesting Microsoft Teams and O365 "usage" data, as explained above. There are also additional data sources that can be ingested upon creating your own pipeline, or adding to the pipeline template provided. 
- - The data ingested can either be formatted as JSON or CSV, although the pipeline template and datasets provided utilize the JSON format. 
- - For more information on the Graph Reports API datasets/data sources, open up the [test data folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data).
-### Module Setup
+## Module Setup Instructions
 
-  - Microsoft Graph Reports API is free to access, and does not require a subscription. However, if you want to pull your own usage data from O365 and Teams (which is the primary focus of this module), these will require subscriptions for your education system.
+<p align="center">
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/graph_module_setup_instructions.png" alt="Microsoft Graph Setup Instructions"/>
+</p>
 
-1. Make sure that your Synapse environment is using the latest OEA framework version
-2. Import the [GraphAPI_main_pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline) into your Synapse workspace.
-3. Import the [Graph Reports API module notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/notebook) into your Synapse workspace. Connect the GraphAPI_module_ingestion notebook to the GraphAPI main pipeline template (as outlined in the tutorial), and trigger the main pipeline. Two databases will be created upon the successful trigger: s2_graph_api and sqls2_graph_api.
-4. Download the Power BI template file [Graph API Module Dashboard](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/powerbi) and connect to your Synapse workspace serverless SQL endpoint.
+<ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup the [most recent version of OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
+
+1. Import the [Graph Reports API module class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/GraphAPI_py.ipynb) into your Synapse workspace. This notebook contains data schema information and data writing functions needed to support module pipelines. 
+2. Import the [Graph Reports API module pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline) into your Synapse workspace and execute the pipeline. See the [module written tutorial](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf) or [video tutorial](https://www.youtube.com/watch?v=K01h-QsMX9c) for detailed instructions.
+3. Verify that the module pipeline landed data into stage 1 and 2 and SQL databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline) for detailed instructions.
+4. Download the [module Power BI template file](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/powerbi). Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/powerbi) page for instructions for switching the Power BI template data source to import from your Synapse workspace data source.
+
+#### Notes:
+ - Microsoft Graph Reports API is free to access, and does not require a subscription. However, if you want to pull your own usage data from O365 and Teams (which is the primary focus of this module), these will require subscriptions for your education system.
+ - The above instructions will setup the Microsoft Education Insights OEA module using the [module test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data), but the same pipeline can be used for production data. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline) for instructions on switching the pipeline data source to production data.
 
 #### OEA Digital Engagement Schema:
 
-After completing the setup of this module, the MS Graph M365 and teams activity schemas can be transformed into the [OEA schema standard for digital engagement](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema). Refer to the documentation and assets to see how this module can be extended and standardized for OEA package-use.
+After completing the setup of this module, the MS Graph M365 and Teams activity schemas can be transformed into the [OEA schema standard for digital engagement](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema). Refer to the documentation and assets to see how this module can be extended and standardized for OEA package-use.
+
+## Data Sources
+
+ - The Graph Reports API data sources are used for ingesting Microsoft Teams and O365 "usage" data, as explained above. There are also additional data sources that can be ingested upon creating your own pipeline, or adding to the pipeline template provided. 
+ - The data ingested can either be formatted as JSON or CSV, although the pipeline template and datasets provided utilize the JSON format. 
+
+See the [module test data page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data) for details on data format and contents.
 
 ## Module Components
 Out-of-the box assets for this OEA module include: 
 1. [Tutorials](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/docs): [Written](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf) and [video](https://www.youtube.com/watch?v=K01h-QsMX9c) instructions of how to use this module within your own Synapse workspace, importing pipeline templates and notebooks, as well as demonstration to build custom queries to pull data for your education tenant from Microsoft Graph Reports API.
 2. [Test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data): Ingest sample data to understand the utility and functionality of the pipelines and notebooks.
-3. [Pipeline Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline): 3 pipeline templates - One main pipeline for data extraction, ingestion, and enrichment to stage 2, one which extracts Microsoft Graph reports API data to the Synapse workspace, and one that extracts the test data provided within this module to the Synapse workspace. 
+3. [Pipeline Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline): One main pipeline template which lands data into the Stage 1 data lake (for raw data) and processes into the Stage 2 data lake (for structured, queryable data). Stage 2 data is then made available via a serverless SQL endpoint.
+    - One sub-pipeline which extracts production Microsoft Graph reports API data to the Synapse workspace.
 4. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/notebook): 
     - [GraphAPI_py.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/GraphAPI_py.ipynb): A module python class notebook that defines the data schemas and basic functions of data ingestion and processing from Stage 1 to Stage 2.
     - [GraphAPI_module_ingestion.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/GraphAPI_module_ingestion.ipynb): Module data ingestion notebook which depends on the module class. The pipeline template incoporates this notebook.
-5. [PowerBI Templates](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/powerbi): Power BI sample templates making it easy to interact with Microsoft Graph Reports API data. See below for examples of developed PowerBI dashboard pages.
+5. [PowerBI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/powerbi): A Power BI template which explores data in a basic way. The Power BI file is pre-loaded with test data making it easy to quickly interact with data. See instructions on the [module PowerBI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/powerbi) to switch the dashboard data source to direct query from your Synapse workspace. Screenshots of the Power BI template are below.
 
 Explanation of Module Dashboard  | Usage Summary
 :-------------------------:|:-------------------------:
@@ -73,7 +78,7 @@ The Microsoft Graph Reports API module [welcomes contributions](https://github.c
 
 This module was developed by [Kwantum Analytics](https://www.kwantumedu.com/). The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
-### For more info
+### Additional Information
 | Resource | Description |
 | --- | --- |
 | [Overview of Microsoft Graph](https://docs.microsoft.com/en-us/graph/overview) | Intro to Graph API and what it can do. |

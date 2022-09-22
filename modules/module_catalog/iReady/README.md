@@ -7,7 +7,10 @@
 - [Personalized Instruction Assessment](https://www.curriculumassociates.com/programs/i-ready-learning/personalized-instruction) 
 
 See the [data sources](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady#data-sources) section below for details.
-![i-Ready Visual](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/docs/images/iReady%20landing%20readme%20picture.png)
+
+<p align="center">
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/docs/images/iready_data_ingestion_map.png" alt="i-Ready Data Ingestion Visual"/>
+</p>
 
 ## Problem Statement and Module Impact
 
@@ -17,12 +20,16 @@ This i-Ready OEA module will aid K-12 education systems in bringing student lear
 
 ## Module Setup Instructions
 
-1. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework).
-2. Setup the [most recent version of OEA](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
-3. Import the [i-Ready module class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/notebook/iReady_py.ipynb) into your Synapse workspace. This notebook contains data schema information and data writing functions needed to support module pipelines. 
-4. Import the [i-Ready pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/pipeline/iready_pipeline_template.zip) into your Synapse workspace and execute the pipeline. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/pipeline) for detailed instructions.
-5. Verify that the module pipeline landed data into stage 1 and 2 and SQL databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/pipeline) for detailed instructions.
-6. Download the [module Power BI template file](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/powerbi). Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/powerbi) page for instructions for switching the Power BI template data source to import from your Synapse workspace data source.
+<p align="center">
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/docs/images/iready_module_setup_visual.png" alt="i-Ready Setup Instructions"/>
+</p>
+
+<ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup the [most recent version of OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include the most recent version of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
+
+1. Import the [i-Ready module class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/notebook/iReady_py.ipynb) into your Synapse workspace. This notebook contains data schema information and data writing functions needed to support module pipelines. 
+2. Import the [i-Ready pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/iReady/pipeline/iready_pipeline_template.zip) into your Synapse workspace and execute the pipeline. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/pipeline) for detailed instructions.
+3. Verify that the module pipeline landed data into stage 1 and 2 and SQL databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/pipeline) for detailed instructions.
+4. Download the [module Power BI template file](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/powerbi). Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/powerbi) page for instructions for switching the Power BI template data source to import from your Synapse workspace data source.
 
 #### Note: 
 The above instructions will setup the i-Ready OEA module using the [module test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/test_data), but the same pipeline can be used for production data. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady/pipeline) for instructions on switching the pipeline data source to production data.

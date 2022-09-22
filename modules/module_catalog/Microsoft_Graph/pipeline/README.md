@@ -1,16 +1,22 @@
-# Pipeline
+# Pipelines
 
-### Overview 
-Included in this folder is a zip file "GraphAPI_main_pipeline" which is the main pipeline template for data extraction, ingestion, and enrichment from the Microsoft Graph Reports API to Synapse, which can be imported directly into your Synapse environment. This overarching pipeline extracts and lands the data in stage 1, then processes the data to stage 2p and stage 2np, and finally creates SQL and Lake databases of that data. Out-of-the-box, the GraphAPI_main_pipeline can be triggered to pull test data from this module and creates the respective databases. Refer to the tutorial provided within this module for more information on how to use these pipelines and other assets within this module.
+This module uses a Synapse pipeline to:
+1. Land Microsoft Graph Reports API test data into Stage 1np data lake (this step is omitted for production data).
+2. Process data into Stages 2np and 2p.
+3. Create a SQL database to query Stage 2np and 2p data via Power BI.
 
-This pipeline copies and stores the raw Graph API data to Stage 1 datalake storage in JSON format.  
+Notes:
+- "np" stands for non-pseudonomized data and "p" for pseudonomized data. 
+- Data columns contianing personal identifiable information (PII) are identified in the data schemas located in the [module class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_py.ipynb)
+- As data is processed from Stage 1np to Stages 2np and 2p, data is separated into pseudonomized data which PII columns hashed (Stage 2p) and lookup tables containing PII (Stage 2np). Non-pseudonmized data will then be protected at higher security levels.
+- This pipeline ingests Graph API data in the JSON format (but the class notebook and pipeline can be edited to process CSV-formatted data).
+- See the [written tutorial](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf) for an explaination on how to set up the pipeline to extract production data, or how to use this template.
 
-The tutorial explaining how to set up a pipeline to extract your own data or how to use this pipeline template, can be found [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf).
+Module Pipeline for Test Data  | Module Pipeline for Production Data
+:-------------------------:|:-------------------------:
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20main%20pipeline.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20main%20pipeline.png)  
 
-## Main Pipeline
-The [main pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/pipeline/GraphAPI_main_pipeline.zip) consists of 1 main sub-pipeline, and 3 additional activities outlined in the below image.
-
-![Main Synapse Pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20main%20pipeline.png "Main Pipeline")
+For production data, this module pipeline can be automatically triggered (i.e. daily or weekly) to keep your Synapse data lake up-to-date.
 
 ## Step 1: Test data or Production-level data ingestion
 The [sub-pipeline out-of-the-box](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/pipeline/Extracts/GraphAPI_copy_test_data.zip) ingests the test data contained within this module. This pipeline copies all test data to stage 1np of the data lake, once ran. See the [module test data folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data) for more information.
@@ -39,5 +45,4 @@ Lastly, this module main pipeline creates a final SQL view of the data ingested 
 
 ### Additional Notes:
  - The pipeline template can be manually triggered to query data from the Graph Reports API. When triggered, the pipeline pulls data for the past week for both M365 and Teams Graph reports while the Users report is overwritten.
- - The folder structure of the data landed is modeled after the OEA standard (using "users" as an example): stage1np/graph_api/users/2021-12-03T01-30-00/users.json (where the timestamp folder is the date and time at which the pipeline was ran).
  - It is recommended to use the following User query to save on cost and storage by scaling down the data ingested from the query: ``` beta/users?$select=givenName,surname,userPrincipalName,id ``` 
