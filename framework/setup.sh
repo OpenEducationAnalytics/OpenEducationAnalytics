@@ -42,6 +42,8 @@ eval "az synapse notebook import --workspace-name $synapse_workspace --name 2_ba
 eval "az synapse notebook import --workspace-name $synapse_workspace --name 3_data_generation_demo --spark-pool-name spark3p1sm --file @$this_file_path/synapse/notebook/3_data_generation_demo.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_connector --spark-pool-name spark3p1sm --file @$this_file_path/synapse/notebook/OEA_connector.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name DataGen_py --spark-pool-name spark3p1sm --file @$this_file_path/synapse/notebook/DataGen_py.ipynb --only-show-errors"
+# (this is the ContosoSIS_py notebook for use with the 'example_main_pipeline' that comes with the framework)
+eval "az synapse notebook import --workspace-name $synapse_workspace --name ContosoSIS_py --spark-pool-name spark3p1sm --file @$this_file_path/synapse/notebook/ContosoSIS_py.ipynb --only-show-errors"
 
 # 3) setup pipelines
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_URL --file @$this_file_path/synapse/pipeline/Copy_from_URL.json"
@@ -55,9 +57,5 @@ sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/pipeline/ex
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name example_main_pipeline --file @$this_file_path/tmp/example_main_pipeline.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name reset_all_for_source --file @$this_file_path/synapse/pipeline/reset_all_for_source.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name reset_ingestion_of_table --file @$this_file_path/synapse/pipeline/reset_ingestion_of_table.json"
-
-
-# 4) install the ContosoSIS_py notebook for use with the 'example_main_pipeline' that comes with the framework
-eval "az synapse notebook import --workspace-name $synapse_workspace --name ContosoSIS_py --spark-pool-name spark3p1sm --file @$this_file_path/../modules/module_catalog/Student_and_School_Data_Systems/notebook/ContosoSIS_py.ipynb --only-show-errors"
 
 echo "--> Setup complete. The OEA framework assets have been installed in the specified synapse workspace: $synapse_workspace"
