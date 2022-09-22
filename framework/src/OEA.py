@@ -4,7 +4,6 @@ from pyspark.sql.types import StructType, StructField, StringType, IntegerType, 
 from pyspark.sql import functions as F
 from pyspark.sql import SparkSession
 from pyspark.sql.utils import AnalysisException
-from opencensus.ext.azure.log_exporter import AzureLogHandler, logging
 import pandas as pd
 import sys
 import re
@@ -13,6 +12,7 @@ import datetime
 import pytz
 import random
 import io
+import logging
 
 logger = logging.getLogger('OEA')
 
@@ -26,7 +26,7 @@ class OEA:
             self.keyvault = 'kv-oea-' + oea_id
         self.keyvault_linked_service = 'LS_KeyVault_OEA'
         self.serverless_sql_endpoint = mssparkutils.env.getWorkspaceName() + '-ondemand.sql.azuresynapse.net'
-        self._initialize_logger(instrumentation_key, logging_level)
+        self._initialize_logger(logging_level)
         self.salt = salt
         self.timezone = 'EST'
         self.stage1np = 'abfss://stage1np@' + self.storage_account + '.dfs.core.windows.net'
@@ -60,22 +60,12 @@ class OEA:
         stage = path_args.pop(0)
         return self.path(stage, '/'.join(path_args))            
 
-    def _initialize_logger(self, instrumentation_key, logging_level):
-        logging.lastResort = None
-        # the logger will print an error like "ValueError: I/O operation on closed file" because we're trying to have log messages also print to stdout
-        # and apparently this causes issues on some of the spark executor nodes. The bottom line is that we don't want these logging errors to get printed in the notebook output.
-        logging.raiseExceptions = False
-        logger.setLevel(logging_level)
-
-        handler = logging.StreamHandler(sys.stdout)
-        handler.setLevel(logging_level)
+    def _initialize_logger(self, logging_level):
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        handler.setFormatter(formatter)
-        logger.addHandler(handler)
-
-        if instrumentation_key:
-            # Setup logging to go to app insights (more info here: https://github.com/balakreshnan/Samples2021/blob/main/Synapseworkspace/opencensuslog.md#azure-synapse-spark-logs-runtime-errors-to-application-insights)
-            logger.addHandler(AzureLogHandler(connection_string='InstrumentationKey=' + instrumentation_key))
+        for handler in logging.getLogger().handlers:
+            handler.setFormatter(formatter)           
+        # Customize log level for all loggers
+        logging.getLogger().setLevel(logging_level)        
 
     def get_value_from_db(self, query):
         df = spark.sql(query)
