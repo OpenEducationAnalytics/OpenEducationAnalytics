@@ -81,9 +81,10 @@ az synapse spark pool create --name spark3p1sm --workspace-name $OEA_SYNAPSE --r
   --enable-auto-scale true --delay 15 --enable-auto-pause true --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
-echo "--> Update spark pool to include required libraries (note that this has to be done as a separate step or the create command will fail, despite what the docs say)."
-az synapse spark pool update --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --library-requirements $oea_path/framework/requirements.txt
-[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
+# Removing this dependency for now because it's not being used and it's costly from a setup perspective (it's slow and occasionaly fails)
+#echo "--> Update spark pool to include required libraries (note that this has to be done as a separate step or the create command will fail, despite what the docs say)."
+#az synapse spark pool update --name spark3p1sm --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --library-requirements $oea_path/framework/requirements.txt
+#[[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 # 4) Create key vault for secure storage of credentials, and create app insights for logging
 echo "--> 4) Creating key vault: ${OEA_KEYVAULT}"
