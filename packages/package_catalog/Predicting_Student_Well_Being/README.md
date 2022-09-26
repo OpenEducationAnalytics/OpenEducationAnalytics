@@ -3,19 +3,19 @@
 # Predicting Student Well-Being Package
 
 The OEA Predicting Student Well-Being Package provides a set of assets which support an education system in developing their own predictive model to address levels of need for personalized support. There are two main components of this package:
-1.	<ins>Guidance and documentation:</ins> The [OEA Predicting Student Well-being Package - Use Case Documentation](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/Use%20Case%20Doc.pdf) provides guidance on the end-to-end process of developing a successful predictive model of student well-being use case project, including how to engage stakeholders in the project, prior research on the use case problem domain and theory, how to map data sources to the theory of the problem, and how to implement Microsoft’s Principles of Responsible Data and AI in the process of predictive modelling. <em> It is highly recommended this document be reviewed by any education system considering using this package, and that the documentation be revised to the specific data and decisions for that system’s context. </em>
+1.	<ins>Guidance and documentation:</ins> The OEA Predicting Student Well-being Package - Use Case Documentation provides guidance on the end-to-end process of developing a successful predictive model of student well-being use case project, including how to engage stakeholders in the project, prior research on the use case problem domain and theory, how to map data sources to the theory of the problem, and how to implement Microsoft’s Principles of Responsible Data and AI in the process of predictive modelling. <em> It is highly recommended this document be reviewed by any education system considering using this package, and that the documentation be revised to the specific data and decisions for that system’s context. </em>
 2.	<ins>Technical assets</ins>: Various assets are freely available in this package to help accelerate implementation of modelling student well-being. Assets include descriptions of data sources, notebooks for data processing, a pipeline for ML model building and deployment, and sample PowerBI dashboards. See descriptions of technical assets below.
 
 <ins>Important Note:</ins> It is strongly recommended to education systems or institutions planning to use this package establish that they establish a process for obtaining student, family, guardian, teacher, faculty, and staff **consent for using this type of student absense data**. This consent should be part of the system or institution’s **broader data governance policy** that clearly specifies who can have access to what data, under what conditions, for what purposes, and for what length of time.
 
-This OEA Package was developed through a partnership between Microsoft Education and [Department of Education Tasmanai](https://www.education.tas.gov.au/) in Tasmania, Australia.
+This OEA Package was developed through a partnership between Microsoft Education and [Department of Education Tasmania](https://www.education.tas.gov.au/) in Tasmania, Australia.
 
 
 
 ## Problem Statement
 Most students in education systems worldwide require some level of personalized care and support, yet the process of identifying who needs what types of support, and at what level of need, tends to be subjective and the process can vary considerably by school. Often, interventions are put in place after students have already become in urgent need of personalized support or are on the verge of dropping out of school. This is particularly concerning during the global pandemic that has added additional challenges for students and schools.
 
-![Levels of Need](https://github.com/microsoft/oea-hack-2022/blob/main/docs/images/levels_of_need.jpg) 
+![Levels of Need](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/images/levels_of_need.jpg) 
 *From Tasmania Department of Education [Child & Family Wellbeing Assessment Tool](https://www.strongfamiliessafekids.tas.gov.au/__data/assets/pdf_file/0016/5551/3-Child-and-Family-Wellbeing-Assessment-Tool.pdf)*
 
 [comment]: # (https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/images/levels_of_need.png)
@@ -36,18 +36,18 @@ In general, this package can be used by system or institutional leaders, school,
 See below for examples of developed PowerBI dashboards.
 
 **Patterns of students' need for personalized support**
-![](https://github.com/microsoft/oea-hack-2022/blob/main/docs/images/overview_dashboard.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/images/overview_dashboard.png)
 
 [comment]: # (https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/images/overview_dashboard.png)
 
 **Top drivers for predicted need (for educators and school support staff)**
-![](https://github.com/microsoft/oea-hack-2022/blob/main/docs/images/driver_dashboard.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/images/driver_dashboard.png)
 
 [comment]: # (https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/images/driver_dashboard.png)
 
 
 **Model fairness and predictive performance**
-![](https://github.com/microsoft/oea-hack-2022/blob/main/docs/images/model_dashboard.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/images/model_dashboard.png)
 
 [comment]: # (https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/images/model_dashboard.png)
 
