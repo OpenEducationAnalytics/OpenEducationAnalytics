@@ -26,7 +26,7 @@ Machine learning models offer the potential to find patterns of needed support a
 
 ## Package Impact
 
-This package was developed in collaboration with the Department of Education in Tasmania, Australia (see the [Use Case Documentation](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/Use%20Case%20Doc.pdf) for details).
+This package was developed in collaboration with the Department of Education in Tasmania, Australia (see the Use Case Documentation for details).
 In general, this package can be used by system or institutional leaders, school, or department leaders, support staff, and educators to:
 -	<em> accurately identify </em> which students are at the highest levels of need for personalised supports
 -	<em> quickly understand </em> what type of support resources or interventions might be most effective to promote resilience and well-being with individual students
