@@ -18,12 +18,12 @@ The [name of module] PowerBI template consists of [number] pages:
 - visual 2 name - description of visual
 - visual 3 name - description of visual
 
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/_Creation_Kit/docs/images/Sample_PowerBI_Dashboard.png)
+![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Sample_PowerBI_Dashboard.png)
 NB: This can be an image of one of the PowerBI pages.
 
 ## Semantic Model
 This PowerBI module is made up of the following tables: [list table names]. The dimension table is [name of dimension table] and the fact tables are [list of fact tables].
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/_Creation_Kit/docs/images/Sample_PowerBI_Semantic_Model.png)
+![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Sample_PowerBI_Semantic_Model.png)
 
 ### Table Details
 | Table | Column   | Description   |
