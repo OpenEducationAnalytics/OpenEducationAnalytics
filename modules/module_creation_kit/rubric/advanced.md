@@ -20,10 +20,10 @@ Use this checklist to keep track of your progress.
 
 ## Compute
 - [ ] Define schema for initial data prep and pseudonymization.
-- [ ] Implement process_stage1_into_stage2().
+- [ ] Implement function to process data from stage 1 into stage 2.
 - [ ] Follows OEA framework script.
 - [ ] Add data validation, cleaning, aggregation and enrichment.
-- [ ] Implement process_stage2_into_stage3().
+- [ ] Implement function to process data from stage 2 into stage 3.
 
 ## Communicate
 - [ ] PowerBI semantic model demonstrating entity relationships.
