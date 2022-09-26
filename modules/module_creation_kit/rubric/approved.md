@@ -16,7 +16,7 @@ Use this checklist to keep track of your progress.
 
 ## Compute
 - [ ] Define schema for initial data prep and pseudonymization.
-- [ ] Implement process_stage1_into_stage2().
+- [ ] Implement function to process data from stage 1 into stage 2.
 
 ## Communicate
 - [ ] PowerBI semantic model demonstrating entity relationships.
