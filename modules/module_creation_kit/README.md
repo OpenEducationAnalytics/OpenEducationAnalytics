@@ -5,7 +5,7 @@ Provide an overview of the module.
 ## Problem Statement and Module Impact
 Define the problem you seek to solve using this module, and list out the impact and benefits this module will have on learners, educators and the learning process.
 
-## Module Setup
+## Module Setup Instructions
 Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA, etc.
 
 ## Data Sources
