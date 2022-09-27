@@ -25,7 +25,7 @@ This module will provide you access to all tables present in [Canvas Data v1](ht
   - [Terraform CLI](https://www.terraform.io/cli) and [Azure Core Function Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?tabs=v4%2Cwindows%2Ccsharp%2Cportal%2Cbash) installed on your machine for the initial deployment.
   - A Synapse environment as deployed by the base OEA install where the pipeline can be configured.
 
-Please see the [Setup docs](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/Canvas_Data/docs/Setup.md) for deployment instructions.
+Please see the [Setup docs](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas_Data/docs/Setup.md) for deployment instructions.
 
 
 ## Module Components 
@@ -33,12 +33,12 @@ The nature of the Canvas Data API makes it difficult to query directly from Syna
 
 Components include:
 
-1. An [Azure Durable Function](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Canvas_Data/function) instance that provides:
+1. An [Azure Durable Function](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Canvas_Data/function) instance that provides:
    - Functions to compare Canvas Data to stage1np data and identify missing files (deltas).
    - Functions to download new files and delete old (obsolete) ones.
    - Type translation generators that provide type translators for the ADF Copy Activity.
-2. Several [Pipelines](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Canvas_Data/pipeline) for orchestrating & scheduling the data load into the lake, and the transform into stage2np.
-3. A sample [notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Canvas_Data/notebook) that creates a user activity table in stage3np.
+2. Several [Pipelines](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Canvas_Data/pipeline) for orchestrating & scheduling the data load into the lake, and the transform into stage2np.
+3. A sample [notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Canvas_Data/notebook) that creates a user activity table in stage3np.
 
 
 ## Contributions & Authors
