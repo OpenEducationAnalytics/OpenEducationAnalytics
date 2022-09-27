@@ -8546,7 +8546,7 @@
             "$ref": "#/definitions/edFi_educationOrganizationAddress"
           },
           "type": "array",
-          "explode": false
+          "explode": true
         },
         "administrativeFundingControlDescriptor": {
           "description": "The type of education institution as classified by its funding source, for example public or private.",
