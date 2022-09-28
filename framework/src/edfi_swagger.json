@@ -10963,6 +10963,7 @@
           "description": "A unique alphanumeric code assigned to a student.",
           "x-Ed-Fi-isIdentity": true,
           "maxLength": 32,
+          "x-Ed-Fi-pseudonymization": "hash",
           "type": "string"
         },
         "personReference": {
@@ -11014,6 +11015,7 @@
         "firstName": {
           "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
           "maxLength": 75,
+          "x-Ed-Fi-pseudonymization": "mask",
           "type": "string"
         },
         "generationCodeSuffix": {
@@ -11032,6 +11034,7 @@
         "lastSurname": {
           "description": "The name borne in common by members of a family.",
           "maxLength": 75,
+          "x-Ed-Fi-pseudonymization": "mask",
           "type": "string"
         },
         "maidenName": {
@@ -11042,6 +11045,7 @@
         "middleName": {
           "description": "A secondary name given to an individual at birth, baptism, or during another naming ceremony.",
           "maxLength": 75,
+          "x-Ed-Fi-pseudonymization": "mask",
           "type": "string"
         },
         "multipleBirthStatus": {
