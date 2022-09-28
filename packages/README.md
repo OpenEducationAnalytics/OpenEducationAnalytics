@@ -7,10 +7,9 @@ Modules and packages have a similar set of technical assets, but modules focus o
 
 Open Education Analytics Packages current support the following education use cases: 
 
-1. Predicting Chronic Absenteeism 
-2. How to Implement Azure Machine Learning (<a href="https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/How_to_implement_Azure_machine_learning"> Link </a>)
-3. How to issue Azure Verifiable Credentials to Students for their Achievements (<a href="https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/Verified_Credentials"> Link </a>)
-
+1. Predicting Chronic Absenteeism (<a href="https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Chronic_Absenteeism"> Link </a>)
+2. How to Implement Azure Machine Learning 
+3. How to issue Azure Verifiable Credentials to Students for their Achievements
 Future OEA Packages will include support for: 
 
 1. Predicting and Preventing Students at Academic Risk 
