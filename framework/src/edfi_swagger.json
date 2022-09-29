@@ -44,7 +44,7 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "beginDate": {
@@ -1052,7 +1052,11 @@
         "sectionReference": {
           "$ref": "#/definitions/edFi_sectionReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "localCourseCode",
+            "schoolId",
+            "schoolYear",
+            "sectionIdentifier",
+            "sessionName"
           ]
         }
       },
@@ -1084,7 +1088,7 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "alternateDayName": {
@@ -1225,7 +1229,7 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "schoolYearTypeReference": {
@@ -1409,7 +1413,7 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "meetingTimes": {
@@ -2010,7 +2014,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "amountToDate": {
@@ -2042,7 +2046,7 @@
           "x-Ed-Fi-isIdentity": true,
           "maxLength": 60,
           "type": "string",
-          "x-Ed-Fi-pseudonymization":"hash"
+          "x-Ed-Fi-pseudonymization": "hash"
         },
         "identificationCodes": {
           "description": "An unordered collection of courseIdentificationCodes. The code that identifies the organization of subject matter and related learning experiences provided for the instruction of students.",
@@ -2311,13 +2315,14 @@
         "courseReference": {
           "$ref": "#/definitions/edFi_courseReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "educationOrganizationId",
+            "courseCode"
           ]
         },
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "sessionReference": {
@@ -2463,7 +2468,7 @@
           "description": "The identifier assigned to an education organization.",
           "format": "int32",
           "type": "integer",
-          "x-Ed-Fi-pseudonymization":"hash"
+          "x-Ed-Fi-pseudonymization": "hash"
         },
         "link": {
           "$ref": "#/definitions/link",
@@ -2493,7 +2498,8 @@
         "courseReference": {
           "$ref": "#/definitions/edFi_courseReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "educationOrganizationId",
+            "courseCode"
           ]
         },
         "externalEducationOrganizationReference": {
@@ -2967,19 +2973,19 @@
         "assignmentSchoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "responsibilitySchoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "actualDisciplineActionLength": {
@@ -3061,7 +3067,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         }
       },
@@ -3113,13 +3119,13 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "behaviors": {
@@ -4082,7 +4088,7 @@
           "description": "The identifier assigned to an education organization.",
           "format": "int32",
           "type": "integer",
-          "x-Ed-Fi-pseudonymization":"hash"
+          "x-Ed-Fi-pseudonymization": "hash"
         },
         "link": {
           "$ref": "#/definitions/link",
@@ -4228,13 +4234,13 @@
         "feederSchoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "endDate": {
@@ -4458,7 +4464,11 @@
         "sectionReference": {
           "$ref": "#/definitions/edFi_sectionReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "localCourseCode",
+            "schoolId",
+            "schoolYear",
+            "sectionIdentifier",
+            "sessionName"
           ]
         },
         "description": {
@@ -4721,7 +4731,7 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "schoolYearTypeReference": {
@@ -4935,7 +4945,8 @@
         "courseReference": {
           "$ref": "#/definitions/edFi_courseReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "educationOrganizationId",
+            "courseCode"
           ]
         }
       },
@@ -5645,7 +5656,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         }
       },
@@ -6721,7 +6732,7 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "maximumNumberOfSeats": {
@@ -7753,7 +7764,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "amountToDate": {
@@ -7855,7 +7866,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "_etag": {
@@ -8216,7 +8227,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "gpaCumulative": {
@@ -8427,13 +8438,13 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "educationalEnvironmentDescriptor": {
@@ -8775,7 +8786,7 @@
           "x-Ed-Fi-isIdentity": true,
           "maxLength": 255,
           "type": "string",
-          "x-Ed-Fi-pseudonymization":"hash"
+          "x-Ed-Fi-pseudonymization": "hash"
         },
         "courseOfferingReference": {
           "$ref": "#/definitions/edFi_courseOfferingReference",
@@ -8792,7 +8803,7 @@
         "locationSchoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "availableCreditConversion": {
@@ -8910,13 +8921,17 @@
         "sectionReference": {
           "$ref": "#/definitions/edFi_sectionReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "localCourseCode",
+            "schoolId",
+            "schoolYear",
+            "sectionIdentifier",
+            "sessionName"
           ]
         },
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "eventDate": {
@@ -9017,7 +9032,7 @@
           "description": "The identifier assigned to a school.",
           "format": "int32",
           "type": "integer",
-          "x-Ed-Fi-pseudonymization":"hash"
+          "x-Ed-Fi-pseudonymization": "hash"
         },
         "schoolYear": {
           "description": "The identifier for the school year.",
@@ -9065,7 +9080,7 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "schoolYearTypeReference": {
@@ -9196,7 +9211,7 @@
           "x-Ed-Fi-isIdentity": true,
           "maxLength": 32,
           "type": "string",
-          "x-Ed-Fi-pseudonymization":"hash"
+          "x-Ed-Fi-pseudonymization": "hash"
         },
         "personReference": {
           "$ref": "#/definitions/edFi_personReference",
@@ -9250,7 +9265,7 @@
           "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
           "maxLength": 75,
           "type": "string",
-          "x-Ed-Fi-pseudonymization":"mask"
+          "x-Ed-Fi-pseudonymization": "mask"
         },
         "generationCodeSuffix": {
           "description": "An appendage, if any, used to denote an individual's generation in his family (e.g., Jr., Sr., III).",
@@ -9306,13 +9321,13 @@
           "description": "The name borne in common by members of a family.",
           "maxLength": 75,
           "type": "string",
-          "x-Ed-Fi-pseudonymization":"mask"
+          "x-Ed-Fi-pseudonymization": "mask"
         },
         "loginId": {
           "description": "The login ID for the user; used for security access control interface.",
           "maxLength": 60,
           "type": "string",
-          "x-Ed-Fi-pseudonymization":"mask"
+          "x-Ed-Fi-pseudonymization": "mask"
         },
         "maidenName": {
           "description": "The person's maiden name.",
@@ -9323,7 +9338,7 @@
           "description": "A secondary name given to an individual at birth, baptism, or during another naming ceremony.",
           "maxLength": 75,
           "type": "string",
-          "x-Ed-Fi-pseudonymization":"mask"
+          "x-Ed-Fi-pseudonymization": "mask"
         },
         "oldEthnicityDescriptor": {
           "description": "Previous definition of Ethnicity combining Hispanic/Latino and race:        1 - American Indian or Alaskan Native        2 - Asian or Pacific Islander        3 - Black, not of Hispanic origin        4 - Hispanic        5 - White, not of Hispanic origin.",
@@ -9439,7 +9454,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "absenceEventReason": {
@@ -9612,7 +9627,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "endDate": {
@@ -9673,7 +9688,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "_etag": {
@@ -9741,7 +9756,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "endDate": {
@@ -9798,7 +9813,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "address": {
@@ -10013,7 +10028,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "department": {
@@ -10319,7 +10334,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "endDate": {
@@ -10456,7 +10471,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "endDate": {
@@ -10608,7 +10623,7 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "schoolYearTypeReference": {
@@ -10620,7 +10635,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "academicSubjects": {
@@ -10688,13 +10703,17 @@
         "sectionReference": {
           "$ref": "#/definitions/edFi_sectionReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "localCourseCode",
+            "schoolId",
+            "schoolYear",
+            "sectionIdentifier",
+            "sessionName"
           ]
         },
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "beginDate": {
@@ -11131,7 +11150,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "academicHonors": {
@@ -11664,7 +11683,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "accommodations": {
@@ -11994,7 +12013,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "endDate": {
@@ -12027,7 +12046,11 @@
         "sectionReference": {
           "$ref": "#/definitions/edFi_sectionReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "localCourseCode",
+            "schoolId",
+            "schoolYear",
+            "sectionIdentifier",
+            "sessionName"
           ]
         }
       },
@@ -12057,7 +12080,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "competencyLevelDescriptor": {
@@ -12215,7 +12238,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "ctePrograms": {
@@ -12399,7 +12422,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "behaviors": {
@@ -12498,7 +12521,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "behaviorDetailedDescription": {
@@ -12592,7 +12615,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "disciplineIncidentParticipationCodes": {
@@ -12643,7 +12666,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "addresses": {
@@ -13433,7 +13456,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "endDate": {
@@ -13535,7 +13558,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "awaitingFosterCare": {
@@ -13695,7 +13718,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "diagnosticStatement": {
@@ -13793,7 +13816,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "attendanceEventReason": {
@@ -13856,7 +13879,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "dosage": {
@@ -14008,7 +14031,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "competencyLevelDescriptor": {
@@ -14160,7 +14183,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "continuationOfServicesReasonDescriptor": {
@@ -14313,7 +14336,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "elaProgressLevelDescriptor": {
@@ -14464,7 +14487,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "contactPriority": {
@@ -14582,7 +14605,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "endDate": {
@@ -14695,7 +14718,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "attendanceEventReason": {
@@ -14738,7 +14761,7 @@
           "description": "A unique alphanumeric code assigned to a student.",
           "maxLength": 32,
           "type": "string",
-          "x-Ed-Fi-pseudonymization":"hash"
+          "x-Ed-Fi-pseudonymization": "hash"
         },
         "link": {
           "$ref": "#/definitions/link",
@@ -14785,7 +14808,7 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "schoolYearTypeReference": {
@@ -14797,7 +14820,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "alternativeGraduationPlans": {
@@ -14933,7 +14956,7 @@
         "schoolReference": {
           "$ref": "#/definitions/edFi_schoolReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "schoolId"
           ]
         },
         "sessionReference": {
@@ -14945,7 +14968,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "arrivalTime": {
@@ -15017,7 +15040,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "directCertification": {
@@ -15116,7 +15139,11 @@
         "sectionReference": {
           "$ref": "#/definitions/edFi_sectionReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "localCourseCode", "schoolId", "schoolYear", "sectionIdentifier", "sessionName"
+            "localCourseCode",
+            "schoolId",
+            "schoolYear",
+            "sectionIdentifier",
+            "sessionName"
           ]
         },
         "studentReference": {
@@ -15236,13 +15263,17 @@
         "sectionReference": {
           "$ref": "#/definitions/edFi_sectionReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "localCourseCode",
+            "schoolId",
+            "schoolYear",
+            "sectionIdentifier",
+            "sessionName"
           ]
         },
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "arrivalTime": {
@@ -15335,7 +15366,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "disabilities": {
@@ -15510,7 +15541,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         }
       },
@@ -15564,7 +15595,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         }
       },
@@ -15600,7 +15631,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "endDate": {
@@ -15809,7 +15840,8 @@
         "courseReference": {
           "$ref": "#/definitions/edFi_courseReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "educationOrganizationId",
+            "courseCode"
           ]
         },
         "surveyReference": {
@@ -16162,13 +16194,13 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "surveyReference": {
@@ -16297,7 +16329,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "surveyResponseReference": {
@@ -16369,7 +16401,11 @@
         "sectionReference": {
           "$ref": "#/definitions/edFi_sectionReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "localCourseCode",
+            "schoolId",
+            "schoolYear",
+            "sectionIdentifier",
+            "sessionName"
           ]
         },
         "surveyReference": {
@@ -16529,7 +16565,7 @@
         "staffReference": {
           "$ref": "#/definitions/edFi_staffReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "staffUniqueId"
           ]
         },
         "surveySectionResponseReference": {
@@ -18073,7 +18109,11 @@
         "sectionReference": {
           "$ref": "#/definitions/edFi_sectionReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "localCourseCode",
+            "schoolId",
+            "schoolYear",
+            "sectionIdentifier",
+            "sessionName"
           ]
         },
         "evaluationRatingLevelDescriptor": {
@@ -18362,7 +18402,7 @@
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "aidAmount": {
