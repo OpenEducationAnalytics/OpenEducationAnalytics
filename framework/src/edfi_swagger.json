@@ -2041,7 +2041,8 @@
           "description": "A unique alphanumeric code assigned to a course.",
           "x-Ed-Fi-isIdentity": true,
           "maxLength": 60,
-          "type": "string"
+          "type": "string",
+          "x-Ed-Fi-pseudonymization":"hash"
         },
         "identificationCodes": {
           "description": "An unordered collection of courseIdentificationCodes. The code that identifies the organization of subject matter and related learning experiences provided for the instruction of students.",
@@ -2054,7 +2055,7 @@
         "educationOrganizationReference": {
           "$ref": "#/definitions/edFi_educationOrganizationReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "educationOrganizationId"
           ]
         },
         "academicSubjectDescriptor": {
@@ -2461,7 +2462,8 @@
         "educationOrganizationId": {
           "description": "The identifier assigned to an education organization.",
           "format": "int32",
-          "type": "integer"
+          "type": "integer",
+          "x-Ed-Fi-pseudonymization":"hash"
         },
         "link": {
           "$ref": "#/definitions/link",
@@ -4079,7 +4081,8 @@
         "educationOrganizationId": {
           "description": "The identifier assigned to an education organization.",
           "format": "int32",
-          "type": "integer"
+          "type": "integer",
+          "x-Ed-Fi-pseudonymization":"hash"
         },
         "link": {
           "$ref": "#/definitions/link",
@@ -8771,7 +8774,8 @@
           "description": "The local identifier assigned to a section.",
           "x-Ed-Fi-isIdentity": true,
           "maxLength": 255,
-          "type": "string"
+          "type": "string",
+          "x-Ed-Fi-pseudonymization":"hash"
         },
         "courseOfferingReference": {
           "$ref": "#/definitions/edFi_courseOfferingReference",
@@ -9012,7 +9016,8 @@
         "schoolId": {
           "description": "The identifier assigned to a school.",
           "format": "int32",
-          "type": "integer"
+          "type": "integer",
+          "x-Ed-Fi-pseudonymization":"hash"
         },
         "schoolYear": {
           "description": "The identifier for the school year.",
@@ -9190,7 +9195,8 @@
           "description": "A unique alphanumeric code assigned to a staff.",
           "x-Ed-Fi-isIdentity": true,
           "maxLength": 32,
-          "type": "string"
+          "type": "string",
+          "x-Ed-Fi-pseudonymization":"hash"
         },
         "personReference": {
           "$ref": "#/definitions/edFi_personReference",
@@ -9243,7 +9249,8 @@
         "firstName": {
           "description": "A name given to an individual at birth, baptism, or during another naming ceremony, or through legal change.",
           "maxLength": 75,
-          "type": "string"
+          "type": "string",
+          "x-Ed-Fi-pseudonymization":"mask"
         },
         "generationCodeSuffix": {
           "description": "An appendage, if any, used to denote an individual's generation in his family (e.g., Jr., Sr., III).",
@@ -9298,12 +9305,14 @@
         "lastSurname": {
           "description": "The name borne in common by members of a family.",
           "maxLength": 75,
-          "type": "string"
+          "type": "string",
+          "x-Ed-Fi-pseudonymization":"mask"
         },
         "loginId": {
           "description": "The login ID for the user; used for security access control interface.",
           "maxLength": 60,
-          "type": "string"
+          "type": "string",
+          "x-Ed-Fi-pseudonymization":"mask"
         },
         "maidenName": {
           "description": "The person's maiden name.",
@@ -9313,7 +9322,8 @@
         "middleName": {
           "description": "A secondary name given to an individual at birth, baptism, or during another naming ceremony.",
           "maxLength": 75,
-          "type": "string"
+          "type": "string",
+          "x-Ed-Fi-pseudonymization":"mask"
         },
         "oldEthnicityDescriptor": {
           "description": "Previous definition of Ethnicity combining Hispanic/Latino and race:        1 - American Indian or Alaskan Native        2 - Asian or Pacific Islander        3 - Black, not of Hispanic origin        4 - Hispanic        5 - White, not of Hispanic origin.",
@@ -14727,7 +14737,8 @@
         "studentUniqueId": {
           "description": "A unique alphanumeric code assigned to a student.",
           "maxLength": 32,
-          "type": "string"
+          "type": "string",
+          "x-Ed-Fi-pseudonymization":"hash"
         },
         "link": {
           "$ref": "#/definitions/link",
@@ -15105,13 +15116,13 @@
         "sectionReference": {
           "$ref": "#/definitions/edFi_sectionReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "localCourseCode", "schoolId", "schoolYear", "sectionIdentifier", "sessionName"
           ]
         },
         "studentReference": {
           "$ref": "#/definitions/edFi_studentReference",
           "x-Ed-Fi-fields-to-pluck": [
-            "*"
+            "studentUniqueId"
           ]
         },
         "attemptStatusDescriptor": {
