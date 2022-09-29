@@ -1054,7 +1054,6 @@
           "x-Ed-Fi-fields-to-pluck": [
             "localCourseCode",
             "schoolId",
-            "schoolYear",
             "sectionIdentifier",
             "sessionName"
           ]
@@ -4466,7 +4465,6 @@
           "x-Ed-Fi-fields-to-pluck": [
             "localCourseCode",
             "schoolId",
-            "schoolYear",
             "sectionIdentifier",
             "sessionName"
           ]
@@ -8923,7 +8921,6 @@
           "x-Ed-Fi-fields-to-pluck": [
             "localCourseCode",
             "schoolId",
-            "schoolYear",
             "sectionIdentifier",
             "sessionName"
           ]
@@ -10705,7 +10702,6 @@
           "x-Ed-Fi-fields-to-pluck": [
             "localCourseCode",
             "schoolId",
-            "schoolYear",
             "sectionIdentifier",
             "sessionName"
           ]
@@ -12048,7 +12044,6 @@
           "x-Ed-Fi-fields-to-pluck": [
             "localCourseCode",
             "schoolId",
-            "schoolYear",
             "sectionIdentifier",
             "sessionName"
           ]
@@ -15141,7 +15136,6 @@
           "x-Ed-Fi-fields-to-pluck": [
             "localCourseCode",
             "schoolId",
-            "schoolYear",
             "sectionIdentifier",
             "sessionName"
           ]
@@ -15265,7 +15259,6 @@
           "x-Ed-Fi-fields-to-pluck": [
             "localCourseCode",
             "schoolId",
-            "schoolYear",
             "sectionIdentifier",
             "sessionName"
           ]
@@ -16403,7 +16396,6 @@
           "x-Ed-Fi-fields-to-pluck": [
             "localCourseCode",
             "schoolId",
-            "schoolYear",
             "sectionIdentifier",
             "sessionName"
           ]
@@ -18111,7 +18103,6 @@
           "x-Ed-Fi-fields-to-pluck": [
             "localCourseCode",
             "schoolId",
-            "schoolYear",
             "sectionIdentifier",
             "sessionName"
           ]
