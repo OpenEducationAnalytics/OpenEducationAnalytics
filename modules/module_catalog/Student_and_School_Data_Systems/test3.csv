@@ -1,0 +1,24 @@
+# This is a test,,,
+,,,
+studentattendance,,,
+,id,string,no-op
+,student_id,string,hash
+,school_year,integer,partition-by
+,school_id,string,no-op
+,attendance_date,timestamp,no-op
+,all_day,string,no-op
+,Period,short,no-op
+,section_id,string,no-op
+,AttendanceCode,string,no-op
+,PresenceFlag,boolean,no-op
+,attendance_status,string,no-op
+,attendance_type,string,no-op
+,attendance_sequence,short,no-op
+studentdemographics,,,
+,id,string,no-op
+,student_id,string,hash
+,school_year,integer,partition-by
+studentsectionmark,,,
+,id,string,no-op
+,student_id,string,hash
+,school_year,integer,partition-by
