@@ -1,0 +1,202 @@
+{
+	"name": "Ingest_To_Stage2",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get-CheckPoints",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "DS_JSON_File",
+						"type": "DatasetReference",
+						"parameters": {
+							"stage": "2",
+							"path": {
+								"value": "Ingested/@{pipeline().parameters.directory}/v@{pipeline().parameters.apiversion}",
+								"type": "Expression"
+							},
+							"fileName": "checkpoints.json"
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "Iterate Checkpoints",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get-CheckPoints",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get-CheckPoints').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"batchCount": 3,
+					"activities": [
+						{
+							"name": "Process Upserts",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "edfi_upsert",
+									"type": "DataFlowReference",
+									"parameters": {
+										"districtId": {
+											"value": "'@{pipeline().parameters.districtId}'",
+											"type": "Expression"
+										},
+										"schoolYear": {
+											"value": "'@{pipeline().parameters.schoolYear}'",
+											"type": "Expression"
+										},
+										"entity": {
+											"value": "'@{item().entity}'",
+											"type": "Expression"
+										},
+										"directory": {
+											"value": "'@{pipeline().parameters.directory}'",
+											"type": "Expression"
+										},
+										"apiversion": {
+											"value": "'@{pipeline().parameters.apiversion}'",
+											"type": "Expression"
+										}
+									}
+								},
+								"integrationRuntime": {
+									"referenceName": "IR-DataFlows",
+									"type": "IntegrationRuntimeReference"
+								},
+								"traceLevel": "Fine",
+								"continuationSettings": {
+									"customizedCheckpointKey": {
+										"value": "@item().checkpoint",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "Process Deletes",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [
+								{
+									"activity": "Process Upserts",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "edfi_delete",
+									"type": "DataFlowReference",
+									"parameters": {
+										"districtId": {
+											"value": "'@{pipeline().parameters.districtId}'",
+											"type": "Expression"
+										},
+										"schoolYear": {
+											"value": "'@{pipeline().parameters.schoolYear}'",
+											"type": "Expression"
+										},
+										"entity": {
+											"value": "'@{item().entity}'",
+											"type": "Expression"
+										},
+										"directory": {
+											"value": "'@{pipeline().parameters.directory}'",
+											"type": "Expression"
+										},
+										"apiversion": {
+											"value": "'@{pipeline().parameters.apiversion}'",
+											"type": "Expression"
+										}
+									}
+								},
+								"integrationRuntime": {
+									"referenceName": "IR-DataFlows",
+									"type": "IntegrationRuntimeReference"
+								},
+								"traceLevel": "Fine",
+								"continuationSettings": {
+									"customizedCheckpointKey": {
+										"value": "@item().checkpoint",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"districtId": {
+				"type": "string",
+				"defaultValue": "255901"
+			},
+			"schoolYear": {
+				"type": "string",
+				"defaultValue": "2017"
+			},
+			"apiversion": {
+				"type": "string",
+				"defaultValue": "5.3"
+			},
+			"directory": {
+				"type": "string",
+				"defaultValue": "EdFi"
+			}
+		},
+		"folder": {
+			"name": "EdFi/Single District Per Instance"
+		},
+		"annotations": []
+	}
+}
