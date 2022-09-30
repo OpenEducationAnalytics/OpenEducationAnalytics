@@ -20,7 +20,7 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "901ec6bb-c221-43f5-9bd3-f86ea3f95574"
+				"spark.autotune.trackingId": "36f6ee6e-230e-46e8-a957-a33c3ad762ab"
 			}
 		},
 		"metadata": {
@@ -90,7 +90,7 @@
 					"# api_version = '5.3'\r\n",
 					"\r\n",
 					"oea = OEA(storage_account='stoeacisdedfi1')\r\n",
-					"schema_generator = OpenAPISchemaGenerator('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/Abhinav/Ed-Fi-Testing/framework/src/edfi_swagger.json')\r\n",
+					"schema_generator = OpenAPISchemaGenerator('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/modules/module_catalog/Ed-Fi/docs//edfi_swagger.json')\r\n",
 					"\r\n",
 					"schemas = schema_generator.create_spark_schemas()\r\n",
 					"metadatas = schema_generator.create_metadata()\r\n",
