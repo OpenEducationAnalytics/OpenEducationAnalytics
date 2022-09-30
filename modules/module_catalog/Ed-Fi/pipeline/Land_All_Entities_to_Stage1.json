@@ -1,0 +1,566 @@
+{
+	"name": "Land_All_Entities_to_Stage1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get-AccessToken",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@{pipeline().parameters.BaseURL}/edfi/v@{pipeline().parameters.ApiVersion}/saas/core/@{pipeline().parameters.InstanceId}/oauth/token",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"grant_type": "client_credentials"
+					},
+					"authentication": {
+						"type": "Basic",
+						"username": {
+							"value": "@pipeline().parameters.ClientID",
+							"type": "Expression"
+						},
+						"password": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "LS_KeyVault_OEA",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": {
+								"value": "@pipeline().parameters.SecretName",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			},
+			{
+				"name": "Set-AccessToken",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get-AccessToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "AccessToken",
+					"value": {
+						"value": "Bearer @{activity('Get-AccessToken').output.access_token}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Get Current Change Version",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Set-FolderName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@{pipeline().parameters.BaseURL}/edfi/v@{pipeline().parameters.ApiVersion}/saas/core/changequeries/v1/@{pipeline().parameters.InstanceId}/@{pipeline().parameters.SchoolYear}/availableChangeVersions",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"headers": {
+						"Authorization": {
+							"value": "@variables('AccessToken')",
+							"type": "Expression"
+						},
+						"Accept": "application/json"
+					}
+				}
+			},
+			{
+				"name": "Set Max Change Version",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Current Change Version",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "MaxChangeVersion",
+					"value": {
+						"value": "@string(activity('Get Current Change Version').output.NewestChangeVersion)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Iterate over entities",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set Max Change Version",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Set-MinChangeVersion",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "Get All endpoints",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@json(activity('Get All endpoints').output.Response)",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"batchCount": 40,
+					"activities": [
+						{
+							"name": "Cope Entity Data to stage1",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "Copy Data from REST API to ADLS",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"Limit": 500,
+									"BaseURL": {
+										"value": "@pipeline().parameters.BaseURL",
+										"type": "Expression"
+									},
+									"TotalCountURL": {
+										"value": "@{pipeline().parameters.BaseURL}/edfi/v5.3/saas/core/data/v3/@{pipeline().parameters.InstanceId}/@{pipeline().parameters.SchoolYear}/@{item().resource}?MinChangeVersion=@{variables('MinChangeVersion')}&MaxChangeVersion=@{variables('MaxChangeVersion')}&totalCount=true\n",
+										"type": "Expression"
+									},
+									"RelativeURL": {
+										"value": "/edfi/v5.3/saas/core/data/v3/@{pipeline().parameters.InstanceId}/@{pipeline().parameters.SchoolYear}@{item().resource}?MinChangeVersion=@{variables('MinChangeVersion')}&MaxChangeVersion=@{variables('MaxChangeVersion')}",
+										"type": "Expression"
+									},
+									"ClientId": {
+										"value": "@pipeline().parameters.ClientID",
+										"type": "Expression"
+									},
+									"SecretName": {
+										"value": "@pipeline().parameters.SecretName",
+										"type": "Expression"
+									},
+									"SinkPath": {
+										"value": "Transactional/@{pipeline().parameters.Directory}/v@{pipeline().parameters.ApiVersion}/DistrictId=@{pipeline().parameters.DistrictId}/SchoolYear=@{pipeline().parameters.SchoolYear}/@{split(item().resource, '/')[2]}/Incremental/Upserts/@{variables('FolderName')}",
+										"type": "Expression"
+									},
+									"AuthURL": {
+										"value": "@{pipeline().parameters.BaseURL}/edfi/v@{pipeline().parameters.ApiVersion}/saas/core/@{pipeline().parameters.InstanceId}/oauth/token",
+										"type": "Expression"
+									}
+								}
+							}
+						},
+						{
+							"name": "Copy Deletes to stage 1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "RestSource",
+									"httpRequestTimeout": "00:01:40",
+									"requestInterval": "00.00:00:00.010",
+									"requestMethod": "GET",
+									"additionalHeaders": {
+										"Authorization": {
+											"value": "@variables('AccessToken')",
+											"type": "Expression"
+										}
+									},
+									"paginationRules": {
+										"QueryParameters.start": "RANGE:0:1000:500"
+									}
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings",
+										"filePattern": "setOfObjects"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_REST",
+									"type": "DatasetReference",
+									"parameters": {
+										"RelativeURL": {
+											"value": "/edfi/v5.3/saas/core/data/v3/@{pipeline().parameters.InstanceId}/@{pipeline().parameters.SchoolYear}/@{item().resource}/deletes?MinChangeVersion=@{variables('MinChangeVersion')}&MaxChangeVersion=@{variables('MaxChangeVersion')}&limit=500&offset=start",
+											"type": "Expression"
+										},
+										"ClientId": {
+											"value": "@pipeline().parameters.ClientID",
+											"type": "Expression"
+										},
+										"SecretName": {
+											"value": "@pipeline().parameters.SecretName",
+											"type": "Expression"
+										},
+										"BaseURL": {
+											"value": "@pipeline().parameters.BaseURL",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_JSON",
+									"type": "DatasetReference",
+									"parameters": {
+										"stage": "1",
+										"path": {
+											"value": "Transactional/@{pipeline().parameters.Directory}/v@{pipeline().parameters.ApiVersion}/DistrictId=@{pipeline().parameters.DistrictId}/SchoolYear=@{pipeline().parameters.SchoolYear}/@{split(item().resource, '/')[2]}/Incremental/Deletes/@{variables('FolderName')}",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "Update ChangeVersion",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Iterate over entities",
+						"dependencyConditions": [
+							"Completed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "Bearer @{activity('Get-AccessToken').output.access_token}",
+								"type": "Expression"
+							}
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_REST",
+						"type": "DatasetReference",
+						"parameters": {
+							"RelativeURL": {
+								"value": "edfi/v@{pipeline().parameters.ApiVersion}/saas/core/changequeries/v1/@{pipeline().parameters.InstanceId}/@{pipeline().parameters.SchoolYear}/availableChangeVersions",
+								"type": "Expression"
+							},
+							"ClientId": {
+								"value": "@pipeline().parameters.ClientID",
+								"type": "Expression"
+							},
+							"SecretName": {
+								"value": "@pipeline().parameters.SecretName",
+								"type": "Expression"
+							},
+							"BaseURL": {
+								"value": "@pipeline().parameters.BaseURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_JSON_File",
+						"type": "DatasetReference",
+						"parameters": {
+							"stage": "1",
+							"path": {
+								"value": "Landing/Transactional/@{pipeline().parameters.Directory}/v@{pipeline().parameters.ApiVersion}/DistrictId=@{pipeline().parameters.DistrictId}/SchoolYear=@{pipeline().parameters.SchoolYear}",
+								"type": "Expression"
+							},
+							"fileName": "ChangeVersion.json"
+						}
+					}
+				]
+			},
+			{
+				"name": "Set-FolderName",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set-AccessToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "FolderName",
+					"value": {
+						"value": "rundate=@{formatDateTime(utcNow(), 'yyyy-MM-dd')}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Get All endpoints",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@{pipeline().parameters.BaseURL}/edfi/v@{pipeline().parameters.ApiVersion}/saas/core/metadata/data/v3/@{pipeline().parameters.InstanceId}/2022/dependencies",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET"
+				}
+			},
+			{
+				"name": "Set-MinChangeVersion",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "Set-FolderName",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@pipeline().parameters.isInitialLoad",
+						"type": "Expression"
+					},
+					"ifFalseActivities": [
+						{
+							"name": "Get Previous Change Versions",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"dataset": {
+									"referenceName": "DS_JSON_File",
+									"type": "DatasetReference",
+									"parameters": {
+										"stage": "1",
+										"path": {
+											"value": "Landing/Transactional/@{pipeline().parameters.Directory}/v@{pipeline().parameters.ApiVersion}/DistrictId=@{pipeline().parameters.DistrictId}/SchoolYear=@{pipeline().parameters.SchoolYear}",
+											"type": "Expression"
+										},
+										"fileName": "ChangeVersion.json"
+									}
+								},
+								"firstRowOnly": true
+							}
+						},
+						{
+							"name": "Set Min Change Version",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Get Previous Change Versions",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "MinChangeVersion",
+								"value": {
+									"value": "@string(activity('Get Previous Change Versions').output.firstRow.NewestChangeVersion)",
+									"type": "Expression"
+								}
+							}
+						}
+					],
+					"ifTrueActivities": [
+						{
+							"name": "Set Initial Min Change Version",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "MinChangeVersion",
+								"value": "0"
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"ClientID": {
+				"type": "string",
+				"defaultValue": "vNaqQSu6q84STOXT"
+			},
+			"BaseURL": {
+				"type": "string",
+				"defaultValue": "https://api.edgraph.dev"
+			},
+			"Directory": {
+				"type": "string",
+				"defaultValue": "EdFi"
+			},
+			"SecretName": {
+				"type": "string",
+				"defaultValue": "EdFi-Client-Secret-2017"
+			},
+			"SchoolYear": {
+				"type": "string",
+				"defaultValue": "2017"
+			},
+			"InstanceId": {
+				"type": "string",
+				"defaultValue": "a01eaead-bc82-4e18-8b63-b1aa4af3bba1"
+			},
+			"ApiVersion": {
+				"type": "string",
+				"defaultValue": "5.3"
+			},
+			"isInitialLoad": {
+				"type": "bool",
+				"defaultValue": true
+			},
+			"DistrictId": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"AccessToken": {
+				"type": "String"
+			},
+			"MinChangeVersion": {
+				"type": "String"
+			},
+			"MaxChangeVersion": {
+				"type": "String"
+			},
+			"FolderName": {
+				"type": "String"
+			},
+			"DescriptorList": {
+				"type": "Array"
+			},
+			"PipelineName": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "EdFi/Single District Per Instance"
+		},
+		"annotations": []
+	}
+}
