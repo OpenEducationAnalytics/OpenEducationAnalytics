@@ -1,5 +1,4 @@
 Entity Name,Attribute Name,Attribute Data Type,Pseudonymization
-,,,
 studentattendance,,,
 ,id,string,no-op
 ,student_id,string,hash
