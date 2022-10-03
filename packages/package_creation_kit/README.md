@@ -23,7 +23,7 @@ Sample out-of-the box assets for this OEA package include:
 2. [Documentation](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/docs) for the Use Case Template and additional guildeines for deploying the package.
 3. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/notebook) for cleaning, transforming, anonymizing and enriching the data.
 4. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/pipeline) for ingesting data into the data lake and automating the various stages of the process.
-5. [PowerBI template](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
+5. [Power BI template](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
 
 [include links to any other assets like tutorials, test data, etc you are providing as part of this package.]
 
