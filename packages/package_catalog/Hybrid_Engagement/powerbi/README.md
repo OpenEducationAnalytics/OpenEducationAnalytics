@@ -1,10 +1,10 @@
 # Power BI Dashboards
 
 The OEA Hybrid Engagement Package Power BI template enables users to quickly explore data. There are two options for exploring this module Power BI template.
-- [Power BI with test data](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20TestData.pbix): Power BI templated with module test data imported locally. 
-- [Power BI with direct query](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20DirectQuery.pbix): Power BI template connected to a Synapse workspace data source. See instructions below to setup.
+- [Power BI with test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20TestData.pbix): Power BI templated with module test data imported locally. 
+- [Power BI with direct query](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20DirectQuery.pbix): Power BI template connected to a Synapse workspace data source. See instructions below to setup.
 
-See [Power BI setup instructions](https://github.com/cstohlmann/oea-hybrid-engagement-package/tree/main/powerbi#power-bi-setup-instructions) below for details.
+See [Power BI setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement/powerbi#power-bi-setup-instructions) below for details.
 
 ## Dashboard Explanation 
 
@@ -25,14 +25,14 @@ Use the tool-tips provided on the visuals to understand the purpose of each data
  - sqls2_digital_activity: digital_activity table, and
  - sqls3_hybrid_engagement: Student_pseudo table.
 
-#### [Power BI with imported test data](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20TestData.pbix):
-1. Download the PBIX file with test data here: [LINK](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20TestData.pbix)
+#### [Power BI with imported test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20TestData.pbix):
+1. Download the PBIX file with test data here: [LINK](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20TestData.pbix)
 2. Open the link locally on your computer and explore module test data. 
 3. Connect to the Digital Engagement SQL db: sqls2_digital_activity, and pull in the digital_activity table. This table is the only one that requires a DirectQuery.
 
-#### [Power BI with direct query of data on your data lake](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20DirectQuery.pbix):
-1. Complete the [module setup instructions](https://github.com/cstohlmann/oea-hybrid-engagement-package#package-setup-instructions).
-2. Download the PBIX file with direct query here: [LINK](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20DirectQuery.pbix)
+#### [Power BI with direct query of data on your data lake](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20DirectQuery.pbix):
+1. Complete the [package setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement#package-setup-instructions).
+2. Download the PBIX file with direct query here: [LINK](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20DirectQuery.pbix)
 3. The dashboard visuals may not load. You will need to switch your Synapse workspace serverless SQL endpoint by:
    * Select menu item File > Options and settings > Data source settings.
 
