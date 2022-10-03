@@ -1,21 +1,11 @@
-# Notebook
-All tables generated in this package can be replicated in your Azure environment using this hybrid student engagement notebook. Upload this notebook to the Develop tab of your [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/), attach to your configured Spark pool and run. This editable notebook is written in PySpark and covers the general use cases of the hybrid student engagement package. You can bring in data from other data sources and customize this notebook to meet the needs of your organization.
+# Package Notebook
 
-This notebook creates 4 tables (student, dayactivity, yearactivity and calendar) into a new Spark database called s3_hybrid (stage 3 hybrid). These are the databases and tables used to create each of the 4 tables:
+The OEA Hybrid Engagement Package includes a single python [notebook](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/notebook/HybridEngagement_enrichment.ipynb) with the following functionality. 
+ - <strong>Create Stage 3p Student_pseudo Table:</strong> Aggregates and enriches SIS Student pseudonymized data from Stage 2p (via Microsoft Education Insights module roster tables, listed in the notebook) into a single table, written out to Stage 3p.
+     * This process also enriches the [Contoso SIS studentattendance](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Student_and_School_Data_Systems/test_data/batch1/studentattendance.csv) data, by calculating the averages of in-person attendance per student.
+ - <strong>Create Stage 3np Student_lookup Table:</strong> Refines and enriches SIS Student non-pseudonymized data from Stage 2np (via Microsoft Education Insights module roster table: Person_lookup) into a single table, written out to stage 3np.
+ 
+ This notebook is automatically imported into your Synapse workspace once you import the [Hybrid Engagement package pipeline template](https://github.com/cstohlmann/oea-hybrid-engagement-package/tree/main/pipeline).
 
-
-### Tables and Databases
-| Databases created | Tables created | Table purpose | Databases used   | Tables used
-| :------------- | :---------- | :---------- |:---------- | :---------- |
-| s3_hybrid | student  |  Contains students' information at a school level | stage 3 SIS data | studentattendance |
-| |   | |  s3_m365 | person |
-| |   | | | org |
-| |   | | | studentorgaffiliation |
-| |   | | | refdefinition |
-| s3_hybrid | calendar  | Contains a basic calendar table | None | None |
-| s3_hybrid | dayactivity | Contains student daily digital activity and in-person attendance | stage 3 SIS data  | studentattendance |
-| |   | | s3_m365 | activity0p2 |
-| |   |  | | section |
-| |   | |  | course |
-| s3_hybrid | yearactivity  | Contains student yearly digital activity and in-person attendance |  stage 3 SIS data | studentattendance |
-|  |  |  | s3_m365 | activity0p2 |
+### NOTE:
+If you are using this package for production data, you will need to edit this notebook. This package notebook currently does not account for handling any change data over time. Most OEA assets rely on [Structured Streaming](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html), whereas this package currently does not. 
