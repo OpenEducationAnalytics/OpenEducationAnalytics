@@ -1,8 +1,9 @@
 > This folder has been populated with initial templates to help get you started with the package creation process. Please make sure to update this folder and all its associated files and folders by following the guidelines provided.
 
 # Name of Package
-Provide an overview of the package.
-Provide details on the guidelines and documentation used to create this package. Please use the [OEA Use Case Template](https://github.com/ivybarley/OpenEduAnalytics/blob/main/docs/use_cases/Open_Education_Analytics_Use_Case_Template_v3.docx) which provides end-to-end guidance on developing a successful use case project including how to engage stakeholders in the project, prior research on the use case problem domain and theory, how to map data sources to the theory of the problem, and how to implement Microsoft’s Principles of Responsible Data and AI. It is highly recommended this document be reviewed by any education system considering using this package, and that the documentation be revised to the specific data and decisions for that system’s context.
+Provide an overview of the package and details on the guidelines and documentation used to create this package. 
+
+Please use the [OEA Use Case Template](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/use_cases/Open_Education_Analytics_Use_Case_Template_v3.docx) which provides end-to-end guidance on developing a successful use case project including how to engage stakeholders in the project, prior research on the use case problem domain and theory, how to map data sources to the theory of the problem, and how to implement Microsoft’s Principles of Responsible Data and AI. It is highly recommended this document be reviewed by any education system considering using this package, and that the documentation be revised to the specific data and decisions for that system’s context.
 
 ## Problem Statement and Package Impact
 Define the problem you seek to solve using this package, and list out the impact and benefits this package will have on learners, educators and the learning process.
