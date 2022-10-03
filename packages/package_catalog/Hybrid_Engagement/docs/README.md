@@ -16,9 +16,9 @@ The Hybrid Engagement Package provides multiple assets to help accelerate the im
 
 1. <strong>[Use Case Documentation](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/use_cases/Open_Education_Analytics_Use_Case_Template_v3.docx)</strong> 
       * Engaging key stakeholders at the beginning of any data-driven project is essential. The use case document should be completed at the beginning of all projects to clearly define the problem, identify key stakeholders, connect data to research, and address any ethical concerns. Further, completing this document helps to carefully define the problem and approach.
-2. <strong>[Setup Guidance](https://github.com/cstohlmann/oea-hybrid-engagement-package#package-setup-instructions)</strong> 
+2. <strong>[Setup Guidance](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement#package-setup-instructions)</strong> 
       * Package setup guidance/instructions provide explanation for standardizing and processing data to make ready for the Power BI dashboards.
-3. <strong>[Power BI Samples](https://github.com/cstohlmann/oea-hybrid-engagement-package/tree/main/powerbi)</strong> 
+3. <strong>[Power BI Sample Templates](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement/powerbi)</strong> 
       * Example PowerBI dashboards are showcased as developed with key stakeholders at [Fresno Unified School District](https://www.fresnounified.org/). The dashboard data model is also given.
  
 
