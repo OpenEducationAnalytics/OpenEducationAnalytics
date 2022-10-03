@@ -21,7 +21,7 @@ Description of data sources: what it is used for, data available, data format an
 Sample out-of-the box assets for this OEA package include: 
 1. [Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/data) for understanding the data relationships and standardized schema mappings used for certain groups of data.
 2. [Documentation](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/docs) for the Use Case Template and additional guildeines for deploying the package.
-3. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/notebook) for cleaning, transforming, anonymizing and enriching the data.
+3. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/notebooks) for cleaning, transforming, anonymizing and enriching the data.
 4. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/pipeline) for ingesting data into the data lake and automating the various stages of the process.
 5. [Power BI template](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
 
