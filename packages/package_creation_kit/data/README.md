@@ -3,8 +3,6 @@
 
 In this readme file, describe the test data and provide a data dictionary using the table provided below.
 
-# Test data
-
 ## Data dictionary
 |Table Name   |Column Name        |Description  |
 |-----------|-------------------|-------------|
