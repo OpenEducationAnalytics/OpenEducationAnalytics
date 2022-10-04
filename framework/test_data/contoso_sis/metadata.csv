@@ -1,0 +1,34 @@
+Entity Name,Attribute Name,Attribute Data Type,Pseudonymization
+studentattendance,,,
+,id,string,no-op
+,student_id,string,hash
+,school_year,integer,partition-by
+,school_id,string,no-op
+,attendance_date,timestamp,no-op
+,all_day,string,no-op
+,Period,short,no-op
+,section_id,string,no-op
+,AttendanceCode,string,no-op
+,PresenceFlag,boolean,no-op
+,attendance_status,string,no-op
+,attendance_type,string,no-op
+,attendance_sequence,short,no-op
+studentdemographics,,,
+,id,string,no-op
+,student_id,string,hash
+,section_id,string,no-op
+,school_year,integer,partition-by
+,term_id,string,no-op
+,numeric_grade_earned,short,no-op
+,alpha_grade_earned,string,no-op
+,is_final_grade,string,no-op
+,credits_attempted,short,no-op
+,credits_earned,short,no-op
+,grad_credit_type,string,no-op
+studentsectionmark,,,
+,SIS ID,string,hash
+,FederalRaceCategory,string,no-op
+,PrimaryLanguage,string,no-op
+,ELLStatus,string,no-op
+,SpecialEducation,string,no-op
+,LowIncome,boolean,no-op
