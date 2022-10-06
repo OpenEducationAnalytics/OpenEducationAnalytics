@@ -22975,7 +22975,7 @@
 												"type": "Expression"
 											},
 											"TotalCountURL": {
-												"value": "@{pipeline().parameters.BaseURL}/edfi/v5.3/saas/core/data/v3/@{pipeline().parameters.InstanceId}/@{pipeline().parameters.SchoolYear}/@{item().resource}?MinChangeVersion=@{variables('MinChangeVersion')}&MaxChangeVersion=@{variables('MaxChangeVersion')}&totalCount=true\n",
+												"value": "@{pipeline().parameters.BaseURL}/edfi/v5.3/saas/core/data/v3/@{pipeline().parameters.InstanceId}/@{pipeline().parameters.SchoolYear}/@{item().resource}?MinChangeVersion=@{variables('MinChangeVersion')}&MaxChangeVersion=@{variables('MaxChangeVersion')}&totalCount=true",
 												"type": "Expression"
 											},
 											"RelativeURL": {
@@ -23625,6 +23625,10 @@
 								"value": "@pipeline().parameters.TotalCountURL",
 								"type": "Expression"
 							},
+							"connectVia": {
+								"referenceName": "AutoResolveIntegrationRuntime",
+								"type": "IntegrationRuntimeReference"
+							},
 							"method": "GET",
 							"headers": {
 								"Authorization": {
@@ -23858,6 +23862,7 @@
 				"annotations": []
 			},
 			"dependsOn": [
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]",
 				"[concat(variables('workspaceId'), '/datasets/DS_REST1')]",
 				"[concat(variables('workspaceId'), '/datasets/DS_JSON1')]",
 				"[concat(variables('workspaceId'), '/linkedServices/LS_KeyVault_OEA')]"
@@ -23887,7 +23892,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "daba51a2-1054-4db1-b3a8-5171b630bc85"
+						"spark.autotune.trackingId": "f1ff7d82-293d-431d-a13e-54c99c5a9a00"
 					}
 				},
 				"metadata": {
