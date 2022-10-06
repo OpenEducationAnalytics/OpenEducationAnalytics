@@ -11,6 +11,7 @@ Define the problem you seek to solve using this module, and list out the impact 
 
 ## Module Setup Instructions
 Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA, etc.
+![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Module_Setup_Instructions.png) 
 
 ## Data Sources
 Description of data sources: what it is used for, data available, data format and possible use cases or OEA packages it can be used for.
