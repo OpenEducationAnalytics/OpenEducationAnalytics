@@ -10,7 +10,7 @@ Provide an overview of the module.
 Define the problem you seek to solve using this module, and list out the impact and benefits this module will have on learners, educators and the learning process.
 
 ## Module Setup Instructions
-Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA, etc.
+Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA,simple overview of implementation, etc.
 ![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Module_Setup_Instructions.png) 
 
 ## Data Sources
