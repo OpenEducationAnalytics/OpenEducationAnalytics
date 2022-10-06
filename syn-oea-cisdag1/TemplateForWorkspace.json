@@ -22758,40 +22758,17 @@
 					"cancelAfter": {}
 				},
 				"parameters": {
-					"ClientID": {
-						"type": "string",
-						"defaultValue": "vNaqQSu6q84STOXT"
-					},
-					"BaseURL": {
-						"type": "string",
-						"defaultValue": "https://api.edgraph.dev"
-					},
 					"Directory": {
 						"type": "string",
 						"defaultValue": "EdFi"
-					},
-					"SecretName": {
-						"type": "string",
-						"defaultValue": "EdFi-Client-Secret-2017"
-					},
-					"SchoolYear": {
-						"type": "string",
-						"defaultValue": "2017"
-					},
-					"InstanceId": {
-						"type": "string",
-						"defaultValue": "a01eaead-bc82-4e18-8b63-b1aa4af3bba1"
-					},
-					"ApiVersion": {
-						"type": "string",
-						"defaultValue": "5.3"
 					},
 					"isInitialLoad": {
 						"type": "bool",
 						"defaultValue": true
 					},
-					"DistrictId": {
-						"type": "string"
+					"ApiVersion": {
+						"type": "string",
+						"defaultValue": "5.3"
 					}
 				},
 				"variables": {
@@ -23910,7 +23887,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "2cfb7580-efd3-4fa5-83e7-e2d4b6c7b4bd"
+						"spark.autotune.trackingId": "7c487695-2291-436d-9925-23c4c8978d8b"
 					}
 				},
 				"metadata": {
