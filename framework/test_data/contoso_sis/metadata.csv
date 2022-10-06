@@ -13,7 +13,7 @@ studentattendance,,,
 ,attendance_status,string,no-op
 ,attendance_type,string,no-op
 ,attendance_sequence,short,no-op
-studentdemographics,,,
+studentsectionmark,,,
 ,id,string,no-op
 ,student_id,string,hash
 ,section_id,string,no-op
@@ -25,7 +25,7 @@ studentdemographics,,,
 ,credits_attempted,short,no-op
 ,credits_earned,short,no-op
 ,grad_credit_type,string,no-op
-studentsectionmark,,,
+studentdemographics,,,
 ,SIS ID,string,hash
 ,FederalRaceCategory,string,no-op
 ,PrimaryLanguage,string,no-op
