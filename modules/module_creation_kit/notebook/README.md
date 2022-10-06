@@ -1,14 +1,15 @@
-> In this folder, please upload the notebook(s) used for preprocessing the data and for pseudonymizing columns with personal identifiable information of students. Also update this readme file with details of all the Spark databases and tables created. 
+> In this folder, please upload the notebook(s) used for preprocessing the data and for pseudonymizing columns with personal identifiable information of students.
+
 # Notebook
-All tables generated in this module can be replicated in your Azure environment using this notebook. Upload this notebook to the Develop tab of your [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/), attach to your configured Spark pool and run. This editable notebook is written in PySpark [edit if you used a different programming language] and covers the general use cases of the [name of module]. You can bring in data from other data sources and customize this notebook to meet the needs of your organization.
+This module incorporates [insert number of module notebooks. *Typically this should be two: a simple one for executing ingestion from the module pipeline, and one that contains the module class, defining the functions used in the ingestion notebook*] notebook(s) needed to support the main [module pipeline](link to module pipeline). Both notebooks depend on the [OEA Python class](link to OEA_py framework class notebook) which is a part of the [OEA framework](link to OEA framework README).
 
-This notebook creates the following tables ([add names of tables]) into a new Spark database called [name of Spark database]. These are the databases and tables used to create each of the tables:
+## Module Python Class Notebook: [Insert name of notebook with hyperlink].
+The module Python class notebook that defines the data schemas and pseudonymization. Basic functions for data ingestion and processing from Stage 1 to Stage 2 data lakes are also included. 
 
+[Any additional information unique to the module.] 
+[Note: This notebook should be commented for clarity of function ingestion and processing.]
 
-### Tables and Databases
-| Databases created | Tables created | Table purpose | Databases used   | Tables used
-| :------------- | :---------- | :---------- |:---------- | :---------- |
-| Database 1 | Name of table created  |  Purpose of table | Name of database used | Name of table used |
-|  | Name of table created  |  Purpose of table | Name of database used | Name of table used |
-| Database 2 | Name of table created  |  Purpose of table | Name of database used | Name of table used |
-|  | Name of table created  |  Purpose of table | Name of database used | Name of table used |
+## Module Data Ingestion Notebook: [Insert name of notebook with hyperlink].
+Module data ingestion notebook which depends on the module class. The pipeline template incorporates this notebook, and is automatically uploaded upon importing the [name of module] module pipeline template.
+
+Attach to your configured Spark pool and run. This editable notebook is written in PySpark [edit if you used a different programming language] and covers the general use cases of the [name of module]. 
