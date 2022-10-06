@@ -4,6 +4,7 @@
 
 # Name of Module
 Provide an overview of the module.
+![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Module_Overview_Visual.png) 
 
 ## Problem Statement and Module Impact
 Define the problem you seek to solve using this module, and list out the impact and benefits this module will have on learners, educators and the learning process.
