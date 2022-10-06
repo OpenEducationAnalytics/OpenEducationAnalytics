@@ -22635,7 +22635,7 @@
 												"type": "Expression"
 											},
 											"isInitialLoad": {
-												"value": "@item().IsInitialLoad",
+												"value": "@pipeline().parameters.isInitialLoad",
 												"type": "Expression"
 											},
 											"DistrictId": {
@@ -23887,7 +23887,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "7c487695-2291-436d-9925-23c4c8978d8b"
+						"spark.autotune.trackingId": "daba51a2-1054-4db1-b3a8-5171b630bc85"
 					}
 				},
 				"metadata": {
