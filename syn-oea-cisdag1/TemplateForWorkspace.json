@@ -22591,8 +22591,7 @@
 								"value": "@activity('Get-Runner-Config').output.value",
 								"type": "Expression"
 							},
-							"isSequential": false,
-							"batchCount": 5,
+							"isSequential": true,
 							"activities": [
 								{
 									"name": "Land_data_from_EdFi_Instance",
@@ -23892,7 +23891,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "f1ff7d82-293d-431d-a13e-54c99c5a9a00"
+						"spark.autotune.trackingId": "5245b8fb-ca7d-4a14-8136-f67b672310d2"
 					}
 				},
 				"metadata": {
