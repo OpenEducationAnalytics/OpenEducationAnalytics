@@ -14,7 +14,7 @@ Use the tool-tips provided on the visuals to understand the purpose of each data
 
 ## Overview of Hybrid Engagement
 
-| ![Overview of Hybrid Engagement](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pbi_p1_overview_of_hybrid_engagement.png "Overview of Hybrid Engagement") |
+| ![Overview of Hybrid Engagement](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_p1_overview_of_hybrid_engagement.png "Overview of Hybrid Engagement") |
 |:--:|
 | <b> Summary of the status of hybrid engagement in the district by school and student grade-level. </b>|
 
@@ -28,7 +28,6 @@ Use the tool-tips provided on the visuals to understand the purpose of each data
 #### [Power BI with imported test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20TestData.pbix):
 1. Download the PBIX file with test data here: [LINK](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20TestData.pbix)
 2. Open the link locally on your computer and explore module test data. 
-3. Connect to the Digital Engagement SQL db: sqls2_digital_activity, and pull in the digital_activity table. This table is the only one that requires a DirectQuery.
 
 #### [Power BI with direct query of data on your data lake](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/powerbi/Hybrid%20Engagement%20Package%20Dashboard%20DirectQuery.pbix):
 1. Complete the [package setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement#package-setup-instructions).
