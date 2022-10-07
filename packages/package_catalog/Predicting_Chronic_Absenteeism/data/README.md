@@ -1,7 +1,7 @@
 
 # Data Sources
 
-This package combines multiple data sources which were identified through [research](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Chronic_Absenteeism/docs/OEA%20Chronic%20Abs%20Package%20-%20Use%20Case%20Doc.pdf) as strongly related to absenteeism: 
+This package combines multiple data sources which were identified through [research](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/OEA%20Chronic%20Abs%20Package%20-%20Use%20Case%20Doc.pdf) as strongly related to absenteeism: 
 * **School Information System (SIS)**: Student school, grade, and roster data
 * **Barriers to students**: Transportation data, distance from school, school changes, student illness
 * **School experiences**: School suspension, disciplinary, behavior, and learning outcome data
@@ -31,7 +31,7 @@ Below is a view of the data model used in Power BI visualizations. The primary t
 * **school_location Table**: School locations for visualizations.
 * Various order and recoding tables.
 
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Chronic_Absenteeism/docs/images/powerBiDataModel.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/powerBiDataModel.png)
 
 ## Additional Data Sources
 
