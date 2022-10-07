@@ -29,7 +29,7 @@ See below for examples of developed PowerBI dashboards (see also the [Power BI](
 
 Explanation Page  | Overview of Hybrid Engagement
 :-------------------------:|:-------------------------:
-![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pbi_p0_explanation_page.png) |  ![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pbi_p1_overview_of_hybrid_engagement.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_p0_explanation_page.png) |  ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_p1_overview_of_hybrid_engagement.png)
 
 ## Package Setup Instructions
 
