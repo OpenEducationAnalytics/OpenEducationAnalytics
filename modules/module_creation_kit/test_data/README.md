@@ -3,11 +3,29 @@
 In this readme file, describe the test data and provide a data dictionary using the table provided below.
 
 # Test data
+This module includes artificially generated data which matches the format of the [insert number of tables ingested in module] [insert module name] [insert type of data defined by the data source] (e.g. “two Clever Participation Reports.”)
+-	[Insert name of Table 1]: [Insert brief description of the data contained in the table.]
+- [Insert name of Table 2]: [Insert brief description of the data contained in the table.]
+[Insert any further details on the data source.]
+
 
 ## Data dictionary
-|Table Name   |Column Name        |Description  |
+[Insert name of Table 1 with a hyperlink to the test data provided.]
+|Column Name   |Data Type        |Description  |
 |-----------|-------------------|-------------|
-|Table 1  | Name of column       |Description |
-|            | Name of column       |Description |                                                                 
-|Table 2  | Name of column     |Description |
-|  | Name of column      |Description |
+|Column 1  | Data Type (e.g. Date, String, Integer, Timestamp, etc.)      |Description |
+|Column 2  | Data Type (e.g. Date, String, Integer, Timestamp, etc.)      |Description |
+
+[Insert screenshot of test data provided, with a header (refer to the [Clever Module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/test_data) as an example).]
+
+Additional notes: [Insert any additional notes about the data within that table for anyone reviewing the module.]
+
+[Insert name of Table 2 with a hyperlink to the test data provided.]
+|Column Name   |Data Type        |Description  |
+|-----------|-------------------|-------------|
+|Column 1  | Data Type (e.g. Date, String, Integer, Timestamp, etc.)      |Description |
+|Column 2  | Data Type (e.g. Date, String, Integer, Timestamp, etc.)      |Description |
+
+[Insert screenshot of test data provided, with a header (refer to the the [Clever Module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever/test_data) as an example).]
+
+Additional notes: [Insert any additional notes about the data within that table for anyone reviewing the module.]
