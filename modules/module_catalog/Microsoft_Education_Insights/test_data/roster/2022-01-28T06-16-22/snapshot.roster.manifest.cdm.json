@@ -1,0 +1,488 @@
+{
+  "manifestName": "snapshot.roster",
+  "entities": [
+    {
+      "type": "LocalEntity",
+      "entityName": "AadGroup",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/AadGroup",
+      "dataPartitionPatterns": [
+        {
+          "name": "AadGroup-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/AadGroup",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "AadGroupMembership",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/AadGroupMembership",
+      "dataPartitionPatterns": [
+        {
+          "name": "AadGroupMembership-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/AadGroupMembership",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "AadUser",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/AadUser",
+      "dataPartitionPatterns": [
+        {
+          "name": "AadUser-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/AadUser",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "AadUserPersonMapping",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/AadUserPersonMapping",
+      "dataPartitionPatterns": [
+        {
+          "name": "AadUserPersonMapping-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/AadUserPersonMapping",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "Course",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/Course",
+      "dataPartitionPatterns": [
+        {
+          "name": "Course-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/Course",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "CourseGradeLevel",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/CourseGradeLevel",
+      "dataPartitionPatterns": [
+        {
+          "name": "CourseGradeLevel-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/CourseGradeLevel",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "CourseSubject",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/CourseSubject",
+      "dataPartitionPatterns": [
+        {
+          "name": "CourseSubject-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/CourseSubject",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "Enrollment",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/Enrollment",
+      "dataPartitionPatterns": [
+        {
+          "name": "Enrollment-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/Enrollment",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "Organization",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/Organization",
+      "dataPartitionPatterns": [
+        {
+          "name": "Organization-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/Organization",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "Person",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "dataPartitionPatterns": [
+        {
+          "name": "Person-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/Person",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "PersonDemographic",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/PersonDemographic",
+      "dataPartitionPatterns": [
+        {
+          "name": "PersonDemographic-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/PersonDemographic",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "PersonDemographicEthnicity",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/PersonDemographicEthnicity",
+      "dataPartitionPatterns": [
+        {
+          "name": "PersonDemographicEthnicity-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/PersonDemographicEthnicity",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "PersonDemographicPersonFlag",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/PersonDemographicPersonFlag",
+      "dataPartitionPatterns": [
+        {
+          "name": "PersonDemographicPersonFlag-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/PersonDemographicPersonFlag",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "PersonDemographicRace",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/PersonDemographicRace",
+      "dataPartitionPatterns": [
+        {
+          "name": "PersonDemographicRace-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/PersonDemographicRace",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "PersonEmailAddress",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/PersonEmailAddress",
+      "dataPartitionPatterns": [
+        {
+          "name": "PersonEmailAddress-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/PersonEmailAddress",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "PersonIdentifier",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/PersonIdentifier",
+      "dataPartitionPatterns": [
+        {
+          "name": "PersonIdentifier-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/PersonIdentifier",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "PersonOrganizationRole",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/PersonOrganizationRole",
+      "dataPartitionPatterns": [
+        {
+          "name": "PersonOrganizationRole-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/PersonOrganizationRole",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "PersonPhoneNumber",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/PersonPhoneNumber",
+      "dataPartitionPatterns": [
+        {
+          "name": "PersonPhoneNumber-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/PersonPhoneNumber",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "PersonRelationship",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/PersonRelationship",
+      "dataPartitionPatterns": [
+        {
+          "name": "PersonRelationship-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/PersonRelationship",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "RefDefinition",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/RefDefinition",
+      "dataPartitionPatterns": [
+        {
+          "name": "RefDefinition-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/RefDefinition",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "Section",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/Section",
+      "dataPartitionPatterns": [
+        {
+          "name": "Section-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/Section",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "SectionGradeLevel",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/SectionGradeLevel",
+      "dataPartitionPatterns": [
+        {
+          "name": "SectionGradeLevel-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/SectionGradeLevel",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "SectionSession",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/SectionSession",
+      "dataPartitionPatterns": [
+        {
+          "name": "SectionSession-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/SectionSession",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "SectionSubject",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/SectionSubject",
+      "dataPartitionPatterns": [
+        {
+          "name": "SectionSubject-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/SectionSubject",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "Session",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/Session",
+      "dataPartitionPatterns": [
+        {
+          "name": "Session-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/Session",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    },
+    {
+      "type": "LocalEntity",
+      "entityName": "SourceSystem",
+      "entityPath": "local:/schema/roster.v0.3.2.cdm.json/SourceSystem",
+      "dataPartitionPatterns": [
+        {
+          "name": "SourceSystem-partitionPattern",
+          "rootLocation": "local:/roster/2021-09-05T06-16-22/SourceSystem",
+          "regularExpression": "/.+\\.csv$"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/AadUserPersonMapping",
+      "fromEntityAttribute": "ObjectId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/AadUser",
+      "toEntityAttribute": "ObjectId"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/AadUserPersonMapping",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/Course",
+      "fromEntityAttribute": "OrganizationId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Organization",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/Course",
+      "fromEntityAttribute": "AcademicYearSessionId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Session",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/CourseGradeLevel",
+      "fromEntityAttribute": "CourseId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Course",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/CourseSubject",
+      "fromEntityAttribute": "CourseId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Course",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/Enrollment",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/Enrollment",
+      "fromEntityAttribute": "SectionId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Section",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/Organization",
+      "fromEntityAttribute": "ParentOrganizationId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Organization",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonDemographic",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonDemographicEthnicity",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonDemographicPersonFlag",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonDemographicRace",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonEmailAddress",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonIdentifier",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonOrganizationRole",
+      "fromEntityAttribute": "OrganizationId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Organization",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonOrganizationRole",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonOrganizationRole",
+      "fromEntityAttribute": "SessionId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Session",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonPhoneNumber",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonRelationship",
+      "fromEntityAttribute": "PersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/PersonRelationship",
+      "fromEntityAttribute": "RelatedPersonId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Person",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/Section",
+      "fromEntityAttribute": "OrganizationId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Organization",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/Section",
+      "fromEntityAttribute": "CourseId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Course",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/SectionGradeLevel",
+      "fromEntityAttribute": "SectionId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Section",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/SectionSession",
+      "fromEntityAttribute": "SectionId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Section",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/SectionSession",
+      "fromEntityAttribute": "SessionId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Session",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/SectionSubject",
+      "fromEntityAttribute": "SectionId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Section",
+      "toEntityAttribute": "Id"
+    },
+    {
+      "fromEntity": "local:/schema/roster.v0.3.2.cdm.json/Session",
+      "fromEntityAttribute": "ParentSessionId",
+      "toEntity": "local:/schema/roster.v0.3.2.cdm.json/Session",
+      "toEntityAttribute": "Id"
+    }
+  ],
+  "jsonSchemaSemanticVersion": "1.2.0"
+}
