@@ -25,7 +25,7 @@ Two sets of instructions are included:
 ### Test Data Pipeline Instructions
 
 1. Complete the first steps of the [module setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights#module-setup-instructions)
-2. Download the [module pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/pipeline/Insights_pipeline_template.zip) locally to your computer.
+2. Download the [module pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/pipeline/insights_pipeline_template.zip) locally to your computer.
 3. Import the pipeline template to your Synapse workspace.
 <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_import_template.png" width="600">
 4. Assign the Synapse linked services needed to support the pipeline template.
