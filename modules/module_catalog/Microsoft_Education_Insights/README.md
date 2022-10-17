@@ -48,7 +48,7 @@ After completing the setup of this module, the MS Education Insights activity sc
 
 ## Data Sources
 
-This module imports digital activity and roster data for and education system via [School Data Sync](https://sds.microsoft.com/).
+This module imports digital activity and roster data for an education system via [School Data Sync](https://sds.microsoft.com/).
 - [Digital Activity Data](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-activity) provides a log of M365 signal activity from apps including Sharepoint, Teams Channel, Teams Meetings, Assignment Services, OneNote, Reading Progress, and Reflect.
 - [Rostering Data](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-rostering) is concerned with students, teachers, courses, and schools relationships.
 - [Azure Active Directory Data](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-azure-ad) provides people details and group memberships.
