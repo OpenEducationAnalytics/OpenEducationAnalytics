@@ -1,93 +1,92 @@
 {
-	"name": "edfi_delete",
-	"properties": {
-		"folder": {
-			"name": "EdFi/Ingest"
-		},
-		"type": "MappingDataFlow",
-		"typeProperties": {
-			"sources": [
-				{
-					"linkedService": {
-						"referenceName": "LS_datalake",
-						"type": "LinkedServiceReference"
-					},
-					"name": "SourceJson"
-				}
-			],
-			"sinks": [
-				{
-					"linkedService": {
-						"referenceName": "LS_datalake",
-						"type": "LinkedServiceReference"
-					},
-					"name": "SinkDelta"
-				}
-			],
-			"transformations": [
-				{
-					"name": "AlterRow"
-				},
-				{
-					"name": "DerivedColumn"
-				},
-				{
-					"name": "SelectColumns"
-				}
-			],
-			"scriptLines": [
-				"parameters{",
-				"     districtId as string ('255901'),",
-				"     schoolYear as string ('2017'),",
-				"     entity as string ('schools'),",
-				"     directory as string ('EdFi'),",
-				"     apiversion as string ('5.3')",
-				"}",
-				"source(useSchema: false,",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     limit: 10000,",
-				"     ignoreNoFilesFound: true,",
-				"     enableCdc: true,",
-				"     mode: 'read',",
-				"     skipInitialLoad: false,",
-				"     format: 'json',",
-				"     fileSystem: 'stage1',",
-				"     folderPath: (\"Transactional/{$directory}/v5.3/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$entity}/Incremental/Deletes\"),",
-				"     documentForm: 'documentPerLine') ~> SourceJson",
-				"SelectColumns alterRow(deleteIf(true())) ~> AlterRow",
-				"SourceJson derive(SchoolYear = $schoolYear,",
-				"          DistrictId = $districtId) ~> DerivedColumn",
-				"DerivedColumn select(mapColumn(",
-				"          each(match(name!='rundate'))",
-				"     ),",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> SelectColumns",
-				"AlterRow sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     format: 'delta',",
-				"     fileSystem: 'workspace',",
-				"     folderPath: (\"Ingested/{$directory}/v{$apiversion}/{$entity}\"),",
-				"     mergeSchema: (true()),",
-				"     autoCompact: false,",
-				"     optimizedWrite: false,",
-				"     vacuum: 0,",
-				"     deletable:false,",
-				"     insertable:false,",
-				"     updateable:true,",
-				"     upsertable:false,",
-				"     keys:['id'],",
-				"     umask: 0022,",
-				"     preCommands: [],",
-				"     postCommands: [],",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('key',",
-				"          0,",
-				"          DistrictId,",
-				"          SchoolYear",
-				"     )) ~> SinkDelta"
-			]
-		}
-	}
+    "name": "edfi_delete",
+    "properties": {
+        "folder": {
+            "name": "EdFi/Ingest"
+        },
+        "type": "MappingDataFlow",
+        "typeProperties": {
+            "sources": [
+                {
+                    "linkedService": {
+                        "referenceName": "LS_datalake",
+                        "type": "LinkedServiceReference"
+                    },
+                    "name": "SourceJson"
+                }
+            ],
+            "sinks": [
+                {
+                    "linkedService": {
+                        "referenceName": "LS_datalake",
+                        "type": "LinkedServiceReference"
+                    },
+                    "name": "SinkDelta"
+                }
+            ],
+            "transformations": [
+                {
+                    "name": "AlterRow"
+                },
+                {
+                    "name": "DerivedColumn"
+                },
+                {
+                    "name": "SelectColumns"
+                }
+            ],
+            "scriptLines": [
+                "parameters{",
+                "     districtId as string ('255901'),",
+                "     schoolYear as string ('2017'),",
+                "     entity as string ('schools'),",
+                "     directory as string ('EdFi'),",
+                "     apiversion as string ('5.3')",
+                "}",
+                "source(useSchema: false,",
+                "     allowSchemaDrift: true,",
+                "     validateSchema: false,",
+                "     limit: 10000,",
+                "     ignoreNoFilesFound: true,",
+                "     enableCdc: true,",
+                "     mode: 'read',",
+                "     format: 'json',",
+                "     fileSystem: 'stage1',",
+                "     folderPath: (\"Transactional/{$directory}/v5.3/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$entity}/Incremental/Deletes\"),",
+                "     documentForm: 'documentPerLine') ~> SourceJson",
+                "SelectColumns alterRow(deleteIf(true())) ~> AlterRow",
+                "SourceJson derive(SchoolYear = $schoolYear,",
+                "          DistrictId = $districtId) ~> DerivedColumn",
+                "DerivedColumn select(mapColumn(",
+                "          each(match(name!='rundate'))",
+                "     ),",
+                "     skipDuplicateMapInputs: true,",
+                "     skipDuplicateMapOutputs: true) ~> SelectColumns",
+                "AlterRow sink(allowSchemaDrift: true,",
+                "     validateSchema: false,",
+                "     format: 'delta',",
+                "     fileSystem: 'workspace',",
+                "     folderPath: (\"Ingested/{$directory}/v{$apiversion}/{$entity}\"),",
+                "     mergeSchema: (true()),",
+                "     autoCompact: false,",
+                "     optimizedWrite: false,",
+                "     vacuum: 0,",
+                "     deletable:false,",
+                "     insertable:false,",
+                "     updateable:true,",
+                "     upsertable:false,",
+                "     keys:['id'],",
+                "     umask: 0022,",
+                "     preCommands: [],",
+                "     postCommands: [],",
+                "     skipDuplicateMapInputs: true,",
+                "     skipDuplicateMapOutputs: true,",
+                "     partitionBy('key',",
+                "          0,",
+                "          DistrictId,",
+                "          SchoolYear",
+                "     )) ~> SinkDelta"
+            ]
+        }
+    }
 }
