@@ -10,9 +10,10 @@ The main objective of this module is to provide analytics over education data sp
 # Steps to use this Module:
     1) Clone and setup the latest version of OEA. You need to publish all the assets from v0.7 in your synapse workspace.
     2) You need to create a Runner_Config.json file which contains high level metadata about the various Ed-Fi instances, that needs to be processed. This file needs
-    to be saved at "Stage1/Landing/Transactional/{SourceSystemName}". Here's a sample file - [Runner_Config.json](docs/Runner_Config.json)
-    1) Import the resources from the Ed-Fi module in OEA repository into the Synapse workspace and publish them. Please refer this for more information on the Ed-Fi Module assets.
-    2) Run the "Master_Pipeline" by providing the input parameters to process the Ed-Fi Data to lake house.
+    to be saved at "Stage1/Transactional/{SourceSystemName}". Here's a sample file - [Runner_Config.json](docs/Runner_Config.json)
+    1) Copy the [checkpoints.json](docs/checkpoints.json) file in your stage2 container at "stage2/Ingested/{SourceSystemName}/{ApiVersion}".
+    2) Import the resources from the Ed-Fi module in OEA repository into the Synapse workspace and publish them. Please refer this for more information on the Ed-Fi Module assets.
+    3) Run the "Master_Pipeline" by providing the input parameters to process the Ed-Fi Data to lake house.
 
 # Things to Note
 
