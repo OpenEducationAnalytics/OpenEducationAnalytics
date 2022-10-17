@@ -1,0 +1,1288 @@
+[
+    {
+      "entity": "absenceEventCategoryDescriptors",
+      "checkpoint": "dd8a2c20-7d5b-431e-99ce-e5e63c902f8a"
+    },
+    {
+      "entity": "academicHonorCategoryDescriptors",
+      "checkpoint": "a5846313-1fee-48da-ac6a-c37971959226"
+    },
+    {
+      "entity": "academicSubjectDescriptors",
+      "checkpoint": "e21b3ffb-8679-4cb6-b453-bb74ad471a46"
+    },
+    {
+      "entity": "academicWeeks",
+      "checkpoint": "d5596544-f829-44ae-846e-2aca798a9c0c"
+    },
+    {
+      "entity": "accommodationDescriptors",
+      "checkpoint": "5557b145-bbe9-47a0-88e5-743ed76c4324"
+    },
+    {
+      "entity": "accountClassificationDescriptors",
+      "checkpoint": "e96a9bf6-51e9-472b-8e75-f4b9317c277c"
+    },
+    {
+      "entity": "accountCodes",
+      "checkpoint": "b188c9dc-7872-4407-85f1-82ddb920d084"
+    },
+    {
+      "entity": "accountabilityRatings",
+      "checkpoint": "bf218fb9-0307-41cd-9dfd-d4ba73dbc065"
+    },
+    {
+      "entity": "accounts",
+      "checkpoint": "a2a604dc-6455-43df-93d9-135a44f19a4f"
+    },
+    {
+      "entity": "accreditationStatusDescriptors",
+      "checkpoint": "5f45d31f-d989-440a-8686-83b20a448315"
+    },
+    {
+      "entity": "achievementCategoryDescriptors",
+      "checkpoint": "cfaa88ed-d2ad-48f9-a1df-f0551c962c2b"
+    },
+    { "entity": "actuals", "checkpoint": "24794fa3-2da7-468c-bd75-fe4df906b8c3" },
+    {
+      "entity": "additionalCreditTypeDescriptors",
+      "checkpoint": "149df036-9921-475f-9dd4-41d9fac5b8ab"
+    },
+    {
+      "entity": "addressTypeDescriptors",
+      "checkpoint": "6d1ee6ad-88a1-4cbf-8557-921a2ef76ac0"
+    },
+    {
+      "entity": "administrationEnvironmentDescriptors",
+      "checkpoint": "fd8f5120-51b2-4872-af4d-61e8227b83b9"
+    },
+    {
+      "entity": "administrativeFundingControlDescriptors",
+      "checkpoint": "3408d207-f27b-4368-a7d1-8bf7b963a050"
+    },
+    {
+      "entity": "aidTypeDescriptors",
+      "checkpoint": "b926482e-2965-4f23-b36d-eeec9e28cd0d"
+    },
+    {
+      "entity": "ancestryEthnicOriginDescriptors",
+      "checkpoint": "b1a707db-69b8-48e5-83e8-6c3cd948d3e1"
+    },
+    {
+      "entity": "assessmentCategoryDescriptors",
+      "checkpoint": "a5feeedb-3878-46d5-8400-a913314fa3a2"
+    },
+    {
+      "entity": "assessmentIdentificationSystemDescriptors",
+      "checkpoint": "fe4ad69d-1319-4646-9f09-0a8dabd65db3"
+    },
+    {
+      "entity": "assessmentItemCategoryDescriptors",
+      "checkpoint": "e5ddecf1-9880-4a23-83f9-34386fa883c8"
+    },
+    {
+      "entity": "assessmentItemResultDescriptors",
+      "checkpoint": "c4914868-b735-43f1-9380-2ec4ff4f858c"
+    },
+    {
+      "entity": "assessmentItems",
+      "checkpoint": "6e38445d-1678-4fa0-9e31-6c29dc6c0c38"
+    },
+    {
+      "entity": "assessmentPeriodDescriptors",
+      "checkpoint": "a648e863-9330-4685-9d5f-915d4d108d95"
+    },
+    {
+      "entity": "assessmentReportingMethodDescriptors",
+      "checkpoint": "9e144b0c-0f5e-40b5-beca-50b1a426096a"
+    },
+    {
+      "entity": "assessmentScoreRangeLearningStandards",
+      "checkpoint": "59d870cd-e01c-4bdf-91d9-e7170a0793c2"
+    },
+    {
+      "entity": "assessments",
+      "checkpoint": "8030cdad-e6db-40f4-9aaf-d8341dd25317"
+    },
+    {
+      "entity": "attemptStatusDescriptors",
+      "checkpoint": "efa9d931-506f-4b9f-b8ea-86f8ef8b1ce7"
+    },
+    {
+      "entity": "attendanceEventCategoryDescriptors",
+      "checkpoint": "bcf3a897-4254-42cf-83f3-05ae823f43bb"
+    },
+    {
+      "entity": "barrierToInternetAccessInResidenceDescriptors",
+      "checkpoint": "85bbc146-baef-485b-8766-212915a18182"
+    },
+    {
+      "entity": "behaviorDescriptors",
+      "checkpoint": "5f23610a-6465-4445-a01b-ed3718deafca"
+    },
+    {
+      "entity": "bellSchedules",
+      "checkpoint": "56e0a52d-3f27-41b4-8f02-ced578685c8a"
+    },
+    { "entity": "budgets", "checkpoint": "328a758a-7b68-4134-b673-a792668a3b03" },
+    {
+      "entity": "calendarDates",
+      "checkpoint": "dc997e9f-a013-4402-b16d-ffc7de0286d3"
+    },
+    {
+      "entity": "calendarEventDescriptors",
+      "checkpoint": "88d355a7-d22b-46f1-b34c-83215604c706"
+    },
+    {
+      "entity": "calendarTypeDescriptors",
+      "checkpoint": "1dfd2621-65ee-44b1-b0e3-829b24955863"
+    },
+    {
+      "entity": "calendars",
+      "checkpoint": "a5b3f8e1-d13c-4e66-b39e-6afd1fc84a37"
+    },
+    {
+      "entity": "candidateEducatorPreparationProgramAssociations",
+      "checkpoint": "610dfb05-e18c-44c2-a8fb-a2cbef5cd887"
+    },
+    {
+      "entity": "candidates",
+      "checkpoint": "635a3c87-7a07-42c2-9f18-075e5569f1de"
+    },
+    {
+      "entity": "careerPathwayDescriptors",
+      "checkpoint": "5dd57a82-00b0-49e8-956a-ce0e701850b0"
+    },
+    {
+      "entity": "certificationRouteDescriptors",
+      "checkpoint": "40f4dcd8-635b-4844-8904-801db7734557"
+    },
+    {
+      "entity": "charterApprovalAgencyTypeDescriptors",
+      "checkpoint": "55aba95c-5110-4f9d-a4d4-d0361dde8e84"
+    },
+    {
+      "entity": "charterStatusDescriptors",
+      "checkpoint": "423442c7-729a-417f-b7de-f7e6bd8acb90"
+    },
+    {
+      "entity": "citizenshipStatusDescriptors",
+      "checkpoint": "0731ca49-c8ef-47a4-902f-90113dea60b7"
+    },
+    {
+      "entity": "classPeriods",
+      "checkpoint": "b005c76f-0c07-4c87-bf19-18badc1c8323"
+    },
+    {
+      "entity": "classroomPositionDescriptors",
+      "checkpoint": "19a1796e-b54d-45bb-87e5-6cb162bac411"
+    },
+    {
+      "entity": "cohortScopeDescriptors",
+      "checkpoint": "7fb85d79-2671-4b77-9b9f-9587dad451e5"
+    },
+    {
+      "entity": "cohortTypeDescriptors",
+      "checkpoint": "80a245ba-beeb-41a2-a929-ac2fb4a6df74"
+    },
+    {
+      "entity": "cohortYearTypeDescriptors",
+      "checkpoint": "489c322c-cf6d-4b55-af18-d0be1c5d1d5c"
+    },
+    { "entity": "cohorts", "checkpoint": "242b4f70-71d0-41c2-bc7e-3028c00be117" },
+    {
+      "entity": "communityOrganizations",
+      "checkpoint": "c4c41da6-28fd-4e74-bc4b-47c9f6e7c4f3"
+    },
+    {
+      "entity": "communityProviderLicenses",
+      "checkpoint": "a6e61b74-85d3-410a-ae02-0688f4af6eb5"
+    },
+    {
+      "entity": "communityProviders",
+      "checkpoint": "01ccb0d5-94d8-4764-977a-aad3f87ba9ee"
+    },
+    {
+      "entity": "competencyLevelDescriptors",
+      "checkpoint": "009f6dcd-a6e3-4414-a6be-a658a441aa32"
+    },
+    {
+      "entity": "competencyObjectives",
+      "checkpoint": "282935ff-e516-4a28-88b4-3a021eb3a2e1"
+    },
+    {
+      "entity": "contactTypeDescriptors",
+      "checkpoint": "d89de5e5-ff1e-4d4e-a179-c03baa19f0c9"
+    },
+    {
+      "entity": "contentClassDescriptors",
+      "checkpoint": "a9a93b52-3987-40c5-b015-de18f1ad1585"
+    },
+    {
+      "entity": "continuationOfServicesReasonDescriptors",
+      "checkpoint": "886abf9d-f2e9-4f9d-bce8-bf22048f0f2f"
+    },
+    {
+      "entity": "contractedStaffs",
+      "checkpoint": "a9af5266-bd4d-4ff1-98b0-c7337d8ef362"
+    },
+    {
+      "entity": "costRateDescriptors",
+      "checkpoint": "36d83bbd-9efe-4829-90d5-a9133273d019"
+    },
+    {
+      "entity": "coteachingStyleObservedDescriptors",
+      "checkpoint": "16be3fd1-d409-4e6b-baf4-f9d9a7263ff4"
+    },
+    {
+      "entity": "countryDescriptors",
+      "checkpoint": "51b07f0f-38e5-46e0-8bb1-2ef437983626"
+    },
+    {
+      "entity": "courseAttemptResultDescriptors",
+      "checkpoint": "9c0daa79-b6e2-4022-bac1-47bd02bda067"
+    },
+    {
+      "entity": "courseDefinedByDescriptors",
+      "checkpoint": "f292ec5a-bcc9-4a0f-b878-2b9b43f174d8"
+    },
+    {
+      "entity": "courseGPAApplicabilityDescriptors",
+      "checkpoint": "6fbc1132-1f2b-4dc4-ac41-f0d3dcd1d093"
+    },
+    {
+      "entity": "courseIdentificationSystemDescriptors",
+      "checkpoint": "e005de72-93f1-4d8f-940e-90e733956163"
+    },
+    {
+      "entity": "courseLevelCharacteristicDescriptors",
+      "checkpoint": "ce074569-df56-4d20-801c-06b050705f94"
+    },
+    {
+      "entity": "courseOfferings",
+      "checkpoint": "11baad75-0c0f-4c72-8f9c-1ff530c56deb"
+    },
+    {
+      "entity": "courseRepeatCodeDescriptors",
+      "checkpoint": "e24984fb-f1cd-4ec2-93ab-73f12edaf1a7"
+    },
+    {
+      "entity": "courseTranscripts",
+      "checkpoint": "fe734814-9dd6-41d9-81a3-af1bec4a70d2"
+    },
+    { "entity": "courses", "checkpoint": "e2d64dad-f815-4d17-90ea-e605dcfb917d" },
+    {
+      "entity": "credentialFieldDescriptors",
+      "checkpoint": "3f2effe6-b5ad-4283-b1e1-78be6f84b515"
+    },
+    {
+      "entity": "credentialStatusDescriptors",
+      "checkpoint": "6c7f3dd6-65b3-4f6c-99e6-d6836cf22eae"
+    },
+    {
+      "entity": "credentialTypeDescriptors",
+      "checkpoint": "28595277-d4ee-40b1-8c03-d46b68bf552c"
+    },
+    {
+      "entity": "credentials",
+      "checkpoint": "db739940-2261-4136-a491-f3209f32bfb0"
+    },
+    {
+      "entity": "creditCategoryDescriptors",
+      "checkpoint": "39ae243d-dea1-4a4e-94a2-df8731f39e39"
+    },
+    {
+      "entity": "creditTypeDescriptors",
+      "checkpoint": "e7b7b935-80f6-4960-83c6-496a03ee444f"
+    },
+    {
+      "entity": "cteProgramServiceDescriptors",
+      "checkpoint": "381a2eee-6e88-4383-a430-6c1831a482dd"
+    },
+    {
+      "entity": "curriculumUsedDescriptors",
+      "checkpoint": "b137e789-ebc4-44bd-af88-44cd98762166"
+    },
+    {
+      "entity": "deliveryMethodDescriptors",
+      "checkpoint": "d565d688-9bcc-4c22-9cda-802817d335e6"
+    },
+    {
+      "entity": "diagnosisDescriptors",
+      "checkpoint": "27bb200d-54d4-4239-9814-48e6784031d8"
+    },
+    {
+      "entity": "diplomaLevelDescriptors",
+      "checkpoint": "0f595dc6-55f6-4d76-aef0-c5bebf9cb0ad"
+    },
+    {
+      "entity": "diplomaTypeDescriptors",
+      "checkpoint": "ee9b931d-4041-4464-8c80-8184cc7b00fc"
+    },
+    {
+      "entity": "disabilityDescriptors",
+      "checkpoint": "dce69643-1fa3-45ba-8e58-c9d85e5a883d"
+    },
+    {
+      "entity": "disabilityDesignationDescriptors",
+      "checkpoint": "13335417-c30e-4e6e-b65d-e73ed8ba5eac"
+    },
+    {
+      "entity": "disabilityDeterminationSourceTypeDescriptors",
+      "checkpoint": "b8ad6130-56e6-4a8b-8e25-a9e1f260b48c"
+    },
+    {
+      "entity": "disciplineActionLengthDifferenceReasonDescriptors",
+      "checkpoint": "53660e2a-91ca-473a-8246-98a7bdbcd1c6"
+    },
+    {
+      "entity": "disciplineActions",
+      "checkpoint": "6ce929d0-39c9-4f89-b2c2-02abfd96e8fe"
+    },
+    {
+      "entity": "disciplineDescriptors",
+      "checkpoint": "6565a4f1-ae94-4cf8-bb77-4d097b07f9f7"
+    },
+    {
+      "entity": "disciplineIncidentParticipationCodeDescriptors",
+      "checkpoint": "bbf5ddf3-9cc5-444c-a6b9-9706e0fc44f4"
+    },
+    {
+      "entity": "disciplineIncidents",
+      "checkpoint": "2751dab5-8a30-4914-a0c4-b0afa107c80f"
+    },
+    {
+      "entity": "educationContents",
+      "checkpoint": "f84f786a-f569-4244-8083-c0a759c5a848"
+    },
+    {
+      "entity": "educationOrganizationCategoryDescriptors",
+      "checkpoint": "1dc88d89-8baa-445f-bac3-9db017bb14de"
+    },
+    {
+      "entity": "educationOrganizationIdentificationSystemDescriptors",
+      "checkpoint": "f24adca0-531c-4013-8d3a-44c9190e84a1"
+    },
+    {
+      "entity": "educationOrganizationInterventionPrescriptionAssociations",
+      "checkpoint": "b3dc8edc-b75e-4ae4-aec5-28bf44e00636"
+    },
+    {
+      "entity": "educationOrganizationNetworkAssociations",
+      "checkpoint": "70ccc6ac-c285-4028-a196-1cfa61803a79"
+    },
+    {
+      "entity": "educationOrganizationNetworks",
+      "checkpoint": "7544dc9c-7460-44f0-bcd8-7e06e60ad446"
+    },
+    {
+      "entity": "educationOrganizationPeerAssociations",
+      "checkpoint": "104b6e43-b72c-462a-a1a3-27a34c253b0d"
+    },
+    {
+      "entity": "educationPlanDescriptors",
+      "checkpoint": "88005535-c13f-49d9-b83f-ea396a2af3c6"
+    },
+    {
+      "entity": "educationServiceCenters",
+      "checkpoint": "9bc929fb-42fb-4b72-825e-d5cd5eabd4f7"
+    },
+    {
+      "entity": "educationalEnvironmentDescriptors",
+      "checkpoint": "af3ca706-6b75-4dfe-9943-66f2c0a0beef"
+    },
+    {
+      "entity": "educatorPreparationPrograms",
+      "checkpoint": "687f4883-de59-413a-aa57-69edc00ffe50"
+    },
+    {
+      "entity": "educatorRoleDescriptors",
+      "checkpoint": "0a002706-88c9-47ab-8cc8-9210c524f7da"
+    },
+    {
+      "entity": "electronicMailTypeDescriptors",
+      "checkpoint": "0accf684-db74-45e0-9dc1-d5469a1bef62"
+    },
+    {
+      "entity": "employmentStatusDescriptors",
+      "checkpoint": "2a872b48-1500-4d64-8dc0-be7444f1febd"
+    },
+    {
+      "entity": "englishLanguageExamDescriptors",
+      "checkpoint": "dd100fcf-16b7-4bec-9024-3a6fdd0f1eee"
+    },
+    {
+      "entity": "entryGradeLevelReasonDescriptors",
+      "checkpoint": "18886763-6838-426d-beaa-c9f3895dcd23"
+    },
+    {
+      "entity": "entryTypeDescriptors",
+      "checkpoint": "cf4c7d2f-a346-4f82-ba4a-ac80c659cf84"
+    },
+    {
+      "entity": "eppProgramPathwayDescriptors",
+      "checkpoint": "3d963eb4-0eae-46a3-b7d1-da0a84abbc64"
+    },
+    {
+      "entity": "evaluationElementRatingLevelDescriptors",
+      "checkpoint": "2b686054-dd6b-4ffe-a7b7-f958ef075942"
+    },
+    {
+      "entity": "evaluationElementRatings",
+      "checkpoint": "63b716ff-2674-46a4-afdc-62b65082c314"
+    },
+    {
+      "entity": "evaluationElements",
+      "checkpoint": "50a1b232-1de5-4855-9390-f43cbb7649e2"
+    },
+    {
+      "entity": "evaluationObjectiveRatings",
+      "checkpoint": "44711d05-bef7-40ee-9cbf-6797ed16cb4b"
+    },
+    {
+      "entity": "evaluationObjectives",
+      "checkpoint": "bc8a37f8-2fc1-4f25-907a-2e3f8b9d8c36"
+    },
+    {
+      "entity": "evaluationPeriodDescriptors",
+      "checkpoint": "4edc3935-644b-47d5-8a0e-c9a3db5ce6b2"
+    },
+    {
+      "entity": "evaluationRatingLevelDescriptors",
+      "checkpoint": "5a4c7d4e-d702-479e-9ec0-72b46cdc5ee0"
+    },
+    {
+      "entity": "evaluationRatingStatusDescriptors",
+      "checkpoint": "7c87449c-c8a0-4751-a228-bfc91830a037"
+    },
+    {
+      "entity": "evaluationRatings",
+      "checkpoint": "833bb080-6b81-482d-99fe-e4cc366f7e5a"
+    },
+    {
+      "entity": "evaluationTypeDescriptors",
+      "checkpoint": "72b682f8-6a74-4c2a-8803-505102218b62"
+    },
+    {
+      "entity": "evaluations",
+      "checkpoint": "4f437aa7-14b8-4a47-b7f4-0962c02b2c0e"
+    },
+    {
+      "entity": "eventCircumstanceDescriptors",
+      "checkpoint": "ae8f488f-3cff-409a-8cff-75c088ff3c5b"
+    },
+    {
+      "entity": "exitWithdrawTypeDescriptors",
+      "checkpoint": "9bb6f0d3-b008-4c5c-930a-a0d2ffbca0c0"
+    },
+    {
+      "entity": "feederSchoolAssociations",
+      "checkpoint": "0ec5d192-81a8-4835-bf5b-6a30c95a5e04"
+    },
+    {
+      "entity": "financialAids",
+      "checkpoint": "cdb9a0ec-556c-4621-97a0-5dd93ccf2dce"
+    },
+    {
+      "entity": "genderDescriptors",
+      "checkpoint": "f2b09d14-1f4e-49d1-90ae-8e0e95eda9c0"
+    },
+    {
+      "entity": "gradeLevelDescriptors",
+      "checkpoint": "9050d78a-c134-4cb9-a92f-4cce7484327d"
+    },
+    {
+      "entity": "gradePointAverageTypeDescriptors",
+      "checkpoint": "9edb32d8-cca2-49de-bed4-80b2be61aed9"
+    },
+    {
+      "entity": "gradeTypeDescriptors",
+      "checkpoint": "c771199d-4692-497a-af6e-45be7725b563"
+    },
+    {
+      "entity": "gradebookEntries",
+      "checkpoint": "be9fbe01-332a-4119-9268-b1eaa1ec8b0f"
+    },
+    {
+      "entity": "gradebookEntryTypeDescriptors",
+      "checkpoint": "76d8cab6-9c58-4148-9b14-aed9084c1159"
+    },
+    { "entity": "grades", "checkpoint": "39b06ec8-1b8d-45ff-a32d-af6b077bff93" },
+    {
+      "entity": "gradingPeriodDescriptors",
+      "checkpoint": "b283a195-3bf3-4bb0-a445-2cd84e30f089"
+    },
+    {
+      "entity": "gradingPeriods",
+      "checkpoint": "720daeb5-9141-4235-ba98-bd13b89a48cf"
+    },
+    {
+      "entity": "graduationPlanTypeDescriptors",
+      "checkpoint": "a15be3a9-86fe-43a9-8499-14efc0a0b3a9"
+    },
+    {
+      "entity": "graduationPlans",
+      "checkpoint": "2e2b5285-ea6c-46a1-a652-d03813074227"
+    },
+    {
+      "entity": "gunFreeSchoolsActReportingStatusDescriptors",
+      "checkpoint": "298bacd9-4930-4cbb-8aaf-53c00d70961d"
+    },
+    {
+      "entity": "homelessPrimaryNighttimeResidenceDescriptors",
+      "checkpoint": "914dff8e-2400-4d95-91ec-5bded17a4045"
+    },
+    {
+      "entity": "homelessProgramServiceDescriptors",
+      "checkpoint": "f01ff376-22f7-4428-95db-ef49a1b61cec"
+    },
+    {
+      "entity": "identificationDocumentUseDescriptors",
+      "checkpoint": "7fb79f0a-4858-45c2-85b3-e2404cc17c90"
+    },
+    {
+      "entity": "incidentLocationDescriptors",
+      "checkpoint": "df56c5f5-b3fc-49f5-9b96-4d06a2da4c6b"
+    },
+    {
+      "entity": "indicatorDescriptors",
+      "checkpoint": "2fb0b59c-27df-4d7b-8133-4eb23baa07a6"
+    },
+    {
+      "entity": "indicatorGroupDescriptors",
+      "checkpoint": "bc68e07a-8b40-42da-9df2-d2dd4a586c61"
+    },
+    {
+      "entity": "indicatorLevelDescriptors",
+      "checkpoint": "5cdb193a-f613-4ac1-8b77-0702680d763e"
+    },
+    {
+      "entity": "institutionTelephoneNumberTypeDescriptors",
+      "checkpoint": "e05478e1-7b80-4817-943a-ca7ad2ff249a"
+    },
+    {
+      "entity": "interactivityStyleDescriptors",
+      "checkpoint": "ea3940a6-0f24-4c7e-9442-e3c173eafaf6"
+    },
+    {
+      "entity": "internetAccessDescriptors",
+      "checkpoint": "8228b284-e064-47e4-82c4-38d1430aae24"
+    },
+    {
+      "entity": "internetAccessTypeInResidenceDescriptors",
+      "checkpoint": "7ebe04e3-3339-4131-9b8b-29b736e17d94"
+    },
+    {
+      "entity": "internetPerformanceInResidenceDescriptors",
+      "checkpoint": "9941dd2a-a85d-4578-ae26-08180204c834"
+    },
+    {
+      "entity": "interventionClassDescriptors",
+      "checkpoint": "ca6ac5da-642b-44bd-92a5-bfef759a80e7"
+    },
+    {
+      "entity": "interventionEffectivenessRatingDescriptors",
+      "checkpoint": "f8e9f9ac-38e3-49d5-a4af-1244fe09f648"
+    },
+    {
+      "entity": "interventionPrescriptions",
+      "checkpoint": "3063a91f-e757-4516-abcc-5c1c902efd26"
+    },
+    {
+      "entity": "interventionStudies",
+      "checkpoint": "f381f53b-6680-42ac-b40d-163790d14e9f"
+    },
+    {
+      "entity": "interventions",
+      "checkpoint": "f108f4f2-936a-47fd-842d-a40e7e15aee1"
+    },
+    {
+      "entity": "languageDescriptors",
+      "checkpoint": "38031498-0fad-476d-940c-7a10ba9a4f85"
+    },
+    {
+      "entity": "languageInstructionProgramServiceDescriptors",
+      "checkpoint": "a2a3a268-3996-4921-be4a-532ce7b252c3"
+    },
+    {
+      "entity": "languageUseDescriptors",
+      "checkpoint": "4539861b-da3b-4f22-934f-b0bdc7f747bd"
+    },
+    {
+      "entity": "learningObjectives",
+      "checkpoint": "826a77a3-5c6d-47ab-a21c-2b27667e7ad9"
+    },
+    {
+      "entity": "learningStandardCategoryDescriptors",
+      "checkpoint": "1378d026-651f-4c2c-9348-57b350f138ca"
+    },
+    {
+      "entity": "learningStandardEquivalenceAssociations",
+      "checkpoint": "491b4f68-0c4c-4ddf-a80b-9ac36f005706"
+    },
+    {
+      "entity": "learningStandardEquivalenceStrengthDescriptors",
+      "checkpoint": "e24d287b-1e0f-4216-a931-bd51507927c0"
+    },
+    {
+      "entity": "learningStandardScopeDescriptors",
+      "checkpoint": "fc70963e-44e3-4777-91a1-3d058504d9b8"
+    },
+    {
+      "entity": "learningStandards",
+      "checkpoint": "579e67b6-8e84-4aa3-86f4-ffa22c5a33a4"
+    },
+    {
+      "entity": "levelOfEducationDescriptors",
+      "checkpoint": "aa1f6bad-d452-4949-8719-4f56babfdb33"
+    },
+    {
+      "entity": "licenseStatusDescriptors",
+      "checkpoint": "b4427621-64f9-4a22-b68d-510a097cacb6"
+    },
+    {
+      "entity": "licenseTypeDescriptors",
+      "checkpoint": "09b43e0d-f6a8-4d52-aa7c-288206e46a7f"
+    },
+    {
+      "entity": "limitedEnglishProficiencyDescriptors",
+      "checkpoint": "4b41d7b4-1be9-439e-a644-7773d3003c03"
+    },
+    {
+      "entity": "localEducationAgencies",
+      "checkpoint": "14972469-fa67-48f9-8fec-4c61eeed17d5"
+    },
+    {
+      "entity": "localEducationAgencyCategoryDescriptors",
+      "checkpoint": "f21dda47-f2dd-45c1-8cdb-8f62ca4bb64d"
+    },
+    {
+      "entity": "localeDescriptors",
+      "checkpoint": "72dd9cf5-4605-4e5a-97ad-15d5b2dd46a4"
+    },
+    {
+      "entity": "locations",
+      "checkpoint": "06f97b43-fb8a-472e-ad7d-e83d110c5fc3"
+    },
+    {
+      "entity": "magnetSpecialProgramEmphasisSchoolDescriptors",
+      "checkpoint": "a7f644b8-3275-4ba6-b3f2-da70a09f3a7d"
+    },
+    {
+      "entity": "mediumOfInstructionDescriptors",
+      "checkpoint": "a2625462-1cfd-4420-898b-4cf2554fb557"
+    },
+    {
+      "entity": "methodCreditEarnedDescriptors",
+      "checkpoint": "e1ca6c3f-a3c3-4a15-94a1-a345e220aa11"
+    },
+    {
+      "entity": "migrantEducationProgramServiceDescriptors",
+      "checkpoint": "97d7e3da-f602-495c-b882-49f414e4a3f2"
+    },
+    {
+      "entity": "monitoredDescriptors",
+      "checkpoint": "b97ac3f1-3146-4fb1-a33c-932c1270d74e"
+    },
+    {
+      "entity": "neglectedOrDelinquentProgramDescriptors",
+      "checkpoint": "e1245486-662d-42ef-b1be-a1be782c81a1"
+    },
+    {
+      "entity": "neglectedOrDelinquentProgramServiceDescriptors",
+      "checkpoint": "284d83f2-b694-4528-b714-34cb7b070e0a"
+    },
+    {
+      "entity": "networkPurposeDescriptors",
+      "checkpoint": "b6bfa801-de84-4768-8671-a38f4f212508"
+    },
+    {
+      "entity": "objectiveAssessments",
+      "checkpoint": "9174c125-5fb2-4c75-9f01-98b4c86c4fe1"
+    },
+    {
+      "entity": "objectiveRatingLevelDescriptors",
+      "checkpoint": "24bf314a-8828-4b78-8baf-7c8332492c2b"
+    },
+    {
+      "entity": "oldEthnicityDescriptors",
+      "checkpoint": "ca5aa33f-852b-4bf4-a167-58c09083de61"
+    },
+    {
+      "entity": "openStaffPositions",
+      "checkpoint": "92096555-9a50-4f83-8ae2-678c8a68a078"
+    },
+    {
+      "entity": "operationalStatusDescriptors",
+      "checkpoint": "2e137d43-c3c6-416f-a10d-94516beb3d70"
+    },
+    {
+      "entity": "organizationDepartments",
+      "checkpoint": "1a8f7b9d-294e-4bc3-ab40-8f34e16febd1"
+    },
+    {
+      "entity": "otherNameTypeDescriptors",
+      "checkpoint": "90bd46bc-0cc1-462d-9f92-c462d06886d2"
+    },
+    { "entity": "parents", "checkpoint": "1ae410e1-69a4-4fb2-bd7b-f8425a0080e1" },
+    {
+      "entity": "participationDescriptors",
+      "checkpoint": "2396d1cc-fe78-40a9-8c1e-a9711527a170"
+    },
+    {
+      "entity": "participationStatusDescriptors",
+      "checkpoint": "a5ec2f12-c700-4481-8488-45066d2851ec"
+    },
+    {
+      "entity": "payrolls",
+      "checkpoint": "79dc7b7f-7d78-4a44-8ca3-8e814a73e98b"
+    },
+    { "entity": "people", "checkpoint": "ba79ae17-43d4-413d-a5a5-7cf244abe73d" },
+    {
+      "entity": "performanceBaseConversionDescriptors",
+      "checkpoint": "911af59d-eb71-4a4a-9c75-fe687580b2c5"
+    },
+    {
+      "entity": "performanceEvaluationRatingLevelDescriptors",
+      "checkpoint": "2b89907f-21a8-4d6e-9bc5-47ea23713840"
+    },
+    {
+      "entity": "performanceEvaluationRatings",
+      "checkpoint": "05206eee-9d5d-4815-b72d-b5e8267a8587"
+    },
+    {
+      "entity": "performanceEvaluationTypeDescriptors",
+      "checkpoint": "118672f5-1f5c-4aff-961c-9c71cadcebd4"
+    },
+    {
+      "entity": "performanceEvaluations",
+      "checkpoint": "d29f52a8-c5b6-42ba-8ee7-70df6b9bdc82"
+    },
+    {
+      "entity": "performanceLevelDescriptors",
+      "checkpoint": "e082c93f-dccd-4144-955c-7a638d23789d"
+    },
+    {
+      "entity": "personalInformationVerificationDescriptors",
+      "checkpoint": "81085a3b-c22d-4da3-ac59-dc16c66a17c6"
+    },
+    {
+      "entity": "platformTypeDescriptors",
+      "checkpoint": "d00ac0b3-ef34-4d22-be2a-ef8af0db634e"
+    },
+    {
+      "entity": "populationServedDescriptors",
+      "checkpoint": "4d437dfc-0559-4440-b0df-35e044d048d1"
+    },
+    {
+      "entity": "postSecondaryEventCategoryDescriptors",
+      "checkpoint": "d33bba0b-0907-41a2-8b1f-9429aeeaf2d3"
+    },
+    {
+      "entity": "postSecondaryEvents",
+      "checkpoint": "dcaa78c7-6407-4103-be75-1ce7b02c6861"
+    },
+    {
+      "entity": "postSecondaryInstitutionLevelDescriptors",
+      "checkpoint": "7d153c70-46b4-475b-8869-c28079c5b177"
+    },
+    {
+      "entity": "postSecondaryInstitutions",
+      "checkpoint": "b0126857-e1dc-475f-8bf2-145cb1c41852"
+    },
+    {
+      "entity": "postingResultDescriptors",
+      "checkpoint": "a5cb280a-dda1-4959-8ca6-9322000750fa"
+    },
+    {
+      "entity": "primaryLearningDeviceAccessDescriptors",
+      "checkpoint": "ebb55f6e-2d2b-4eaa-a990-92f5dce85f86"
+    },
+    {
+      "entity": "primaryLearningDeviceAwayFromSchoolDescriptors",
+      "checkpoint": "20935907-6f35-4275-a119-fadc3b5335c8"
+    },
+    {
+      "entity": "primaryLearningDeviceProviderDescriptors",
+      "checkpoint": "84c037a7-452d-4a12-aca4-99c186bcb5b4"
+    },
+    {
+      "entity": "proficiencyDescriptors",
+      "checkpoint": "ed256b7f-7f33-4634-a830-4050f5a9c9b7"
+    },
+    {
+      "entity": "programAssignmentDescriptors",
+      "checkpoint": "00319faf-d5b9-4a0b-a0b6-f6f31e9ddd78"
+    },
+    {
+      "entity": "programCharacteristicDescriptors",
+      "checkpoint": "6d9a1414-aca5-432a-8236-1455850c36ec"
+    },
+    {
+      "entity": "programSponsorDescriptors",
+      "checkpoint": "5db9258c-1d39-40b3-9348-5959ab4ac4cb"
+    },
+    {
+      "entity": "programTypeDescriptors",
+      "checkpoint": "05b71fbf-f985-45b8-aeed-1cbce9005817"
+    },
+    {
+      "entity": "programs",
+      "checkpoint": "d3029e35-266a-49d6-b1a0-297716556a82"
+    },
+    {
+      "entity": "progressDescriptors",
+      "checkpoint": "439df29a-d789-4c73-90e6-d66a40e44151"
+    },
+    {
+      "entity": "progressLevelDescriptors",
+      "checkpoint": "7201c624-c405-43ec-92a7-e58eba2b0b26"
+    },
+    {
+      "entity": "providerCategoryDescriptors",
+      "checkpoint": "1310ff33-4f6d-40f3-bc8f-ca0d5080b3d1"
+    },
+    {
+      "entity": "providerProfitabilityDescriptors",
+      "checkpoint": "7db33613-3845-43f5-93d3-d523054ae3d1"
+    },
+    {
+      "entity": "providerStatusDescriptors",
+      "checkpoint": "30e73cfe-3ea8-4926-a02c-e75a79bbfa3b"
+    },
+    {
+      "entity": "publicationStatusDescriptors",
+      "checkpoint": "53aad5c8-1f5e-46a0-a2a8-a428fa334a15"
+    },
+    {
+      "entity": "questionFormDescriptors",
+      "checkpoint": "5549d7f8-9e4d-44b9-aa6c-eae280bf1cd1"
+    },
+    {
+      "entity": "raceDescriptors",
+      "checkpoint": "ff8952d7-c88d-429e-914c-2d01e8049b9e"
+    },
+    {
+      "entity": "reasonExitedDescriptors",
+      "checkpoint": "801e264a-df23-4576-9a2d-07cf38d1e19f"
+    },
+    {
+      "entity": "reasonNotTestedDescriptors",
+      "checkpoint": "318c3588-f1b4-4b5d-a516-8d41fb8788ae"
+    },
+    {
+      "entity": "recognitionTypeDescriptors",
+      "checkpoint": "78303ab4-bd6a-4fba-ad39-d69bbf05da4c"
+    },
+    {
+      "entity": "relationDescriptors",
+      "checkpoint": "6b1064fe-c59d-4310-9894-9940636788f2"
+    },
+    {
+      "entity": "repeatIdentifierDescriptors",
+      "checkpoint": "c2e0a6fe-4bdf-49ed-b6ca-5f1beb0bdcb7"
+    },
+    {
+      "entity": "reportCards",
+      "checkpoint": "f4062331-79f0-49e7-9993-489854a881b3"
+    },
+    {
+      "entity": "reporterDescriptionDescriptors",
+      "checkpoint": "6a29a7b5-71c7-47b1-ad32-a9a6fb7df0b0"
+    },
+    {
+      "entity": "residencyStatusDescriptors",
+      "checkpoint": "b35b2c4d-447d-4db2-8077-36a43ccb0aa4"
+    },
+    {
+      "entity": "responseIndicatorDescriptors",
+      "checkpoint": "56ccd8ea-c6a2-432b-a58a-8b321ce81c5d"
+    },
+    {
+      "entity": "responsibilityDescriptors",
+      "checkpoint": "b9190627-1244-490a-89d5-80d425884d2a"
+    },
+    {
+      "entity": "restraintEventReasonDescriptors",
+      "checkpoint": "5f09a050-27b8-4698-95e1-ea0f9cc8a5a3"
+    },
+    {
+      "entity": "restraintEvents",
+      "checkpoint": "03a83d64-71fa-42ee-8b59-741e5b1fddfe"
+    },
+    {
+      "entity": "resultDatatypeTypeDescriptors",
+      "checkpoint": "c60113fb-b02b-4363-899e-531697b28fbf"
+    },
+    {
+      "entity": "retestIndicatorDescriptors",
+      "checkpoint": "b95b74b0-4923-4bff-b0bb-ab67cc9765f0"
+    },
+    {
+      "entity": "rubricDimensions",
+      "checkpoint": "00554efa-d1fd-4fbd-a9b9-a51e43579416"
+    },
+    {
+      "entity": "rubricRatingLevelDescriptors",
+      "checkpoint": "0d200594-158a-4576-b670-cb88150360a4"
+    },
+    {
+      "entity": "schoolCategoryDescriptors",
+      "checkpoint": "4da5b258-819c-4032-bf93-a84b3bcc7a89"
+    },
+    {
+      "entity": "schoolChoiceImplementStatusDescriptors",
+      "checkpoint": "1d53b6e6-5c34-4120-b9aa-650c727a3e8f"
+    },
+    {
+      "entity": "schoolFoodServiceProgramServiceDescriptors",
+      "checkpoint": "3ba68594-0196-48c1-9502-5a191e27a31b"
+    },
+    {
+      "entity": "schoolTypeDescriptors",
+      "checkpoint": "1441de5c-4d25-4f45-adf7-dac04462a7b9"
+    },
+    { "entity": "schools", "checkpoint": "17c2966c-5ee5-45b8-af68-df5eed706f87" },
+    {
+      "entity": "sectionAttendanceTakenEvents",
+      "checkpoint": "875f2277-3969-4797-8933-9612a2c2ee9b"
+    },
+    {
+      "entity": "sectionCharacteristicDescriptors",
+      "checkpoint": "5d5c2b4b-6506-4753-89b6-db4094955d22"
+    },
+    {
+      "entity": "sections",
+      "checkpoint": "d2afa1c7-395a-45e3-8834-de3c73898930"
+    },
+    {
+      "entity": "separationDescriptors",
+      "checkpoint": "222d38cc-f597-438d-a910-ded8606c7347"
+    },
+    {
+      "entity": "separationReasonDescriptors",
+      "checkpoint": "1cd37200-7fc6-41cb-94b8-b660caf76dad"
+    },
+    {
+      "entity": "serviceDescriptors",
+      "checkpoint": "e2341279-9b35-4e00-9a1d-7f1479f25e8b"
+    },
+    {
+      "entity": "sessions",
+      "checkpoint": "9bc5fadf-a837-430c-8e40-7e1759f42f58"
+    },
+    {
+      "entity": "sexDescriptors",
+      "checkpoint": "4eff02a3-8c98-4af5-9cd0-34895c67d335"
+    },
+    {
+      "entity": "sourceSystemDescriptors",
+      "checkpoint": "16bb0a52-3d50-4fe9-a631-7483b1305511"
+    },
+    {
+      "entity": "specialEducationProgramServiceDescriptors",
+      "checkpoint": "4feae9e8-5503-4183-93f0-cea265b67409"
+    },
+    {
+      "entity": "specialEducationSettingDescriptors",
+      "checkpoint": "d5e49d47-8dfe-4b8d-b86a-fb88f805d0d1"
+    },
+    {
+      "entity": "staffAbsenceEvents",
+      "checkpoint": "fe909247-d1bd-45d1-9519-8956ba72d3d0"
+    },
+    {
+      "entity": "staffClassificationDescriptors",
+      "checkpoint": "1fe031d5-1bb0-45cc-98e9-31126c2d0ff4"
+    },
+    {
+      "entity": "staffCohortAssociations",
+      "checkpoint": "727753cf-440b-47e9-83b2-ed3963770c04"
+    },
+    {
+      "entity": "staffDisciplineIncidentAssociations",
+      "checkpoint": "a0b927f3-3525-438f-ba1d-7a3f841a2ec6"
+    },
+    {
+      "entity": "staffEducationOrganizationAssignmentAssociations",
+      "checkpoint": "172dd79b-d35f-415b-84e8-52a2cece9b40"
+    },
+    {
+      "entity": "staffEducationOrganizationContactAssociations",
+      "checkpoint": "8227ba83-1ce5-4612-bd52-e3806aaf4666"
+    },
+    {
+      "entity": "staffEducationOrganizationEmploymentAssociations",
+      "checkpoint": "1816e41d-4b43-4f2c-8cdd-f2627e7d312a"
+    },
+    {
+      "entity": "staffIdentificationSystemDescriptors",
+      "checkpoint": "595bc4ed-d746-4188-abbb-4e4e65fc0b55"
+    },
+    {
+      "entity": "staffLeaveEventCategoryDescriptors",
+      "checkpoint": "763318d1-4ee2-4e44-b5a7-dfc1a45c9e62"
+    },
+    {
+      "entity": "staffLeaves",
+      "checkpoint": "283fe199-2ec6-439c-ad52-149d47ed34d7"
+    },
+    {
+      "entity": "staffProgramAssociations",
+      "checkpoint": "933efe87-1611-4e68-8c71-99bc17eee990"
+    },
+    {
+      "entity": "staffSchoolAssociations",
+      "checkpoint": "6a77a5dd-7f7e-45a8-ba9e-bc7bfb40c8a6"
+    },
+    {
+      "entity": "staffSectionAssociations",
+      "checkpoint": "49055ec7-dfa6-4f9b-b5ff-4ec3a6bcb5dc"
+    },
+    { "entity": "staffs", "checkpoint": "3c74413c-9291-4c61-a5bc-cf0691c80019" },
+    {
+      "entity": "stateAbbreviationDescriptors",
+      "checkpoint": "8f61ed35-34e8-490b-91df-7312d593495f"
+    },
+    {
+      "entity": "stateEducationAgencies",
+      "checkpoint": "c1fc2c76-1190-4451-8ee1-03ca0d8b64ef"
+    },
+    {
+      "entity": "studentAcademicRecords",
+      "checkpoint": "45e7b59e-21ae-48aa-830f-eddfa7393daa"
+    },
+    {
+      "entity": "studentAssessments",
+      "checkpoint": "62ee2c3c-82f1-48f8-a205-71a7cec0fc8a"
+    },
+    {
+      "entity": "studentCTEProgramAssociations",
+      "checkpoint": "f343672f-fa6f-4d3d-9e5c-b8dacb98c83e"
+    },
+    {
+      "entity": "studentCharacteristicDescriptors",
+      "checkpoint": "529d0bea-9ffd-417c-9b83-0636f71735ed"
+    },
+    {
+      "entity": "studentCohortAssociations",
+      "checkpoint": "127aef20-e1c0-4681-81fe-4190d938e251"
+    },
+    {
+      "entity": "studentCompetencyObjectives",
+      "checkpoint": "542c1818-c595-4d03-8507-83e915a0a766"
+    },
+    {
+      "entity": "studentDisciplineIncidentAssociations",
+      "checkpoint": "4c8c393d-0c34-4e48-aa73-e49b8a4eeb09"
+    },
+    {
+      "entity": "studentDisciplineIncidentBehaviorAssociations",
+      "checkpoint": "999c8f67-895b-48b1-8348-9e1c96b867bb"
+    },
+    {
+      "entity": "studentDisciplineIncidentNonOffenderAssociations",
+      "checkpoint": "c2b50dd6-5db5-4e4d-8182-0eca6f27a3bd"
+    },
+    {
+      "entity": "studentEducationOrganizationAssociations",
+      "checkpoint": "6d150a72-a167-4f44-bb05-b3ece9c699fc"
+    },
+    {
+      "entity": "studentEducationOrganizationResponsibilityAssociations",
+      "checkpoint": "41f64a74-5373-488e-873b-a9e73f4d3edf"
+    },
+    {
+      "entity": "studentGradebookEntries",
+      "checkpoint": "238fbe75-34e4-441a-9154-0b55dc58b70b"
+    },
+    {
+      "entity": "studentHomelessProgramAssociations",
+      "checkpoint": "231432f6-b8d1-4d64-a6ba-99b5bbc829b2"
+    },
+    {
+      "entity": "studentIdentificationSystemDescriptors",
+      "checkpoint": "de9e2be2-7829-46fb-999b-11bbb821b3db"
+    },
+    {
+      "entity": "studentInterventionAssociations",
+      "checkpoint": "9e4e3fe8-5f97-4911-9f25-915a28433864"
+    },
+    {
+      "entity": "studentInterventionAttendanceEvents",
+      "checkpoint": "1adfae57-de90-4d9a-9497-4fd45cd08b00"
+    },
+    {
+      "entity": "studentLanguageInstructionProgramAssociations",
+      "checkpoint": "e52fc0c1-c880-4a78-b89b-2c3fb02c3105"
+    },
+    {
+      "entity": "studentLearningObjectives",
+      "checkpoint": "63160305-3a2f-4ab7-bcc6-177ba7d9dd3a"
+    },
+    {
+      "entity": "studentMigrantEducationProgramAssociations",
+      "checkpoint": "cba4c9ca-2297-4857-a712-aadb61785fe9"
+    },
+    {
+      "entity": "studentNeglectedOrDelinquentProgramAssociations",
+      "checkpoint": "927bcbdc-07ac-4046-b0c6-22a0d9067ee8"
+    },
+    {
+      "entity": "studentParentAssociations",
+      "checkpoint": "df1cae52-9e63-4301-810f-2f8f0af9e7a1"
+    },
+    {
+      "entity": "studentParticipationCodeDescriptors",
+      "checkpoint": "e68f83b2-e512-4984-8df0-7be874ad1613"
+    },
+    {
+      "entity": "studentProgramAssociations",
+      "checkpoint": "56ad3646-b49d-4135-bceb-08eae3916878"
+    },
+    {
+      "entity": "studentProgramAttendanceEvents",
+      "checkpoint": "e038c54d-e9d6-48e3-a141-b937a26eb967"
+    },
+    {
+      "entity": "studentSchoolAssociations",
+      "checkpoint": "24b218c4-6ae3-4449-a5be-5639fe0d77cd"
+    },
+    {
+      "entity": "studentSchoolAttendanceEvents",
+      "checkpoint": "0d1db3dd-45b1-4fb3-971b-bdd42e7213c0"
+    },
+    {
+      "entity": "studentSchoolFoodServiceProgramAssociations",
+      "checkpoint": "8c44aff0-24f3-44f7-88b3-8cf5b3330d09"
+    },
+    {
+      "entity": "studentSectionAssociations",
+      "checkpoint": "53e8386b-3a4d-4b27-a347-e6f5bafcb3e9"
+    },
+    {
+      "entity": "studentSectionAttendanceEvents",
+      "checkpoint": "e043cb94-79ec-4ca5-8964-943b74e0b994"
+    },
+    {
+      "entity": "studentSpecialEducationProgramAssociations",
+      "checkpoint": "062ce7d3-9da1-4888-aa33-387c163c7778"
+    },
+    {
+      "entity": "studentTitleIPartAProgramAssociations",
+      "checkpoint": "01a0cdc6-c568-41a4-8921-02ac6291ef7b"
+    },
+    {
+      "entity": "students",
+      "checkpoint": "e81ac36f-7e10-4739-8971-0fd14c575df7"
+    },
+    {
+      "entity": "surveyCategoryDescriptors",
+      "checkpoint": "8dff1335-73c5-4fee-a5ae-9857afcbfcdf"
+    },
+    {
+      "entity": "surveyCourseAssociations",
+      "checkpoint": "dbe1823f-6b9d-42b6-a604-7ede37fdea3c"
+    },
+    {
+      "entity": "surveyLevelDescriptors",
+      "checkpoint": "1ef8619c-81e9-43f6-a47a-ec9b9db56716"
+    },
+    {
+      "entity": "surveyProgramAssociations",
+      "checkpoint": "bf8ee2a1-08c6-45c1-9c43-f874d1c1430e"
+    },
+    {
+      "entity": "surveyQuestionResponses",
+      "checkpoint": "58dce813-d272-42ca-a9c1-765699286a0c"
+    },
+    {
+      "entity": "surveyQuestions",
+      "checkpoint": "8f7960e5-cc17-4780-947e-a0ba37b0e228"
+    },
+    {
+      "entity": "surveyResponseEducationOrganizationTargetAssociations",
+      "checkpoint": "ea7acf30-86c6-4439-929c-0efa6cd24b02"
+    },
+    {
+      "entity": "surveyResponsePersonTargetAssociations",
+      "checkpoint": "0a3d63c9-07f4-4313-993f-12f7e6ec7b9b"
+    },
+    {
+      "entity": "surveyResponseStaffTargetAssociations",
+      "checkpoint": "5e5d7ab5-5ac4-4afa-9d52-d256bfead354"
+    },
+    {
+      "entity": "surveyResponses",
+      "checkpoint": "5bed5def-8103-4098-b3ac-73039f46754d"
+    },
+    {
+      "entity": "surveySectionAssociations",
+      "checkpoint": "1a30d27e-c1f4-4324-90a9-3b46dc0d2500"
+    },
+    {
+      "entity": "surveySectionResponseEducationOrganizationTargetAssociations",
+      "checkpoint": "8dd6eccf-518d-4870-a240-f4ac9adb8ca0"
+    },
+    {
+      "entity": "surveySectionResponsePersonTargetAssociations",
+      "checkpoint": "9659b151-a74c-437b-b959-fcd4e73a8746"
+    },
+    {
+      "entity": "surveySectionResponseStaffTargetAssociations",
+      "checkpoint": "c5b29ea8-1b9e-49fe-a1b2-53e109042bbc"
+    },
+    {
+      "entity": "surveySectionResponses",
+      "checkpoint": "2bbde850-6f94-48fa-8803-31a32d1ab213"
+    },
+    {
+      "entity": "surveySections",
+      "checkpoint": "d15d9423-4c61-4946-8b69-10ed19bc1f5e"
+    },
+    { "entity": "surveys", "checkpoint": "1aa9008f-1a88-41d7-b6b2-a069d8a7be68" },
+    {
+      "entity": "teachingCredentialBasisDescriptors",
+      "checkpoint": "0bc556d5-f805-4f25-9ab5-8dde46c8afa1"
+    },
+    {
+      "entity": "teachingCredentialDescriptors",
+      "checkpoint": "168c773b-6bf2-4ad9-91e8-3449bf3bd442"
+    },
+    {
+      "entity": "technicalSkillsAssessmentDescriptors",
+      "checkpoint": "835f027c-cc2d-4432-bede-b0a23a2c41e0"
+    },
+    {
+      "entity": "telephoneNumberTypeDescriptors",
+      "checkpoint": "afb81301-70ec-4807-98a7-0658e59270cb"
+    },
+    {
+      "entity": "termDescriptors",
+      "checkpoint": "5c2f67bd-c6fc-4492-b6ef-9d63d02ff0e2"
+    },
+    {
+      "entity": "titleIPartAParticipantDescriptors",
+      "checkpoint": "12385295-33aa-4b9d-b6e3-fdd07d24dc56"
+    },
+    {
+      "entity": "titleIPartAProgramServiceDescriptors",
+      "checkpoint": "12b15216-3e6b-47b9-be6e-dc303334e886"
+    },
+    {
+      "entity": "titleIPartASchoolDesignationDescriptors",
+      "checkpoint": "29669bb7-31a7-4482-970a-4e0a320764d0"
+    },
+    {
+      "entity": "tribalAffiliationDescriptors",
+      "checkpoint": "b614b097-236f-4838-bdf3-64e1c316cfc7"
+    },
+    {
+      "entity": "visaDescriptors",
+      "checkpoint": "d74aad99-01f7-41dc-a369-8979c6a6cba4"
+    },
+    {
+      "entity": "weaponDescriptors",
+      "checkpoint": "590083a5-35de-4a4f-b8f0-0d8b9f05e1e7"
+    }
+  ]
