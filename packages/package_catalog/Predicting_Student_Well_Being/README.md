@@ -1,3 +1,5 @@
+> **Note:** This package is still in development. Please expect updates to the package assets over the next few weeks.
+
 <img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
 # Predicting Student Well-Being Package
