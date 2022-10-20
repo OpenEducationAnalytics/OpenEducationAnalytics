@@ -15,4 +15,4 @@ Use this checklist to keep track of your progress.
 
 ## Compute
 - [ ] Define schema for initial data prep and pseudonymization.
-- [ ] Implement function to process data from stage 1 into stage 2.
+- [ ] Implement function(s) to process data from stage 1 into stage 2.
