@@ -25,7 +25,7 @@ The [name of module] Power BI template consists of [number] pages, which [insert
 - visual 2 name - description of visual
 - visual 3 name - description of visual
 
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Sample_PowerBI_Dashboard.png)
+![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Module_Dashboard_Page1_Sample.png)
 NB: This can be an image of one of the PowerBI pages.
 
 ## Data Model
