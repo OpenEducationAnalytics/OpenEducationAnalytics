@@ -6,7 +6,7 @@
 
 Using this module, data from Education Insights can be exported into your organization's OEA data lakes to combine it with other datasets for a variety of use cases, including Digital Learning Analytics. 
 
-Education Insights requires the implementation of [Microsoft School Data Sync](https://sds.microsoft.com/) on O365, which provides school and class roster data, to enable its reports in Teams. For production data, you will need an O365 education tenant as Microsoft Education Insights is only enabled for education tenants. For demo purposes however, you can go [Customer Digital Experiences](https://learn.microsoft.com/en-us/partner-center/mpn-demos) to get access to a demo tenant provisioning that comes with demo data and demo scripts.
+Education Insights requires the implementation of [Microsoft School Data Sync](https://sds.microsoft.com/) on O365, which provides school and class roster data, to enable its reports in Teams. For production data, you will need an O365 education tenant as Microsoft Education Insights is only enabled for education tenants.
 
 
 <p align="center">
@@ -40,9 +40,7 @@ Microsoft Insights data can be used for a variety of analytics purposes, includi
 6. Download the [module Power BI template file](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/powerbi). Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/powerbi) page for instructions for switching the Power BI template data source to import from your Synapse workspace data source.
 
 #### Note: 
-All the steps outlined above are applicable to deployment of this module with production data. However, if it's a test deployment using the test data sets we provide as part of this module, skip to step 3 as steps 1 and 2 don't apply.
-
-See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline) for instructions on switching the pipeline data source to production data.
+All the steps outlined above are applicable to deployment of this module with production data. However, if you are doing a test deployment using the [test data sets](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data) we provide as part of this module, skip to step 3 as steps 1 and 2 don't apply.
 
 #### OEA Digital Engagement Schema:
 
