@@ -1,12 +1,11 @@
-> In this folder, please upload the notebook(s) used for preprocessing the data and for pseudonymizing columns with end user identifiable information of students.
+> In this folder, please upload the notebooks used for preprocessing the data and for pseudonymizing columns with End User Identifiable Information of students.
 
 # Notebook
-This module incorporates [insert number of module notebooks. *Typically this should be two: a simple one for executing ingestion from the module pipeline, and one that contains the module class, defining the functions used in the ingestion notebook*] notebook(s) needed to support the main [module pipeline](link to module pipeline). Both notebooks depend on the [OEA Python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb) which is a part of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework).
+This module incorporates 2 notebooks needed to support the main [module pipeline](link to module pipeline). Both notebooks depend on the [OEA Python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb) which is a part of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework).
 
 ## Module Python Class Notebook: [Insert name of notebook with hyperlink]
 The module Python class notebook that defines the data schemas and pseudonymization. Basic functions for data ingestion and processing from Stage 1 to Stage 2 data lakes are also included. 
 
-[Any additional information unique to the module.] 
 [Note: This notebook should be commented for clarity of function ingestion and processing.]
 
 ## Module Data Ingestion Notebook: [Insert name of notebook with hyperlink]
