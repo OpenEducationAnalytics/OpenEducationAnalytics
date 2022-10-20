@@ -20,7 +20,8 @@ Description of data sources: what it is used for, data available, data format an
 Sample out-of-the box assets for this OEA module include: 
 1. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit/pipeline) for ingesting data into the data lake and automating the various stages of the process.
 2. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit/notebook) for cleaning, transforming, anonymizing and enriching the data.
-3. [PowerBI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
+3. [Test Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit/test_data) with artificially generated test data which supports the module pipeline and Power BI template. 
+4. [PowerBI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
 
 [include links to any other assets like tutorials, test data, etc you are providing as part of this module.]
 
