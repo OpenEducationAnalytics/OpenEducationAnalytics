@@ -6,7 +6,8 @@
 
 Using this module, data from Education Insights can be exported into your organization's OEA data lakes to combine it with other datasets for a variety of use cases, including Digital Learning Analytics. 
 
-Education Insights requires the implementation of [Microsoft School Data Sync](https://sds.microsoft.com/) on O365, which provides school and class roster data, to enable its reports in Teams.
+Education Insights requires the implementation of [Microsoft School Data Sync](https://sds.microsoft.com/) on O365, which provides school and class roster data, to enable its reports in Teams. For production data, you will need an O365 education tenant as Microsoft Education Insights is only enabled for education tenants. For demo purposes however, you can go [Customer Digital Experiences](https://learn.microsoft.com/en-us/partner-center/mpn-demos) to get access to a demo tenant provisioning that comes with demo data and demo scripts.
+
 
 <p align="center">
   <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_data_ingestion_map.png" alt="Microsoft Insights Visual"/>
