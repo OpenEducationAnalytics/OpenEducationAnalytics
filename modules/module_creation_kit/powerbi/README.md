@@ -1,4 +1,4 @@
-> In this folder, you will find a draft Power BI dashboard template . Download this template and use it for your module’s visualization. When done, upload the updated .pbix files back to this folder: one for the dashboard template using DirectQuery, and one for the dashboard template using Import. Please provide descriptions of each page and visuals, as well as screenshots of the Power BI dashboard and the data model in this readme file.
+> In this folder, you will find a draft Power BI dashboard template . Download this template and use it for your module’s visualization. When done, upload the updated .pbix files back to this folder: one for the dashboard template using Import, and one for the dashboard template using DirectQuery. Please provide descriptions of each page and visuals, as well as screenshots of the Power BI dashboard and the data model in this README.md file.
 
 # PowerBI Template
 The [name of module] module Power BI template enables users to quickly explore [name of module and tables processed] data. There are two options for exploring this module's Power BI template:
@@ -8,7 +8,7 @@ The [name of module] module Power BI template enables users to quickly explore [
 See [Power BI setup instructions](insert hyperlink to instructions) below for details.
 
 ## Dashboard Explanation
-The [name of module] PowerBI template consists of [number] pages, which [insert brief description of how the dashboard enables users]: 
+The [name of module] Power BI template consists of [number] pages, which [insert brief description of how the dashboard enables users]: 
 
 1. **Page 1:** description of page.
 - visual 1 name - description of visual
