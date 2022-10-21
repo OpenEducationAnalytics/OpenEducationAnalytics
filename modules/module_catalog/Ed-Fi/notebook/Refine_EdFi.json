@@ -1,197 +1,245 @@
 {
-    "name": "Refine_EdFi",
-    "properties": {
-        "folder": {
-            "name": "EdFi"
-        },
-        "nbformat": 4,
-        "nbformat_minor": 2,
-        "sessionProperties": {
-            "driverMemory": "28g",
-            "driverCores": 4,
-            "executorMemory": "28g",
-            "executorCores": 4,
-            "numExecutors": 2,
-            "conf": {
-                "spark.dynamicAllocation.enabled": "false",
-                "spark.dynamicAllocation.minExecutors": "2",
-                "spark.dynamicAllocation.maxExecutors": "2",
-                "spark.autotune.trackingId": "398b179f-fa0c-41bc-a1df-f7e0cefc8091"
-            }
-        },
-        "metadata": {
-            "saveOutput": true,
-            "enableDebugMode": false,
-            "kernelspec": {
-                "name": "synapse_pyspark",
-                "display_name": "Synapse PySpark"
-            },
-            "language_info": {
-                "name": "python"
-            },
-            "sessionKeepAliveTimeout": 30
-        },
-        "cells": [
-            {
-                "cell_type": "code",
-                "source": [
-                    "%run /OEAp7_py"
-                ],
-                "outputs": [],
-                "execution_count": 4
-            },
-            {
-                "cell_type": "code",
-                "metadata": {
-                    "jupyter": {
-                        "source_hidden": false,
-                        "outputs_hidden": false
-                    },
-                    "nteract": {
-                        "transient": {
-                            "deleting": false
-                        }
-                    }
-                },
-                "source": [
-                    "%run /OpenAPIUtil_py"
-                ],
-                "outputs": [],
-                "execution_count": null
-            },
-            {
-                "cell_type": "code",
-                "metadata": {
-                    "jupyter": {
-                        "source_hidden": false,
-                        "outputs_hidden": false
-                    },
-                    "nteract": {
-                        "transient": {
-                            "deleting": false
-                        }
-                    }
-                },
-                "source": [
-                    "# Pass the below parameters from pipeline. \r\n",
-                    "# directory = 'EdFi'\r\n",
-                    "# api_version = '5.3'\r\n",
-                    "# metadata_url = ''\r\n",
-                    "# swagger_url = ''\r\n",
-                    "\r\n",
-                    "oea = OEA(storage_account='stoeacisdedfi1')\r\n",
-                    "oea_metadatas = oea.get_metadata_from_url(metadata_url)\r\n",
-                    "\r\n",
-                    "schema_gen = OpenAPIUtil(swagger_url)\r\n",
-                    "schemas = schema_gen.create_spark_schemas()\r\n",
-                    "\r\n",
-                    "stage2_ingested = oea.path('stage2', f'Ingested/{directory}/v{api_version}')\r\n",
-                    "stage2_refined = oea.path('stage2', f'Refined/{directory}/v{api_version}')"
-                ],
-                "outputs": [],
-                "execution_count": 6
-            },
-            {
-                "cell_type": "code",
-                "metadata": {
-                    "jupyter": {
-                        "source_hidden": false,
-                        "outputs_hidden": false
-                    },
-                    "nteract": {
-                        "transient": {
-                            "deleting": false
-                        }
-                    }
-                },
-                "source": [
-                    "def get_descriptor_schema(descriptor):\r\n",
-                    "    fields = []\r\n",
-                    "    fields.append(StructField('_etag',LongType(), True))\r\n",
-                    "    fields.append(StructField(f\"{descriptor[:-1]}Id\", IntegerType(), True))\r\n",
-                    "    fields.append(StructField('codeValue',StringType(), True))\r\n",
-                    "    fields.append(StructField('description',StringType(), True))\r\n",
-                    "    fields.append(StructField('id',StringType(), True))\r\n",
-                    "    fields.append(StructField('namespace',StringType(), True))\r\n",
-                    "    fields.append(StructField('shortDescription',StringType(), True))\r\n",
-                    "    return StructType(fields)\r\n",
-                    "\r\n",
-                    "def get_descriptor_metadata(descriptor):\r\n",
-                    "    return [['_etag', 'long', 'no-op'],\r\n",
-                    "            [f\"{descriptor[:-1]}Id\", 'integer', 'hash'],\r\n",
-                    "            ['codeValue','string', 'no-op'],\r\n",
-                    "            ['description','string', 'no-op'],\r\n",
-                    "            ['id','string', 'no-op'],\r\n",
-                    "            ['namespace','string', 'no-op'],\r\n",
-                    "            ['shortDescription','string', 'no-op']]"
-                ],
-                "outputs": [],
-                "execution_count": 7
-            },
-            {
-                "cell_type": "code",
-                "metadata": {
-                    "jupyter": {
-                        "source_hidden": false,
-                        "outputs_hidden": false
-                    },
-                    "nteract": {
-                        "transient": {
-                            "deleting": false
-                        }
-                    }
-                },
-                "source": [
-                    "for table_name in [x.name for x in mssparkutils.fs.ls(stage2_ingested) if x.isDir]:\r\n",
-                    "    # 1. Read Delta table from Ingested Folder.\r\n",
-                    "    df = spark.read.format('delta').load(f\"{stage2_ingested}/{table_name}\")\r\n",
-                    "    \r\n",
-                    "    # 2. Modify the schema of the dataframe according to the target schema.\r\n",
-                    "    if(re.search('Descriptors$', table_name) is None):\r\n",
-                    "        target_schema = schemas[table_name]\r\n",
-                    "        oea_metadata = oea_metadatas[table_name]\r\n",
-                    "    else:\r\n",
-                    "        target_schema = get_descriptor_schema(table_name)\r\n",
-                    "        oea_metadata = get_descriptor_metadata(table_name)\r\n",
-                    "    target_schema = target_schema.add(StructField('DistrictId', StringType()))\\\r\n",
-                    "                                        .add(StructField('SchoolYear', StringType()))\\\r\n",
-                    "                                        .add(StructField('LastModifiedDate', TimestampType()))\r\n",
-                    "    oea_metadata += [['DistrictId', 'string', 'partition-by'],\r\n",
-                    "                     ['SchoolYear', 'string', 'partition-by'],\r\n",
-                    "                     ['LastModifiedDate', 'timestamp', 'no-op']]\r\n",
-                    "    for col_name in target_schema.fieldNames():\r\n",
-                    "        target_col = target_schema[col_name]\r\n",
-                    "        if col_name in df.columns and target_col.needConversion() is False:\r\n",
-                    "            df = df.withColumn(col_name, f.col(col_name).cast(target_col.dataType))\r\n",
-                    "        elif col_name not in df.columns:\r\n",
-                    "            df = df.withColumn(col_name, f.lit(None).cast(target_col.dataType))\r\n",
-                    "        if 'x-Ed-Fi-explode' in target_col.metadata and target_col.metadata['x-Ed-Fi-explode']:\r\n",
-                    "            cols = df.columns + [\"exploded.*\"]\r\n",
-                    "            df = df.withColumn(f\"{col_name}_json\", f.to_json(f.col(col_name)))\\\r\n",
-                    "                    .withColumn(col_name, f.from_json(f.col(f\"{col_name}_json\"), target_col.dataType))\\\r\n",
-                    "                    .drop(f\"{col_name}_json\")\r\n",
-                    "            df = df.withColumn(\"exploded\", f.explode(col_name)).select(cols).drop(col_name)\r\n",
-                    "        elif 'x-Ed-Fi-fields-to-pluck' in target_col.metadata and target_col.metadata['x-Ed-Fi-fields-to-pluck'] != [\"*\"]:\r\n",
-                    "            df = df.withColumn(f\"{col_name}_json\", f.to_json(f.col(col_name)))\\\r\n",
-                    "                    .withColumn(col_name, f.from_json(f.col(f\"{col_name}_json\"), target_col.dataType))\\\r\n",
-                    "                    .drop(f\"{col_name}_json\")\r\n",
-                    "            for sub_col in target_col.metadata['x-Ed-Fi-fields-to-pluck']:\r\n",
-                    "                df = df.withColumn(sub_col, f.col(f\"{col_name}.{sub_col}\"))\r\n",
-                    "            df = df.drop(col_name)\r\n",
-                    "    \r\n",
-                    "    # 3. Pseudonymize the data using metadata.\r\n",
-                    "    df_pseudo, df_lookup = oea.pseudonymize(df, oea_metadata)\r\n",
-                    "\r\n",
-                    "    # 4. Write to Refined folder.\r\n",
-                    "    if(len(df_pseudo.columns) > 2):\r\n",
-                    "        df_pseudo.write.format('delta').mode('overwrite').option('overwriteSchema', 'true').partitionBy('DistrictId', 'SchoolYear').save(f\"{stage2_refined}/Abhinav/General/{table_name}\")\r\n",
-                    "    if(len(df_lookup.columns) > 2):\r\n",
-                    "        df_lookup.write.format('delta').mode('overwrite').option('overwriteSchema', 'true').partitionBy('DistrictId', 'SchoolYear').save(f\"{stage2_refined}/Abhinav/Sensitive/{table_name}\")\r\n",
-                    ""
-                ],
-                "outputs": [],
-                "execution_count": 6
-            }
-        ]
-    }
+	"name": "Refine_EdFi",
+	"properties": {
+		"folder": {
+			"name": "EdFi"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "79868549-6328-4d5f-8533-f392449ac17d"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"source": [
+					"%run /OEAp7_py"
+				],
+				"execution_count": 1
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"%run /OpenAPIUtil_py"
+				],
+				"execution_count": 2
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Pass the below parameters from pipeline. \r\n",
+					"directory = 'EdFi'\r\n",
+					"api_version = '5.3'\r\n",
+					"metadata_url = 'https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/Abhinav/Ed-Fi-LakeID/modules/module_catalog/Ed-Fi/docs/edfi_oea_metadata.csv'\r\n",
+					"swagger_url = 'https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/Abhinav/Ed-Fi-LakeID/modules/module_catalog/Ed-Fi/docs/swagger.json'\r\n",
+					"\r\n",
+					"oea = OEA(storage_account='stoeacisdedfi1')\r\n",
+					"oea_metadatas = oea.get_metadata_from_url(metadata_url)\r\n",
+					"primitive_datatypes = ['timestamp', 'date', 'decimal', 'boolean', 'integer', 'string', 'long']\r\n",
+					"\r\n",
+					"schema_gen = OpenAPIUtil(swagger_url)\r\n",
+					"schemas = schema_gen.create_spark_schemas()\r\n",
+					"\r\n",
+					"stage2_ingested = oea.to_url(f'stage2/Ingested/{directory}/v{api_version}')\r\n",
+					"stage2_refined = oea.to_url(f'stage2/Refined/{directory}/v{api_version}')"
+				],
+				"execution_count": 4
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"def get_descriptor_schema(descriptor):\r\n",
+					"    fields = []\r\n",
+					"    fields.append(StructField('_etag',LongType(), True))\r\n",
+					"    fields.append(StructField(f\"{descriptor[:-1]}Id\", IntegerType(), True))\r\n",
+					"    fields.append(StructField('codeValue',StringType(), True))\r\n",
+					"    fields.append(StructField('description',StringType(), True))\r\n",
+					"    fields.append(StructField('id',StringType(), True))\r\n",
+					"    fields.append(StructField('namespace',StringType(), True))\r\n",
+					"    fields.append(StructField('shortDescription',StringType(), True))\r\n",
+					"    return StructType(fields)\r\n",
+					"\r\n",
+					"def get_descriptor_metadata(descriptor):\r\n",
+					"    return [['_etag', 'long', 'no-op'],\r\n",
+					"            [f\"{descriptor[:-1]}Id\", 'integer', 'hash'],\r\n",
+					"            ['codeValue','string', 'no-op'],\r\n",
+					"            ['description','string', 'no-op'],\r\n",
+					"            ['id','string', 'no-op'],\r\n",
+					"            ['namespace','string', 'no-op'],\r\n",
+					"            ['shortDescription','string', 'no-op']]"
+				],
+				"execution_count": 5
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"def transform(df, target_schema):\r\n",
+					"    for col_name in target_schema.fieldNames():\r\n",
+					"        target_col = target_schema[col_name]\r\n",
+					"        if col_name in df.columns and target_col.dataType.typeName() in primitive_datatypes:\r\n",
+					"            # Primitive data types\r\n",
+					"            df = df.withColumn(col_name, f.col(col_name).cast(target_col.dataType))\r\n",
+					"            continue\r\n",
+					"        elif col_name not in df.columns:\r\n",
+					"            # If Column not present in dataframe, Add column with None values.\r\n",
+					"            df = df.withColumn(col_name, f.lit(None).cast(target_col.dataType))\r\n",
+					"            continue\r\n",
+					"        \r\n",
+					"        df = df.withColumn(f\"{col_name}_json\", f.to_json(f.col(col_name)))\\\r\n",
+					"                    .withColumn(col_name, f.from_json(f.col(f\"{col_name}_json\"), target_col.dataType))\\\r\n",
+					"                    .drop(f\"{col_name}_json\")\r\n",
+					"        \r\n",
+					"        # Add Lake ID as surrogate key.\r\n",
+					"        df = df.withColumn('lake_id', f.concat_ws('_', f.col('SchoolYear'), f.col('DistrictId'), f.col('id')))\r\n",
+					"\r\n",
+					"        # Modify the links with surrogate keys\r\n",
+					"        if target_col.dataType.typeName() == 'struct' and 'link' in target_col.dataType.names:\r\n",
+					"            df = df.withColumn(col_name, f.col(col_name).withField('lake_id', f.concat_ws('_', f.col('SchoolYear')\\\r\n",
+					"                              , f.col('DistrictId')\\\r\n",
+					"                              , f.split(f.col(f'{col_name}.link.href'), '/').getItem(3))))\r\n",
+					"        \r\n",
+					"        if target_col.dataType.typeName() == 'array':\r\n",
+					"            for field in [field for field in target_col.dataType.elementType.fields if field.dataType.typeName() == 'struct']:\r\n",
+					"                if 'link' in field.dataType.names:\r\n",
+					"                    df = df.withColumn(col_name, f.transform(col_name, lambda x: x.withField(f\"{field.name}.lake_id\", f.concat_ws(\"_\"\\\r\n",
+					"                                                                                                                    , f.col(\"SchoolYear\")\\\r\n",
+					"                                                                                                                    , f.col(\"DistrictId\")\\\r\n",
+					"                                                                                                                    , f.split(x[field.name].link.href, \"/\").getItem(3)))))\r\n",
+					"        \r\n",
+					"        if 'x-Ed-Fi-explode' in target_col.metadata and target_col.metadata['x-Ed-Fi-explode']:\r\n",
+					"            # Handle array type objects which needs to be exploded.\r\n",
+					"            cols = df.columns + [\"exploded.*\"]\r\n",
+					"            df = df.withColumn(\"exploded\", f.explode(col_name)).select(cols).drop(col_name)\r\n",
+					"\r\n",
+					"        elif 'x-Ed-Fi-fields-to-pluck' in target_col.metadata and target_col.metadata['x-Ed-Fi-fields-to-pluck'] != [\"*\"]:\r\n",
+					"            # Handle complex objects which needs flattening.\r\n",
+					"            for sub_col in target_col.metadata['x-Ed-Fi-fields-to-pluck']:\r\n",
+					"                df = df.withColumn(sub_col, f.col(f\"{col_name}.{sub_col}\"))\r\n",
+					"            df = df.drop(col_name)\r\n",
+					"    return df"
+				],
+				"execution_count": 6
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"for table_name in [x.name for x in mssparkutils.fs.ls(stage2_ingested) if x.isDir]:\r\n",
+					"    print(f\"Processing {table_name}\")\r\n",
+					"    # 1. Read Delta table from Ingested Folder.\r\n",
+					"    df = spark.read.format('delta').load(f\"{stage2_ingested}/{table_name}\")\r\n",
+					"    \r\n",
+					"    # 2. Transformation step\r\n",
+					"    if(re.search('Descriptors$', table_name) is None):\r\n",
+					"        target_schema = schemas[table_name]\r\n",
+					"        oea_metadata = oea_metadatas[table_name]\r\n",
+					"    else:\r\n",
+					"        target_schema = get_descriptor_schema(table_name)\r\n",
+					"        oea_metadata = get_descriptor_metadata(table_name)\r\n",
+					"    target_schema = target_schema.add(StructField('DistrictId', StringType()))\\\r\n",
+					"                                        .add(StructField('SchoolYear', StringType()))\\\r\n",
+					"                                        .add(StructField('LastModifiedDate', TimestampType()))\r\n",
+					"    oea_metadata += [['DistrictId', 'string', 'partition-by'],\r\n",
+					"                     ['SchoolYear', 'string', 'partition-by'],\r\n",
+					"                     ['LastModifiedDate', 'timestamp', 'no-op']]\r\n",
+					"    # target_schema['localEducationAgencyReference'].metadata['x-Ed-Fi-compute-lake-ids'] = True\r\n",
+					"    # target_schema['localEducationAgencyReference'].metadata['x-Ed-Fi-fields-to-pluck'] = ['*']\r\n",
+					"    try:\r\n",
+					"        df = transform(df, target_schema)\r\n",
+					"    except(e):\r\n",
+					"        print(f\"Error while Transforming {table_name}: {str(e)}\")\r\n",
+					"    \r\n",
+					"    # 3. Pseudonymize the data using metadata.\r\n",
+					"    try:\r\n",
+					"        df_pseudo, df_lookup = oea.pseudonymize(df, oea_metadata)\r\n",
+					"    except(e):\r\n",
+					"        print(f\"Error while Pseudonymizing {table_name}: {str(e)}\")\r\n",
+					"\r\n",
+					"    # 4. Write to Refined folder.\r\n",
+					"    if(len(df_pseudo.columns) > 2):\r\n",
+					"        df_pseudo.write.format('delta').mode('overwrite').option('overwriteSchema', 'true').partitionBy('DistrictId', 'SchoolYear').save(f\"{stage2_refined}/General/{table_name}\")\r\n",
+					"    if(len(df_lookup.columns) > 2):\r\n",
+					"        df_lookup.write.format('delta').mode('overwrite').option('overwriteSchema', 'true').partitionBy('DistrictId', 'SchoolYear').save(f\"{stage2_refined}/Sensitive/{table_name}\")\r\n",
+					""
+				],
+				"execution_count": 7
+			}
+		]
+	}
 }
