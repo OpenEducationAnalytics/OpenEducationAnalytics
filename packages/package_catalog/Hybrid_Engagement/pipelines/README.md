@@ -8,7 +8,7 @@ This standard schema uses a Synapse pipeline to:
 
 Hybrid Engagement Package Main Pipeline
 :-------------------------:
-![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pipeline_p1_main_pipeline_overview.png) 
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pipeline_p1_main_pipeline_overview.png) 
 
 <strong><em>Note:</strong></em>
  - This pipeline can be used for either production or test data (whichever is contained within the data lake when the pipeline is triggered).
@@ -22,13 +22,13 @@ Hybrid Engagement Package Main Pipeline
 <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/schemas/schema_catalog/Digital_Engagement_Schema/docs/images/pipeline_instructions/step1_import_pipeline_template.png" width="600">
 
 4. Assign the Synapse linked service needed to support the pipeline template.
-![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pipeline_p2_set_linked_services.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pipeline_p2_set_linked_services.png)
 
 5. Change the storageAccount parameter to match the storage account of your Synapse workspace.
-![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pipeline_p4_change_storageAccount.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pipeline_p4_change_storageAccount.png)
 
 6. Navigate to the [HybridEngagement_enrichment notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/notebooks/HybridEngagement_enrichment.ipynb). Review the modules and tables used for data aggregation and enrichment; edit the notebook as needed to process the student SIS data into a single table. 
  - <strong><em>Note:</em> If you are using this template for test data, there will be no editing necessary. </strong>
-![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pipeline_p3_edit_notebook_as_needed.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pipeline_p3_edit_notebook_as_needed.png)
 
 7. Commit/Publish any changes made to the pipeline and notebook. Trigger the pipeline and check that the package SQL db was created (sqls3_hybrid_engagement). Once successful, you're ready to open, connect, and interact with the [package Power BI dashboard](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement/powerbi).
