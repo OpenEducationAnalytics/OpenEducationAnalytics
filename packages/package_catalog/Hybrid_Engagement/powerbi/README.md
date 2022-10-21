@@ -35,13 +35,13 @@ Use the tool-tips provided on the visuals to understand the purpose of each data
 3. The dashboard visuals may not load. You will need to switch your Synapse workspace serverless SQL endpoint by:
    * Select menu item File > Options and settings > Data source settings.
 
-![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pbi_instructions_p1_options_and_settings.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_instructions_p1_options_and_settings.png)
 
    * Select Change Source...
 
-![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pbi_instructions_p2_data_source_settings.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_instructions_p2_data_source_settings.png)
 
    * Enter your Synapse workspace SQL server endpoint. This can be found on your Synapse workspace information page in the Azure portal.
 
-![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pbi_instructions_p3_sql_server_db.png)
-![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/pbi_instructions_p4_serverless_sql_endpoint.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_instructions_p3_sql_server_db.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_instructions_p4_serverless_sql_endpoint.png)
