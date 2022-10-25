@@ -1,13 +1,15 @@
 # Test data
 
-This module includes artificially generated data which matches the format of the three [Microsoft Insights Data Lake Export](https://docs.microsoft.com/en-us/schooldatasync/enable-education-data-lake-export).
+This module includes artificially generated data which matches the format of the three [Microsoft Insights Data Lake Exports](https://docs.microsoft.com/en-us/schooldatasync/enable-education-data-lake-export).
 - [Activity Data](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-activity) provides data the Insights data lake in their own custom analytics using Azure Data Share services. This includes signal data from O365 applications like Teams, OneNote, OneDrive and Sharepoint. It includes data on education-specific apps like Assignments, Reading Progress, and Reflect.
 - [Rostering](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-rostering) contains the internal representation of the data that's imported from the institution’s Student Information System (SIS). 
 - [Azure Active Directory](https://support.clever.com/hc/s/articles/360049642311?language=en_US#h_7698d144-7ceb-4d63-88b8-e9ca2aa378d2) provides an updated copy of your Azure Active Directory (Azure AD) into the Data Lake. The copy of Azure AD assists with user matching between your SIS / SMS and AAD User object.
 
+<strong>Note:</strong> This module contains two sets of test data - one set for mock K-12 data, and one set for mock higher education data. You can choose which test data set to ingest via the module pipeline template; for details see the [test data pipeline instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline#pipeline-setup-instructions).
+,
 ## Data dictionary
 
-### [Activity Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/activity/2021-06-02/ApplicationUsage.csv)
+### [K-12 Activity Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/k12_test_data/activity/2021-06-02/ApplicationUsage.csv) and [HEd Activity Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/hed_test_data/activity/2021-06-02/ApplicationUsage.csv)
 
 See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-activity)
 
@@ -50,7 +52,7 @@ See full details on the [Microsoft SDS documentation](https://docs.microsoft.com
 |:-------------------------:|
 | ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/testdata_activity.png)  |
 
-### [Roster Tables](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data/roster/2021-09-05T06-16-22)
+### [K-12 Roster Tables](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data/k12_test_data/roster/2021-09-05T06-16-22) and [HEd Roster Tables](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data/hed_test_data/roster/2021-09-05T06-16-22)
 
 See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-rostering)
 
@@ -81,7 +83,7 @@ See full details on the [Microsoft SDS documentation](https://docs.microsoft.com
 | Affiliations | Enrollment | The relationship between a Person and a Section. Time (what is current right now) is also important and is determined by the Section Session relationship. The presence of SectionSession table indicates that enrollments span possibly non-contiguous Sessions. |
 
 
-### [Azure Active Directory Tables](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data/roster/2021-09-05T06-16-22)
+### [K-12 Azure Active Directory Tables](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data/k12_test_data/roster/2021-09-05T06-16-22) and [HEd Azure Active Directory Tables](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data/hed_test_data/roster/2021-09-05T06-16-22)
 
 See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-azure-ad)
 
