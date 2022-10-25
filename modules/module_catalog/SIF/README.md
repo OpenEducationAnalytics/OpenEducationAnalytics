@@ -1,3 +1,5 @@
+> **Note:** This module is still in development. Please expect updates to the module assets over the next few weeks.
+
 <img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
 # SIF Module
