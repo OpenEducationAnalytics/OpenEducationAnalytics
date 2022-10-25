@@ -12,7 +12,7 @@ Notes:
 
 Module Pipeline for Test Data  | Module Pipeline for Production Data
 :-------------------------:|:-------------------------:
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_overview_test.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_overview_prod.png)  
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline%20instructions/module_test_data_pipeline_overview.png) |  ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline%20instructions/module_prod_data_pipeline_overview.png)  
 
 For production data, this module pipeline can be automatically triggered (i.e. daily or weekly) to keep your Synapse data lake up-to-date.
 
@@ -27,15 +27,22 @@ Two sets of instructions are included:
 1. Complete the first steps of the [module setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights#module-setup-instructions)
 2. Download the [module pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/pipeline/insights_pipeline_template.zip) locally to your computer.
 3. Import the pipeline template to your Synapse workspace.
-<img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_import_template.png" width="600">
+<img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline%20instructions/pipeline_p1_import_template.png" width="600">
+
 4. Assign the Synapse linked services needed to support the pipeline template.
-<img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_linked_services.png" width="600">
-5. Change the insights_main_pipeline storageAccount parameter to be your storage account name.
-<img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_storage_acct.png" width="600">
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline%20instructions/pipeline_p2_assign_linked_services.png)
+
+5. Change the insights_main_pipeline storageAccount parameter to your storage account name. Also, update the pipeline parameter to pull either K-12 test data or higher education data; see details [here](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data).
+   * To pull the K-12 test data, enter ```true``` for the "pull_k12_test_data" parameter. To pull the higher education test data, enter ```true``` for the "pull_hed_test_data" parameter.
+   * It is recommended that you choose <em>one</em> test data set to pull, since pulling both sets and triggering the pipeline may cause data ingestion errors.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline%20instructions/pipeline_p3_update_parameters.png)
+
 6. Select a spark pool for the ingest_into_stage2p_and_2np notebook.
-<img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_spark_pool.png" width="600">
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline%20instructions/pipeline_p4_attach_spark_pool.png)
+
 7. Trigger the pipeline manually.
-<img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_trigger.png" width="600">
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline%20instructions/pipeline_p5_trigger.png)
+
 8. Once the pipeline has been successfully executed, verify that:
 
 - Data has landed in Stage 1np
@@ -52,7 +59,7 @@ Two sets of instructions are included:
 
 1. Complete the [Test Data Pipeline Instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline#test-data-pipeline-instructions), but do not execute the pipeline yet.
 2. Review the Microsoft Insights [data feed setup instructions](https://docs.microsoft.com/en-us/schooldatasync/enable-education-data-lake-export).
-3. Open the insights_main_pipeline. Delete the initial "Extract Insights test data from source" sub-pipeline. The final results is shown below.
+3. Open the insights_main_pipeline. Delete the initial "If pull_k12_test_data" and "If pull_hed_test_data" pipeline activities. The final results is shown below.
 <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/pipeline_overview_prod.png" width="600">
 
 4. Trigger the pipeline manually.
