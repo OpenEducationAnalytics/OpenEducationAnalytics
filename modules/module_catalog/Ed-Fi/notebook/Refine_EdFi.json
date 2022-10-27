@@ -217,8 +217,6 @@
 					"    oea_metadata += [['DistrictId', 'string', 'partition-by'],\r\n",
 					"                     ['SchoolYear', 'string', 'partition-by'],\r\n",
 					"                     ['LastModifiedDate', 'timestamp', 'no-op']]\r\n",
-					"    # target_schema['localEducationAgencyReference'].metadata['x-Ed-Fi-compute-lake-ids'] = True\r\n",
-					"    # target_schema['localEducationAgencyReference'].metadata['x-Ed-Fi-fields-to-pluck'] = ['*']\r\n",
 					"    try:\r\n",
 					"        df = transform(df, target_schema)\r\n",
 					"    except(e):\r\n",
