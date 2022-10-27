@@ -1,8 +1,8 @@
 {
-	"name": "Upsert_Descriptors",
+	"name": "edfi_upsert",
 	"properties": {
 		"folder": {
-			"name": "EdFi"
+			"name": "EdFi/Ingest"
 		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -12,7 +12,7 @@
 						"referenceName": "LS_ADLS_OEA",
 						"type": "LinkedServiceReference"
 					},
-					"name": "SourceJSON"
+					"name": "SourceJson"
 				}
 			],
 			"sinks": [
@@ -21,7 +21,7 @@
 						"referenceName": "LS_ADLS_OEA",
 						"type": "LinkedServiceReference"
 					},
-					"name": "SinkDELTA"
+					"name": "SinkDelta"
 				}
 			],
 			"transformations": [
@@ -29,60 +29,69 @@
 					"name": "AlterRow"
 				},
 				{
-					"name": "SelectColumns"
+					"name": "DerivedColumn"
 				},
 				{
-					"name": "DerivedColumn"
+					"name": "SelectColumns"
 				}
 			],
 			"scriptLines": [
 				"parameters{",
+				"     districtId as string ('255901'),",
+				"     schoolYear as string ('2017'),",
 				"     entity as string ('schools'),",
 				"     directory as string ('EdFi'),",
-				"     schoolYear as string ('2017'),",
-				"     districtId as string ('255901'),",
-				"     descriptorId as string",
+				"     apiversion as string ('5.3')",
 				"}",
-				"source(allowSchemaDrift: true,",
+				"source(useSchema: false,",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
+				"     inferDriftedColumnTypes: true,",
+				"     limit: 10000,",
+				"     ignoreNoFilesFound: true,",
 				"     enableCdc: true,",
 				"     mode: 'read',",
 				"     skipInitialLoad: false,",
 				"     format: 'json',",
 				"     fileSystem: 'stage1',",
-				"     folderPath: (\"Landing/Transactional/{$directory}/v5.3/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$entity}/Delta/\"),",
-				"     documentForm: 'documentPerLine') ~> SourceJSON",
+				"     folderPath: (\"Transactional/{$directory}/v5.3/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$entity}/Incremental/Upserts\"),",
+				"     documentForm: 'documentPerLine',",
+				"     preferredIntegralType: 'integer',",
+				"     preferredFractionalType: 'float') ~> SourceJson",
 				"SelectColumns alterRow(upsertIf(true())) ~> AlterRow",
+				"SourceJson derive(SchoolYear = $schoolYear,",
+				"          DistrictId = $districtId,",
+				"          LastModifiedDate = currentTimestamp(),",
+				"          lake_id = concatWS('_', $schoolYear, $districtId, toString(byName('id')))) ~> DerivedColumn",
 				"DerivedColumn select(mapColumn(",
-				"          each(match(name!='DerivedColumn'&&name!=$descriptorId)),",
-				"          each(match(name=='DerivedColumn'),",
-				"               $descriptorId = $$)",
+				"          each(match(name!='rundate'))",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectColumns",
-				"SourceJSON derive(DerivedColumn = toShort(byName($descriptorId)),",
-				"          LastModifiedDate = currentUTC()) ~> DerivedColumn",
 				"AlterRow sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'delta',",
 				"     fileSystem: 'stage2',",
-				"     folderPath: (\"Standardized/Transactional/{$directory}/v5.3/General/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$entity}\"),",
-				"     mergeSchema: false,",
+				"     folderPath: (\"Ingested/{$directory}/v{$apiversion}/{$entity}\"),",
+				"     mergeSchema: (true()),",
 				"     autoCompact: false,",
-				"     optimizedWrite: true,",
+				"     optimizedWrite: false,",
 				"     vacuum: 0,",
 				"     deletable:false,",
-				"     insertable:false,",
+				"     insertable:true,",
 				"     updateable:false,",
 				"     upsertable:true,",
-				"     keys:['id'],",
+				"     keys:['lake_id'],",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     saveOrder: 1) ~> SinkDELTA"
+				"     partitionBy('key',",
+				"          0,",
+				"          DistrictId,",
+				"          SchoolYear",
+				"     )) ~> SinkDelta"
 			]
 		}
 	}
