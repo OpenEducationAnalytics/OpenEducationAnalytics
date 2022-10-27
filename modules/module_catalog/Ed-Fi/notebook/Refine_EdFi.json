@@ -12,15 +12,19 @@
 			"executorMemory": "28g",
 			"executorCores": 4,
 			"numExecutors": 2,
+			"runAsWorkspaceSystemIdentity": false,
 			"conf": {
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "49f96b1f-ba82-4b0c-a2b3-ca9c07479f42"
+				"spark.autotune.trackingId": "a9ea6766-32bd-422e-bbb7-3360f049ff7f"
 			}
 		},
 		"metadata": {
 			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1"
+			},
 			"enableDebugMode": false,
 			"kernelspec": {
 				"name": "synapse_pyspark",
@@ -35,7 +39,7 @@
 			{
 				"cell_type": "code",
 				"source": [
-					"%run /OEAp7_py"
+					"%run /OEA_0p7_py"
 				],
 				"execution_count": 23
 			},
@@ -254,8 +258,7 @@
 				},
 				"source": [
 					""
-				],
-				"execution_count": null
+				]
 			}
 		]
 	}

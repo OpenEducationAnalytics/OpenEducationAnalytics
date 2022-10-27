@@ -1,264 +1,266 @@
 {
-    "name": "Copy Data from REST API to ADLS",
-    "properties": {
-        "activities": [
-            {
-                "name": "Get Total count of Records",
-                "type": "WebActivity",
-                "dependsOn": [
-                    {
-                        "activity": "Set-AccessToken",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "policy": {
-                    "timeout": "7.00:00:00",
-                    "retry": 0,
-                    "retryIntervalInSeconds": 30,
-                    "secureOutput": false,
-                    "secureInput": false
-                },
-                "userProperties": [],
-                "typeProperties": {
-                    "url": {
-                        "value": "@pipeline().parameters.TotalCountURL",
-                        "type": "Expression"
-                    },
-                    "connectVia": {
-                        "referenceName": "AutoResolveIntegrationRuntime",
-                        "type": "IntegrationRuntimeReference"
-                    },
-                    "method": "GET",
-                    "headers": {
-                        "Authorization": {
-                            "value": "@variables('AccessToken')",
-                            "type": "Expression"
-                        },
-                        "Accept": "application/json"
-                    }
-                }
-            },
-            {
-                "name": "Store Total Count",
-                "type": "SetVariable",
-                "dependsOn": [
-                    {
-                        "activity": "Get Total count of Records",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "userProperties": [],
-                "typeProperties": {
-                    "variableName": "TotalCount",
-                    "value": {
-                        "value": "@activity('Get Total count of Records').output.ADFWebActivityResponseHeaders['Total-Count']",
-                        "type": "Expression"
-                    }
-                }
-            },
-            {
-                "name": "Copy Page to ADLS",
-                "type": "Copy",
-                "dependsOn": [
-                    {
-                        "activity": "Store Total Count",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "policy": {
-                    "timeout": "7.00:00:00",
-                    "retry": 0,
-                    "retryIntervalInSeconds": 30,
-                    "secureOutput": false,
-                    "secureInput": false
-                },
-                "userProperties": [],
-                "typeProperties": {
-                    "source": {
-                        "type": "RestSource",
-                        "httpRequestTimeout": "00:01:40",
-                        "requestInterval": "00.00:00:00.010",
-                        "requestMethod": "GET",
-                        "additionalHeaders": {
-                            "Authorization": {
-                                "value": "@variables('AccessToken')",
-                                "type": "Expression"
-                            }
-                        },
-                        "paginationRules": {
-                            "QueryParameters.start": {
-                                "value": "Range:0:@{variables('TotalCount')}:500",
-                                "type": "Expression"
-                            }
-                        }
-                    },
-                    "sink": {
-                        "type": "JsonSink",
-                        "storeSettings": {
-                            "type": "AzureBlobFSWriteSettings"
-                        },
-                        "formatSettings": {
-                            "type": "JsonWriteSettings",
-                            "filePattern": "setOfObjects"
-                        }
-                    },
-                    "enableStaging": false
-                },
-                "inputs": [
-                    {
-                        "referenceName": "DS_REST",
-                        "type": "DatasetReference",
-                        "parameters": {
-                            "RelativeURL": {
-                                "value": "@{pipeline().parameters.RelativeURL}&limit=@{pipeline().parameters.Limit}&offset=start",
-                                "type": "Expression"
-                            },
-                            "ClientId": {
-                                "value": "@pipeline().parameters.ClientId",
-                                "type": "Expression"
-                            },
-                            "SecretName": {
-                                "value": "@pipeline().parameters.SecretName",
-                                "type": "Expression"
-                            },
-                            "BaseURL": {
-                                "value": "@pipeline().parameters.BaseURL",
-                                "type": "Expression"
-                            }
-                        }
-                    }
-                ],
-                "outputs": [
-                    {
-                        "referenceName": "DS_JSON",
-                        "type": "DatasetReference",
-                        "parameters": {
-                            "stage": "1",
-                            "path": {
-                                "value": "@pipeline().parameters.SinkPath",
-                                "type": "Expression"
-                            }
-                        }
-                    }
-                ]
-            },
-            {
-                "name": "Get-AccessToken",
-                "type": "WebActivity",
-                "dependsOn": [],
-                "policy": {
-                    "timeout": "7.00:00:00",
-                    "retry": 0,
-                    "retryIntervalInSeconds": 30,
-                    "secureOutput": false,
-                    "secureInput": false
-                },
-                "userProperties": [],
-                "typeProperties": {
-                    "url": {
-                        "value": "@pipeline().parameters.AuthURL",
-                        "type": "Expression"
-                    },
-                    "connectVia": {
-                        "referenceName": "AutoResolveIntegrationRuntime",
-                        "type": "IntegrationRuntimeReference"
-                    },
-                    "method": "POST",
-                    "body": {
-                        "grant_type": "client_credentials"
-                    },
-                    "authentication": {
-                        "type": "Basic",
-                        "username": {
-                            "value": "@pipeline().parameters.ClientID",
-                            "type": "Expression"
-                        },
-                        "password": {
-                            "type": "AzureKeyVaultSecret",
-                            "store": {
-                                "referenceName": "LS_KeyVault_OEA",
-                                "type": "LinkedServiceReference"
-                            },
-                            "secretName": {
-                                "value": "@pipeline().parameters.SecretName",
-                                "type": "Expression"
-                            }
-                        }
-                    }
-                }
-            },
-            {
-                "name": "Set-AccessToken",
-                "type": "SetVariable",
-                "dependsOn": [
-                    {
-                        "activity": "Get-AccessToken",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "userProperties": [],
-                "typeProperties": {
-                    "variableName": "AccessToken",
-                    "value": {
-                        "value": "Bearer @{activity('Get-AccessToken').output.access_token}",
-                        "type": "Expression"
-                    }
-                }
-            }
-        ],
-        "parameters": {
-            "Limit": {
-                "type": "int",
-                "defaultValue": 500
-            },
-            "BaseURL": {
-                "type": "string",
-                "defaultValue": "https://api.edgraph.dev"
-            },
-            "TotalCountURL": {
-                "type": "String"
-            },
-            "RelativeURL": {
-                "type": "String"
-            },
-            "ClientId": {
-                "type": "String"
-            },
-            "SecretName": {
-                "type": "String"
-            },
-            "SinkPath": {
-                "type": "String"
-            },
-            "AuthURL": {
-                "type": "String"
-            }
-        },
-        "variables": {
-            "TotalCount": {
-                "type": "String"
-            },
-            "PageArray": {
-                "type": "Array"
-            },
-            "test": {
-                "type": "String"
-            },
-            "AccessToken": {
-                "type": "String"
-            }
-        },
-        "folder": {
-            "name": "OEA_Framework/Extracts"
-        },
-        "annotations": []
-    }
+	"name": "Copy Data from REST API to ADLS",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Total count of Records",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Set-AccessToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@pipeline().parameters.TotalCountURL",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"headers": {
+						"Authorization": {
+							"value": "@variables('AccessToken')",
+							"type": "Expression"
+						},
+						"Accept": "application/json"
+					}
+				}
+			},
+			{
+				"name": "Store Total Count",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get Total count of Records",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "TotalCount",
+					"value": {
+						"value": "@activity('Get Total count of Records').output.ADFWebActivityResponseHeaders['Total-Count']",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy Page to ADLS",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "Store Total Count",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"additionalHeaders": {
+							"Authorization": {
+								"value": "@variables('AccessToken')",
+								"type": "Expression"
+							}
+						},
+						"paginationRules": {
+							"QueryParameters.start": {
+								"value": "Range:0:@{variables('TotalCount')}:500",
+								"type": "Expression"
+							}
+						}
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings",
+							"filePattern": "setOfObjects"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_REST",
+						"type": "DatasetReference",
+						"parameters": {
+							"RelativeURL": {
+								"value": "@{pipeline().parameters.RelativeURL}&limit=@{pipeline().parameters.Limit}&offset=start",
+								"type": "Expression"
+							},
+							"ClientId": {
+								"value": "@pipeline().parameters.ClientId",
+								"type": "Expression"
+							},
+							"SecretName": {
+								"value": "@pipeline().parameters.SecretName",
+								"type": "Expression"
+							},
+							"BaseURL": {
+								"value": "@pipeline().parameters.BaseURL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_JSON",
+						"type": "DatasetReference",
+						"parameters": {
+							"stage": "1",
+							"path": {
+								"value": "@pipeline().parameters.SinkPath",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			},
+			{
+				"name": "Get-AccessToken",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@pipeline().parameters.AuthURL",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"grant_type": "client_credentials"
+					},
+					"authentication": {
+						"type": "Basic",
+						"username": {
+							"value": "@pipeline().parameters.ClientID",
+							"type": "Expression"
+						},
+						"password": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "LS_KeyVault_OEA",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": {
+								"value": "@pipeline().parameters.SecretName",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			},
+			{
+				"name": "Set-AccessToken",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Get-AccessToken",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "AccessToken",
+					"value": {
+						"value": "Bearer @{activity('Get-AccessToken').output.access_token}",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Limit": {
+				"type": "int",
+				"defaultValue": 500
+			},
+			"BaseURL": {
+				"type": "string",
+				"defaultValue": "https://api.edgraph.dev"
+			},
+			"TotalCountURL": {
+				"type": "String"
+			},
+			"RelativeURL": {
+				"type": "String"
+			},
+			"ClientId": {
+				"type": "String"
+			},
+			"SecretName": {
+				"type": "String"
+			},
+			"SinkPath": {
+				"type": "String"
+			},
+			"AuthURL": {
+				"type": "String"
+			}
+		},
+		"variables": {
+			"TotalCount": {
+				"type": "String"
+			},
+			"PageArray": {
+				"type": "Array"
+			},
+			"test": {
+				"type": "String"
+			},
+			"AccessToken": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "OEA_Framework/Extracts"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-10-27T09:29:55Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
 }
