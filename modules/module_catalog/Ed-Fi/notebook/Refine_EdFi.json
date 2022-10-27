@@ -17,14 +17,11 @@
 				"spark.dynamicAllocation.enabled": "false",
 				"spark.dynamicAllocation.minExecutors": "2",
 				"spark.dynamicAllocation.maxExecutors": "2",
-				"spark.autotune.trackingId": "a9ea6766-32bd-422e-bbb7-3360f049ff7f"
+				"spark.autotune.trackingId": "40ceaa06-c40f-478e-865d-3850053a162b"
 			}
 		},
 		"metadata": {
 			"saveOutput": true,
-			"synapse_widget": {
-				"version": "0.1"
-			},
 			"enableDebugMode": false,
 			"kernelspec": {
 				"name": "synapse_pyspark",
@@ -81,7 +78,7 @@
 					"# metadata_url = 'https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/gene/v0.7dev/modules/module_catalog/Ed-Fi/docs/edfi_oea_metadata.csv'\r\n",
 					"# swagger_url = 'https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/gene/v0.7dev//modules/module_catalog/Ed-Fi/docs/edfi_swagger.json'\r\n",
 					"\r\n",
-					"oea = OEA(storage_account='stoeacisdedfi1')\r\n",
+					"oea = OEA()\r\n",
 					"oea_metadatas = oea.get_metadata_from_url(metadata_url)\r\n",
 					"primitive_datatypes = ['timestamp', 'date', 'decimal', 'boolean', 'integer', 'string', 'long']\r\n",
 					"\r\n",
@@ -258,7 +255,8 @@
 				},
 				"source": [
 					""
-				]
+				],
+				"execution_count": null
 			}
 		]
 	}
