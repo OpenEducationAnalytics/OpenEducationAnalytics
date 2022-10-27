@@ -199,8 +199,7 @@
 					}
 				},
 				"source": [
-					"# for table_name in [x.name for x in mssparkutils.fs.ls(stage2_ingested) if x.isDir]:\r\n",
-					"for table_name in [\"courses\"]:\r\n",
+					"for table_name in [x.name for x in mssparkutils.fs.ls(stage2_ingested) if x.isDir]:\r\n",
 					"    print(f\"Processing {table_name}\")\r\n",
 					"    # 1. Read Delta table from Ingested Folder.\r\n",
 					"    df = spark.read.format('delta').load(f\"{stage2_ingested}/{table_name}\")\r\n",
