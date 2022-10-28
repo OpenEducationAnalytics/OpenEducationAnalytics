@@ -1,8 +1,14 @@
 # Package Notebooks
 
-The OEA Chronic Absenteeism Package includes a python [class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/notebooks/ChronicAbsenteeism_py.ipynb) with the following functionality. 
- - <strong>curate_activity_stage2p:</strong> Curate all digital activity data into a standardized schema.
- - <strong>write_to_stage3p:</strong> Write production data to stage 3 to support model training and Power BI dashboards
+The OEA Predicting Chronic Absenteeism Package includes two python [notebooks](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/notebooks/CA_build_model_table.ipynb) with their following outlined functionalities.
 
-The [test notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/notebooks/ChronicAbsenteeism_package_test.ipynb) provides sample scripts for executing class notebook functions.
+## [Build StudentModel Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/notebooks/CA_build_model_table.ipynb)
+This notebook is responsible for data aggregation and enrichments of the SIS, attendance and digital activity/attendance data. The methodological approach to this data curation, prior to ML model training and development, is outlined within the notebook with 7 clear steps.
 
+## [Develop ModelResults Table, using StudentModel Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/notebooks/CA_model_dev_and_train.ipynb)
+This notebook is responsible for InterpretML model training and model-driver aggregated results, of the StudentModel table. The approach to this model training and driver extraction is outlined within the notebook with 4 clear steps.
+
+Both notebooks are automatically imported into your Synapse workspace once you import the [Chronic Absenteeism package pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Predicting_Chronic_Absenteeism/pipelines).
+
+### NOTE:
+If you are using this package for production data, you will need to edit these notebooks. These package notebooks currently do not account for handling any change data over time. Most OEA assets rely on [Structured Streaming](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html), whereas this package currently does not. 
