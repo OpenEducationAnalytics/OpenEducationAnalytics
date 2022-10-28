@@ -1,6 +1,6 @@
 # Package Notebooks
 
-The OEA Predicting Chronic Absenteeism Package includes two python [notebooks](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/notebooks/CA_build_model_table.ipynb) with their following outlined functionalities.
+The OEA Predicting Chronic Absenteeism Package includes two python notebooks with their following outlined functionalities.
 
 ## [Build StudentModel Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/notebooks/CA_build_model_table.ipynb)
 This notebook is responsible for data aggregation and enrichments of the SIS, attendance and digital activity/attendance data. The methodological approach to this data curation, prior to ML model training and development, is outlined within the notebook with 7 clear steps.
