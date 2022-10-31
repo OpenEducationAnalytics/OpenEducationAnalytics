@@ -1,5 +1,5 @@
 {
-    "name": "LS_SQL_Serverless_OEA",
+    "name": "LS_SQL_Serverless",
     "type": "Microsoft.Synapse/workspaces/linkedservices",
     "properties": {
         "parameters": {

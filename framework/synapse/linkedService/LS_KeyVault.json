@@ -1,5 +1,5 @@
 {
-    "name": "LS_KeyVault_OEA",
+    "name": "LS_KeyVault",
     "properties": {
         "annotations": [],
         "type": "AzureKeyVault",
