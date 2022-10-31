@@ -1,9 +1,11 @@
+> **Note:** This package is still in development. Please expect updates to the package assets over the next few weeks.
+
 <img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
 # Predicting Student Well-Being Package
 
-The OEA Predicting Student Well-Being Package provides a set of assets which support an education system in developing their own predictive model to address levels of need for personalised support. There are two main components of this package:
-1.	<ins>Guidance and documentation:</ins> The OEA Predicting Student Well-being Package - Use Case Documentation provides guidance on the end-to-end process of developing a successful predictive model of student well-being use case project, including how to engage stakeholders in the project, prior research on the use case problem domain and theory, how to map data sources to the theory of the problem, and how to implement Microsoft’s Principles of Responsible Data and AI in the process of predictive modelling. <em> It is highly recommended this document be reviewed by any education system considering using this package, and that the documentation be revised to the specific data and decisions for that system’s context. </em>
+The OEA Predicting Student Well-Being Package provides a set of assets which support an education system in developing their own predictive model to address students' need for personalised support. There are two main components of this package:
+1.	<ins>Guidance and documentation:</ins> The OEA Predicting Student Well-being Package - Use Case Documentation provides guidance on the end-to-end process of developing a successful predictive model for students' well-being use case project, including how to engage stakeholders in the project, prior research on the use case problem domain and theory, how to map data sources to the theory of the problem, and how to implement Microsoft’s Principles of Responsible Data and AI in the process of predictive modelling. <em> It is highly recommended this document be reviewed by any education system considering using this package, and that the documentation be revised to the specific data and decisions for that system’s context. </em>
 2.	<ins>Technical assets</ins>: Various assets are freely available in this package to help accelerate implementation of modelling student well-being. Assets include descriptions of data sources, notebooks for data processing, a pipeline for ML model building and deployment, and sample PowerBI dashboards. See descriptions of technical assets below.
 
 <ins>Important Note:</ins> It is strongly recommended to education systems or institutions planning to use this package establish a process for obtaining student, family, guardian, teacher, faculty, and staff **consent for using this type of student data**. This consent should be part of the system or institution’s **broader data governance policy** that clearly specifies who can have access to what data, under what conditions, for what purposes, and for what length of time.
@@ -21,15 +23,15 @@ Most students in education systems worldwide require some level of personalised 
 [comment]: # (https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/images/levels_of_need.png)
 
 
-Machine learning models offer the potential to find patterns of needed support across student attendance patterns, school and class engagement, health, behavior, safety, academic achievement, demographics, and social-emotional measures. Prediction of levels of need for personalised supports allows for targeted support of these students. A predictive model can be used to more precisely focus resources to assess students needs, identify the best means to support them, and ultimately increase student well-being.
+Machine learning models offer the potential to find patterns of needed support across student attendance patterns, health, behavior, safety, academic achievement, and demographics. These models can empower school systems to identify students who need to be assessed for personalised supports by human experts and suggest the types of the needs most important to individual students. This **human-in-the-loop** approach allows for **targeted and timely support of students, focused resources on assessing students' needs, and ultimately increasing students' well-being**.
 
 
 ## Package Impact
 
 This package was developed in collaboration with the Department of Education in Tasmania, Australia (see the Use Case Documentation for details).
 In general, this package can be used by system or institutional leaders, school, or department leaders, support staff, and educators to:
--	<em> accurately identify </em> which students are at the highest levels of need for personalised supports
--	<em> quickly understand </em> what type of support resources or interventions might be most effective to promote resilience and well-being with individual students
+-	<em> nominate </em> which students need to be assessed for personalised well-being support;
+-	<em> suggest </em> what type(s) of support resources or interventions might be most effective to promote resilience and well-being with individual students
 -	<em> guide decision making </em> of school support staff by providing a real-time and detailed snapshot of students who should be assessed in depth for well-being needs based on the predictive models’ insights.
 
 
@@ -61,7 +63,7 @@ The machine learning model learns from student data to predict if a student shou
 2.	<ins>Feature engineering</ins>: Use education context to combine and normalise data.
 3.	<ins>Model training and prediction</ins>: A machine learning model [Explainable Boosting Machines](https://interpret.ml/docs/ebm.html) is used to train on the selected features and predict whether or not a student should be assessed for personalised well-being support.
 4.	<ins>Model explanations</ins>: Each prediction is explained in terms of feature importance so as to identify the key drivers that contribute to a given prediction.
-5.	<ins>Fairness and PowerBI</ins>: [Fairness](https://fairlearn.org/) is assessed for the model. Along with the model explanations and other aggregate data, the fairness summary is made ready for PowerBI consumption.
+5.	<ins>Fairness and PowerBI</ins>: [Fairness](https://fairlearn.org/) is assessed for the model across demographic attributes. Along with the model explanations and other aggregate data, the fairness summary is made ready for PowerBI consumption.
 
 See the Predicting Student Well-Being Package [Documentation](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/docs/) and [Pipelines](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/pipelines/) for more details on model building.
 
@@ -79,7 +81,7 @@ This package combines multiple data sources which were identified through Tasman
 
 The predictive modelling identified and mapped data sources for each of these six domains, though some domains had limited data available. Data sources included attendance, assessment, medical conditions, safety, disabilities, demographics, and behavior. For more information on data model, see data folder. Other data such as digital learning activity could also be used for this modelling, though it was not used in the Tasmania predictive model.
 
-This package can use several [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules) to help ingest data sources that are often part of student-well-being measures (see below for list of relevant OEA modules).
+This package may use several [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules) to help ingest data sources that are often part of student-well-being measures (see below for list of relevant OEA modules).
 
 | OEA Module | Description |
 | --- | --- |

@@ -1,4 +1,4 @@
-> This folder has been populated with initial templates to help get you started with the module creation process. Please make sure to update this folder and all its associated files and folders by following the guidelines provided in the [OEA Module Creation Kit](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2FOpenEduAnalytics%2Fmain%2Fdocs%2Ftech_docs%2FOEA_Module_Creation_Kit_v1.3.docx&wdOrigin=BROWSELINK) document.
+> This folder has been populated with initial templates to help get you started with the module creation process. Please make sure to update this folder and all its associated files and folders by following the guidelines provided in the [OEA Module Creation Kit](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2FOpenEduAnalytics%2Fmain%2Fdocs%2Ftech_docs%2FOEA_Module_Creation_Kit_v1.4.docx&wdOrigin=BROWSELINK) document. To review an example of an Advanced OEA Module, check out the [Microsoft Education Insights module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights).
 
 <img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
@@ -20,12 +20,14 @@ Description of data sources: what it is used for, data available, data format an
 Sample out-of-the box assets for this OEA module include: 
 1. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit/pipeline) for ingesting data into the data lake and automating the various stages of the process.
 2. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit/notebook) for cleaning, transforming, anonymizing and enriching the data.
-3. [PowerBI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
+3. [Test Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit/test_data) with artificially generated test data which supports the module pipeline and Power BI template. 
+4. [PowerBI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit/powerbi) for exploring, visualizing and deriving insights from the data.
 
 [include links to any other assets like tutorials, test data, etc you are providing as part of this module.]
 
-
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/4ff0b253ae6a0d3a7f70e31eb26148c1735fae11/modules/_Module_Creation_Kit/docs/images/Sample_PowerBI_Dashboard.png) 
+Dashboard Explanation | Sample Dashboard Page
+:-------------------------:|:-------------------------:
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Module_Dashboard_Overview_Sample.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Module_Dashboard_Page1_Sample.png)    
 
 The [name of module] module [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md) 
 

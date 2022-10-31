@@ -4,7 +4,7 @@
 
 The OEA Hybrid Student Engagement Package provides a set of assets which support an education system in developing their own holistic model to address and gauge hybrid student engagement across both in-person attendance and digital engagement. There are two main components of this package: 
 
-1. <ins>Guidance and documentation:</ins> This package provides gudiance on the end-to-end process of developing a successful Hybrid Student Engagement use case project through the problem statement and package impact (see below). The [OEA Use Case Documentation](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/use_cases/Open_Education_Analytics_Use_Case_Template_v3.docx) should be completed when developing the production-level implementation of this package, including: how to engage stakeholders in the project, prior research on the use case problem domain and theory, how to map data sources to the theory of the problem, and how to implement Microsoft’s Principles of Responsible Data and AI. <em> It is highly recommended this document be reviewed and completed by any education system considering using this package, and that the documentation be revised to the specific data and decisions for that system’s context. </em>
+1. <ins>Guidance and documentation:</ins> This package provides guidance on the end-to-end process of developing a successful Hybrid Student Engagement use case project through the problem statement and package impact (see below). The [OEA Use Case Documentation](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/use_cases/Open_Education_Analytics_Use_Case_Template_v3.docx) should be completed when developing the production-level implementation of this package, including: how to engage stakeholders in the project, prior research on the use case problem domain and theory, how to map data sources to the theory of the problem, and how to implement Microsoft’s Principles of Responsible Data and AI. <em> It is highly recommended this document be reviewed and completed by any education system considering using this package, and that the documentation be revised to the specific data and decisions for that system’s context. </em>
 2. <ins>Technical assets:</ins> Various assets are freely available in this package to help accelerate implementation of Hybrid Student Engagement use cases. Assets include descriptions of data sources, notebooks for data processing, a pipeline for data model building and deployment, and sample PowerBI dashboards. See descriptions of technical assets below.
 
 This OEA Package was developed through a partnership between Microsoft Education and [Kwantum Analytics](https://www.kwantumedu.com/).
@@ -29,13 +29,13 @@ See below for examples of developed PowerBI dashboards (see also the [Power BI](
 
 Explanation Page  | Overview of Hybrid Engagement
 :-------------------------:|:-------------------------:
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_p0_explanation_page.png) |  ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_p1_overview_of_hybrid_engagement.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_p0_explanation_page.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_p1_overview_of_hybrid_engagement.png)
 
 ## Package Setup Instructions
 
 ### Package test environment setup
 
-![](https://github.com/cstohlmann/oea-hybrid-engagement-package/blob/main/docs/images/hybrid_engagement_package_setup.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/hybrid_engagement_package_setup.png)
 
 <ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup [v0.6.1 of the OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.6.1 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). Note: This package will be updated to accommodate v0.7. 
 
@@ -50,7 +50,7 @@ Explanation Page  | Overview of Hybrid Engagement
 
 ### Migration to production data
 
-<ins><strong>Preparation:</ins></strong> Verify you have proper credentials, as with the test environment instructions, and ensure you're working within the v0.6.1 of the OEA framework. <em>It is highly recommended you review and implement the package in a test envionment on the test data, before using this package on your production data. [Visit the docs folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement/docs) for more detailed information on migrating this package to production data</em>.
+<ins><strong>Preparation:</ins></strong> Verify you have proper credentials, as with the test environment instructions, and ensure you're working within the v0.6.1 of the OEA framework. <em>It is highly recommended you review and implement the package in a test envionment on the test data, before using this package on your production data</em>.
 
 1. Examine relevant data sources. These will vary for each education system, and modules may need to be created to accomodate your system's data sources. You may also consider using the pre-built OEA modules provided, in which case, execute the necessary module pipelines to ingest the desired data sources.
 2. Implement any additional methods of digital activity processing into the [OEA Digital Engagement Standard Schema](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema); this will require updating the schema standard class notebook and pipeline parameters. Visit the schema pipeline folder for more details.
@@ -68,9 +68,9 @@ This package can use several [OEA Modules](https://github.com/microsoft/OpenEduA
 
 | OEA Module | Description |
 | --- | --- |
-| [Ed-Fi Data Standards](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Education_Data_Standards/Ed-Fi) | For typical Student Information System (SIS) data, including school rosters, grade level and demographic information. |
+| [Ed-Fi Data Standards](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Ed-Fi) | For typical Student Information System (SIS) data, including school rosters, grade level and demographic information. <strong>Note:</strong> This package does not currently implement Ed-Fi data, but will be updated to include this in the future. |
 | [Contoso SIS](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Student_and_School_Data_Systems) | Fictitious student in-person attendance data. |
-| [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) | For Microsoft engagement/activity data, and can be used for SIS data. |
+| [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) | For Microsoft engagement/activity data, and can be used for SIS data. The Hybrid Engagement package currently uses this module as SIS data. |
 | [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph) | For other forms of Microsoft engagement/activity data. |
 | [Clever](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever) | For engagement/activity data pertaining to student use of digital learning applications, used and managed by an education system. |
 | [i-Ready](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/iReady) | For engagement/activity data pertaining to student lesson completion, and learning outcomes data in the context of student diagnostic assessment results. |
@@ -89,7 +89,7 @@ Assets in the Hybrid Engagement package include:
 
 1. [Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement/data): For understanding the data relationships and standardized schema mappings used for certain groups of data.
 2. [Documentation](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement/docs): 
-      * [OEA Use Case Documentation Template](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/use_cases/Open_Education_Analytics_Use_Case_Template_v3.docx). 
+      * [OEA Use Case Documentation Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/docs/use_cases). 
       * More detailed instructions for migrating from test data use, to production data use.
 3. [Notebook](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement/notebooks): For aggregating, enriching, and curating data within the data lake.
 4. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Hybrid_Engagement/pipelines): For the overarching data processing (i.e., aggregation, subsetting, schema transformation, etc.), and support for PowerBI dashboards.

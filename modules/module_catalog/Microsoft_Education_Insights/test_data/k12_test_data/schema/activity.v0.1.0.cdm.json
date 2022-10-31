@@ -1,0 +1,150 @@
+{
+  "jsonSchemaSemanticVersion": "1.1.0",
+  "imports": [
+    {
+      "corpusPath": "cdm:/foundations.cdm.json"
+    }
+  ],
+  "definitions": [
+    {
+      "entityName": "TechActivity",
+      "hasAttributes": [
+        {
+          "name": "SignalType",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "description": "'VisitTeamChannel', 'ReactedWithEmoji', 'PostChannelMessage', 'ReplyChannelMessage', 'ExpandChannelMessage','CallRecordSummarized',FileAccessed','FileDownloaded','FileModified','FileUploaded','ShareNotificationRequested','CommentCreated','UserAtMentioned','AddedToSharedWithMe,'CommentDeleted','Unlike'"
+        },
+        {
+          "name": "StartTime",
+          "dataType": {
+            "dataTypeReference": "dateTime"
+          },
+          "description": "Action time"
+        },
+        {
+          "name": "UserAgent",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "description": "Device information"
+        },
+        {
+          "name": "SignalId",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "description": "Can be used to remove potential signal duplications"
+        },
+        {
+          "name": "SisClassId",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "description": "Only for tenants running SDS [empty is the sample]"
+        },
+        {
+          "name": "ClassId",
+          "dataType": {
+            "dataTypeReference": "guid"
+          },
+          "description": "Office Group ID"
+        },
+        {
+          "name": "ChannelId",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "optional": "true",
+          "description": "Optional, the channel in which action took place. In some cases such as AS signals empty==general. In cases of meetings this identify the channel the meeting took place and hence can be used as a meeting ID"
+        },
+        {
+          "name": "AppName",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "description": "Application used: Assignments, SharePoi`nt Online, Teams, OneDrive for Business, OneNote, TeamsMobile"
+        },
+        {
+          "name": "ActorId",
+          "dataType": {
+            "dataTypeReference": "guid"
+          },
+          "description": "AAD Object ID"
+        },
+        {
+          "name": "ActorRole",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "description": "Student - only for tenants running SDS "
+        },
+        {
+          "name": "SchemaVersion",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "description": "technical, used to track data changes or bugs in the export"
+        },
+        {
+          "name": "AssignmentId",
+          "dataType": {
+            "dataTypeReference": "guid"
+          },
+          "description": "GUID, identifies the assignment. Can be used to access Graph for additional information."
+        },
+        {
+          "name": "SubmissionId",
+          "dataType": {
+            "dataTypeReference": "guid"
+          },
+          "description": "GUID, identifies the student submission. Can be used to access Graph for additional information."
+        },
+        {
+          "name": "Action",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "description": "Assigned,Updated,Returned,Visited,Submitted,Unsubmitted,Deleted,FeedbackSubmitted"
+        },
+        {
+          "name": "DueDate",
+          "dataType": {
+            "dataTypeReference": "dateTime"
+          },
+          "description": "Assignments due date"
+        },
+        {
+          "name": "ClassCreationDate",
+          "dataType": {
+            "dataTypeReference": "dateTime"
+          },
+          "description": "Time the class was created (might be empty for now)"
+        },
+        {
+          "name": "Grade",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "optional": "true",
+          "description": "Optional. Submission grade points. E.g.: 100 (when action=Returned)"
+        },
+        {
+          "name": "SourceFileExtension",
+          "dataType": {
+            "dataTypeReference": "string"
+          },
+          "description": "For File* signals, captures the type of file:  Aspx, docx, webm, mp4, .docx, .webm, jpg, pptx etc."
+        },
+        {
+          "name": "Meeting Duration",
+          "dataType": {
+            "dataTypeReference": "Integer"
+          },
+          "description": "Duration in seconds the student spent in the meeting"
+        }
+      ]
+    }
+  ]
+}
