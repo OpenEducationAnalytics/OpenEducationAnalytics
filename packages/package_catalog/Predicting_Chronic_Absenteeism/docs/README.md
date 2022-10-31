@@ -24,9 +24,40 @@ The Chronic Absenteeism Package provides multiple assets to help accelerate the 
 4. <strong>[PowerBI Samples](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Predicting_Chronic_Absenteeism/powerbi)</strong> 
       * Example PowerBI dashboards are showcased as developed with key stakeholders at [Fresno Unified School District](https://www.fresnounified.org/). The dashboard data model is also given.
 
+## Migration to Production Data
+
+<strong><em>Note:</strong> This section of the package will be updated</em>
+
+### Data Sources to be Used
+
+This package is to combine multiple data sources which were identified through [research](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Chronic_Absenteeism/docs/OEA%20Chronic%20Abs%20Package%20-%20Use%20Case%20Doc.pdf) as strongly related to absenteeism. These sources were used to create the dashboards for Fresno Unified School District on production data: 
+* **School Information System (SIS)**: Student school, grade, roster, and demographics data
+* **Barriers to students**: Transportation data, distance from school, school changes, student illness
+* **School experiences**: School suspension, disciplinary, behavior, and learning outcome data
+* **Engagement data**: School attendance, digital engagement
+
+### Power BI Data Model
+
+Below is a view of the data model used in the production-level data Power BI visualizations. The primary tables and relationships can be seen.
+* **model_pbi Table**: Data used to train predictive model and model results.
+* **studentattendanceaggregate Table**: Time dependent records of student attendance.
+* **model_log Table**: Log of all model assessment results used for model development.
+* **attendancegroups Table**: Grouping of attendance codes.
+* **school_location Table**: School locations for visualizations.
+* Various order and recoding tables.
+
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/powerBiDataModel.png)
+
 ## Machine Learning Resources
 
-Predictive models developed for this package use [Azure Machine Learning Studio](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-machine-learning-studio) and [AutoML](https://www.automl.org/automl/). Key resources are outlined below.
+Predictive models for test data in this package use [InterpretML](https://interpret.ml/). Key resources are outlined below.
+ - ML models were built using a [Synapse Pipeline](https://docs.microsoft.com/en-us/azure/data-factory/concepts-pipelines-activities?toc=%2Fazure%2Fsynapse-analytics%2Ftoc.json&tabs=data-factory)
+ - Synapse notebooks were used to train InterpretML's Glassbox model: [Explainable Boosting Classifier](https://interpret.ml/docs/ebm.html). See [InterpretML's GitHub](https://github.com/interpretml/interpret-community) for technical guidance.
+ - Model runs and datasets were logged in a notebook, as a PySpark dataframe.
+ - Model predictions were explained using [Interpret ML](https://interpret.ml/).
+ - PowerBI dashboards were used to assess model fairness, though the [Fair Learn](https://fairlearn.org/) could be used.
+
+Predictive models for production data in this package used [Azure Machine Learning Studio](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-machine-learning-studio) and [AutoML](https://www.automl.org/automl/). Key resources are outlined below.
  - ML models were built using a [Synapse Pipeline](https://docs.microsoft.com/en-us/azure/data-factory/concepts-pipelines-activities?toc=%2Fazure%2Fsynapse-analytics%2Ftoc.json&tabs=data-factory)
  - [Synapse notebooks were used to train a model](https://docs.microsoft.com/en-us/azure/synapse-analytics/spark/apache-spark-azure-machine-learning-tutorial) with auto machine learning. 
  - Model runs and datasets were logged in [Azure Machine Learning Studio](https://docs.microsoft.com/en-us/azure/machine-learning/overview-what-is-machine-learning-studio).
