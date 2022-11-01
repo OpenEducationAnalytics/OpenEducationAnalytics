@@ -1,3 +1,3 @@
 # Package Documentation
 
-*to be updated soon*
+Documentation and images for the Student Well-being Package.
