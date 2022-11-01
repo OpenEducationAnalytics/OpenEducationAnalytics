@@ -48,8 +48,8 @@ eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_
 #eval "az synapse notebook import --workspace-name $synapse_workspace --name ContosoSIS_py --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/ContosoSIS_py.ipynb --only-show-errors"
 
 # 3) setup pipelines
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_from_each_URL --file @$this_file_path/synapse/pipeline/land_from_each_URL.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_data_from_URL --file @$this_file_path/synapse/pipeline/land_data_from_URL.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_from_each_URL --file @$this_file_path/synapse/pipeline/land_from_each_URL.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name example_main_pipeline --file @$this_file_path/synapse/pipeline/example_main_pipeline.json"
 #eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_URL --file @$this_file_path/synapse/pipeline/Copy_from_URL.json"
 #eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_each_URL --file @$this_file_path/synapse/pipeline/Copy_from_each_URL.json"
