@@ -34,7 +34,7 @@ eval "az synapse linked-service create --workspace-name $synapse_workspace --nam
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_binary_file --file @$this_file_path/synapse/dataset/DS_binary_file.json"
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_binary_folder --file @$this_file_path/synapse/dataset/DS_binary_folder.json"
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_HTTP_binary --file @$this_file_path/synapse/dataset/DS_HTTP_binary.json"
-eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_parquet --file @$this_file_path/synapse/dataset/DS_parquet.json"
+#eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_parquet --file @$this_file_path/synapse/dataset/DS_parquet.json"
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_Azure_SQL_DB --file @$this_file_path/synapse/dataset/DS_Azure_SQL_DB.json"
 
 # 2) install notebooks

@@ -1,8 +1,8 @@
 {
-    "name": "DS_ADLS_binary_folder",
+    "name": "DS_binary_folder",
     "properties": {
         "linkedServiceName": {
-            "referenceName": "LS_ADLS_OEA",
+            "referenceName": "LS_DataLake",
             "type": "LinkedServiceReference"
         },
         "parameters": {

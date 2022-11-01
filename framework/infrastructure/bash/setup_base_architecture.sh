@@ -87,6 +87,10 @@ az synapse spark pool create --name spark3p2sm --workspace-name $OEA_SYNAPSE --r
   --enable-auto-scale true --delay 15 --enable-auto-pause true --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
+az synapse spark pool create --name spark3p2med --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
+  --spark-version 3.2 --node-count 3 --node-size Medium --min-node-count 3 --max-node-count 10 \
+  --enable-auto-scale true --delay 15 --enable-auto-pause true --no-wait --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS
+
 # 4) Create key vault for secure storage of credentials, and create app insights for logging
 echo "--> 4) Creating key vault: ${OEA_KEYVAULT}"
 echo "--> 4) Creating key vault: ${OEA_KEYVAULT}" 1>&3
