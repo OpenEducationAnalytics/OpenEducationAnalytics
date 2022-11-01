@@ -1,0 +1,100 @@
+{
+	"name": "land_data_from_URL",
+	"properties": {
+		"description": "Copies data from the specified URL and lands it in the specified location in the data lake.",
+		"activities": [
+			{
+				"name": "copy_from_URL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_HTTP_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"URL": {
+								"value": "@pipeline().parameters.URL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_datalake_file",
+						"type": "DatasetReference",
+						"parameters": {
+							"stage": {
+								"value": "@pipeline().parameters.sinkStage",
+								"type": "Expression"
+							},
+							"path": {
+								"value": "@{pipeline().parameters.sinkPath}/rundate=@{pipeline().parameters.rundate}",
+								"type": "Expression"
+							},
+							"filename": {
+								"value": "@pipeline().parameters.sinkFilename",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"URL": {
+				"type": "string",
+				"defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/framework/test_data/contoso_sis/day1/students/part1.csv"
+			},
+			"sinkStage": {
+				"type": "string",
+				"defaultValue": "dev/sandboxes/sandbox1/stage1"
+			},
+			"sinkPath": {
+				"type": "string",
+				"defaultValue": "transactional/contoso_sis/v0.1/students/delta_batch_data"
+			},
+			"sinkFilename": {
+				"type": "string",
+				"defaultValue": "part1.csv"
+			},
+			"rundate": {
+				"type": "string",
+				"defaultValue": "2022-10-21T16-30-22"
+			}
+		},
+		"folder": {
+			"name": "OEA_Framework"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-01T18:27:39Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

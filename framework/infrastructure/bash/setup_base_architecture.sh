@@ -3,7 +3,7 @@
 # Provisions and configures the OpenEduAnalytics base architecture.
 # Basic steps are:
 # 1) create resource group
-# 2) create storage account and storage containers (stage1, stage2, stage3, dev)
+# 2) create storage account and storage containers (stage1, stage2, stage3, oea)
 # 3) create synapse workspace and spark pool
 # 4) create keyvault 
 # 5) create security groups and assign them access to storage
@@ -46,7 +46,7 @@ az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STOR
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 echo "--> Creating storage account containers."
-az storage container create --account-name $OEA_STORAGE_ACCOUNT --name dev --auth-mode login
+az storage container create --account-name $OEA_STORAGE_ACCOUNT --name oea --auth-mode login
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage1 --auth-mode login
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage2 --auth-mode login
@@ -55,10 +55,14 @@ az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3 --
 az storage fs directory create -n transactional -f stage1 --account-name $OEA_STORAGE_ACCOUNT
 az storage fs directory create -n ingested -f stage2 --account-name $OEA_STORAGE_ACCOUNT
 az storage fs directory create -n refined -f stage2 --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n sandboxes/sandbox1/stage1/transactional -f dev --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n sandboxes/sandbox1/stage2/ingested -f dev --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n sandboxes/sandbox1/stage2/refined -f dev --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n sandboxes/sandbox1/stage3 -f dev --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n sandboxes/sandbox1/stage1/transactional -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n sandboxes/sandbox1/stage2/ingested -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n sandboxes/sandbox1/stage2/refined -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n sandboxes/sandbox1/stage3 -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n dev/stage1/transactional -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n dev/stage2/ingested -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n dev/stage2/refined -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n dev/stage3 -f oea --account-name $OEA_STORAGE_ACCOUNT
 
 # 3) Create Synapse workspace, configure firewall access, and create spark pool
 # todo: specify a name for the managed resource group that gets created
@@ -67,7 +71,7 @@ echo "--> 3) Creating Synapse Workspace: $OEA_SYNAPSE (this is usually the longe
 echo "--> 3) Creating Synapse Workspace: $OEA_SYNAPSE (this is usually the longest step - it may take 5 to 10 minutes to complete)" 1>&3
 temporary_password="$(openssl rand -base64 12)" # Generate random password (because sql-admin-login-password is required, but not used in this solution)
 az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS \
-  --storage-account $OEA_STORAGE_ACCOUNT --file-system dev --location $location \
+  --storage-account $OEA_STORAGE_ACCOUNT --file-system oea --location $location \
   --sql-admin-login-user eduanalyticsuser --sql-admin-login-password $temporary_password
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
@@ -76,6 +80,7 @@ az synapse workspace create --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_G
 synapse_principal_id=$(az synapse workspace show --name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP --query identity.principalId -o tsv)
 az role assignment create --role "Storage Blob Data Contributor" --assignee $synapse_principal_id --scope $storage_account_id
 
+# todo: either lock this down to the user's ip or else provide strong guidance to emphasize the need to lock it down
 echo "--> Creating firewall rule for accessing Synapse Workspace."
 az synapse workspace firewall-rule create --name allowAll --workspace-name $OEA_SYNAPSE --resource-group $OEA_RESOURCE_GROUP \
   --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
@@ -99,6 +104,20 @@ az keyvault create --name $OEA_KEYVAULT --resource-group $OEA_RESOURCE_GROUP --l
 # give the Synapse workspace access to list and get secrets from the key vault, for use in Synapse pipelines
 az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get list --object-id $synapse_principal_id
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
+
+# setup key values for use by OEA
+az keyvault secret set --name oeaStorageAccount --vault-name $OEA_KEYVAULT --value $OEA_STORAGE_ACCOUNT
+az keyvault secret set --name oeaKeyvault --vault-name $OEA_KEYVAULT --value $OEA_KEYVAULT
+# Create a temporary salt value for use when performing pseudonymization. This value should be manually set after installation.
+temp_salt="$(openssl rand -base64 16)"
+az keyvault secret set --name oeaSalt --vault-name $OEA_KEYVAULT --value $temp_salt
+
+keyvault_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$OEA_KEYVAULT"
+
+if [ "$include_groups" == "true" ]; then
+  # 5) Create security groups in AAD, and grant access to storage
+  echo "--> 5) Creating security groups in Azure Active Directory."
+az keyvault secret set --name oeaStorageAccount --vault-name $OEA_KEYVAULT --value $OEA_STORAGE_ACCOUNT
 
 keyvault_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$OEA_KEYVAULT"
 
@@ -134,8 +153,8 @@ if [ "$include_groups" == "true" ]; then
   az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $stage2_id
   stage3_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/stage3"
   az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $stage3_id
-  dev_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/dev"
-  az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $dev_id
+  oea_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/oea"
+  az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $oea_id
   # Assign "Storage Blob Data Contributor" for the "synapse" container so that External Data Scientists can create spark db's against data they have prepared.
   synapse_container_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$OEA_STORAGE_ACCOUNT/blobServices/default/containers/synapse"
   az role assignment create --role "Storage Blob Data Contributor" --assignee $external_data_scientists --scope $synapse_container_id

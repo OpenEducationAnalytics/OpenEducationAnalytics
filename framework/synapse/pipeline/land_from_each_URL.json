@@ -1,0 +1,119 @@
+{
+	"name": "land_from_each_URL",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set rundate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "rundate",
+					"value": {
+						"value": "@{formatDateTime(convertTimeZone(utcnow(), 'UTC', pipeline().parameters.timezone), 'yyyy-MM-ddTHH-mm-ss')}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set rundate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.endpoints",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "land_from_each_URL",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "land_data_from_URL",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"URL": {
+										"value": "@item().URL",
+										"type": "Expression"
+									},
+									"sinkStage": {
+										"value": "@pipeline().parameters.sinkStage",
+										"type": "Expression"
+									},
+									"sinkPath": {
+										"value": "@item().sinkPath",
+										"type": "Expression"
+									},
+									"sinkFilename": {
+										"value": "@pipeline().parameters.sinkFilename",
+										"type": "Expression"
+									},
+									"rundate": {
+										"value": "@variables('rundate')",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"endpoints": {
+				"type": "array",
+				"defaultValue": [
+					{
+						"URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/framework/test_data/contoso_sis/day1/studentattendance/part1.csv",
+						"sinkPath": "transactional/contoso_sis/v0.1/studentattendance/additive_batch_data"
+					},
+					{
+						"URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/framework/test_data/contoso_sis/day1/students/part1.csv",
+						"sinkPath": "transactional/contoso_sis/v0.1/students/delta_batch_data"
+					},
+					{
+						"URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/framework/test_data/contoso_sis/day1/studentsectionmark/part1.csv",
+						"sinkPath": "transactional/contoso_sis/v0.1/studentsectionmark/snapshot_batch_data"
+					}
+				]
+			},
+			"sinkStage": {
+				"type": "string",
+				"defaultValue": "dev/sandboxes/sandbox1/stage1"
+			},
+			"timezone": {
+				"type": "string",
+				"defaultValue": "Eastern Standard Time"
+			},
+			"sinkFilename": {
+				"type": "string",
+				"defaultValue": "part1.csv"
+			}
+		},
+		"variables": {
+			"rundate": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "OEA_Framework"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-01T16:50:58Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

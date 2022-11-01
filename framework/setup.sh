@@ -31,8 +31,8 @@ eval "az synapse linked-service create --workspace-name $synapse_workspace --nam
 eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_REST --file @$this_file_path/synapse/linkedService/LS_REST.json"
 
 #  - setup Datasets
-eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_binary_file --file @$this_file_path/synapse/dataset/DS_binary_file.json"
-eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_binary_folder --file @$this_file_path/synapse/dataset/DS_binary_folder.json"
+eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_datalake_file --file @$this_file_path/synapse/dataset/DS_datalake_file.json"
+eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_datalake_folder --file @$this_file_path/synapse/dataset/DS_datalake_folder.json"
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_HTTP_binary --file @$this_file_path/synapse/dataset/DS_HTTP_binary.json"
 #eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_parquet --file @$this_file_path/synapse/dataset/DS_parquet.json"
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_Azure_SQL_DB --file @$this_file_path/synapse/dataset/DS_Azure_SQL_DB.json"
@@ -42,12 +42,15 @@ eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_
 eval "az synapse notebook import --workspace-name $synapse_workspace --name 1_read_me --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/1_read_me.ipynb --only-show-errors"
 #eval "az synapse notebook import --workspace-name $synapse_workspace --name 2_batch_processing_demo --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/2_batch_processing_demo.ipynb --only-show-errors"
 #eval "az synapse notebook import --workspace-name $synapse_workspace --name 3_data_generation_demo --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/3_data_generation_demo.ipynb --only-show-errors"
-#eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_connector --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/OEA_connector.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_connector --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/OEA_connector.ipynb --only-show-errors"
 #eval "az synapse notebook import --workspace-name $synapse_workspace --name DataGen_py --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/DataGen_py.ipynb --only-show-errors"
 # (this is the ContosoSIS_py notebook for use with the 'example_main_pipeline' that comes with the framework)
 #eval "az synapse notebook import --workspace-name $synapse_workspace --name ContosoSIS_py --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/ContosoSIS_py.ipynb --only-show-errors"
 
 # 3) setup pipelines
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_from_each_URL --file @$this_file_path/synapse/pipeline/land_from_each_URL.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_data_from_URL --file @$this_file_path/synapse/pipeline/land_data_from_URL.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name example_main_pipeline --file @$this_file_path/synapse/pipeline/example_main_pipeline.json"
 #eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_URL --file @$this_file_path/synapse/pipeline/Copy_from_URL.json"
 #eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_each_URL --file @$this_file_path/synapse/pipeline/Copy_from_each_URL.json"
 #eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_Azure_SQL_DB --file @$this_file_path/synapse/pipeline/Copy_from_Azure_SQL_DB.json"

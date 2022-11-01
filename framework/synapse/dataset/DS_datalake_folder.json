@@ -1,5 +1,5 @@
 {
-    "name": "DS_binary_folder",
+    "name": "DS_datalake_folder",
     "properties": {
         "linkedServiceName": {
             "referenceName": "LS_DataLake",
@@ -31,5 +31,6 @@
                 }
             }
         }
-    }
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
 }
