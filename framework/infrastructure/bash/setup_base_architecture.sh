@@ -117,13 +117,6 @@ keyvault_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/
 if [ "$include_groups" == "true" ]; then
   # 5) Create security groups in AAD, and grant access to storage
   echo "--> 5) Creating security groups in Azure Active Directory."
-az keyvault secret set --name oeaStorageAccount --vault-name $OEA_KEYVAULT --value $OEA_STORAGE_ACCOUNT
-
-keyvault_id="/subscriptions/$subscription_id/resourceGroups/$OEA_RESOURCE_GROUP/providers/Microsoft.KeyVault/vaults/$OEA_KEYVAULT"
-
-if [ "$include_groups" == "true" ]; then
-  # 5) Create security groups in AAD, and grant access to storage
-  echo "--> 5) Creating security groups in Azure Active Directory."
   echo "--> 5) Creating security groups in Azure Active Directory." 1>&3
   az ad group create --display-name 'Edu Analytics Global Admins' --mail-nickname 'EduAnalyticsGlobalAdmins'
   az ad group owner add --group 'Edu Analytics Global Admins' --owner-object-id $user_object_id
