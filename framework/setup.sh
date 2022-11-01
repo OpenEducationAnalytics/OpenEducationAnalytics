@@ -22,7 +22,7 @@ echo "--> Setting up the OEA framework assets."
 #  - setup Linked Services 
 sed "s/yourkeyvault/$key_vault/" $this_file_path/synapse/linkedService/LS_KeyVault.json > $this_file_path/tmp/LS_KeyVault.json
 eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_KeyVault --file @$this_file_path/tmp/LS_KeyVault.json"
-sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/linkedService/LS_ADLS.json > $this_file_path/tmp/LS_DataLake.json
+sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/linkedService/LS_DataLake.json > $this_file_path/tmp/LS_DataLake.json
 eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_DataLake --file @$this_file_path/tmp/LS_DataLake.json"
 sed "s/yoursynapseworkspace/$synapse_workspace/" $this_file_path/synapse/linkedService/LS_SQL_Serverless.json > $this_file_path/tmp/LS_SQL_Serverless.json
 eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_SQL_Serverless --file @$this_file_path/tmp/LS_SQL_Serverless.json"
