@@ -9,7 +9,7 @@ This module includes artificially generated data which matches the format of the
 ,
 ## Data dictionary
 
-### [K-12 Activity Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/k12_test_data/activity/2021-06-02/ApplicationUsage.csv) and [HEd Activity Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/hed_test_data/activity/2021-06-02/ApplicationUsage.csv)
+### [K-12 Activity Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/k12_test_data/activity/2022-01-28/ApplicationUsage.csv) and [HEd Activity Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/hed_test_data/activity/2022-01-28/ApplicationUsage.csv)
 
 See full details on the [Microsoft SDS documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-activity)
 
