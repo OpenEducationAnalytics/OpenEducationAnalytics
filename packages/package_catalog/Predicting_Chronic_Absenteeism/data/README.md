@@ -33,7 +33,7 @@ Below is a view of the data model used in Power BI visualizations. The primary t
 * **ModelResults_pseudo Table**: Log of all model assessment results used for model development, such as: predictions on student data, and key drivers in model predictions.
 * **feature_name_mapping Table**: Mapping of model-used feature/driver names to simplified names for clarity.
 
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_data_model_for_test_data.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_data_model_for_test_data.png)
 
 ## Additional Data Sources
 

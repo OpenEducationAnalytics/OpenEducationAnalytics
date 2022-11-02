@@ -32,7 +32,7 @@ See below for examples of developed PowerBI dashboards (see also the [Power BI](
 
 Explanation Page  |  Strongest drivers of model predictions | School support staff dashboard
 :-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p0_explanation%20page.png)  |  ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p1_overview%20of%20chronic%20absenteeism.png) | ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p2_drivers%20of%20chronic%20absenteeism.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p0_explanation%20page.png)  |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p1_overview%20of%20chronic%20absenteeism.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p2_drivers%20of%20chronic%20absenteeism.png)
 
 #### Modified Production Dashboard:
 
@@ -44,7 +44,7 @@ Patterns of absenteeism  |  Strongest drivers of model predictions | School supp
 
 ### Package test environment setup
 
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/chronic_absenteeism_package_setup.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/chronic_absenteeism_package_setup.png)
 
 <ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup [v0.6.1 of the OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.6.1 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). Note: This package will be updated to accommodate v0.7. 
 
