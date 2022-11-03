@@ -1,6 +1,6 @@
 Entity Name,Attribute Name,Attribute Data Type,Pseudonymization
 studentattendance,,,
-,id,string,no-op
+,id,string,hash
 ,student_id,string,hash
 ,school_year,integer,partition-by
 ,school_id,string,no-op
@@ -14,7 +14,7 @@ studentattendance,,,
 ,attendance_type,string,no-op
 ,attendance_sequence,short,no-op
 studentsectionmark,,,
-,id,string,no-op
+,id,string,hash
 ,student_id,string,hash
 ,section_id,string,no-op
 ,school_year,integer,partition-by
