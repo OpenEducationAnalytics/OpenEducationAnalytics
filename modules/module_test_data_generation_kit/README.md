@@ -43,13 +43,22 @@ The OEA test data generation kit uses two base-truth tables to artifically gener
 |SchoolName |School name |
 |SchoolID   |School information system ID: GUID|
 
-## Module Setup Instructions
+## Test Data Generation Setup Instructions
 
-Explanation of how to use the module: prerequisites (like subscriptions), what types of data transfer services can be used to ingest in OEA, simple overview of implementation, etc.
+<ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup [v0.6.1 of the OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.6.1 of the [OEA Python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). Note: This kit will be updated to accomodate v0.7. 
+Also, examine modules/data sources currently compatible. See [below](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit#data-source-compatibility) for these applicable data sources. Choose which modules or data sources to apply this test data generator.
+    * If you do not see a data source you wish to generate test data for, you will need to develop assets similar to the [Clever module test data generator example](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook/Clever_module).
 
-## Module Components
+1. Import the general module test data generation class and demo notebooks, and run the [demo notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/test_data_gen_demo.ipynb) to create the base-truth tables. See more details and instructions under the [notebook folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook) in this kit.
+2. Run the desired module-specific test data generation demo notebook.
+3. Verify that the test data was created and stored in Stage1np in that module's folder.
+4. Ingest the test data within the scope of that particular module or package. You can then utilize the test data generated for the relevant module or package/use case Power BI dashboard.
 
-Sample out-of-the box assets for this OEA module include:
+## Data Source Compatibility
+
+## Test Data Generation Kit Components
+
+Out-of-the box assets for this OEA module include:
 
 1. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook) for defining test data generation functions, creating the base-truth tables and developing module-specific test data through explicit schema mappings.
     * General test data generation class notebook: [test_data_generation_py.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/test_data_generation_py.ipynb) and general test data generation demo notebook: [test_data_gen_demo.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/test_data_gen_demo.ipynb)
