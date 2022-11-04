@@ -4,7 +4,9 @@
 
 This module test data generation kit aims to enable users to generate randomized test data, that will be able to be used across all modules, schemas, and packages within the OEA framework. This tool will allow you to create temporary data to be used in experimentation with any module or package. Test data generated here will also connect across modules, allowing the user to create robust dashboards on semi-realistic data, with no threat to the privacy of an education system.
 
-
+<p align="center">
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/docs/images/module_test_data_gen_setup_visual.png" alt="OEA Module Test Data Generator Overview"/>
+</p>
 
 ## Test Data Generation: Base-Truth Table Structures
 
