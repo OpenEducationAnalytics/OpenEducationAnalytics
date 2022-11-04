@@ -106,8 +106,6 @@ az keyvault set-policy -n $OEA_KEYVAULT --secret-permissions get list --object-i
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 # setup key values for use by OEA
-az keyvault secret set --name oeaStorageAccount --vault-name $OEA_KEYVAULT --value $OEA_STORAGE_ACCOUNT
-az keyvault secret set --name oeaKeyvault --vault-name $OEA_KEYVAULT --value $OEA_KEYVAULT
 # Create a temporary salt value for use when performing pseudonymization. This value should be manually set after installation.
 temp_salt="$(openssl rand -base64 16)"
 az keyvault secret set --name oeaSalt --vault-name $OEA_KEYVAULT --value $temp_salt
