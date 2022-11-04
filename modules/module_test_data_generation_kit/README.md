@@ -5,7 +5,7 @@
 This module test data generation kit aims to enable users to generate randomized test data, that will be able to be used across all modules, schemas, and packages within the OEA framework. This tool will allow you to create temporary data to be used in experimentation with any module or package. Test data generated here will also connect across modules, allowing the user to create robust dashboards on semi-realistic data, with no threat to the privacy of an education system.
 
 <p align="center">
-  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/docs/images/module_test_data_gen_setup_visual.png" alt="OEA Module Test Data Generator Overview"/>
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/docs/images/module_test_data_gen_overview.png" alt="OEA Module Test Data Generator Overview"/>
 </p>
 
 ## Test Data Generation: Base-Truth Table Structures
@@ -45,6 +45,10 @@ The OEA test data generation kit uses two base-truth tables to artifically gener
 
 ## Test Data Generation Setup Instructions
 
+<p align="center">
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/docs/images/module_test_data_gen_setup_visual.png" alt="OEA Module Test Data Generator Setup Instructions"/>
+</p>
+
 <ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup [v0.6.1 of the OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.6.1 of the [OEA Python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). Note: This kit will be updated to accomodate v0.7. 
 Also, examine modules/data sources currently compatible. See [below](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit#data-source-compatibility) for these applicable data sources. Choose which modules or data sources to apply this test data generator.
     * If you do not see a data source you wish to generate test data for, you will need to develop assets similar to the [Clever module test data generator example](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook/Clever_module).
@@ -55,6 +59,14 @@ Also, examine modules/data sources currently compatible. See [below](https://git
 4. Ingest the test data within the scope of that particular module or package. You can then utilize the test data generated for the relevant module or package/use case Power BI dashboard.
 
 ## Data Source Compatibility
+
+As it currently stands, this test data generation kit can be applied to the following OEA Modules:
+
+| Module | Applicable Tables |
+| --- | --- |
+| [Clever](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever) Module | For the Daily Participation and Resource Usage tables. |
+
+See the Clever module test data generator assets under the [Notebook resource](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/Clever_module) for an example of a compatible module for this test data generation kit.
 
 ## Test Data Generation Kit Components
 
@@ -67,10 +79,6 @@ Out-of-the box assets for this OEA module include:
 This Test Data Generation Kit [welcomes contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md)
 
 This module was developed by [Kwantum Analytics](https://www.kwantumedu.com/). The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
-
-### Additional Information
-
-Provide any additional information and resources.
 
 ## Legal Notices
 
