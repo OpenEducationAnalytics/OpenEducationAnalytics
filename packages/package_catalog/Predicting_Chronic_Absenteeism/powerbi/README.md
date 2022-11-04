@@ -21,13 +21,13 @@ This package also includes example Power BI pictures of the package production i
 ## Test Data Dashboard Pages
 ### Overview of Chronic Absenteeism
 
-| ![Overview of Chronic Absenteeism](https://github.com/cstohlmann/oea-chronic-absenteeism-package/blob/main/docs/images/pbi_p1_overview%20of%20chronic%20absenteeism.png "Overview of Chronic Absenteeism") |
+| ![Overview of Chronic Absenteeism](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p1_overview%20of%20chronic%20absenteeism.png "Overview of Chronic Absenteeism") |
 |:--:|
 | <b> Summary of the status of chronic absence in the district by absence-level and school. </b>|
 
 ### Drivers of Chronic Absenteeism
 
-| ![Drivers of Chronic Absenteeism](https://github.com/cstohlmann/oea-chronic-absenteeism-package/blob/main/docs/images/pbi_p2_drivers%20of%20chronic%20absenteeism.png "Drivers of Chronic Absenteeism") |
+| ![Drivers of Chronic Absenteeism](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p2_drivers%20of%20chronic%20absenteeism.png "Drivers of Chronic Absenteeism") |
 |:--:|
 | <b> Summary of the top predictive drivers as identified by the ML model. Drivers can be ranked by count, aggregated by school, or explored for individual student. </b>|
 
@@ -72,9 +72,9 @@ This package also includes example Power BI pictures of the package production i
 
    * Select Change Source...
 
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_instructions_p2_data_source_settings.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_instructions_p2_data_source_settings.png)
 
    * Enter your Synapse workspace SQL server endpoint. This can be found on your Synapse workspace information page in the Azure portal.
 
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_instructions_p3_sql_server_db.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_instructions_p3_sql_server_db.png)
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_instructions_p4_serverless_sql_endpoint.png)
