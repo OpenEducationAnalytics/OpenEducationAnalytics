@@ -1,6 +1,8 @@
-# Test Data Generation Notebooks
+# Base-Truth Table Generation Notebooks
 
-## [Test Data Generation Class](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/test_data_generation_py.ipynb)
+There are two notebooks necessary for generating the overarching base-truth tables (see below). These base-truth tables are used to create the module-specific test data.
+
+## [Base Truth Tables Generation Class](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/test_data_generation_py.ipynb)
 
 The class notebook supports two main roles:
 - defining the students and schools base-truth tables, and
@@ -8,7 +10,7 @@ The class notebook supports two main roles:
     
 ## [Base-Truth Table Generation Demo](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/test_data_gen_demo.ipynb)
 
-The demo generation notebook depends on the test data generation class.
+The demo generation notebook depends on the base truth tables generation class.
 
 ## Base-Truth Table Generation Instructions
 
