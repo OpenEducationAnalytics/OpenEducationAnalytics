@@ -37,7 +37,7 @@ The dimension tables are all tables except the TechActivity table and the fact t
 
 #### Power BI with direct query of data on your data lake:
 1. Complete the [module setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights#module-setup-instructions).
-2. Choose whether you want to explore the [dashboard for K-12 direct query test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/powerbi/k12_dashboards/Insights%20Module%20Dashboard%20DirectQuery.pbix), or the dasboard for higher education imported test data.
+2. Choose whether you want to explore the [dashboard for K-12 direct query test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/powerbi/k12_dashboards/Insights%20Module%20Dashboard%20DirectQuery.pbix), or the dasboard for higher education direct query test data.
 3. Download that PBIX file.
 4. The dashboard visuals may not load. You will need to switch your Synapse workspace serverless SQL endpoint by:
    * Select menu item File > Options and settings > Data source settings.
