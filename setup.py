@@ -1,7 +1,7 @@
 import os
 import sys
 import os
-sys.path.append(os.path.join(os.getcwd(), 'framework\\infrastructure\\python\\'))
+sys.path.append(os.path.join(os.getcwd(), 'framework/infrastructure/python/'))
 from AzureClient import AzureClient
 from AzureResourceProvisioner import AzureResourceProvisioner
 from OEAFrameworkInstaller import OEAFrameworkInstaller
