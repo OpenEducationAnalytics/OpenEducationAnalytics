@@ -1,7 +1,4 @@
 # need to run "pip install -r requirements.txt"
-from asyncio.windows_utils import pipe
-from dis import dis
-import sys
 import secrets
 import string
 import os, random
@@ -113,7 +110,11 @@ class AzureClient:
 
     def create_or_update_pipeline(self, synapse_workspace, pipeline_file_path, pipeline_name):
         with open(pipeline_file_path) as f: pipeline_dict = json.load(f)
-        poller = self.get_artifacts_client(synapse_workspace).pipeline.begin_create_or_update_pipeline(pipeline_name, pipeline_dict)
+        if '$schema' in pipeline_dict:
+            # If Pipeline file is stored as deployment template.
+            os.system(f"az synapse pipeline create --workspace-name {synapse_workspace} --name {pipeline_name} @{os.path.join(os.getcwd(), f'framework/synapse/pipeline/{pipeline_name}.json')}")
+        else:
+            poller = self.get_artifacts_client(synapse_workspace).pipeline.begin_create_or_update_pipeline(pipeline_name, pipeline_dict)
         return poller
 
     def create_notebook_with_ipynb(self, notebook_name, file_path, synapse_workspace_name):
