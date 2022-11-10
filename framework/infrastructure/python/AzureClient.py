@@ -112,7 +112,7 @@ class AzureClient:
         with open(pipeline_file_path) as f: pipeline_dict = json.load(f)
         if '$schema' in pipeline_dict:
             # If Pipeline file is stored as deployment template.
-            os.system(f"az synapse pipeline create --workspace-name {synapse_workspace} --name {pipeline_name} @{os.path.join(os.getcwd(), f'framework/synapse/pipeline/{pipeline_name}.json')}")
+            os.system(f"az synapse pipeline create --workspace-name {synapse_workspace} --name {pipeline_name} --file @{os.path.join(os.getcwd(), f'framework/synapse/pipeline/{pipeline_name}.json')}")
         else:
             poller = self.get_artifacts_client(synapse_workspace).pipeline.begin_create_or_update_pipeline(pipeline_name, pipeline_dict)
         return poller

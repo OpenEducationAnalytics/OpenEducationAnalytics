@@ -21,7 +21,7 @@ if(len(sys.argv) < 2):
     raise Exception("Setup script expects at least 1 Argument.")
 _oea_suffix = sys.argv[1]
 _location = "eastus" if len(sys.argv) < 3 else sys.argv[2]
-_include_groups = True if (len(sys.argv) and 3 or sys.argv[3] in ['true', 'True']) else False
+_include_groups = True if (len(sys.argv) > 3 and sys.argv[3] in ['true', 'True']) else False
 
 # Instantiate AzureClient class to connect with Azure CLI using Python SDK
 azure_client = AzureClient(_tenant_id, _subscription_id, _location)
