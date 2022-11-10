@@ -7,9 +7,11 @@ This module includes artificially generated data which matches the format of the
 
 For more detailed explanations, read the tutorial documentation [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf). For more information on these queries and others that can be used, [click here](https://docs.microsoft.com/en-us/graph/) to learn more.
 
+<strong>Note:</strong> This module contains two sets of test data - one set for mock K-12 data, and one set for mock higher education data. You can choose which test data set to ingest via the module pipeline template; for details see the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline).
+
 ## Data Dictionary 
 
-### [Users Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/test_data/GraphAPI/Users/part-00000-cae42818-3572-4824-b396-58587ad01616-c000.json)
+### [K-12 Users Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/test_data/k12_test_data/Users/part-00000-cae42818-3572-4824-b396-58587ad01616-c000.json) and [HEd Users Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/test_data/hed_test_data/Users/part-00000-cae42818-3572-4824-b396-58587ad01616-c000.json) 
 
 See full details on the [Microsoft Graph Users Beta Query](https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-beta&tabs=http)
 
@@ -20,7 +22,7 @@ See full details on the [Microsoft Graph Users Beta Query](https://docs.microsof
 | | | userPrincipalName | user email identifier |
 | | | id | user ID |
 
-### [M365 Applications User Detail](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data/GraphAPI/M365_App_User_Detail)
+### [K-12 M365 Applications User Detail](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data/k12_test_data/M365_App_User_Detail) and [HEd M365 Applications User Detail](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data/hed_test_data/M365_App_User_Detail)
 
 See full details on the [Microsoft Graph M365 Applications User Detail Beta Query](https://docs.microsoft.com/en-us/graph/api/reportroot-getm365appuserdetail?view=graph-rest-beta&tabs=http)
 
@@ -46,7 +48,7 @@ See full details on the [Microsoft Graph M365 Applications User Detail Beta Quer
 | | | teams(Mac)(Mobile)(Web)(Windows) | Boolean expression of if this app has been used |
 | | | word(Mac)(Mobile)(Web)(Windows) | Boolean expression of if this app has been used |
 
-### [Teams Activity User Detail](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data/GraphAPI/Teams_Activity_User_Detail)
+### [K-12 Teams Activity User Detail](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data/k12_test_data/Teams_Activity_User_Detail) and [HEd Teams Activity User Detail](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data/hed_test_data/Teams_Activity_User_Detail)
 
 See full details on the [Microsoft Graph Teams Activity User Detail Beta Query](https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-beta)
 

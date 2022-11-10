@@ -14,12 +14,12 @@ Notes:
 
 Module Pipeline for Test Data  | Module Pipeline for Production Data
 :-------------------------:|:-------------------------:
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20main%20pipeline.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20main%20pipeline.png)  
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/module_test_data_pipeline_overview.png) |  ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/module_prod_data_pipeline_overview.png)  
 
 For production data, this module pipeline can be automatically triggered (i.e. daily or weekly) to keep your Synapse data lake up-to-date.
 
 ## Step 1: Test data or Production-level data ingestion
-The [sub-pipeline out-of-the-box](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/pipeline/Extracts/GraphAPI_copy_test_data.zip) ingests the test data contained within this module. This pipeline copies all test data to stage 1np of the data lake, once ran. See the [module test data folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data) for more information.
+Out-of-the-box, the main pipeline ingests either K-12 or Higher Education test data contained within this module. This pipeline copies all test data to stage 1np of the data lake, once ran. Refer to the [Insights Module Test Data Pipeline Instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline#test-data-pipeline-instructions) for details on deploying this Graph test data pipeline, as they require the exact same processes. See the [module test data folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data) for more information of the test data formats.
 
 ![Test Data Ingestion Pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20copy%20test%20data%20pipeline.png "Test Data Ingestion Pipeline")
 
