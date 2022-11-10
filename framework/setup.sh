@@ -38,14 +38,13 @@ eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_HT
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_Azure_SQL_DB --file @$this_file_path/synapse/dataset/DS_Azure_SQL_DB.json"
 
 # 2) install notebooks
-eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/OEA_py.ipynb --only-show-errors"
+sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/notebook/OEA_py.ipynb > $this_file_path/tmp/OEA_py.ipynb
+sed "s/yourkeyvault/$key_vault/" $this_file_path/tmp/OEA_py.ipynb > $this_file_path/tmp/OEA_py.ipynb
+eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --spark-pool-name spark3p2sm --file @$this_file_path/tmp/OEA_py.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name 1_read_me --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/1_read_me.ipynb --only-show-errors"
-#eval "az synapse notebook import --workspace-name $synapse_workspace --name 2_batch_processing_demo --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/2_batch_processing_demo.ipynb --only-show-errors"
-#eval "az synapse notebook import --workspace-name $synapse_workspace --name 3_data_generation_demo --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/3_data_generation_demo.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name 2_example_data_processing --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/2_example_data_processing.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_connector --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/OEA_connector.ipynb --only-show-errors"
-#eval "az synapse notebook import --workspace-name $synapse_workspace --name DataGen_py --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/DataGen_py.ipynb --only-show-errors"
-# (this is the ContosoSIS_py notebook for use with the 'example_main_pipeline' that comes with the framework)
-#eval "az synapse notebook import --workspace-name $synapse_workspace --name ContosoSIS_py --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/ContosoSIS_py.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_tests --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/OEA_tests.ipynb --only-show-errors"
 
 # 3) setup pipelines
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_data_from_URL --file @$this_file_path/synapse/pipeline/land_data_from_URL.json"
