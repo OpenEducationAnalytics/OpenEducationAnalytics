@@ -1,0 +1,26 @@
+{
+    "name": "DS_REST_Anonymous",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "LS_REST",
+            "type": "LinkedServiceReference",
+            "parameters": {
+                "BaseURL": {
+                    "value": "@dataset().BaseURL",
+                    "type": "Expression"
+                }
+            }
+        },
+        "parameters": {
+            "BaseURL": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "type": "RestResource",
+        "schema": []
+    }
+}
