@@ -91,7 +91,7 @@
                 "userProperties": [],
                 "typeProperties": {
                     "dataset": {
-                        "referenceName": "DS_JSONDS_JSON_File",
+                        "referenceName": "DS_JSON_File",
                         "type": "DatasetReference",
                         "parameters": {
                             "stage": "2",
@@ -220,7 +220,7 @@
                         }
                     },
                     "dataset": {
-                        "referenceName": "DS_JSONDS_JSON_File",
+                        "referenceName": "DS_JSON_File",
                         "type": "DatasetReference",
                         "parameters": {
                             "stage": "2",
