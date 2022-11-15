@@ -2,14 +2,14 @@
     "name": "edfi_upsert",
     "properties": {
         "folder": {
-            "name": "Modules/Ed-Fi/Ingest"
+            "name": "EdFi/Ingest"
         },
         "type": "MappingDataFlow",
         "typeProperties": {
             "sources": [
                 {
                     "linkedService": {
-                        "referenceName": "LS_ADLS_OEA",
+                        "referenceName": "LS_datalake",
                         "type": "LinkedServiceReference"
                     },
                     "name": "SourceJson"
@@ -18,7 +18,7 @@
             "sinks": [
                 {
                     "linkedService": {
-                        "referenceName": "LS_ADLS_OEA",
+                        "referenceName": "LS_datalake",
                         "type": "LinkedServiceReference"
                     },
                     "name": "SinkDelta"
@@ -37,27 +37,29 @@
             ],
             "scriptLines": [
                 "parameters{",
-                "     DistrictId as string (\"All\"),",
-                "     SchoolYear as string (\"2022\"),",
-                "     IngestedFolder as string (\"Ingested/Ed-Fi/v5.2\"),",
-                "     TransactionalFolder as string (\"Transactional/Ed-Fi/v5.2/DistrictId=All/SchoolYear=2022\"),",
-                "     Entity as string (\"/ed-fi/absenceEventCategoryDescriptors\")",
+                "     districtId as string ('255901'),",
+                "     schoolYear as string ('2017'),",
+                "     entity as string ('schools'),",
+                "     directory as string ('EdFi'),",
+                "     apiversion as string ('5.3')",
                 "}",
                 "source(useSchema: false,",
                 "     allowSchemaDrift: true,",
                 "     validateSchema: false,",
                 "     inferDriftedColumnTypes: true,",
+                "     limit: 10000,",
                 "     ignoreNoFilesFound: true,",
+                "     enableCdc: true,",
+                "     mode: 'read',",
                 "     format: 'json',",
                 "     fileSystem: 'stage1',",
-                "     folderPath: (\"{$TransactionalFolder}{$Entity}/Incremental/Upserts\"),",
+                "     folderPath: (\"Transactional/{$directory}/v5.3/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$entity}/Incremental/Upserts\"),",
                 "     documentForm: 'documentPerLine',",
                 "     preferredIntegralType: 'integer',",
-                "     preferredFractionalType: 'float',",
-                "     mode: 'read') ~> SourceJson",
+                "     preferredFractionalType: 'float') ~> SourceJson",
                 "SelectColumns alterRow(upsertIf(true())) ~> AlterRow",
-                "SourceJson derive(SchoolYear = $SchoolYear,",
-                "          DistrictId = $DistrictId,",
+                "SourceJson derive(SchoolYear = $schoolYear,",
+                "          DistrictId = $districtId,",
                 "          LastModifiedDate = currentTimestamp()) ~> DerivedColumn",
                 "DerivedColumn select(mapColumn(",
                 "          each(match(name!='rundate'))",
@@ -68,16 +70,16 @@
                 "     validateSchema: false,",
                 "     format: 'delta',",
                 "     fileSystem: 'stage2',",
-                "     folderPath: (\"{$IngestedFolder}{$Entity}\"),",
+                "     folderPath: (\"Ingested/{$directory}/v{$apiversion}/{$entity}\"),",
                 "     mergeSchema: (true()),",
                 "     autoCompact: false,",
                 "     optimizedWrite: false,",
                 "     vacuum: 0,",
                 "     deletable:false,",
-                "     insertable:false,",
+                "     insertable:true,",
                 "     updateable:false,",
                 "     upsertable:true,",
-                "     keys:['id','SchoolYear','DistrictId'],",
+                "     keys:['id'],",
                 "     umask: 0022,",
                 "     preCommands: [],",
                 "     postCommands: [],",
