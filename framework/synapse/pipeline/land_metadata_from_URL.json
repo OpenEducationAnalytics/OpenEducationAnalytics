@@ -1,0 +1,94 @@
+{
+	"name": "land_metadata_from_URL",
+	"properties": {
+		"description": "Copies the metadata from the specified URL and lands it in stage1 of the specified workspace.\nThe batchType parameter must be either 'delta', 'snapshot', or 'additive'",
+		"activities": [
+			{
+				"name": "land_metadata_from_URL",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET"
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_HTTP_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"URL": {
+								"value": "@pipeline().parameters.URL",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_datalake_file",
+						"type": "DatasetReference",
+						"parameters": {
+							"filesystem": {
+								"value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage2', \n if(equals(pipeline().parameters.workspace,'prod'),'stage2',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage2')\n )\n)",
+								"type": "Expression"
+							},
+							"path": {
+								"value": "Ingested/@{pipeline().parameters.sinkPath}",
+								"type": "Expression"
+							},
+							"filename": "metadata.csv"
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"URL": {
+				"type": "string",
+				"defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/framework/test_data/contoso_sis/metadata.csv"
+			},
+			"workspace": {
+				"type": "string",
+				"defaultValue": "dev"
+			},
+			"sinkPath": {
+				"type": "string",
+				"defaultValue": "contoso/v0.1"
+			}
+		},
+		"variables": {
+			"rundate": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "OEA_Framework"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-10T19:34:10Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

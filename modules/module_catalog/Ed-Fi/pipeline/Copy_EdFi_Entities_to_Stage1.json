@@ -1,0 +1,573 @@
+{
+    "name": "Copy_EdFi_Entities_to_Stage1",
+    "properties": {
+        "activities": [
+            {
+                "name": "Get-AccessToken",
+                "type": "WebActivity",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "url": {
+                        "value": "@pipeline().parameters.AuthUrl",
+                        "type": "Expression"
+                    },
+                    "method": "POST",
+                    "body": {
+                        "grant_type": "client_credentials"
+                    },
+                    "authentication": {
+                        "type": "Basic",
+                        "username": {
+                            "value": "@pipeline().parameters.ClientId",
+                            "type": "Expression"
+                        },
+                        "password": {
+                            "type": "AzureKeyVaultSecret",
+                            "store": {
+                                "referenceName": "LS_KeyVault_OEA",
+                                "type": "LinkedServiceReference"
+                            },
+                            "secretName": {
+                                "value": "@pipeline().parameters.ClientSecretName",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Set-AccessToken",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "Get-AccessToken",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "AccessToken",
+                    "value": {
+                        "value": "Bearer @{activity('Get-AccessToken').output.access_token}",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Get-ChangeQueryVersion",
+                "type": "WebActivity",
+                "dependsOn": [
+                    {
+                        "activity": "Set-AccessToken",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "url": {
+                        "value": "@{pipeline().parameters.ChangeQueriesUrl}/availableChangeVersions",
+                        "type": "Expression"
+                    },
+                    "method": "GET",
+                    "headers": {
+                        "Authorization": {
+                            "value": "@variables('AccessToken')",
+                            "type": "Expression"
+                        },
+                        "Accept": "application/json"
+                    }
+                }
+            },
+            {
+                "name": "Set-MaxChangeVersion",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "Get-ChangeQueryVersion",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "MaxChangeVersion",
+                    "value": {
+                        "value": "@string(activity('Get-ChangeQueryVersion').output.NewestChangeVersion)",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "ForEach-EdFiEntity",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Get-EdFiEntities",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@json(activity('Get-EdFiEntities').output.Response)",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "batchCount": 10,
+                    "activities": [
+                        {
+                            "name": "Copy-EntityData-to-Stage1",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "Copy_from_REST_Anonymous_to_ADLS",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "AuthURL": {
+                                        "value": "@pipeline().parameters.AuthUrl",
+                                        "type": "Expression"
+                                    },
+                                    "ClientId": {
+                                        "value": "@pipeline().parameters.ClientId",
+                                        "type": "Expression"
+                                    },
+                                    "SecretName": {
+                                        "value": "@pipeline().parameters.ClientSecretName",
+                                        "type": "Expression"
+                                    },
+                                    "ChangedEntityURL": {
+                                        "value": "@{pipeline().parameters.DataManagementUrl}@{item().resource}",
+                                        "type": "Expression"
+                                    },
+                                    "ApiLimit": {
+                                        "value": "@pipeline().parameters.ApiLimit",
+                                        "type": "Expression"
+                                    },
+                                    "UpsertsSinkPath": {
+                                        "value": "@{pipeline().parameters.TransactionalFolder}@{item().resource}/Incremental/Upserts/rundate=@{pipeline().parameters.RunDate}",
+                                        "type": "Expression"
+                                    },
+                                    "DeletesEntityUrl": {
+                                        "value": "@{pipeline().parameters.DataManagementUrl}@{item().resource}/deletes",
+                                        "type": "Expression"
+                                    },
+                                    "DeletesSinkPath": {
+                                        "value": "@{pipeline().parameters.TransactionalFolder}@{item().resource}/Incremental/Deletes/rundate=@{pipeline().parameters.RunDate}",
+                                        "type": "Expression"
+                                    },
+                                    "MinChangeVersion": {
+                                        "value": "@variables('MinChangeVersion')",
+                                        "type": "Expression"
+                                    },
+                                    "MaxChangeVersion": {
+                                        "value": "@variables('MaxChangeVersion')",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Update-ChangeVersionFile",
+                "type": "Copy",
+                "dependsOn": [
+                    {
+                        "activity": "Set-AccessToken-ChangeVersionFile",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "RestSource",
+                        "httpRequestTimeout": "00:01:40",
+                        "requestInterval": "00.00:00:00.010",
+                        "requestMethod": "GET",
+                        "additionalHeaders": {
+                            "Authorization": {
+                                "value": "@variables('AccessToken')",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "sink": {
+                        "type": "JsonSink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        },
+                        "formatSettings": {
+                            "type": "JsonWriteSettings"
+                        }
+                    },
+                    "enableStaging": false
+                },
+                "inputs": [
+                    {
+                        "referenceName": "DS_REST_Anonymous",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "BaseURL": {
+                                "value": "@{pipeline().parameters.ChangeQueriesUrl}/availableChangeVersions",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "DS_JSON_File",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "stage": "1",
+                            "path": {
+                                "value": "@pipeline().parameters.TransactionalFolder",
+                                "type": "Expression"
+                            },
+                            "fileName": "ChangeVersion.json"
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "Get-EdFiEntities",
+                "type": "WebActivity",
+                "dependsOn": [
+                    {
+                        "activity": "Set-MinChangeVersion",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Set-MaxChangeVersion",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "url": {
+                        "value": "@pipeline().parameters.DependenciesUrl",
+                        "type": "Expression"
+                    },
+                    "method": "GET"
+                }
+            },
+            {
+                "name": "Set-MinChangeVersion",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "Check-ChangeVersionFileExists",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@activity('Check-ChangeVersionFileExists').output.exists",
+                        "type": "Expression"
+                    },
+                    "ifFalseActivities": [
+                        {
+                            "name": "Set Initial Min Change Version",
+                            "type": "SetVariable",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "variableName": "MinChangeVersion",
+                                "value": "0"
+                            }
+                        }
+                    ],
+                    "ifTrueActivities": [
+                        {
+                            "name": "Get Previous Change Versions",
+                            "type": "Lookup",
+                            "dependsOn": [],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "source": {
+                                    "type": "JsonSource",
+                                    "storeSettings": {
+                                        "type": "AzureBlobFSReadSettings",
+                                        "recursive": true,
+                                        "enablePartitionDiscovery": false
+                                    },
+                                    "formatSettings": {
+                                        "type": "JsonReadSettings"
+                                    }
+                                },
+                                "dataset": {
+                                    "referenceName": "DS_JSON_File",
+                                    "type": "DatasetReference",
+                                    "parameters": {
+                                        "stage": "1",
+                                        "path": {
+                                            "value": "@pipeline().parameters.TransactionalFolder",
+                                            "type": "Expression"
+                                        },
+                                        "fileName": "ChangeVersion.json"
+                                    }
+                                },
+                                "firstRowOnly": true
+                            }
+                        },
+                        {
+                            "name": "Set Min Change Version",
+                            "type": "SetVariable",
+                            "dependsOn": [
+                                {
+                                    "activity": "Get Previous Change Versions",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "variableName": "MinChangeVersion",
+                                "value": {
+                                    "value": "@string(activity('Get Previous Change Versions').output.firstRow.NewestChangeVersion)",
+                                    "type": "Expression"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Check-ChangeVersionFileExists",
+                "type": "GetMetadata",
+                "dependsOn": [
+                    {
+                        "activity": "Get-ChangeQueryVersion",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_JSON_File",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "stage": "1",
+                            "path": {
+                                "value": "@pipeline().parameters.TransactionalFolder",
+                                "type": "Expression"
+                            },
+                            "fileName": "ChangeVersion.json"
+                        }
+                    },
+                    "fieldList": [
+                        "exists"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "JsonReadSettings"
+                    }
+                }
+            },
+            {
+                "name": "Get-AccessToken-ChangeVersionFile",
+                "type": "WebActivity",
+                "dependsOn": [
+                    {
+                        "activity": "ForEach-EdFiEntity",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "url": {
+                        "value": "@pipeline().parameters.AuthUrl",
+                        "type": "Expression"
+                    },
+                    "method": "POST",
+                    "body": {
+                        "grant_type": "client_credentials"
+                    },
+                    "authentication": {
+                        "type": "Basic",
+                        "username": {
+                            "value": "@pipeline().parameters.ClientId",
+                            "type": "Expression"
+                        },
+                        "password": {
+                            "type": "AzureKeyVaultSecret",
+                            "store": {
+                                "referenceName": "LS_KeyVault_OEA",
+                                "type": "LinkedServiceReference"
+                            },
+                            "secretName": {
+                                "value": "@pipeline().parameters.ClientSecretName",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                }
+            },
+            {
+                "name": "Set-AccessToken-ChangeVersionFile",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "Get-AccessToken-ChangeVersionFile",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "AccessToken",
+                    "value": {
+                        "value": "Bearer @{activity('Get-AccessToken-ChangeVersionFile').output.access_token}",
+                        "type": "Expression"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "ApiUrl": {
+                "type": "string"
+            },
+            "ClientId": {
+                "type": "string"
+            },
+            "ClientSecretName": {
+                "type": "string"
+            },
+            "InstanceId": {
+                "type": "string"
+            },
+            "DistrictId": {
+                "type": "string"
+            },
+            "SchoolYear": {
+                "type": "string"
+            },
+            "ModuleName": {
+                "type": "string",
+                "defaultValue": "EdFi"
+            },
+            "ApiLimit": {
+                "type": "string",
+                "defaultValue": "500"
+            },
+            "AuthUrl": {
+                "type": "string"
+            },
+            "ChangeQueriesUrl": {
+                "type": "string"
+            },
+            "DataManagementUrl": {
+                "type": "string"
+            },
+            "RunDate": {
+                "type": "string"
+            },
+            "DependenciesUrl": {
+                "type": "string"
+            },
+            "TransactionalFolder": {
+                "type": "string"
+            },
+            "ApiVersion": {
+                "type": "string"
+            }
+        },
+        "variables": {
+            "AccessToken": {
+                "type": "String"
+            },
+            "MinChangeVersion": {
+                "type": "String"
+            },
+            "MaxChangeVersion": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "Modules/Ed-Fi/Single District Per Instance"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-11-01T01:52:08Z"
+    }
+}
