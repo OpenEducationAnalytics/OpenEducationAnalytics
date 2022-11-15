@@ -9,14 +9,15 @@ from azure.core.exceptions import HttpResponseError
 from msrest.exceptions import ValidationError
 
 class AzureResourceProvisioner:
-    def __init__(self, tenant_id, subscription_id, oea_suffix, location, oea_version, logger):
+    def __init__(self, tenant_id, subscription_id, oea_suffix, location, oea_version, include_groups, logger):
         self.tenant_id = tenant_id
         self.subscription_id = subscription_id
         self.oea_suffix = oea_suffix
         self.oea_version = oea_version
         self.location = location
         self.logger = logger
-        self.containers = ['workspace', 'synapse-workspace', 'stage1', 'stage2', 'stage3']
+        self.include_groups = include_groups
+        self.blobs = ['stage1', 'stage2', 'stage3', 'oea']
         self.keyvault = 'kv-oea-' + oea_suffix
         self.synapse_workspace_name = 'syn-oea-' + oea_suffix
         self.resource_group = 'rg-oea-' + oea_suffix
@@ -28,6 +29,7 @@ class AzureResourceProvisioner:
         self.de_group_name = 'Edu Analytics Data Engineers'
         self.user_object_id = os.popen("az ad signed-in-user show --query id -o tsv").read()[:-1] # the last char is a newline, so we strip that off
         self.tags = {'oea_version':oea_version}
+        self.storage_account_id = f"/subscriptions/{self.subscription_id}/resourceGroups/{self.resource_group}/providers/Microsoft.Storage/storageAccounts/{self.storage_account}"
         self.synapse_workspace_object = None
         self.storage_account_object = None
         self.external_data_scientists_id = None
@@ -72,7 +74,8 @@ class AzureResourceProvisioner:
         # Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
         self.storage_account_object = self.azure_client.create_storage_account(self.storage_account)
         self.logger.info("\t--> Creating storage account containers.")
-        self.azure_client.create_containers(self.storage_account, self.containers)
+        self.azure_client.create_containers(self.storage_account, self.blobs)
+        self.azure_client.setup_file_system(self.storage_account)
 
     def create_synapse_architecture(self):
         self.synapse_workspace_object = self.azure_client.create_synapse_workspace(self.synapse_workspace_name, self.storage_account)
@@ -96,7 +99,7 @@ class AzureResourceProvisioner:
                                     'permissions': { 'keys': ['all'], 'secrets': ['all'] }
                                 }
         self.azure_client.create_key_vault(self.keyvault, [access_policy_for_synapse, access_policy_for_user])
-
+        # self.azure_client.create_secret_in_keyvault(self.keyvault, 'oeaSalt')
         self.logger.info(f"--> Creating app-insights: {self.app_insights}")
         os.system(f"az monitor app-insights component create --app {self.app_insights} --resource-group {self.resource_group} --location {self.location} --tags {self.tags} -o none")
 
@@ -124,17 +127,15 @@ class AzureResourceProvisioner:
         self.azure_client.create_role_assignment('Owner', f"/subscriptions/{self.subscription_id}/resourceGroups/{self.resource_group}/", self.global_admins_id)
 
         # Assign "Storage Blob Data Contributor" to security groups to allow users to query data via Synapse studio
-        storage_account_id = f"/subscriptions/{self.subscription_id}/resourceGroups/{self.resource_group}/providers/Microsoft.Storage/storageAccounts/{self.storage_account}"
-        self.azure_client.create_role_assignment('Storage Blob Data Contributor', storage_account_id, self.global_admins_id)
-        self.azure_client.create_role_assignment('Storage Blob Data Contributor', storage_account_id, self.data_scientists_id)
-        self.azure_client.create_role_assignment('Storage Blob Data Contributor', storage_account_id, self.data_engineers_id)
+        self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.storage_account_id, self.global_admins_id)
+        self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.storage_account_id, self.data_scientists_id)
+        self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.storage_account_id, self.data_engineers_id)
 
         # Assign limited access to specific containers for the external data scientists
         self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.get_container_resourceId('stage2'), self.external_data_scientists_id)
         self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.get_container_resourceId('stage3'), self.external_data_scientists_id)
-        self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.get_container_resourceId('synapse-workspace'), self.external_data_scientists_id)
-        self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.get_container_resourceId('workspace'), self.external_data_scientists_id)
-        self.azure_client.create_role_assignment('Reader', storage_account_id, self.data_engineers_id)
+        self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.get_container_resourceId('oea'), self.external_data_scientists_id)
+        self.azure_client.create_role_assignment('Reader', self.storage_account_id, self.data_engineers_id)
 
     def provision_resources(self):
 
@@ -153,11 +154,17 @@ class AzureResourceProvisioner:
         self.logger.info(f"--> 4) Creating key vault: {self.keyvault}")
         self.create_keyvault_and_appinsights()
 
-        self.logger.info("--> 5) Creating security groups in Azure Active Directory.")
-        self.create_security_groups()
+        if self.include_groups is True:
+            self.logger.info("--> 5) Creating security groups in Azure Active Directory.")
+            self.create_security_groups()
 
-        self.logger.info("--> 6) Creating role assignments for Edu Analytics Global Admins, Edu Analytics Data Scientists, and Edu Analytics Data Engineers.")
-        self.create_role_assignemnts()
+            self.logger.info("--> 6) Creating role assignments for Edu Analytics Global Admins, Edu Analytics Data Scientists, and Edu Analytics Data Engineers.")
+            self.create_role_assignemnts()
+
+        else:
+            self.logger.info(f"--> 5 Creating \"Storage Blob Data Contributor\" role assignment for User to the storage account.")
+            self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.storage_account_id, self.user_object_id)
+
 
 
 
