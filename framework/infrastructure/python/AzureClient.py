@@ -1,12 +1,10 @@
 # need to run "pip install -r requirements.txt"
-from asyncio.windows_utils import pipe
-from dis import dis
-import sys
 import secrets
 import string
 import os, random
 import json
 import logging
+from base64 import b64encode
 from uuid import uuid4
 from datetime import datetime
 from azure.identity import AzureCliCredential, DefaultAzureCredential
@@ -52,7 +50,7 @@ class AzureClient:
         return self.resource_client
 
     def get_key_vault_client(self):
-        if not self.key_vault_client: self.key_vault_client = KeyVaultManagementClient(self.credential, self.subscription_id)
+        if not self.key_vault_client: self.key_vault_client = KeyVaultManagementClient(self.credential, self.subscription_id, api_version='2021-10-01')
         return self.key_vault_client
 
     def get_storage_client(self):
@@ -93,6 +91,16 @@ class AzureClient:
             }
     )
 
+    def create_secret_in_keyvault(self, keyvault_name, secret_name):
+        """poller = self.get_key_vault_client().secrets.create_or_update(self.resource_group, keyvault_name, secret_name,
+            {
+                'properties': {
+                    'value': b64encode(secrets.token_bytes(16)).decode()
+                }
+            }
+        )"""
+        os.system(f"az keyvault secret set --name oeaSalt --vault-name {keyvault_name} --value {b64encode(secrets.token_bytes(16)).decode()}")
+
     """
     # This is not working as the GraphRbacManagementClient is expecting a credential with an
     # attribute "signed_session" while AzureCliCredential does not provide one.
@@ -113,8 +121,9 @@ class AzureClient:
 
     def create_or_update_pipeline(self, synapse_workspace, pipeline_file_path, pipeline_name):
         with open(pipeline_file_path) as f: pipeline_dict = json.load(f)
-        poller = self.get_artifacts_client(synapse_workspace).pipeline.begin_create_or_update_pipeline(pipeline_name, pipeline_dict)
-        return poller
+        if '$schema' not in pipeline_dict.keys():
+            poller = self.get_artifacts_client(synapse_workspace).pipeline.begin_create_or_update_pipeline(pipeline_name, pipeline_dict)
+            return poller
 
     def create_notebook_with_ipynb(self, notebook_name, file_path, synapse_workspace_name):
         os.system(f"az synapse notebook create --workspace-name {synapse_workspace_name} --name {notebook_name} --file @{file_path} -o none")
@@ -213,7 +222,7 @@ class AzureClient:
                 "tags" : self.tags,
                 "kind": "StorageV2",
                 "sku": {"name": "Standard_RAGRS"},
-                "enable-hierarchical-namespace": True,
+                "is_hns_enabled": True,
                 "access-tier": "Hot",
                 "default-action": "Allow"
             }
@@ -222,6 +231,20 @@ class AzureClient:
         account_result = poller.result()
         self.storage_account_name = storage_account_name
         return account_result
+
+    def setup_file_system(self, storage_account_name):
+        os.system(f"az storage fs directory create -n transactional -f stage1 --account-name {storage_account_name} --only-show-errors")
+        os.system(f"az storage fs directory create -n ingested -f stage2 --account-name {storage_account_name} --only-show-errors")
+        os.system(f"az storage fs directory create -n refined -f stage2 --account-name {storage_account_name} --only-show-errors")
+        os.system(f"az storage fs directory create -n sandboxes/sandbox1/stage1/transactional -f oea --account-name {storage_account_name} --only-show-errors")
+        os.system(f"az storage fs directory create -n sandboxes/sandbox1/stage2/ingested -f oea --account-name {storage_account_name} --only-show-errors")
+        os.system(f"az storage fs directory create -n sandboxes/sandbox1/stage2/refined -f oea --account-name {storage_account_name} --only-show-errors")
+        os.system(f"az storage fs directory create -n sandboxes/sandbox1/stage3 -f oea --account-name {storage_account_name} --only-show-errors")
+        os.system(f"az storage fs directory create -n dev/stage1/transactional -f oea --account-name {storage_account_name} --only-show-errors")
+        os.system(f"az storage fs directory create -n dev/stage2/ingested -f oea --account-name {storage_account_name} --only-show-errors")
+        os.system(f"az storage fs directory create -n dev/stage2/refined -f oea --account-name {storage_account_name} --only-show-errors")
+        os.system(f"az storage fs directory create -n dev/stage3 -f oea --account-name {storage_account_name} --only-show-errors")
+
 
     def create_containers(self, storage_account_name, container_names):
         storage_client = self.get_storage_client()

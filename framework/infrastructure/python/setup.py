@@ -1,9 +1,7 @@
 import os
 import sys
 import os
-sys.path.append(os.path.join(os.getcwd(), 'framework\\infrastructure\\python\\'))
 from AzureClient import AzureClient
-from OEAModuleInstaller import OEAModuleInstaller
 from AzureResourceProvisioner import AzureResourceProvisioner
 from OEAFrameworkInstaller import OEAFrameworkInstaller
 import logging
@@ -15,19 +13,22 @@ logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', filename='se
 _logger = logging.getLogger('setup')
 _logger.addHandler(logging.StreamHandler(sys.stdout))
 
-# Enter these values before executing the script.
-_tenant_id = "{AZURE TENANT ID}"
-_subscription_id = "{AZURE SUBSCRIPTION ID}"
-_oea_suffix = "{OEA SUFFIX}"
-_location = "{LOCATION}"
+_tenant_id = os.popen('az account show --query homeTenantId -o tsv').read().replace('\n', '')
+_subscription_id = os.popen('az account show --query id -o tsv').read().replace('\n', '')
 _oea_version = "0.7"
+
+if(len(sys.argv) < 2):
+    raise Exception("Setup script expects at least 1 Argument.")
+_oea_suffix = sys.argv[1]
+_location = "eastus" if len(sys.argv) < 3 else sys.argv[2]
+_include_groups = True if (len(sys.argv) > 3 and sys.argv[3] in ['true', 'True']) else False
 
 # Instantiate AzureClient class to connect with Azure CLI using Python SDK
 azure_client = AzureClient(_tenant_id, _subscription_id, _location)
 
 # Instantiate AzureResourceProvisioner class to setup the required infrastructure in your Azure Tenant.
 _logger.info('Setting up infrastructure in Azure Tenant.')
-resource_provisioner = AzureResourceProvisioner(_tenant_id, _subscription_id, _oea_suffix, _location, _oea_version, _logger)
+resource_provisioner = AzureResourceProvisioner(_tenant_id, _subscription_id, _oea_suffix, _location, _oea_version, _include_groups, _logger)
 resource_provisioner.provision_resources()
 _logger.info('Completed setting up infrastructure.')
 
@@ -36,8 +37,3 @@ _logger.info('Installing Base OEA Framework in Synapse workspace.')
 oea_installer = OEAFrameworkInstaller(azure_client, resource_provisioner.storage_account, resource_provisioner.keyvault, resource_provisioner.synapse_workspace_name, 'framework/synapse', _logger)
 oea_installer.install()
 _logger.info('Successfully Installed Base OEA Framework.')
-
-#Install Modules
-_logger.info('Installing the Required modules in Azure Synapse workspace.')
-module_installer = OEAModuleInstaller(resource_provisioner.synapse_workspace_name, _logger)
-module_installer.install(azure_client)
