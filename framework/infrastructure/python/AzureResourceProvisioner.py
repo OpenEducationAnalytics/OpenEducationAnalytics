@@ -17,7 +17,7 @@ class AzureResourceProvisioner:
         self.location = location
         self.logger = logger
         self.include_groups = include_groups
-        self.containers = ['workspace', 'synapse-workspace', 'stage1', 'stage2', 'stage3']
+        self.blobs = ['stage1', 'stage2', 'stage3', 'oea']
         self.keyvault = 'kv-oea-' + oea_suffix
         self.synapse_workspace_name = 'syn-oea-' + oea_suffix
         self.resource_group = 'rg-oea-' + oea_suffix
@@ -74,7 +74,8 @@ class AzureResourceProvisioner:
         # Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
         self.storage_account_object = self.azure_client.create_storage_account(self.storage_account)
         self.logger.info("\t--> Creating storage account containers.")
-        self.azure_client.create_containers(self.storage_account, self.containers)
+        self.azure_client.create_containers(self.storage_account, self.blobs)
+        self.azure_client.setup_file_system(self.storage_account)
 
     def create_synapse_architecture(self):
         self.synapse_workspace_object = self.azure_client.create_synapse_workspace(self.synapse_workspace_name, self.storage_account)
@@ -98,7 +99,7 @@ class AzureResourceProvisioner:
                                     'permissions': { 'keys': ['all'], 'secrets': ['all'] }
                                 }
         self.azure_client.create_key_vault(self.keyvault, [access_policy_for_synapse, access_policy_for_user])
-
+        # self.azure_client.create_secret_in_keyvault(self.keyvault, 'oeaSalt')
         self.logger.info(f"--> Creating app-insights: {self.app_insights}")
         os.system(f"az monitor app-insights component create --app {self.app_insights} --resource-group {self.resource_group} --location {self.location} --tags {self.tags} -o none")
 
@@ -133,8 +134,7 @@ class AzureResourceProvisioner:
         # Assign limited access to specific containers for the external data scientists
         self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.get_container_resourceId('stage2'), self.external_data_scientists_id)
         self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.get_container_resourceId('stage3'), self.external_data_scientists_id)
-        self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.get_container_resourceId('synapse-workspace'), self.external_data_scientists_id)
-        self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.get_container_resourceId('workspace'), self.external_data_scientists_id)
+        self.azure_client.create_role_assignment('Storage Blob Data Contributor', self.get_container_resourceId('oea'), self.external_data_scientists_id)
         self.azure_client.create_role_assignment('Reader', self.storage_account_id, self.data_engineers_id)
 
     def provision_resources(self):
