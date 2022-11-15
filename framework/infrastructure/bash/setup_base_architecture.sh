@@ -52,16 +52,16 @@ az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage1 --
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage2 --auth-mode login
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage3 --auth-mode login
 
-az storage fs directory create -n transactional -f stage1 --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n ingested -f stage2 --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n refined -f stage2 --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n sandboxes/sandbox1/stage1/transactional -f oea --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n sandboxes/sandbox1/stage2/ingested -f oea --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n sandboxes/sandbox1/stage2/refined -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n Transactional -f stage1 --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n Ingested -f stage2 --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n Refined -f stage2 --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n sandboxes/sandbox1/stage1/Transactional -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n sandboxes/sandbox1/stage2/Ingested -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n sandboxes/sandbox1/stage2/Refined -f oea --account-name $OEA_STORAGE_ACCOUNT
 az storage fs directory create -n sandboxes/sandbox1/stage3 -f oea --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n dev/stage1/transactional -f oea --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n dev/stage2/ingested -f oea --account-name $OEA_STORAGE_ACCOUNT
-az storage fs directory create -n dev/stage2/refined -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n dev/stage1/Transactional -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n dev/stage2/Ingested -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n dev/stage2/Refined -f oea --account-name $OEA_STORAGE_ACCOUNT
 az storage fs directory create -n dev/stage3 -f oea --account-name $OEA_STORAGE_ACCOUNT
 
 # 3) Create Synapse workspace, configure firewall access, and create spark pool

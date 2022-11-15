@@ -1,19 +1,12 @@
 {
-	"name": "land_data_from_URL",
+	"name": "land_metadata_from_URL",
 	"properties": {
-		"description": "Copies data from the specified URL and lands it in stage1 of the specified workspace.\nThe batchType parameter must be either 'delta', 'snapshot', or 'additive'",
+		"description": "Copies the metadata from the specified URL and lands it in stage1 of the specified workspace.\nThe batchType parameter must be either 'delta', 'snapshot', or 'additive'",
 		"activities": [
 			{
-				"name": "land_from_URL",
+				"name": "land_metadata_from_URL",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Set rundate",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -59,39 +52,23 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"filesystem": {
-								"value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage1', \n if(equals(pipeline().parameters.workspace,'prod'),'stage1',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage1')\n )\n)",
+								"value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage2', \n if(equals(pipeline().parameters.workspace,'prod'),'stage2',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage2')\n )\n)",
 								"type": "Expression"
 							},
 							"path": {
-								"value": "Transactional/@{pipeline().parameters.sinkPath}/@{pipeline().parameters.batchType}_batch_data/rundate=@{variables('rundate')}",
+								"value": "Ingested/@{pipeline().parameters.sinkPath}",
 								"type": "Expression"
 							},
-							"filename": {
-								"value": "@pipeline().parameters.sinkFilename",
-								"type": "Expression"
-							}
+							"filename": "metadata.csv"
 						}
 					}
 				]
-			},
-			{
-				"name": "Set rundate",
-				"type": "SetVariable",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "rundate",
-					"value": {
-						"value": "@utcNow('yyyy-MM-dd HH:mm:ss')",
-						"type": "Expression"
-					}
-				}
 			}
 		],
 		"parameters": {
 			"URL": {
 				"type": "string",
-				"defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/framework/test_data/contoso_sis/day1/students/part1.csv"
+				"defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/framework/test_data/contoso_sis/metadata.csv"
 			},
 			"workspace": {
 				"type": "string",
@@ -99,15 +76,7 @@
 			},
 			"sinkPath": {
 				"type": "string",
-				"defaultValue": "contoso/v0.1/students"
-			},
-			"sinkFilename": {
-				"type": "string",
-				"defaultValue": "part1.csv"
-			},
-			"batchType": {
-				"type": "string",
-				"defaultValue": "snapshot"
+				"defaultValue": "contoso/v0.1"
 			}
 		},
 		"variables": {
