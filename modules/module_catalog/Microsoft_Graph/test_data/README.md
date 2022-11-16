@@ -5,7 +5,7 @@ This module includes artificially generated data which matches the format of thr
  - Microsoft 365 Applications User Detail: ``` beta/reports/getM365AppUserDetail(period='D7')/content?$format=application/json ```
  - Teams Activity User Detail: ``` beta/reports/getTeamsUserActivityUserDetail(period='D7')?$format=application/json ```
 
-And the Higher Education test data additionally contains the format of one query used in this module (utilizing v1.0 of Graph REST API Teamwork and Communications):
+And the Higher Education test data additionally contains the format of one query used in this module (utilizing v1.0 of Graph REST API Teamwork and Communications data):
  - Meeting Attendance Report: ``` v1.0/me/onlineMeetings/{meetingId}/attendanceReports/{reportId}?$expand=attendanceRecords ```
 
 For more detailed explanations, read the tutorial documentation [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf). For more information on these queries and others that can be used, [click here](https://docs.microsoft.com/en-us/graph/) or refer to below, to learn more.
