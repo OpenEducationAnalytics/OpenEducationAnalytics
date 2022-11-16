@@ -1,0 +1,44 @@
+{
+	"name": "4_reset_workspace_contoso_v0p2",
+	"properties": {
+		"activities": [
+			{
+				"name": "delete_dataset",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "delete_dataset",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"workspace": {
+							"value": "@pipeline().parameters.workspace",
+							"type": "Expression"
+						},
+						"datasetPath": {
+							"value": "@pipeline().parameters.datasetPath",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"workspace": {
+				"type": "string",
+				"defaultValue": "dev"
+			},
+			"datasetPath": {
+				"type": "string",
+				"defaultValue": "contoso/v0.1"
+			}
+		},
+		"folder": {
+			"name": "contoso_v0p2"
+		},
+		"annotations": []
+	}
+}

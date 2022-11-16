@@ -1,0 +1,169 @@
+{
+	"name": "2_ingest_contoso_v0p2",
+	"properties": {
+		"activities": [
+			{
+				"name": "land_metadata_from_URL",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "land_metadata_from_URL",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/framework/test_data/contoso_sis/metadata.csv",
+						"workspace": {
+							"value": "@pipeline().parameters.workspace",
+							"type": "Expression"
+						},
+						"sinkPath": "contoso/v0.1"
+					}
+				}
+			},
+			{
+				"name": "ingest_students",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "land_metadata_from_URL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ingest",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"workspace": {
+							"value": "@pipeline().parameters.workspace",
+							"type": "Expression"
+						},
+						"entityPath": "contoso/v0.1/students",
+						"primaryKey": "SIS ID"
+					}
+				}
+			},
+			{
+				"name": "ingest_studentattendance",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "land_metadata_from_URL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ingest",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"workspace": {
+							"value": "@pipeline().parameters.workspace",
+							"type": "Expression"
+						},
+						"entityPath": "contoso/v0.1/studentattendance",
+						"primaryKey": "id"
+					}
+				}
+			},
+			{
+				"name": "ingest_studentsectionmark",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "land_metadata_from_URL",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "ingest",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"workspace": {
+							"value": "@pipeline().parameters.workspace",
+							"type": "Expression"
+						},
+						"entityPath": "contoso/v0.1/studentsectionmark",
+						"primaryKey": "id"
+					}
+				}
+			},
+			{
+				"name": "create_sql_db",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ingest_students",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "ingest_studentattendance",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "ingest_studentsectionmark",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "create_sql_db",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"stage": "stage2",
+						"datasetPath": "Ingested/contoso/v0.1",
+						"workspace": {
+							"value": "@pipeline().parameters.workspace",
+							"type": "Expression"
+						},
+						"dbName": "sdb_dev_s2i_contoso_v0p1"
+					}
+				}
+			}
+		],
+		"parameters": {
+			"workspace": {
+				"type": "string",
+				"defaultValue": "dev"
+			},
+			"defaultFilename": {
+				"type": "string",
+				"defaultValue": "part1.csv"
+			}
+		},
+		"folder": {
+			"name": "contoso_v0p2"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-15T20:46:13Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

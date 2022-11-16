@@ -1,9 +1,9 @@
 {
-	"name": "create_lake_db",
+	"name": "delete_dataset",
 	"properties": {
 		"activities": [
 			{
-				"name": "create_lake_db",
+				"name": "delete_dataset",
 				"type": "SynapseNotebook",
 				"dependsOn": [],
 				"policy": {
@@ -21,12 +21,12 @@
 					},
 					"parameters": {
 						"method_name": {
-							"value": "create_lake_db",
+							"value": "delete_dataset",
 							"type": "string"
 						},
 						"kwargs": {
 							"value": {
-								"value": "{'dataset_full_path':'@{pipeline().parameters.datasetFullPath}'}",
+								"value": "{'dataset_path':'@{pipeline().parameters.datasetPath}'}",
 								"type": "Expression"
 							},
 							"type": "string"
@@ -57,9 +57,9 @@
 				"type": "string",
 				"defaultValue": "dev"
 			},
-			"datasetFullPath": {
+			"datasetPath": {
 				"type": "string",
-				"defaultValue": "stage2/Ingested/contoso/v0.1"
+				"defaultValue": "contoso/v0.1"
 			}
 		},
 		"folder": {
