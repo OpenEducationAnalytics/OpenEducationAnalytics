@@ -87,7 +87,7 @@ See full details on the [Microsoft Graph Meeting Attendance Report v1.0 Query](h
 
 | Domain | Table Name | Column Name | Description |
 | --- | --- | --- | --- |
-| Meeting Attendance Report | meeting_attendance_report | meetingId (initially "id") | Refer to the query documentation [here](https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0&tabs=http) for details on the columns of this table |
+| Meeting Attendance Report | meeting_attendance_report | meetingId | Refer to the query documentation [here](https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0&tabs=http) for details on the columns of this table |
 | | | totalParticipantCount | |
 | | | meetingStartDateTime | |
 | | | meetingEndDateTime | |
