@@ -12,6 +12,12 @@
 						"dependencyConditions": [
 							"Succeeded"
 						]
+					},
+					{
+						"activity": "Set stage_path",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
 				],
 				"policy": {
@@ -58,8 +64,8 @@
 						"referenceName": "DS_datalake_file",
 						"type": "DatasetReference",
 						"parameters": {
-							"filesystem": {
-								"value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage1', \n if(equals(pipeline().parameters.workspace,'prod'),'stage1',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage1')\n )\n)",
+							"stage": {
+								"value": "@variables('stage_path')",
 								"type": "Expression"
 							},
 							"path": {
@@ -83,6 +89,19 @@
 					"variableName": "rundate",
 					"value": {
 						"value": "@utcNow('yyyy-MM-dd HH:mm:ss')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Set stage_path",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "stage_path",
+					"value": {
+						"value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage1', \n if(equals(pipeline().parameters.workspace,'prod'),'stage1',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage1')\n )\n)",
 						"type": "Expression"
 					}
 				}
@@ -113,13 +132,16 @@
 		"variables": {
 			"rundate": {
 				"type": "String"
+			},
+			"stage_path": {
+				"type": "String"
 			}
 		},
 		"folder": {
 			"name": "OEA_Framework"
 		},
 		"annotations": [],
-		"lastPublishTime": "2022-11-10T19:34:10Z"
+		"lastPublishTime": "2022-11-15T20:45:38Z"
 	},
 	"type": "Microsoft.Synapse/workspaces/pipelines"
 }

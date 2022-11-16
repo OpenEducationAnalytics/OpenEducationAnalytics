@@ -26,7 +26,7 @@
 						},
 						"kwargs": {
 							"value": {
-								"value": "{'source_path':'@{pipeline().parameters.sourcePath}', 'primary_key':'@{pipeline().parameters.primaryKey}'}",
+								"value": "{'entity_path':'@{pipeline().parameters.entityPath}', 'primary_key':'@{pipeline().parameters.primaryKey}'}",
 								"type": "Expression"
 							},
 							"type": "string"
@@ -57,7 +57,7 @@
 				"type": "string",
 				"defaultValue": "dev"
 			},
-			"sourcePath": {
+			"entityPath": {
 				"type": "string",
 				"defaultValue": "contoso/v0.1/students"
 			},
@@ -69,6 +69,8 @@
 		"folder": {
 			"name": "OEA_Framework"
 		},
-		"annotations": []
-	}
+		"annotations": [],
+		"lastPublishTime": "2022-11-15T20:46:03Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
 }

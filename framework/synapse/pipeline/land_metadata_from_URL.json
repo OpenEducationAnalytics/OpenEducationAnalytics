@@ -6,7 +6,14 @@
 			{
 				"name": "land_metadata_from_URL",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set stage_path",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -51,8 +58,8 @@
 						"referenceName": "DS_datalake_file",
 						"type": "DatasetReference",
 						"parameters": {
-							"filesystem": {
-								"value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage2', \n if(equals(pipeline().parameters.workspace,'prod'),'stage2',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage2')\n )\n)",
+							"stage": {
+								"value": "@variables('stage_path')",
 								"type": "Expression"
 							},
 							"path": {
@@ -63,6 +70,19 @@
 						}
 					}
 				]
+			},
+			{
+				"name": "Set stage_path",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "stage_path",
+					"value": {
+						"value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage2', \n if(equals(pipeline().parameters.workspace,'prod'),'stage2',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage2')\n )\n)",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -80,7 +100,7 @@
 			}
 		},
 		"variables": {
-			"rundate": {
+			"stage_path": {
 				"type": "String"
 			}
 		},
@@ -88,7 +108,7 @@
 			"name": "OEA_Framework"
 		},
 		"annotations": [],
-		"lastPublishTime": "2022-11-10T19:34:10Z"
+		"lastPublishTime": "2022-11-15T20:45:53Z"
 	},
 	"type": "Microsoft.Synapse/workspaces/pipelines"
 }
