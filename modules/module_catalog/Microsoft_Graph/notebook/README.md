@@ -4,8 +4,8 @@ This module incorporates two notebooks needed to support the main [module pipeli
 
 ## Module Python Class Notebook: [GraphAPI_py.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/GraphAPI_py.ipynb)
 
-The module python class notebook that defines the data schemas and pseudonomization. Basic functions for data ingestion and processing from Stage 1 to Stage 2 data lakes are also included.
+The module python class notebook that defines the data schemas and pseudonymization. Basic functions for data ingestion and processing from Stage 1 to Stage 2 data lakes are also included.
 
 ## Module Data Ingestion Notebook: [GraphAPI_module_ingestion.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/GraphAPI_module_ingestion.ipynb)
 
-Module data ingestion notebook which depends on the module class. The pipeline template incoporates this notebook. 
+Module data ingestion notebook which depends on the module class. Importing the pipeline template will automatically upload this notebook. 
