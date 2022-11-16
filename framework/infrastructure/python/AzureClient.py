@@ -16,6 +16,7 @@ from azure.mgmt.synapse import SynapseManagementClient
 from azure.mgmt.synapse.models import Workspace, DataLakeStorageAccountDetails, ManagedIdentity, IpFirewallRuleInfo
 from azure.mgmt.synapse.models import BigDataPoolResourceInfo, AutoScaleProperties, AutoPauseProperties, LibraryRequirements, NodeSizeFamily, NodeSize, BigDataPoolPatchInfo
 from azure.synapse.artifacts import ArtifactsClient
+from azure.storage.filedatalake import DataLakeServiceClient
 from azure.mgmt.storage import StorageManagementClient
 from azure.core.exceptions import HttpResponseError, ResourceExistsError
 
@@ -30,6 +31,7 @@ class AzureClient:
         self.location = location
         self.tags = default_tags if default_tags else {}
         self.resource_group_name = resource_group_name
+        self.datalake_client = None
         self.resource_group = None
         self.key_vault_client = None
         self.resource_client = None
@@ -52,6 +54,10 @@ class AzureClient:
     def get_key_vault_client(self):
         if not self.key_vault_client: self.key_vault_client = KeyVaultManagementClient(self.credential, self.subscription_id, api_version='2021-10-01')
         return self.key_vault_client
+
+    def get_datalake_client(self, account_key):
+        if not self.datalake_client: self.datalake_client = DataLakeServiceClient(account_url=f"https://{self.storage_account_name}.dfs.core.windows.net", credential={"account_name":self.storage_account_name, "account_key": account_key})
+        return self.datalake_client
 
     def get_storage_client(self):
         if not self.storage_client: self.storage_client = StorageManagementClient(self.credential, self.subscription_id)
@@ -232,27 +238,16 @@ class AzureClient:
         self.storage_account_name = storage_account_name
         return account_result
 
-    def setup_file_system(self, storage_account_name):
-        os.system(f"az storage fs directory create -n transactional -f stage1 --account-name {storage_account_name} --only-show-errors")
-        os.system(f"az storage fs directory create -n ingested -f stage2 --account-name {storage_account_name} --only-show-errors")
-        os.system(f"az storage fs directory create -n refined -f stage2 --account-name {storage_account_name} --only-show-errors")
-        os.system(f"az storage fs directory create -n sandboxes/sandbox1/stage1/transactional -f oea --account-name {storage_account_name} --only-show-errors")
-        os.system(f"az storage fs directory create -n sandboxes/sandbox1/stage2/ingested -f oea --account-name {storage_account_name} --only-show-errors")
-        os.system(f"az storage fs directory create -n sandboxes/sandbox1/stage2/refined -f oea --account-name {storage_account_name} --only-show-errors")
-        os.system(f"az storage fs directory create -n sandboxes/sandbox1/stage3 -f oea --account-name {storage_account_name} --only-show-errors")
-        os.system(f"az storage fs directory create -n dev/stage1/transactional -f oea --account-name {storage_account_name} --only-show-errors")
-        os.system(f"az storage fs directory create -n dev/stage2/ingested -f oea --account-name {storage_account_name} --only-show-errors")
-        os.system(f"az storage fs directory create -n dev/stage2/refined -f oea --account-name {storage_account_name} --only-show-errors")
-        os.system(f"az storage fs directory create -n dev/stage3 -f oea --account-name {storage_account_name} --only-show-errors")
-
-
-    def create_containers(self, storage_account_name, container_names):
+    def create_containers_and_directories(self, storage_account_name, container_names, directory_list):
         storage_client = self.get_storage_client()
         keys = storage_client.storage_accounts.list_keys(self.resource_group_name, storage_account_name)
         conn_string = f"DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName={storage_account_name};AccountKey={keys.keys[0].value}"
         # Provision the containers in the account (this call is synchronous)
         for name in container_names:
             container = storage_client.blob_containers.create(self.resource_group_name, storage_account_name, name, {})
+            for directory_path in ['/'.join(x.split('/')[1:]) for x in directory_list if x.split('/')[0] == name]:
+                logger.info(directory_path)
+                self.get_datalake_client(keys.keys[0].value).get_file_system_client(name).create_directory(directory_path)
 
     def create_linked_service(self, workspace_name, linked_service_name, file_path):
         os.system(f"az synapse linked-service create --workspace-name {workspace_name} --name {linked_service_name} --file @{file_path} -o none")

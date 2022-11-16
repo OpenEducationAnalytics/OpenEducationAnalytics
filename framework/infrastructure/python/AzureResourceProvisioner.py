@@ -18,6 +18,9 @@ class AzureResourceProvisioner:
         self.logger = logger
         self.include_groups = include_groups
         self.blobs = ['stage1', 'stage2', 'stage3', 'oea']
+        self.dirs = ['stage1/transactional','stage2/ingested','stage2/refined','oea/sandboxes/sandbox1/stage1/transactional',\
+            'oea/sandboxes/sandbox1/stage2/ingested','oea/sandboxes/sandbox1/stage2/refined','oea/sandboxes/sandbox1/stage3',\
+                'oea/dev/stage1/transactional','oea/dev/stage2/ingested','oea/dev/stage2/refined','oea/dev/stage3']
         self.keyvault = 'kv-oea-' + oea_suffix
         self.synapse_workspace_name = 'syn-oea-' + oea_suffix
         self.resource_group = 'rg-oea-' + oea_suffix
@@ -74,7 +77,7 @@ class AzureResourceProvisioner:
         # Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
         self.storage_account_object = self.azure_client.create_storage_account(self.storage_account)
         self.logger.info("\t--> Creating storage account containers.")
-        self.azure_client.create_containers(self.storage_account, self.blobs)
+        self.azure_client.create_containers_and_directories(self.storage_account, self.blobs, self.dirs)
         self.azure_client.setup_file_system(self.storage_account)
 
     def create_synapse_architecture(self):
