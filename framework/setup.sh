@@ -47,11 +47,20 @@ eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_
 eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_tests --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/OEA_tests.ipynb --only-show-errors"
 
 # 3) setup pipelines
+# Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name create_lake_db --file @$this_file_path/synapse/pipeline/create_lake_db.json"
+sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/pipeline/create_sql_db.json > $this_file_path/tmp/create_sql_db.json
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name create_sql_db --file @$this_file_path/tmp/create_sql_db.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name delete_dataset --file @$this_file_path/synapse/pipeline/delete_dataset.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_data_from_URL --file @$this_file_path/synapse/pipeline/land_data_from_URL.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_metadata_from_URL --file @$this_file_path/synapse/pipeline/land_metadata_from_URL.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name ingest --file @$this_file_path/synapse/pipeline/ingest.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name example_main_pipeline --file @$this_file_path/synapse/pipeline/example_main_pipeline.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name create_lake_db --file @$this_file_path/synapse/pipeline/create_lake_db.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name create_sql_db --file @$this_file_path/synapse/pipeline/create_sql_db.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name refine --file @$this_file_path/synapse/pipeline/refine.json"
+
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_contoso_v0p2 --file @$this_file_path/synapse/pipeline/1_land_contoso_v0p2.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 2_ingest_contoso_v0p2 --file @$this_file_path/synapse/pipeline/2_ingest_contoso_v0p2.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 3_refine_contoso_v0p2 --file @$this_file_path/synapse/pipeline/3_refine_contoso_v0p2.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 4_reset_workspace_contoso_v0p2 --file @$this_file_path/synapse/pipeline/4_reset_workspace_contoso_v0p2.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_contoso_v0p2 --file @$this_file_path/synapse/pipeline/0_main_contoso_v0p2.json"
 
 echo "--> Setup complete. The OEA framework assets have been installed in the specified synapse workspace: $synapse_workspace"
