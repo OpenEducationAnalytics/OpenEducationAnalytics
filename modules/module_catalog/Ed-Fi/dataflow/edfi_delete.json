@@ -2,14 +2,14 @@
     "name": "edfi_delete",
     "properties": {
         "folder": {
-            "name": "EdFi/Ingest"
+            "name": "Modules/Ed-Fi/Ingest"
         },
         "type": "MappingDataFlow",
         "typeProperties": {
             "sources": [
                 {
                     "linkedService": {
-                        "referenceName": "LS_datalake",
+                        "referenceName": "LS_DataLake",
                         "type": "LinkedServiceReference"
                     },
                     "name": "SourceJson"
@@ -18,7 +18,7 @@
             "sinks": [
                 {
                     "linkedService": {
-                        "referenceName": "LS_datalake",
+                        "referenceName": "LS_DataLake",
                         "type": "LinkedServiceReference"
                     },
                     "name": "SinkDelta"
