@@ -1,4 +1,4 @@
-<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+<img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
 # Microsoft Education Insights Module
 
@@ -10,7 +10,7 @@ Education Insights requires the implementation of [Microsoft School Data Sync](h
 
 
 <p align="center">
-  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_data_ingestion_map.png" alt="Microsoft Insights Visual"/>
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_module_overview_visual.png" alt="Microsoft Insights Module Overview"/>
 </p>
 
  (Microsoft documentation on Education Insights: [Education Insights in Microsoft Teams - Microsoft Education Center](https://docs.microsoft.com/en-us/schooldatasync/enabling-insights-premium-export)) 
@@ -69,7 +69,7 @@ Out-of-the box assets for this OEA module include:
 
 Dashboard Explanation | Digital Engagement in Teams Summary
 :-------------------------:|:-------------------------:
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/Insights%20Module%20Explanation%20Page.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/Insights%20Module%20Sample%20Dashboard.png)   
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_module_k12_explanation_page.png) |  ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_module_sample_k12_dashboard.png)   
 ## Additional Information
 
 | Resource | Description |
