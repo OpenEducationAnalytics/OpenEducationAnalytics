@@ -1,11 +1,14 @@
 # Test Data
 
-This module includes artificially generated data which matches the format of the three queries used in this module (utilizing the beta version of Graph Reports API):
+This module includes artificially generated data which matches the format of three queries used in this module (utilizing the beta version of Graph REST API Reports):
  - Microsoft Users: ``` beta/users ```
  - Microsoft 365 Applications User Detail: ``` beta/reports/getM365AppUserDetail(period='D7')/content?$format=application/json ```
  - Teams Activity User Detail: ``` beta/reports/getTeamsUserActivityUserDetail(period='D7')?$format=application/json ```
 
-For more detailed explanations, read the tutorial documentation [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf). For more information on these queries and others that can be used, [click here](https://docs.microsoft.com/en-us/graph/) to learn more.
+And the Higher Education test data additionally contains the format of one query used in this module (utilizing v1.0 of Graph REST API Teamwork and Communications data):
+ - Meeting Attendance Report: ``` v1.0/me/onlineMeetings/{meetingId}/attendanceReports/{reportId}?$expand=attendanceRecords ```
+
+For more detailed explanations, read the tutorial documentation [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf). For more information on these queries and others that can be used, [click here](https://docs.microsoft.com/en-us/graph/) or refer to below, to learn more.
 
 <strong>Note:</strong> This module contains two sets of test data - one set for mock K-12 data, and one set for mock higher education data. You can choose which test data set to ingest via the module pipeline template; for details see the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline).
 
@@ -77,3 +80,23 @@ See full details on the [Microsoft Graph Teams Activity User Detail Beta Query](
 | | | screenShareDuration | |
 | | | teamChatMessageCount | |
 | | | videoDuration | |
+
+### [HEd Meeting Attendance Report](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data/hed_test_data/Meeting_Attendance_Report)
+
+See full details on the [Microsoft Graph Meeting Attendance Report v1.0 Query](https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0&tabs=http). The original files are structured with nested JSON arrays, which are then flattened into a single table, post-ingestion. Below contains the flattened column names landed in stage 2.
+
+| Domain | Table Name | Column Name | Description |
+| --- | --- | --- | --- |
+| Meeting Attendance Report | meeting_attendance_report | meetingId | Refer to the query documentation [here](https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0&tabs=http) for details on the columns of this table |
+| | | totalParticipantCount | |
+| | | meetingStartDateTime | |
+| | | meetingEndDateTime | |
+| | | userEmailAddress | |
+| | | totalAttendanceInSec | |
+| | | role | |
+| | | userId | |
+| | | userDisplayName | |
+| | | userTenantId | |
+| | | attendanceInterval_joinDateTime | |
+| | | attendanceInterval_leaveDateTime | |
+| | | attendanceInterval_durationInSec | |
