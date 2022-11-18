@@ -1,10 +1,10 @@
 # Power BI Template
 
 The Microsoft Insights module Power BI template enables users to quickly explore data. There are four options for exploring this module's Power BI templates.
-- [Power BI with K-12 test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/powerbi/k12_dashboards/Insights%20Module%20Dashboard%20TestData.pbix): Power BI templated with module K-12 test data imported locally. 
-- [Power BI with K-12 direct query](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/powerbi/k12_dashboards/Insights%20Module%20Dashboard%20DirectQuery.pbix): Power BI template connected to a Synapse workspace data source for K-12 data. See instructions below to setup.
-- [Power BI with Higher Ed test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/powerbi/hed_dashboards/Insights%20Module%20Dashboard%20TestData.pbix): Power BI templated with module higher education test data imported locally. 
-- [Power BI with Higher Ed direct query](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/powerbi/hed_dashboards/Insights%20Module%20Dashboard%20DirectQuery.pbix): Power BI template connected to a Synapse workspace data source for higher education data. See instructions below to setup.
+- **[Power BI with K-12 test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/powerbi/k12_dashboards/Insights%20Module%20Dashboard%20TestData.pbix)**: Power BI templated with module K-12 test data imported locally. 
+- **[Power BI with K-12 direct query](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/powerbi/k12_dashboards/Insights%20Module%20Dashboard%20DirectQuery.pbix)**: Power BI template connected to a Synapse workspace data source for K-12 data. See instructions below to setup.
+- **Power BI with Higher Ed test data**: Power BI templated with module higher education test data imported locally. 
+- **Power BI with Higher Ed direct query**: Power BI template connected to a Synapse workspace data source for higher education data. See instructions below to setup.
 
 See [Power BI setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/powerbi#power-bi-setup-instructions) below for details.
 
@@ -12,13 +12,13 @@ See [Power BI setup instructions](https://github.com/microsoft/OpenEduAnalytics/
 
 The Microsot Insights module Power BI template for K-12 data consists of a single page, which summarizes student usage digital engagement in Teams.
 
-#### K-12 Digital Activity Dashboard:
+#### K-12 Digital Engagement in Teams Dashboard:
  - Visualizes all user activities in Microsoft Teams and the types of digital engagement.
  - Filter by School/Class/Days - tools for manipulating the two graphs provided and understanding engagement trends by schools, classes, or days.
  - Total Teams Engagement by Class - shows a breakdown of all signals from the TechActivity table by class.
  - Type of Digital Activity in Teams - shows a breakdown of (currently 4) types of signals, and counting the distinct number of users with that signal per day.
 
-![Digital Activity](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/Insights%20Module%20Sample%20Dashboard.png)
+![Digital Activity in Teams](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_module_sample_k12_dashboard.png)
 
 ## Data Model
 
