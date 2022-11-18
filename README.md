@@ -36,9 +36,8 @@ You can setup this fully functional reference architecture (which includes test 
 `cd clouddrive`\
 `wget https://github.com/microsoft/OpenEduAnalytics/releases/download/OEA_framework_v0.6.1/OEA_v0.6.1.zip`\
 `unzip ./OEA_v0.6.1.zip`
-1) Run the setup script like this (substitute "mysuffix" with your preferred suffix, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
-`./OEA_framework_v0.6.1/setup.sh mysuffix`\
-(for "mysuffix", choose an id or acronym representing your organization - this will be used when naming azure resources that need to be provisioned)
+1) Run the setup script like this (substitute "mysuffix" with your preferred suffix representing your org, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
+`./OEA_framework_v0.6.1/setup.sh mysuffix`
 
 (You can refer to this [setup video](https://youtu.be/m0Y88bQ644E) for a quick walkthrough of this process)
 
