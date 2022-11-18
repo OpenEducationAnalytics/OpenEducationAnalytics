@@ -11,5 +11,6 @@ The OEA framework has introduced significant changes with v0.7 - in order to bet
 If you're setting up a new OEA environment, you can follow the [setup instructions on the main page](https://github.com/microsoft/OpenEduAnalytics#setup) and these framework assets will automatically be installed as part of that process.
 
 You can also choose to import the OEA framework assets into an existing instance of Synapse by following the first 2 steps of the [instructions on the main page](https://github.com/microsoft/OpenEduAnalytics#setup), and replacing the third step with this:
+
 3) Run the framework setup script like this: \
-`./OEA_v0.7/framework/setup.sh existing_synapse_workspace_name existing_storage_account_name existing_keyvault_name`\
+`./OEA_v0.7/framework/setup.sh existing_synapse_workspace_name existing_storage_account_name existing_keyvault_name`
