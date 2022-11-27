@@ -1,0 +1,63 @@
+ {
+    "RefId": "D3E34B35-9D75-101A-8C3D-00AA001A1652",
+    "SchoolCourseInfoRefId": "101A8C3D-00AA-001A-0000-A2E35B359D75",
+    "LocalId": "287-1",
+    "SchoolYear": "2013",
+		"Description" : "Graphics design is a course that goes into depth about...",
+		"TermInfoRefId" : "101G6Y3D-00AA-001A-0000-A2E35B359D75",
+    "MediumOfInstruction": {
+      "Code": "0605",
+			"OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Text",
+            "value": "Online"
+          }
+        ]
+      }
+    },
+    "LanguageOfInstruction": {
+      "Code": "1201",
+			"OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Text",
+            "value": "English"
+          }
+        ]
+      }
+    },
+    "LocationOfInstruction": {
+      "Code": "0340",
+      "OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Text",
+            "value": "NSW DEC"
+          }
+        ]
+      }
+    },
+    "SchoolCourseInfoOverride": {
+      "Override": "Yes",
+      "CourseCode": "CS101A",
+      "StateCourseCode": "08-001A",
+      "DistrictCourseCode": "CS101A",
+      "SubjectArea": {
+        "Code": "05",
+        "OtherCodeList": {
+          "OtherCode": [
+            {
+              "Codeset": "Text",
+              "value": "Graphic Arts for Beginners"
+            }
+          ]
+        }
+      },
+      "CourseTitle": "Graphics Basics",
+      "InstructionalLevel": "Graduate Certificate II"
+    }
+  ,
+	"SummerSchool" : "No", 
+	"CountForAttendance" : "Yes"
+ }
