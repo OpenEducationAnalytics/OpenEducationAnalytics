@@ -88,7 +88,7 @@
 				"typeProperties": {
 					"variableName": "rundate",
 					"value": {
-						"value": "@utcNow('yyyy-MM-dd HH:mm:ss')",
+						"value": "@utcNow(pipeline().parameters.datetimeFormat)",
 						"type": "Expression"
 					}
 				}
@@ -127,6 +127,10 @@
 			"batchType": {
 				"type": "string",
 				"defaultValue": "snapshot"
+			},
+			"datetimeFormat": {
+				"type": "string",
+				"defaultValue": "yyyy-MM-dd HH:mm:ss"
 			}
 		},
 		"variables": {
@@ -141,7 +145,7 @@
 			"name": "OEA_Framework"
 		},
 		"annotations": [],
-		"lastPublishTime": "2022-11-15T20:45:38Z"
+		"lastPublishTime": "2022-11-18T22:13:01Z"
 	},
 	"type": "Microsoft.Synapse/workspaces/pipelines"
 }

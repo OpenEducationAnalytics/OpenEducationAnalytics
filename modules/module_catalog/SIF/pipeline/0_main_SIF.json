@@ -1,0 +1,72 @@
+{
+	"name": "0_main_SIF",
+	"properties": {
+		"activities": [
+			{
+				"name": "1_land_SIF",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "1_land_SIF",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "2_ingest_SIF",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "1_land_SIF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "2_ingest_SIF",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "3_refine_SIF",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "2_ingest_SIF",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "3_refine_SIF",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"parameters": {
+			"workspace": {
+				"type": "string",
+				"defaultValue": "dev"
+			}
+		},
+		"folder": {
+			"name": "SIF"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-18T22:14:38Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}
