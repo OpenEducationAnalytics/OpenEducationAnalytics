@@ -1,0 +1,273 @@
+ [
+ {
+    "RefId": "A8C3D3E3-4B35-9D75-101D-00AA001A1653",
+    "StudentPersonalRefId": "9897466F-200E-4BC1-B9AE-D1507DA15CEF",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "MembershipType": "01",
+    "TimeFrame": "C",
+    "SchoolYear": "2004",
+    "IntendedEntryDate": "2004-01-28",
+    "EntryDate": "2004-01-29",
+    "EntryType": {
+      "Code": "1838"
+    },
+    "YearLevel": {
+      "Code": "10"
+    },
+    "Homeroom": {
+      "SIF_RefObject": "RoomInfo",
+      "value": "D7510D3E-34B3-591A-8C3D-00AA001A1651"
+    },
+    "Advisor": {
+      "SIF_RefObject": "StaffPersonal",
+      "value": "B359D3E3-4D75-101A-8C3D-00AA001A1652"
+    },
+    "Counselor": {
+      "SIF_RefObject": "StaffPersonal",
+      "value": "B459D3E3-4D75-101A-8C3D-00AA001A1653"
+    },
+    "ExitType": {
+      "Code": "1909",
+      "OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Local",
+            "value": "Victoria"
+          }
+        ]
+      }
+    },
+    "FTE": 1.0,
+    "FTPTStatus": "01",
+    "PublishingPermissionList": {
+      "PublishingPermission": [
+        {
+          "PermissionCategory": "OKMediaRelease",
+          "PermissionValue": "N"
+        },
+        {
+          "PermissionCategory": "OKPrintedMaterial",
+          "PermissionValue": "Y"
+        }
+      ]
+    },
+    "CensusAge": 16,
+    "InternationalStudent": "Y",
+    "TravelDetails": {
+      "ToSchool": {
+        "TravelMode": "A",
+        "TravelDetails": "Usually walks to school unless otherwise advised.",
+        "TravelAccompaniment": "I"
+      },
+      "FromSchool": {
+        "TravelMode": "A",
+        "TravelDetails": "Usually walks from school unless otherwise advised.",
+        "TravelAccompaniment": "I"
+      }
+    }
+  },
+  {
+    "RefId": "A8C3D3E3-4B35-9D75-101D-00AA001A1654",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290D",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "MembershipType": "01",
+    "TimeFrame": "C",
+    "SchoolYear": "2004",
+    "IntendedEntryDate": "2004-01-28",
+    "EntryDate": "2004-01-29",
+    "EntryType": {
+      "Code": "1838"
+    },
+    "YearLevel": {
+      "Code": "10"
+    },
+    "Homeroom": {
+      "SIF_RefObject": "RoomInfo",
+      "value": "D7510D3E-34B3-591A-8C3D-00AA001A1651"
+    },
+    "Advisor": {
+      "SIF_RefObject": "StaffPersonal",
+      "value": "B359D3E3-4D75-101A-8C3D-00AA001A1652"
+    },
+    "Counselor": {
+      "SIF_RefObject": "StaffPersonal",
+      "value": "B459D3E3-4D75-101A-8C3D-00AA001A1653"
+    },
+    "ExitType": {
+      "Code": "1909",
+      "OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Local",
+            "value": "Victoria"
+          }
+        ]
+      }
+    },
+    "FTE": 1.0,
+    "FTPTStatus": "01",
+    "PublishingPermissionList": {
+      "PublishingPermission": [
+        {
+          "PermissionCategory": "OKMediaRelease",
+          "PermissionValue": "N"
+        },
+        {
+          "PermissionCategory": "OKPrintedMaterial",
+          "PermissionValue": "Y"
+        }
+      ]
+    },
+    "CensusAge": 16,
+    "InternationalStudent": "Y",
+    "TravelDetails": {
+      "ToSchool": {
+        "TravelMode": "A",
+        "TravelDetails": "Usually walks to school unless otherwise advised.",
+        "TravelAccompaniment": "I"
+      },
+      "FromSchool": {
+        "TravelMode": "A",
+        "TravelDetails": "Usually walks from school unless otherwise advised.",
+        "TravelAccompaniment": "I"
+      }
+    }
+  },
+  {
+    "RefId": "A8C3D3E3-4B35-9D75-101D-00AA001A1655",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290E",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "MembershipType": "01",
+    "TimeFrame": "C",
+    "SchoolYear": "2004",
+    "IntendedEntryDate": "2004-01-28",
+    "EntryDate": "2004-01-29",
+    "EntryType": {
+      "Code": "1838"
+    },
+    "YearLevel": {
+      "Code": "10"
+    },
+    "Homeroom": {
+      "SIF_RefObject": "RoomInfo",
+      "value": "D7510D3E-34B3-591A-8C3D-00AA001A1651"
+    },
+    "Advisor": {
+      "SIF_RefObject": "StaffPersonal",
+      "value": "B359D3E3-4D75-101A-8C3D-00AA001A1652"
+    },
+    "Counselor": {
+      "SIF_RefObject": "StaffPersonal",
+      "value": "B459D3E3-4D75-101A-8C3D-00AA001A1653"
+    },
+    "ExitType": {
+      "Code": "1909",
+      "OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Local",
+            "value": "Victoria"
+          }
+        ]
+      }
+    },
+    "FTE": 1.0,
+    "FTPTStatus": "01",
+    "PublishingPermissionList": {
+      "PublishingPermission": [
+        {
+          "PermissionCategory": "OKMediaRelease",
+          "PermissionValue": "N"
+        },
+        {
+          "PermissionCategory": "OKPrintedMaterial",
+          "PermissionValue": "Y"
+        }
+      ]
+    },
+    "CensusAge": 16,
+    "InternationalStudent": "Y",
+    "TravelDetails": {
+      "ToSchool": {
+        "TravelMode": "A",
+        "TravelDetails": "Usually walks to school unless otherwise advised.",
+        "TravelAccompaniment": "I"
+      },
+      "FromSchool": {
+        "TravelMode": "A",
+        "TravelDetails": "Usually walks from school unless otherwise advised.",
+        "TravelAccompaniment": "I"
+      }
+    }
+  },
+  {
+    "RefId": "A8C3D3E3-4B35-9D75-101D-00AA001A1656",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290C",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "MembershipType": "01",
+    "TimeFrame": "C",
+    "SchoolYear": "2004",
+    "IntendedEntryDate": "2004-01-28",
+    "EntryDate": "2004-01-29",
+    "EntryType": {
+      "Code": "1838"
+    },
+    "YearLevel": {
+      "Code": "10"
+    },
+    "Homeroom": {
+      "SIF_RefObject": "RoomInfo",
+      "value": "D7510D3E-34B3-591A-8C3D-00AA001A1651"
+    },
+    "Advisor": {
+      "SIF_RefObject": "StaffPersonal",
+      "value": "B359D3E3-4D75-101A-8C3D-00AA001A1652"
+    },
+    "Counselor": {
+      "SIF_RefObject": "StaffPersonal",
+      "value": "B459D3E3-4D75-101A-8C3D-00AA001A1653"
+    },
+    "ExitType": {
+      "Code": "1909",
+      "OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Local",
+            "value": "Victoria"
+          }
+        ]
+      }
+    },
+    "FTE": 1.0,
+    "FTPTStatus": "01",
+    "PublishingPermissionList": {
+      "PublishingPermission": [
+        {
+          "PermissionCategory": "OKMediaRelease",
+          "PermissionValue": "N"
+        },
+        {
+          "PermissionCategory": "OKPrintedMaterial",
+          "PermissionValue": "Y"
+        }
+      ]
+    },
+    "CensusAge": 16,
+    "InternationalStudent": "Y",
+    "TravelDetails": {
+      "ToSchool": {
+        "TravelMode": "A",
+        "TravelDetails": "Usually walks to school unless otherwise advised.",
+        "TravelAccompaniment": "I"
+      },
+      "FromSchool": {
+        "TravelMode": "A",
+        "TravelDetails": "Usually walks from school unless otherwise advised.",
+        "TravelAccompaniment": "I"
+      }
+    }
+  }
+ ]
+
+
+

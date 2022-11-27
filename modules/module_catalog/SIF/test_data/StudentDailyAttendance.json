@@ -1,0 +1,110 @@
+[
+{
+    "RefId": "2FFB63B4-CFEF-4820-8501-E7D1E54555CB",
+    "StudentPersonalRefId": "9897466F-200E-4BC1-B9AE-D1507DA15CEF",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "Date": "2002-11-01",
+    "SchoolYear": "2003",
+    "DayValue": "Partial",
+    "AttendanceCode": {
+      "Code": "200",
+      "OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Local",
+            "value": "S"
+          },
+          {
+            "Codeset": "Text",
+            "value": "C"
+          }
+        ]
+      }
+    },
+    "AttendanceStatus": "01",
+    "TimeIn": "13:30:00",
+    "TimeOut": "12:05:00",
+    "AttendanceNote": "Left for Orthodontist appt. and returned to school afterward"
+  },
+  {
+    "RefId": "2FFB63B4-CFEF-4830-8501-E7D1E54555CB",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290D",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "Date": "2002-11-01",
+    "SchoolYear": "2003",
+    "DayValue": "Partial",
+    "AttendanceCode": {
+      "Code": "200",
+      "OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Local",
+            "value": "S"
+          },
+          {
+            "Codeset": "Text",
+            "value": "C"
+          }
+        ]
+      }
+    },
+    "AttendanceStatus": "01",
+    "TimeIn": "13:30:00",
+    "TimeOut": "12:05:00",
+    "AttendanceNote": "Left for Orthodontist appt. and returned to school afterward"
+  },
+  {
+    "RefId": "2FFB63B4-CFEF-4840-8501-E7D1E54555CB",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290E",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "Date": "2002-11-01",
+    "SchoolYear": "2003",
+    "DayValue": "Partial",
+    "AttendanceCode": {
+      "Code": "200",
+      "OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Local",
+            "value": "S"
+          },
+          {
+            "Codeset": "Text",
+            "value": "C"
+          }
+        ]
+      }
+    },
+    "AttendanceStatus": "01",
+    "TimeIn": "13:30:00",
+    "TimeOut": "12:05:00",
+    "AttendanceNote": "Left for Orthodontist appt. and returned to school afterward"
+  },
+  {
+    "RefId": "2FFB63B4-CFEF-4850-8501-E7D1E54555CB",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290C",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "Date": "2002-11-01",
+    "SchoolYear": "2003",
+    "DayValue": "Partial",
+    "AttendanceCode": {
+      "Code": "200",
+      "OtherCodeList": {
+        "OtherCode": [
+          {
+            "Codeset": "Local",
+            "value": "S"
+          },
+          {
+            "Codeset": "Text",
+            "value": "C"
+          }
+        ]
+      }
+    },
+    "AttendanceStatus": "01",
+    "TimeIn": "13:30:00",
+    "TimeOut": "12:05:00",
+    "AttendanceNote": "Left for Orthodontist appt. and returned to school afterward"
+  }
+]    

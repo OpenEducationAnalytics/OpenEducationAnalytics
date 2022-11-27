@@ -1,0 +1,155 @@
+{
+    "RefId": "7C834EA9-EDA1-2090-347F-83297E1C290F",
+    "LocalId": "P1234567",
+    "OtherIdList": {
+      "OtherId": [
+        {
+          "Type": "Health Care Card",
+          "value": "098765"
+        },
+        {
+          "Type": "Seniors Card",
+          "value": "123456789"
+        }
+      ]
+    },
+    "PersonInfo": {
+      "Name": {
+        "Type": "LGL",
+        "FamilyName": "Smith",
+        "GivenName": "Fred",
+        "FullName": "Fred Smith"
+      },
+      "OtherNames": {
+        "Name": [
+          {
+            "Type": "AKA",
+            "FamilyName": "Anderson",
+            "GivenName": "Samuel",
+            "FullName": "Samuel Anderson"
+          },
+          {
+            "Type": "PRF",
+            "FamilyName": "Rowinski",
+            "GivenName": "Sam",
+            "FullName": "Sam Rowinski "
+          }
+        ]
+      },
+      "Demographics": {
+        "IndigenousStatus": "3",
+        "Sex": "1",
+        "BirthDate": "1990-09-26",
+        "BirthDateVerification": "1004",
+        "PlaceOfBirth": "Clayton",
+        "StateOfBirth": "VIC",
+        "CountryOfBirth": "1101",
+        "CountriesOfCitizenship": {
+          "CountryOfCitizenship": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountriesOfResidency": {
+          "CountryOfResidency": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountryArrivalDate": "1990-09-26",
+        "AustralianCitizenshipStatus": "1",
+        "EnglishProficiency": {
+          "Code": "1"
+        },
+        "LanguageList": {
+          "Language": [
+            {
+              "Code": "0001",
+              "LanguageType": "1"
+            }
+          ]
+        },
+        "DwellingArrangement": {
+          "Code": "1671"
+        },
+        "Religion": {
+          "Code": "2013"
+        },
+        "ReligiousEventList": {
+          "ReligiousEvent": [
+            {
+              "Type": "Baptism",
+              "Date": "2000-09-01"
+            },
+            {
+              "Type": "Christmas",
+              "Date": "2009-12-24"
+            }
+          ]
+        },
+        "ReligiousRegion": "The Religion Region",
+        "PermanentResident": "P",
+        "VisaSubClass": "101",
+        "VisaStatisticalCode": "05"
+      },
+      "AddressList": {
+        "Address": [
+          {
+            "Type": "0123",
+            "Role": "012B",
+            "Street": {
+              "Line1": "Unit1/10",
+              "Line2": "Barkley Street"
+            },
+            "City": "Yarra Glenn",
+            "StateProvince": "VIC",
+            "Country": "1101",
+            "PostalCode": "9999"
+          },
+          {
+            "Type": "0123A",
+            "Role": "013A",
+            "Street": {
+              "Line1": "34 Term Address Street"
+            },
+            "City": "Home Town",
+            "StateProvince": "WA",
+            "Country": "1101",
+            "PostalCode": "9999"
+          }
+        ]
+      },
+      "PhoneNumberList": {
+        "PhoneNumber": [
+          {
+            "Type": "0096",
+            "Number": "03 9637-2289",
+            "Extension": "72289",
+            "ListedStatus": "Y"
+          },
+          {
+            "Type": "0888",
+            "Number": "0437-765-234",
+            "ListedStatus": "N"
+          }
+        ]
+      },
+      "EmailList": {
+        "Email": [
+          {
+            "Type": "01",
+            "value": "fsmith@yahoo.com"
+          },
+          {
+            "Type": "02",
+            "value": "freddy@gmail.com"
+          }
+        ]
+      }
+    },
+    "EmploymentType": "4",
+    "SchoolEducationalLevel": "3",
+    "NonSchoolEducation": "6",
+    "Employment": "Fletcher",
+    "Workplace": "Bob's Arrows"
+  }

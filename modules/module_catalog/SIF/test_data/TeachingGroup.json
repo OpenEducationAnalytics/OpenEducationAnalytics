@@ -1,0 +1,90 @@
+ {
+      "RefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+      "SchoolYear": "2008",
+      "LocalId": "20087ASPN",
+      "ShortName": "7A SPN",
+      "LongName": "Year 7A Maths - Space and Numbers",
+      "Set": "4",
+      "Block": "6",
+      "CurriculumLevel": "VELS Level 5",
+      "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",			
+      "StudentList": {
+        "TeachingGroupStudent": [
+          {
+            "StudentPersonalRefId": "9897466F-200E-4BC1-B9AE-D1507DA15CEF",
+            "StudentLocalId": "SMI001",
+            "Name": {
+              "Type": "LGL",
+              "FamilyName": "Smith",
+              "GivenName": "Peter"
+            }
+          },
+          {
+            "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290D",
+            "StudentLocalId": "SMI002",
+            "Name": {
+              "Type": "LGL",
+              "FamilyName": "Smith",
+              "GivenName": "Jennifer"
+            }
+          },
+          {
+            "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290E",
+            "StudentLocalId": "SMI003",
+            "Name": {
+              "Type": "LGL",
+              "FamilyName": "Smith",
+              "GivenName": "Terence"
+            }
+          },
+          {
+            "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290C",
+            "StudentLocalId": "SMI004",
+            "Name": {
+              "Type": "LGL",
+              "FamilyName": "Simson",
+              "GivenName": "Bart"
+            }
+          }
+        ]
+      },
+      "TeacherList": {
+        "TeachingGroupTeacher": [
+          {
+            "StaffPersonalRefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+            "StaffLocalId": "SMI1",
+            "Name": {
+              "Type": "LGL",
+              "FamilyName": "Smith",
+              "GivenName": "Thomas"
+            },
+            "Association": "Class Teacher"
+          },
+          {
+            "StaffPersonalRefId": "A8CCCCE3-5B35-9D75-101D-00AA001A0000",
+            "StaffLocalId": "LONG2",
+            "Name": {
+              "Type": "LGL",
+              "FamilyName": "Long",
+              "GivenName": "Tamara"
+            },
+            "Association": "Integration Aide"
+          }
+        ]
+      },
+      "TeachingGroupPeriodList": {
+        "TeachingGroupPeriod": [
+          {
+            "DayId": "M",
+            "PeriodId": "2"
+          },
+          {
+            "DayId": "F",
+            "PeriodId": "6"
+          }
+        ]
+      }
+    }
+  
+
+

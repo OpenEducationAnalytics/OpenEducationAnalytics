@@ -1,0 +1,102 @@
+[
+{
+    "RefId": "5810E283-E928-459C-BBA7-6EFE1963F784",
+    "SchoolYear": "2022",
+    "TermInfoRefId": "3E59D751-01A8-0A70-0163-35DE097A0777",
+		"LocalTermCode": "termcode-1",
+    "StudentPersonalRefId": "9897466F-200E-4BC1-B9AE-D1507DA15CEF",
+		"StudentStateProvinceId": "PID-1",
+		"StudentLocalId": "LID-1",
+    "YearLevel": {
+      "Code": "10"
+    },
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+		"ClassLocalId": "CLID-1",
+    "StaffPersonalRefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+		"StaffLocalId": "SLID-1",
+		"LearningStandardList": "LSList",
+    "CurriculumCode": "AUSVELS",
+    "CurriculumNodeCode": "MATNUM",
+    "Score": "10",
+    "SpecialCircumstanceLocalCode": "SCMP",
+    "ManagedPathwayLocalCode": "MPOMP",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+		"SchoolLocalId": "SLID-1",
+		"SchoolCommonwealthId": "SCID-1"
+  },
+  {
+    "RefId": "5810E283-E928-559C-BBA7-6EFE1963F784",
+    "SchoolYear": "2022",
+    "TermInfoRefId": "3E59D751-01A8-0A70-0163-35DE097A0777",
+		"LocalTermCode": "termcode-1",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290D",
+		"StudentStateProvinceId": "PID-1",
+		"StudentLocalId": "LID-1",
+    "YearLevel": {
+      "Code": "10"
+    },
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+		"ClassLocalId": "CLID-1",
+    "StaffPersonalRefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+		"StaffLocalId": "SLID-1",
+		"LearningStandardList": "LSList",
+    "CurriculumCode": "AUSVELS",
+    "CurriculumNodeCode": "MATNUM",
+    "Score": "10",
+    "SpecialCircumstanceLocalCode": "SCMP",
+    "ManagedPathwayLocalCode": "MPOMP",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+		"SchoolLocalId": "SLID-1",
+		"SchoolCommonwealthId": "SCID-1"
+  },
+  {
+    "RefId": "5810E283-E928-659C-BBA7-6EFE1963F784",
+    "SchoolYear": "2022",
+    "TermInfoRefId": "3E59D751-01A8-0A70-0163-35DE097A0777",
+		"LocalTermCode": "termcode-1",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290E",
+		"StudentStateProvinceId": "PID-1",
+		"StudentLocalId": "LID-1",
+    "YearLevel": {
+      "Code": "10"
+    },
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+		"ClassLocalId": "CLID-1",
+    "StaffPersonalRefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+		"StaffLocalId": "SLID-1",
+		"LearningStandardList": "LSList",
+    "CurriculumCode": "AUSVELS",
+    "CurriculumNodeCode": "MATNUM",
+    "Score": "10",
+    "SpecialCircumstanceLocalCode": "SCMP",
+    "ManagedPathwayLocalCode": "MPOMP",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+		"SchoolLocalId": "SLID-1",
+		"SchoolCommonwealthId": "SCID-1"
+  },
+  {
+    "RefId": "5810E283-E928-759C-BBA7-6EFE1963F784",
+    "SchoolYear": "2022",
+    "TermInfoRefId": "3E59D751-01A8-0A70-0163-35DE097A0777",
+		"LocalTermCode": "termcode-1",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290C",
+		"StudentStateProvinceId": "PID-1",
+		"StudentLocalId": "LID-1",
+    "YearLevel": {
+      "Code": "10"
+    },
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+		"ClassLocalId": "CLID-1",
+    "StaffPersonalRefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+		"StaffLocalId": "SLID-1",
+		"LearningStandardList": "LSList",
+    "CurriculumCode": "AUSVELS",
+    "CurriculumNodeCode": "MATNUM",
+    "Score": "10",
+    "SpecialCircumstanceLocalCode": "SCMP",
+    "ManagedPathwayLocalCode": "MPOMP",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+		"SchoolLocalId": "SLID-1",
+		"SchoolCommonwealthId": "SCID-1"
+  }
+]    

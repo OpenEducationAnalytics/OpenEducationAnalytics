@@ -1,0 +1,39 @@
+{
+    "RefId": "11737E21-4A7C-46BD-BA43-01CADCA75C89",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "Name": "Letter Grades",
+		"PercentageMinimum": 35.00,
+		"PercentageMaximum": 100.00,
+		"PercentagePassingGrade": 50.00,
+		"NumericPrecision": 10,
+		"NumericScale": 1,
+		"NumericLow": 35,
+		"NumericHigh": 100,
+		"NumericPassingGrade": 50,
+		"NarrativeMaximumSize": 255,
+    "ValidLetterMarkList": {
+      "ValidLetterMark": [
+        {
+          "Code": "A",
+          "NumericEquivalent": 100
+        },
+        {
+          "Code": "B",
+          "NumericEquivalent": 90
+        },
+        {
+          "Code": "C",
+          "NumericEquivalent": 80
+        },
+        {
+          "Code": "D",
+          "NumericEquivalent": 70
+        },
+        {
+          "Code": "F",
+          "NumericEquivalent": 60
+        }
+      ]
+    },
+    "Narrative": "A Narrative about this Grade, letters and their numeric equivalent"
+  }

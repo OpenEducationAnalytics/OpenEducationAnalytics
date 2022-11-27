@@ -1,0 +1,149 @@
+{
+    "RefId": "D3E34B35-9D75-101A-8C3D-00AA001A1652",
+    "LocalId": "01011234",
+    "StateProvinceId": "01011234",
+    "CommonwealthId": "012345",
+    "ParentCommonwealthId": "012346",
+    "SchoolName": "Lincoln Secondary College",
+    "LEAInfoRefId": "73648462-8886-24AA-5294-BC6380173276",
+    "OtherLEA": {
+      "SIF_RefObject": "LEAInfo",
+      "value": "AA648462-8886-24AA-5294-BC638017320B"
+    },
+    "SchoolDistrict": "Southern Metropolitan Region",
+    "SchoolType": "Pri/Sec",
+    "SchoolFocusList": {
+      "SchoolFocus": [
+        "01",
+        "03"
+      ]
+    },
+    "SchoolURL": "http://www.lincolnsc.edu.vic.au",
+    "PrincipalInfo": {
+      "ContactName": {
+        "Type": "LGL",
+        "Title": "Mr",
+        "FamilyName": "Mason",
+        "GivenName": "Francis",
+        "MiddleName": "Frank",
+        "Suffix": "Jr.",
+        "FullName": "Mr Frank Mason Jr."
+      },
+      "ContactTitle": "Senior School Principal"
+    },
+    "SchoolContactList": {
+      "SchoolContact": [
+        {
+          "PublishInDirectory": "Y",
+          "ContactInfo": {
+            "Name": {
+              "Type": "LGL",
+              "Title": "Mr",
+              "FamilyName": "Miller",
+              "GivenName": "James",
+              "MiddleName": "Mark",
+              "Suffix": "Jr.",
+              "FullName": "Mr James Mark Miller Jr."
+            },
+            "PositionTitle": "Business Manager",
+            "Role": "School Information Contact Point",
+            "Address": {
+              "Type": "0123",
+              "Role": "012B",
+              "Street": {
+                "Line1": "23 Nicholson Street"
+              },
+              "City": "Carnegie",
+              "StateProvince": "VIC",
+              "Country": "1101",
+              "PostalCode": "3004",
+              "GridLocation": {
+                "Latitude": 23.9876,
+                "Longitude": -98.8765
+              }
+            },
+            "EmailList": {
+              "Email": [
+                {
+                  "Type": "01",
+                  "value": "jmiller@lsc.vic.edu.au"
+                },
+                {
+                  "Type": "02",
+                  "value": "jmiller@yahoo.com.au"
+                }
+              ]
+            },
+            "PhoneNumberList": {
+              "PhoneNumber": [
+                {
+                  "Type": "0096",
+                  "Number": "03 9637-2000",
+                  "Extension": "72345",
+                  "ListedStatus": "Y"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "PhoneNumberList": {
+      "PhoneNumber": [
+        {
+          "Type": "0096",
+          "Number": "03 9637-2000"
+        }
+      ]
+    },
+    "SessionType": "0827",
+    "YearLevels": {
+      "YearLevel": [
+        {
+          "Code": "6"
+        },
+        {
+          "Code": "7"
+        },
+        {
+          "Code": "8"
+        },
+        {
+          "Code": "9"
+        },
+        {
+          "Code": "10"
+        },
+        {
+          "Code": "11"
+        },
+        {
+          "Code": "12"
+        }
+      ]
+    },
+    "ARIA": 1.0,
+    "OperationalStatus": "O",
+    "FederalElectorate": "216",
+    "Campus": {
+      "SchoolCampusId": "01",
+      "CampusType": "Camp",
+      "AdminStatus": "Y"
+    },
+    "SchoolSector": "NG",
+    "IndependentSchool": "Y",
+    "NonGovSystemicStatus": "S",
+    "System": "0003",
+    "ReligiousAffiliation": "2171",
+    "SchoolGeographicLocation": "10",
+    "LocalGovernmentArea": "Cardinia",
+    "JurisdictionLowerHouse": "Unknown",
+    "SLA": "205801452",
+    "SchoolCoEdStatus": "C",
+    "SchoolGroupList": {
+      "SchoolGroup": [
+        "YVC",
+        "EastSec01"
+      ]
+    }
+  }

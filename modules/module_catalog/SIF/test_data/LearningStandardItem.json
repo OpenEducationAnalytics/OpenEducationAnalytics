@@ -1,0 +1,100 @@
+{
+    "RefId": "A5D75F78-9175-101B-8C7E-08EA123A8234",
+    "StandardSettingBody": {
+      "Country": "1101",
+      "StateProvince": "VIC",
+      "SettingBodyName": "DEECD"
+    },
+    "StandardHierarchyLevel": {
+      "Number": 3,
+      "Description": "AchievementStandard"
+    },
+    "PredecessorItems": {
+      "LearningStandardItemRefId": [
+        "DE072A87-EFAD-4B77-8AF9-FAF83C94839E"
+      ]
+    },
+    "StatementCodes": {
+      "StatementCode": [
+        "Mathematics.2.03.a"
+      ]
+    },
+    "Statements": {
+      "Statement": [
+        "Counting from 0 to 100 using whole numbers"
+      ]
+    },
+    "YearLevels": {
+      "YearLevel": [
+        {
+          "Code": "4"
+        },
+        {
+          "Code": "5"
+        }
+      ]
+    },
+    "ACStrandSubjectArea": {
+      "ACStrand": "M",
+      "SubjectArea": {
+        "Code": "Maths",
+        "OtherCodeList": {
+          "OtherCode": [
+            {
+              "Codeset": "Text",
+              "value": "Mathematics"
+            }
+          ]
+        }
+      }
+    },
+    "StandardIdentifier": {
+      "YearCreated": "2003",
+      "ACStrandSubjectArea": {
+        "ACStrand": "M",
+        "SubjectArea": {
+          "Code": "Maths",
+          "OtherCodeList": {
+            "OtherCode": [
+              {
+                "Codeset": "Text",
+                "value": "Mathematics"
+              }
+            ]
+          }
+        }
+      },
+      "StandardNumber": "04",
+      "YearLevels": {
+        "YearLevel": [
+          {
+            "Code": "5"
+          },
+          {
+            "Code": "6"
+          },
+          {
+            "Code": "7"
+          }
+        ]
+      },
+      "Organization": "DEECD VIC"
+    },
+    "LearningStandardDocumentRefId": "8454189F-6BBC-26C6-B97D-DB4B6D0E3AC8",
+    "RelatedLearningStandardItems": {
+      "LearningStandardItemRefId": [
+        {
+          "RelationshipType": "Content",
+          "value": "869670E8-540A-4350-9515-AFB767FADD9A"
+        },
+        {
+          "RelationshipType": "State",
+          "value": "B14FDAB4-37CA-4565-A976-5A5B824545C4"
+        },
+        {
+          "RelationshipType": "ContentElaboration",
+          "value": "D5440A11-F5A4-4AC1-9202-61ECBE5A29F6"
+        }
+      ]
+    }
+  }

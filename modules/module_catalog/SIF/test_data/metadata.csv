@@ -1,0 +1,25 @@
+Entity Name,Attribute Name,Attribute Data Type,Pseudonymization
+studentpersonal,,,
+,AttendanceCode,string,no-op
+,AttendanceNote,string,no-op
+,AttendanceStatus,string,no-op
+,Date,string,no-op
+,DayValue,string,no-op
+,RefId,string,hash
+,SchoolInfoRefId,string,no-op
+,SchoolYear,string,no-op
+,StudentPersonalRefId,string,no-op
+,TimeIn,string,no-op
+,TimeOut,string,no-op
+studentdailyattendance,,,
+,AttendanceCode,string,no-op
+,AttendanceNote,string,no-op
+,AttendanceStatus,string,no-op
+,Date,string,no-op
+,DayValue,string,no-op
+,RefId,string,hash
+,SchoolInfoRefId,string,no-op
+,SchoolYear,string,no-op
+,StudentPersonalRefId,string,no-op
+,TimeIn,string,no-op
+,TimeOut,string,no-op

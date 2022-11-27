@@ -1,0 +1,82 @@
+ [
+ {
+    "RefId": "D3E34B35-9D75-101A-8C3D-00AA001A165A",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "SchoolYear": "2008",
+    "StaffPersonalRefId": "A8CCCCE3-5B35-9D75-101D-00AA001A0000",
+    "Description": "VCE Science Teacher",
+    "PrimaryAssignment": "Y",
+    "JobStartDate": "2000-09-05",
+    "JobEndDate": "2001-06-25",
+    "JobFTE": 1.0,
+    "JobFunction": "Teacher",
+    "StaffSubjectList": {
+      "StaffSubject": [
+        {
+          "PreferenceNumber": 1,
+          "SubjectLocalId": "English"
+        },
+        {
+          "PreferenceNumber": 2,
+          "SubjectLocalId": "Mathematics"
+        },
+        {
+          "PreferenceNumber": 3,
+          "SubjectLocalId": "Science"
+        }
+      ]
+    },
+    "YearLevels": {
+      "YearLevel": [
+        {
+          "Code": "11"
+        },
+        {
+          "Code": "12"
+        }
+      ]
+    },
+    "CasualReliefTeacher": "N",
+    "AvailableForTimetable": "Y"
+  },
+  {
+    "RefId": "D3E34B35-9D75-101A-8C3D-00AA001A165B",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "SchoolYear": "2008",
+    "StaffPersonalRefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+    "Description": "VCE Math Teacher",
+    "PrimaryAssignment": "Y",
+    "JobStartDate": "2000-09-05",
+    "JobEndDate": "2001-06-25",
+    "JobFTE": 1.0,
+    "JobFunction": "Teacher",
+    "StaffSubjectList": {
+      "StaffSubject": [
+        {
+          "PreferenceNumber": 1,
+          "SubjectLocalId": "English"
+        },
+        {
+          "PreferenceNumber": 2,
+          "SubjectLocalId": "Mathematics"
+        },
+        {
+          "PreferenceNumber": 3,
+          "SubjectLocalId": "Science"
+        }
+      ]
+    },
+    "YearLevels": {
+      "YearLevel": [
+        {
+          "Code": "11"
+        },
+        {
+          "Code": "12"
+        }
+      ]
+    },
+    "CasualReliefTeacher": "N",
+    "AvailableForTimetable": "Y"
+  }
+]

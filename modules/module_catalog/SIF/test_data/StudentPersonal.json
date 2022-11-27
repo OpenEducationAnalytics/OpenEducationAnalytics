@@ -1,0 +1,986 @@
+[
+  {
+    "RefId": "7C834EA9-EDA1-2090-347F-83297E1C290C",
+    "AlertMessages": {
+      "AlertMessage": [
+        {
+          "Type": "Legal",
+          "value": "Mother is legal guardian"
+        }
+      ]
+    },
+    "MedicalAlertMessages": {
+      "MedicalAlertMessage": [
+        {
+          "Severity": "Severe",
+          "value": "Student has Peanut Allergy"
+        },
+        {
+          "Severity": "Moderate",
+          "value": "Student has Diabetes"
+        }
+      ]
+    },
+    "LocalId": "S1234567",
+    "StateProvinceId": "ABC1234",
+    "NationalUniqueStudentIdentifier": "12345678",
+    "ElectronicIdList": {
+      "ElectronicId": [
+        {
+          "Type": "03",
+          "value": "ZZZZZZ21"
+        },
+        {
+          "Type": "03",
+          "value": "ZZZZZZ22"
+        }
+      ]
+    },
+    "OtherIdList": {
+      "OtherId": [
+        {
+          "Type": "PreviousNAPPlatformStudentId",
+          "value": "888rdgf"
+        },
+        {
+          "Type": "DiocesanStudentId",
+          "value": "1234"
+        }
+      ]
+    },
+    "PersonInfo": {
+      "Name": {
+        "Type": "LGL",
+        "FamilyName": "Sideshow",
+        "GivenName": "Bob",
+        "FullName": "Bob Sideshow"
+      },
+      "OtherNames": {
+        "Name": [
+          {
+            "Type": "AKA",
+            "FamilyName": "Anderson",
+            "GivenName": "Samuel",
+            "FullName": "Samuel Anderson"
+          },
+          {
+            "Type": "PRF",
+            "FamilyName": "Rowinski",
+            "GivenName": "Sam",
+            "FullName": "Sam Rowinski "
+          }
+        ]
+      },
+      "Demographics": {
+        "IndigenousStatus": "3",
+        "Sex": "1",
+        "BirthDate": "1990-09-26",
+        "BirthDateVerification": "1004",
+        "PlaceOfBirth": "Clayton",
+        "StateOfBirth": "VIC",
+        "CountryOfBirth": "1101",
+        "CountriesOfCitizenship": {
+          "CountryOfCitizenship": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountriesOfResidency": {
+          "CountryOfResidency": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountryArrivalDate": "1990-09-26",
+        "AustralianCitizenshipStatus": "1",
+        "EnglishProficiency": {
+          "Code": "1"
+        },
+        "LanguageList": {
+          "Language": [
+            {
+              "Code": "0001",
+              "LanguageType": "1"
+            }
+          ]
+        },
+        "DwellingArrangement": {
+          "Code": "1671"
+        },
+        "Religion": {
+          "Code": "2013"
+        },
+        "ReligiousEventList": {
+          "ReligiousEvent": [
+            {
+              "Type": "Baptism",
+              "Date": "2000-09-01"
+            },
+            {
+              "Type": "Christmas",
+              "Date": "2009-12-24"
+            }
+          ]
+        },
+        "ReligiousRegion": "The Religion Region",
+        "PermanentResident": "P",
+        "VisaSubClass": "101",
+        "VisaStatisticalCode": "05",
+        "VisaSubClassList": {
+          "VisaSubClass": [
+            {
+              "Code": "401",
+              "VisaExpiryDate": "2019-07-25",
+              "ATEExpiryDate": "2016-12-26",
+              "ATEStartDate": "2017-12-26",
+              "VisaStatisticalCode": "05"
+            }
+          ]
+        },
+        "Passport": {
+          "Number": "9",
+          "ExpiryDate": "2030-12-11",
+          "Country": "4111"
+        }
+      },
+      "AddressList": {
+        "Address": [
+          {
+            "Type": "0123",
+            "Role": "2382",
+            "Street": {
+              "Line1": "Unit1/10",
+              "Line2": "Barkley Street"
+            },
+            "City": "Yarra Glenn",
+            "StateProvince": "VIC",
+            "Country": "1101",
+            "PostalCode": "9999"
+          },
+          {
+            "Type": "0123A",
+            "Role": "013A",
+            "Street": {
+              "Line1": "34 Term Address Street"
+            },
+            "City": "Home Town",
+            "StateProvince": "WA",
+            "Country": "1101",
+            "PostalCode": "9999"
+          }
+        ]
+      },
+      "PhoneNumberList": {
+        "PhoneNumber": [
+          {
+            "Type": "0096",
+            "Number": "03 9637-2289",
+            "Extension": "72289",
+            "ListedStatus": "Y"
+          },
+          {
+            "Type": "0888",
+            "Number": "0412-345-678",
+            "ListedStatus": "N"
+          }
+        ]
+      },
+      "EmailList": {
+        "Email": [
+          {
+            "Type": "01",
+            "value": "Sideshow.Bob@yahoo.com"
+          },
+          {
+            "Type": "02",
+            "value": "freddy@gmail.com"
+          }
+        ]
+      }
+    },
+    "ProjectedGraduationYear": "2014",
+    "OnTimeGraduationYear": "2012",
+    "MostRecent": {
+      "SchoolLocalId": "S1234567",
+      "HomeroomLocalId": "hr12345",
+      "YearLevel": {
+        "Code": "P"
+      },
+      "FTE": 0.5,
+      "Parent1Language": "1201",
+      "Parent2Language": "1201",
+      "LocalCampusId": "D",
+      "SchoolACARAId": "VIC687",
+      "Homegroup": "7A",
+      "ClassCode": "English 7D",
+      "MembershipType": "02",
+      "FFPOS": "2",
+      "ReportingSchoolId": "VIC670",
+      "OtherEnrollmentSchoolACARAId": "VIC6273"
+    },
+    "AcceptableUsePolicy": "Y",
+    "EconomicDisadvantage": "N",
+    "ESL": "Y",
+    "ESLDateAssessed": "2016-04-23",
+    "YoungCarersRole": "N",
+    "Disability": "N",
+    "IntegrationAide": "N",
+    "EducationSupport": "N",
+    "HomeSchooledStudent": "N",
+    "IndependentStudent": "N",
+    "Sensitive": "N",
+    "LocalCodeList": {
+      "LocalCode": [
+        {
+          "LocalisedCode": "0921",
+          "Description": "Serbia Montenegro",
+          "Element": "StudentPersonal/PersonInfo/Demographics/CountryOfBirth"
+        },
+        {
+          "LocalisedCode": "0921",
+          "Description": "Serbia Montenegro",
+          "Element": "StudentPersonal/PersonInfo/Demographics/CountriesOfCitizenship/CountryOfCitizenship",
+          "ListIndex": 1
+        }
+      ]
+    }
+  },
+  {
+    "RefId": "7C834EA9-EDA1-2090-347F-83297E1C290E",
+    "AlertMessages": {
+      "AlertMessage": [
+        {
+          "Type": "Legal",
+          "value": "Mother is legal guardian"
+        }
+      ]
+    },
+    "MedicalAlertMessages": {
+      "MedicalAlertMessage": [
+        {
+          "Severity": "Severe",
+          "value": "Student has Peanut Allergy"
+        },
+        {
+          "Severity": "Moderate",
+          "value": "Student has Diabetes"
+        }
+      ]
+    },
+    "LocalId": "S1234981",
+    "StateProvinceId": "ABC1234",
+    "NationalUniqueStudentIdentifier": "12345981",
+    "ElectronicIdList": {
+      "ElectronicId": [
+        {
+          "Type": "03",
+          "value": "ZZZZZZ21"
+        },
+        {
+          "Type": "03",
+          "value": "ZZZZZZ22"
+        }
+      ]
+    },
+    "OtherIdList": {
+      "OtherId": [
+        {
+          "Type": "PreviousNAPPlatformStudentId",
+          "value": "888rdgf"
+        },
+        {
+          "Type": "DiocesanStudentId",
+          "value": "1234"
+        }
+      ]
+    },
+    "PersonInfo": {
+      "Name": {
+        "Type": "LGL",
+        "FamilyName": "Simpson",
+        "GivenName": "Marge",
+        "FullName": "Marge Simpson"
+      },
+      "OtherNames": {
+        "Name": [
+          {
+            "Type": "AKA",
+            "FamilyName": "Anderson",
+            "GivenName": "Samuel",
+            "FullName": "Samuel Anderson"
+          },
+          {
+            "Type": "PRF",
+            "FamilyName": "Rowinski",
+            "GivenName": "Sam",
+            "FullName": "Sam Rowinski "
+          }
+        ]
+      },
+      "Demographics": {
+        "IndigenousStatus": "3",
+        "Sex": "1",
+        "BirthDate": "1990-09-26",
+        "BirthDateVerification": "1004",
+        "PlaceOfBirth": "Clayton",
+        "StateOfBirth": "VIC",
+        "CountryOfBirth": "1101",
+        "CountriesOfCitizenship": {
+          "CountryOfCitizenship": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountriesOfResidency": {
+          "CountryOfResidency": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountryArrivalDate": "1990-09-26",
+        "AustralianCitizenshipStatus": "1",
+        "EnglishProficiency": {
+          "Code": "1"
+        },
+        "LanguageList": {
+          "Language": [
+            {
+              "Code": "0001",
+              "LanguageType": "1"
+            }
+          ]
+        },
+        "DwellingArrangement": {
+          "Code": "1671"
+        },
+        "Religion": {
+          "Code": "2013"
+        },
+        "ReligiousEventList": {
+          "ReligiousEvent": [
+            {
+              "Type": "Baptism",
+              "Date": "2000-09-01"
+            },
+            {
+              "Type": "Christmas",
+              "Date": "2009-12-24"
+            }
+          ]
+        },
+        "ReligiousRegion": "The Religion Region",
+        "PermanentResident": "P",
+        "VisaSubClass": "101",
+        "VisaStatisticalCode": "05",
+        "VisaSubClassList": {
+          "VisaSubClass": [
+            {
+              "Code": "401",
+              "VisaExpiryDate": "2019-07-25",
+              "ATEExpiryDate": "2016-12-26",
+              "ATEStartDate": "2017-12-26",
+              "VisaStatisticalCode": "05"
+            }
+          ]
+        },
+        "Passport": {
+          "Number": "9",
+          "ExpiryDate": "2030-12-11",
+          "Country": "4111"
+        }
+      },
+      "AddressList": {
+        "Address": [
+          {
+            "Type": "0123",
+            "Role": "2382",
+            "Street": {
+              "Line1": "Unit1/10",
+              "Line2": "Barkley Street"
+            },
+            "City": "Yarra Glenn",
+            "StateProvince": "VIC",
+            "Country": "1101",
+            "PostalCode": "9999"
+          },
+          {
+            "Type": "0123A",
+            "Role": "013A",
+            "Street": {
+              "Line1": "34 Term Address Street"
+            },
+            "City": "Home Town",
+            "StateProvince": "WA",
+            "Country": "1101",
+            "PostalCode": "9999"
+          }
+        ]
+      },
+      "PhoneNumberList": {
+        "PhoneNumber": [
+          {
+            "Type": "0096",
+            "Number": "03 9637-2289",
+            "Extension": "72289",
+            "ListedStatus": "Y"
+          },
+          {
+            "Type": "0888",
+            "Number": "0412-345-678",
+            "ListedStatus": "N"
+          }
+        ]
+      },
+      "EmailList": {
+        "Email": [
+          {
+            "Type": "01",
+            "value": "Marge.Simpson@yahoo.com"
+          },
+          {
+            "Type": "02",
+            "value": "Marge.Simpson@gmail.com"
+          }
+        ]
+      }
+    },
+    "ProjectedGraduationYear": "2014",
+    "OnTimeGraduationYear": "2012",
+    "MostRecent": {
+      "SchoolLocalId": "S1234567",
+      "HomeroomLocalId": "hr12345",
+      "YearLevel": {
+        "Code": "P"
+      },
+      "FTE": 0.5,
+      "Parent1Language": "1201",
+      "Parent2Language": "1201",
+      "LocalCampusId": "D",
+      "SchoolACARAId": "VIC687",
+      "Homegroup": "7A",
+      "ClassCode": "English 7D",
+      "MembershipType": "02",
+      "FFPOS": "2",
+      "ReportingSchoolId": "VIC670",
+      "OtherEnrollmentSchoolACARAId": "VIC6273"
+    },
+    "AcceptableUsePolicy": "Y",
+    "EconomicDisadvantage": "N",
+    "ESL": "Y",
+    "ESLDateAssessed": "2016-04-23",
+    "YoungCarersRole": "N",
+    "Disability": "N",
+    "IntegrationAide": "N",
+    "EducationSupport": "N",
+    "HomeSchooledStudent": "N",
+    "IndependentStudent": "N",
+    "Sensitive": "N",
+    "LocalCodeList": {
+      "LocalCode": [
+        {
+          "LocalisedCode": "0921",
+          "Description": "Serbia Montenegro",
+          "Element": "StudentPersonal/PersonInfo/Demographics/CountryOfBirth"
+        },
+        {
+          "LocalisedCode": "0921",
+          "Description": "Serbia Montenegro",
+          "Element": "StudentPersonal/PersonInfo/Demographics/CountriesOfCitizenship/CountryOfCitizenship",
+          "ListIndex": 1
+        }
+      ]
+    }
+  },
+  {
+    "RefId": "7C834EA9-EDA1-2090-347F-83297E1C290D",
+    "AlertMessages": {
+      "AlertMessage": [
+        {
+          "Type": "Legal",
+          "value": "Mother is legal guardian"
+        }
+      ]
+    },
+    "MedicalAlertMessages": {
+      "MedicalAlertMessage": [
+        {
+          "Severity": "Severe",
+          "value": "Student has Peanut Allergy"
+        },
+        {
+          "Severity": "Moderate",
+          "value": "Student has Diabetes"
+        }
+      ]
+    },
+    "LocalId": "S1234981",
+    "StateProvinceId": "ABC1234",
+    "NationalUniqueStudentIdentifier": "12345981",
+    "ElectronicIdList": {
+      "ElectronicId": [
+        {
+          "Type": "03",
+          "value": "ZZZZZZ21"
+        },
+        {
+          "Type": "03",
+          "value": "ZZZZZZ22"
+        }
+      ]
+    },
+    "OtherIdList": {
+      "OtherId": [
+        {
+          "Type": "PreviousNAPPlatformStudentId",
+          "value": "888rdgf"
+        },
+        {
+          "Type": "DiocesanStudentId",
+          "value": "1234"
+        }
+      ]
+    },
+    "PersonInfo": {
+      "Name": {
+        "Type": "LGL",
+        "FamilyName": "Flanders",
+        "GivenName": "Ned",
+        "FullName": "Ned Flanders"
+      },
+      "OtherNames": {
+        "Name": [
+          {
+            "Type": "AKA",
+            "FamilyName": "Anderson",
+            "GivenName": "Samuel",
+            "FullName": "Samuel Anderson"
+          },
+          {
+            "Type": "PRF",
+            "FamilyName": "Rowinski",
+            "GivenName": "Sam",
+            "FullName": "Sam Rowinski "
+          }
+        ]
+      },
+      "Demographics": {
+        "IndigenousStatus": "3",
+        "Sex": "1",
+        "BirthDate": "1990-09-26",
+        "BirthDateVerification": "1004",
+        "PlaceOfBirth": "Clayton",
+        "StateOfBirth": "VIC",
+        "CountryOfBirth": "1101",
+        "CountriesOfCitizenship": {
+          "CountryOfCitizenship": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountriesOfResidency": {
+          "CountryOfResidency": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountryArrivalDate": "1990-09-26",
+        "AustralianCitizenshipStatus": "1",
+        "EnglishProficiency": {
+          "Code": "1"
+        },
+        "LanguageList": {
+          "Language": [
+            {
+              "Code": "0001",
+              "LanguageType": "1"
+            }
+          ]
+        },
+        "DwellingArrangement": {
+          "Code": "1671"
+        },
+        "Religion": {
+          "Code": "2013"
+        },
+        "ReligiousEventList": {
+          "ReligiousEvent": [
+            {
+              "Type": "Baptism",
+              "Date": "2000-09-01"
+            },
+            {
+              "Type": "Christmas",
+              "Date": "2009-12-24"
+            }
+          ]
+        },
+        "ReligiousRegion": "The Religion Region",
+        "PermanentResident": "P",
+        "VisaSubClass": "101",
+        "VisaStatisticalCode": "05",
+        "VisaSubClassList": {
+          "VisaSubClass": [
+            {
+              "Code": "401",
+              "VisaExpiryDate": "2019-07-25",
+              "ATEExpiryDate": "2016-12-26",
+              "ATEStartDate": "2017-12-26",
+              "VisaStatisticalCode": "05"
+            }
+          ]
+        },
+        "Passport": {
+          "Number": "9",
+          "ExpiryDate": "2030-12-11",
+          "Country": "4111"
+        }
+      },
+      "AddressList": {
+        "Address": [
+          {
+            "Type": "0123",
+            "Role": "2382",
+            "Street": {
+              "Line1": "Unit1/10",
+              "Line2": "Barkley Street"
+            },
+            "City": "Yarra Glenn",
+            "StateProvince": "VIC",
+            "Country": "1101",
+            "PostalCode": "9999"
+          },
+          {
+            "Type": "0123A",
+            "Role": "013A",
+            "Street": {
+              "Line1": "34 Term Address Street"
+            },
+            "City": "Home Town",
+            "StateProvince": "WA",
+            "Country": "1101",
+            "PostalCode": "9999"
+          }
+        ]
+      },
+      "PhoneNumberList": {
+        "PhoneNumber": [
+          {
+            "Type": "0096",
+            "Number": "03 9637-2289",
+            "Extension": "72289",
+            "ListedStatus": "Y"
+          },
+          {
+            "Type": "0888",
+            "Number": "0412-345-678",
+            "ListedStatus": "N"
+          }
+        ]
+      },
+      "EmailList": {
+        "Email": [
+          {
+            "Type": "01",
+            "value": "Ned.Flanders@yahoo.com"
+          },
+          {
+            "Type": "02",
+            "value": "Ned_Flanders@gmail.com"
+          }
+        ]
+      }
+    },
+    "ProjectedGraduationYear": "2014",
+    "OnTimeGraduationYear": "2012",
+    "MostRecent": {
+      "SchoolLocalId": "S1234567",
+      "HomeroomLocalId": "hr12345",
+      "YearLevel": {
+        "Code": "P"
+      },
+      "FTE": 0.5,
+      "Parent1Language": "1201",
+      "Parent2Language": "1201",
+      "LocalCampusId": "D",
+      "SchoolACARAId": "VIC687",
+      "Homegroup": "7A",
+      "ClassCode": "English 7D",
+      "MembershipType": "02",
+      "FFPOS": "2",
+      "ReportingSchoolId": "VIC670",
+      "OtherEnrollmentSchoolACARAId": "VIC6273"
+    },
+    "AcceptableUsePolicy": "Y",
+    "EconomicDisadvantage": "N",
+    "ESL": "Y",
+    "ESLDateAssessed": "2016-04-23",
+    "YoungCarersRole": "N",
+    "Disability": "N",
+    "IntegrationAide": "N",
+    "EducationSupport": "N",
+    "HomeSchooledStudent": "N",
+    "IndependentStudent": "N",
+    "Sensitive": "N",
+    "LocalCodeList": {
+      "LocalCode": [
+        {
+          "LocalisedCode": "0921",
+          "Description": "Serbia Montenegro",
+          "Element": "StudentPersonal/PersonInfo/Demographics/CountryOfBirth"
+        },
+        {
+          "LocalisedCode": "0921",
+          "Description": "Serbia Montenegro",
+          "Element": "StudentPersonal/PersonInfo/Demographics/CountriesOfCitizenship/CountryOfCitizenship",
+          "ListIndex": 1
+        }
+      ]
+    }
+  },
+  {
+    "RefId": "9897466F-200E-4BC1-B9AE-D1507DA15CEF",
+    "AlertMessages": {
+      "AlertMessage": [
+        {
+          "Type": "Legal",
+          "value": "Mother is legal guardian"
+        }
+      ]
+    },
+    "MedicalAlertMessages": {
+      "MedicalAlertMessage": [
+        {
+          "Severity": "Severe",
+          "value": "Student has Peanut Allergy"
+        },
+        {
+          "Severity": "Moderate",
+          "value": "Student has Diabetes"
+        }
+      ]
+    },
+    "LocalId": "S1234981",
+    "StateProvinceId": "ABC1234",
+    "NationalUniqueStudentIdentifier": "12345981",
+    "ElectronicIdList": {
+      "ElectronicId": [
+        {
+          "Type": "03",
+          "value": "ZZZZZZ21"
+        },
+        {
+          "Type": "03",
+          "value": "ZZZZZZ22"
+        }
+      ]
+    },
+    "OtherIdList": {
+      "OtherId": [
+        {
+          "Type": "PreviousNAPPlatformStudentId",
+          "value": "888rdgf"
+        },
+        {
+          "Type": "DiocesanStudentId",
+          "value": "1234"
+        }
+      ]
+    },
+    "PersonInfo": {
+      "Name": {
+        "Type": "LGL",
+        "FamilyName": "Flanders",
+        "GivenName": "Ned",
+        "FullName": "Ned Flanders"
+      },
+      "OtherNames": {
+        "Name": [
+          {
+            "Type": "AKA",
+            "FamilyName": "Anderson",
+            "GivenName": "Samuel",
+            "FullName": "Samuel Anderson"
+          },
+          {
+            "Type": "PRF",
+            "FamilyName": "Rowinski",
+            "GivenName": "Sam",
+            "FullName": "Sam Rowinski "
+          }
+        ]
+      },
+      "Demographics": {
+        "IndigenousStatus": "3",
+        "Sex": "1",
+        "BirthDate": "1990-09-26",
+        "BirthDateVerification": "1004",
+        "PlaceOfBirth": "Clayton",
+        "StateOfBirth": "VIC",
+        "CountryOfBirth": "1101",
+        "CountriesOfCitizenship": {
+          "CountryOfCitizenship": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountriesOfResidency": {
+          "CountryOfResidency": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountryArrivalDate": "1990-09-26",
+        "AustralianCitizenshipStatus": "1",
+        "EnglishProficiency": {
+          "Code": "1"
+        },
+        "LanguageList": {
+          "Language": [
+            {
+              "Code": "0001",
+              "LanguageType": "1"
+            }
+          ]
+        },
+        "DwellingArrangement": {
+          "Code": "1671"
+        },
+        "Religion": {
+          "Code": "2013"
+        },
+        "ReligiousEventList": {
+          "ReligiousEvent": [
+            {
+              "Type": "Baptism",
+              "Date": "2000-09-01"
+            },
+            {
+              "Type": "Christmas",
+              "Date": "2009-12-24"
+            }
+          ]
+        },
+        "ReligiousRegion": "The Religion Region",
+        "PermanentResident": "P",
+        "VisaSubClass": "101",
+        "VisaStatisticalCode": "05",
+        "VisaSubClassList": {
+          "VisaSubClass": [
+            {
+              "Code": "401",
+              "VisaExpiryDate": "2019-07-25",
+              "ATEExpiryDate": "2016-12-26",
+              "ATEStartDate": "2017-12-26",
+              "VisaStatisticalCode": "05"
+            }
+          ]
+        },
+        "Passport": {
+          "Number": "9",
+          "ExpiryDate": "2030-12-11",
+          "Country": "4111"
+        }
+      },
+      "AddressList": {
+        "Address": [
+          {
+            "Type": "0123",
+            "Role": "2382",
+            "Street": {
+              "Line1": "Unit1/10",
+              "Line2": "Barkley Street"
+            },
+            "City": "Yarra Glenn",
+            "StateProvince": "VIC",
+            "Country": "1101",
+            "PostalCode": "9999"
+          },
+          {
+            "Type": "0123A",
+            "Role": "013A",
+            "Street": {
+              "Line1": "34 Term Address Street"
+            },
+            "City": "Home Town",
+            "StateProvince": "WA",
+            "Country": "1101",
+            "PostalCode": "9999"
+          }
+        ]
+      },
+      "PhoneNumberList": {
+        "PhoneNumber": [
+          {
+            "Type": "0096",
+            "Number": "03 9637-2289",
+            "Extension": "72289",
+            "ListedStatus": "Y"
+          },
+          {
+            "Type": "0888",
+            "Number": "0412-345-678",
+            "ListedStatus": "N"
+          }
+        ]
+      },
+      "EmailList": {
+        "Email": [
+          {
+            "Type": "01",
+            "value": "Ned.Flanders@yahoo.com"
+          },
+          {
+            "Type": "02",
+            "value": "Ned_Flanders@gmail.com"
+          }
+        ]
+      }
+    },
+    "ProjectedGraduationYear": "2014",
+    "OnTimeGraduationYear": "2012",
+    "MostRecent": {
+      "SchoolLocalId": "S1234567",
+      "HomeroomLocalId": "hr12345",
+      "YearLevel": {
+        "Code": "P"
+      },
+      "FTE": 0.5,
+      "Parent1Language": "1201",
+      "Parent2Language": "1201",
+      "LocalCampusId": "D",
+      "SchoolACARAId": "VIC687",
+      "Homegroup": "7A",
+      "ClassCode": "English 7D",
+      "MembershipType": "02",
+      "FFPOS": "2",
+      "ReportingSchoolId": "VIC670",
+      "OtherEnrollmentSchoolACARAId": "VIC6273"
+    },
+    "AcceptableUsePolicy": "Y",
+    "EconomicDisadvantage": "N",
+    "ESL": "Y",
+    "ESLDateAssessed": "2016-04-23",
+    "YoungCarersRole": "N",
+    "Disability": "N",
+    "IntegrationAide": "N",
+    "EducationSupport": "N",
+    "HomeSchooledStudent": "N",
+    "IndependentStudent": "N",
+    "Sensitive": "N",
+    "LocalCodeList": {
+      "LocalCode": [
+        {
+          "LocalisedCode": "0921",
+          "Description": "Serbia Montenegro",
+          "Element": "StudentPersonal/PersonInfo/Demographics/CountryOfBirth"
+        },
+        {
+          "LocalisedCode": "0921",
+          "Description": "Serbia Montenegro",
+          "Element": "StudentPersonal/PersonInfo/Demographics/CountriesOfCitizenship/CountryOfCitizenship",
+          "ListIndex": 1
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,54 @@
+[
+{
+    "RefId": "359D7510-1AD0-A9D7-A8C3-DAD0A85103A2",
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "StudentPersonalRefIdList": "9897466F-200E-4BC1-B9AE-D1507DA15CEF",
+		"GradingCategory": "Classroom Test",
+    "Description": "Pop Quiz",
+    "PointsPossible": 100,
+    "CreateDate": "2000-11-21",
+    "DueDate": "2000-11-25",
+    "Weight": 1.0,
+    "DetailedDescriptionURL": "http://www.assignmentinfo.com/assignment1.pdf"
+  },
+  {
+    "RefId": "359D7510-1AD0-A9D7-A8C4-DAD0A85103A2",
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "StudentPersonalRefIdList": "7C834EA9-EDA1-2090-347F-83297E1C290D",
+		"GradingCategory": "Classroom Test",
+    "Description": "Pop Quiz",
+    "PointsPossible": 100,
+    "CreateDate": "2000-11-21",
+    "DueDate": "2000-11-25",
+    "Weight": 1.0,
+    "DetailedDescriptionURL": "http://www.assignmentinfo.com/assignment1.pdf"
+  },
+  {
+    "RefId": "359D7510-1AD0-A9D7-A8C5-DAD0A85103A2",
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "StudentPersonalRefIdList": "7C834EA9-EDA1-2090-347F-83297E1C290E",
+		"GradingCategory": "Classroom Test",
+    "Description": "Pop Quiz",
+    "PointsPossible": 100,
+    "CreateDate": "2000-11-21",
+    "DueDate": "2000-11-25",
+    "Weight": 1.0,
+    "DetailedDescriptionURL": "http://www.assignmentinfo.com/assignment1.pdf"
+  },
+  {
+    "RefId": "359D7510-1AD0-A9D7-A8C6-DAD0A85103A2",
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "StudentPersonalRefIdList": "7C834EA9-EDA1-2090-347F-83297E1C290C",
+		"GradingCategory": "Classroom Test",
+    "Description": "Pop Quiz",
+    "PointsPossible": 100,
+    "CreateDate": "2000-11-21",
+    "DueDate": "2000-11-25",
+    "Weight": 1.0,
+    "DetailedDescriptionURL": "http://www.assignmentinfo.com/assignment1.pdf"
+  }
+]      
