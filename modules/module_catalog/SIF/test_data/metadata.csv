@@ -1,5 +1,5 @@
 Entity Name,Attribute Name,Attribute Data Type,Pseudonymization
-studentpersonal,,,
+StudentPersonal,,,
 ,AcceptableUsePolicy,string,no-op
 ,AlertMessages,string,no-op
 ,Disability,string,no-op
@@ -24,7 +24,7 @@ studentpersonal,,,
 ,Sensitive,string,no-op
 ,StateProvinceId,string,no-op
 ,YoungCarersRole,string,no-op
-studentdailyattendance,,,
+StudentDailyAttendance,,,
 ,AttendanceCode,string,no-op
 ,AttendanceNote,string,no-op
 ,AttendanceStatus,string,no-op
