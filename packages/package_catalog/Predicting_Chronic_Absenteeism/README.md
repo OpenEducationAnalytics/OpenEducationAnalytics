@@ -79,7 +79,7 @@ This package should be used to combine multiple data sources which were identifi
 * <strong>School experiences</strong>: School suspension, disciplinary, behavior, and learning outcome data
 * <strong>Engagement data</strong>: School attendance, digital engagement
 
-This package can use several [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules) to help ingest data sources that are typically used to understand patterns of chronic absenteeism (see below for list of relevant OEA modules).  
+This package can use several [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules) to help ingest data sources that are typically used to understand patterns of chronic absenteeism (see below for list of relevant OEA modules). It is critical that all end user identifiable information is pseudonymized to comply with GDPR and CCPA requirements (more details [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/data/README.md#pseudonymization-of-end-user-identifiable-information)).  
 
 | OEA Module | Description |
 | --- | --- |
