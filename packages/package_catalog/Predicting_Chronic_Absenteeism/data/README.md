@@ -12,7 +12,7 @@ As it stands, this package combines the following data sources (and should be ad
 * **Engagement data**: School attendance, digital engagement
 
 ## Pseudonymization of End User Identifiable Information
-To protect students’ identity, it is required that end user identifiable information of students like names, email addresses, etc., are pseudonymized. The [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework/synapse) incorporates notebooks and pipelines for pseudonymizing columns in the data sets used for this package.
+To protect students’ identity, it is required that end user identifiable information like names, email addresses, etc., are pseudonymized. The [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework/synapse) incorporates notebooks and pipelines for pseudonymizing columns in the data sets used for this package.
 
 The OEA pseudonymization operations are:
 - **hash-no-lookup or hnl:** This means that the lookup can be performed against a different table, so no lookup is needed
