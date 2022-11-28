@@ -81,9 +81,7 @@ This package combines multiple data sources which were identified through Tasman
 
 The predictive modelling identified and mapped data sources for each of these six domains, though some domains had limited data available. Data sources included attendance, assessment, medical conditions, safety, disabilities, demographics, and behavior. For more information on data model, see data folder. Other data such as digital learning activity could also be used for this modelling, though it was not used in the Tasmania predictive model.
 
-This package may use several [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules) to help ingest data sources that are often part of student-well-being measures (see below for list of relevant OEA modules). It is critical that all end user identifiable information is pseudonymized to comply with GDPR and CCPA requirements (more details [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/
-Predicting_Student_Well_Being
-/data/README.md#pseudonymization-of-end-user-identifiable-information)).  
+This package may use several [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules) to help ingest data sources that are often part of student-well-being measures (see below for list of relevant OEA modules). It is critical that all end user identifiable information is pseudonymized to comply with GDPR and CCPA requirements (more details [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Student_Well_Being/data/README.md#pseudonymization-of-end-user-identifiable-information)).  
 
 | OEA Module | Description |
 | --- | --- |
