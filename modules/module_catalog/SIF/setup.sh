@@ -19,16 +19,16 @@ eval "az synapse notebook import --workspace-name $synapse_workspace --name SIF_
 
 # 2) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_SIF --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/1_land_SIF.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 2_ingest_SIF --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/2_ingest_SIF.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 3_refine_SIF --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/3_refine_SIF.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 4_reset_workspace_SIF --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/4_reset_workspace_SIF.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_SIF --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/0_main_SIF.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_all_SIF --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/1_land_all_SIF.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 2_ingest_all_SIF --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/2_ingest_all_SIF.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 3_refine_all_SIF --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/3_refine_all_SIF.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_all_SIF --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/0_main_all_SIF.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name ingest_with_options --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/ingest_with_options.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_json_data_from_URL --spark-pool-name spark3p2sm --file @$this_file_path/pipeline/land_json_data_from_URL.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_SIF --file @$this_file_path/pipeline/1_land_SIF.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 2_ingest_SIF --file @$this_file_path/pipeline/2_ingest_SIF.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 3_refine_SIF --file @$this_file_path/pipeline/3_refine_SIF.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 4_reset_workspace_SIF --file @$this_file_path/pipeline/4_reset_workspace_SIF.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_SIF --file @$this_file_path/pipeline/0_main_SIF.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_all_SIF --file @$this_file_path/pipeline/1_land_all_SIF.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 2_ingest_all_SIF --file @$this_file_path/pipeline/2_ingest_all_SIF.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 3_refine_all_SIF --file @$this_file_path/pipeline/3_refine_all_SIF.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_all_SIF --file @$this_file_path/pipeline/0_main_all_SIF.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name ingest_with_options --file @$this_file_path/pipeline/ingest_with_options.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_json_data_from_URL --file @$this_file_path/pipeline/land_json_data_from_URL.json"
 
 echo "--> Setup complete. The SIF module assets have been installed in the specified synapse workspace: $synapse_workspace"
