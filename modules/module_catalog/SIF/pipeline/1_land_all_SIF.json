@@ -1,0 +1,91 @@
+{
+    "name": "1_land_all_SIF",
+    "properties": {
+        "activities": [
+            {
+                "name": "ForEach1",
+                "type": "ForEach",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.entities",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "land_entity_data",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "land_json_data_from_URL",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "URL": {
+                                        "value": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/SIF/test_data/@{item()}.json",
+                                        "type": "Expression"
+                                    },
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "sinkPath": {
+                                        "value": "sif/v3.4.9/@{item()}",
+                                        "type": "Expression"
+                                    },
+                                    "sinkFilename": {
+                                        "value": "@pipeline().parameters.defaultFilename",
+                                        "type": "Expression"
+                                    },
+                                    "batchType": "snapshot",
+                                    "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "defaultFilename": {
+                "type": "string",
+                "defaultValue": "part1.json"
+            },
+            "entities": {
+                "type": "array",
+                "defaultValue": [
+                    "GradingAssignment",
+                    "GradingAssignmentScore",
+                    "LearningStandardItem",
+                    "MarkValueInfo",
+                    "SectionInfo",
+                    "StaffAssignment",
+                    "StaffPersonal",
+                    "StudentDailyAttendance",
+                    "StudentGrade",
+                    "StudentPersonal",
+                    "StudentSchoolEnrollment",
+                    "StudentScoreJudgementAgainstStandard",
+                    "StudentSectionEnrollment",
+                    "TeachingGroup",
+                    "TermInfo"
+                ]
+            }
+        },
+        "folder": {
+            "name": "SIF/advanced"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-11-28T19:50:23Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
