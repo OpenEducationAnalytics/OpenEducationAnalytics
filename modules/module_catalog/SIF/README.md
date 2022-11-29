@@ -1,4 +1,4 @@
-> **Note:** This module is currently released as v0.1, and is dependent on the OEA framework v0.7
+> **Note:** This module is currently released as v0.2, and is dependent on the OEA framework v0.7
 
 <img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 

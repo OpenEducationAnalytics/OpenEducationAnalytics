@@ -1,0 +1,79 @@
+{
+    "name": "ingest_with_options",
+    "properties": {
+        "activities": [
+            {
+                "name": "ingest",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "OEA_connector",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "method_name": {
+                            "value": "ingest",
+                            "type": "string"
+                        },
+                        "kwargs": {
+                            "value": {
+                                "value": "{'entity_path':'@{pipeline().parameters.entityPath}', 'primary_key':'@{pipeline().parameters.primaryKey}', 'options':{@{pipeline().parameters.options}}}",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "sparkPool": {
+                        "referenceName": "spark3p2sm",
+                        "type": "BigDataPoolReference"
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "entityPath": {
+                "type": "string",
+                "defaultValue": "contoso/v0.1/students"
+            },
+            "primaryKey": {
+                "type": "string",
+                "defaultValue": "id"
+            },
+            "options": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "SIF"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-11-28T23:26:29Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
