@@ -1,0 +1,46 @@
+{
+    "name": "4_reset_workspace_SIF",
+    "properties": {
+        "activities": [
+            {
+                "name": "delete_dataset",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "delete_dataset",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "datasetPath": {
+                            "value": "@pipeline().parameters.datasetPath",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "datasetPath": {
+                "type": "string",
+                "defaultValue": "sif/v3.4.9"
+            }
+        },
+        "folder": {
+            "name": "SIF/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-11-28T19:50:21Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

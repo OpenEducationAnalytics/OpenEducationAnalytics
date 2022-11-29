@@ -1,9 +1,9 @@
 {
-    "name": "3_refine_contoso_v0p2",
+    "name": "3_refine_SIF",
     "properties": {
         "activities": [
             {
-                "name": "refine_students",
+                "name": "refine_StudentPersonal",
                 "type": "ExecutePipeline",
                 "dependsOn": [],
                 "userProperties": [],
@@ -18,13 +18,13 @@
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
                         },
-                        "entityPath": "contoso/v0.1/students",
-                        "primaryKey": "SIS ID"
+                        "entityPath": "sif/v3.4.9/StudentPersonal",
+                        "primaryKey": "RefId"
                     }
                 }
             },
             {
-                "name": "refine_studentattendance",
+                "name": "refine_StudentDailyAttendance",
                 "type": "ExecutePipeline",
                 "dependsOn": [],
                 "userProperties": [],
@@ -39,29 +39,8 @@
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
                         },
-                        "entityPath": "contoso/v0.1/studentattendance",
-                        "primaryKey": "id"
-                    }
-                }
-            },
-            {
-                "name": "refine_studentsectionmark",
-                "type": "ExecutePipeline",
-                "dependsOn": [],
-                "userProperties": [],
-                "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "refine",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        },
-                        "entityPath": "contoso/v0.1/studentsectionmark",
-                        "primaryKey": "id"
+                        "entityPath": "sif/v3.4.9/StudentDailyAttendance",
+                        "primaryKey": "RefId"
                     }
                 }
             },
@@ -70,19 +49,13 @@
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "refine_students",
+                        "activity": "refine_StudentPersonal",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
                     },
                     {
-                        "activity": "refine_studentattendance",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    },
-                    {
-                        "activity": "refine_studentsectionmark",
+                        "activity": "refine_StudentDailyAttendance",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
@@ -97,12 +70,12 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "stage": "stage2",
-                        "datasetPath": "Refined/contoso/v0.1/general",
+                        "datasetPath": "Refined/sif/v3.4.9/general",
                         "workspace": {
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
                         },
-                        "dbName": "sdb_dev_s2r_contoso_v0p1"
+                        "dbName": "sdb_dev_s2r_sif_v3p4p9"
                     }
                 }
             },
@@ -111,19 +84,13 @@
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "refine_students",
+                        "activity": "refine_StudentPersonal",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
                     },
                     {
-                        "activity": "refine_studentattendance",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    },
-                    {
-                        "activity": "refine_studentsectionmark",
+                        "activity": "refine_StudentDailyAttendance",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
@@ -138,12 +105,12 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "stage": "stage2",
-                        "datasetPath": "Refined/contoso/v0.1/sensitive",
+                        "datasetPath": "Refined/sif/v3.4.9/sensitive",
                         "workspace": {
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
                         },
-                        "dbName": "sdb_dev_s2r_contoso_v0p1"
+                        "dbName": "sdb_dev_s2r_sif_v3p4p9"
                     }
                 }
             }
@@ -152,17 +119,13 @@
             "workspace": {
                 "type": "string",
                 "defaultValue": "dev"
-            },
-            "defaultFilename": {
-                "type": "string",
-                "defaultValue": "part1.csv"
             }
         },
         "folder": {
-            "name": "contoso_v0p2"
+            "name": "SIF/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2022-11-18T19:05:24Z"
+        "lastPublishTime": "2022-11-28T19:50:19Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

@@ -1,4 +1,4 @@
-> **Note:** This module is still in development. Please expect updates to the module assets over the next few weeks.
+> **Note:** This module is currently released as v0.2, and is dependent on the OEA framework v0.7
 
 <img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
@@ -20,6 +20,18 @@ This module provides Australian-specific data related assets as part of OEA, pro
 -	lowering the barrier to entry and accelerating adoption and time to value for educational institutions by reducing the need for data transformation before serving data to end users. This allows more problems to be solved faster by more users.
 -	driving consistency and conformance to standards within the OEA community
 -	allowing greater sharing and re-use of assets within the OEA community.
+
+## Setup
+To install this module you will need to first have a synapse workspace with the OEA framework assets installed (see [OEA Setup](https://github.com/microsoft/OpenEduAnalytics#setup) for details).
+If you already have an OEA environment, you can install this module with these steps:
+1) Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
+[![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
+1) Download the module release to your Azure clouddrive \
+`cd clouddrive`\
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_sif_v0.1/module_sif_v0.1.zip`\
+`unzip ./module_sif_v0.1.zip`
+1) Run the setup script like this (substitute "mysuffix" with your preferred suffix representing your org, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
+`./module_sif_v0.1/setup.sh mysynapseworkspacename`
 
 # Legal Notices
 Microsoft and any contributors grant you a license to the Microsoft documentation and other content

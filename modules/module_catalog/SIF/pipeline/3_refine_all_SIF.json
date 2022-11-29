@@ -1,0 +1,136 @@
+{
+    "name": "3_refine_all_SIF",
+    "properties": {
+        "activities": [
+            {
+                "name": "create_sql_db_for_general",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "ForEach1",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Refined/sif/v3.4.9/general",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": "sdb_dev_s2r_sif_v3p4p9"
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db_for_sensitive",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "ForEach1",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Refined/sif/v3.4.9/sensitive",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": "sdb_dev_s2r_sif_v3p4p9"
+                    }
+                }
+            },
+            {
+                "name": "ForEach1",
+                "type": "ForEach",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.entities",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "refine_entity",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "refine",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "entityPath": {
+                                        "value": "sif/v3.4.9/@{item()}",
+                                        "type": "Expression"
+                                    },
+                                    "primaryKey": "RefId"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "entities": {
+                "type": "array",
+                "defaultValue": [
+                    "GradingAssignment",
+                    "GradingAssignmentScore",
+                    "LearningStandardItem",
+                    "MarkValueInfo",
+                    "SectionInfo",
+                    "StaffAssignment",
+                    "StaffPersonal",
+                    "StudentDailyAttendance",
+                    "StudentGrade",
+                    "StudentPersonal",
+                    "StudentSchoolEnrollment",
+                    "StudentScoreJudgementAgainstStandard",
+                    "StudentSectionEnrollment",
+                    "TeachingGroup",
+                    "TermInfo"
+                ]
+            }
+        },
+        "folder": {
+            "name": "SIF/advanced"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-11-28T19:50:19Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

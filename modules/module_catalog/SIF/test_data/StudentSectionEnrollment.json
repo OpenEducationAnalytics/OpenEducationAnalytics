@@ -1,0 +1,78 @@
+[
+{
+    "RefId": "983AC165-9879-3002-C3D0-0AA00456789D",
+    "StudentPersonalRefId": "9897466F-200E-4BC1-B9AE-D1507DA15CEF",
+    "SectionInfoRefId": "D3E34B35-9D75-101A-8C3D-00AA001A1652",
+    "SchoolYear": "2013",
+    "EntryDate": "2013-02-02",
+    "ExitDate": "2013-11-15",
+	"SIF_ExtendedElements": {
+      "Status": "Completed",
+      "ValidFrom": "2013-02-02",
+	  "ValidTo": "2014-02-02",
+      "IsActive": "Y",
+	  "CreatedOn": "2013-01-02",
+	  "CreatedBy": "H.Lee",
+	  "UpdatedOn": "2013-01-02",
+	  "UpdatedBy": "H.Lee",
+      "HashKey": "10010110100101010110101010110110"
+    }
+},
+{
+    "RefId": "983AC165-9879-3003-C3D0-0AA00456789D",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290D",
+    "SectionInfoRefId": "D3E34B35-9D75-101A-8C3D-00AA001A1652",
+    "SchoolYear": "2013",
+    "EntryDate": "2013-02-02",
+    "ExitDate": "2013-11-15",
+	"SIF_ExtendedElements": {
+      "Status": "Completed",
+      "ValidFrom": "2013-02-02",
+	  "ValidTo": "2014-02-02",
+      "IsActive": "Y",
+	  "CreatedOn": "2013-01-02",
+	  "CreatedBy": "H.Lee",
+	  "UpdatedOn": "2013-01-02",
+	  "UpdatedBy": "H.Lee",
+      "HashKey": "10010110100101010110101010110110"
+    }
+},
+{
+    "RefId": "983AC165-9879-3004-C3D0-0AA00456789D",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290E",
+    "SectionInfoRefId": "D3E34B35-9D75-101A-8C3D-00AA001A1652",
+    "SchoolYear": "2013",
+    "EntryDate": "2013-02-02",
+    "ExitDate": "2013-11-15",
+	"SIF_ExtendedElements": {
+      "Status": "Completed",
+      "ValidFrom": "2013-02-02",
+	  "ValidTo": "2014-02-02",
+      "IsActive": "Y",
+	  "CreatedOn": "2013-01-02",
+	  "CreatedBy": "H.Lee",
+	  "UpdatedOn": "2013-01-02",
+	  "UpdatedBy": "H.Lee",
+      "HashKey": "10010110100101010110101010110110"
+    }
+},
+{
+    "RefId": "983AC165-9879-3005-C3D0-0AA00456789D",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290C",
+    "SectionInfoRefId": "D3E34B35-9D75-101A-8C3D-00AA001A1652",
+    "SchoolYear": "2013",
+    "EntryDate": "2013-02-02",
+    "ExitDate": "2013-11-15",
+	"SIF_ExtendedElements": {
+      "Status": "Completed",
+      "ValidFrom": "2013-02-02",
+	  "ValidTo": "2014-02-02",
+      "IsActive": "Y",
+	  "CreatedOn": "2013-01-02",
+	  "CreatedBy": "H.Lee",
+	  "UpdatedOn": "2013-01-02",
+	  "UpdatedBy": "H.Lee",
+      "HashKey": "10010110100101010110101010110110"
+    }
+}
+]

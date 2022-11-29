@@ -1,0 +1,77 @@
+{
+    "name": "1_land_SIF",
+    "properties": {
+        "activities": [
+            {
+                "name": "land_StudentPersonal",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_json_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/SIF/test_data/StudentPersonal.json",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "sinkPath": "sif/v3.4.9/StudentPersonal",
+                        "sinkFilename": {
+                            "value": "@pipeline().parameters.defaultFilename",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_StudentDailyAttendance",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_json_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/SIF/test_data/StudentDailyAttendance.json",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "sinkPath": "sif/v3.4.9/StudentDailyAttendance",
+                        "sinkFilename": {
+                            "value": "@pipeline().parameters.defaultFilename",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "defaultFilename": {
+                "type": "string",
+                "defaultValue": "part1.json"
+            }
+        },
+        "folder": {
+            "name": "SIF/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-11-28T19:51:09Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
