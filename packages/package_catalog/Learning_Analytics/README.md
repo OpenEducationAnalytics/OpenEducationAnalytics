@@ -1,6 +1,6 @@
 # Learning Analytics Package
 
-**The OEA Learning Analytics Package provides a set of assets to empower educators with insights that foster student well-being, drive student engagement, and improve learning outcomes. **
+**The OEA Learning Analytics Package provides a set of assets to empower educators with insights that foster student well-being, drive student engagement, and improve learning outcomes.**
 
 This Learning Analytics package was primarily developed for higher education but can be modified for K-12 scenarios. It can provide educators, tutors, or leaders with insights on a group of learners' engagement, academic performance, and well-being at a class or course level. 
 
