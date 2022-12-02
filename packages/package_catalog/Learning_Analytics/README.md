@@ -26,7 +26,9 @@ With this package, educators can:
 - Identify which learning resources students use the most or least 
 
 The assets in this package can be combined with course completion, graduation rates, competency measures, or other outcome data to identify how these patterns relate to learning outcomes. 
+
 ## Package Setup Instructions
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/Learning_Analytics_Package_Setup_Instructions.png)
 
 <ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup [the latest version of the OEA framework](https://github.com/microsoft/OpenEduAnalytics#setting-up-oea). This will include the latest version of the [OEA Python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
 
