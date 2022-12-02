@@ -23,7 +23,7 @@ Learning Analytics Package Main Pipeline
 ## Pipeline Setup Instructions
 1. Complete the first steps of the [package setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics#package-setup-instructions). 
  - You should have triggered the pipeline for the following modules: Microsoft Education Insights and Microsoft Graph API. 
-2. Download the [package pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/pipelines/learning_analytics_main_pipeline.zip) locally to your computer.
+2. Download the [package pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/pipeline/learning_analytics_main_pipeline.zip) locally to your computer.
 3. Import the pipeline template to your Synapse workspace. 
 <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/pipeline_p1_import_pipeline_template.png" width="600">
 
