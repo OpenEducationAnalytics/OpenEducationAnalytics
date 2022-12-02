@@ -15,7 +15,7 @@ This notebook is responsible for data aggregation and enrichments of the digital
 3. Create InsightsActivity_pseudo Table, and
 3. Create Assignments_pseudo Table.
 
-Both notebooks are automatically imported into your Synapse workspace once you import the [Learning Analytics package pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/pipelines).
+Both notebooks are automatically imported into your Synapse workspace once you import the [Learning Analytics package pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/pipeline).
 
 ### NOTE:
 These assets currently lean on v0.6.1 of the OEA framework, and will be updated in the near future to work on v0.7. If you are using this package for production data, you will need to edit these notebooks. These package notebooks currently do not account for handling any change data over time. Most OEA assets rely on [Structured Streaming](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html), whereas this package currently does not.
