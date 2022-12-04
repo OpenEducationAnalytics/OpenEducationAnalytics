@@ -76,3 +76,5 @@ Below is the data dictionary for this Learning Analytics package.
 # Data Model
 Below is the data model used for Power BI visualizations:
 
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/Learning_Analytics_PBI_Data_Model.png)
+
