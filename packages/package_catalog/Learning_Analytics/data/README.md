@@ -13,6 +13,17 @@ Below is the data dictionary for this Learning Analytics package.
 |  | StudentId_external_pseudonym    |String |Hashed external student ID (from the Insights AAD User table)  |
 |  | StudentId_internal_pseudonym     |String |Hashed internal student ID (from the Insights Person table)  |
 |  | Surname     |String |Surname of student (masked) |
+|Enrollment_pseudo  | CourseGradeLevel  |String  |Grade level of the course |
+|  | CourseId     |String |Course ID |
+|  | CourseName |String |Name of course |
+|  | EnrollmentId    |String |Unique ID for student enrollment in a section |
+|  | EntryDate     |Date |Date the student is entering the section |
+|  | ExitDate     |Date |Date the student is exiting the section |
+|  | PersonRole   |String    |Role of person |   
+|  | SchoolName     |String |Name of the school associated with the course/section the student is enrolled in |
+|  | SectionId     |String |Section ID|
+|  | SectionName    |String |Name of the section |
+|  | StudentId_internal_pseudonym     |String |Hashed internal student ID (from the Insights Person table)  |
 
 
 
