@@ -3,11 +3,20 @@ This package combines data from [Microsoft Education Insights](https://github.co
 
 Below is the data dictionary for this Learning Analytics package.
 
+|Table Name   |Column Name        |Column Type  |Column Description  |
+|-----------|-------------------|-------------------|-------------|
+|Student_pseudo | GivenName     |String |First name of student (masked) |
+|            | MiddleName   |String    |Middle name of student (masked) |                                                                 
+|            | PersonRole   |String    |Role of person |    
+|  | SchoolName    |String |Name of the school the student attends  |
+|  | StudentGrade     |String |Grade level of student |
+|  | StudentId_external_pseudonym    |String |Hashed external student ID (from the Insights AAD User table)  |
+|  | StudentId_internal_pseudonym     |String |Hashed internal student ID (from the Insights Person table)  |
+|  | Surname     |String |Surname of student (masked) |
 
-## Data dictionary
-|Table Name   |Column Name        |Description  |
-|-----------|-------------------|-------------|
-|Table 1  | Name of column       |Description |
-|            | Name of column       |Description |                                                                 
-|Table 2  | Name of column     |Description |
-|  | Name of column      |Description |
+
+
+
+
+|Table 2  | Name of column   |String  |Description |
+|  | Name of column     |String |Description |
