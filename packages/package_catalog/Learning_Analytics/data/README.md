@@ -72,3 +72,7 @@ Below is the data dictionary for this Learning Analytics package.
 |  | numStudentsMissedMeeting    |Integer |Number of students that missed a particular meeting; based on numStudentsEnrolledInSection - totalParticipantCount |
 |  | SectionId    |String |Section ID |
 |  | totalParticipantCount    |Integer |Total number of students that attended a particular meeting |
+
+# Data Model
+Below is the data model used for Power BI visualizations:
+
