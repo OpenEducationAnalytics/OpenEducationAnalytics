@@ -32,45 +32,33 @@ The assets in this package can be combined with course completion, graduation ra
 ## Package Setup Instructions
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/Learning_Analytics_Package_Setup_Instructions.png)
 
-<ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup [the latest version of the OEA framework](https://github.com/microsoft/OpenEduAnalytics#setting-up-oea). This will include the latest version of the [OEA Python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
+<ins><strong>Preparation:</ins></strong> Ensure you have an Azure subscription and setup [v0.6.1 of the OEA framework](https://github.com/microsoft/OpenEduAnalytics/releases/tag/OEA_framework_v0.6.1). This module currently relies on v0.6.1 of the OEA framework.
 
-1. Examine available data sources. See [below](https://github.com/ivybarley/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics#data-sources) for these related data sources. Choose which modules or data sources to implement.
-    * This package was developed using the following modules: [Student and School Data Systems](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Student_and_School_Data_Systems), [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights), and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph). 
+1. Examine available data sources. See [below](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics#data-sources) for these related data sources. Choose which modules or data sources to implement.
+    * This package was developed using the following modules: [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph). 
     * Run each of the module data pipelines to ingest the data into stage 2. 
-2. Use the [Digital Engagement Schema pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema/pipeline) and process the compatible modules to be ingested. This will combine all module tables into a unified table, and creates a single database for the Power BI dashboard. Visit the [Data](https://github.com/ivybarley/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/data) page for a detailed explanation of its use in the Power BI data model.
-3. Import and run the [Learning Analytics pipeline template](https://github.com/ivybarley/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/pipeline).
-4. Use the Power BI dashboard to explore the Learning Analytics use case. Note that all pipelines create SQL views which can be accessed via your Synapse workspace Serverless SQL endpoint. Example dashboard concepts and detailed information on the queries are [provided in the Power BI folder](https://github.com/ivybarley/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/powerbi).
+3. Import and run the [Learning Analytics pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/pipeline).
+4. Use the Power BI dashboard to explore the Learning Analytics use case. Note that all pipelines create SQL views which can be accessed via your Synapse workspace Serverless SQL endpoint. Example dashboard concepts and detailed information on the queries are [provided in the Power BI folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/powerbi).
       
 ## Data Sources
-This package combines multiple data sources: 
-* <strong>Digital Engagement data (from Microsoft Education Insights and Microsoft Graph) </strong>: Application use, type of engagement (log-ins, meeting attendance,  duration, etc), date of the activity, user information of the activities, etc.
-* <strong>School Information System (SIS)</strong>: School, class, and roster.
-
 This package can use several [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules) to help ingest data sources that are typically used to understand patterns seen in Learning Analytics (see below for list of relevant OEA modules). 
 
 | OEA Module | Description |
 | --- | --- |
-| [Student and School Data Systems](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Student_and_School_Data_Systems) | Fictitious student in-person attendance data. |
 | [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) | For Microsoft engagement/activity data, and can be used for SIS data. |
 | [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph) | For other forms of Microsoft engagement/activity data. |
-| [Ed-Fi Data Standards](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/Education_Data_Standards/Ed-Fi) | For typical Student Information System (SIS) data, including rosters, class and demographic information. N.B: The Ed-Fi module creation is still in progress. |
-
-These modules are then combined into single tables based on the types of data contained with them, using the [OEA schemas](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas) to ingest and transform the module data so that only the relevant columns are extracted from the stage 2 data. Below is the list of relevant OEA schema definitions used in this package.
-
-| OEA Schema | Description |
-| --- | --- |
-| [Digital Engagement Schema](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema) | For extracting forms of digital engagement into a standardized OEA schema. |
+| [Ed-Fi Data Standards](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Ed-Fi) | For typical Student Information System (SIS) data, including rosters, class and demographic information. N.B: The Ed-Fi module creation is still in progress. |
+| [SIF Data Standards](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/SIF) | Provides a SIF (Systems Interoperability Framework)-compliant data model and pipelines to drive conformance to education standards for Data Analytics across the K-12 sector in Australia. |
 
 
 ## Package Components 
 Sample out-of-the box assets for this OEA package include: 
-1. [Data](https://github.com/ivybarley/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/data): For understanding the data relationships and standardized schema mappings used for certain groups of data.
-2. [Documentation](https://github.com/ivybarley/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/docs): 
+1. [Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/data): For understanding the data relationships and standardized schema mappings used for certain groups of data.
+2. [Documentation](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/docs): 
       * [OEA Use Case Documentation Template](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/use_cases/Open_Education_Analytics_Use_Case_Template_v3.docx). 
-      * More detailed instructions for migrating from test data use to production data use.
-3. [Notebook](https://github.com/ivybarley/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/notebooks): For aggregating, enriching, and curating data within the data lake.
-4. [Pipeline](https://github.com/ivybarley/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/pipeline): For the overarching data processing (i.e., aggregation, subsetting, schema transformation, etc.), and support for Power BI dashboards.
-5. [Power BI Template](https://github.com/ivybarley/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/powerbi): For exploring, visualizing, and deriving insights from the data.
+3. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/notebooks): For aggregating, enriching, and curating data within the data lake.
+4. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/pipeline): For the overarching data processing (i.e., aggregation, subsetting, schema transformation, etc.), and support for Power BI dashboards.
+5. [Power BI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/powerbi): For exploring, visualizing, and deriving insights from the data.
 
 The Learning Analytics Package [welcome contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md) 
 
