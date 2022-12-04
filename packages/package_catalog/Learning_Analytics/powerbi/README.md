@@ -1,6 +1,6 @@
 # PowerBI Template
 
-The OEA Learning Analytics Package Power BI template enables users to quickly explore data and consists of 4 pages: Engagement, Academics, Resources and Well-being.
+The OEA Learning Analytics Package Power BI template enables users to quickly explore data and currently consists of 2 pages: Engagement and Resources.
 
 ![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/Learning_Analytics_PBI_Engagement.png)
 
