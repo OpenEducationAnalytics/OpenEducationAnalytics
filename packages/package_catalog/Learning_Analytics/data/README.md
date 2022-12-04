@@ -24,10 +24,30 @@ Below is the data dictionary for this Learning Analytics package.
 |  | SectionId     |String |Section ID|
 |  | SectionName    |String |Name of the section |
 |  | StudentId_internal_pseudonym     |String |Hashed internal student ID (from the Insights Person table)  |
+|InsightsActivity_pseudo (More details on the InsightsActivity_pseudo column can be found [here](https://learn.microsoft.com/en-us/schooldatasync/data-lake-schema-activity). | Action  |String  |Specific action depending on SignalType |
+|  | ActorRole     |String |Role of person who performed the Action |
+|  | AppName    |String |Application used: Assignments, SharePoint Online, etc. |
+|  | AssignmentId     |String |GUID, identifies the assignment - unique per assignment |
+|  | DueDate    |DateTime |Assignments due date |
+|  | Grade     |Integer |Assignment grade (e.g. 100 when action = returned) |
+|  | MeetingDuration     |String |Duration the student spent in the meeting (format is HH:mm:SS) |
+|  | MeetingSessionId     |String |Meeting Session ID, unqiue per section per meeting |
+|  | MeetingType     |String |Meeting type |
+|  | SectionId     |String |Section ID |
+|  | SignalCategories     |String |Signal categories |
+|  | SignalId   |String |Unique ID per student signal |
+|  | SignalType    |String |Type of signal for a student in a section |
+|  | SourceFileExtension     |String |For file signals, captures the type of file: aspx, docx, etc |
+|  | StartTime     |DateTime |Signal action time |
+|  | StudentId_external_pseudonym     |String |Hashed external student ID (from the Insights AAD User table) |
+|  | SubmissionCreatedTime     |DateTime |Datetime the submission was created |
+|  | SubmissionId     |String |GUID, identifies the student submission - unique per student assignment submission |
+|Assignments_pseudo  | AssignmentId   |String  |Assignment ID |
+|  | Insights_TotalNumSignals    |Integer |Total Number of Insights from the Insights Activity data that correspond with this assignment ID, section ID, and student ID|
+|  | SectionId     |String |Section ID |
+|  | StudentId_external_pseudonym     |String |Hashed external student ID (from the Insights AAD User table) |
 
 
 
-
-
-|Table 2  | Name of column   |String  |Description |
-|  | Name of column     |String |Description |
+|Table 2  | N   |String  |D |
+|  | N    |String |D |
