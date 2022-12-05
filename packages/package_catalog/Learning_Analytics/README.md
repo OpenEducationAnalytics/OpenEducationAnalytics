@@ -1,5 +1,7 @@
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
+> **Note:** The package components are a  draft and it is work in progress. Complete v1 will be available 1/5/23.
+
 # Learning Analytics Package
 
 **The OEA Learning Analytics Package provides a set of assets to empower educators with insights that foster student well-being, drive student engagement, and improve learning outcomes.**
