@@ -1,3 +1,5 @@
+> **Note:** The package components are a  draft and it is work in progress. Complete v1 will be available 1/5/23.
+
 # Data Dictionary
 This package combines data from [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data) and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph). Each of these modules provide a detailed data dictonary that explains the various columns in the data source. 
 
