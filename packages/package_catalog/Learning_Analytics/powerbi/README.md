@@ -1,3 +1,5 @@
+> **Note:** The package components are a  draft and it is work in progress. Complete v1 will be available 1/5/23.
+
 # PowerBI Template
 
 The OEA Learning Analytics Package Power BI template enables users to quickly explore data and currently consists of 2 pages: Engagement and Resources.
