@@ -1,3 +1,5 @@
+> **Note:** The package components are a  draft and it is work in progress. Complete v1 will be available 1/5/23.
+
 # Package Notebooks
 
 The OEA Learning Analytics Package includes two python notebooks with their following outlined functionalities.
