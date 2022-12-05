@@ -33,43 +33,42 @@ Below is the data dictionary for this Learning Analytics package.
 | | Year Offset     |Integer |Year offset |
 | | Quarter Offset     |Integer |Quarter offset |
 | | DateKey     |Integer |Date key |
-|**dim_Meeting** |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-|**dim_Section** |      | | |
-| |      | | |
-|**dim_Student** |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-|**fct_Activity** |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-|**studentattendance_lookup |      | | |
-| |      | | |
-| |      | | |
-|**studentattendance_pseudo |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-| |      | | |
-
+|**dim_Meeting** | meetingId     |String |Meeting ID  |
+|  | meetingStartDateTime    |DateTime |DateTime |
+|  | meetingEndDateTime    |DateTime |Meeting end date and time (from Graph data) |
+|  | SectionId    |String |Section ID |
+|**dim_Section** | SectionName     | String|Name of the section  |
+|  | SectionId     |String |Section ID|
+|**dim_Student** |  StudentId_external_pseudonym    |String |Hashed external student ID (from the Insights AAD User table) |
+|  | Surname     |String |Surname of student |
+|| GivenName     |String |First name of student|
+|            | MiddleName   |String    |Middle name of student |   
+|            | PersonRole   |String    |Role of person |    
+|  | StudentGrade     |String |Grade level of student |
+|  | SchoolName    |String |Name of the school the student attends  |
+|**fct_Activity** |  SignalType    |String |Type of signal for a student in a section |
+|  | StartTime     |DateTime |Signal action time |
+|  | SignalId   |String |Unique ID per student signal |
+|  | AppName    |String |Application used: Assignments, SharePoint Online, etc |
+|  | StudentId_external_pseudonym     |String |Hashed external student ID (from the Insights AAD User table) |
+|  | MeetingSessionId     |String |Meeting Session ID, unqiue per section per meeting |
+|  | Date    |Date |Date of activity |
+|**studentattendance_lookup** | Student_id     | String | Student id |
+|  | school_year     |Integer |School year |
+|  | studentId_internal_pseudonym    |String |Hashed internal student ID (from the Insights Person table) |
+|**studentattendance_pseudo** | id     | Integer | ID |
+|  | studentId_pseudonym    |String |Hashed student ID |
+|  | school_year     |Integer |School year |
+|  | school_id     |String |School ID |
+| |  attendance_date    | DateTime| Date of attendance |
+| |  all_day    | String | Whether the student attended all day |
+| |  Period    | Integer| Period |
+| |  section_id    | String| Section ID|
+| | AttendanceCode     | String| P for present and A for absent |
+| | PresenceFlag     | Integer| 1 for present and 0 for absent |
+| |  attendance_status    | String| Whether the student attended class |
+| | attendance_type     | String | Type of attendance|
+| | attendance_sequence     |String |Sequence of attendance |
 
 
 # Data Model
