@@ -1,20 +1,26 @@
-70BE757B-36C8-42DA-8E88-726099094116,ceds.ed.gov,RefAcademicSubject,Arts,,,10
-7CB68BCE-D321-4E4D-8B5E-167549F66109,ceds.ed.gov,RefAcademicSubject,CareerAndTechnicalEducation,,,20
-F86EB831-BD44-48DF-9DA1-C555CD565B1F,ceds.ed.gov,RefAcademicSubject,English,,,30
-23D869C0-D391-4825-8F08-2DD4DFFC6A4E,ceds.ed.gov,RefAcademicSubject,EnglishAsASecondLanguage,,,40
-3F91978F-FFEF-4ABA-B758-7ACB5539E498,ceds.ed.gov,RefAcademicSubject,ForeignLanguage,,,50
-C6EB4481-68DA-413F-A0BC-245663636650,ceds.ed.gov,RefAcademicSubject,HistoryUS,,,60
-B7139654-BE9A-44BE-B00C-245627DD84BF,ceds.ed.gov,RefAcademicSubject,HistoryWorld,,,70
-61EB6B2F-5F96-41AE-8020-121ADBDB21CA,ceds.ed.gov,RefAcademicSubject,LanguageArts,,,80
-581BCD15-6D73-4EFB-86D6-5FD8104F7638,ceds.ed.gov,RefAcademicSubject,Mathematics,,,90
-7E7800DC-6CD3-4B13-BE1E-314E66039506,ceds.ed.gov,RefAcademicSubject,Reading,,,100
-25121DF1-47EB-4329-8663-0685802F5F83,ceds.ed.gov,RefAcademicSubject,Science,,,110
-AA87C83F-0E45-4283-8B47-743B6B206F65,ceds.ed.gov,RefAcademicSubject,LifeScience,,,120
-746B14F2-7B08-4EF7-BF55-B430C435EC16,ceds.ed.gov,RefAcademicSubject,PhysicalScience,,,130
-43E1914F-08EE-43B1-9B26-2E21905A7DFB,ceds.ed.gov,RefAcademicSubject,SocialScience,,,140
-8B442047-C1D2-4EC1-A5C7-FD635FC4A6AE,ceds.ed.gov,RefAcademicSubject,SpecialEducation,,,150
-5F85F7F7-EC4B-415E-B5D9-B1CFFC2F0342,ceds.ed.gov,RefAcademicSubject,Writing,,,160
-8FE78B62-1408-4DD0-97BA-D20BF1785FD8,ceds.ed.gov,RefAcademicSubject,Other,,,170
+70BE757B-36C8-42DA-8E88-726099094116,microsoft.com,RefAcademicSubject,English Language and Literature,,,01
+7CB68BCE-D321-4E4D-8B5E-167549F66109,microsoft.com,RefAcademicSubject,Mathematics,,,02
+F86EB831-BD44-48DF-9DA1-C555CD565B1F,microsoft.com,RefAcademicSubject,Life and Physical Sciences,,,03
+23D869C0-D391-4825-8F08-2DD4DFFC6A4E,microsoft.com,RefAcademicSubject,Social Sciences and History,,,04
+3F91978F-FFEF-4ABA-B758-7ACB5539E498,microsoft.com,RefAcademicSubject,Visual and Performing Arts,,,05
+C6EB4481-68DA-413F-A0BC-245663636650,microsoft.com,RefAcademicSubject,Religious Education and Theology,,,07
+B7139654-BE9A-44BE-B00C-245627DD84BF,microsoft.com,RefAcademicSubject,Physical Health and Safety Education,,,08
+61EB6B2F-5F96-41AE-8020-121ADBDB21CA,microsoft.com,RefAcademicSubject,Military Science,,,09
+581BCD15-6D73-4EFB-86D6-5FD8104F7638,microsoft.com,RefAcademicSubject,Information Technology,,,10
+7E7800DC-6CD3-4B13-BE1E-314E66039506,microsoft.com,RefAcademicSubject,Communication and Audio Video Technology,,,11
+25121DF1-47EB-4329-8663-0685802F5F83,microsoft.com,RefAcademicSubject,Business and Marketing,,,12
+AA87C83F-0E45-4283-8B47-743B6B206F65,microsoft.com,RefAcademicSubject,Manufacturing,,,13
+746B14F2-7B08-4EF7-BF55-B430C435EC16,microsoft.com,RefAcademicSubject,Health Care Sciences,,,14
+43E1914F-08EE-43B1-9B26-2E21905A7DFB,microsoft.com,RefAcademicSubject,Public Protective and Government Service,,,15
+8B442047-C1D2-4EC1-A5C7-FD635FC4A6AE,microsoft.com,RefAcademicSubject,Hospitality and Tourism,,,16
+5F85F7F7-EC4B-415E-B5D9-B1CFFC2F0342,microsoft.com,RefAcademicSubject,Architecture and Construction,,,17
+8FE78B62-1408-4DD0-97BA-D20BF1785FD8,microsoft.com,RefAcademicSubject,Agriculture Food and Natural Resources,,,18
+7063CC91-85D9-4D81-ADC4-C60FFD1915C6,microsoft.com,RefAcademicSubject,Human Services,,,19
+20F346AB-4D10-4E57-A9C6-4AC8A6452B3B,microsoft.com,RefAcademicSubject,Transportation Distribution and Logistics,,,20
+C32E9047-6A98-4459-A904-1B19F9CF9FC7,microsoft.com,RefAcademicSubject,Engineering and Technology,,,21
+540625E8-F17F-4D4F-9F9F-C83A98D43862,microsoft.com,RefAcademicSubject,Miscellaneous,,,22
+AD7A904A-E8CF-4A36-974B-9BDCD89BC1A4,microsoft.com,RefAcademicSubject,Non-Subject-Specific,,,23
+B12B2BAB-9C7C-4554-9C55-58E815B3AF0F,microsoft.com,RefAcademicSubject,World Language,,,24
 A9967EBE-F484-4650-BAAD-14220B9C1C69,microsoft.com,RefAcademicYear,2021,,,10
 F831A6FD-6697-4225-95F2-A4454E04B7B6,microsoft.com,RefAcademicYear,2022,,,20
 CF94A868-91BC-4D7D-8CFE-7ECFBDC1B80A,microsoft.com,RefAcademicYear,2023,,,30
