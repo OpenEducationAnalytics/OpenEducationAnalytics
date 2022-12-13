@@ -54,25 +54,6 @@
                     }
                 },
                 "source": [
-                    "%run /OpenAPIUtil_py"
-                ],
-                "outputs": [],
-                "execution_count": null
-            },
-            {
-                "cell_type": "code",
-                "metadata": {
-                    "jupyter": {
-                        "source_hidden": false,
-                        "outputs_hidden": false
-                    },
-                    "nteract": {
-                        "transient": {
-                            "deleting": false
-                        }
-                    }
-                },
-                "source": [
                     "# Pass the below parameters from pipeline. \r\n",
                     "# directory = 'EdFi'\r\n",
                     "# api_version = '5.3'\r\n",
