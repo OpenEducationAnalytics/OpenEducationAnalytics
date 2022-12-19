@@ -3,7 +3,7 @@ The Reading Progress module includes artificially generated data which were deri
 
 ## Data Dictionary
 This module creates 2 tables: [ReadingProgress_pseudo](
-https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/data/README.md#readingprogress_pseudo) and Student_pseudo.
+https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/data/README.md#readingprogress_pseudo) and [Student_pseudo](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/data/README.md#student_pseudo).
 
 ### ReadingProgress_pseudo
 |Column Name | Data Type | Description |
@@ -14,3 +14,4 @@ https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/R
 |Column Name | Data Type | Description |
 |-----------|-----------|-----------|
 |  |  |  |
+
