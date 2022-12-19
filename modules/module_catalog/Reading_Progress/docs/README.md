@@ -1,6 +1,6 @@
 # Documentation
 
-See the [main Module readme](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Reading_Progress) for complete documentation of this module and technical assets. Some useful links are listed below for easy access.
+See the [main Module Readme](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Reading_Progress) for complete documentation of this module and technical assets. Some useful links are listed below for easy access.
 
 | Resource | Description |
 | --- | --- |
