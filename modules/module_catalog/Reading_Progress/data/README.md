@@ -27,5 +27,12 @@ https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/R
 ### Student_pseudo
 |Column Name | Data Type | Description |
 |-----------|-----------|-----------|
-|  |  |  |
-
+| StudentId_internal_pseudonym | String | Student's internal ID (pseudonymized) |
+| StudentId_external_pseudonym | String | Student's external ID (pseudonymized) |
+| Surname | String | Student's surname |
+| GivenName | String | Student's given name |
+| MiddleName | String | Student's middle name |
+| PersonRole | String | The person's role |
+| StudentGrade | String | Student's grade level |
+| OrganizationId | String | Organization ID |
+| OrganizationName | String | Organization name |
