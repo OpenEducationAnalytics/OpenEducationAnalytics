@@ -36,3 +36,9 @@ https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/R
 | StudentGrade | String | Student's grade level |
 | OrganizationId | String | Organization ID |
 | OrganizationName | String | Organization name |
+
+## Data Model
+The Reading Progress module is made up of 2 tables where Student_pseudo is the dimension table and ReadingProgress_pseudo is the fact table.
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/docs/images/Reading_Progress_Data_Model.png)
+
+
