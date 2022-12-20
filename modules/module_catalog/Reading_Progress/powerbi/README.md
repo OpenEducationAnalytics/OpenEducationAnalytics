@@ -1,4 +1,10 @@
 # Power BI Template
+
+## Data Model
+The Reading Progress module is made up of 2 tables where Student_pseudo is the dimension table and ReadingProgress_pseudo is the fact table.
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/docs/images/Reading_Progress_Data_Model.png)
+
+
 ## Power BI Setup Instructions
 
 #### Power BI with imported test data:
