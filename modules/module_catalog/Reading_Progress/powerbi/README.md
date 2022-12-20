@@ -1,6 +1,13 @@
 # Power BI Template
 
 ## Dashboard Explanation
+The Reading Progress module Power BI template consists of an Explanation page and a Reading Fluency page. This Power BI visualizes reding fluency related user activities in Reading Progress:
+- Reading Accuracy Rate: Shows the reading accuracy trend over a period of time.
+- Reading Pace: Shows the reading pace trend over a period of time.
+- Breakdown of Reading Fluency by School: Shows the reading accuracy score, word count and number of attempts at a schoool level.
+- Reading Error Categorization: Shows the breakdown of reading accuracy and its associated errors at a grade level.
+- Filter by school, class and date.
+
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/docs/images/Reading_Progress_Dashboard.png)
 
 
