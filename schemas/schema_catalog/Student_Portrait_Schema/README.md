@@ -6,7 +6,7 @@
 With the Student Portrait solution, educational institutions can understand how students learn in order to maximize their performance, satisfaction and motivation by delivering personalized nudges through a virtual pedagogical bot. It ensures the best outcomes for students with a 360-degree view of activities and engagement, followed by the provisioning of the right services and support at the optimal time. 
 
 <p align="center">
-  <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/schemas/schema_catalog/Student_Portrait_Schema/docs/images/Student_Portrait_Overview.png" alt="Microsoft Insights Visual"/>
+  <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/schemas/schema_catalog/Student_Portrait_Schema/docs/images/Student_Portrait_Solution_Overview.png" alt="Student Portrait Solution"/>
 </p>
 
 Portrait is operationalized through two AI agents: Emilia, a learning therapist, and Max, an organizational assistant, and uses data from multiple sources including LMS (Moodle, Canvas, Blackboard, etc), SIS, Microsoft Teams, Reflect, etc.
