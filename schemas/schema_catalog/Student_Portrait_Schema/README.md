@@ -12,7 +12,7 @@ With the Student Portrait solution, educational institutions can understand how 
 Portrait is operationalized through two AI agents: Emilia, a learning therapist, and Max, an organizational assistant, and uses data from multiple sources including LMS (Moodle, Canvas, Blackboard, etc), SIS, Microsoft Teams, Reflect, etc.
 
 ## Data Schema
-The Student Portrait data schema has 24 data entities. The Data Entities table below provides the data input, description and update frequency.
+The Student Portrait data schema has 24 data entities. The Data Entities table below provides the description and update frequency of each data entity.
 
 In the future, we will be working toward aligning data sources/OEA modules like Canvas and Moodle to the Student Portrait schema, and this will include the creation of its technical assets (notebooks, pipelines, etc). 
 
