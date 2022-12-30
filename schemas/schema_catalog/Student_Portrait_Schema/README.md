@@ -44,6 +44,10 @@ The Portrait data schema has 24 tables.
 | 23 | Programs_users | Relationship between students and programs in which they are enrolled | Weekly |
 | 24 | Courses_programs | Relationship between courses and programs in which they are taught | Weekly |
 
+<p align="center">
+  <img src="https://github.com/microsoft/OpenEduAnalytics/blob/main/schemas/schema_catalog/Student_Portrait_Schema/docs/images/Student_Portrait_Input_Entities.png" alt="Student Portrait Schema Input Entities"/>
+</p>
+
 ### Detailed Information on Data Entities
 
 |Entity id | Property | Type | Description |
