@@ -1,6 +1,6 @@
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
-# Student Portrait Solution
+# Student Portrait
 [Student Portrait](https://www.analytikus.com/learning-analytics) by [Analytikus](https://www.analytikus.com/) is an analytical solution that uses artificial intelligence to get to know all students and support them through personalized messaging. It identifies key student variables and characteristics, then nudges them through short, concise messages, that are personalized and engaging, in a timely manner to maximize student success. 
 
 With the Student Portrait solution, educational institutions can understand how students learn in order to maximize their performance, satisfaction and motivation by delivering personalized nudges through a virtual pedagogical bot. It ensures the best outcomes for students with a 360-degree view of activities and engagement, followed by the provisioning of the right services and support at the optimal time. 
