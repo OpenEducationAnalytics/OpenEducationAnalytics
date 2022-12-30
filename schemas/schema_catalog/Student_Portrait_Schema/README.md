@@ -11,9 +11,10 @@ With the Student Portrait solution, educational institutions can understand how 
 
 Portrait is operationalized through two AI agents: Emilia, a learning therapist, and Max, an organizational assistant, and uses data from multiple sources including LMS (Moodle, Canvas, Blackboard, etc), SIS, Microsoft Teams, Reflect, etc.
 
-The Portrait data schema has 24 tables.
-
 ## Data Schema
+The Student Portrait data schema has 24 data entities. The Data Entities table below provides the data input, description and update frequency.
+
+In the future, we will be working toward aligning data sources/OEA modules like Canvas and Moodle to the Student Portrait schema, and this will include the creation of its technical assets (notebooks, pipelines, etc). 
 
 ### Data Entities
 
@@ -230,9 +231,7 @@ in this repository under the [Creative Commons Attribution 4.0 International Pub
 see the [LICENSE](LICENSE) file, and grant you a license to any code in the repository under the [MIT License](https://opensource.org/licenses/MIT), see the
 [LICENSE-CODE](LICENSE-CODE) file.
 
-Microsoft, Windows, Microsoft Azure and/or other Microsoft products and services referenced in the documentation
-may be either trademarks or registered trademarks of Microsoft in the United States and/or other countries.
-The licenses for this project do not grant you rights to use any Microsoft names, logos, or trademarks.
+Microsoft, Windows, Microsoft Azure and/or other Microsoft products and services referenced in the documentation may be either trademarks or registered trademarks of Microsoft in the United States and/or other countries. The licenses for this project do not grant you rights to use any Microsoft names, logos, or trademarks.
 Microsoft's general trademark guidelines can be found at http://go.microsoft.com/fwlink/?LinkID=254653.
 
 Privacy information can be found at https://privacy.microsoft.com/en-us/
