@@ -1,2 +1,2 @@
-# Package Creation Kit
+# Schema Creation Kit
 info coming soon
