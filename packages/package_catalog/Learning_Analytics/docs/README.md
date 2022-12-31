@@ -1,4 +1,4 @@
-> **Note:** The package components are a  draft and it is work in progress. Complete v1 will be available 1/5/23.
+![image](https://user-images.githubusercontent.com/63133369/210151225-ed52eb8c-4365-481b-acc6-30773e7cb45a.png)
 
 # Package Documentation
 
