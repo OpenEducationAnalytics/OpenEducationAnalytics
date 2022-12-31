@@ -1,4 +1,4 @@
-<img width="604" alt="image" src="https://user-images.githubusercontent.com/63133369/205776919-25551f78-1c51-434d-b14a-a23f20ca7acc.png">
+![image](https://user-images.githubusercontent.com/63133369/210151243-aa36ed25-5c6c-4b13-8525-74ac503fd24c.png)
 
 # PowerBI Template
 
