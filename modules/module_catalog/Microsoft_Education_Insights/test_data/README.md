@@ -6,7 +6,7 @@ This module includes artificially generated data which matches the format of the
 - [Azure Active Directory](https://support.clever.com/hc/s/articles/360049642311?language=en_US#h_7698d144-7ceb-4d63-88b8-e9ca2aa378d2) provides an updated copy of your Azure Active Directory (Azure AD) into the Data Lake. The copy of Azure AD assists with user matching between your SIS / SMS and AAD User object.
 
 <strong>Note:</strong> This module contains two sets of test data - one set for mock K-12 data, and one set for mock higher education data. You can choose which test data set to ingest via the module pipeline template; for details see the [test data pipeline instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline#pipeline-setup-instructions).
-,
+
 ## Data dictionary
 
 ### [K-12 Activity Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/k12_test_data/activity/2022-01-28/ApplicationUsage.csv) and [HEd Activity Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/hed_test_data/activity/2022-01-28/ApplicationUsage.csv)
@@ -35,8 +35,8 @@ See full details on the [Microsoft SDS documentation](https://docs.microsoft.com
 | Grade | String | Optional. Submission grade points. Example: 100 (when action = Returned) |
 | SourceFileExtension | String | For file signals, captures the type of file: aspx, docx, web, mp4, jpg, pptx, etc. |
 | Meeting | Duration | TimeSpan	Duration in seconds the student spent in the meeting |
-| Meeting Session ID | String | The meeting session ID |
-| Meeting type | String | The meeting type |
+| MeetingSessionID | String | The meeting session ID |
+| MeetingType | String | The meeting type |
 | ReadingSubmissionWordsPerMinute | Int | Student submission result, reading pace |
 | ReadingSubmsssionAccuracyScore | Real | Student submission result, reading progress accuracy score |
 | ReadingSubmissionMispronunciationCount | Int | Per student attempt, number of works mispronounced |
