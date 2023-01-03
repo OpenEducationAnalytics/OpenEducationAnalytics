@@ -1,3 +1,5 @@
+> **Note:** This module is currently released as v0.0.1, and is dependent on the OEA framework v0.6.1
+
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
 # Module Test Data Generation Kit
