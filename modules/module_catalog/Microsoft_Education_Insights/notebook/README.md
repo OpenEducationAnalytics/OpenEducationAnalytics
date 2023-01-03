@@ -1,9 +1,10 @@
 # Notebook(s)
 
 This module has two notebooks:
- 1. One notebook is used to demonstrate an alternate method of data processing (i.e. landing, ingesting, and refining Insights data) with examples of explorative possbilities, and
+ 1. One notebook is used to demonstrate an alternate method of data processing (i.e. landing, ingesting, and refining Insights data) with examples of explorative possbilities.
  2. The other notebook is necessary to support the main [module pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline) for correcting each table's schema from the data source. 
-Both notebooks depend on the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb) which is a part of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework). Both notebooks are also automatically imported upon running the ```module_insights_v0.1.zip``` setup.sh script.
+
+Both notebooks depend on the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb) which is a part of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework), and both are automatically imported upon running the ```module_insights_v0.1.zip``` setup script.
 
 ## Module Example Notebook: [Insights_example.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_example.ipynb)
 
