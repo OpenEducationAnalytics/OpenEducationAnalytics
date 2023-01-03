@@ -28,10 +28,10 @@ If you already have an OEA environment, you can install this module with these s
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
 1) Download the module release to your Azure clouddrive \
 `cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_sif_v0.1/module_sif_v0.1.zip`\
-`unzip ./module_sif_v0.1.zip`
-1) Run the setup script like this (substitute "mysuffix" with your preferred suffix representing your org, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
-`./module_sif_v0.1/setup.sh mysynapseworkspacename`
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_sif_v0.2/module_sif_v0.2.zip`\
+`unzip ./module_sif_v0.2.zip`
+1) Run the setup script like this (substitute "myworkspacename" with org synapse workspace name, which must be less than 13 characters and can only contain letters and numbers): \
+`./module_sif_v0.2/setup.sh mysynapseworkspacename`
 
 # Legal Notices
 Microsoft and any contributors grant you a license to the Microsoft documentation and other content
