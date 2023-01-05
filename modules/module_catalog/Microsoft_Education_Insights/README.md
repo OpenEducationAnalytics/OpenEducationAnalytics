@@ -1,4 +1,4 @@
-> **Note:** This module is currently released as v0.1, and is dependent on the OEA framework v0.7
+> **Note:** This module is currently released as v0.1rc1, and is dependent on the OEA framework v0.7
 
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
@@ -12,7 +12,7 @@ Education Insights requires the implementation of [Microsoft School Data Sync](h
 
 
 <p align="center">
-  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_module_v0.1_overview.png" alt="Microsoft Insights Module v0.1 Overview"/>
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_module_v0.1_overview.png" alt="Microsoft Insights Module v0.1rc1 Overview"/>
 </p>
 
 (Microsoft documentation on Education Insights: [Education Insights in Microsoft Teams - Microsoft Education Center](https://docs.microsoft.com/en-us/schooldatasync/enabling-insights-premium-export)) 
@@ -44,10 +44,10 @@ All the steps outlined below are applicable to deployment of this module with pr
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
     * Download the module release to your Azure clouddrive \
 `cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_insights_v0.1/module_insights_v0.1.zip`\
-`unzip ./module_insights_v0.1.zip`
-    * Run the setup script like this (substitute "mysynapseworkspace" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
-`./module_insights_v0.1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_insights_v0.1rc1/module_insights_v0.1rc1.zip`\
+`unzip ./module_insights_v0.1rc1.zip`
+    * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must have a suffix less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
+`./module_insights_v0.1rc1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
 4. Run the [Insights module main pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline) or the [Insights_example notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_example.ipynb) into your Synapse workspace to see the functionality of module assets.
      * It is recommended that you first run the module example notebook to understanding the methods of data processing, before running the pipeline. Although, running either the example notebook or the main pipeline accomplish the same processes.
 5. Verify that the module pipeline landed data into stage 1 and 2, and SQL and lake databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline) for detailed instructions.
@@ -73,9 +73,10 @@ Out-of-the box assets for this OEA module include:
     - [Higher Education Test Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data/hed_test_data): Test data formatted as a higher education system.
     - [metadata.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/metadata.csv): Metadata CSV to support module data ingestion and refining for all Insights tables.
 2. [Pipeline Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline): One main pipeline template which lands data into the data lake in Stage 1 (for raw data) and processes into the Stage 2 data lake (for structured, queryable data). Stage 2 data is then made available via a serverless SQL endpoint.
-3. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/notebook): Two notebooks that can be used for either data exploration or schema correction; both notebooks are automatically installed upon running the setup script.
+3. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/notebook): Three notebooks that can be used for either data exploration or schema correction and refining; all notebooks are automatically installed upon running the setup script.
     - [Insights_example.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_example.ipynb): A module example notebook that demonstrates the basic functions of landing raw test data to Stage 1, ingestion from Stage 1 to Stage 2/Ingested, and refinement from Stage2/Ingested to Stage2/Refined.
     - [Insights_schema_correction.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_schema_correction.ipynb): Module-specific notebook that corrects each table's schema. The updated table schemas overwrite the pre-existing schemas in Stage2/Ingested.
+    - [Insights_refine.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_refine.ipynb): Module-specific notebook responsible for pseudonymizing the data into stage2/Refined.
 4. [PowerBI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/powerbi): Four PowerBI templates which explores data in a basic way. Screenshots of the PowerBI example template(s) are shown below.
     - There are two separate dashboard data sets: one uses the K-12 module test data, and one uses the higher ed. test data. 
     - There are also two different formats of PowerBI files: one of which is pre-loaded with test data making it easy to quickly interact with data, and the other uses DirectQuery to query the data from your own Serverless SQL database. See instructions on the [module PowerBI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/powerbi) to switch the dashboard data source to direct query from your Synapse workspace. 
