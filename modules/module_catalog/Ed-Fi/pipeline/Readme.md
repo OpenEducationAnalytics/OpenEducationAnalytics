@@ -20,7 +20,7 @@ The main pipeline has 3 major components:
    - DS_JSON_file
 3) Linked Services:
    - LS_HTTP
-   - LS_Keyvault_OEA
+   - LS_KeyVault
    - LS_SQL_Serverless_OEA
 
 # Note

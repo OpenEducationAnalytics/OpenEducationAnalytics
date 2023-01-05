@@ -2,7 +2,7 @@
     "name": "DS_JSON_File",
     "properties": {
         "linkedServiceName": {
-            "referenceName": "LS_ADLS_OEA",
+            "referenceName": "LS_Datalake",
             "type": "LinkedServiceReference"
         },
         "parameters": {
