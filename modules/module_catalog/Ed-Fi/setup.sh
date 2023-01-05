@@ -37,7 +37,6 @@ eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_REST_Anonymous_to_ADLS --file @$this_file_path/pipeline/Copy_from_REST_Anonymous_to_ADLS.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_EdFi_Entities_to_Stage1 --file @$this_file_path/pipeline/Copy_EdFi_Entities_to_Stage1.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_Stage1_To_Stage2 --file @$this_file_path/pipeline/Copy_Stage1_To_Stage2.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Ingest_To_Stage2 --file @$this_file_path/pipeline/Ingest_To_Stage2.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Master_Pipeline --file @$this_file_path/pipeline/Master_Pipeline.json"
 
 echo "--> Setup complete. The Ed-Fi module assets have been installed in the specified synapse workspace: $synapse_workspace"
