@@ -28,7 +28,7 @@ The Microsot Insights module Power BI template for K-12 data consists of a singl
  - Teams-use by Students per School - shows a treemap of the number of Teams-related signals from students in the activity table, per school within the university.
  - Total Insights Engagement in the University - shows a breakdown of all signals (by both professors and students) per day, from the activity table.
 
-![HEd Digital Engagement from Insights](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pbi_instructions/insights_module_sample_hed_dashboard.png)
+![HEd Digital Engagement from Insights](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pbi_instructions/insights_module_sample_hed_dashboard.png)
 
 ## Data Model
 
@@ -36,7 +36,7 @@ The Insights module Power BI template is made up of the following 10 tables: act
 
 The dimension tables are all tables except the activity table, since the fact table is the Insights activity table.
 
-![Data Model](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pbi_instructions/insights_dashboard_data_model.png)
+![Data Model](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pbi_instructions/insights_dashboard_data_model.png)
 
 ## Power BI Setup Instructions
 
@@ -56,9 +56,9 @@ The dimension tables are all tables except the activity table, since the fact ta
 
    * Select Change Source...
 
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pbi_instructions/insights_pbi_direct_query_p1.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pbi_instructions/insights_pbi_direct_query_p1.png)
 
    * Enter your Synapse workspace SQL server endpoint. This can be found on your Synapse workspace information page in the Azure portal.
 
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pbi_instructions/insights_pbi_direct_query_p2.png)
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pbi_instructions/insights_pbi_direct_query_p3.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pbi_instructions/insights_pbi_direct_query_p2.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pbi_instructions/insights_pbi_direct_query_p3.png)
