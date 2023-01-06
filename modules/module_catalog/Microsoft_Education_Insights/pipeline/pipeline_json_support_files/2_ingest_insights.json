@@ -1,0 +1,272 @@
+{
+    "name": "2_ingest_insights",
+    "properties": {
+        "activities": [
+            {
+                "name": "ingest_metadata_from_URL",
+                "description": "",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "ForEach table - ingest",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_metadata_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/metadata.csv",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "sinkPath": "M365/v1.14"
+                    }
+                }
+            },
+            {
+                "name": "insights_schema_correction",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "ingest_metadata_from_URL",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Insights_schema_correction",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
+            },
+            {
+                "name": "ForEach table - ingest",
+                "type": "ForEach",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.tables_to_ingest",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "ingest_each_insights_table",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "insights_ingest_with_options",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "entityPath": {
+                                        "value": "@concat('M365/v1.14/',item().table)",
+                                        "type": "Expression"
+                                    },
+                                    "primaryKey": {
+                                        "value": "@item().table_primary_key",
+                                        "type": "Expression"
+                                    },
+                                    "options": "'header':False"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "create_sql_db",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "insights_schema_correction",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Ingested/M365/v1.14",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2i_M365_v1p14')",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "ingest_k12_test_data": {
+                "type": "bool",
+                "defaultValue": false
+            },
+            "ingest_hed_test_data": {
+                "type": "bool",
+                "defaultValue": true
+            },
+            "tables_to_ingest": {
+                "type": "array",
+                "defaultValue": [
+                    {
+                        "table": "activity",
+                        "table_primary_key": "_c3"
+                    },
+                    {
+                        "table": "AadGroup",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "AadUser",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "AadUserPersonMapping",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Course",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "CourseGradeLevel",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "CourseSubject",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Enrollment",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Organization",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Person",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonDemographic",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonDemographicEthnicity",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonDemographicPersonFlag",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonDemographicRace",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonEmailAddress",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonIdentifier",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonOrganizationRole",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonPhoneNumber",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "RefDefinition",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Section",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "SectionGradeLevel",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "SectionSession",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "SectionSubject",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Session",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "SourceSystem",
+                        "table_primary_key": "_c0"
+                    }
+                ]
+            }
+        },
+        "folder": {
+            "name": "Insights Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-01-03T01:08:47Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
