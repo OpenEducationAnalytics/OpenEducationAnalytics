@@ -16,6 +16,6 @@ This Graph module example notebook:
 
 Basic functions for data exploration and visualization from Stage 1 to Stage 2 data lakes are also included. Steps are clearly outlined and commented.
 
-## Module OEA_Connection Notebook: [Graph_OEA_connector.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/Graph_OEA_connector.ipynb)
+## Module OEA Connection Notebook: [Graph_OEA_connector.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/Graph_OEA_connector.ipynb)
 
 Module table-schema correction notebook, necessary for landing OEA test datasets, cleaning the meeting_attendance_report table prior to ingestion, flattening the original nested JSON files, correcting column data types, and refining the dataset. Steps are clearly outlined in the notebook.
