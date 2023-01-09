@@ -1,47 +1,77 @@
 # Pipelines
 
 This module uses a Synapse pipeline to:
-1. Land Microsoft Graph Reports API test data into Stage 1np data lake (this step is omitted for production data).
-2. Process data into Stages 2np and 2p.
-3. Create a SQL database to query Stage 2np and 2p data via Power BI.
+1. Land Microsoft Education Insights test data into ```stage1/Transactional/graph_api/(beta and/or v1.0)``` of the data lake (this step is omitted for production data).
+2. Ingest data into ```stage2/Ingested/graph_api/v1.14/(beta and/or v1.0)```, structure the unstructured tables, and create a lake database (db) for queries.
+3. Refine data into ```stage2/Refined/graph_api/(beta or v1.0)/(general and sensitive)``` and create lake and SQL dbs for queries.
+    * Use the ```sdb_(dev or other workspace)_s2r_graph_api_(beta and v1p0)``` for connecting the serverless SQL db with Power BI DirectQuery.
 
 Notes:
-- "np" stands for non-pseudonomized data and "p" for pseudonomized data. 
-- Data columns contianing personal identifiable information (PII) are identified in the data schemas located in the [module class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_py.ipynb)
-- As data is processed from Stage 1np to Stages 2np and 2p, data is separated into pseudonomized data which PII columns hashed (Stage 2p) and lookup tables containing PII (Stage 2np). Non-pseudonmized data will then be protected at higher security levels.
-- This pipeline ingests Graph API data in the JSON format (but the class notebook and pipeline can be edited to process CSV-formatted data).
-- See the [written tutorial](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf) for an explaination on how to set up the pipeline to extract production data, or how to use this template.
+- The main pipeline currently has bugs and will be updated soon.
+- Ingestion initially copies the data from ```stage1``` to ```stage2/Ingested```, except changes the file format from JSONs to Delta tables.
+   * One of the later steps in the ingestion process, corrects and structures each module table's schema, as needed.
+- Data columns contianing personal identifiable information (PII) are identified in the data schemas located in the [module metadata.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/metadata.csv).
+- As data is refined from ```stage2/Ingested``` to ```stage2/Refined/.../(general and sensitive)```, data is separated into pseudonymized data where PII columns hashed or masked (```stage2/Refined/.../general```) and lookup tables containing the PII (```stage2/Refined/.../sensitive```). Non-pseudonmized data will then be protected at higher security levels.
+- This pipeline ingests Graph API data in the JSON format (but the notebooks and pipeline can be edited to process CSV-formatted data).
+- *[Depreciated - to be updated]* See the [written tutorial](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf) for an explaination on how to set up the pipeline to extract production data, or how to use this template.
 
 Module Pipeline for Test Data  | Module Pipeline for Production Data
 :-------------------------:|:-------------------------:
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/module_test_data_pipeline_overview.png) |  ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/module_prod_data_pipeline_overview.png)  
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_test_data_pipeline_v0.1rc1_overview.png) |  ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/coming_soon_visual.png)  
 
 For production data, this module pipeline can be automatically triggered (i.e. daily or weekly) to keep your Synapse data lake up-to-date.
 
-## Step 1: Test data or Production-level data ingestion
-Out-of-the-box, the main pipeline ingests either K-12 or Higher Education test data contained within this module. This pipeline copies all test data to stage 1np of the data lake, once ran. Refer to the [Insights Module Test Data Pipeline Instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline#test-data-pipeline-instructions) for details on deploying this Graph test data pipeline, as they require the exact same processes. See the [module test data folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data) for more information of the test data formats.
+## Pipeline Setup Instructions
 
-![Test Data Ingestion Pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20copy%20test%20data%20pipeline.png "Test Data Ingestion Pipeline")
+Two sets of instructions are included:
+1. [Test data pipeline instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline#test-data-pipeline-instructions)
+2. [Production data pipeline instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline#production-data-pipeline-instructions)
 
-To ingest production-level data, the [sub-pipline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/pipeline/Extracts/GraphAPI_data_ingestion.zip) will look similar to as seen below. Attach this to the first "execute pipeline" activity in the main pipeline, customize the queries as needed, then trigger the main pipeline to ingest your own Graph data to stage 1 and 2.
+### Test Data Pipeline Instructions
 
-![Production Data Ingestion Pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20ingest%20production%20data%20pipeline.png "Production Data Ingestion Pipeline")
+<details><summary>Expand Test Data Pipeline Instructions</summary>
+<p>
 
-### Query Documentation References
-| Resource | Description |
-| --- | --- |
-| [General Microsoft Graph query documentation](https://docs.microsoft.com/en-us/graph/) | landing page of all documentation about Graph and queries that can be made |
-| [Microsoft Users](https://docs.microsoft.com/en-us/graph/api/user-get?view=graph-rest-beta&tabs=http) | resource doc on the User details query |
-| [Microsoft 365 Applications User Detail](https://docs.microsoft.com/en-us/graph/api/reportroot-getm365appuserdetail?view=graph-rest-beta&tabs=http) | resource doc on the M365 App User details query |
-| [Microsoft Teams Activity User Detail](https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityuserdetail?view=graph-rest-beta) | resource doc on the Teams Activity User details query |
+1. Complete the first steps of the [module setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph#module-setup-instructions)
+2. Install the module to your workspace as outlined in the instructions.
+3. Once successfully installed, choose which workspace to work in, and whether you want to run (i.e. land, ingest and refine) the K-12 test data set or the higher education test data set.
+    * <em>Note</em>: Input either ```k12``` or ```hed``` in the ```run_k12_or_hed_test_data``` pipeline parameter, to run this pipeline successfully.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p1.png)
 
-## Step 2: Execute Module Ingestion Notebook
-The second step in the main pipeline triggers the [GraphAPI_module_ingestion.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/GraphAPI_module_ingestion.ipynb), which takes the Graph data landed in stage 1np, and processes the data using the functions outlined in the [Graph API class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/GraphAPI_py.ipynb). 
+4. Explore the pipeline as desired for any additional changes to landing, ingesting, and refining the test data.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p2.png)
 
-This pipeline activity will flatten the initial JSON files landed in stage 1, with a few additional and minor changes, then writes the data out to stage 2p and stage 2np.
+5. Commit/Publish any changes and trigger the pipeline manually.
 
-## Step 3: Create SQL and Lake Databases
-Lastly, this module main pipeline creates a final SQL view of the data ingested in stage 2p/2np. The SQL database will be used to bring data to the Power BI module dashboard. The Lake database can be used for data exploration.
+6. Once the pipeline has been successfully executed, verify that:
+
+- Data has landed in stage1.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p3.png)
+
+- Data has been ingested to stage2/Ingested.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p4.png)
+
+- Data has been refined to stage2/Refined.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p5.png)
+
+- SQL database has been created: ```sdb_dev_s2r_graph_api_(beta or v1p0)``` (or, if workspace parameter was changed, replace dev with chosen workspace upon trigger).
+
+- **Final note**: The same processing of the test data can be accomplished by following the steps and running the [module example notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/Graph_example.ipynb).
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p6.png)
+
+</p>
+</details>
+
+### Production Data Pipeline Instructions
+
+<details><summary>Expand Production Data Pipeline Instructions</summary>
+<p>
+
+1. Complete the [Test Data Pipeline Instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline#test-data-pipeline-instructions), but do not execute the pipeline yet.
+2. <em><strong>[Coming soon...]</em></strong>
+
+</p>
+</details>
 
 ### Additional Notes:
  - The pipeline template can be manually triggered to query data from the Graph Reports API. When triggered, the pipeline pulls data for the past week for both M365 and Teams Graph reports while the Users report is overwritten.

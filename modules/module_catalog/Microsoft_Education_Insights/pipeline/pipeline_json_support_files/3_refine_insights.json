@@ -3,55 +3,13 @@
     "properties": {
         "activities": [
             {
-                "name": "ForEach table - refine",
-                "type": "ForEach",
-                "dependsOn": [],
-                "userProperties": [],
-                "typeProperties": {
-                    "items": {
-                        "value": "@pipeline().parameters.entities",
-                        "type": "Expression"
-                    },
-                    "isSequential": false,
-                    "activities": [
-                        {
-                            "name": "refine_entity",
-                            "type": "ExecutePipeline",
-                            "dependsOn": [],
-                            "userProperties": [],
-                            "typeProperties": {
-                                "pipeline": {
-                                    "referenceName": "refine",
-                                    "type": "PipelineReference"
-                                },
-                                "waitOnCompletion": true,
-                                "parameters": {
-                                    "workspace": {
-                                        "value": "@pipeline().parameters.workspace",
-                                        "type": "Expression"
-                                    },
-                                    "entityPath": {
-                                        "value": "@concat('M365/v1.14/',item().table)",
-                                        "type": "Expression"
-                                    },
-                                    "primaryKey": {
-                                        "value": "@item().table_primary_key",
-                                        "type": "Expression"
-                                    }
-                                }
-                            }
-                        }
-                    ]
-                }
-            },
-            {
                 "name": "create_sql_db_for_general",
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "ForEach table - refine",
+                        "activity": "refine_insights_data",
                         "dependencyConditions": [
-                            "Completed"
+                            "Succeeded"
                         ]
                     }
                 ],
@@ -81,9 +39,9 @@
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "ForEach table - refine",
+                        "activity": "refine_insights_data",
                         "dependencyConditions": [
-                            "Completed"
+                            "Succeeded"
                         ]
                     }
                 ],
@@ -107,117 +65,42 @@
                         }
                     }
                 }
+            },
+            {
+                "name": "refine_insights_data",
+                "description": "Refines all tables from Insights currently located in stage2/Ingested/M365/v1.14.",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Insights_refine",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
             }
         ],
         "parameters": {
             "workspace": {
                 "type": "string",
                 "defaultValue": "dev"
-            },
-            "entities": {
-                "type": "array",
-                "defaultValue": [
-                    {
-                        "table": "activity",
-                        "table_primary_key": "SignalId"
-                    },
-                    {
-                        "table": "AadGroup",
-                        "table_primary_key": "ObjectId_pseudonym"
-                    },
-                    {
-                        "table": "AadUser",
-                        "table_primary_key": "ObjectId_pseudonym"
-                    },
-                    {
-                        "table": "AadUserPersonMapping",
-                        "table_primary_key": "ObjectId_pseudonym"
-                    },
-                    {
-                        "table": "Course",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "CourseGradeLevel",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "CourseSubject",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "Enrollment",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "Organization",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "Person",
-                        "table_primary_key": "Id_pseudonym"
-                    },
-                    {
-                        "table": "PersonDemographic",
-                        "table_primary_key": "PersonId_pseudonym"
-                    },
-                    {
-                        "table": "PersonDemographicEthnicity",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "PersonDemographicPersonFlag",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "PersonDemographicRace",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "PersonEmailAddress",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "PersonIdentifier",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "PersonOrganizationRole",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "PersonPhoneNumber",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "RefDefinition",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "Section",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "SectionGradeLevel",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "SectionSession",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "SectionSubject",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "Session",
-                        "table_primary_key": "Id"
-                    },
-                    {
-                        "table": "SourceSystem",
-                        "table_primary_key": "Id"
-                    }
-                ]
             }
         },
         "folder": {

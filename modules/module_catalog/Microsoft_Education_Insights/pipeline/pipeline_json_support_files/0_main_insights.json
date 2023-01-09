@@ -59,6 +59,10 @@
                         "ingest_hed_test_data": {
                             "value": "@pipeline().parameters.run_hed_test_data",
                             "type": "Expression"
+                        },
+                        "tables_to_ingest": {
+                            "value": "@pipeline().parameters.ingest_array",
+                            "type": "Expression"
                         }
                     }
                 }
@@ -96,19 +100,124 @@
                 "defaultValue": "dev"
             },
             "run_k12_test_data": {
-                "type": "string",
-                "defaultValue": "false"
+                "type": "bool",
+                "defaultValue": false
             },
             "run_hed_test_data": {
-                "type": "string",
-                "defaultValue": "true"
+                "type": "bool",
+                "defaultValue": true
+            },
+            "ingest_array": {
+                "type": "array",
+                "defaultValue": [
+                    {
+                        "table": "activity",
+                        "table_primary_key": "_c3"
+                    },
+                    {
+                        "table": "AadGroup",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "AadUser",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "AadUserPersonMapping",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Course",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "CourseGradeLevel",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "CourseSubject",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Enrollment",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Organization",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Person",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonDemographic",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonDemographicEthnicity",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonDemographicPersonFlag",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonDemographicRace",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonEmailAddress",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonIdentifier",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonOrganizationRole",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "PersonPhoneNumber",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "RefDefinition",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Section",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "SectionGradeLevel",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "SectionSession",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "SectionSubject",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "Session",
+                        "table_primary_key": "_c0"
+                    },
+                    {
+                        "table": "SourceSystem",
+                        "table_primary_key": "_c0"
+                    }
+                ]
             }
         },
         "folder": {
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2022-12-30T02:05:39Z"
+        "lastPublishTime": "2023-01-03T00:25:25Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
