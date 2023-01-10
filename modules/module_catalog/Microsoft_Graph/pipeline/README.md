@@ -7,7 +7,7 @@ This module uses a Synapse pipeline to:
     * Use the ```sdb_(dev or other workspace)_s2r_graph_api_(beta and v1p0)``` for connecting the serverless SQL db with Power BI DirectQuery.
 
 Notes:
-- The main pipeline currently has bugs and will be updated soon.
+- The main pipeline should take ~20-30 minutes to run.
 - Ingestion initially copies the data from ```stage1``` to ```stage2/Ingested```, except changes the file format from JSONs to Delta tables.
    * One of the later steps in the ingestion process, corrects and structures each module table's schema, as needed.
 - Data columns contianing personal identifiable information (PII) are identified in the data schemas located in the module [metadata_beta.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/test_data/metadata_beta.csv) and [metadata_v1p0.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/test_data/metadata_v1p0.csv).
