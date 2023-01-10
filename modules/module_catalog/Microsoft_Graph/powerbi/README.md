@@ -14,19 +14,19 @@ The Microsot Graph Reports API module Power BI template for K-12 data consists o
 
 #### K-12 Digital Resource Usage Summary Dashboard:
  - M365 Access by OS - shows a breakdown of the instances of any M365 products being used by all users, either on a Mac or Windows OS, over all weeks analyzed.
+ - Teams Meeting Activities Over Time - shows the aggregate data for various Teams meetings activities of all users, over a particular week. Units of the Y-axis is in seconds, by transformation of data in the data-processing notebooks/pipelines provided.
  - M365 Access Breakdown - shows a breakdown of the instances of any M365 products being used on a desktop, online, or mobile device (e.g. word vs. wordWeb vs. wordMobile).
  - M365 App Use Percentages - shows the percentage of instances of any M365 product being used.
  - M365 Activity Over Time - shows the aggregate data for any M365 product being used by users, over a period of time.
- - Teams Meeting Activities Over Time - shows the aggregate data for various Teams meetings activities of all users, over a particular week. Units of the Y-axis is in seconds, by transformation of data in the data-processing notebook provided.
 
-![K-12 Digital Resource Usage](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20Dashboard%20Sample.png)
+![K-12 Digital Resource Usage Summary Dashboard](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/pbi/graph_module_sample_k12_dashboard.png)
 
 #### Higher Ed. Digital Resource Usage & Meeting Attendance Summary Dashboard:
  - M365 Access by OS - shows a breakdown of the instances of any M365 products being used by all users, either on a Mac or Windows OS, over all weeks analyzed.
+ - Teams Meetings Over Time - shows the aggregate data for various Teams meetings activities of all users, over a particular day. Left Y-axis shows total number of meetings. Right Y-axis identifies the average number of people attending a meeting on a given day.
  - M365 Access Breakdown - shows a breakdown of the instances of any M365 products being used on a desktop, online, or mobile device (e.g. word vs. wordWeb vs. wordMobile).
  - M365 App Use Percentages - shows the percentage of instances of any M365 product being used.
  - M365 Activity Over Time - shows the aggregate data for any M365 product being used by users, over a period of time.
- - Teams Meetings Over Time - shows the aggregate data for various Teams meetings activities of all users, over a particular day. Left Y-axis shows total number of meetings. Right Y-axis identifies the average number of people attending a meeting on a given day.
 
 ![HEd Digital Resource Usage & Meeting Attendance Summary Dashboard](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/pbi/graph_module_sample_hed_dashboard.png)
 
