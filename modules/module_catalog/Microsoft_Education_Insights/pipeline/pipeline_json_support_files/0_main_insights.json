@@ -1,0 +1,103 @@
+{
+    "name": "0_main_insights",
+    "properties": {
+        "description": "Change the workspace and run_(k12 or hed)_test_data as needed. \nEither the k12 or hed parameter must be true, but not both.",
+        "activities": [
+            {
+                "name": "1_land_insights_test_data",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "1_land_insights",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "land_k12_or_hed_test_data": {
+                            "value": "@pipeline().parameters.run_k12_or_hed_test_data",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "2_ingest_insights",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "1_land_insights_test_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "2_ingest_insights",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "ingest_k12_or_hed_test_data": {
+                            "value": "@pipeline().parameters.run_k12_or_hed_test_data",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "3_refine_insights",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "2_ingest_insights",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "3_refine_insights",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "run_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
+            }
+        },
+        "folder": {
+            "name": "Insights Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-01-13T18:27:46Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
