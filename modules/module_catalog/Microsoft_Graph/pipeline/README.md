@@ -39,20 +39,23 @@ Two sets of instructions are included:
 ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p1.png)
 
 4. Explore the pipeline as desired for any additional changes to landing, ingesting, and refining the test data.
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p2.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p2.1.png)
 
 5. Commit/Publish any changes and trigger the pipeline manually.
 
 6. Once the pipeline has been successfully executed, verify that:
 
 - Data has landed in stage1.
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p3.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p3.1.png)
 
 - Data has been ingested to stage2/Ingested.
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p4.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p4.1.png)
+
+- Data has been ingested to stage2/Ingested_Corrected.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p7.png)
 
 - Data has been refined to stage2/Refined.
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p5.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p5.1.png)
 
 - SQL database has been created: ```sdb_dev_s2r_graph_api_(beta or v1p0)``` (or, if workspace parameter was changed, replace dev with chosen workspace upon trigger).
 
