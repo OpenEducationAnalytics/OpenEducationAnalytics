@@ -2,19 +2,16 @@
 
 This module uses a Synapse pipeline to:
 1. Land Microsoft Education Insights test data into ```stage1/Transactional/M365/v1.14``` of the data lake (this step is omitted for production data).
-2. Ingest data into ```stage2/Ingested/M365/v1.14```, structure the unstructured tables, and create a lake database (db) for queries.
-3. Refine data into ```stage2/Refined/M365/v1.14/(general and sensitive)``` and create lake and SQL dbs for queries.
-    * Use the ```sdb_(dev or other workspace)_s2r_m365_v1p14``` for connecting the serverless SQL db with Power BI DirectQuery.
-
+2. Ingest data into ```stage2/Ingested/M365/v1.14``` and create a lake database (db) for queries.
+3. Correct the table schemas into ```stage2/Ingested_Corrected/M365/v1.14```
+4. Refine data into ```stage2/Refined/M365/v1.14/(general and sensitive)``` and create lake and SQL dbs for queries.
+      * Use the ```sdb_(dev or other workspace)_s2r_m365_v1p14``` for connecting the serverless SQL db with Power BI DirectQuery.
+    
 Notes:
-- The main pipeline currently takes about 1 hour to run, and will be significantly accelerated in coming updates:
-   * The first step (landing) takes ~1 minute to run.
-   * The second step (ingestion) takes ~53 minutes.
-   * The third step (refining) takes ~7 minutes.
 - Ingestion initially copies the data from ```stage1``` to ```stage2/Ingested```, except changes the file format from CSVs to Delta tables.
-   * One of the later steps in the ingestion process, corrects and structures each module table's schema, as needed.
+   * One of the later steps in the ingestion process, corrects and structures each module table's schema, as needed; these corrected tables are written to ```stage2/Ingested_Corrected```.
 - Data columns contianing personal identifiable information (PII) are identified in the data schemas located in the [module metadata.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/metadata.csv).
-- As data is refined from ```stage2/Ingested``` to ```stage2/Refined/.../(general and sensitive)```, data is separated into pseudonymized data where PII columns hashed or masked (```stage2/Refined/.../general```) and lookup tables containing the PII (```stage2/Refined/.../sensitive```). Non-pseudonmized data will then be protected at higher security levels.
+- As data is refined from ```stage2/Ingested_Corrected``` to ```stage2/Refined/.../(general and sensitive)```, data is separated into pseudonymized data where PII columns hashed or masked (```stage2/Refined/.../general```) and lookup tables containing the PII (```stage2/Refined/.../sensitive```). Non-pseudonmized data will then be protected at higher security levels.
 
 Module Pipeline for Test Data  | Module Pipeline for Production Data
 :-------------------------:|:-------------------------:
@@ -36,11 +33,11 @@ Two sets of instructions are included:
 1. Complete the first steps of the [module setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights#module-setup-instructions)
 2. Install the module to your workspace as outlined in the instructions.
 3. Once successfully installed, choose which workspace to work in, and whether you want to run (i.e. land, ingest and refine) the K-12 test data set or the higher education test data set.
-    * <em>Note</em>: Either the ```run_k12_test_data``` or the ```run_hed_test_data``` field must be true, while the other is false, in order to run this pipeline successfully.
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p1.png)
+    * <em>Note</em>: Input either ```k12``` or ```hed``` in the ```run_k12_or_hed_test_data``` pipeline parameter, to run this pipeline successfully.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p1.1.png)
 
 4. Explore the pipeline as desired for any additional changes to landing, ingesting, and refining the test data.
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p2.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p2.1.png)
 
 5. Commit/Publish any changes and trigger the pipeline manually.
 
@@ -50,11 +47,13 @@ Two sets of instructions are included:
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p3.png)
 
 - Data has been ingested to stage2/Ingested.
-     * <em>Note</em>: There is still debugging to ingest the AadGroupMembership table.
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p4.png)
 
+- Data has been ingested to stage2/Ingested_Corrected.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p7.png)
+
 - Data has been refined to stage2/Refined.
-     * <em>Note</em>: There is still debugging to refine the following tables into ```stage2/Refined```: AadGroupMembership, PersonDemographicEthnicity, PersonDemographicPersonFlag, PersonDemographicRace, PersonEmailAddress, PersonIdentifier, PersonOrganizationRole, and PersonPhoneNumber.
+     * <em>Note</em>: There is still debugging to refine the following tables into ```stage2/Refined```: PersonDemographicEthnicity, PersonDemographicPersonFlag, PersonDemographicRace, PersonEmailAddress, PersonIdentifier, PersonOrganizationRole, and PersonPhoneNumber.
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p5.png)
 
 - SQL database has been created: ```sdb_dev_s2r_m365_v1p14``` (or, if workspace parameter was changed, replace dev with chosen workspace upon trigger).
@@ -83,11 +82,13 @@ Two sets of instructions are included:
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p3.png)
 
 - Data has been ingested to stage2/Ingested.
-     * <em>Note</em>: There is still debugging to ingest the AadGroupMembership table.
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p4.png)
 
+- Data has been ingested to stage2/Ingested_Corrected.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p7.png)
+
 - Data has been refined to stage2/Refined.
-     * <em>Note</em>: There is still debugging to refine the following tables into ```stage2/Refined```: AadGroupMembership, PersonDemographicEthnicity, PersonDemographicPersonFlag, PersonDemographicRace, PersonEmailAddress, PersonIdentifier, PersonOrganizationRole, and PersonPhoneNumber.
+     * <em>Note</em>: There is still debugging to refine the following tables into ```stage2/Refined```: PersonDemographicEthnicity, PersonDemographicPersonFlag, PersonDemographicRace, PersonEmailAddress, PersonIdentifier, PersonOrganizationRole, and PersonPhoneNumber.
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/v0.1_pipeline_instructions/insights_module_v0.1_instructions_p5.png)
 
 - SQL database has been created: ```sdb_dev_s2r_m365_v1p14``` (or, if workspace parameter was changed, replace dev with chosen workspace upon trigger).
