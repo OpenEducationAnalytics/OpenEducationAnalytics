@@ -6,6 +6,8 @@ This module has two sets of notebooks:
 
 All notebooks depend on the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb) which is a part of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework), and will be automatically imported upon running the ```module_graph_v0.1rc1.zip``` setup script.
 
+**<em>NOTE:** If you are running into issues with the refine process - you may need to edit the OEA_py notebook to not assume the primary key will be pseudonymized (i.e. make sure to remove "_pseudonym" suffix on the primary key column).</em>
+
 ## Module Example Notebook: [Graph_example.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/Graph_example.ipynb)
 
 This Graph module example notebook:
