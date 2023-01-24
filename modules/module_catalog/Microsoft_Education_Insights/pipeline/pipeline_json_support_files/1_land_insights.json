@@ -6,19 +6,12 @@
                 "name": "Set defaultFilename",
                 "description": "Sets defaultFilename variable depending on whether K-12 or Higher Ed. test data is to be landed.",
                 "type": "SetVariable",
-                "dependsOn": [
-                    {
-                        "activity": "Set testDataSet",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
+                "dependsOn": [],
                 "userProperties": [],
                 "typeProperties": {
                     "variableName": "defaultFilename",
                     "value": {
-                        "value": "@if(pipeline().parameters.land_k12_test_data, 'k12_test_data.csv', 'hed_test_data.csv')",
+                        "value": "@{pipeline().parameters.land_k12_or_hed_test_data}_test_data.csv",
                         "type": "Expression"
                     }
                 }
@@ -44,7 +37,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/activity/2022-01-28/ApplicationUsage.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/activity/2022-01-28/ApplicationUsage.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -57,20 +50,6 @@
                             "type": "Expression"
                         },
                         "batchType": "additive"
-                    }
-                }
-            },
-            {
-                "name": "Set testDataSet",
-                "description": "Sets testDataSet variable depending on whether K-12 or Higher Ed. test data is to be landed.",
-                "type": "SetVariable",
-                "dependsOn": [],
-                "userProperties": [],
-                "typeProperties": {
-                    "variableName": "testDataSet",
-                    "value": {
-                        "value": "@if(pipeline().parameters.land_k12_test_data, 'k12', 'hed')",
-                        "type": "Expression"
                     }
                 }
             },
@@ -95,7 +74,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/AadGroup/aadgroup.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/AadGroup/aadgroup.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -132,7 +111,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/AadGroupMembership/aadgroupmembership.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/AadGroupMembership/aadgroupmembership.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -169,7 +148,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/AadUser/aaduser.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/AadUser/aaduser.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -206,7 +185,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/AadUserPersonMapping/aaduserpersonmapping.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/AadUserPersonMapping/aaduserpersonmapping.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -243,7 +222,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/Course/course.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Course/course.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -280,7 +259,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/CourseGradeLevel/coursegradelevel.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/CourseGradeLevel/coursegradelevel.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -317,7 +296,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/CourseSubject/coursesubject.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/CourseSubject/coursesubject.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -354,7 +333,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/Enrollment/enrollment.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Enrollment/enrollment.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -391,7 +370,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/Organization/organization.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Organization/organization.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -428,7 +407,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/Person/person.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Person/person.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -465,7 +444,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/PersonDemographic/persondemographic.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonDemographic/persondemographic.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -502,7 +481,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/PersonDemographicEthnicity/persondemographicethnicity.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonDemographicEthnicity/persondemographicethnicity.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -539,7 +518,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/PersonDemographicPersonFlag/persondemographicpersonflag.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonDemographicPersonFlag/persondemographicpersonflag.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -576,7 +555,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/PersonDemographicRace/persondemographicrace.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonDemographicRace/persondemographicrace.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -613,7 +592,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/PersonEmailAddress/personemailaddress.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonEmailAddress/personemailaddress.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -650,7 +629,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/PersonIdentifier/personidentifier.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonIdentifier/personidentifier.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -687,7 +666,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/PersonOrganizationRole/personorganizationrole.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonOrganizationRole/personorganizationrole.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -724,7 +703,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/PersonPhoneNumber/personphonenumber.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonPhoneNumber/personphonenumber.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -761,7 +740,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/PersonRelationship/personrelationship.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonRelationship/personrelationship.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -798,7 +777,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/RefDefinition/refdefinition.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/RefDefinition/refdefinition.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -835,7 +814,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/RefTranslation/reftranslation.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/RefTranslation/reftranslation.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -872,7 +851,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/Section/section.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Section/section.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -909,7 +888,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/SectionGradeLevel/sectiongradelevel.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/SectionGradeLevel/sectiongradelevel.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -946,7 +925,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/SectionSession/sectionsession.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/SectionSession/sectionsession.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -983,7 +962,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/SectionSubject/sectionsubject.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/SectionSubject/sectionsubject.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -1020,7 +999,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/Session/session.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Session/session.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -1057,7 +1036,7 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "URL": {
-                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',variables('testDataSet'),'_test_data/roster/2022-01-28T06-16-22/SourceSystem/sourcesystem.csv')",
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/SourceSystem/sourcesystem.csv')",
                             "type": "Expression"
                         },
                         "workspace": {
@@ -1079,30 +1058,22 @@
                 "type": "string",
                 "defaultValue": "dev"
             },
-            "land_k12_test_data": {
-                "type": "bool",
-                "defaultValue": false
-            },
-            "land_hed_test_data": {
-                "type": "bool",
-                "defaultValue": true
+            "land_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
             }
         },
         "variables": {
             "defaultFilename": {
                 "type": "String",
                 "defaultValue": "test_data.csv"
-            },
-            "testDataSet": {
-                "type": "String",
-                "defaultValue": "k12"
             }
         },
         "folder": {
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2022-12-29T20:33:48Z"
+        "lastPublishTime": "2023-01-12T19:56:04Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

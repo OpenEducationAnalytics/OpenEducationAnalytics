@@ -1,0 +1,376 @@
+{
+    "name": "2_ingest_graph",
+    "properties": {
+        "activities": [
+            {
+                "name": "ForEach beta table - ingest",
+                "description": "Ingests each of the Graph tables from the beta queries made to Graph",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Set ingest_hed_test_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.ingest_beta_tables",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "ingest_each_graph_beta_table",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "ingest",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "entityPath": {
+                                        "value": "graph_api/beta/@{item()}",
+                                        "type": "Expression"
+                                    },
+                                    "primaryKey": "value"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "If ingest_hed_test_data",
+                "description": "Ingests the meeting_attendance_report table if the ingest_hed_test_data parameter is set to true.",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "ForEach beta table - ingest",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@variables('ingest_hed_test_data')",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "Pre-process meeting table",
+                            "description": "Removes the '@odata.context' column from the meeting_attendance_report table (since this column isn't needed and throws an error during ingestion), and writes the table back to stage1.",
+                            "type": "SynapseNotebook",
+                            "dependsOn": [],
+                            "policy": {
+                                "timeout": "0.12:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "notebook": {
+                                    "referenceName": "Graph_pre-processing",
+                                    "type": "NotebookReference"
+                                },
+                                "parameters": {
+                                    "workspace": {
+                                        "value": {
+                                            "value": "@pipeline().parameters.workspace",
+                                            "type": "Expression"
+                                        },
+                                        "type": "string"
+                                    }
+                                },
+                                "snapshot": true,
+                                "sparkPool": {
+                                    "referenceName": "spark3p2med",
+                                    "type": "BigDataPoolReference"
+                                }
+                            }
+                        },
+                        {
+                            "name": "ingest_graph_v1p0_table",
+                            "description": "Currently, this only ingests the meeting_attendance_report table, from the Graph v1.0 query.",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [
+                                {
+                                    "activity": "Pre-process meeting table",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "ingest",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "entityPath": "graph_api/v1.0/meeting_attendance_report",
+                                    "primaryKey": "id"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "land_metadata_beta_from_URL",
+                "description": "",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "If ingest_hed_test_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_metadata_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Graph/test_data/metadata_beta.csv",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "sinkPath": "graph_api/beta"
+                    }
+                }
+            },
+            {
+                "name": "graph_schema_correction",
+                "description": "Flattens the original JSON files and corrects the column dtypes for Graph tables.",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "land_metadata_beta_from_URL",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "land_metadata_v1p0_from_URL",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Graph_schema_correction",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "testdataSet": {
+                            "value": {
+                                "value": "@pipeline().parameters.ingest_k12_or_hed_test_data",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
+                }
+            },
+            {
+                "name": "create_beta_sql_db",
+                "description": "Creates SQL db to hold the tables from the Graph beta queries.",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "graph_schema_correction",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Ingested/graph_api/beta",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2i_graph_api_beta')",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "land_metadata_v1p0_from_URL",
+                "description": " \n",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "If ingest_hed_test_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_metadata_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Graph/test_data/metadata_v1p0.csv",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "sinkPath": "graph_api/v1.0"
+                    }
+                }
+            },
+            {
+                "name": "Set ingest_hed_test_data",
+                "description": "If the ingest_k12_or_hed_test_data parameter is set to 'hed', this variable is true - otherwise it's false.",
+                "type": "SetVariable",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "ingest_hed_test_data",
+                    "value": {
+                        "value": "@if(startswith(pipeline().parameters.ingest_k12_or_hed_test_data, 'hed'), true, false)",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "If ingest_hed",
+                "description": "create SQL db for v1p0 table(s).",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "graph_schema_correction",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@variables('ingest_hed_test_data')",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "create_v1p0_sql_db",
+                            "description": "Creates SQL db to hold the tables from the Graph v1.0 queries.",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "create_sql_db",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "stage": "stage2",
+                                    "datasetPath": "Ingested/graph_api/v1.0",
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "dbName": {
+                                        "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2i_graph_api_v1p0')",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "ingest_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
+            },
+            "ingest_beta_tables": {
+                "type": "array",
+                "defaultValue": [
+                    "users",
+                    "m365_app_user_detail",
+                    "teams_activity_user_detail"
+                ]
+            }
+        },
+        "variables": {
+            "ingest_hed_test_data": {
+                "type": "Boolean",
+                "defaultValue": false
+            }
+        },
+        "folder": {
+            "name": "Graph Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-01-12T18:07:14Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

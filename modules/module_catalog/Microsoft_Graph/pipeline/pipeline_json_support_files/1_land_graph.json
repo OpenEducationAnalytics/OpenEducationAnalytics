@@ -1,9 +1,10 @@
 {
-    "name": "insights_ingest_with_options",
+    "name": "1_land_graph",
     "properties": {
         "activities": [
             {
-                "name": "ingest",
+                "name": "land_graph_test_data",
+                "description": "lands either K-12 or Higher Ed test data, based on main pipeline parameter.",
                 "type": "SynapseNotebook",
                 "dependsOn": [],
                 "policy": {
@@ -16,39 +17,30 @@
                 "userProperties": [],
                 "typeProperties": {
                     "notebook": {
-                        "referenceName": "OEA_connector",
+                        "referenceName": "Graph_land_test_data",
                         "type": "NotebookReference"
                     },
                     "parameters": {
-                        "method_name": {
-                            "value": "ingest",
-                            "type": "string"
-                        },
-                        "kwargs": {
-                            "value": {
-                                "value": "{'entity_path':'@{pipeline().parameters.entityPath}', 'primary_key':'@{pipeline().parameters.primaryKey}', 'options':{@{pipeline().parameters.options}}}",
-                                "type": "Expression"
-                            },
-                            "type": "string"
-                        },
                         "workspace": {
                             "value": {
                                 "value": "@pipeline().parameters.workspace",
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "testdataSet": {
+                            "value": {
+                                "value": "@pipeline().parameters.land_k12_or_hed_test_data",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
+                    "snapshot": true,
                     "sparkPool": {
-                        "referenceName": "spark3p2sm",
+                        "referenceName": "spark3p2med",
                         "type": "BigDataPoolReference"
-                    },
-                    "conf": {
-                        "spark.dynamicAllocation.enabled": null,
-                        "spark.dynamicAllocation.minExecutors": null,
-                        "spark.dynamicAllocation.maxExecutors": null
-                    },
-                    "numExecutors": null
+                    }
                 }
             }
         ],
@@ -57,23 +49,16 @@
                 "type": "string",
                 "defaultValue": "dev"
             },
-            "entityPath": {
+            "land_k12_or_hed_test_data": {
                 "type": "string",
-                "defaultValue": "contoso/v0.1/students"
-            },
-            "primaryKey": {
-                "type": "string",
-                "defaultValue": "id"
-            },
-            "options": {
-                "type": "string"
+                "defaultValue": "hed"
             }
         },
         "folder": {
-            "name": "Insights Module"
+            "name": "Graph Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2022-12-27T18:49:11Z"
+        "lastPublishTime": "2023-01-12T16:49:49Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

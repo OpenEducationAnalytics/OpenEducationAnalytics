@@ -10,7 +10,7 @@ You can use this OEA Microsoft Graph Reports API module to incorporate O365 usag
 *Watch <a href="https://youtu.be/K01h-QsMX9c" target="_blank">overview video </a> of the Microsoft Graph Reports API Module.*
 
 <p align="center">
-  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_module_v0.1_overview.png" alt="Microsoft Graph v0.1 Overview Visual"/>
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/pbi/graph_module_v0.1_overview.png" alt="Microsoft Graph v0.1 Overview Visual"/>
 </p>
 
  <p align="center">
@@ -40,7 +40,7 @@ These dashboard examples represent only data from Microsoft Teams and O365. When
 
 <ins><strong>Preparation:</ins></strong> This module currently leans on v0.7 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.7 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). 
 
-1. *[To be updated by 1/13]* Run the [setup.sh script](https://github.com/Microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/setup.sh)
+1. Run the [setup.sh script](https://github.com/Microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/setup.sh)
     * Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
     * Download the module release to your Azure clouddrive \
@@ -79,16 +79,16 @@ Out-of-the box assets for this OEA module include:
     - [metadata_beta.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/test_data/metadata_beta.csv): Metadata CSV to support module data ingestion and refining for all tables from Graph beta queries.
     - [metadata_v1p0.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/test_data/metadata_v1p0.csv): Metadata CSV to support module data ingestion and refining for all tables from Graph v1.0 queries.
 3. [Pipeline Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline): One main pipeline template which lands data into the data lake in Stage 1 (for raw data) and processes into the Stage 2 data lake (for structured, queryable data). Stage 2 data is then made available via a serverless SQL endpoint.
-4. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/notebook): Two notebooks that can be used for either data exploration, or landing, schema cleaning, correction and refining data; both notebooks are automatically installed upon running the setup script. 
+4. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/notebook): Two sets of notebooks that can be used for either data exploration, or necessary for landing, schema cleaning, correction and refining data in the pipeline; notebooks are automatically installed upon running the setup script. 
     - [Graph_example.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/Graph_example.ipynb): A module example notebook that demonstrates the basic functions of landing raw test data to Stage 1, ingestion from Stage 1 to Stage 2/Ingested, and refinement from Stage2/Ingested to Stage2/Refined.
-    - [Graph_OEA_connector.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/Graph_OEA_connector.ipynb): Module-specific notebook that lands test data, cleans the data, corrects table schemas, and refines the dataset.
+    - [Graph Pipeline-Supporting Notebooks](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook): Module-specific notebooks that land test data, clean the data, corrects table schemas, and refines the dataset.
 4. [Power BI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/powerbi): Four templates which explores data in a basic way. Screenshots of the Power BI example template(s) are shown below.
     - There are two separate dashboard data sets: one uses the K-12 module test data, and one uses the higher ed. test data. 
     - There are also two different formats of PowerBI files: one of which is pre-loaded with test data making it easy to quickly interact with data, and the other uses DirectQuery to query the data from your own Serverless SQL database. See instructions on the [module PowerBI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/powerbi) to switch the dashboard data source to direct query from your Synapse workspace. 
 
-Explanation of Module Dashboard  | Usage Summary
+Explanation of Module Higher Ed. Dashboard  | Digital Resource Usage & Meeting Attendance Summary
 :-------------------------:|:-------------------------:
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20Explanation%20Page.png)  |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/Graph%20API%20Dashboard%20Sample.png) 
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/pbi/graph_module_hed_explanation_page.png)  |  ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/pbi/graph_module_sample_hed_dashboard.png) 
 
 The Microsoft Graph Reports API module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md). For any questions or feedback on this module, please refer to the [Graph Reports API Module Discussion/Q&A thread](https://github.com/microsoft/OpenEduAnalytics/discussions/54). For any problems seen in this module, please submit a new issue to the [Issues tab](https://github.com/microsoft/OpenEduAnalytics/issues).
 

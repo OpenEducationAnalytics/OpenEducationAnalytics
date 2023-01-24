@@ -15,13 +15,14 @@ this_file_path=$(dirname $(realpath $0))
 echo "--> Setting up the Microsoft Education Insights module assets."
 
 # 1) install notebooks
-eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_example --spark-pool-name spark3p2sm --file @$this_file_path/notebook/Insights_example.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_schema_correction --spark-pool-name spark3p2sm --file @$this_file_path/notebook/Insights_schema_correction.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_refine --spark-pool-name spark3p2sm --file @$this_file_path/notebook/Insights_refine.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_example --spark-pool-name spark3p2med --file @$this_file_path/notebook/Insights_example.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_pre-processing --spark-pool-name spark3p2med --file @$this_file_path/notebook/Insights_pre-processing.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_ingest --spark-pool-name spark3p2med --file @$this_file_path/notebook/Insights_ingest.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_schema_correction --spark-pool-name spark3p2med --file @$this_file_path/notebook/Insights_schema_correction.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_refine --spark-pool-name spark3p2med --file @$this_file_path/notebook/Insights_refine.ipynb --only-show-errors"
 
 # 2) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name insights_ingest_with_options --file @$this_file_path/pipeline/insights_ingest_with_options.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_insights --file @$this_file_path/pipeline/1_land_insights.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 2_ingest_insights --file @$this_file_path/pipeline/2_ingest_insights.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 3_refine_insights --file @$this_file_path/pipeline/3_refine_insights.json"

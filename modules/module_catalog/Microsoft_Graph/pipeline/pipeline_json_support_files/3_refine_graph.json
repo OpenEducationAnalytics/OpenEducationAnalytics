@@ -1,0 +1,226 @@
+{
+    "name": "3_refine_graph",
+    "properties": {
+        "activities": [
+            {
+                "name": "create_sql_db_for_beta_general",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "refine_graph_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Refined/graph_api/beta/general",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2r_graph_api_beta')",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db_for_beta_sensitive",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "refine_graph_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Refined/graph_api/beta/sensitive",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2r_graph_api_beta')",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "refine_graph_data",
+                "description": "Refines all Graph tables depending on test dataset chosen in a set workspace. ",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Set refine_hed_test_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Graph_refine",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "testdataSet": {
+                            "value": {
+                                "value": "@pipeline().parameters.refine_k12_or_hed_test_data",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
+                }
+            },
+            {
+                "name": "Set refine_hed_test_data",
+                "description": "If the ingest_k12_or_hed_test_data parameter is set to 'hed', this variable is true - otherwise it's false.",
+                "type": "SetVariable",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "refine_hed_test_data",
+                    "value": {
+                        "value": "@if(startswith(pipeline().parameters.refine_k12_or_hed_test_data, 'hed'), true, false)",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "If refine_hed_test_data",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "refine_graph_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@variables('refine_hed_test_data')",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "create_sql_db_for_v1p0_general",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "create_sql_db",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "stage": "stage2",
+                                    "datasetPath": "Refined/graph_api/v1.0/general",
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "dbName": {
+                                        "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2r_graph_api_v1p0')",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "name": "create_sql_db_for_v1p0_sensitive",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "create_sql_db",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "stage": "stage2",
+                                    "datasetPath": "Refined/graph_api/v1.0/sensitive",
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "dbName": {
+                                        "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2r_graph_api_v1p0')",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "refine_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
+            }
+        },
+        "variables": {
+            "refine_hed_test_data": {
+                "type": "Boolean",
+                "defaultValue": true
+            }
+        },
+        "folder": {
+            "name": "Graph Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-01-12T18:20:16Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

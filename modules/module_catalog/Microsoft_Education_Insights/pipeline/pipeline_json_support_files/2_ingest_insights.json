@@ -8,7 +8,7 @@
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "ForEach table - ingest",
+                        "activity": "ingest_insights",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
@@ -64,50 +64,11 @@
                             "type": "string"
                         }
                     },
-                    "snapshot": true
-                }
-            },
-            {
-                "name": "ForEach table - ingest",
-                "type": "ForEach",
-                "dependsOn": [],
-                "userProperties": [],
-                "typeProperties": {
-                    "items": {
-                        "value": "@pipeline().parameters.tables_to_ingest",
-                        "type": "Expression"
-                    },
-                    "isSequential": false,
-                    "activities": [
-                        {
-                            "name": "ingest_each_insights_table",
-                            "type": "ExecutePipeline",
-                            "dependsOn": [],
-                            "userProperties": [],
-                            "typeProperties": {
-                                "pipeline": {
-                                    "referenceName": "insights_ingest_with_options",
-                                    "type": "PipelineReference"
-                                },
-                                "waitOnCompletion": true,
-                                "parameters": {
-                                    "workspace": {
-                                        "value": "@pipeline().parameters.workspace",
-                                        "type": "Expression"
-                                    },
-                                    "entityPath": {
-                                        "value": "@concat('M365/v1.14/',item().table)",
-                                        "type": "Expression"
-                                    },
-                                    "primaryKey": {
-                                        "value": "@item().table_primary_key",
-                                        "type": "Expression"
-                                    },
-                                    "options": "'header':False"
-                                }
-                            }
-                        }
-                    ]
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
                 }
             },
             {
@@ -141,6 +102,81 @@
                         }
                     }
                 }
+            },
+            {
+                "name": "insights_pre-processing",
+                "description": "This notebook adds a column to the AadGroupMembership table to act as a primary key for ingestion.",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Insights_pre-processing",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
+                }
+            },
+            {
+                "name": "ingest_insights",
+                "description": "Ingests all tables from Insights data source, except for PersonRelationship and RefTranslation tables (no test data).",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "insights_pre-processing",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Insights_ingest",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
+                }
             }
         ],
         "parameters": {
@@ -148,125 +184,16 @@
                 "type": "string",
                 "defaultValue": "dev"
             },
-            "ingest_k12_test_data": {
-                "type": "bool",
-                "defaultValue": false
-            },
-            "ingest_hed_test_data": {
-                "type": "bool",
-                "defaultValue": true
-            },
-            "tables_to_ingest": {
-                "type": "array",
-                "defaultValue": [
-                    {
-                        "table": "activity",
-                        "table_primary_key": "_c3"
-                    },
-                    {
-                        "table": "AadGroup",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "AadUser",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "AadUserPersonMapping",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "Course",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "CourseGradeLevel",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "CourseSubject",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "Enrollment",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "Organization",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "Person",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "PersonDemographic",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "PersonDemographicEthnicity",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "PersonDemographicPersonFlag",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "PersonDemographicRace",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "PersonEmailAddress",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "PersonIdentifier",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "PersonOrganizationRole",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "PersonPhoneNumber",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "RefDefinition",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "Section",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "SectionGradeLevel",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "SectionSession",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "SectionSubject",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "Session",
-                        "table_primary_key": "_c0"
-                    },
-                    {
-                        "table": "SourceSystem",
-                        "table_primary_key": "_c0"
-                    }
-                ]
+            "ingest_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
             }
         },
         "folder": {
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-01-03T01:08:47Z"
+        "lastPublishTime": "2023-01-13T18:32:38Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

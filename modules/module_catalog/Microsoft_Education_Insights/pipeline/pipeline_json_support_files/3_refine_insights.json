@@ -93,7 +93,11 @@
                             "type": "string"
                         }
                     },
-                    "snapshot": true
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
                 }
             }
         ],
@@ -107,7 +111,7 @@
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2022-12-27T21:23:43Z"
+        "lastPublishTime": "2023-01-13T20:30:07Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

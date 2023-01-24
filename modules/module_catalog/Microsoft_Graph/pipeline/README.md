@@ -1,16 +1,16 @@
 # Pipelines
 
 This module uses a Synapse pipeline to:
-1. Land Microsoft Education Insights test data into ```stage1/Transactional/graph_api/(beta and/or v1.0)``` of the data lake (this step is omitted for production data).
-2. Ingest data into ```stage2/Ingested/graph_api/v1.14/(beta and/or v1.0)```, structure the unstructured tables, and create a lake database (db) for queries.
+1. Land Microsoft Education Insights test data into ```stage1/Transactional/graph_api/(beta or v1.0)``` of the data lake (this step is omitted for production data).
+2. Ingest data into ```stage2/Ingested/graph_api/(beta or v1.0)``` and create a lake database (db) for queries.
+3. Correct the table schemas into ```stage2/Ingested_Corrected/graph_api/(beta or v1.0)```
 3. Refine data into ```stage2/Refined/graph_api/(beta or v1.0)/(general and sensitive)``` and create lake and SQL dbs for queries.
     * Use the ```sdb_(dev or other workspace)_s2r_graph_api_(beta and v1p0)``` for connecting the serverless SQL db with Power BI DirectQuery.
 
 Notes:
-- The main pipeline currently has bugs and will be updated soon.
 - Ingestion initially copies the data from ```stage1``` to ```stage2/Ingested```, except changes the file format from JSONs to Delta tables.
-   * One of the later steps in the ingestion process, corrects and structures each module table's schema, as needed.
-- Data columns contianing personal identifiable information (PII) are identified in the data schemas located in the [module metadata.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/metadata.csv).
+   * One of the later steps in the ingestion process, corrects and structures each module table's schema, as needed; these corrected tables are written to ```stage2/Ingested_Corrected```.
+- Data columns contianing personal identifiable information (PII) are identified in the data schemas located in the module [metadata_beta.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/test_data/metadata_beta.csv) and [metadata_v1p0.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/test_data/metadata_v1p0.csv).
 - As data is refined from ```stage2/Ingested``` to ```stage2/Refined/.../(general and sensitive)```, data is separated into pseudonymized data where PII columns hashed or masked (```stage2/Refined/.../general```) and lookup tables containing the PII (```stage2/Refined/.../sensitive```). Non-pseudonmized data will then be protected at higher security levels.
 - This pipeline ingests Graph API data in the JSON format (but the notebooks and pipeline can be edited to process CSV-formatted data).
 - *[Depreciated - to be updated]* See the [written tutorial](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf) for an explaination on how to set up the pipeline to extract production data, or how to use this template.
@@ -39,20 +39,23 @@ Two sets of instructions are included:
 ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p1.png)
 
 4. Explore the pipeline as desired for any additional changes to landing, ingesting, and refining the test data.
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p2.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p2.1.png)
 
 5. Commit/Publish any changes and trigger the pipeline manually.
 
 6. Once the pipeline has been successfully executed, verify that:
 
 - Data has landed in stage1.
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p3.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p3.1.png)
 
 - Data has been ingested to stage2/Ingested.
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p4.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p4.1.png)
+
+- Data has been ingested to stage2/Ingested_Corrected.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p7.png)
 
 - Data has been refined to stage2/Refined.
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p5.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p5.1.png)
 
 - SQL database has been created: ```sdb_dev_s2r_graph_api_(beta or v1p0)``` (or, if workspace parameter was changed, replace dev with chosen workspace upon trigger).
 

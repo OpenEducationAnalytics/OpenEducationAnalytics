@@ -1,16 +1,15 @@
 {
-    "name": "0_main_insights",
+    "name": "0_main_graph",
     "properties": {
-        "description": "Change the workspace and run_(k12 or hed)_test_data as needed. \nEither the k12 or hed parameter must be true, but not both.",
         "activities": [
             {
-                "name": "1_land_insights_test_data",
+                "name": "1_land_graph_test_data",
                 "type": "ExecutePipeline",
                 "dependsOn": [],
                 "userProperties": [],
                 "typeProperties": {
                     "pipeline": {
-                        "referenceName": "1_land_insights",
+                        "referenceName": "1_land_graph",
                         "type": "PipelineReference"
                     },
                     "waitOnCompletion": true,
@@ -27,11 +26,11 @@
                 }
             },
             {
-                "name": "2_ingest_insights",
+                "name": "2_ingest_graph",
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "1_land_insights_test_data",
+                        "activity": "1_land_graph_test_data",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
@@ -40,7 +39,7 @@
                 "userProperties": [],
                 "typeProperties": {
                     "pipeline": {
-                        "referenceName": "2_ingest_insights",
+                        "referenceName": "2_ingest_graph",
                         "type": "PipelineReference"
                     },
                     "waitOnCompletion": true,
@@ -52,16 +51,20 @@
                         "ingest_k12_or_hed_test_data": {
                             "value": "@pipeline().parameters.run_k12_or_hed_test_data",
                             "type": "Expression"
+                        },
+                        "ingest_beta_tables": {
+                            "value": "@pipeline().parameters.ingest_beta_tables",
+                            "type": "Expression"
                         }
                     }
                 }
             },
             {
-                "name": "3_refine_insights",
+                "name": "3_refine_graph",
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "2_ingest_insights",
+                        "activity": "2_ingest_graph",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
@@ -70,13 +73,17 @@
                 "userProperties": [],
                 "typeProperties": {
                     "pipeline": {
-                        "referenceName": "3_refine_insights",
+                        "referenceName": "3_refine_graph",
                         "type": "PipelineReference"
                     },
                     "waitOnCompletion": true,
                     "parameters": {
                         "workspace": {
                             "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "refine_k12_or_hed_test_data": {
+                            "value": "@pipeline().parameters.run_k12_or_hed_test_data",
                             "type": "Expression"
                         }
                     }
@@ -91,13 +98,21 @@
             "run_k12_or_hed_test_data": {
                 "type": "string",
                 "defaultValue": "hed"
+            },
+            "ingest_beta_tables": {
+                "type": "array",
+                "defaultValue": [
+                    "users",
+                    "m365_app_user_detail",
+                    "teams_activity_user_detail"
+                ]
             }
         },
         "folder": {
-            "name": "Insights Module/basic"
+            "name": "Graph Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-01-13T18:27:46Z"
+        "lastPublishTime": "2023-01-12T18:20:24Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

@@ -47,6 +47,7 @@ AadGroupMembership,,,
 ,Role,string,no-op
 ,FirstSeenDateTime,timestamp,no-op
 ,LastSeenDateTime,timestamp,no-op
+,MembershipId,string,no-op
 AadUser,,,
 ,ObjectId,string,hash
 ,UserPrincipalName,string,hash
