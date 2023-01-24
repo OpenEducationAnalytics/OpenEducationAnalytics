@@ -45,10 +45,10 @@ These dashboard examples represent only data from Microsoft Teams and O365. When
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
     * Download the module release to your Azure clouddrive \
 `cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_graph_v0.1rc1/module_graph_v0.1rc1.zip`\
-`unzip ./module_graph_v0.1rc1.zip`
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_Microsoft_Graph_v0.1/module_Microsoft_Graph_v0.1.zip`\
+`unzip ./module_Microsoft_Graph_v0.1.zip`
     * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
-`./module_graph_v0.1rc1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
+`./module_Microsoft_Graph_v0.1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
 2. Run the [Graph module main pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline) or the [Graph_example notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/Graph_example.ipynb) into your Synapse workspace to see the functionality of module assets.
      * It is recommended that you first run the module example notebook to understanding the methods of data processing, before running the pipeline. Although, running either the example notebook or the main pipeline accomplish the same processes.
      * <em>[Depreciated - to be updated]</em> Additionally, see the [module written tutorial](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf) or [video tutorial](https://www.youtube.com/watch?v=K01h-QsMX9c) for detailed instructions.
