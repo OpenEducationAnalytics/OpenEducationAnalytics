@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/63133369/210151197-c7e48d96-4485-456e-a6ea-5dd49b9aefb2.png)
+![image](https://user-images.githubusercontent.com/63133369/214875790-bdb28a0a-1110-414c-a911-320a8c9362ec.png)
 
 # Data Dictionary
 This package combines data from [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data) and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph). Each of these modules provide a detailed data dictonary that explains the various columns in the data source. 
