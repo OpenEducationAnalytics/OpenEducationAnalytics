@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/63133369/210151230-65dcf64e-927d-4aed-a95a-491fc9880c53.png)
+![image](https://user-images.githubusercontent.com/63133369/214876160-0ba453a5-7c89-41dd-8504-898d1f805389.png)
 
 # Package Notebooks
 
