@@ -4,7 +4,7 @@
 
 ## Use Case Documentation
 
-The [OEA Use Case Documentation](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/use_cases/Open_Education_Analytics_Use_Case_Template_v3.docx) should provide guidance on the end-to-end process of developing a successful Learning Analytics use case project. This document includes 
+A sample of the [OEA Learning Analytics Use Case Documentation](https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2FOpenEduAnalytics%2Fmain%2Fpackages%2Fpackage_catalog%2FLearning_Analytics%2Fdocs%2FOEA%2520Learning%2520Analytics%2520Use%2520Case%2520Documentation.docx&wdOrigin=BROWSELINK) provides guidance on the end-to-end process of developing a successful Learning Analytics use case project. This document includes 
  - defining of the use case problem,
  - key stakeholder identification and engagement in the project,
  - mapping research theory to data,
