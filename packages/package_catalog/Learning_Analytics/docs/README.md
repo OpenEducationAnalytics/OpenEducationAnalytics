@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/63133369/210151225-ed52eb8c-4365-481b-acc6-30773e7cb45a.png)
+![image](https://user-images.githubusercontent.com/63133369/214875918-92454178-7d1f-4a53-aaf9-7a88b9f7b120.png)
 
 # Package Documentation
 
