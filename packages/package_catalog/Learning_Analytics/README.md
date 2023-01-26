@@ -1,6 +1,6 @@
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
-![image](https://user-images.githubusercontent.com/63133369/210151154-adc9e65d-ce0c-40a8-889e-9aaefafdda7e.png)
+![image](https://user-images.githubusercontent.com/63133369/214875446-92fd5475-2087-4949-ab47-4aa04c1884a0.png)
 
 # Learning Analytics Package
 
