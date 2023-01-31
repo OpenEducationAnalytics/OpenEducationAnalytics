@@ -14,4 +14,4 @@ Some of the common OEA module assets include:
 
 An example of an OEA module is the [Microsoft Graph Reports API module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph) which provides a gateway to data and intelligence in Microsoft 365. This Graph Reports data is freely available to education customers using Office 365 and includes app usage data (Teams, OneDrive, Outlook, etc). This module leverages the OEA framework to enable education systems to bring in the Microsoft Graph data to their own Azure data lake, to combine it with other datasets for analysis (e.g., Learning Management Systems (LMS), Student Information Systems (SIS), Assessment, or other digital learning apps).
 
-To kickstart your module creation process, please review the [OEA Module Creation Kit](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/_Module_Creation_Kit).
+To kickstart your module creation process, please review the [OEA Module Creation Kit](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_creation_kit).
