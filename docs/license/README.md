@@ -1,6 +1,6 @@
 ### Licenses
 All code is licensed under the [MIT License](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/LICENSE-CODE)<br/>
-All documentation is licensed under [creative commons](https://github.com/microsoft/OpenEduAnalytics/blob/main/license/LICENSE)
+All documentation is licensed under [Creative Commons](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/LICENSE)
 
 
 ### Contributing
