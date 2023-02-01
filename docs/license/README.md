@@ -4,7 +4,7 @@ All documentation is licensed under [Creative Commons](https://github.com/micros
 
 
 ### Contributing
-[This project welcomes contributions and suggestions...](https://github.com/microsoft/OpenEduAnalytics/blob/main/CONTRIBUTING.md)
+[This project welcomes contributions and suggestions...](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md)
 
 ### Microsoft Open Source Code of Conduct
 
