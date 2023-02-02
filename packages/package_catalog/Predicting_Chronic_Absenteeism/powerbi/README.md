@@ -27,7 +27,7 @@ This package also includes example Power BI pictures of the package production i
 
 ### Drivers of Chronic Absenteeism
 
-| ![Drivers of Chronic Absenteeism](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p2_drivers%20of%20chronic%20absenteeism.png "Drivers of Chronic Absenteeism") |
+| ![Drivers of Chronic Absenteeism](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p2_updated_drivers_of_CA.png "Drivers of Chronic Absenteeism") |
 |:--:|
 | <b> Summary of the top predictive drivers as identified by the ML model. Drivers can be ranked by count, aggregated by school, or explored for individual student. </b>|
 
