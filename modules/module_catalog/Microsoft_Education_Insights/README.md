@@ -15,7 +15,7 @@ Education Insights requires the implementation of [Microsoft School Data Sync](h
   <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/docs/images/insights_module_v0.1_overview.png" alt="Microsoft Insights Module v0.1rc1 Overview"/>
 </p>
 
-(Microsoft documentation on Education Insights: [Education Insights in Microsoft Teams - Microsoft Education Center](https://docs.microsoft.com/en-us/schooldatasync/enabling-insights-premium-export)) 
+(Microsoft documentation on Education Insights: [Education Insights in Microsoft Teams](https://learn.microsoft.com/en-us/schooldatasync/enable-education-data-lake-export)) 
  
 ## Problem Statement and Module Impact
 
@@ -104,7 +104,7 @@ This module was developed by [Kwantum Analytics](https://www.kwantumedu.com/). T
 # Legal Notices
 Microsoft and any contributors grant you a license to the Microsoft documentation and other content
 in this repository under the [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/legalcode),
-see the [LICENSE](LICENSE) file, and grant you a license to any code in the repository under the [MIT License](https://opensource.org/licenses/MIT), see the
+see the [LICENSE](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/LICENSE) file, and grant you a license to any code in the repository under the [MIT License](https://opensource.org/licenses/MIT), see the
 [LICENSE-CODE](LICENSE-CODE) file.
 
 Microsoft, Windows, Microsoft Azure and/or other Microsoft products and services referenced in the documentation
