@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "openeduanalytics"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.12"
+nbqa = "^1.6.1"
+pylint = "^2.16.1"
+mypy = "^1.0.0"
+detect-secrets = "^1.4.0"
+types-pytz = "^2022.7.1.0"
+types-requests = "^2.28.11.12"
+pandas-stubs = "^1.5.3.230203"
+pyspark-stubs = "^3.0.0.post3"
+black = "^23.1.0"
+autopep8 = "^2.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+### mypy
+[tool.pylint."messages control"]
+# Disable the message, report, category or checker with the given id(s). You can
+# either give multiple identifiers separated by comma (,) or put this option
+# multiple times (only on the command line, not in the configuration file where
+# it should appear only once). You can also use "--disable=all" to disable
+# everything first and then re-enable specific checks. For example, if you want
+# to run only the similarities checker, you can use "--disable=all
+# --enable=similarities". If you want to run only the classes checker, but have
+# no Warning level messages displayed, use "--disable=all --enable=classes
+# --disable=W".
+disable = ["too-many-arguments", "too-many-instance-attributes", "invalid-name", "fixme", "too-many-lines", "line-too-long", "raw-checker-failed", "bad-inline-option", "locally-disabled", "file-ignored", "suppressed-message", "useless-suppression", "deprecated-pragma", "use-symbolic-message-instead"]
+
