@@ -1,4 +1,4 @@
-# Clever Module Test Data Generation
+# *(Depreciated)* Clever Module Test Data Generation 
 
 There are two notebooks necessary for generating the Daily Participation and Resource Usage tables for the Clever module (see below). These tables depend on pre-existing Clever (test or production) data, as well as the two base-truth tables.
 
