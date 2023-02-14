@@ -1,6 +1,6 @@
 # Microsoft Education Insights Test Data Generation Notebooks
 
-There are two notebooks necessary for generating 27 Insights roster & activity tables.
+There are two notebooks necessary for generating the 27 Insights roster & activity tables.
 
 ## [Insights Tables Generation Class](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/Insights_module/insights_test_data_gen_demo.ipynb)
 
