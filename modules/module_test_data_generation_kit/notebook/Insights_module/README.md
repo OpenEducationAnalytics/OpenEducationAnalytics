@@ -15,7 +15,7 @@ The class notebook supports two main roles:
     
 Note that only student data is generated from these notebooks (no instructor generation at the moment). Review the comments and markdowns for additional guidance.
 
-**Note**: The activity data generation functionality works, but does not perfectly match actual Insights activity data. Notebook comments should be followed and compared to [Insights activity documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-activity).
+**Note**: The activity data generation functionality works, but does not perfectly match actual Insights activity data. Notebook comments should be followed and generation process is to be compared to the [Insights activity documentation](https://docs.microsoft.com/en-us/schooldatasync/data-lake-schema-activity).
 
 ## [Insights Tables Generation Demo](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/Insights_module/insights_test_data_gen_demo.ipynb)
 
