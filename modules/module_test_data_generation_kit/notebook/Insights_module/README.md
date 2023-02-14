@@ -15,7 +15,7 @@ The class notebook supports two main roles:
     
 Note that only student data is generated from these notebooks (no instructor generation at the moment). Review the comments and markdowns for additional guidance.
 
-To generate the tables, the additional base-truth table specific to Insights test data generation (base_refdef) will be needed. This is automatically landed upon initialization unless it already exists.
+To generate these tables, an additional base-truth table specific to Insights test data generation (base_refdef) will be needed. This is automatically landed upon initialization, unless it already exists.
 
 ## [Insights Tables Generation Demo](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/Insights_module/insights_test_data_gen_demo.ipynb)
 
