@@ -1,0 +1,208 @@
+{
+    "name": "0_main_LA_package",
+    "properties": {
+        "activities": [
+            {
+                "name": "0_process_insights_test_data",
+                "description": "Processes Insights HEd test data, which executes the module main pipeline in the following steps: land, ingest, refine.",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "0_main_insights",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "run_k12_or_hed_test_data": "hed"
+                    }
+                }
+            },
+            {
+                "name": "0_process_graph_test_data",
+                "description": "Processes Graph HEd test data, which executes the module main pipeline in the following steps: land, ingest, refine.",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "0_main_graph",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "run_k12_or_hed_test_data": "hed",
+                        "ingest_beta_tables": {
+                            "value": "@pipeline().parameters.graph_ingest_array",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "1_build_LA_dim_tables",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "0_process_graph_test_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "0_process_insights_test_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "1_build_LA_dim_tables",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "2_build_LA_fact_tables",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "1_build_LA_dim_tables",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "2_build_LA_fact_tables",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "3_create_sql_db_general",
+                "description": "Adds the general tables to the same db created for sensitive table(s)",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "2_build_LA_fact_tables",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "storageAccount": {
+                            "value": "@pipeline().parameters.storageAccount",
+                            "type": "Expression"
+                        },
+                        "stage": "stage3",
+                        "datasetPath": "Published/learning_analytics/v1.0/general",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "sdb_@{pipeline().parameters.workspace}_s3p_learning_analytics_v1p0",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "3_create_sql_db_sensitive",
+                "description": "Adds the lookup table(s) to the same db created for general tables",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "2_build_LA_fact_tables",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "storageAccount": {
+                            "value": "@pipeline().parameters.storageAccount",
+                            "type": "Expression"
+                        },
+                        "stage": "stage3",
+                        "datasetPath": "Published/learning_analytics/v1.0/sensitive",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "sdb_@{pipeline().parameters.workspace}_s3p_learning_analytics_v1p0",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "storageAccount": {
+                "type": "string",
+                "defaultValue": "stoeazasayyed"
+            },
+            "graph_ingest_array": {
+                "type": "array",
+                "defaultValue": [
+                    "users",
+                    "m365_app_user_detail",
+                    "teams_activity_user_detail"
+                ]
+            }
+        },
+        "folder": {
+            "name": "Learning Analytics Package/v1.0"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-01-13T18:27:49Z"
+    }
+}
