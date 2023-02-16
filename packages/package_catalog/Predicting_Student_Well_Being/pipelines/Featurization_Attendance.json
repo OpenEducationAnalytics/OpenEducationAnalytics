@@ -1,0 +1,441 @@
+{
+	"name": "Featurization_Attendance",
+	"properties": {
+		"description": "Getting streak for attendance",
+		"folder": {
+			"name": "From_Project_Turtle/Featurization"
+		},
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "generalv3",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "28g",
+			"driverCores": 4,
+			"executorMemory": "28g",
+			"executorCores": 4,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2",
+				"spark.autotune.trackingId": "d7106769-7ba3-4781-bbce-f71eed212471"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"enableDebugMode": false,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/3ad04f94-581c-468f-b2e4-966452b69cec/resourceGroups/tasedu-oea-aso-prod-rg/providers/Microsoft.Synapse/workspaces/tasedu-oea-aso-prod-syn/bigDataPools/generalv3",
+				"name": "generalv3",
+				"type": "Spark",
+				"endpoint": "https://tasedu-oea-aso-prod-syn.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/generalv3",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "3.1",
+				"nodeCount": 10,
+				"cores": 4,
+				"memory": 28
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "python"
+					}
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"from pyspark.sql.functions import *\r\n",
+					"from pyspark.sql.window import Window\r\n",
+					"import matplotlib.pyplot as plt\r\n",
+					"import seaborn as sns\r\n",
+					"import pandas as pd\r\n",
+					"import os\r\n",
+					"import time\r\n",
+					"import datetime\r\n",
+					"\r\n",
+					"from pyspark.sql import Window \r\n",
+					"from pyspark.sql import functions as f\r\n",
+					"from pyspark.sql import DataFrameStatFunctions as statFunc\r\n",
+					"from scipy.stats import ttest_ind\r\n",
+					"from pyspark.sql.types import IntegerType\r\n",
+					"\r\n",
+					"storage_account = 'taseduoeastorage'\r\n",
+					"stage2p = f'abfss://stage2p@{storage_account}.dfs.core.windows.net'\r\n",
+					"folder_processed = 'processed/EBM_pipeline'\r\n",
+					"# folder_processed = 'processed/ML_pipeline'"
+				],
+				"execution_count": 20
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"def summarize_dailyatt(dfAttendance_latest, att_criteria):\r\n",
+					"    \r\n",
+					"    \"\"\"\r\n",
+					"    Get summary of daily attendance by taking the majority attendance status of the day\r\n",
+					"\r\n",
+					"    \"\"\"\r\n",
+					"    #\"actual_att\" vs \"DerivedAttendanceStatus\"\r\n",
+					"\r\n",
+					"    att_status = dfAttendance_latest.groupBy(['StudentDwRefId_pseudonym','AttendanceDate',att_criteria]).count()\r\n",
+					"    att_status = att_status.orderBy(\"StudentDwRefId_pseudonym\",\"AttendanceDate\",\"count\")\r\n",
+					"    # att_status = att_status.orderBy(\"StudentDwRefId_pseudonym\",\"AttendanceDate\",\"TeachingClassGroupDwRefId\",\"count\")\r\n",
+					"\r\n",
+					"    #print(f\"Initial row count: {att_status.count()}\")\r\n",
+					"\r\n",
+					"    att_status_grp = att_status.groupBy(['StudentDwRefId_pseudonym','AttendanceDate']).agg({'count':'max'}).orderBy(\"StudentDwRefId_pseudonym\",\"AttendanceDate\")\r\n",
+					"    # att_status_grp.show(10)\r\n",
+					"    #print(f\"Summarized row count: {att_status_grp.count()}\")\r\n",
+					"\r\n",
+					"    ### Get agg status of overall daily attendance\r\n",
+					"    att_status_grp = att_status_grp.join(att_status,\r\n",
+					"    on = (att_status_grp.StudentDwRefId_pseudonym == att_status.StudentDwRefId_pseudonym) & (att_status_grp.AttendanceDate == att_status.AttendanceDate) & (att_status_grp['max(count)'] == att_status['count']), how = 'inner')\r\n",
+					"    att_status_grp = att_status_grp.drop(att_status.StudentDwRefId_pseudonym)\r\n",
+					"    att_status_grp = att_status_grp.drop(att_status.AttendanceDate)\r\n",
+					"    # att_status_grp = att_status_grp.drop(att_status.TeachingClassGroupDwRefId)\r\n",
+					"    att_status_grp = att_status_grp.drop(\"max(count)\")\r\n",
+					"    att_status_grp = att_status_grp.orderBy(\"StudentDwRefId_pseudonym\",\"AttendanceDate\")\r\n",
+					"    #att_status_grp.show(10)\r\n",
+					"\r\n",
+					"    return att_status_grp\r\n",
+					"\r\n",
+					"\r\n",
+					"\r\n",
+					"def get_streak(att_status_grp, att_criteria = 'actual_att'):\r\n",
+					"    \"\"\"\r\n",
+					"    Get streak of student ordered by date and windowed by Student ID\r\n",
+					"    \r\n",
+					"    Can change between:\r\n",
+					"    \"DerivedAttendanceStatus\": Student recorded attendance \r\n",
+					"    'actual_att': Student attendance after accounting for valid absences\r\n",
+					"\r\n",
+					"    \"\"\"\r\n",
+					"    #Windows definition\r\n",
+					"    w1 = Window.partitionBy(att_status_grp.StudentDwRefId_pseudonym).orderBy(att_status_grp.AttendanceDate)\r\n",
+					"    w2 = Window.partitionBy(att_status_grp.StudentDwRefId_pseudonym,att_status_grp[att_criteria]).orderBy(att_status_grp.AttendanceDate)\r\n",
+					"\r\n",
+					"    res = att_status_grp.withColumn('grp',f.row_number().over(w1)-f.row_number().over(w2))\r\n",
+					"    # .withColumn('grp1',f.row_number().over(w1))\\\r\n",
+					"    # .withColumn('grp2',f.row_number().over(w2))\r\n",
+					"\r\n",
+					"    #Window definition for streak\r\n",
+					"    w3 = Window.partitionBy(res.StudentDwRefId_pseudonym,res[att_criteria],res.grp).orderBy(res.AttendanceDate)\r\n",
+					"    streak_res = res.withColumn('streak_A',f.when(res[att_criteria] == \"P\",0).otherwise(f.row_number().over(w3))) \\\r\n",
+					"                    .withColumn('streak_P',f.when(res[att_criteria] == \"A\",0).otherwise(f.row_number().over(w3)))\r\n",
+					"                    # .withColumn('streak_A_length',f.when(res[att_criteria] == \"P\",0).otherwise())\r\n",
+					"                    # .withColumn('streak_P',f.when(res[att_criteria] == \"A\",0).otherwise(f.row_number().over(w3)))\r\n",
+					"                    # withColumn('streak_A_length', max(f.row_number().over(w3)))\r\n",
+					"    streak_res = streak_res.orderBy(\"StudentDwRefId_pseudonym\",\"AttendanceDate\")\r\n",
+					"    #streak_res.show(30, truncate = False)\r\n",
+					"\r\n",
+					"    return streak_res\r\n",
+					"\r\n",
+					"def Get_streak_list(streak_res):\r\n",
+					"    \"\"\"\r\n",
+					"    Getting a list of streaks for each student \r\n",
+					"\r\n",
+					"    \"\"\"\r\n",
+					"    streak_list = streak_res.groupBy('StudentDwRefId_pseudonym','grp','actual_att').agg({'AttendanceDate':'max','streak_A':'max', 'streak_P':'max'})\r\n",
+					"    streak_list = streak_list.orderBy('StudentDwRefId_pseudonym','max(AttendanceDate)')\r\n",
+					"\r\n",
+					"    streak_list = streak_list.withColumnRenamed('max(AttendanceDate)','AttendanceDate')\\\r\n",
+					"    .withColumnRenamed('max(streak_P)', 'P_streak_list')\\\r\n",
+					"    .withColumnRenamed('max(streak_A)','A_streak_list')\r\n",
+					"\r\n",
+					"    #streak_list.show(50, truncate = False)\r\n",
+					"    return streak_list\r\n",
+					"\r\n",
+					"def Get_streak_metric(streak_list, streak_name):\r\n",
+					"    \r\n",
+					"    \"\"\"\r\n",
+					"    Getting different PRESENT / ABSENT streak metric of each student\r\n",
+					"\r\n",
+					"    Metric include: sun, min, max, avg streak\r\n",
+					"\r\n",
+					"    \"\"\"\r\n",
+					"    \r\n",
+					"    if streak_name == \"absent\":\r\n",
+					"\r\n",
+					"        # Keep only list of absent streak\r\n",
+					"        Abs_only = streak_list.filter(col('A_streak_list') != 0).drop(col('P_streak_list'))\r\n",
+					"        # Abs_only = streak_list.drop(col('P_streak_list'))\r\n",
+					"        #Abs_only.show(10,truncate = False)\r\n",
+					"    \r\n",
+					"        # calculate metric for each student\r\n",
+					"        stu_streak = Abs_only.groupby(\"StudentDwRefId_pseudonym\").agg(sum(Abs_only.A_streak_list),max(Abs_only.A_streak_list),min(Abs_only.A_streak_list),mean(Abs_only.A_streak_list))\\\r\n",
+					"        .orderBy('StudentDwRefId_pseudonym')\r\n",
+					"\r\n",
+					"        stu_streak = stu_streak.withColumn(\"avg(A_streak_list)\", round(col(\"avg(A_streak_list)\"), 0))\r\n",
+					"\r\n",
+					"        # stu_streak = Abs_only.groupby(\"StudentDwRefId_pseudonym\").agg({'A_streak_list':'max', 'A_streak_list':'min'})\r\n",
+					"        stu_streak = stu_streak.withColumnRenamed('sum(A_streak_list)','sum_absentStreak')\\\r\n",
+					"        .withColumnRenamed('max(A_streak_list)','max_absentStreak')\\\r\n",
+					"        .withColumnRenamed('min(A_streak_list)', 'min_absentStreak')\\\r\n",
+					"        .withColumnRenamed('avg(A_streak_list)','avg_absentStreak')\r\n",
+					"\r\n",
+					"\r\n",
+					"    elif streak_name == \"present\": \r\n",
+					"        # Keep only list of present streak\r\n",
+					"        Pres_only = streak_list.filter(col('P_streak_list') != 0).drop(col('A_streak_list'))\r\n",
+					"        #Pres_only.show(10,truncate = False)\r\n",
+					"\r\n",
+					"        # calculate metric for each student\r\n",
+					"        stu_streak = Pres_only.groupby(\"StudentDwRefId_pseudonym\").agg(sum(Pres_only.P_streak_list),max(Pres_only.P_streak_list),min(Pres_only.P_streak_list),mean(Pres_only.P_streak_list))\\\r\n",
+					"        .orderBy('StudentDwRefId_pseudonym')\r\n",
+					"\r\n",
+					"        stu_streak = stu_streak.withColumn(\"avg(P_streak_list)\", round(col(\"avg(P_streak_list)\"), 0))\r\n",
+					"\r\n",
+					"        stu_streak = stu_streak.withColumnRenamed('sum(P_streak_list)','sum_presentStreak')\\\r\n",
+					"        .withColumnRenamed('max(P_streak_list)','max_presentStreak')\\\r\n",
+					"        .withColumnRenamed('min(P_streak_list)', 'min_presentStreak')\\\r\n",
+					"        .withColumnRenamed('avg(P_streak_list)','avg_presentStreak')\r\n",
+					"\r\n",
+					"    #stu_streak.show(truncate = False)\r\n",
+					"    #print(f\" Total number of students with more than 1 {streak_name} streak is {stu_streak.count()}\")\r\n",
+					"\r\n",
+					"    #Get list of all student\r\n",
+					"    stu_list = streak_list.groupby(\"StudentDwRefId_pseudonym\").agg(max(streak_list.P_streak_list)).drop(col('max(P_streak_list)'))\r\n",
+					"    all_student_streak = stu_list.join(stu_streak, 'StudentDwRefId_pseudonym','left')\r\n",
+					"    all_student_streak = all_student_streak.fillna(0)\r\n",
+					"    #print(f\" Total number of students is {all_student_streak.count()}\")\r\n",
+					"\r\n",
+					"    return all_student_streak\r\n",
+					""
+				],
+				"execution_count": 21
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"#dfStudentSessionAttendance= spark.read.format('parquet').load(f'{stage2p}/DW3/StudentSessionAttendance').dropDuplicates()\r\n",
+					"#dfStudentSessionAttendance = dfStudentSessionAttendance.withColumn('AttendanceDate', to_timestamp(dfStudentSessionAttendance.AttendanceDate, 'yyyy-mm-dd'))\r\n",
+					"#dfAttendance_new = dfStudentSessionAttendance.drop(\"DataLakeModifiedOn\", \"RecordedAttendanceCategory\", \"RecordedAttendanceCategoryGroup\", \"RecordedAttendanceStatus\", \"LastUpdatedDate\")"
+				],
+				"execution_count": 22
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"dfStudentSessionAttendance= spark.read.format('parquet').load(f'{stage2p}/DW3/StudentSessionAttendance').dropDuplicates()\r\n",
+					"\r\n",
+					"#print('df shape:')\r\n",
+					"#print(dfStudentSessionAttendance.count(), len(dfStudentSessionAttendance.columns))\r\n",
+					"\r\n",
+					"dfStudentSessionAttendance = dfStudentSessionAttendance.withColumn('AttendanceDate', to_timestamp(dfStudentSessionAttendance.AttendanceDate, 'yyyy-mm-dd'))\r\n",
+					"dfAttendance_new = dfStudentSessionAttendance.drop(\"DataLakeModifiedOn\", \"RecordedAttendanceCategory\", \"RecordedAttendanceCategoryGroup\", \"RecordedAttendanceStatus\", \"LastUpdatedDate\")\r\n",
+					""
+				],
+				"execution_count": 23
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"# Adding vulnerablity labels and compare\r\n",
+					"dfVulnerability= spark.read.format('parquet').load(f'{stage2p}/CaseManagement/StudentVulnerabilityIndicators')\r\n",
+					"dfVulnerability = dfVulnerability.dropDuplicates()\r\n",
+					"\r\n",
+					"print(dfVulnerability.count())\r\n",
+					"dfVulnerability.select('doet_edid_pseudonym','doet_isvulnerable').show(2, truncate = False)\r\n",
+					"\r\n",
+					"# Getting student id information\r\n",
+					"dfStudent = spark.read.format('parquet').load(f'{stage2p}/DW3/Student')\r\n",
+					"dfStudent = dfStudent.dropDuplicates()\r\n",
+					"\r\n",
+					"# Get student ref id and doet_edid_pseudonym\r\n",
+					"id_map = dfStudent.select('StudentDwRefId_pseudonym','EdId_pseudonym')\r\n",
+					"id_map = id_map.withColumnRenamed(\"EdId_pseudonym\",\"doet_edid_pseudonym\")\r\n",
+					"id_map = id_map.dropDuplicates()\r\n",
+					"print(id_map.count())\r\n",
+					"# id_map.show(3,truncate = False)\r\n",
+					"\r\n",
+					"### Add StudentDwRefId in vulnerablity table ###\r\n",
+					"dfVulnerability = dfVulnerability.join(id_map, 'doet_edid_pseudonym','inner').dropDuplicates()\r\n",
+					"dfVulnerability.select('doet_edid_pseudonym','StudentDwRefId_pseudonym').show(5, vertical = True, truncate = False)\r\n",
+					"print(dfVulnerability.count())"
+				],
+				"execution_count": 24
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"#### Saving data into table ###\r\n",
+					"\r\n",
+					"add_vul_indicator = False\r\n",
+					"streaks = ['present', 'absent']           # Indicate if you want absent or present streak  #, \r\n",
+					"start_date = \"2019-01-01\"   # Start date required for attendance analysis\r\n",
+					"last_date = \"2020-01-01\"    # End date for attendance\r\n",
+					"save_table = True           # True if you would like to save the feature table\r\n",
+					"\r\n",
+					"  # Categories for 'present or have valid excuse:\r\n",
+					"valid_absent = ['A', 'AA','AB','C', 'D', 'I', 'L', 'N',  'P', 'Q', 'R', 'V', 'W', 'Y', 'Z', 'J',\\\r\n",
+					"    'K','G', 'H','E','O']  #Authorised absence (excluding disciplinary issues)\r\n",
+					"\r\n",
+					"# Categories for 'Not valid excuse: Unauthorized or absent due to some disciplinary issue\r\n",
+					"invalid_absent = ['T', 'U', 'X', 'B','S']  #Unauthorised absence or has disciplinary issue\r\n",
+					"\r\n",
+					"# Get attendance for selected time frame\r\n",
+					"dfAttendance_select = dfAttendance_new.filter((dfAttendance_new.AttendanceDate <= last_date) & (dfAttendance_new.AttendanceDate >= start_date))\r\n",
+					"\r\n",
+					"# Create new column to group students that are \"present or has valid excuse\" and students who are absent without valid excuse\r\n",
+					"dfAttendance_select = dfAttendance_select.withColumn(\"actual_att\",\\\r\n",
+					"    when((dfAttendance_select.DerivedAttendanceCategory.isin(valid_absent)), lit(\"P\")) \\\r\n",
+					"      .when((dfAttendance_select.DerivedAttendanceCategory.isin(invalid_absent)), lit(\"A\")) \\\r\n",
+					"      .otherwise(lit(\"NA\"))\\\r\n",
+					"      )\r\n",
+					"\r\n",
+					"#print(f\"Number of students in timeframe {dfAttendance_select.groupBy('StudentDwRefId_pseudonym').count().count()}\")\r\n",
+					"summary_status = summarize_dailyatt(dfAttendance_select, att_criteria = 'actual_att')\r\n",
+					"student_streak = get_streak(summary_status, att_criteria = 'actual_att')\r\n",
+					"list_streak = Get_streak_list(student_streak)\r\n",
+					"\r\n",
+					"for streak in streaks:\r\n",
+					"  save_file_path = f'/{folder_processed}/Attendance_{streak}Streak_2019_2020'  # Table save file path\r\n",
+					"  streak_metric = Get_streak_metric(list_streak, streak_name = streak)\r\n",
+					"\r\n",
+					"  # Add vulnerability indiator? \r\n",
+					"  if add_vul_indicator:\r\n",
+					"      # Add edid\r\n",
+					"      streak_metric = streak_metric.join(id_map.select('StudentDwRefId_pseudonym','doet_edid_pseudonym'), 'StudentDwRefId_pseudonym','left')\r\n",
+					"      streak_metric = streak_metric.join(dfVulnerability.select('doet_isvulnerable','StudentDwRefId_pseudonym'), 'StudentDwRefId_pseudonym','left')\r\n",
+					"  else:\r\n",
+					"      print('No vulnerability indicator added!')\r\n",
+					"\r\n",
+					"  #streak_metric.show(5) // by way of example of why we get rid of the show() statements -- this one takes 100 MINUTES to run!\r\n",
+					"\r\n",
+					"  if save_table:\r\n",
+					"      #streak_metric.write.format('parquet').mode('overwrite').save(stage2p + save_file_path)\r\n",
+					"      print(\"Saving streak metric table to \" + stage2p + save_file_path)\r\n",
+					"      streak_metric.write.mode('overwrite').parquet(stage2p + save_file_path)\r\n",
+					"      print(\"Saved  streak metric table to \" + stage2p + save_file_path)\r\n",
+					""
+				],
+				"execution_count": 31
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"streak_metric_absent = spark.read.format('parquet').load(stage2p + f'/{folder_processed}/Attendance_absentStreak_2019_2020')"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					"streak_metric_absent.take(5)"
+				],
+				"execution_count": null
+			},
+			{
+				"cell_type": "code",
+				"metadata": {
+					"jupyter": {
+						"source_hidden": false,
+						"outputs_hidden": false
+					},
+					"nteract": {
+						"transient": {
+							"deleting": false
+						}
+					}
+				},
+				"source": [
+					""
+				],
+				"execution_count": null
+			}
+		]
+	}
+}
