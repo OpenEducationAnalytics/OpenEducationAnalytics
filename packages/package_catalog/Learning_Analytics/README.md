@@ -40,9 +40,25 @@ The assets in this package can be combined with course completion, graduation ra
 1. Examine available data sources. See [below](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics#data-sources) for these related data sources. Choose which modules or data sources to implement.
     * This package was developed using the following modules: [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph). 
     * Run each of the module data pipelines to ingest the data into stage 2. 
-3. Import and run the [Learning Analytics pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/pipeline).
+3. Import and run the [Learning Analytics pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/pipeline). 
+
 4. Use the Power BI dashboard to explore the Learning Analytics use case. Note that all pipelines create SQL views which can be accessed via your Synapse workspace Serverless SQL endpoint. Example dashboard concepts and detailed information on the queries are [provided in the Power BI folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/powerbi).
       
+## Package Setup Instructions Using Script
+
+Prerequisite to import  [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph).
+
+1. Run the [setup.sh] (https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/setup.sh) script.
+    * Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
+    [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
+    * Upload the package to your Azure clouddrive from azure portal.
+    * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1):
+    ./Learning_Analytics.1/setup.sh mysynapseworkspacename
+
+2. Run the learning analytics main pipeline template into your Synapse workspace.
+3. Verify that the package pipeline landed data into stage 1 and 2, and SQL and lake databases were created.
+4. Use the Power BI dashboard to explore the Learning Analytics use case. Note that all pipelines create SQL views which can be accessed via your Synapse workspace Serverless SQL endpoint. Example dashboard concepts and detailed information on the queries are [provided in the Power BI folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/powerbi).
+
 ## Data Sources
 This package can use several [OEA Modules](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules) to help ingest data sources that are typically used to understand patterns seen in Learning Analytics (see below for list of relevant OEA modules). 
 
