@@ -46,14 +46,14 @@ The assets in this package can be combined with course completion, graduation ra
       
 ## Package Setup Instructions Using Script
 
-Prerequisite to import  [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph).
+Prerequisite: import  [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph).
 
 1. Run the [setup.sh] (https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/setup.sh) script.
     * Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
     [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
-    * Upload the package to your Azure clouddrive from azure portal.
+    * Upload the "Learning Analytics" package to your Azure clouddrive from azure portal.
     * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1):
-    ./Learning_Analytics.1/setup.sh mysynapseworkspacename
+    ./Learning_Analytics/setup.sh mysynapseworkspacename
 
 2. Run the learning analytics main pipeline template into your Synapse workspace.
 3. Verify that the package pipeline landed data into stage 1 and 2, and SQL and lake databases were created.
