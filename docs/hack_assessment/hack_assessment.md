@@ -25,9 +25,9 @@ N.B: You do not have to set up School Data Sync for this test deployment as test
 
     The most recent release of the OEA framework is v0.7 so please ensure you deploy v0.7 to your Synapse workspace using the [setup instructions](https://github.com/microsoft/OpenEduAnalytics#setup). At this time, 4 of our existing OEA modules are compatible with v0.7: Microsoft Education Insights, Microsoft Graph, Ed-Fi and Contoso SIS (which comes as part of the initial OEA deployment). We recommend that you use the Insights v0.7 module and one of the 3 other v0.7 modules listed above for this hack assessment. This restriction will be removed once the other OEA modules have been upgraded from v0.6.1 to v0.7. 
 
-3. Create Power BI visualizations that give insights to education system leaders for decision making by querying data from the SQL Serverless db. Include a basic data model defining the relationships that exist across the data sets [5 points] 
+3. Create Power BI visualizations that give insights to education system leaders for decision making by querying data from the SQL Serverless db. Include a basic data model defining the relationships that exist across the data sets **[5 points]** 
 
-4. Provide a data dictionary and documentation. Also include any next steps or extensions you may consider when bringing the first version of your newly created package to stakeholders [3 points] 
+4. Provide a data dictionary and documentation. Also include any next steps or extensions you may consider when bringing the first version of your newly created package to stakeholders **[3 points]** 
 
  
 
@@ -35,17 +35,17 @@ N.B: You do not have to set up School Data Sync for this test deployment as test
 
 1. To get full credit, most of the data transformation should be done in Synapse studio  
 
-2. To set up the most recent version of the OEA framework, go to https://github.com/microsoft/OpenEduAnalytics/tree/main/framework  
+2. [Setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) for the most recent version of the OEA framework  
 
-3. To protect students’ identity, it is required that the personal identifiable information of students like names, email addresses, etc., are pseudonymized. Review the metadata approach to pseudonymization. The pseudonymization operations provided as part of the OEA deployment include: 
+3. To protect students’ identity, it is required that the personal identifiable information of students like names, email addresses, etc., are pseudonymized. [Review the metadata approach to pseudonymization](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/test_data/metadata.csv). The pseudonymization operations provided as part of the OEA deployment include: 
 
-    - hash-no-lookup or hnl: This means that the lookup can be performed against a different table, so no lookup is needed 
+    - **hash-no-lookup or hnl**: This means that the lookup can be performed against a different table, so no lookup is needed 
 
-    - hash or h: This will hash the column and create a lookup table as well 
+    - **hash or h**: This will hash the column and create a lookup table as well 
 
-    - mask or m: This will mask the column and will not create a lookup table 
+    - **mask or m**: This will mask the column and will not create a lookup table 
 
-    - no-op or x: No operation will be performed so the column will remain as it is 
+    - **no-op or x**: No operation will be performed so the column will remain as it is 
 
  
 ### Submission 
