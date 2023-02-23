@@ -1,0 +1,46 @@
+{
+    "name": "4_reset_workspace_reading_progress",
+    "properties": {
+        "activities": [
+            {
+                "name": "delete_dataset",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "delete_dataset",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "datasetPath": {
+                            "value": "@pipeline().parameters.datasetPath",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "datasetPath": {
+                "type": "string",
+                "defaultValue": "reading_progress/v0.1"
+            }
+        },
+        "folder": {
+            "name": "Reading Progress Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-12-27T21:27:08Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
