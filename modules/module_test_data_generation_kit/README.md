@@ -1,4 +1,4 @@
-> **Note:** This module is currently released as v0.0.1, and is dependent on the OEA framework v0.6.1
+> **Note:** This module is currently released as v0.1, and is dependent on the OEA framework v0.7
 
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
@@ -11,39 +11,84 @@ This module test data generation kit aims to enable users to generate randomized
 </p>
 
 ## Test Data Generation: Base-Truth Table Structures
+The OEA test data generation kit uses five base-truth tables to artifically generate data for any module by creating the general data and then assigning the data source's proper column names. These base-truth table details are described below, which are defined within the [base test data generation class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/base_test_data_gen_py.ipynb).
 
-The OEA test data generation kit uses two base-truth tables to artifically generate data for a module, by creating the general data and then assigning the data source's proper column names. These base-truth table details are described below, which are defined within the [test data generation class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/test_data_generation_py.ipynb).
+**Abbreviations**
+- SIS: School Information System
+- UUID: Universal Unique Identifier
 
-#### Students Base-Truth Table
+#### Students
 
 | Column Name | Description |
 |-----------|---------------|
 |Gender     |Student gender: M (male), F (female), or O (other) |
-|FirstName  |Student first name       |
-|MiddleName |Student middle name or initial         |
-|LastName   |Student last name         |
-|StudentID  |Student information system ID: GUID|
-|Birthday   |Student birth date |
-|School     |School name |
-|SchoolID   |School information system ID: GUID|
-|Grade      |Student grade level |
+|FirstName  |Student first name         |
+|MiddleName |Student middle name        |
+|LastName   |Student last name          |
+|StudentID  |SIS ID: UUID               |
+|Birthday   |Student birth date: YYYY-MM-DD |
+|SchoolName |School name                |
+|SchoolID   |SIS ID: UUID               |
+|SchoolType |Elementary, Middle or High School, or College |
+|Grade      |Student grade level (numerical) |
 |Performance|Student academic performance: high, avg (average), or low |
-|HispanicLatino|True or False |
-|Race       |Student race: white (White), blackafricanamerican (Black or African American), americanindianalaskanative (American Indian or Alaska Native), asian (Asian), nativehawaiianpacificislander (Native Hawaiian or Other Pacific Islander), or twoormoreraces (Two or More Races)|
-|Flag       | |
-|Email      |Student school email address |
-|Phone      |Student phone |
-|Address    |Student street address |
-|City       |Student city |
-|State      |Student state (CA) |
-|Zipcode    |Student zipcode |
+|HispanicLatino|Student ethnicity: True or False |
+|Race       |white (White), blackafricanamerican (Black or African American), americanindianalaskanative (American Indian or Alaska Native), asian (Asian), nativehawaiianpacificislander (Native Hawaiian or Other Pacific Islander), or twoormoreraces (Two or More Races)|
+|Flag       |(Blank), FreeLunch, ReducedLunch, Homeless, or GiftedOrTalented|
+|Email      |Student school email address: (FirstName)(LastName)@contoso.edu|
+|Phone      |Student phone number       |
+|Address    |Student street address     |
+|City       |Student city               |
+|State      |Student state: CA          |
+|Zipcode    |Student zipcode: #####     |
 
-#### Schools Base-Truth Table
+#### Schools
 
 |Column Name|Description    |
 |-----------|---------------|
-|SchoolName |School name |
-|SchoolID   |School information system ID: GUID|
+|SchoolName |School name    |
+|SchoolID   |SIS ID: UUID   |
+|SchoolType |Elementary, Middle or High School, or College |
+
+#### Courses
+
+|Column Name|Description    |
+|-----------|---------------|
+|CourseName |Course name    |
+|CourseID   |Course information system ID: UUID|
+|SchoolName |School name where course is hosted|
+|SchoolID   |School information system ID of school where course is hosted|
+|SchoolID   |Elementary, Middle or High School, or College|
+|CourseSubject|English Language and Literature, Mathematics, Life and Physical Sciences, Social Sciences and History, Visual and Performing Arts, Physical Health and Safety Education, Information Technology, Communication and Audio Video Technology, Business and Marketing, Health Care Sciences, Architecture and Construction, Human Services, Engineering and Technology, World Language, Miscellaneous, or Non-Subject-Specific|
+|CourseGradeLevel| Grade level (e.g. KG, 10, undergraduate: year 1)|
+
+#### Sections
+
+|Column Name|Description    |
+|-----------|---------------|
+|SectionName|Section name: (CourseName) ###|
+|SectionID  |SIS ID: UUID   |
+|CourseName |CourseName associated with section |
+|CourseID   |CourseID associated with section   |
+|SchoolName |SchoolName where section is hosted |
+|SchoolID   |SchoolID of SchoolName             |
+|SchoolType |Elementary, Middle or High School, or College|
+|SectionSubject|CourseSubject of related course |
+|SectionGradeLevel|CourseGradeLevel of related course|
+
+#### Enrollment
+
+|Column Name|Description    |
+|-----------|---------------|
+|StudentName|Student first and last name|
+|StudentID  |StudentID of StudentName   |
+|SectionName|SectionName of section the student is enrolled in|
+|SectionID  |SectionID of SectionName   |
+|CourseName |CourseName associated with section|
+|CourseID   |CourseID associated with section|
+|CourseGradeLevel|CourseGradeLevel associated with CourseName/CourseID|
+|SchoolName |School that is hosted section that student is enrolled in|
+|SchoolID   |SchoolID of SchoolName     |
 
 ## Test Data Generation Setup Instructions
 
@@ -51,14 +96,14 @@ The OEA test data generation kit uses two base-truth tables to artifically gener
   <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/docs/images/module_test_data_gen_setup_visual.png" alt="OEA Module Test Data Generator Setup Instructions"/>
 </p>
 
-<ins><strong>Preparation:</ins></strong> Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup [v0.6.1 of the OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.6.1 of the [OEA Python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). Note: This kit will be updated to accomodate v0.7. 
+<ins><strong>Preparation:</ins></strong> This module currently leans on v0.7 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.7 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). 
 Also, examine modules/data sources currently compatible. See [below](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit#data-source-compatibility) for these applicable data sources. Choose which modules or data sources to apply this test data generator.
     
- - If you do not see a data source you wish to generate test data for, you will need to develop assets similar to the [Clever module test data generator example](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook/Clever_module).
+ - If you do not see a data source you wish to generate test data for, you will need to develop assets similar to the [Insights module test data generator example](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook/Insights_module).
 
-1. Import the general module test data generation class and demo notebooks, and run the [demo notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/test_data_gen_demo.ipynb) to create the base-truth tables. See more details and instructions under the [notebook folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook) in this kit.
+1. Import the base test data generation class and demo notebooks, and run the [demo notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/base_test_data_gen_demo.ipynb) to create the base-truth tables. See more details and instructions under the [notebook folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook) in this kit.
 2. Run the desired module-specific test data generation demo notebook.
-3. Verify that the test data was created and stored in Stage1np in that module's folder.
+3. Verify that the test data was created and stored in Stage1 in the ```test_data``` folder.
 4. Ingest the test data within the scope of that particular module or package. You can then utilize the test data generated for the relevant module or package/use case Power BI dashboard.
 
 ## Data Source Compatibility
@@ -67,17 +112,17 @@ As it currently stands, this test data generation kit can be applied to the foll
 
 | Module | Applicable Tables |
 | --- | --- |
-| [Clever](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Clever) Module | For the Daily Participation and Resource Usage tables. |
+| [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) Module | For the 27 different roster and activity tables. |
 
-See the Clever module test data generator assets under the [Notebook resource](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/Clever_module) for an example of a compatible module for this test data generation kit.
+See the Insights module test data generator assets under the [Notebook resource](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/Insights_module) for an example of a compatible module for this test data generation kit.
 
 ## Test Data Generation Kit Components
 
 Out-of-the box assets for this OEA module include:
 
-1. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook) for defining test data generation functions, creating the base-truth tables and developing module-specific test data through explicit schema mappings.
-    * General test data generation class notebook: [test_data_generation_py.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/test_data_generation_py.ipynb) and general test data generation demo notebook: [test_data_gen_demo.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/test_data_gen_demo.ipynb)
-    * Example: [Clever module test data generation assets](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook/Clever_module).
+1. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook) for defining base test data generation functions, creating the base-truth tables and developing module-specific test data through explicit schema mappings.
+    * Base-Truth table test data generation class notebook: [base_test_data_gen_py.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/base_test_data_gen_py.ipynb) and base test data generation demo notebook: [base_test_data_gen_demo.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/base_test_data_gen_demo.ipynb)
+    * Example: [Insights module test data generation assets](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook/Insights_module).
 
 This Test Data Generation Kit [welcomes contributions.](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md)
 
