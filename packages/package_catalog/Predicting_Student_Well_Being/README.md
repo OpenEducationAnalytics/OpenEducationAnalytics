@@ -90,6 +90,9 @@ Discover what are the most important features that contribute to the prediction
 Create "What-if" scenarios to suggest personalized preventions to discuss with human experts 
 ![What-if Analysis](rai/images/rai_aml_whatif_1.png)
 
+For example, for the given student nominated for well-being assessment, we start the effect of "intervention" by lowering the total absence streak in days from 35 days to 22 days that the nomination status changes. 
+![What-if Analysis](rai/images/rai_aml_whatif_2.png)
+
 **Causal analysis**
 
 Discover aggregate effect of causal features in your dataset to inform policy and decision-making process 
