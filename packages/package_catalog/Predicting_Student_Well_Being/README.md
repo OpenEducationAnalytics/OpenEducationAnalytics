@@ -44,11 +44,11 @@ In general, this package can be used by system or institutional leaders, school,
 ### PowerBI dashboards
 PowerBI Dashboard can be used to surface high-level trends, patterns, and insights of students getting nominated for well-being assessments. See examples of developed PowerBI dashboards below.
 
-#### Trends and patterns of students nominated 
+#### Trends and patterns of students nominated for well-being assessment
 ![](powerbi/overview_dashboard.png)
 Stakeholder: **Organization leaders**
 
-#### Top drivers for predicted need 
+#### Top drivers for predicted nomination for well-being assessment 
 ![](powerbi/driver_dashboard.png)
 Stakeholder: **Educators and well-being staff**
 
@@ -57,7 +57,7 @@ Stakeholder: **Educators and well-being staff**
 Stakeholder: **Model developers**
 
 ### Responsible AI dashboard
-For model developers, the responsible AI principles are critical in shaping the system to be transparent, fair, inclusive, robust and reliable. To operationalize this goal, the full-suite [RAI dashboard](https://responsibleaitoolbox.ai/) on AzureML can be used to continuously evaluate and improve the model.  
+For model developers, the responsible AI principles are critical in shaping the system to be transparent, fair, inclusive, robust and reliable. To operationalize this goal, we recommend the full-suite [RAI dashboard](https://responsibleaitoolbox.ai/) on AzureML to continuously evaluate and improve the model.  
 
 **Model overview**
 
