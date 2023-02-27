@@ -34,20 +34,18 @@ Discover what are the most important features that contribute to the prediction:
 ![Fairness Analysis](images/rai_aml_fi.png)
 
 
-**What-if Analysis**
+**What-if analysis**
 
-Create "What-if" scenarios to suggest personalized preventions to discuss with human experts: 
-![What-if Analysis](images/rai_aml_whatif_1.png)
+Create "What-if" scenarios to suggest personalized preventions to discuss with human experts 
+![What-if Analysis](rai/images/rai_aml_whatif_1.png)
 
-For example, this student's well-being may benefit from lowering absence streak from 35 days to 22 days:
+For example, for the given student nominated for well-being assessment, we start the effect of "intervention" by lowering the total absence streak in days from 35 days to 22 days so that the nomination status changes. 
+![What-if Analysis](rai/images/rai_aml_whatif_2.png)
 
-![What-if Analysis](images/rai_aml_whatif_2.png)
+**Causal analysis**
 
-**Causal Analysis**
-
-Discover aggregate effect of causal features in your dataset to inform policy and decision-making process: 
-![Causal Analysis](images/rai_aml_causal.png)
-
+Discover aggregate effect of causal features in your dataset to inform policy and decision-making process 
+![Causal Analysis](rai/images/rai_aml_causal.png)
 
 
 For more details on how to use these dashboards, visit the step-by-step [walkthrough guide](https://techcommunity.microsoft.com/t5/ai-machine-learning-blog/responsible-ai-dashboard-and-scorecard-in-azure-machine-learning/ba-p/3391068). The guide walks you through how to evaluate models using:
