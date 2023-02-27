@@ -88,7 +88,7 @@ Discover what are the most important features that contribute to the prediction
 **What-if analysis**
 
 Create "What-if" scenarios to suggest personalized preventions to discuss with human experts 
-![What-if Analysis](rai/images/rai_aml_whatif.png)
+![What-if Analysis](rai/images/rai_aml_whatif_1.png)
 
 **Causal analysis**
 
