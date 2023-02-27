@@ -1,5 +1,3 @@
-![image](https://user-images.githubusercontent.com/63133369/214875790-bdb28a0a-1110-414c-a911-320a8c9362ec.png)
-
 # Data Dictionary
 This package combines data from [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data) and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph). Each of these modules provide a detailed data dictonary that explains the various columns in the data source. 
 
@@ -79,7 +77,8 @@ Below is the data dictionary for this Learning Analytics package.
 | | JoinTime | timestamp | Timestamp of when the student joined the meeting |
 | | LeaveTime | timestamp | Timestamp of when the student left the meeting |
 | | AttendanceTime_sec | long | Total time the student attended the meeting (in seconds) |
-|**fact_Assignment** | AssignmentId | string | Assignment ID from Insights Activity table |
+|**fact_Assignment** | AssignmentActivityId | string | Assignment activity ID constructed from combining the date with the assignment ID to create a unique ID per student per assignment activity signal |
+| | AssignmentId | string | Assignment ID from Insights Activity table |
 | | SchoolId | string | Organization ID from Insights Organization table |
 | | CourseId | string | Course ID from Insights Course table |
 | | SectionId | string | Section/Class ID from Insights Section table |
