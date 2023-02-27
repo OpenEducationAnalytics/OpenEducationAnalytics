@@ -1,4 +1,9 @@
 
+### Note: We are currently working on releasing a sample of test data for other technical assets to consume.
+
+
+
+
 # Data
 
 ## Pseudonymization of End User Identifiable Information
@@ -64,11 +69,6 @@ This is where specific fields from available datasets should be mapped to the th
 In the Tasmanian dataset, we
 -	count number of negative behaviors recorded of a student during a specific timeframe;
 -	count actions taken against the student during a specific timeframe.
-
-
-
-### Note: We are currently working on releasing a sample of test data for other technical assets to consume.
-
 
 
 
