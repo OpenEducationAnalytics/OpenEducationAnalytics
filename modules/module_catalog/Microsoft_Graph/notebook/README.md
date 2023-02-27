@@ -4,7 +4,7 @@ This module has two sets of notebooks:
  1. One notebook is used to demonstrate an alternate method of data processing (i.e. landing, ingesting, and refining Graph data) with examples of explorative possbilities.
  2. The rest of the (4 other) notebooks are necessary to support the main [module pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline) for landing datasets, cleaning/correcting each table's schema from the data source, and pseudonymizing the data.
 
-All notebooks depend on the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb) which is a part of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework), and will be automatically imported upon running the ```module_graph_v0.1rc1.zip``` setup script.
+All notebooks depend on the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb) which is a part of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework), and will be automatically imported upon running the ```module_graph_v0.1.zip``` setup script.
 
 **<em>NOTE:** If you are running into issues with the refine process - you may need to edit the OEA_py notebook to not assume the primary key will be pseudonymized (i.e. make sure to remove "_pseudonym" suffix on the primary key column).</em>
 
