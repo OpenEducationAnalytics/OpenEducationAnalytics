@@ -1,4 +1,5 @@
-<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+# Synapse Pipeline
+**Synapse Pipeline** is used for data engineering to create a joint dataset from a set of relational datasets for ML modeling consumption. 
 
-# Pipelines
-*to be updated soon*
+Here we show an example of the pipeline we built in Synapse for the Tasmania dataset: 
+![](data_eng_pipeline.png?raw=true)
