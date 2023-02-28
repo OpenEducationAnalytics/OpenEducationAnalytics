@@ -46,10 +46,10 @@ The assets in this package can be combined with course completion, graduation ra
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
     * Download the module release to your Azure clouddrive \
 `cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/package_Learning_Analytics_v1.0/package_Learning_Analytics_v1.0.zip`\
-`unzip ./package_Learning_Analytics_v1.0.zip`
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/package_Learning_Analytics_v1.0rc1/package_Learning_Analytics_v1.0rc1.zip`\
+`unzip ./package_Learning_Analytics_v1.0rc1.zip`
     * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
-`./package_Learning_Analytics_v1.0/setup.sh mysynapseworkspacename`) to install this package into your own environment.
+`./package_Learning_Analytics_v1.0rc1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
 3. Use the Power BI dashboard to explore the Learning Analytics use case. Note that all pipelines create SQL views which can be accessed via your Synapse workspace Serverless SQL endpoint. Example dashboard concepts and detailed information on the queries are [provided in the Power BI folder](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/powerbi).
       
 ## Data Sources
