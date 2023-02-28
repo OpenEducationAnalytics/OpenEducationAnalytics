@@ -7,7 +7,7 @@ Below is the data dictionary for this Learning Analytics package.
 
 | Dimension Table Name | Column Name | Column Data Type | Column Description |
 |-----------|-------------------|-------------------|-------------|
-|**dim_Student(_lookup)** | StudentId_pseudonym  | string | AAD User Object ID of the student (hashed in non-lookup table) |
+|**dim_Student(_lookup)** | StudentId_pseudonym  | string | Person ID of the student from Insights Person table (hashed in non-lookup table) |
 | | Surname | string | Last name of the student (masked in non-lookup table) |
 | | GivenName | string | First name of the student (masked in non-lookup table) |
 | | MiddleName | string | Middle name of the student (masked in non-lookup table) |
@@ -16,8 +16,8 @@ Below is the data dictionary for this Learning Analytics package.
 | | BirthDate | string | Student date of birth |
 | | BirthCity | string | Student city of birth |
 | | BirthState | string | Student state of birth |
-|**dim_Instructor** | InstructorId_pseudonym  | string | AAD User Object ID of the teacher/professor (hashed) |
-| | InstructorName | string | First and last name of the instructor |
+|**dim_Instructor** | InstructorId_pseudonym  | string | Person ID of the teacher/professor from Insights Person table (hashed) |
+| | InstructorName | string | First and last name of the instructor from Insights AadUser table |
 |**dim_Section** | SectionId  | string | Class/Section ID from Insights Section table |
 | | SectionName | string | Class/Section name |
 | | SectionStartDate | date | Class/Section start date |
