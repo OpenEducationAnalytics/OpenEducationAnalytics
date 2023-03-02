@@ -1,4 +1,4 @@
-> **Note:** This module is currently released as v0.1, and is dependent on the OEA framework v0.7
+> **Note:** This module is currently released as v0.1rc1, and is dependent on the OEA framework v0.7
 
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
@@ -28,17 +28,17 @@ Reading Progress data can be used for different scenarios including:
 <ins><strong>Preparation:</ins></strong> This module currently leans on v0.7 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.7 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). 
 
 <ins><strong>Note:</ins></strong> 
-It is highly recommended that you review and deploy the [Microsoft Education Insights module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) (Reading Progress data is available through Microsoft Education Insights and can be landed into your organization's data lake with our existing Microsoft Education Insights module). For production data-use, follow the preliminary steps outlined in the Insights module.
+It is highly recommended that you review and deploy the [Microsoft Education Insights module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) (Reading Progress data is available through Microsoft Education Insights and test data can be landed into your organization's data lake with our existing Microsoft Education Insights module). For production data-use, follow the preliminary steps outlined in the Insights module.
 
 1. Run the [setup.sh script](https://github.com/Microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/setup.sh)
     * Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
     * Download the module release to your Azure clouddrive \
 `cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_Reading_Progress_v0.1/module_Reading_Progress_v0.1.zip`\
-`unzip ./module_Reading_Progress_v0.1.zip`
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_Reading_Progress_v0.1/module_Reading_Progress_v0.1rc1.zip`\
+`unzip ./module_Reading_Progress_v0.1rc1.zip`
     * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
-`./module_Reading_Progress_v0.1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
+`./module_Reading_Progress_v0.1rc1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
 2. Run the [Reading Progress module main pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Reading_Progress/pipeline) or the [ReadingProgress_example notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/notebook/ReadingProgress_example.ipynb) into your Synapse workspace to see the functionality of module assets.
      * It is recommended that you first run the module example notebook to understanding the methods of data processing, before running the pipeline. Although, running either the example notebook or the main pipeline accomplish the same processes.
 3. Verify that the module pipeline landed data into stage 1 and 2, and SQL and lake databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Reading_Progress/pipeline) for detailed instructions.
