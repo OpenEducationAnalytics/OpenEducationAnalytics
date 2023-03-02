@@ -32,5 +32,5 @@ The OEA Learning Analytics v1 Package Power BI template provided consists of a s
 ## Data Model
 Below is the data model used for Power BI visualizations:
 
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/Learning_Analytics_PBI_Data_Model.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/v1/LA_v1_pbi_data_model.png)
 
