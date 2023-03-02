@@ -40,7 +40,7 @@ The assets in this package can be combined with course completion, graduation ra
 1. Examine available data sources as seen [below](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics#data-sources). Choose which modules or data sources to implement.
     * This package was developed using the higher ed. test data from the following modules: [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph). 
         * <em>(<strong>Note</strong>: This package currently uses the [meetingAttendanceReport](https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0&tabs=http) from the Microsoft Graph data source - which does not retrieve data reports from channel meetings.)</em>
-    * Run each of the module data pipelines to ingest the data into stage 2. 
+    * Run each of the module pipelines to ingest the data into stage 2. 
 2. Run the [setup.sh script](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/setup.sh) to import package assets, then run the [Learning Analytics pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/pipeline).
     * Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
