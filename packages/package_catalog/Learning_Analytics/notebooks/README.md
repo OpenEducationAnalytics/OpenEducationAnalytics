@@ -9,7 +9,7 @@ The general curation process for each Learning Analytics table (used to support 
  - Write final enriched table to ```stage2/Enriched/learning_analytics``` using the upsert function from the [OEA_py class notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb), and lastly
  - Publish the table to ```stage3/Published/learning_analytics``` using Spark structured streaming, to track data changes in the table.
   
-Both notebooks are automatically imported upon running the ```package_Learning_Analytics_v1.0.zip``` setup script. Refer to the Learning Analytics package [Data Dictionary](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/data) for additional table details. 
+Both notebooks are automatically imported upon running the ```package_Learning_Analytics_v1.0rc1.zip``` setup script. Refer to the Learning Analytics package [Data Dictionary](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/data) for additional table details. 
 
 ## [Build Dimension Tables](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/notebooks/LA_build_dimension_tables.ipynb)
 This notebook is responsible for data curation of the Insights roster (SIS), activity and Graph API meeting_attendance_report data. The approach to the curation process is clearly outlined and commented within the notebook, per table. There are a total of 11 dimension tables created: 
