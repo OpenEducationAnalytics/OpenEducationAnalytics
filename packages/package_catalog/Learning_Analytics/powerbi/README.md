@@ -1,5 +1,7 @@
 # Power BI Dashboards
 
+<em><strong>NOTE:</strong> The Power BI template will be updated soon.</em>
+
 The OEA Learning Analytics Package Power BI template enables users to quickly explore data.
 
 ## Dashboard Explanation 
