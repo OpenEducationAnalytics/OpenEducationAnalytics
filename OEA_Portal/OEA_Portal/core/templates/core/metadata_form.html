@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <script src="{{base_url}}/static/js/app.js"></script>
+    <form id="form-container" method="POST">
+        {% csrf_token %}
+        {{metadata_formset.management_form}}
+        {% for form in metadata_formset %}
+        <div id="form-container">
+          <label for="id_table-name">Table Name:</label>
+          <input type="text" id="id_table-name" name="table-name">
+          <table class="table" id="metadata-table">
+            <tr>
+              <th>Column Name </th>
+              <th>Column Type </th>
+              <th>Pseudonymization </th>
+              <th>Constraint </th>
+            </tr>
+            <tr  class="column-form" id="form-1">
+              {% for field in form %}
+              <td> {{ field }} </td>
+              {% endfor %}
+              <td> <button id="form-1-delete" type="button">delete</button> </td>
+            </tr>
+          </table>
+        </div>
+        <button id="add-form" type="button">Add Column</button>
+        <button type="submit">Create Table</button>
+        {% endfor %}
+    </form>
+{% endblock %}

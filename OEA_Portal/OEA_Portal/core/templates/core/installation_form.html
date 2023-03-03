@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div align="center"> New to OEA? Fill this form and we will setup OEA framework in your Azure Subscription. </div>
+<div align="center">
+  <h2 >OEA Installation Form</h2>
+  <form method="post">
+    {% csrf_token %}
+    <table class="table"  style="width:60%">
+      {{ form.as_table }}
+    </table>
+    <button type="submit"  class="btn btn-primary">Submit</button>
+  </form>
+<div>
+{% endblock %}

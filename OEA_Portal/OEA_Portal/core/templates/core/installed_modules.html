@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{{ data|json_script:"mydata" }}
+<script src="{{base_url}}/static/js/initialise.js"></script>
+
+  <div align="center">
+
+    <label for="workspace_select">Workspace Name</label>
+    <select name="workspace_select" id="workspace_select">
+        <option value="">None</option>
+    </select>
+    <button type="submit" id="button" class="btn btn-primary">Select</button>
+
+  </div>
+
+  <div>
+    <table class="table" id="table" align="center" style="width:80%">
+        <tr>
+            <th>Module Name</th>
+            <th>Version</th>
+            <th>Last Updated Time</th>
+            <th>Delete</th>
+        </tr>
+        <tbody class="tbody" id="tbody"></tbody>
+
+    </table>
+
+  </div>
+{% endblock %}
