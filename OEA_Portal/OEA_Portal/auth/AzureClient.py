@@ -16,7 +16,7 @@ logger = logging.getLogger('AzureClient')
 class AzureClient:
     """ todo: consider removing self.resource_group_name - it should probably be passed in as needed """
     def __init__(self, tenant_id, subscription_id, location = 'eastus', default_tags = None, resource_group_name = None):
-        self.credential = DefaultAzureCredential()
+        self.credential = DefaultAzureCredential(authority="https://login.windows.net/178ab4db-1ad5-49ad-86a7-06a29409af8a")
         self.tenant_id = tenant_id
         self.subscription_id = subscription_id
         self.location = location
