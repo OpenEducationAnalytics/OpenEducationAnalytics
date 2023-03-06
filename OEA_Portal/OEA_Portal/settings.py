@@ -89,7 +89,7 @@ ROOT_URLCONF = 'OEA_Portal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['static/html'],
+        'DIRS': ['OEA_Portal/static/html'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -150,10 +150,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = f'{BASE_DIR}/OEA_Portal/static/html/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
+    f'{BASE_DIR}/OEA_Portal/static/',
 )
 
 # Default primary key field type

@@ -76,7 +76,7 @@ class AssetInstallationView(TemplateView):
     template_name = 'core/asset_installation.html'
     config = get_config_data()
     def get_context_data(self, **kwargs):
-        context = super(ProfileView, self).get_context_data(**kwargs)
+        context = super(AssetInstallationView, self).get_context_data(**kwargs)
         context['base_url'] = base_url
         return context
 
@@ -97,7 +97,7 @@ class AssetUninstallationView(TemplateView):
     template_name = 'core/asset_uninstallation.html'
     config = get_config_data()
     def get_context_data(self, **kwargs):
-        context = super(ProfileView, self).get_context_data(**kwargs)
+        context = super(AssetUninstallationView, self).get_context_data(**kwargs)
         context['base_url'] = base_url
         return context
 
