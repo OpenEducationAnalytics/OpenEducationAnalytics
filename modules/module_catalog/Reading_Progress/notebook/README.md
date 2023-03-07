@@ -11,7 +11,7 @@ All notebooks depend on the v0.7 [OEA python class](https://github.com/microsoft
 ## Module Example Notebook: [ReadingProgress_example.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/notebook/ReadingProgress_example.ipynb)
 
 This Reading Progress module example notebook:
- - lands either K-12 or higher education test data into ```stage1/Transactional/M365/v1.14``` of your data lake (refer to steps in the notebook for how to choose which dataset to land), 
+ - lands K-12 test data into ```stage1/Transactional/M365/v1.14``` of your data lake, 
  - ingests the unstructured tables into ```stage2/Ingested/reading_progress/v0.1```, 
  - corrects the each table's schema to structure the tables properly - writing the tables to ```stage2/Ingested_Corrected/reading_progress/v0.1```, 
  - refines the data into ```stage2/Refined/reading_progress/v0.1/(general and sensitive)``` by pseudonymizing (i.e. hashing or masking) sensitive information. 
