@@ -6,6 +6,8 @@ import zipfile
 from OEA_Portal.auth.AzureClient import AzureClient
 from OEA_Portal.core.models import *
 from azure.identity import DefaultAzureCredential
+from concurrent.futures import ThreadPoolExecutor
+from azure.mgmt.synapse import SynapseManagementClient
 from azure.mgmt.subscription import SubscriptionClient
 
 
@@ -85,17 +87,26 @@ def get_all_subscriptions_in_tenant():
 def get_storage_account_from_url(account_url):
     return account_url.replace('.dfs.core.windows.net', '').replace('https://', '')
 
-def get_all_workspaces_in_subscription(azure_client:AzureClient):
+def get_subscriptions_and_workspaces_in_tenant():
     """
-    Returns the list of all workspaces in a given subscription.
+    Returns
+        list of subscriptions (model: AzureSubscription)
+        list of workspaces (model: SynapseWorkspace)
     """
     workspace_models = []
-    workspaces = azure_client.get_synapse_client().workspaces.list()
-    for workspace in workspaces:
-        resource_group = workspace.id.split('/')[4]
-        storage_account = get_storage_account_from_url(workspace.default_data_lake_storage.account_url)
-        workspace_models.append(SynapseWorkspace(workspace.name, resource_group, azure_client.subscription_id, storage_account))
-    return workspace_models
+    credential = DefaultAzureCredential()
+    subscription_models = [AzureSubscription(s.display_name, s.id.split('/')[-1]) for s in SubscriptionClient(credential).subscriptions.list()]
+
+    def append_workspaces_in_subscription(subscription):
+        workspaces = SynapseManagementClient(credential, subscription.subscription_id).workspaces.list()
+        for workspace in workspaces:
+            resource_group = workspace.id.split('/')[4]
+            storage_account = get_storage_account_from_url(workspace.default_data_lake_storage.account_url)
+            workspace_models.append(SynapseWorkspace(workspace.name, resource_group, subscription.subscription_id, storage_account))
+
+    with ThreadPoolExecutor(3) as exe:
+        exe.map(append_workspaces_in_subscription, subscription_models)
+    return subscription_models, workspace_models
 
 def get_workspace_object(azure_client:AzureClient, workspace_name):
     """
@@ -144,6 +155,3 @@ def get_all_storage_accounts_in_subscription(azure_client:AzureClient):
     Returns the list of all storage accounts in a given subscription.
     """
     return [x.name for x in azure_client.get_storage_client().storage_accounts.list()]
-
-
-

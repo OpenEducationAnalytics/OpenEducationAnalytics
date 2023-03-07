@@ -21,8 +21,8 @@ class HomeView(TemplateView):
         global base_url
         if('base_url' in self.request.GET):
             base_url = self.request.GET['base_url']
-        subscriptions = get_all_subscriptions_in_tenant()
-        workspaces = get_all_workspaces_in_subscription(AzureClient(self.config['SubscriptionId'], self.config['SubscriptionId']))
+        subscriptions, workspaces = get_subscriptions_and_workspaces_in_tenant()
+        # workspaces = get_all_workspaces_in_subscription(AzureClient(self.config['SubscriptionId'], self.config['SubscriptionId']))
         return self.render_to_response({'base_url':self.config['BaseURL'],
         'tenants':['123', '456'],
         'subscriptions':subscriptions,
@@ -55,21 +55,19 @@ class InstallationFormView(TemplateView):
         return context
 
     def get(self, *args, **kwargs):
-        version_choices = [(x,x) for x in self.config['OEA_Versions']]
+        version_choices = [('0.7', '0.7')]
         form = InstallationForm(version_choices)
         return self.render_to_response({'form':form})
 
     def post(self, *args, **kwargs):
-        tenant_id = self.config['TenantId']
+        tenant_id = '178ab4db-1ad5-49ad-86a7-06a29409af8a'
         subscription_id = self.config['SubscriptionId']
         include_groups = self.request.POST.get('include_groups')
         oea_version = self.request.POST.get('oea_version')
         oea_suffix = self.request.POST.get('oea_suffix')
         location = self.request.POST.get('location')
-
-        request_id = uuid.uuid4()
         oea_installer = OEAInstaller(tenant_id, subscription_id, oea_suffix,oea_version, location, include_groups)
-        oea_installer.install(request_id)
+        oea_installer.install()
         return redirect('home')
 
 class AssetInstallationView(TemplateView):

@@ -18,10 +18,10 @@ class OEAInstaller():
         self.tenant_id = tenant_id
         self.subscription_id = subscription_id
         self.location = location
-        self.tags = {'OEA_Version':oea_version}
+        self.tags = {'OEA Version':oea_version}
         self.include_groups = include_groups
         self.framework_path_relative = f"{BASE_DIR}/downloads/OEA_v{oea_version}/framework/synapse".replace('\\', '/')
-        self.framework_zip_url = "https://github.com/microsoft/OpenEduAnalytics/releases/download/v0.7/OEA_v0.7.zip"
+        self.framework_zip_url = f"https://github.com/microsoft/OpenEduAnalytics/releases/download/v{oea_version}/OEA_v{oea_version}.zip"
         #todo: Find way to get signed-in user id using python sdk.
         self.user_object_id = '34b26f30-cbfc-47ec-9131-27fef4433705'
         self.resource_group_name = f"rg-oea-{oea_suffix}"

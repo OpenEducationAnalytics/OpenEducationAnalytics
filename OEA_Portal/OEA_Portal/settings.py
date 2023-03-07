@@ -14,6 +14,8 @@ import os
 from pathlib import Path
 import dotenv
 
+dotenv.load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = str(Path(__file__).resolve().parent.parent).replace("\\", "/")
 
@@ -153,7 +155,7 @@ USE_TZ = True
 STATIC_URL = f'{BASE_DIR}/OEA_Portal/static/html/'
 
 STATICFILES_DIRS = (
-    f'{BASE_DIR}/OEA_Portal/static/',
+    f'{BASE_DIR}/static/',
 )
 
 # Default primary key field type
