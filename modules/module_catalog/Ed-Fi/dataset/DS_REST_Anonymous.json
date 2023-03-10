@@ -2,10 +2,10 @@
     "name": "DS_REST_Anonymous",
     "properties": {
         "linkedServiceName": {
-            "referenceName": "LS_REST",
+            "referenceName": "LS_REST_Anonymous",
             "type": "LinkedServiceReference",
             "parameters": {
-                "BaseURL": {
+                 "BaseURL": {
                     "value": "@dataset().BaseURL",
                     "type": "Expression"
                 }
@@ -17,7 +17,7 @@
             }
         },
         "folder": {
-            "name": "OEA_Framework"
+            "name": "Modules/Ed-Fi"
         },
         "annotations": [],
         "type": "RestResource",

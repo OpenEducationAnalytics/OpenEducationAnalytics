@@ -1,11 +1,11 @@
 {
-    "name": "LS_REST",
+    "name": "LS_REST_Basic",
     "properties": {
         "parameters": {
             "ClientId": {
                 "type": "string"
             },
-            "SecretName": {
+            "ClientSecretName": {
                 "type": "string"
             },
             "BaseURL": {
@@ -26,7 +26,7 @@
                     "type": "LinkedServiceReference"
                 },
                 "secretName": {
-                    "value": "@linkedService().SecretName",
+                    "value": "@linkedService().ClientSecretName",
                     "type": "Expression"
                 }
             }

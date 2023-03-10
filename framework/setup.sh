@@ -13,6 +13,7 @@ fi
 synapse_workspace=$1
 storage_account=$2
 key_vault=$3
+time_zone="US/Eastern"
 this_file_path=$(dirname $(realpath $0))
 mkdir $this_file_path/tmp
 
@@ -28,7 +29,8 @@ sed "s/yoursynapseworkspace/$synapse_workspace/" $this_file_path/synapse/linkedS
 eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_SQL_Serverless --file @$this_file_path/tmp/LS_SQL_Serverless.json"
 eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_Azure_SQL_DB --file @$this_file_path/synapse/linkedService/LS_Azure_SQL_DB.json"
 eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_HTTP --file @$this_file_path/synapse/linkedService/LS_HTTP.json"
-eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_REST --file @$this_file_path/synapse/linkedService/LS_REST.json"
+eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_REST_Basic --file @$this_file_path/synapse/linkedService/LS_REST_Basic.json"
+eval "az synapse linked-service create --workspace-name $synapse_workspace --name LS_REST_Anonymous --file @$this_file_path/synapse/linkedService/LS_REST_Anonymous.json"
 
 #  - setup Datasets
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_datalake_file --file @$this_file_path/synapse/dataset/DS_datalake_file.json"
@@ -40,7 +42,8 @@ eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_Az
 # 2) install notebooks
 sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/notebook/OEA_py.ipynb > $this_file_path/tmp/OEA_py1.ipynb
 sed "s/yourkeyvault/$key_vault/" $this_file_path/tmp/OEA_py1.ipynb > $this_file_path/tmp/OEA_py2.ipynb
-eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --spark-pool-name spark3p2sm --file @$this_file_path/tmp/OEA_py2.ipynb --only-show-errors"
+sed "s/yourtimezone/$time_zone/" $this_file_path/tmp/OEA_py2.ipynb > $this_file_path/tmp/OEA_py3.ipynb
+eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --spark-pool-name spark3p2sm --file @$this_file_path/tmp/OEA_py3.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name 1_read_me --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/1_read_me.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name 2_example_data_processing --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/2_example_data_processing.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_connector --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/OEA_connector.ipynb --only-show-errors"

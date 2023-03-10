@@ -2,14 +2,14 @@
     "name": "edfi_upsert",
     "properties": {
         "folder": {
-            "name": "EdFi/Ingest"
+            "name": "Modules/Ed-Fi/Ingest"
         },
         "type": "MappingDataFlow",
         "typeProperties": {
             "sources": [
                 {
                     "linkedService": {
-                        "referenceName": "LS_datalake",
+                        "referenceName": "LS_DataLake",
                         "type": "LinkedServiceReference"
                     },
                     "name": "SourceJson"
@@ -18,7 +18,7 @@
             "sinks": [
                 {
                     "linkedService": {
-                        "referenceName": "LS_datalake",
+                        "referenceName": "LS_DataLake",
                         "type": "LinkedServiceReference"
                     },
                     "name": "SinkDelta"
@@ -37,11 +37,11 @@
             ],
             "scriptLines": [
                 "parameters{",
-                "     districtId as string ('255901'),",
-                "     schoolYear as string ('2017'),",
-                "     entity as string ('schools'),",
-                "     directory as string ('EdFi'),",
-                "     apiversion as string ('5.3')",
+                "     DistrictId as string (\"All\"),",
+                "     SchoolYear as string (\"2021\"),",
+                "     IngestedFolder as string (\"Ingested/Ed-Fi/v5.2\"),",
+                "     TransactionalFolder as string (\"Transactional/Ed-Fi/v5.2/DistrictId=All/SchoolYear=2021\"),",
+                "     Entity as string (\"/ed-fi/absenceEventCategoryDescriptors\")",
                 "}",
                 "source(useSchema: false,",
                 "     allowSchemaDrift: true,",
@@ -49,17 +49,16 @@
                 "     inferDriftedColumnTypes: true,",
                 "     limit: 10000,",
                 "     ignoreNoFilesFound: true,",
-                "     enableCdc: true,",
                 "     mode: 'read',",
                 "     format: 'json',",
                 "     fileSystem: 'stage1',",
-                "     folderPath: (\"Transactional/{$directory}/v5.3/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$entity}/Incremental/Upserts\"),",
+                "     folderPath: (\"{$TransactionalFolder}{$Entity}/Incremental/Upserts\"),",
                 "     documentForm: 'documentPerLine',",
                 "     preferredIntegralType: 'integer',",
                 "     preferredFractionalType: 'float') ~> SourceJson",
                 "SelectColumns alterRow(upsertIf(true())) ~> AlterRow",
-                "SourceJson derive(SchoolYear = $schoolYear,",
-                "          DistrictId = $districtId,",
+                "SourceJson derive(SchoolYear = $SchoolYear,",
+                "          DistrictId = $DistrictId,",
                 "          LastModifiedDate = currentTimestamp()) ~> DerivedColumn",
                 "DerivedColumn select(mapColumn(",
                 "          each(match(name!='rundate'))",
@@ -70,16 +69,16 @@
                 "     validateSchema: false,",
                 "     format: 'delta',",
                 "     fileSystem: 'stage2',",
-                "     folderPath: (\"Ingested/{$directory}/v{$apiversion}/{$entity}\"),",
+                "     folderPath: (\"{$IngestedFolder}{$Entity}\"),",
                 "     mergeSchema: (true()),",
                 "     autoCompact: false,",
                 "     optimizedWrite: false,",
                 "     vacuum: 0,",
                 "     deletable:false,",
-                "     insertable:true,",
+                "     insertable:false,",
                 "     updateable:false,",
                 "     upsertable:true,",
-                "     keys:['id'],",
+                "     keys:['id','SchoolYear','DistrictId'],",
                 "     umask: 0022,",
                 "     preCommands: [],",
                 "     postCommands: [],",

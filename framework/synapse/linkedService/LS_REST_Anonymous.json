@@ -1,0 +1,21 @@
+{
+    "name": "LS_REST_Anonymous",
+    "properties": {
+        "parameters": {
+            "BaseURL": {
+                "type": "string"
+            }
+        },
+        "annotations": [],
+        "type": "RestService",
+        "typeProperties": {
+            "url": "@{linkedService().BaseURL}",
+            "enableServerCertificateValidation": true,
+            "authenticationType": "Anonymous"
+        },
+        "connectVia": {
+            "referenceName": "AutoResolveIntegrationRuntime",
+            "type": "IntegrationRuntimeReference"
+        }
+    }
+}

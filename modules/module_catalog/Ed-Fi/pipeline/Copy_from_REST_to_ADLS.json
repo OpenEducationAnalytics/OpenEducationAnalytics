@@ -1,5 +1,5 @@
 {
-    "name": "Copy_from_REST_Anonymous_to_ADLS",
+    "name": "Copy_from_REST_to_ADLS",
     "properties": {
         "activities": [
             {
@@ -79,10 +79,7 @@
                     },
                     "authentication": {
                         "type": "Basic",
-                        "username": {
-                            "value": "@pipeline().parameters.ClientId",
-                            "type": "Expression"
-                        },
+                        "username": "@pipeline().parameters.ClientId",
                         "password": {
                             "type": "AzureKeyVaultSecret",
                             "store": {
@@ -90,7 +87,7 @@
                                 "type": "LinkedServiceReference"
                             },
                             "secretName": {
-                                "value": "@pipeline().parameters.SecretName",
+                                "value": "@pipeline().parameters.ClientSecretName",
                                 "type": "Expression"
                             }
                         }
@@ -163,9 +160,17 @@
                 },
                 "inputs": [
                     {
-                        "referenceName": "DS_REST_Anonymous",
+                        "referenceName": "DS_REST_Basic",
                         "type": "DatasetReference",
                         "parameters": {
+                            "ClientId": {
+                                "value": "@pipeline().parameters.ClientId",
+                                "type": "Expression"
+                            },
+                            "ClientSecretName": {
+                                "value": "@pipeline().parameters.ClientSecretName",
+                                "type": "Expression"
+                            },
                             "BaseURL": {
                                 "value": "@{pipeline().parameters.DeletesEntityUrl}?MinChangeVersion=@{pipeline().parameters.MinChangeVersion}&MaxChangeVersion=@{pipeline().parameters.MaxChangeVersion}",
                                 "type": "Expression"
@@ -178,7 +183,7 @@
                         "referenceName": "DS_JSON",
                         "type": "DatasetReference",
                         "parameters": {
-                            "stage": "1",
+                            "stage": "stage1",
                             "path": {
                                 "value": "@pipeline().parameters.DeletesSinkPath",
                                 "type": "Expression"
@@ -188,8 +193,8 @@
                 ]
             },
             {
-                "name": "Copy-JSON-to-ADLS-Upserts",
-                "type": "ExecutePipeline",
+                "name": "If-TotalCount-Greater-Than-Zero",
+                "type": "IfCondition",
                 "dependsOn": [
                     {
                         "activity": "Set-TotalCount",
@@ -200,49 +205,63 @@
                 ],
                 "userProperties": [],
                 "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "Copy_from_REST_Keyset_Parallel",
-                        "type": "PipelineReference"
+                    "expression": {
+                        "value": "@greater(int(variables('TotalCount')),0)",
+                        "type": "Expression"
                     },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "TotalCount": {
-                            "value": "@variables('TotalCount')",
-                            "type": "Expression"
-                        },
-                        "AuthURL": {
-                            "value": "@pipeline().parameters.AuthURL",
-                            "type": "Expression"
-                        },
-                        "ClientId": {
-                            "value": "@pipeline().parameters.ClientId",
-                            "type": "Expression"
-                        },
-                        "SecretName": {
-                            "value": "@pipeline().parameters.SecretName",
-                            "type": "Expression"
-                        },
-                        "ChangedEntityURL": {
-                            "value": "@pipeline().parameters.ChangedEntityURL",
-                            "type": "Expression"
-                        },
-                        "ApiLimit": {
-                            "value": "@pipeline().parameters.ApiLimit",
-                            "type": "Expression"
-                        },
-                        "UpsertsSinkPath": {
-                            "value": "@pipeline().parameters.UpsertsSinkPath",
-                            "type": "Expression"
-                        },
-                        "MinChangeVersion": {
-                            "value": "@pipeline().parameters.MinChangeVersion",
-                            "type": "Expression"
-                        },
-                        "MaxChangeVersion": {
-                            "value": "@pipeline().parameters.MaxChangeVersion",
-                            "type": "Expression"
+                    "ifTrueActivities": [
+                        {
+                            "name": "Copy-from-REST-Keyset-Parallel",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "Copy_from_REST_Keyset_Parallel",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "TotalCount": {
+                                        "value": "@variables('TotalCount')",
+                                        "type": "Expression"
+                                    },
+                                    "AuthURL": {
+                                        "value": "@pipeline().parameters.AuthURL",
+                                        "type": "Expression"
+                                    },
+                                    "ClientId": {
+                                        "value": "@pipeline().parameters.ClientId",
+                                        "type": "Expression"
+                                    },
+                                    "ClientSecretName": {
+                                        "value": "@pipeline().parameters.ClientSecretName",
+                                        "type": "Expression"
+                                    },
+                                    "ChangedEntityURL": {
+                                        "value": "@pipeline().parameters.ChangedEntityURL",
+                                        "type": "Expression"
+                                    },
+                                    "ApiLimit": {
+                                        "value": "@pipeline().parameters.ApiLimit",
+                                        "type": "Expression"
+                                    },
+                                    "UpsertsSinkPath": {
+                                        "value": "@pipeline().parameters.UpsertsSinkPath",
+                                        "type": "Expression"
+                                    },
+                                    "MinChangeVersion": {
+                                        "value": "@pipeline().parameters.MinChangeVersion",
+                                        "type": "Expression"
+                                    },
+                                    "MaxChangeVersion": {
+                                        "value": "@pipeline().parameters.MaxChangeVersion",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
                         }
-                    }
+                    ]
                 }
             }
         ],
@@ -255,7 +274,7 @@
                 "type": "String",
                 "defaultValue": "R2xsAWWkKf3oX2WS"
             },
-            "SecretName": {
+            "ClientSecretName": {
                 "type": "String",
                 "defaultValue": "ws-synapse-edfi-2022-apiclientsecret"
             },
@@ -326,6 +345,6 @@
             "name": "Modules/Ed-Fi/Artifacts"
         },
         "annotations": [],
-        "lastPublishTime": "2022-11-07T14:50:44Z"
+        "lastPublishTime": "2023-02-28T21:52:03Z"
     }
 }

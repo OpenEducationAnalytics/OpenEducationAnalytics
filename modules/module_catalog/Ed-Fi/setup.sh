@@ -18,6 +18,7 @@ echo "--> Setting up the Ed-Fi module assets."
 # 1) create datasets
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_JSON_File --file @$this_file_path/dataset/DS_JSON_File.json --only-show-errors"
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_JSON --file @$this_file_path/dataset/DS_JSON.json --only-show-errors"
+eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_REST_Basic --file @$this_file_path/dataset/DS_REST_Basic.json --only-show-errors"
 eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_REST_Anonymous --file @$this_file_path/dataset/DS_REST_Anonymous.json --only-show-errors"
 
 # 2) install dataflows
@@ -34,9 +35,9 @@ eval "az synapse integration-runtime managed create --workspace-name $synapse_wo
 # 5) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_REST_Keyset_Parallel --file @$this_file_path/pipeline/Copy_from_REST_Keyset_Parallel.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_REST_Anonymous_to_ADLS --file @$this_file_path/pipeline/Copy_from_REST_Anonymous_to_ADLS.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_REST_to_ADLS --file @$this_file_path/pipeline/Copy_from_REST_to_ADLS.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_EdFi_Entities_to_Stage1 --file @$this_file_path/pipeline/Copy_EdFi_Entities_to_Stage1.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_Stage1_To_Stage2 --file @$this_file_path/pipeline/Copy_Stage1_To_Stage2.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_Stage1_to_Stage2 --file @$this_file_path/pipeline/Copy_Stage1_to_Stage2.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name Master_Pipeline --file @$this_file_path/pipeline/Master_Pipeline.json"
 
 echo "--> Setup complete. The Ed-Fi module assets have been installed in the specified synapse workspace: $synapse_workspace"

@@ -15,7 +15,8 @@ The main pipeline has 3 major components:
    - Copy data from REST API to ADLS
    - Setup Database from New Stages
 2) Datasets:
-   - DS_REST
+   - DS_REST_Anonymous
+   - DS_REST_Basic
    - DS_JSON
    - DS_JSON_file
 3) Linked Services:

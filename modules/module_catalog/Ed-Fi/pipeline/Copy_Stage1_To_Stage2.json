@@ -1,5 +1,5 @@
 {
-    "name": "Copy_Stage1_To_Stage2",
+    "name": "Copy_Stage1_to_Stage2",
     "properties": {
         "activities": [
             {
@@ -61,9 +61,9 @@
                                         }
                                     }
                                 },
-                                "compute": {
-                                    "coreCount": 8,
-                                    "computeType": "General"
+                                "integrationRuntime": {
+                                    "referenceName": "IR-DataFlows",
+                                    "type": "IntegrationRuntimeReference"
                                 },
                                 "traceLevel": "Fine",
                                 "continuationSettings": {
@@ -94,7 +94,7 @@
                         "referenceName": "DS_JSON_File",
                         "type": "DatasetReference",
                         "parameters": {
-                            "stage": "2",
+                            "stage": "stage2",
                             "path": {
                                 "value": "@pipeline().parameters.IngestedFolder",
                                 "type": "Expression"
@@ -166,7 +166,7 @@
                                             }
                                         },
                                         "CheckpointKeysFile": {
-                                            "stage": "2",
+                                            "stage": "stage2",
                                             "path": {
                                                 "value": "@pipeline().parameters.IngestedFolder",
                                                 "type": "Expression"
@@ -223,7 +223,7 @@
                         "referenceName": "DS_JSON_File",
                         "type": "DatasetReference",
                         "parameters": {
-                            "stage": "2",
+                            "stage": "stage2",
                             "path": {
                                 "value": "@pipeline().parameters.IngestedFolder",
                                 "type": "Expression"
@@ -296,9 +296,9 @@
                                         }
                                     }
                                 },
-                                "compute": {
-                                    "coreCount": 8,
-                                    "computeType": "General"
+                                "integrationRuntime": {
+                                    "referenceName": "IR-DataFlows",
+                                    "type": "IntegrationRuntimeReference"
                                 },
                                 "traceLevel": "Fine",
                                 "continuationSettings": {
@@ -324,7 +324,7 @@
             },
             "SchoolYear": {
                 "type": "string",
-                "defaultValue": "2022"
+                "defaultValue": "2021"
             },
             "ApiVersion": {
                 "type": "string",
@@ -332,7 +332,7 @@
             },
             "TransactionalFolder": {
                 "type": "string",
-                "defaultValue": "Transactional/Ed-Fi/v5.2/DistrictId=All/SchoolYear=2022"
+                "defaultValue": "Transactional/Ed-Fi/v5.2/DistrictId=All/SchoolYear=2021"
             },
             "IngestedFolder": {
                 "type": "string",
@@ -340,11 +340,11 @@
             },
             "DependenciesUrl": {
                 "type": "string",
-                "defaultValue": "https://api.edgraph.dev/edfi/v5.2/saas/metadata/data/v3/123/2022/dependencies"
+                "defaultValue": "https://api.edgraph.com/edfi/v5.2/saas/metadata/data/v3/a29cac90-c1aa-45ca-9ef1-e7874c19f2b0/2021/dependencies"
             },
             "CheckpointKeySuffix": {
                 "type": "string",
-                "defaultValue": "006"
+                "defaultValue": "001"
             }
         },
         "variables": {

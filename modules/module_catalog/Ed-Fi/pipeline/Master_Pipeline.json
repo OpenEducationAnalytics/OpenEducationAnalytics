@@ -64,7 +64,7 @@
                 "typeProperties": {
                     "variableName": "DataManagementUrl",
                     "value": {
-                        "value": "@replace(replace(activity('Get-ApiDetails').output.urls.dataManagementApi, '{instance}', pipeline().parameters.InstanceId), '2022', pipeline().parameters.SchoolYear)",
+                        "value": "@replace(replace(activity('Get-ApiDetails').output.urls.dataManagementApi, '{instance}', pipeline().parameters.InstanceId), formatDateTime(utcNow(), 'yyyy'), pipeline().parameters.SchoolYear)",
                         "type": "Expression"
                     }
                 }
@@ -124,7 +124,7 @@
                 "typeProperties": {
                     "variableName": "DependenciesUrl",
                     "value": {
-                        "value": "@replace(replace(activity('Get-ApiDetails').output.urls.dependencies, '{instance}', pipeline().parameters.InstanceId), '2022', pipeline().parameters.SchoolYear)",
+                        "value": "@replace(replace(activity('Get-ApiDetails').output.urls.dependencies, '{instance}', pipeline().parameters.InstanceId), formatDateTime(utcNow(), 'yyyy'), pipeline().parameters.SchoolYear)",
                         "type": "Expression"
                     }
                 }
@@ -170,7 +170,7 @@
                 }
             },
             {
-                "name": "Copy_JSON_from_EdFi_Api",
+                "name": "Copy-EdFi-Entities-to-Stage1",
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
@@ -288,28 +288,24 @@
                 }
             },
             {
-                "name": "Ingest data from EdFi instance",
+                "name": "Copy-Stage1-to-Stage2",
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "Copy_JSON_from_EdFi_Api",
+                        "activity": "Copy-EdFi-Entities-to-Stage1",
                         "dependencyConditions": [
-                            "Completed"
+                            "Succeeded"
                         ]
                     }
                 ],
                 "userProperties": [],
                 "typeProperties": {
                     "pipeline": {
-                        "referenceName": "Copy_Stage1_To_Stage2",
+                        "referenceName": "Copy_Stage1_to_Stage2",
                         "type": "PipelineReference"
                     },
                     "waitOnCompletion": true,
                     "parameters": {
-                        "ApiUrl": {
-                            "value": "@pipeline().parameters.ApiUrl",
-                            "type": "Expression"
-                        },
                         "ModuleName": {
                             "value": "@pipeline().parameters.ModuleName",
                             "type": "Expression"
@@ -370,7 +366,7 @@
                 "type": "IfCondition",
                 "dependsOn": [
                     {
-                        "activity": "Ingest data from EdFi instance",
+                        "activity": "Copy-Stage1-to-Stage2",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
@@ -484,7 +480,7 @@
             },
             "CheckpointKeySuffix": {
                 "type": "string",
-                "defaultValue": "006"
+                "defaultValue": "001"
             },
             "ExecuteRefineEdFiNotebook": {
                 "type": "bool",
@@ -492,11 +488,11 @@
             },
             "MetadataUrl": {
                 "type": "string",
-                "defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/gene/v0.7dev/modules/module_catalog/Ed-Fi/docs/edfi_oea_metadata.csv"
+                "defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Ed-Fi/docs/edfi_oea_metadata.csv"
             },
             "SwaggerUrl": {
                 "type": "string",
-                "defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/gene/v0.7dev//modules/module_catalog/Ed-Fi/docs/edfi_swagger.json"
+                "defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Ed-Fi/docs/edfi_swagger.json"
             }
         },
         "variables": {

@@ -67,10 +67,7 @@
                                             },
                                             "authentication": {
                                                 "type": "Basic",
-                                                "username": {
-                                                    "value": "@pipeline().parameters.ClientId",
-                                                    "type": "Expression"
-                                                },
+                                                "username": "@pipeline().parameters.ClientId",
                                                 "password": {
                                                     "type": "AzureKeyVaultSecret",
                                                     "store": {
@@ -78,7 +75,7 @@
                                                         "type": "LinkedServiceReference"
                                                     },
                                                     "secretName": {
-                                                        "value": "@pipeline().parameters.SecretName",
+                                                        "value": "@pipeline().parameters.ClientSecretName",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -197,7 +194,7 @@
                             "userProperties": [],
                             "typeProperties": {
                                 "url": {
-                                    "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&totalCount=true",
+                                    "value": "@{pipeline().parameters.ChangedEntityURL}?MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&totalCount=true",
                                     "type": "Expression"
                                 },
                                 "method": "GET",
@@ -282,11 +279,19 @@
                                         },
                                         "inputs": [
                                             {
-                                                "referenceName": "DS_REST_Anonymous",
+                                                "referenceName": "DS_REST_Basic",
                                                 "type": "DatasetReference",
                                                 "parameters": {
+                                                    "ClientId": {
+                                                        "value": "@pipeline().parameters.ClientId",
+                                                        "type": "Expression"
+                                                    },
+                                                    "ClientSecretName": {
+                                                        "value": "@pipeline().parameters.ClientSecretName",
+                                                        "type": "Expression"
+                                                    },
                                                     "BaseURL": {
-                                                        "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
+                                                        "value": "@{pipeline().parameters.ChangedEntityURL}?MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -297,7 +302,7 @@
                                                 "referenceName": "DS_JSON",
                                                 "type": "DatasetReference",
                                                 "parameters": {
-                                                    "stage": "1",
+                                                    "stage": "stage1",
                                                     "path": {
                                                         "value": "@pipeline().parameters.UpsertsSinkPath",
                                                         "type": "Expression"
@@ -329,10 +334,7 @@
                                             },
                                             "authentication": {
                                                 "type": "Basic",
-                                                "username": {
-                                                    "value": "@pipeline().parameters.ClientId",
-                                                    "type": "Expression"
-                                                },
+                                                "username": "@pipeline().parameters.ClientId",
                                                 "password": {
                                                     "type": "AzureKeyVaultSecret",
                                                     "store": {
@@ -340,7 +342,7 @@
                                                         "type": "LinkedServiceReference"
                                                     },
                                                     "secretName": {
-                                                        "value": "@pipeline().parameters.SecretName",
+                                                        "value": "@pipeline().parameters.ClientSecretName",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -440,11 +442,19 @@
                                         },
                                         "inputs": [
                                             {
-                                                "referenceName": "DS_REST_Anonymous",
+                                                "referenceName": "DS_REST_Basic",
                                                 "type": "DatasetReference",
                                                 "parameters": {
+                                                    "ClientId": {
+                                                        "value": "@pipeline().parameters.ClientId",
+                                                        "type": "Expression"
+                                                    },
+                                                    "ClientSecretName": {
+                                                        "value": "@pipeline().parameters.ClientSecretName",
+                                                        "type": "Expression"
+                                                    },
                                                     "BaseURL": {
-                                                        "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
+                                                        "value": "@{pipeline().parameters.ChangedEntityURL}?MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -455,7 +465,7 @@
                                                 "referenceName": "DS_JSON",
                                                 "type": "DatasetReference",
                                                 "parameters": {
-                                                    "stage": "1",
+                                                    "stage": "stage1",
                                                     "path": {
                                                         "value": "@pipeline().parameters.UpsertsSinkPath",
                                                         "type": "Expression"
@@ -487,10 +497,7 @@
                                             },
                                             "authentication": {
                                                 "type": "Basic",
-                                                "username": {
-                                                    "value": "@pipeline().parameters.ClientId",
-                                                    "type": "Expression"
-                                                },
+                                                "username": "@pipeline().parameters.ClientId",
                                                 "password": {
                                                     "type": "AzureKeyVaultSecret",
                                                     "store": {
@@ -498,7 +505,7 @@
                                                         "type": "LinkedServiceReference"
                                                     },
                                                     "secretName": {
-                                                        "value": "@pipeline().parameters.SecretName",
+                                                        "value": "@pipeline().parameters.ClientSecretName",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -557,11 +564,19 @@
                                         },
                                         "inputs": [
                                             {
-                                                "referenceName": "DS_REST_Anonymous",
+                                                "referenceName": "DS_REST_Basic",
                                                 "type": "DatasetReference",
                                                 "parameters": {
+                                                    "ClientId": {
+                                                        "value": "@pipeline().parameters.ClientId",
+                                                        "type": "Expression"
+                                                    },
+                                                    "ClientSecretName": {
+                                                        "value": "@pipeline().parameters.ClientSecretName",
+                                                        "type": "Expression"
+                                                    },
                                                     "BaseURL": {
-                                                        "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
+                                                        "value": "@{pipeline().parameters.ChangedEntityURL}?MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -572,7 +587,7 @@
                                                 "referenceName": "DS_JSON",
                                                 "type": "DatasetReference",
                                                 "parameters": {
-                                                    "stage": "1",
+                                                    "stage": "stage1",
                                                     "path": {
                                                         "value": "@pipeline().parameters.UpsertsSinkPath",
                                                         "type": "Expression"
@@ -604,10 +619,7 @@
                                             },
                                             "authentication": {
                                                 "type": "Basic",
-                                                "username": {
-                                                    "value": "@pipeline().parameters.ClientId",
-                                                    "type": "Expression"
-                                                },
+                                                "username": "@pipeline().parameters.ClientId",
                                                 "password": {
                                                     "type": "AzureKeyVaultSecret",
                                                     "store": {
@@ -615,7 +627,7 @@
                                                         "type": "LinkedServiceReference"
                                                     },
                                                     "secretName": {
-                                                        "value": "@pipeline().parameters.SecretName",
+                                                        "value": "@pipeline().parameters.ClientSecretName",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -695,11 +707,19 @@
                                         },
                                         "inputs": [
                                             {
-                                                "referenceName": "DS_REST_Anonymous",
+                                                "referenceName": "DS_REST_Basic",
                                                 "type": "DatasetReference",
                                                 "parameters": {
+                                                    "ClientId": {
+                                                        "value": "@pipeline().parameters.ClientId",
+                                                        "type": "Expression"
+                                                    },
+                                                    "ClientSecretName": {
+                                                        "value": "@pipeline().parameters.ClientSecretName",
+                                                        "type": "Expression"
+                                                    },
                                                     "BaseURL": {
-                                                        "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
+                                                        "value": "@{pipeline().parameters.ChangedEntityURL}?MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -710,7 +730,7 @@
                                                 "referenceName": "DS_JSON",
                                                 "type": "DatasetReference",
                                                 "parameters": {
-                                                    "stage": "1",
+                                                    "stage": "stage1",
                                                     "path": {
                                                         "value": "@pipeline().parameters.UpsertsSinkPath",
                                                         "type": "Expression"
@@ -724,7 +744,7 @@
                                         "type": "WebActivity",
                                         "dependsOn": [
                                             {
-                                                "activity": "Wait-for-2-Minutes",
+                                                "activity": "Wait-for-30-Seconds",
                                                 "dependencyConditions": [
                                                     "Succeeded"
                                                 ]
@@ -749,10 +769,7 @@
                                             },
                                             "authentication": {
                                                 "type": "Basic",
-                                                "username": {
-                                                    "value": "@pipeline().parameters.ClientId",
-                                                    "type": "Expression"
-                                                },
+                                                "username": "@pipeline().parameters.ClientId",
                                                 "password": {
                                                     "type": "AzureKeyVaultSecret",
                                                     "store": {
@@ -760,7 +777,7 @@
                                                         "type": "LinkedServiceReference"
                                                     },
                                                     "secretName": {
-                                                        "value": "@pipeline().parameters.SecretName",
+                                                        "value": "@pipeline().parameters.ClientSecretName",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -819,11 +836,19 @@
                                         },
                                         "inputs": [
                                             {
-                                                "referenceName": "DS_REST_Anonymous",
+                                                "referenceName": "DS_REST_Basic",
                                                 "type": "DatasetReference",
                                                 "parameters": {
+                                                    "ClientId": {
+                                                        "value": "@pipeline().parameters.ClientId",
+                                                        "type": "Expression"
+                                                    },
+                                                    "ClientSecretName": {
+                                                        "value": "@pipeline().parameters.ClientSecretName",
+                                                        "type": "Expression"
+                                                    },
                                                     "BaseURL": {
-                                                        "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
+                                                        "value": "@{pipeline().parameters.ChangedEntityURL}?MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -834,7 +859,7 @@
                                                 "referenceName": "DS_JSON",
                                                 "type": "DatasetReference",
                                                 "parameters": {
-                                                    "stage": "1",
+                                                    "stage": "stage1",
                                                     "path": {
                                                         "value": "@pipeline().parameters.UpsertsSinkPath",
                                                         "type": "Expression"
@@ -873,10 +898,7 @@
                                             },
                                             "authentication": {
                                                 "type": "Basic",
-                                                "username": {
-                                                    "value": "@pipeline().parameters.ClientId",
-                                                    "type": "Expression"
-                                                },
+                                                "username": "@pipeline().parameters.ClientId",
                                                 "password": {
                                                     "type": "AzureKeyVaultSecret",
                                                     "store": {
@@ -884,7 +906,7 @@
                                                         "type": "LinkedServiceReference"
                                                     },
                                                     "secretName": {
-                                                        "value": "@pipeline().parameters.SecretName",
+                                                        "value": "@pipeline().parameters.ClientSecretName",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -892,12 +914,12 @@
                                         }
                                     },
                                     {
-                                        "name": "Wait-for-2-Minutes",
+                                        "name": "Wait-for-30-Seconds",
                                         "type": "Wait",
                                         "dependsOn": [],
                                         "userProperties": [],
                                         "typeProperties": {
-                                            "waitTimeInSeconds": 120
+                                            "waitTimeInSeconds": 30
                                         }
                                     }
                                 ]
@@ -982,10 +1004,7 @@
                     },
                     "authentication": {
                         "type": "Basic",
-                        "username": {
-                            "value": "@pipeline().parameters.ClientId",
-                            "type": "Expression"
-                        },
+                        "username": "@pipeline().parameters.ClientId",
                         "password": {
                             "type": "AzureKeyVaultSecret",
                             "store": {
@@ -993,7 +1012,7 @@
                                 "type": "LinkedServiceReference"
                             },
                             "secretName": {
-                                "value": "@pipeline().parameters.SecretName",
+                                "value": "@pipeline().parameters.ClientSecretName",
                                 "type": "Expression"
                             }
                         }
@@ -1031,7 +1050,7 @@
             "ClientId": {
                 "type": "string"
             },
-            "SecretName": {
+            "ClientSecretName": {
                 "type": "string"
             },
             "ChangedEntityURL": {

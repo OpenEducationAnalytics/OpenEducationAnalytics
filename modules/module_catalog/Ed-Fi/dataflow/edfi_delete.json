@@ -2,14 +2,14 @@
     "name": "edfi_delete",
     "properties": {
         "folder": {
-            "name": "EdFi/Ingest"
+            "name": "Modules/Ed-Fi/Ingest"
         },
         "type": "MappingDataFlow",
         "typeProperties": {
             "sources": [
                 {
                     "linkedService": {
-                        "referenceName": "LS_datalake",
+                        "referenceName": "LS_DataLake",
                         "type": "LinkedServiceReference"
                     },
                     "name": "SourceJson"
@@ -18,7 +18,7 @@
             "sinks": [
                 {
                     "linkedService": {
-                        "referenceName": "LS_datalake",
+                        "referenceName": "LS_DataLake",
                         "type": "LinkedServiceReference"
                     },
                     "name": "SinkDelta"
@@ -37,26 +37,25 @@
             ],
             "scriptLines": [
                 "parameters{",
-                "     districtId as string ('255901'),",
-                "     schoolYear as string ('2017'),",
-                "     entity as string ('schools'),",
-                "     directory as string ('EdFi'),",
-                "     apiversion as string ('5.3')",
+                "     DistrictId as string,",
+                "     SchoolYear as string,",
+                "     Entity as string,",
+                "     IngestedFolder as string,",
+                "     TransactionalFolder as string",
                 "}",
                 "source(useSchema: false,",
                 "     allowSchemaDrift: true,",
                 "     validateSchema: false,",
                 "     limit: 10000,",
                 "     ignoreNoFilesFound: true,",
-                "     enableCdc: true,",
                 "     mode: 'read',",
                 "     format: 'json',",
                 "     fileSystem: 'stage1',",
-                "     folderPath: (\"Transactional/{$directory}/v5.3/DistrictId={$districtId}/SchoolYear={$schoolYear}/{$entity}/Incremental/Deletes\"),",
+                "     folderPath: (\"{$TransactionalFolder}{$Entity}/Incremental/Deletes\"),",
                 "     documentForm: 'documentPerLine') ~> SourceJson",
                 "SelectColumns alterRow(deleteIf(true())) ~> AlterRow",
-                "SourceJson derive(SchoolYear = $schoolYear,",
-                "          DistrictId = $districtId) ~> DerivedColumn",
+                "SourceJson derive(SchoolYear = $SchoolYear,",
+                "          DistrictId = $DistrictId) ~> DerivedColumn",
                 "DerivedColumn select(mapColumn(",
                 "          each(match(name!='rundate'))",
                 "     ),",
@@ -66,7 +65,7 @@
                 "     validateSchema: false,",
                 "     format: 'delta',",
                 "     fileSystem: 'workspace',",
-                "     folderPath: (\"Ingested/{$directory}/v{$apiversion}/{$entity}\"),",
+                "     folderPath: (\"{$IngestedFolder}{$Entity}\"),",
                 "     mergeSchema: (true()),",
                 "     autoCompact: false,",
                 "     optimizedWrite: false,",
@@ -75,7 +74,7 @@
                 "     insertable:false,",
                 "     updateable:true,",
                 "     upsertable:false,",
-                "     keys:['id'],",
+                "     keys:['id','SchoolYear','DistrictId'],",
                 "     umask: 0022,",
                 "     preCommands: [],",
                 "     postCommands: [],",

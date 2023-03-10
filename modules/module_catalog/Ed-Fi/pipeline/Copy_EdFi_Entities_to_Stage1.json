@@ -25,10 +25,7 @@
                     },
                     "authentication": {
                         "type": "Basic",
-                        "username": {
-                            "value": "@pipeline().parameters.ClientId",
-                            "type": "Expression"
-                        },
+                        "username": "@pipeline().parameters.ClientId",
                         "password": {
                             "type": "AzureKeyVaultSecret",
                             "store": {
@@ -138,13 +135,13 @@
                     "batchCount": 10,
                     "activities": [
                         {
-                            "name": "Copy-EntityData-to-Stage1",
+                            "name": "Copy-from-REST-to-ADLS",
                             "type": "ExecutePipeline",
                             "dependsOn": [],
                             "userProperties": [],
                             "typeProperties": {
                                 "pipeline": {
-                                    "referenceName": "Copy_from_REST_Anonymous_to_ADLS",
+                                    "referenceName": "Copy_from_REST_to_ADLS",
                                     "type": "PipelineReference"
                                 },
                                 "waitOnCompletion": true,
@@ -157,7 +154,7 @@
                                         "value": "@pipeline().parameters.ClientId",
                                         "type": "Expression"
                                     },
-                                    "SecretName": {
+                                    "ClientSecretName": {
                                         "value": "@pipeline().parameters.ClientSecretName",
                                         "type": "Expression"
                                     },
@@ -240,9 +237,17 @@
                 },
                 "inputs": [
                     {
-                        "referenceName": "DS_REST_Anonymous",
+                        "referenceName": "DS_REST_Basic",
                         "type": "DatasetReference",
                         "parameters": {
+                            "ClientId": {
+                                "value": "@pipeline().parameters.ClientId",
+                                "type": "Expression"
+                            },
+                            "ClientSecretName": {
+                                "value": "@pipeline().parameters.ClientSecretName",
+                                "type": "Expression"
+                            },
                             "BaseURL": {
                                 "value": "@{pipeline().parameters.ChangeQueriesUrl}/availableChangeVersions",
                                 "type": "Expression"
@@ -255,7 +260,7 @@
                         "referenceName": "DS_JSON_File",
                         "type": "DatasetReference",
                         "parameters": {
-                            "stage": "1",
+                            "stage": "stage1",
                             "path": {
                                 "value": "@pipeline().parameters.TransactionalFolder",
                                 "type": "Expression"
@@ -356,7 +361,7 @@
                                     "referenceName": "DS_JSON_File",
                                     "type": "DatasetReference",
                                     "parameters": {
-                                        "stage": "1",
+                                        "stage": "stage1",
                                         "path": {
                                             "value": "@pipeline().parameters.TransactionalFolder",
                                             "type": "Expression"
@@ -414,7 +419,7 @@
                         "referenceName": "DS_JSON_File",
                         "type": "DatasetReference",
                         "parameters": {
-                            "stage": "1",
+                            "stage": "stage1",
                             "path": {
                                 "value": "@pipeline().parameters.TransactionalFolder",
                                 "type": "Expression"
@@ -465,10 +470,7 @@
                     },
                     "authentication": {
                         "type": "Basic",
-                        "username": {
-                            "value": "@pipeline().parameters.ClientId",
-                            "type": "Expression"
-                        },
+                        "username": "@pipeline().parameters.ClientId",
                         "password": {
                             "type": "AzureKeyVaultSecret",
                             "store": {
