@@ -1,8 +1,7 @@
-# Power BI Dashboards
+# Power BI Dashboard
 
-<em><strong>NOTE:</strong> The Power BI template will be updated soon.</em>
-
-The OEA Learning Analytics Package Power BI template enables users to quickly explore data.
+The OEA Learning Analytics Package Power BI template enables users to quickly explore data. There is currently one options for exploring this package's Power BI templates.
+- **[Power BI with HEd test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/powerbi/Learning%20Analytics%20V1%20Import.pbix)**: Power BI templated with the Learning Analytics package v1 HEd test data imported locally. 
 
 ## Dashboard Explanation 
 
@@ -35,4 +34,8 @@ The OEA Learning Analytics v1 Package Power BI template provided consists of a s
 Below is the data model used for Power BI visualizations:
 
 ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/v1/LA_v1_pbi_data_model.png)
+
+Note that the data model can be read easier by examining the sub-pages, under the "Model View" page in the Power BI:
+
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/v1/LA_package_v1_pbi_data_model_subpage.png)
 
