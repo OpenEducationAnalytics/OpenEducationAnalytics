@@ -37,5 +37,5 @@ Below is the data model used for Power BI visualizations:
 
 Note that the data model can be read easier by examining the sub-pages, under the "Model View" page in the Power BI:
 
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/v1/LA_package_v1_pbi_data_model_subpage.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/v1/LA_package_v1_pbi_data_model_subpage.png)
 
