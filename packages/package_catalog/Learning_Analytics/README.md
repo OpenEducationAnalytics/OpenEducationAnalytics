@@ -30,7 +30,7 @@ With this package, educators can:
 - Identify which learning resources students use the most or least 
 
 The assets in this package can be combined with course completion, graduation rates, competency measures, or other outcome data to identify how these patterns relate to learning outcomes. 
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/v1/LA_v1_pbi_engage_p2.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/v1/LA_v1_pbi_engage_p2.png)
 
 ## Package Setup Instructions
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/Learning_Analytics_Package_Setup_Instructions.png)
