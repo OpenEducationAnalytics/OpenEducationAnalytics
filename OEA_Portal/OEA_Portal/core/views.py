@@ -68,7 +68,7 @@ class InstallationFormView(TemplateView):
         location = self.request.POST.get('location')
         oea_installer = OEAInstaller(tenant_id, subscription_id, oea_suffix,oea_version, location, include_groups)
         oea_installer.install()
-        return redirect('home')
+        return redirect(self.request, 'core/homepage.html')
 
 class AssetInstallationView(TemplateView):
     template_name = 'core/asset_installation.html'
