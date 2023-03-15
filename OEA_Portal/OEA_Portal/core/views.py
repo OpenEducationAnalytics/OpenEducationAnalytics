@@ -89,7 +89,7 @@ class AssetInstallationView(TemplateView):
         azure_client = AzureClient(self.config['SubscriptionId'], self.config['SubscriptionId'])
         asset = BaseOEAAsset(asset_name, asset_version, asset_type)
         asset.install(azure_client, OEAInstance('syn-oea-abhinav4', 'rg-oea-abhinav4', 'kv-oea-abhinav4', 'stoeaabhinav4'))
-        return redirect('home')
+        return redirect(self.request, 'core/homepage.html')
 
 class AssetUninstallationView(TemplateView):
     template_name = 'core/asset_uninstallation.html'
