@@ -2,17 +2,70 @@
 {% load static %}
 {% block content %}
 
-<script src="{{base_url}}/static/js/dashboard.js"></script>
 <script>
-    var data1 = "{{ modules|escapejs }}"
+    function populate_asset_table(table, type) {
+        table.style.visibility = "visible"
+        while(table.rows.length > 1) {
+            table.deleteRow(-1);
+          }
+        assets = get_json_data(type)
+        for(var idx in assets) {
+            tr = table.insertRow(-1);
+            var asset_name = tr.insertCell(-1);
+            asset_name.innerHTML = assets[idx]['asset_name']
+            var version = tr.insertCell(-1);
+            version.innerHTML = assets[idx]['version']
+            var lastUpdatedTime = tr.insertCell(-1);
+            lastUpdatedTime.innerHTML = assets[idx]['lastUpdatedTime']
+            var deleteBtn = document.createElement("button")
+            deleteBtn.classList.add('btn')
+            deleteBtn.classList.add('btn-primary')
+            deleteBtn.innerHTML = 'delete';
+            deleteBtnCell = tr.insertCell(-1);
+            deleteBtnCell.appendChild(deleteBtn)
+        }
+    }
+
+    function get_json_data(name) {
+        var data_str = document.getElementById(name).textContent
+        data_str = data_str.replace(/&quot;/ig,'"');
+        data_str = data_str.replaceAll("'", "\"")
+        var data = JSON.parse(data_str);
+        return data
+    }
+
+    window.addEventListener("load", function(){
+        var modulesBtn = document.getElementById("modulesBtn")
+        var packagesBtn = document.getElementById("packagesBtn")
+        var schemasBtn = document.getElementById("schemasBtn")
+        var tbody = document.getElementById("installedAssetsTableBody")
+        var table = document.getElementById("installedAssetsTable")
+        table.style.visibility = "hidden"
+        modulesBtn.addEventListener("click", e => {
+            populate_asset_table(tbody, "modules")
+        })
+        packagesBtn.addEventListener("click", e => {
+            populate_asset_table(tbody, "packages")
+        })
+        schemasBtn.addEventListener("click", e => {
+            populate_asset_table(tbody, "schemas")
+        })
+    })
 </script>
 
 <div>
+    <div id="modules" style="display:none"> {{ modules }} </div>
+    <div id="packages" style="display:none"> {{ packages }} </div>
+    <div id="schemas" style="display:none"> {{ schemas }} </div>
+    <h2>OEA Workspace: {{ workspace }}</h2><br>
     <h2>OEA Version: {{ oea_version }}</h2><br>
     <h2>Linked Storage Account: {{ storage_account }}</h2><br>
-    <button type="submit" id="modulesBtn" class="btn btn-primary">Installed Modules</button><br>
-    <button type="submit" id="packagesBtn" class="btn btn-primary">Installed Packages</button><br>
-    <button type="submit" id="schemasBtn" class="btn btn-primary">Installed Schemas</button><br>
+
+    <div>
+    <span><button type="submit" id="modulesBtn" class="btn btn-primary">Installed Modules</button> </span>
+    <span><button type="submit" id="packagesBtn" class="btn btn-primary">Installed Packages</button> </span>
+    <span><button type="submit" id="schemasBtn" class="btn btn-primary">Installed Schemas</button> </span>
+    </div>
 
     <table class="installedAssetsTable" id="installedAssetsTable" align="center" style="width:80%">
         <tbody class="installedAssetsTableBody" id="installedAssetsTableBody">
