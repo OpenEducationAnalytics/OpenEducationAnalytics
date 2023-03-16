@@ -4,7 +4,7 @@ This module has two sets of notebooks:
  1. One notebook is used to demonstrate an alternate method of data processing (i.e. landing, ingesting, and refining Graph data) with examples of explorative possbilities.
  2. The rest of the (3 other) notebooks are necessary to support the main [module pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Reading_Progress/pipeline) for ingestion, cleaning/correcting each table's schema from the data source, and pseudonymizing the data.
 
-All notebooks depend on the v0.7 [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb) which is a part of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework), and are automatically imported upon running the ```module_Reading_Progress_v0.1.zip``` setup script.
+All notebooks depend on the v0.7 [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb) which is a part of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework), and are automatically imported upon running the ```module_Reading_Progress_v0.1rc1.zip``` setup script.
 
 **<em>NOTE:** This module depends on [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) data source, to extract the reading progress data from the Insights/M365 activity table.</em>
 
