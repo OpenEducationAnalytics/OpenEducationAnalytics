@@ -20,7 +20,7 @@ Basic functions for data exploration and visualization from Stage 1 to Stage 2 d
 
 ## Module Pipeline Support Notebooks
 
-### Module Land Test Data Notebook: [ReadingProgress_ingest.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/notebook/ReadingProgress_ingest.ipynb)
+### Module Ingest Notebook: [ReadingProgress_ingest.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reading_Progress/notebook/ReadingProgress_ingest.ipynb)
 
 Module notebook responsible for speeding up the process of ingesting the tables, while identifying the columns of primary keys. 
 
