@@ -36,7 +36,7 @@ class AzureResourceProvisioner:
         self.data_engineers_id = None
         self.data_scientists_id = None
         self.global_admins_id = None
-        self.azure_client = AzureClient(self.tenant_id, self.subscription_id, self.location, self.tags, self.resource_group)
+        self.azure_client = AzureClient(self.subscription_id, self.location, self.tags, self.resource_group)
 
     def env_prep(self):
         # 0) Ensure that the resource providers are registered in the subscription (more info about this here: https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/error-register-resource-provider )

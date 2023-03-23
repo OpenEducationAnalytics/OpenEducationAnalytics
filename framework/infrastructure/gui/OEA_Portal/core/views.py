@@ -20,7 +20,6 @@ class HomeView(TemplateView):
             self.config['BaseURL'] = self.request.GET['base_url']
             update_config_database(self.config)
         subscriptions, workspaces = get_subscriptions_and_workspaces_in_tenant()
-        # workspaces = get_all_workspaces_in_subscription(AzureClient(self.config['SubscriptionId'], self.config['SubscriptionId']))
         return self.render_to_response({'base_url':self.config['BaseURL'],
         'tenants':['123', '456'],
         'subscriptions':subscriptions,
@@ -90,7 +89,7 @@ class AssetInstallationView(TemplateView):
         asset_name = self.request.POST.get('asset_name')
         asset_type = self.request.POST.get('asset_type')
         asset_version = self.request.POST.get('asset_version')
-        azure_client = AzureClient(self.config['SubscriptionId'], self.config['SubscriptionId'])
+        azure_client = AzureClient(self.config['SubscriptionId'])
         asset = BaseOEAAsset(asset_name, asset_version, asset_type)
         # todo: Figure out how to get the OEA instance.
         asset.install(azure_client, OEAInstance('syn-oea-abhinav4', 'rg-oea-abhinav4', 'kv-oea-abhinav4', 'stoeaabhinav4'))
@@ -112,7 +111,7 @@ class AssetUninstallationView(TemplateView):
         asset_name = self.request.POST.get('asset_name')
         asset_type = self.request.POST.get('asset_type')
         asset_version = self.request.POST.get('asset_version')
-        azure_client = AzureClient(self.config['SubscriptionId'], self.config['SubscriptionId'])
+        azure_client = AzureClient(self.config['SubscriptionId'])
         asset = BaseOEAAsset(asset_name, asset_version, asset_type)
         asset.uninstall(azure_client, OEAInstance('syn-oea-abhinav4', 'rg-oea-abhinav4', 'kv-oea-abhinav4', 'stoeaabhinav4'))
 

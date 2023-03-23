@@ -94,7 +94,7 @@ def get_subscriptions_and_workspaces_in_tenant():
         list of workspaces (model: SynapseWorkspace)
     """
     workspace_models = []
-    credential = DefaultAzureCredential()
+    credential = DefaultAzureCredential(authority=f"https://login.windows.net/178ab4db-1ad5-49ad-86a7-06a29409af8a")
     subscription_models = [AzureSubscription(s.display_name, s.id.split('/')[-1]) for s in SubscriptionClient(credential).subscriptions.list()]
 
     def append_workspaces_in_subscription(subscription):

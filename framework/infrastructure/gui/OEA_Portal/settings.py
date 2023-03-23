@@ -29,16 +29,6 @@ SECRET_KEY = 'django-insecure-k)@2b9q*orbg^2ro!x4up@!92(wqe1&4#93m+0^h^8@rmg7@)#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-"""CSRF_TRUSTED_ORIGINS = [
-'http://localhost:8000',
-'https://gateway06.centralindia.console.azure.com'
-]
-
-CORS_ORIGIN_WHITELIST = [
-'http://localhost:8000',
-'https://gateway06.centralindia.console.azure.com'
-]"""
-
 ALLOWED_HOSTS = [
 '127.0.0.1',
 'gateway06.centralindia.console.azure.com',
@@ -91,7 +81,7 @@ ROOT_URLCONF = 'OEA_Portal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['OEA_Portal/static/html'],
+        'DIRS': [f'{BASE_DIR}/static/html'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

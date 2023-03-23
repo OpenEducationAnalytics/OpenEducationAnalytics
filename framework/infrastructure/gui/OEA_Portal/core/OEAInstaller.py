@@ -132,7 +132,7 @@ class OEAInstaller():
         7. Install the OEA framework artifacts in the Synapse workspace.
         """
         self.download_and_extract_framework()
-        azure_client = AzureClient(self.tenant_id, self.subscription_id, location=self.location, default_tags=self.tags)
+        azure_client = AzureClient(self.subscription_id, location=self.location, default_tags=self.tags)
         azure_resource_provision_service = AzureResourceProvisionService(azure_client)
         synapse_management_service = SynapseManagementService(azure_client, self.resource_group_name)
         oea_instance = OEAInstance(self.synapse_workspace_name, self.resource_group_name, self.keyvault_name, self.storage_account_name)
