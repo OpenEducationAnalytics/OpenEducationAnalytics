@@ -1,34 +1,33 @@
-import uuid
 from .forms import *
 from OEA_Portal.core.services.AssetManagementService.asset import BaseOEAAsset
 from OEA_Portal.core.services.AssetManagementService.operations import *
 from OEA_Portal.auth.AzureClient import AzureClient
-from django.http.response import HttpResponse
 from OEA_Portal.core.services.utils import *
-from OEA_Portal.core.services.SynapseManagementService import SynapseManagementService
-from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.shortcuts import redirect
 from OEA_Portal.core.OEAInstaller import OEAInstaller
 
 class HomeView(TemplateView):
     template_name = 'core/homepage.html'
-    config = get_config_data()
 
     def get(self, *args, **kwargs):
-        if('base_url' in self.request.GET):
-            self.config['BaseURL'] = self.request.GET['base_url']
-            update_config_database(self.config)
+        config = get_config_data()
+        if self.request.environ.get('HTTP_REFERER', None) is None:
+            base_url = self.request.environ.get('HTTP_HOST', None)
+        else:
+            base_url = self.request.environ.get('HTTP_REFERER', None)
+        config['BaseURL'] = base_url.replace('/home','')
+        update_config_database(config)
         subscriptions, workspaces = get_subscriptions_and_workspaces_in_tenant()
-        return self.render_to_response({'base_url':self.config['BaseURL'],
-        'tenants':['123', '456'],
+        return self.render_to_response({'base_url':config['BaseURL'],
         'subscriptions':subscriptions,
         'workspaces':workspaces
         })
     def post(self, *args, **kwargs):
-        self.config["SubscriptionId"] = self.request.POST.get('SubscriptionSelect')
-        self.config["WorkspaceName"] = self.request.POST.get('WorkspaceSelect')
-        update_config_database(self.config)
+        config = get_config_data()
+        config["SubscriptionId"] = self.request.POST.get('SubscriptionSelect')
+        config["WorkspaceName"] = self.request.POST.get('WorkspaceSelect')
+        update_config_database(config)
         return redirect('dashboard')
 
 class DashboardView(TemplateView):
@@ -63,15 +62,14 @@ class InstallationFormView(TemplateView):
         return self.render_to_response({'form':form})
 
     def post(self, *args, **kwargs):
-        tenant_id = '178ab4db-1ad5-49ad-86a7-06a29409af8a'
         subscription_id = self.config['SubscriptionId']
         include_groups = self.request.POST.get('include_groups')
         oea_version = self.request.POST.get('oea_version')
         oea_suffix = self.request.POST.get('oea_suffix')
         location = self.request.POST.get('location')
-        oea_installer = OEAInstaller(tenant_id, subscription_id, oea_suffix,oea_version, location, include_groups)
+        oea_installer = OEAInstaller(subscription_id, oea_suffix,oea_version, location, include_groups)
         oea_installer.install()
-        return redirect(self.request, 'core/homepage.html')
+        return redirect('home')
 
 class AssetInstallationView(TemplateView):
     template_name = 'core/asset_installation.html'
@@ -93,7 +91,7 @@ class AssetInstallationView(TemplateView):
         asset = BaseOEAAsset(asset_name, asset_version, asset_type)
         # todo: Figure out how to get the OEA instance.
         asset.install(azure_client, OEAInstance('syn-oea-abhinav4', 'rg-oea-abhinav4', 'kv-oea-abhinav4', 'stoeaabhinav4'))
-        return redirect(self.request, 'core/homepage.html')
+        return redirect('home')
 
 class AssetUninstallationView(TemplateView):
     template_name = 'core/asset_uninstallation.html'
@@ -114,7 +112,6 @@ class AssetUninstallationView(TemplateView):
         azure_client = AzureClient(self.config['SubscriptionId'])
         asset = BaseOEAAsset(asset_name, asset_version, asset_type)
         asset.uninstall(azure_client, OEAInstance('syn-oea-abhinav4', 'rg-oea-abhinav4', 'kv-oea-abhinav4', 'stoeaabhinav4'))
-
         return redirect('home')
 
 
