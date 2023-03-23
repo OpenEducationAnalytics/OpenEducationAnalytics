@@ -1,0 +1,19 @@
+
+{% load static %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+
+<div align="center"> New to OEA? Fill this form and we will setup OEA framework in your Azure Subscription. </div>
+<div align="center">
+  <h2 >OEA Installation Form</h2>
+  <form method="post">
+    {% csrf_token %}
+    <table class="table"  style="width:60%">
+      {{ form.as_table }}
+    </table>
+    <button type="submit"  class="btn btn-primary">Submit</button>
+  </form>
+<div>
+{% endblock %}

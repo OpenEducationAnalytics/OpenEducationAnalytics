@@ -8,7 +8,7 @@
             "name": "Python: Django",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}\\OEA_Portal\\manage.py",
+            "program": "${workspaceFolder}\\framework\\infrastructure\\gui\\manage.py",
             "args": [
                 "runserver"
             ],
