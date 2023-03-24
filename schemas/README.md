@@ -1,5 +1,5 @@
 # Schemas 
-OEA defines a component architecture that makes it possible to reuse common components and accelerate time to value.
+OEA defines a component architecture that makes it possible to reuse common components and accelerate time to value.\
 Within that architecture, schemas serve the purpose of defining "contracts" that allow modules to define their input dependencies.
 
 Schemas define the structure of a set of delta tables and make it possible to "snap-in" modules based on their required inputs.
