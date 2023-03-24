@@ -7,7 +7,7 @@ Refer to the Learning Analytics package for info on the reports available.
 In your synapse studio instance, in a notebook run the following:\
 `%run OEA_py`\
 `oea.set_workspace('dev')`\
-`install_schema('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/schemas/schema_catalog/Learning_Analytics/Learning_Analytics.sss.csv', 'stage3/Published/learning_analytics/v1.0', True)`
+`oea.install_schema('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/schemas/schema_catalog/Learning_Analytics/Learning_Analytics.sss.csv', 'stage3/Published/learning_analytics/v1.0', True)`
 
 # Data Model in Power BI
 Refer to the Learning Analytics package for details on the [Learning Analytics dashboards](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/powerbi#power-bi-dashboard)
