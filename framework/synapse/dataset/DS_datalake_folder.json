@@ -7,10 +7,12 @@
         },
         "parameters": {
             "filesystem": {
-                "type": "string"
+                "type": "string",
+                "defaultValue": "@coalesce(null)"
             },
             "directory": {
-                "type": "string"
+                "type": "string",
+                "defaultValue": "@coalesce(null)"
             }
         },
         "folder": {

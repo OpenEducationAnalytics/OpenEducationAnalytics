@@ -1,0 +1,350 @@
+{
+    "name": "1_land_insights_prod_data",
+    "properties": {
+        "activities": [
+            {
+                "name": "land_prod_activity",
+                "description": "Land the activity data from the data share.",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Get latest run date",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_from_ls_datalake",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "sourcePath": {
+                            "value": "@{variables('source_path')}/M365/activity",
+                            "type": "Expression"
+                        },
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/activity",
+                            "type": "Expression"
+                        },
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive",
+                        "filePath": "*.csv",
+                        "dateFilter": {
+                            "value": "@activity('Get latest run date').output.pipelineReturnValue.latest_runtime",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "For each roster folder",
+                "description": "Iterate through the roster folders to copy the data.",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Get roster folders",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Get roster folders').output.childItems",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "land_roster_data",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "land_from_ls_datalake",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "sourcePath": {
+                                        "value": "oea/pre_landing/data_shares/@{pipeline().parameters.dataShareName}/M365/roster/@{variables('date_folder')}/@{item().name}",
+                                        "type": "Expression"
+                                    },
+                                    "sinkPath": {
+                                        "value": "M365/v@{pipeline().parameters.version}/@{item().name}",
+                                        "type": "Expression"
+                                    },
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "batchType": "snapshot",
+                                    "filePath": "*.csv",
+                                    "dateFilter": {
+                                        "value": "@activity('Get latest run date').output.pipelineReturnValue.latest_runtime",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Get roster folders",
+                "description": "Get the folder names under roster/date_folder, e.g. AadGroup, Course, Enrollment, etc. ",
+                "type": "GetMetadata",
+                "dependsOn": [
+                    {
+                        "activity": "For each folder",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_datalake_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@variables('source_path')",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "/M365/roster/@{variables('date_folder')}",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "fieldList": [
+                        "childItems"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "BinaryReadSettings"
+                    }
+                }
+            },
+            {
+                "name": "Get roster folder children",
+                "description": "Get the children of the roster folder, which are folders named by date.",
+                "type": "GetMetadata",
+                "dependsOn": [
+                    {
+                        "activity": "Get latest run date",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_datalake_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@variables('source_path')",
+                                "type": "Expression"
+                            },
+                            "directory": "/M365/roster"
+                        }
+                    },
+                    "fieldList": [
+                        "childItems"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "BinaryReadSettings"
+                    }
+                }
+            },
+            {
+                "name": "Filter for folder names",
+                "description": "Filter the roster folder children for only folder names, excluding any schema files.",
+                "type": "Filter",
+                "dependsOn": [
+                    {
+                        "activity": "Get roster folder children",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Get roster folder children').output.childItems",
+                        "type": "Expression"
+                    },
+                    "condition": {
+                        "value": "@equals(item().type, 'Folder')",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "For each folder",
+                "description": "Look through all of the date folder names to find the latest one.",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "Filter for folder names",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@activity('Filter for folder names').output.Value",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "If the current folder date is greater",
+                            "description": "The date_folder variable keeps track of the latest date folder we've seen so far. If the current folder date is greater, reassign the value of date_folder.",
+                            "type": "IfCondition",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "expression": {
+                                    "value": "@greater(item().name, variables('date_folder'))",
+                                    "type": "Expression"
+                                },
+                                "ifTrueActivities": [
+                                    {
+                                        "name": "Set date_folder",
+                                        "type": "SetVariable",
+                                        "dependsOn": [],
+                                        "userProperties": [],
+                                        "typeProperties": {
+                                            "variableName": "date_folder",
+                                            "value": {
+                                                "value": "@item().Name",
+                                                "type": "Expression"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Set source_path",
+                "description": "Append the data share name to the path containing data shares.",
+                "type": "SetVariable",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "source_path",
+                    "value": {
+                        "value": "oea/pre_landing/data_shares/@{pipeline().parameters.dataShareName}",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Get latest run date",
+                "description": "Check the already landed data to find the most recent run date.",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set source_path",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "get_latest_child_date",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "path": {
+                            "value": "stage1/Transactional/M365/v@{pipeline().parameters.version}/activity/additive_batch_data",
+                            "type": "Expression"
+                        },
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "dataShareName": {
+                "type": "string"
+            },
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "1.4.0"
+            }
+        },
+        "variables": {
+            "date_folder": {
+                "type": "String",
+                "defaultValue": "0"
+            },
+            "defaultFilename": {
+                "type": "String"
+            },
+            "pipeline_children": {
+                "type": "String"
+            },
+            "source_path": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "Insights Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-03-28T20:23:35Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

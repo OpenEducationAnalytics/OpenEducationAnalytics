@@ -4,34 +4,11 @@
         "description": "Change the workspace and run_(k12 or hed)_test_data as needed. \nEither the k12 or hed parameter must be true, but not both.",
         "activities": [
             {
-                "name": "1_land_insights_test_data",
-                "type": "ExecutePipeline",
-                "dependsOn": [],
-                "userProperties": [],
-                "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "1_land_insights",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        },
-                        "land_k12_or_hed_test_data": {
-                            "value": "@pipeline().parameters.run_k12_or_hed_test_data",
-                            "type": "Expression"
-                        }
-                    }
-                }
-            },
-            {
                 "name": "2_ingest_insights",
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "1_land_insights_test_data",
+                        "activity": "Should Land Test Data",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
@@ -81,6 +58,62 @@
                         }
                     }
                 }
+            },
+            {
+                "name": "Should Land Test Data",
+                "type": "IfCondition",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@not(equals(pipeline().parameters.workspace, 'prod'))",
+                        "type": "Expression"
+                    },
+                    "ifFalseActivities": [
+                        {
+                            "name": "1_land_insights_prod_data",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "1_land_insights_prod_data_rc",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "dataShareName": {
+                                        "value": "@pipeline().parameters.dataShareName",
+                                        "type": "Expression"
+                                    },
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "version": {
+                                        "value": "@pipeline().parameters.version",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "ifTrueActivities": [
+                        {
+                            "name": "1_land_insights_test_data",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "1_land_insights_test_data_rc",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true
+                            }
+                        }
+                    ]
+                }
             }
         ],
         "parameters": {
@@ -91,13 +124,20 @@
             "run_k12_or_hed_test_data": {
                 "type": "string",
                 "defaultValue": "hed"
+            },
+            "dataShareName": {
+                "type": "string"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "1.4.0"
             }
         },
         "folder": {
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-01-13T18:27:46Z"
+        "lastPublishTime": "2023-03-28T19:30:02Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

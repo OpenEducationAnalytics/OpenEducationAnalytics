@@ -1,0 +1,159 @@
+{
+    "name": "land_from_ls_datalake",
+    "properties": {
+        "description": "Land data from the OEA data lake linked service.",
+        "activities": [
+            {
+                "name": "Copy from LS Data Lake",
+                "type": "Copy",
+                "dependsOn": [
+                    {
+                        "activity": "Set Run DateTime",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Set Stage Path",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "BinarySource",
+                        "storeSettings": {
+                            "type": "AzureBlobFSReadSettings",
+                            "recursive": true,
+                            "modifiedDatetimeStart": {
+                                "value": "@pipeline().parameters.dateFilter",
+                                "type": "Expression"
+                            },
+                            "wildcardFolderPath": {
+                                "value": "@pipeline().parameters.sourcePath",
+                                "type": "Expression"
+                            },
+                            "wildcardFileName": {
+                                "value": "@pipeline().parameters.filePath",
+                                "type": "Expression"
+                            },
+                            "deleteFilesAfterCompletion": false
+                        },
+                        "formatSettings": {
+                            "type": "BinaryReadSettings"
+                        }
+                    },
+                    "sink": {
+                        "type": "BinarySink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings",
+                            "copyBehavior": "FlattenHierarchy"
+                        }
+                    },
+                    "enableStaging": false
+                },
+                "inputs": [
+                    {
+                        "referenceName": "DS_datalake_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": "@coalesce(null)",
+                            "directory": "@coalesce(null)"
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "DS_datalake_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@variables('stagePath')",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "Transactional/@{pipeline().parameters.sinkPath}/@{pipeline().parameters.batchType}_batch_data/rundate=@{variables('runDateTime')}",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "Set Run DateTime",
+                "description": "Set the run datetime value for the pipeline run.",
+                "type": "SetVariable",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "runDateTime",
+                    "value": {
+                        "value": "@utcNow('yyyy-MM-dd HH:mm:ss')",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Set Stage Path",
+                "description": "Set the stage path to determine where landed data is stored.",
+                "type": "SetVariable",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "stagePath",
+                    "value": {
+                        "value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage1', \n if(equals(pipeline().parameters.workspace,'prod'),'stage1',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage1')\n )\n)",
+                        "type": "Expression"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "sourcePath": {
+                "type": "string",
+                "defaultValue": "oea/pre_landing/data_shares"
+            },
+            "sinkPath": {
+                "type": "string"
+            },
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "batchType": {
+                "type": "string",
+                "defaultValue": "snapshot"
+            },
+            "filePath": {
+                "type": "string",
+                "defaultValue": "*.csv"
+            },
+            "dateFilter": {
+                "type": "string"
+            }
+        },
+        "variables": {
+            "runDateTime": {
+                "type": "String"
+            },
+            "stagePath": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-03-28T00:04:24Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
