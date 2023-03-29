@@ -8,7 +8,7 @@
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "Get latest run date",
+                        "activity": "If previous runs exist",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
@@ -37,7 +37,7 @@
                         "batchType": "additive",
                         "filePath": "*.csv",
                         "dateFilter": {
-                            "value": "@activity('Get latest run date').output.pipelineReturnValue.latest_runtime",
+                            "value": "@variables('latest_runtime')",
                             "type": "Expression"
                         }
                     }
@@ -90,7 +90,7 @@
                                     "batchType": "snapshot",
                                     "filePath": "*.csv",
                                     "dateFilter": {
-                                        "value": "@activity('Get latest run date').output.pipelineReturnValue.latest_runtime",
+                                        "value": "@variables('latest_runtime')",
                                         "type": "Expression"
                                     }
                                 }
@@ -153,7 +153,7 @@
                 "type": "GetMetadata",
                 "dependsOn": [
                     {
-                        "activity": "Get latest run date",
+                        "activity": "If previous runs exist",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
@@ -281,9 +281,99 @@
                 }
             },
             {
-                "name": "Get latest run date",
-                "description": "Check the already landed data to find the most recent run date.",
-                "type": "ExecutePipeline",
+                "name": "If previous runs exist",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "Check for previous runs",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@activity('Check for previous runs').output.exists",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "Get Latest Runtime",
+                            "type": "SynapseNotebook",
+                            "dependsOn": [],
+                            "policy": {
+                                "timeout": "0.12:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "notebook": {
+                                    "referenceName": "OEA_connector",
+                                    "type": "NotebookReference"
+                                },
+                                "parameters": {
+                                    "method_name": {
+                                        "value": "get_latest_runtime",
+                                        "type": "string"
+                                    },
+                                    "kwargs": {
+                                        "value": {
+                                            "value": "{'path':'stage1/Transactional/M365/v@{pipeline().parameters.version}/activity/additive_batch_data',\n'pattern':'rundate=%Y-%m-%d %H:%M:%S'}",
+                                            "type": "Expression"
+                                        },
+                                        "type": "string"
+                                    },
+                                    "workspace": {
+                                        "value": {
+                                            "value": "@pipeline().parameters.workspace",
+                                            "type": "Expression"
+                                        },
+                                        "type": "string"
+                                    }
+                                },
+                                "snapshot": true,
+                                "sparkPool": {
+                                    "referenceName": "spark3p2sm",
+                                    "type": "BigDataPoolReference"
+                                },
+                                "conf": {
+                                    "spark.dynamicAllocation.enabled": null,
+                                    "spark.dynamicAllocation.minExecutors": null,
+                                    "spark.dynamicAllocation.maxExecutors": null
+                                },
+                                "numExecutors": null
+                            }
+                        },
+                        {
+                            "name": "Set latest_runtime",
+                            "type": "SetVariable",
+                            "dependsOn": [
+                                {
+                                    "activity": "Get Latest Runtime",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "variableName": "latest_child_date",
+                                "value": {
+                                    "value": "@activity('Get Latest Runtime').output.status.Output.result.exitValue",
+                                    "type": "Expression"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Check for previous runs",
+                "type": "GetMetadata",
                 "dependsOn": [
                     {
                         "activity": "Set source_path",
@@ -292,22 +382,39 @@
                         ]
                     }
                 ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
                 "userProperties": [],
                 "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "get_latest_child_date",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "path": {
-                            "value": "stage1/Transactional/M365/v@{pipeline().parameters.version}/activity/additive_batch_data",
-                            "type": "Expression"
-                        },
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
+                    "dataset": {
+                        "referenceName": "DS_datalake_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage1', \n if(equals(pipeline().parameters.workspace,'prod'),'stage1',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage1')\n )\n)",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "Transactional/M365/v@{pipeline().parameters.version}/activity/additive_batch_data",
+                                "type": "Expression"
+                            }
                         }
+                    },
+                    "fieldList": [
+                        "exists"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "BinaryReadSettings"
                     }
                 }
             }
@@ -338,13 +445,16 @@
             },
             "source_path": {
                 "type": "String"
+            },
+            "latest_runtime": {
+                "type": "String"
             }
         },
         "folder": {
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-03-28T20:23:35Z"
+        "lastPublishTime": "2023-03-29T20:47:07Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
