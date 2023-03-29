@@ -53,6 +53,8 @@ sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/pipeline/cr
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name create_sql_db --file @$this_file_path/tmp/create_sql_db.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name delete_dataset --file @$this_file_path/synapse/pipeline/delete_dataset.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_data_from_URL --file @$this_file_path/synapse/pipeline/land_data_from_URL.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_from_ls_datalake --file @$this_file_path/synapse/pipeline/land_from_ls_datalake.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name get_latest_child_date --file @$this_file_path/synapse/pipeline/get_latest_child_date.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name land_metadata_from_URL --file @$this_file_path/synapse/pipeline/land_metadata_from_URL.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name ingest --file @$this_file_path/synapse/pipeline/ingest.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name refine --file @$this_file_path/synapse/pipeline/refine.json"
