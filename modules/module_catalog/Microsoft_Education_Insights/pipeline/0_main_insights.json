@@ -77,7 +77,7 @@
                             "userProperties": [],
                             "typeProperties": {
                                 "pipeline": {
-                                    "referenceName": "1_land_insights_prod_data_rc",
+                                    "referenceName": "1_land_insights_prod_data",
                                     "type": "PipelineReference"
                                 },
                                 "waitOnCompletion": true,
@@ -106,7 +106,7 @@
                             "userProperties": [],
                             "typeProperties": {
                                 "pipeline": {
-                                    "referenceName": "1_land_insights_test_data_rc",
+                                    "referenceName": "1_land_insights_test_data",
                                     "type": "PipelineReference"
                                 },
                                 "waitOnCompletion": true
