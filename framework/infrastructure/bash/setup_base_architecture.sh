@@ -63,6 +63,7 @@ az storage fs directory create -n dev/stage1/Transactional -f oea --account-name
 az storage fs directory create -n dev/stage2/Ingested -f oea --account-name $OEA_STORAGE_ACCOUNT
 az storage fs directory create -n dev/stage2/Refined -f oea --account-name $OEA_STORAGE_ACCOUNT
 az storage fs directory create -n dev/stage3 -f oea --account-name $OEA_STORAGE_ACCOUNT
+az storage fs directory create -n pre_landing/data_shares -f oea --account-name $OEA_STORAGE_ACCOUNT
 
 # 3) Create Synapse workspace, configure firewall access, and create spark pool
 # todo: specify a name for the managed resource group that gets created
