@@ -16,6 +16,8 @@ class HomeView(TemplateView):
             base_url = self.request.environ.get('HTTP_HOST', None)
         else:
             base_url = self.request.environ.get('HTTP_REFERER', None)
+        if base_url.split(':')[0] not in ['http', 'https']:
+            base_url = 'http://' + base_url
         config['BaseURL'] = base_url.replace('/home','')
         update_config_database(config)
         subscriptions, workspaces = get_subscriptions_and_workspaces_in_tenant()
@@ -32,14 +34,14 @@ class HomeView(TemplateView):
 
 class DashboardView(TemplateView):
     template_name = 'core/dashboard.html'
-    config = get_config_data()
 
     def get(self, *args, **kwargs):
-        azure_client = AzureClient(self.config['SubscriptionId'], self.config['SubscriptionId'])
-        workspace = get_workspace_object(azure_client, self.config['WorkspaceName'])
-        modules, packages, schemas, version = get_installed_assets_in_workspace(self.config['WorkspaceName'], azure_client)
-        return self.render_to_response({'base_url':self.config['BaseURL'],
-            'workspace':self.config['WorkspaceName'],
+        config = get_config_data()
+        azure_client = AzureClient(config['SubscriptionId'])
+        workspace = get_workspace_object(azure_client, config['WorkspaceName'])
+        modules, packages, schemas, version = get_installed_assets_in_workspace(config['WorkspaceName'], azure_client)
+        return self.render_to_response({'base_url':config['BaseURL'],
+            'workspace':config['WorkspaceName'],
             'modules': json.dumps([module.__dict__ for module in modules]),
             'packages':json.dumps([package.__dict__ for package in packages]),
             'schemas':json.dumps([schema.__dict__ for schema in schemas]),
@@ -73,25 +75,22 @@ class InstallationFormView(TemplateView):
 
 class AssetInstallationView(TemplateView):
     template_name = 'core/asset_installation.html'
-    config = get_config_data()
-    def get_context_data(self, **kwargs):
-        context = super(AssetInstallationView, self).get_context_data(**kwargs)
-        context['base_url'] = self.config['BaseURL']
-        return context
 
     def get(self, *args, **kwargs):
+        config = get_config_data()
         form = AssetInstallationForm()
-        return self.render_to_response({'form':form, 'base_url':self.config['BaseURL']})
+        return self.render_to_response({'form':form, 'base_url':config['BaseURL']})
 
     def post(self, *args, **kwargs):
+        config = get_config_data()
         asset_name = self.request.POST.get('asset_name')
         asset_type = self.request.POST.get('asset_type')
         asset_version = self.request.POST.get('asset_version')
-        azure_client = AzureClient(self.config['SubscriptionId'])
+        azure_client = AzureClient(config['SubscriptionId'])
         asset = BaseOEAAsset(asset_name, asset_version, asset_type)
         # todo: Figure out how to get the OEA instance.
         asset.install(azure_client, OEAInstance('syn-oea-abhinav4', 'rg-oea-abhinav4', 'kv-oea-abhinav4', 'stoeaabhinav4'))
-        return redirect('home')
+        return redirect('dashboard')
 
 class AssetUninstallationView(TemplateView):
     template_name = 'core/asset_uninstallation.html'
@@ -112,6 +111,6 @@ class AssetUninstallationView(TemplateView):
         azure_client = AzureClient(self.config['SubscriptionId'])
         asset = BaseOEAAsset(asset_name, asset_version, asset_type)
         asset.uninstall(azure_client, OEAInstance('syn-oea-abhinav4', 'rg-oea-abhinav4', 'kv-oea-abhinav4', 'stoeaabhinav4'))
-        return redirect('home')
+        return redirect('dashboard')
 
 
