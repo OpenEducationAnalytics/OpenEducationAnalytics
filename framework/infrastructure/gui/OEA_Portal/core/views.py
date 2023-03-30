@@ -12,16 +12,18 @@ class HomeView(TemplateView):
 
     def get(self, *args, **kwargs):
         config = get_config_data()
-        if self.request.environ.get('HTTP_REFERER', None) is None:
-            base_url = self.request.environ.get('HTTP_HOST', None)
-        else:
-            base_url = self.request.environ.get('HTTP_REFERER', None)
-        if base_url.split(':')[0] not in ['http', 'https']:
-            base_url = 'http://' + base_url
-        if base_url[-1] == '/':
-            base_url = base_url[:-1]
-        config['BaseURL'] = base_url.replace('/home','')
-        update_config_database(config)
+        if config['BaseURL'] == '':
+            # Store the Base URL when app is run for the first time.
+            if self.request.environ.get('HTTP_REFERER', None) is None:
+                base_url = self.request.environ.get('HTTP_HOST', None)
+            else:
+                base_url = self.request.environ.get('HTTP_REFERER', None)
+            if base_url.split(':')[0] not in ['http', 'https']:
+                base_url = 'http://' + base_url
+            if base_url[-1] == '/':
+                base_url = base_url[:-1]
+            config['BaseURL'] = base_url.replace('/home','')
+            update_config_database(config)
         subscriptions, workspaces = get_subscriptions_and_workspaces_in_tenant()
         return self.render_to_response({'base_url':config['BaseURL'],
         'subscriptions':subscriptions,
