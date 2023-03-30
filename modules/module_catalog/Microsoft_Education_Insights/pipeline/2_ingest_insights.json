@@ -64,11 +64,16 @@
                             "type": "string"
                         }
                     },
-                    "snapshot": true,
                     "sparkPool": {
                         "referenceName": "spark3p2med",
                         "type": "BigDataPoolReference"
-                    }
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
                 }
             },
             {
@@ -130,11 +135,16 @@
                             "type": "string"
                         }
                     },
-                    "snapshot": true,
                     "sparkPool": {
                         "referenceName": "spark3p2med",
                         "type": "BigDataPoolReference"
-                    }
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
                 }
             },
             {
@@ -171,11 +181,16 @@
                             "type": "string"
                         }
                     },
-                    "snapshot": true,
                     "sparkPool": {
                         "referenceName": "spark3p2med",
                         "type": "BigDataPoolReference"
-                    }
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
                 }
             }
         ],
@@ -193,7 +208,7 @@
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-01-13T18:32:38Z"
+        "lastPublishTime": "2023-03-30T19:13:56Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
