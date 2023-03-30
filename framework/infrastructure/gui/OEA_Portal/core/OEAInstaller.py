@@ -1,7 +1,6 @@
 import os
 from base64 import b64encode
 from OEA_Portal.settings import BASE_DIR
-import uuid
 import zipfile
 import urllib.request
 import secrets
@@ -14,8 +13,8 @@ class OEAInstaller():
     """
     OEA Installer class which handles all tasks related to installing and uninstalling an OEA instance.
     """
-    def __init__(self, tenant_id, subscription_id, oea_suffix, oea_version='0.7', location='eastus', tags=None, include_groups=False):
-        self.tenant_id = tenant_id
+    def __init__(self, subscription_id, oea_suffix, oea_version='0.7', location='eastus', tags=None, include_groups=False):
+        self.tenant_id = os.getenv('AZURE_TENANT_ID')
         self.subscription_id = subscription_id
         self.location = location
         self.tags = {'OEA Version':oea_version}
