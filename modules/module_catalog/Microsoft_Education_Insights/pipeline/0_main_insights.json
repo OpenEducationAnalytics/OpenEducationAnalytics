@@ -144,7 +144,8 @@
                 "defaultValue": "hed"
             },
             "dataShareDirectory": {
-                "type": "string"
+                "type": "string",
+                "defaultValue": "insights-{tenantid}"
             },
             "version": {
                 "type": "string",
