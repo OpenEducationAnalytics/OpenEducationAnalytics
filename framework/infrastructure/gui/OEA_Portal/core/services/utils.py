@@ -34,7 +34,7 @@ def get_config_data():
 
 def update_config_database(target_data):
     """
-    Updates the Tenant ID and Subscription ID in the config JSON.
+    Updates the Subscription ID, Active workspace and Base URL in the config JSON.
     """
     with open(CONFIG_DATABASE) as f:
         data = json.load(f)

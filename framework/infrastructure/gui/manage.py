@@ -2,6 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from OEA_Portal.core.services.utils import update_config_database
 
 
 def main():
@@ -16,7 +17,12 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
     execute_from_command_line(sys.argv)
-
+    if 'runserver' in sys.argv:
+        config = {}
+        config['SubscriptionId'] = ''
+        config['WorkspaceName'] = ''
+        config['BaseURL'] = ''
+        update_config_database(config)
 
 if __name__ == '__main__':
     main()
