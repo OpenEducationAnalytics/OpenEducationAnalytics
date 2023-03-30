@@ -1,7 +1,13 @@
 # Pipelines
 
 This module uses a Synapse pipeline to:
-1. Land Microsoft Education Insights test data into ```stage1/Transactional/M365/v1.14``` of the data lake (this step is omitted for production data).
+1. Land Microsoft Education Insights test data into ```stage1/Transactional/M365/v1.14``` of the data lake
+   - For test data, set the workspace to `dev`. We use the `1_land_insights_test_data` pipeline, which uses the `land_data_from_url` pipeline to ingest each of the entities in the dataset 
+   - For production data, please configure the parameters are below
+      - set the workspace to `prod`
+      - Set the dataShareName to `insights-<tenant id>`
+      
+      We use the `1_land_insights_prod_data` pipeline, which calls `1_land_insights_prod_data` which would get latest run date, and land latest activity and roster data into stage 1 foler.
 2. Ingest data into ```stage2/Ingested/M365/v1.14``` and create a lake database (db) for queries.
 3. Correct the table schemas into ```stage2/Ingested_Corrected/M365/v1.14```
 4. Refine data into ```stage2/Refined/M365/v1.14/(general and sensitive)``` and create lake and SQL dbs for queries.
