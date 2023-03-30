@@ -122,6 +122,10 @@
                                     "land_k12_or_hed_test_data": {
                                         "value": "@pipeline().parameters.run_k12_or_hed_test_data",
                                         "type": "Expression"
+                                    },
+                                    "version": {
+                                        "value": "@pipeline().parameters.version",
+                                        "type": "Expression"
                                     }
                                 }
                             }
@@ -151,7 +155,7 @@
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-03-30T16:44:38Z"
+        "lastPublishTime": "2023-03-30T18:30:21Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

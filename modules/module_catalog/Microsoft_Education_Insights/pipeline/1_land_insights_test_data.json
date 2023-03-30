@@ -41,7 +41,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/activity",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/activity",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -75,7 +78,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/AadGroup",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/AadGroup",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -109,7 +115,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/AadGroupMembership",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/AadGroupMembership",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -143,7 +152,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/AadUser",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/AadUser",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -177,7 +189,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/AadUserPersonMapping",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/AadUserPersonMapping",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -211,7 +226,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/Course",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Course",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -245,7 +263,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/CourseGradeLevel",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/CourseGradeLevel",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -279,7 +300,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/CourseSubject",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/CourseSubject",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -313,7 +337,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/Enrollment",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Enrollment",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -347,7 +374,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/Organization",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Organization",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -381,7 +411,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/Person",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Person",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -415,7 +448,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/PersonDemographic",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonDemographic",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -449,7 +485,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/PersonDemographicEthnicity",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonDemographicEthnicity",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -483,7 +522,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/PersonDemographicPersonFlag",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonDemographicPersonFlag",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -517,7 +559,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/PersonDemographicRace",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonDemographicRace",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -551,7 +596,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/PersonEmailAddress",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonEmailAddress",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -585,7 +633,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/PersonIdentifier",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonIdentifier",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -619,7 +670,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/PersonOrganizationRole",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonOrganizationRole",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -653,7 +707,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/PersonPhoneNumber",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonPhoneNumber",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -687,7 +744,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/PersonRelationship",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonRelationship",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -721,7 +781,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/RefDefinition",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/RefDefinition",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -755,7 +818,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/RefTranslation",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/RefTranslation",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -789,7 +855,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/Section",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Section",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -823,7 +892,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/SectionGradeLevel",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/SectionGradeLevel",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -857,7 +929,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/SectionSession",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/SectionSession",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -891,7 +966,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/SectionSubject",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/SectionSubject",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -925,7 +1003,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/Session",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Session",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -959,7 +1040,10 @@
                             "type": "Expression"
                         },
                         "workspace": "dev",
-                        "sinkPath": "M365/v1.14/SourceSystem",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/SourceSystem",
+                            "type": "Expression"
+                        },
                         "sinkFilename": {
                             "value": "@variables('defaultFilename')",
                             "type": "Expression"
@@ -973,6 +1057,10 @@
             "land_k12_or_hed_test_data": {
                 "type": "string",
                 "defaultValue": "hed"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "1.4.0"
             }
         },
         "variables": {
@@ -985,7 +1073,7 @@
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-03-27T18:00:02Z"
+        "lastPublishTime": "2023-03-30T18:43:53Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
