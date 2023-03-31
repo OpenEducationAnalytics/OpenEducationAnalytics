@@ -71,7 +71,7 @@ def _copy_synapse_datasets(client, path):
 
     ds_file = client.dataset.get_dataset(datasets[0].name)
 
-    print(ds_file.properties)
+    print(json.dumps(ds_file.serialize()))
     
     pass
 
