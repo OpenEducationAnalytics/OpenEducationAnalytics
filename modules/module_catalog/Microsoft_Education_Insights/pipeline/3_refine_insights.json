@@ -22,7 +22,10 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "stage": "stage2",
-                        "datasetPath": "Refined/M365/v1.14/general",
+                        "datasetPath": {
+                            "value": "@concat('Refined/M365/v',pipeline().parameters.version,'/general')",
+                            "type": "Expression"
+                        },
                         "workspace": {
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
@@ -54,7 +57,10 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "stage": "stage2",
-                        "datasetPath": "Refined/M365/v1.14/sensitive",
+                        "datasetPath": {
+                            "value": "@concat('Refined/M365/v',pipeline().parameters.version,'/sensitive')",
+                            "type": "Expression"
+                        },
                         "workspace": {
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
@@ -91,13 +97,25 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "version": {
+                            "value": {
+                                "value": "@pipeline().parameters.version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
-                    "snapshot": true,
                     "sparkPool": {
                         "referenceName": "spark3p2med",
                         "type": "BigDataPoolReference"
-                    }
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
                 }
             }
         ],
@@ -105,13 +123,17 @@
             "workspace": {
                 "type": "string",
                 "defaultValue": "dev"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "1.4.0"
             }
         },
         "folder": {
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-01-13T20:30:07Z"
+        "lastPublishTime": "2023-03-28T20:33:12Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

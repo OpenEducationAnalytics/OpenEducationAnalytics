@@ -76,7 +76,7 @@
                                 "waitOnCompletion": true,
                                 "parameters": {
                                     "sourcePath": {
-                                        "value": "oea/pre_landing/data_shares/@{pipeline().parameters.dataShareName}/M365/roster/@{variables('date_folder')}/@{item().name}",
+                                        "value": "oea/pre_landing/data_shares/@{pipeline().parameters.dataShareDirectory}/M365/roster/@{variables('date_folder')}/@{item().name}",
                                         "type": "Expression"
                                     },
                                     "sinkPath": {
@@ -275,7 +275,7 @@
                 "typeProperties": {
                     "variableName": "source_path",
                     "value": {
-                        "value": "oea/pre_landing/data_shares/@{pipeline().parameters.dataShareName}",
+                        "value": "oea/pre_landing/data_shares/@{pipeline().parameters.dataShareDirectory}",
                         "type": "Expression"
                     }
                 }
@@ -361,7 +361,7 @@
                             ],
                             "userProperties": [],
                             "typeProperties": {
-                                "variableName": "latest_child_date",
+                                "variableName": "latest_runtime",
                                 "value": {
                                     "value": "@activity('Get Latest Runtime').output.status.Output.result.exitValue",
                                     "type": "Expression"
@@ -420,7 +420,7 @@
             }
         ],
         "parameters": {
-            "dataShareName": {
+            "dataShareDirectory": {
                 "type": "string"
             },
             "workspace": {
@@ -454,7 +454,7 @@
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-03-29T20:47:07Z"
+        "lastPublishTime": "2023-03-30T16:44:34Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

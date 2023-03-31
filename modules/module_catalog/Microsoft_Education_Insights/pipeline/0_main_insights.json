@@ -8,7 +8,7 @@
                 "type": "ExecutePipeline",
                 "dependsOn": [
                     {
-                        "activity": "Should Land Test Data",
+                        "activity": "1_land_insights_test_or_prod",
                         "dependencyConditions": [
                             "Succeeded"
                         ]
@@ -28,6 +28,10 @@
                         },
                         "ingest_k12_or_hed_test_data": {
                             "value": "@pipeline().parameters.run_k12_or_hed_test_data",
+                            "type": "Expression"
+                        },
+                        "version": {
+                            "value": "@pipeline().parameters.version",
                             "type": "Expression"
                         }
                     }
@@ -55,12 +59,16 @@
                         "workspace": {
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
+                        },
+                        "version": {
+                            "value": "@pipeline().parameters.version",
+                            "type": "Expression"
                         }
                     }
                 }
             },
             {
-                "name": "Should Land Test Data",
+                "name": "1_land_insights_test_or_prod",
                 "type": "IfCondition",
                 "dependsOn": [],
                 "userProperties": [],
@@ -82,8 +90,8 @@
                                 },
                                 "waitOnCompletion": true,
                                 "parameters": {
-                                    "dataShareName": {
-                                        "value": "@pipeline().parameters.dataShareName",
+                                    "dataShareDirectory": {
+                                        "value": "@pipeline().parameters.dataShareDirectory",
                                         "type": "Expression"
                                     },
                                     "workspace": {
@@ -109,7 +117,17 @@
                                     "referenceName": "1_land_insights_test_data",
                                     "type": "PipelineReference"
                                 },
-                                "waitOnCompletion": true
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "land_k12_or_hed_test_data": {
+                                        "value": "@pipeline().parameters.run_k12_or_hed_test_data",
+                                        "type": "Expression"
+                                    },
+                                    "version": {
+                                        "value": "@pipeline().parameters.version",
+                                        "type": "Expression"
+                                    }
+                                }
                             }
                         }
                     ]
@@ -125,8 +143,9 @@
                 "type": "string",
                 "defaultValue": "hed"
             },
-            "dataShareName": {
-                "type": "string"
+            "dataShareDirectory": {
+                "type": "string",
+                "defaultValue": "insights-{tenantid}"
             },
             "version": {
                 "type": "string",
@@ -137,7 +156,7 @@
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-03-28T19:30:02Z"
+        "lastPublishTime": "2023-03-30T18:30:21Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
