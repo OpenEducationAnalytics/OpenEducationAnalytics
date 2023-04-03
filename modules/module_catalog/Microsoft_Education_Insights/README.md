@@ -37,8 +37,14 @@ Microsoft Insights data can be used for a variety of analytics purposes, includi
 <ins><strong>Note:</ins></strong> 
 All the steps outlined below are applicable to deployment of this module with production data. However, if you are doing a test deployment using the [test data sets](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/test_data) we provide as part of this module, skip to step 3.
 
-1. Setup [School Data Sync](https://sds.microsoft.com/) to begin receiving usage data from M365. You can find videos about School Data Sync and Education Insights on the [Microsoft School Data Sync Youtube channel](https://www.youtube.com/channel/UCA8ZOC7eTfzLlkcFW3imkHg/featured) [for production data only].
-2. Within School Data Sync, [enable the education data lake export](https://docs.microsoft.com/en-us/schooldatasync/enable-education-data-lake-export) to land data in Stage 1 of your data lake [for production data only].
+1. [For production data only] Setup [School Data Sync](https://sds.microsoft.com/) to begin receiving usage data from M365. You can find videos about School Data Sync and Education Insights on the [Microsoft School Data Sync Youtube channel](https://www.youtube.com/channel/UCA8ZOC7eTfzLlkcFW3imkHg/featured).
+2. [For production data only] Within School Data Sync, [enable the education data lake export](https://docs.microsoft.com/en-us/schooldatasync/enable-education-data-lake-export) to land data in the pre-landing stage of your data lake. After enabling export of the data on the School Data Sync platform, please follow the steps [here](https://learn.microsoft.com/en-us/azure/data-share/subscribe-to-data-share?WT.mc_id=Portal-Microsoft_Azure_DataShare&tabs=azure-portal#open-invitation) to receive the shared data.
+    - While receiving the data share after opening the invitation, please configure as below -
+        - Set the data share name to your `insights-<tenant id>`
+    - While mapping the shared data to a target dataset, please configure as below -
+        - Target data type is set to ADLS Gen 2.
+        - Target folder is set to `oea\pre_landing\data_shares`
+        - Enable daily snapshot schedule to regularly update the data
 3. Run the [setup.sh script](https://github.com/Microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/setup.sh)
     * Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
