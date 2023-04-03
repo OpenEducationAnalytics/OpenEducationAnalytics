@@ -23,7 +23,8 @@ eval "az synapse notebook import --workspace-name $synapse_workspace --name Insi
 
 # 2) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_insights --file @$this_file_path/pipeline/1_land_insights.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_insights_prod_data --file @$this_file_path/pipeline/1_land_insights_prod_data.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_insights_test_data --file @$this_file_path/pipeline/1_land_insights_test_data.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 2_ingest_insights --file @$this_file_path/pipeline/2_ingest_insights.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 3_refine_insights --file @$this_file_path/pipeline/3_refine_insights.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 4_reset_workspace_insights --file @$this_file_path/pipeline/4_reset_workspace_insights.json"

@@ -27,7 +27,10 @@
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
                         },
-                        "sinkPath": "M365/v1.14"
+                        "sinkPath": {
+                            "value": "@concat('M365/v', pipeline().parameters.version)",
+                            "type": "Expression"
+                        }
                     }
                 }
             },
@@ -62,13 +65,25 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "version": {
+                            "value": {
+                                "value": "@pipeline().parameters.version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
-                    "snapshot": true,
                     "sparkPool": {
                         "referenceName": "spark3p2med",
                         "type": "BigDataPoolReference"
-                    }
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
                 }
             },
             {
@@ -91,7 +106,10 @@
                     "waitOnCompletion": true,
                     "parameters": {
                         "stage": "stage2",
-                        "datasetPath": "Ingested/M365/v1.14",
+                        "datasetPath": {
+                            "value": "@concat('Ingested/M365/v', pipeline().parameters.version)",
+                            "type": "Expression"
+                        },
                         "workspace": {
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
@@ -128,13 +146,25 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "version": {
+                            "value": {
+                                "value": "@pipeline().parameters.version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
-                    "snapshot": true,
                     "sparkPool": {
                         "referenceName": "spark3p2med",
                         "type": "BigDataPoolReference"
-                    }
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
                 }
             },
             {
@@ -169,13 +199,25 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "version": {
+                            "value": {
+                                "value": "@pipeline().parameters.version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
-                    "snapshot": true,
                     "sparkPool": {
                         "referenceName": "spark3p2med",
                         "type": "BigDataPoolReference"
-                    }
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
                 }
             }
         ],
@@ -187,13 +229,17 @@
             "ingest_k12_or_hed_test_data": {
                 "type": "string",
                 "defaultValue": "hed"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "1.4.0"
             }
         },
         "folder": {
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-01-13T18:32:38Z"
+        "lastPublishTime": "2023-03-28T20:33:06Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
