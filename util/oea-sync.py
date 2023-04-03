@@ -10,7 +10,7 @@ import os
 
 from azure.synapse.artifacts import ArtifactsClient
 from azure.identity import DefaultAzureCredential
-from azure.core.exceptions import HttpResponseError
+#from azure.core.exceptions import HttpResponseError
 
 # 1. Get synapse suffix and destination directory
 # 2. Ensure read/write access to each file and folder in directory/subdirectories.
@@ -19,8 +19,18 @@ from azure.core.exceptions import HttpResponseError
 
 # Constants
 ROOT_FOLDERS = ['framework', 'modules', 'packages', 'schemas']
+
 OEA_SYNAPSE_WORKSPACE_PREFIX = 'syn-oea'
 OEA_SYNAPSE_DEV_WORKSPACE_FORMAT_STRING = 'https://syn-oea-{}.dev.azuresynapse.net'
+OEA_FRAMEWORK_DATASET_PATH_FROM_ROOT = 'framework\\synapse\\dataset'
+OEA_FRAMEWORK_PIPELINE_PATH_FROM_ROOT = 'framework\\synapse\\pipeline'
+
+OEA_SYNAPSE_FRAMEWORK_FOLDER_NAME = 'OEA_Framework' # TODO: This folder might not be necessary / or needs to exist for every artifact.
+OEA_SYNAPSE_FRAMEWORK_CONTOSO_FOLDER_NAME = 'contoso_v0p2' # TODO: standardize all folder names to be same casing and pattern.
+
+ARTIFACT_NAME_KEY = "name"
+ARTIFACT_TYPE_KEY = "type"
+ARTIFACT_PROPERTIES_KEY = "properties"
 
 # Instances
 _logger = logging.getLogger(__name__)
@@ -53,27 +63,85 @@ def _copy_synapse_artifacts(suffix, path):
     endpoint = OEA_SYNAPSE_DEV_WORKSPACE_FORMAT_STRING.format(suffix)
     client = ArtifactsClient(credential=token_credential, endpoint=endpoint)
 
-    # get datasets
-    _copy_synapse_datasets(client, path)
+    #_copy_synapse_datasets(client, path) # get datasets
+    _copy_synapse_pipelines(client, path) # get pipelines
 
     # get notebooks
-    # get pipelines
     # linked services
     # sql scripts
 
-def _copy_synapse_datasets(client, path):
+def _copy_synapse_datasets(client: ArtifactsClient, path):
     dataset_iterator = client.dataset.get_datasets_by_workspace()
     datasets = []
     for item in dataset_iterator:
-        datasets.append(item)
+        artifact = {
+            ARTIFACT_NAME_KEY: item.name,
+            ARTIFACT_PROPERTIES_KEY: item.serialize()[ARTIFACT_PROPERTIES_KEY],
+            ARTIFACT_TYPE_KEY: item.type,
+        }
+        datasets.append(artifact)
 
-    print(datasets[0])
+    # separate the datasets by folders.
+    # if the dataset is put into the root synapse folder, then the folder key will be missing.
+    dataset_folders = _get_folder_partitioned_artifacts(datasets)
 
-    ds_file = client.dataset.get_dataset(datasets[0].name)
+    # Write out the files to the relevant folders.
+    for key, ds_list in dataset_folders.items():
+        for dataset in ds_list:
 
-    print(json.dumps(ds_file.serialize()))
+            # TODO: THIS ONLY HANDLES FRAMEWORK PIPELINES, HANDLE MODULE PIPELINES AS WELL.
+            
+            if key == OEA_SYNAPSE_FRAMEWORK_FOLDER_NAME:
+                file_path = '{}\\{}\\{}.json'.format(path[:-1], OEA_FRAMEWORK_DATASET_PATH_FROM_ROOT, dataset['name'])
+                
+                with open(file_path, "w") as dataset_file:
+                    json_data_pp = json.dumps(dataset, sort_keys=True, indent=4)
+                    dataset_file.write(json_data_pp)
+
+def _copy_synapse_pipelines(client: ArtifactsClient, path):
+    pipeline_iterator = client.pipeline.get_pipelines_by_workspace()
+    pipelines = []
+    for item in pipeline_iterator:
+        artifact = {
+            ARTIFACT_NAME_KEY: item.name,
+            ARTIFACT_PROPERTIES_KEY: item.serialize()[ARTIFACT_PROPERTIES_KEY],
+            ARTIFACT_TYPE_KEY: item.type,
+        }
+        pipelines.append(artifact)
+
+    # separate pipelines by folders
+    # if the pipelinee is put into the root synapse folder
+    pipeline_folders = _get_folder_partitioned_artifacts(pipelines)
     
-    pass
+    # Write out the files to the relevant folders.
+    for key, ds_list in pipeline_folders.items():
+        for dataset in ds_list:
+
+            # TODO: THIS ONLY HANDLES FRAMEWORK PIPELINES, HANDLE MODULE PIPELINES AS WELL.
+
+            if key == OEA_SYNAPSE_FRAMEWORK_FOLDER_NAME or key == OEA_SYNAPSE_FRAMEWORK_CONTOSO_FOLDER_NAME:
+                file_path = '{}\\{}\\{}.json'.format(path[:-1], OEA_FRAMEWORK_PIPELINE_PATH_FROM_ROOT, dataset['name'])
+                with open(file_path, "w") as dataset_file:
+                    json_data_pp = json.dumps(dataset, sort_keys=True, indent=4)
+                    dataset_file.write(json_data_pp)
+
+def _get_folder_partitioned_artifacts(artifact_list):
+    artifact_folder_dictionary = {}
+
+    for artifact in artifact_list:
+        if 'folder' not in artifact['properties']:
+            # this dataset belongs in the framework
+            if OEA_SYNAPSE_FRAMEWORK_FOLDER_NAME not in artifact_folder_dictionary:
+                artifact_folder_dictionary[OEA_SYNAPSE_FRAMEWORK_FOLDER_NAME] = [artifact]
+            else:
+                artifact_folder_dictionary[OEA_SYNAPSE_FRAMEWORK_FOLDER_NAME].append(artifact)
+        else:
+            if artifact['properties']['folder']['name'] not in artifact_folder_dictionary:
+                artifact_folder_dictionary[artifact['properties']['folder']['name']] = [artifact]
+            else:
+                artifact_folder_dictionary[artifact['properties']['folder']['name']].append(artifact)
+
+    return artifact_folder_dictionary
 
 # Main app entrypoint.
 def main():
@@ -88,4 +156,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
