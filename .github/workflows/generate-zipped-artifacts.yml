@@ -28,5 +28,5 @@ jobs:
           rm -rf ./tmp/framework/test_data
           cp setup.sh ./tmp/framework
           cp README.md ./tmp/framework
-          zip -r ./tmp/framework/*
+          zip -r ./tmp/archives/framework.zip ./tmp/framework/*
           ls -al ./tmp/
