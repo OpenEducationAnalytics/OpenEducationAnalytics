@@ -34,7 +34,6 @@ jobs:
           cp README.md ./tmp/framework
           zip -r ./tmp/archives/framework.zip ./tmp/framework/*
       - name: Zip Modules
-        if: ${{ false }}
         run: |
           for dir in modules/module_catalog/*/
           do
