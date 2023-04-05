@@ -31,7 +31,7 @@ jobs:
           zip -r ./tmp/archives/framework.zip ./tmp/framework/*
       - name: Zip Modules
         run: |
-          for dir in modules/module_catalog
+          for dir in modules/module_catalog/*/
           do
             echo ${dir}
           done
