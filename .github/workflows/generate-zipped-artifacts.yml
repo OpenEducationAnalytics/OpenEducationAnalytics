@@ -1,7 +1,7 @@
 # Make the workflow be triggered manually for now
 name: Generate Zipped Artifacts
 run-name: Generate Zipped Artifacts by @${{ github.actor }}
-on: workflow_dispatch
+on: push #TODO: change to workflow_dispatch
 
 jobs:
   zip_assets:
