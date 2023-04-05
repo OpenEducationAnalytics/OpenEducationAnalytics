@@ -1,2 +1,2 @@
 # Make the workflow be triggered manually for now
-on: workflow dispatch
+on: workflow_dispatch
