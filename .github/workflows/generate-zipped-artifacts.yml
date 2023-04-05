@@ -4,8 +4,8 @@ run-name: Generate Zipped Artifacts by @${{ github.actor }}
 on: push #TODO: change to workflow_dispatch
 
 jobs:
-  zip_assets:
+  zip_framework:
     runs-on: ubuntu-latest
     steps:
       - name: Print Hello, World
-        run: echo 'Hello, World!'
+        run: pwd && ls -al
