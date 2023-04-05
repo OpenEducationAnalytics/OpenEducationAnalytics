@@ -40,7 +40,7 @@ jobs:
             cp -r ${dir} ./tmp/modules
             echo "Removing docs folder..."
             rm -rf ./tmp/modules/${dir}/docs
-            zip -r ./tmp/archives/$(basename ${dir}).zip ./tmp/modules/${dir}/*
+            zip -r ./tmp/archives/$(basename ${dir}).zip ./tmp/modules/${dir}*
           done
           ls -al ./tmp/archives/
         
