@@ -29,4 +29,4 @@ jobs:
           cp setup.sh ./tmp/framework
           cp README.md ./tmp/framework
           zip -r ./tmp/archives/framework.zip ./tmp/framework/*
-          ls -al ./tmp/
+          ls -al ./tmp/archives
