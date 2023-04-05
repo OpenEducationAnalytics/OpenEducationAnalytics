@@ -3,9 +3,17 @@ name: Generate Zipped Artifacts
 run-name: Generate Zipped Artifacts by @${{ github.actor }}
 on: push #TODO: change to workflow_dispatch
 
+env:
+  # Move magic values in here when done.
+
 jobs:
   zip_framework:
     runs-on: ubuntu-latest
     steps:
-      - name: Print Hello, World
-        run: pwd && ls -al
+      - uses: actions/checkout@v3
+      - name: Create temp folders
+        run: |
+          mkdir ./tmp/framework
+          mkdir ./tmp/modules
+          mkdir ./tmp/zip
+          ls -al
