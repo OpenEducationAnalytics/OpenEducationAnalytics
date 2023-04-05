@@ -10,6 +10,10 @@
 # 4. Need to determine what we will do with schema files. Should they also be packaged in the zip as well?
 #
 # 5. This file only handles the framework and modules. Missing packages zipping.
+#
+# 6. This workflow needs to update release artifacts based on which branch it is being ran on.
+#    Or, sub workflows can be made that do this. Also note that alpha builds for an asset should be
+#    removed once an rc build is made.
 
 # Make the workflow be triggered manually for now
 name: Generate Zipped Artifacts
