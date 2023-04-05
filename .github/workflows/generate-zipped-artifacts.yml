@@ -20,7 +20,8 @@ jobs:
   ZipArtifacts:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout OEA Repository
+        uses: actions/checkout@v3
       - name: Create Temp Folders
         run: |
           mkdir -p ./tmp/framework
@@ -42,5 +43,9 @@ jobs:
             rm -rf ./tmp/modules/${dir}/docs
             zip -r ./tmp/archives/$(basename ${dir}).zip ./tmp/modules/$(basename ${dir})*
           done
-          ls -al ./tmp/archives/
+      - name: Upload Artifact Archives
+        uses: actions/upload-artifact@v3
+        with:
+          name: archives
+          path: ./tmp/archives/
         
