@@ -38,5 +38,9 @@ jobs:
           for dir in modules/module_catalog/*/
           do
             cp -r ${dir} ./tmp/modules
+            echo "Removing docs folder..."
+            rm -rf ./tmp/modules/${dir}/docs
+            zip -r ./tmp/archives/$(basename ${dir}).zip ./tmp/modules/${dir}/*
           done
-          ls -al ./tmp/modules
+          ls -al ./tmp/archives/
+        
