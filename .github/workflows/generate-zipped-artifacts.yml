@@ -37,6 +37,6 @@ jobs:
         run: |
           for dir in modules/module_catalog/*/
           do
-            cp ${dir} ./tmp/modules
+            cp -r ${dir} ./tmp/modules
           done
           ls -al ./tmp/modules
