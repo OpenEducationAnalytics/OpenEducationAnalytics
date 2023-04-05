@@ -1,10 +1,16 @@
+# TODOs:
+# 1. Make magic values like folder paths variable values that can be accessed from bash or ps.
+#
+# 2. We need a way to identify which version of the asset/framework we currently have in order to
+#    correctly name the folder/zip package.
+#    One suggestion for enabling this is to have a manifest file that represents each asset/framework.
+#
+# 3. We need a way to only zip modules/framework based on changes. I.e we need to identify which asset has changed.
+
 # Make the workflow be triggered manually for now
 name: Generate Zipped Artifacts
 run-name: Generate Zipped Artifacts by @${{ github.actor }}
 on: push #TODO: change to workflow_dispatch
-
-env:
-  TEST: test # Move magic values in here when done.
 
 jobs:
   ZipArtifacts:
@@ -15,10 +21,12 @@ jobs:
         run: |
           mkdir -p ./tmp/framework
           mkdir -p ./tmp/modules
-          mkdir -p ./tmp/zip
+          mkdir -p ./tmp/archives
       - name: Zip Framework
         run: |
           cp -r framework ./tmp/framework
+          rm -rf ./tmp/framework/test_data
           cp setup.sh ./tmp/framework
           cp README.md ./tmp/framework
-          ls -al ./tmp/framework
+          zip -r ./tmp/archives ./tmp/framework
+          ls -al ./tmp/archives
