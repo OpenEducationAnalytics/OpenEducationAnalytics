@@ -1,2 +1,11 @@
 # Make the workflow be triggered manually for now
+name: Generate Zipped Artifacts
+run-name: Generate Zipped Artifacts by @${{ github.actor }}
 on: workflow_dispatch
+
+jobs:
+  zip_assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello, World
+        run: echo 'Hello, World!'
