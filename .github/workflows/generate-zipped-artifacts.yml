@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Create temp folders
+      - name: Create Temp Folders
         run: |
           mkdir -p ./tmp/framework
           mkdir -p ./tmp/modules
           mkdir -p ./tmp/zip
       - name: Zip Framework
         run: |
-          cp framework ./tmp/framework
+          cp -r framework ./tmp/framework
           cp setup.sh ./tmp/framework
           cp README.md ./tmp/framework
           ls -al ./tmp/framework
