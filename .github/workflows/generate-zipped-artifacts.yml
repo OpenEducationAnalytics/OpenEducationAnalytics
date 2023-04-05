@@ -7,7 +7,7 @@ env:
   TEST: test # Move magic values in here when done.
 
 jobs:
-  zip_framework:
+  Zip Artifacts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,4 +16,9 @@ jobs:
           mkdir -p ./tmp/framework
           mkdir -p ./tmp/modules
           mkdir -p ./tmp/zip
-          ls -al
+      - name: Zip Framework
+        run: |
+          cp framework ./tmp/framework
+          cp setup.sh ./tmp/framework
+          cp README.md ./tmp/framework
+          ls -al ./tmp/framework
