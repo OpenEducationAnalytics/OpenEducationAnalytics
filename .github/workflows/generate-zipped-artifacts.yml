@@ -4,7 +4,7 @@ run-name: Generate Zipped Artifacts by @${{ github.actor }}
 on: push #TODO: change to workflow_dispatch
 
 env:
-  # Move magic values in here when done.
+  TEST: test # Move magic values in here when done.
 
 jobs:
   zip_framework:
