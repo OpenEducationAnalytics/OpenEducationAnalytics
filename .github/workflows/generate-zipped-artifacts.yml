@@ -29,4 +29,9 @@ jobs:
           cp setup.sh ./tmp/framework
           cp README.md ./tmp/framework
           zip -r ./tmp/archives/framework.zip ./tmp/framework/*
-          ls -al ./tmp/archives
+      - name: Zip Modules
+        run: |
+          for dir in modules/module_catalog
+          do
+            echo ${dir}
+          done
