@@ -1,0 +1,192 @@
+{
+    "name": "get_latest_child_date",
+    "properties": {
+        "activities": [
+            {
+                "dependsOn": [],
+                "name": "Has Children",
+                "policy": {
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureInput": false,
+                    "secureOutput": false,
+                    "timeout": "0.12:00:00"
+                },
+                "type": "SynapseNotebook",
+                "typeProperties": {
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.maxExecutors": null,
+                        "spark.dynamicAllocation.minExecutors": null
+                    },
+                    "notebook": {
+                        "referenceName": "OEA_connector",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "kwargs": {
+                            "type": "string",
+                            "value": {
+                                "type": "Expression",
+                                "value": "{'path':'@{pipeline().parameters.path}'}"
+                            }
+                        },
+                        "method_name": {
+                            "type": "string",
+                            "value": "contains_children"
+                        },
+                        "workspace": {
+                            "type": "string",
+                            "value": {
+                                "type": "Expression",
+                                "value": "@pipeline().parameters.workspace"
+                            }
+                        }
+                    },
+                    "sparkPool": {
+                        "referenceName": "spark3p2sm",
+                        "type": "BigDataPoolReference"
+                    }
+                },
+                "userProperties": []
+            },
+            {
+                "dependsOn": [
+                    {
+                        "activity": "Has Children",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "name": "If Condition1",
+                "type": "IfCondition",
+                "typeProperties": {
+                    "expression": {
+                        "type": "Expression",
+                        "value": "@activity('Has Children').output.status.Output.result.exitValue"
+                    },
+                    "ifFalseActivities": [
+                        {
+                            "dependsOn": [],
+                            "name": "Set variable1",
+                            "type": "SetVariable",
+                            "typeProperties": {
+                                "value": [
+                                    {
+                                        "key": "latest_child_date",
+                                        "value": {
+                                            "type": "Null"
+                                        }
+                                    }
+                                ],
+                                "variableName": "pipelineReturnValue"
+                            },
+                            "userProperties": []
+                        }
+                    ],
+                    "ifTrueActivities": [
+                        {
+                            "dependsOn": [],
+                            "name": "Get Latest Runtime",
+                            "policy": {
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureInput": false,
+                                "secureOutput": false,
+                                "timeout": "0.12:00:00"
+                            },
+                            "type": "SynapseNotebook",
+                            "typeProperties": {
+                                "conf": {
+                                    "spark.dynamicAllocation.enabled": null,
+                                    "spark.dynamicAllocation.maxExecutors": null,
+                                    "spark.dynamicAllocation.minExecutors": null
+                                },
+                                "notebook": {
+                                    "referenceName": "OEA_connector",
+                                    "type": "NotebookReference"
+                                },
+                                "parameters": {
+                                    "kwargs": {
+                                        "type": "string",
+                                        "value": {
+                                            "type": "Expression",
+                                            "value": "{'path':'@{pipeline().parameters.path}',\n'pattern':'@{pipeline().parameters.pattern}'}"
+                                        }
+                                    },
+                                    "method_name": {
+                                        "type": "string",
+                                        "value": "get_latest_runtime"
+                                    },
+                                    "workspace": {
+                                        "type": "string",
+                                        "value": {
+                                            "type": "Expression",
+                                            "value": "@pipeline().parameters.workspace"
+                                        }
+                                    }
+                                },
+                                "sparkPool": {
+                                    "referenceName": "spark3p2sm",
+                                    "type": "BigDataPoolReference"
+                                }
+                            },
+                            "userProperties": []
+                        },
+                        {
+                            "dependsOn": [
+                                {
+                                    "activity": "Get Latest Runtime",
+                                    "dependencyConditions": [
+                                        "Succeeded"
+                                    ]
+                                }
+                            ],
+                            "name": "Set variable2",
+                            "type": "SetVariable",
+                            "typeProperties": {
+                                "value": [
+                                    {
+                                        "key": "latest_child_date",
+                                        "value": {
+                                            "content": "@activity('Get Latest Runtime').output.status.Output.result.exitValue",
+                                            "type": "Expression"
+                                        }
+                                    }
+                                ],
+                                "variableName": "pipelineReturnValue"
+                            },
+                            "userProperties": []
+                        }
+                    ]
+                },
+                "userProperties": []
+            }
+        ],
+        "annotations": [],
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "parameters": {
+            "path": {
+                "defaultValue": "stage1/Transactional/M365/v1.14/AadGroup/snapshot_batch_data",
+                "type": "string"
+            },
+            "pattern": {
+                "defaultValue": "rundate=%Y-%m-%d %H:%M:%S",
+                "type": "string"
+            },
+            "workspace": {
+                "defaultValue": "dev",
+                "type": "string"
+            }
+        },
+        "variables": {
+            "latest_child_date": {
+                "type": "String"
+            }
+        }
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

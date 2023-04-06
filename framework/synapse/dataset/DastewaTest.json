@@ -1,0 +1,17 @@
+{
+    "name": "DastewaTest",
+    "properties": {
+        "annotations": [],
+        "linkedServiceName": {
+            "referenceName": "LS_DataLake",
+            "type": "LinkedServiceReference"
+        },
+        "type": "Binary",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation"
+            }
+        }
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}
