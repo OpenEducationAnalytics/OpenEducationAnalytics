@@ -1,0 +1,48 @@
+Entity Name,Attribute Name,Attribute Data Type,Pseudonymization
+studentattendance,,,
+,id,string,hash
+,student_id,string,hash
+,school_year,integer,partition-by
+,school_id,string,no-op
+,attendance_date,timestamp,no-op
+,all_day,string,no-op
+,Period,short,no-op
+,section_id,string,no-op
+,AttendanceCode,string,no-op
+,PresenceFlag,boolean,no-op
+,attendance_status,string,no-op
+,attendance_type,string,no-op
+,attendance_sequence,short,no-op
+studentsectionmark,,,
+,id,string,hash
+,student_id,string,hash
+,section_id,string,no-op
+,school_year,integer,partition-by
+,term_id,string,no-op
+,numeric_grade_earned,short,no-op
+,alpha_grade_earned,string,no-op
+,is_final_grade,string,no-op
+,credits_attempted,short,no-op
+,credits_earned,short,no-op
+,grad_credit_type,string,no-op
+students,,,
+,SIS ID,string,hash
+,School SIS ID,string,no-op
+,Username,string,mask
+,First Name,string,mask
+,Last Name,string,mask
+,Middle Name,string,mask
+,Secondary Email,string,mask
+,Student Number,string,hash
+,Grade,string,no-op
+,State ID,string,hash
+,Status,string,no-op
+,Birthdate,string,no-op
+,Graduation Year,short,no-op
+,Gender,string,no-op
+,FederalRaceCategory,string,no-op
+,PrimaryLanguage,string,no-op
+,ELLStatus,string,no-op
+,SpecialEducation,string,no-op
+,LowIncome,boolean,no-op
+,CumulativeGPA,string,no-op

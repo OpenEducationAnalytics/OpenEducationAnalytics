@@ -1,0 +1,39 @@
+{
+    "name": "LS_REST",
+    "properties": {
+        "parameters": {
+            "ClientId": {
+                "type": "string"
+            },
+            "SecretName": {
+                "type": "string"
+            },
+            "BaseURL": {
+                "type": "string"
+            }
+        },
+        "annotations": [],
+        "type": "RestService",
+        "typeProperties": {
+            "url": "@{linkedService().BaseURL}",
+            "enableServerCertificateValidation": true,
+            "authenticationType": "Basic",
+            "userName": "@{linkedService().ClientId}",
+            "password": {
+                "type": "AzureKeyVaultSecret",
+                "store": {
+                    "referenceName": "LS_KeyVault",
+                    "type": "LinkedServiceReference"
+                },
+                "secretName": {
+                    "value": "@linkedService().SecretName",
+                    "type": "Expression"
+                }
+            }
+        },
+        "connectVia": {
+            "referenceName": "AutoResolveIntegrationRuntime",
+            "type": "IntegrationRuntimeReference"
+        }
+    }
+}

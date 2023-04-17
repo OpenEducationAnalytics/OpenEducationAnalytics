@@ -1,0 +1,75 @@
+{
+    "name": "4_reset_workspace_graph",
+    "properties": {
+        "activities": [
+            {
+                "name": "delete_beta_dataset",
+                "description": "Deletes Graph data from beta queries",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "delete_dataset",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "datasetPath": {
+                            "value": "@pipeline().parameters.datasetPath_beta",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "delete_v1p0_dataset",
+                "description": "Deletes Graph data from v1.0 queries",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "delete_dataset",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "datasetPath": {
+                            "value": "@pipeline().parameters.datasetPath_v1p0",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "datasetPath_beta": {
+                "type": "string",
+                "defaultValue": "graph_api/beta"
+            },
+            "datasetPath_v1p0": {
+                "type": "string",
+                "defaultValue": "graph_api/v1.0"
+            }
+        },
+        "folder": {
+            "name": "Graph Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-12-30T02:10:17Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

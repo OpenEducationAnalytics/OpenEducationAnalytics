@@ -1,0 +1,45 @@
+{
+    "name": "LS_Azure_SQL_DB",
+    "type": "Microsoft.Synapse/workspaces/linkedservices",
+    "properties": {
+        "description": "Allows for connecting to an Azure SQL database using SQL authentication and retrieving the user password from the key vault.",
+        "parameters": {
+            "dbServer": {
+                "type": "string",
+                "defaultValue": "myserver.database.windows.net"
+            },
+            "dbName": {
+                "type": "string",
+                "defaultValue": "testdb"
+            },
+            "userName": {
+                "type": "string",
+                "defaultValue": "sqlAdmin"
+            },
+            "keyVaultSecretName": {
+                "type": "string",
+                "defaultValue": "sqlAdminPwd"
+            }
+        },
+        "annotations": [],
+        "type": "AzureSqlDatabase",
+        "typeProperties": {
+            "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=@{linkedService().dbServer};Initial Catalog=@{linkedService().dbName};User ID=@{linkedService().userName}",
+            "password": {
+                "type": "AzureKeyVaultSecret",
+                "store": {
+                    "referenceName": "LS_KeyVault",
+                    "type": "LinkedServiceReference"
+                },
+                "secretName": {
+                    "value": "@linkedService().keyVaultSecretName",
+                    "type": "Expression"
+                }
+            }
+        },
+        "connectVia": {
+            "referenceName": "AutoResolveIntegrationRuntime",
+            "type": "IntegrationRuntimeReference"
+        }
+    }
+}

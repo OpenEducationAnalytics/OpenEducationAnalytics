@@ -1,0 +1,133 @@
+{
+    "name": "2_ingest_SIF",
+    "properties": {
+        "activities": [
+            {
+                "name": "land_metadata_from_URL",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_metadata_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/SIF/test_data/metadata.csv",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "sinkPath": "sif/v3.4.9"
+                    }
+                }
+            },
+            {
+                "name": "ingest_StudentPersonal",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "land_metadata_from_URL",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "ingest_with_options",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": "sif/v3.4.9/StudentPersonal",
+                        "primaryKey": "RefId",
+                        "options": "'multiline':True"
+                    }
+                }
+            },
+            {
+                "name": "ingest_StudentDailyAttendance",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "land_metadata_from_URL",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "ingest_with_options",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": "sif/v3.4.9/StudentDailyAttendance",
+                        "primaryKey": "RefId",
+                        "options": "'multiline':True"
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "ingest_StudentDailyAttendance",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "ingest_StudentPersonal",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Ingested/sif/v3.4.9",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": "sdb_dev_s2i_sif_v3p4p9"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            }
+        },
+        "folder": {
+            "name": "SIF/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-11-28T23:26:35Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

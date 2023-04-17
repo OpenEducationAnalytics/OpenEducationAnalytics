@@ -1,0 +1,64 @@
+{
+    "name": "1_land_graph",
+    "properties": {
+        "activities": [
+            {
+                "name": "land_graph_test_data",
+                "description": "lands either K-12 or Higher Ed test data, based on main pipeline parameter.",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Graph_land_test_data",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "testdataSet": {
+                            "value": {
+                                "value": "@pipeline().parameters.land_k12_or_hed_test_data",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "land_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
+            }
+        },
+        "folder": {
+            "name": "Graph Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-01-12T16:49:49Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

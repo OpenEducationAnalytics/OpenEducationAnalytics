@@ -1,0 +1,122 @@
+{
+    "name": "0_main_all_SIF",
+    "properties": {
+        "activities": [
+            {
+                "name": "1_land_all_SIF",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "1_land_all_SIF",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entities": {
+                            "value": "@pipeline().parameters.entities",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "2_ingest_all_SIF",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "1_land_all_SIF",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "2_ingest_all_SIF",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entities": {
+                            "value": "@pipeline().parameters.entities",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "3_refine_all_SIF",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "2_ingest_all_SIF",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "3_refine_all_SIF",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entities": {
+                            "value": "@pipeline().parameters.entities",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "entities": {
+                "type": "array",
+                "defaultValue": [
+                    "GradingAssignment",
+                    "GradingAssignmentScore",
+                    "LearningStandardItem",
+                    "MarkValueInfo",
+                    "SectionInfo",
+                    "StaffAssignment",
+                    "StaffPersonal",
+                    "StudentDailyAttendance",
+                    "StudentGrade",
+                    "StudentPersonal",
+                    "StudentSchoolEnrollment",
+                    "StudentScoreJudgementAgainstStandard",
+                    "StudentSectionEnrollment",
+                    "TeachingGroup",
+                    "TermInfo"
+                ]
+            }
+        },
+        "folder": {
+            "name": "SIF/advanced"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-11-28T19:50:28Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

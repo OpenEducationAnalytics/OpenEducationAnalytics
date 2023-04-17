@@ -1,0 +1,93 @@
+{
+    "name": "0_main_reading_progress",
+    "properties": {
+        "description": "Change the workspace as needed.\nThis module only utilizes k12 test data.\n",
+        "activities": [
+            {
+                "name": "1_land_insights_k12_test_data",
+                "description": "Insights K-12 test data is used to demonstrate the functionality of the Reading Progress module",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "1_land_reading_progress",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "land_k12_or_hed_test_data": "k12"
+                    }
+                }
+            },
+            {
+                "name": "2_ingest_reading_progress",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "1_land_insights_k12_test_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "2_ingest_reading_progress",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "3_refine_reading_progress",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "2_ingest_reading_progress",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "3_refine_reading_progress",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            }
+        },
+        "folder": {
+            "name": "1_Modules/Reading Progress Module/v0.1rc1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-02-23T16:48:49Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

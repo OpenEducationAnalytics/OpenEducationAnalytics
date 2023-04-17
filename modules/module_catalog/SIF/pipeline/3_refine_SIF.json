@@ -1,0 +1,131 @@
+{
+    "name": "3_refine_SIF",
+    "properties": {
+        "activities": [
+            {
+                "name": "refine_StudentPersonal",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "refine",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": "sif/v3.4.9/StudentPersonal",
+                        "primaryKey": "RefId"
+                    }
+                }
+            },
+            {
+                "name": "refine_StudentDailyAttendance",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "refine",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": "sif/v3.4.9/StudentDailyAttendance",
+                        "primaryKey": "RefId"
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db_for_general",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "refine_StudentPersonal",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_StudentDailyAttendance",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Refined/sif/v3.4.9/general",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": "sdb_dev_s2r_sif_v3p4p9"
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db_for_sensitive",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "refine_StudentPersonal",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_StudentDailyAttendance",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Refined/sif/v3.4.9/sensitive",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": "sdb_dev_s2r_sif_v3p4p9"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            }
+        },
+        "folder": {
+            "name": "SIF/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-11-28T19:50:19Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

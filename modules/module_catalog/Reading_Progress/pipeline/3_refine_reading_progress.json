@@ -1,0 +1,117 @@
+{
+    "name": "3_refine_reading_progress",
+    "properties": {
+        "activities": [
+            {
+                "name": "create_sql_db_for_general",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "refine_reading_progress_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Refined/reading_progress/v0.1/general",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2r_reading_progress_v0p1')",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db_for_sensitive",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "refine_reading_progress_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Refined/reading_progress/v0.1/sensitive",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2r_reading_progress_v0p1')",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "refine_reading_progress_data",
+                "description": "Refines tables from Insights located in stage2/Ingested_Corrected/reading_progress/v0.1, and creates two final tables for this module.",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "ReadingProgress_refine",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            }
+        },
+        "folder": {
+            "name": "1_Modules/Reading Progress Module/v0.1rc1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-02-23T16:48:36Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

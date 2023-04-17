@@ -1,0 +1,147 @@
+﻿@{
+    ViewData["Title"] = "Issue Verifiable Credential";
+}
+<p>Learn about Azure AD Verifiable Credentials <a href="https://aka.ms/verifyonce">here</a>.</p>
+
+<div class="text-center">
+
+    <img id="vcLogo" src="~/api/logo.png" height=200px; />
+    <h1 id="vcType">YOURVCTYPE Credential Issuance</h1>
+    <h3 id="vcDescription"></h3>
+
+    <div id="id-claims">
+        <p>You will be issued a Verifiable Credential containing these claims. Some are preset, some you can edit yourself.</p>
+        <table class="table-hover table-condensed table-striped" style="margin:0 auto">
+            <thead style="background-color:darkgray">
+                <th>Claim</th>
+                <th>Value</th>
+            </thead>
+            @foreach (var claim in (Dictionary<string, string>)ViewData["vcClaims"]) {
+                <tr>
+                    <td>@claim.Key</td>
+                    <td>@claim.Value</td>
+                </tr>
+            }
+            @foreach (var claim in (Dictionary<string, string>)ViewData["vcClaimsSelfAsserted"]) {
+                <tr>
+                    <td>@claim.Key</td>
+                    <td><input id="@claim.Key" type="text" placeholder="@claim.Value" class="selfAsserted" /></td>
+                </tr>
+            }
+            <tfoot style="background-color:darkgray">
+                <td>DID</td>
+                <td><a id="idIon" href="https://identity.foundation/ion/explorer/?did=" target="_blank">View DID with identity.foundation/explorer</a></td>
+            </tfoot>
+        </table>
+    </div>
+
+    <div id="message-wrapper" class="margin-bottom-75 margin-top-75" style="display: none">
+        <i class="fas fa-user-check green icon-text-large margin-bottom-25"></i>
+        <div id="message"></div>
+    </div>
+
+    <button type="button" id="sign-in" class="button">ISSUE CREDENTIAL</button>
+
+    <div id="qrText" style="display:none;">
+        <p class="small-text">
+            <img src="~/authenticator-icon.png" alt="Authenticator icon" class="icon-small" style="width:30px"><br>
+            Scan with Microsoft Authenticator
+        </p>
+    </div>
+    <a id="deeplink" style="display: none;margin-top: 10px;">Tap to open Authenticator on mobile</a>
+    <div id="qrcodeFrame" style="background:white;display:none">
+        <div id="qrcode" style="text-align: center; padding:25px; width:50%; margin:0 auto;"></div>
+    </div>
+
+    <script src="~/js/qrcode.min.js"></script>
+
+    <script>
+        var signIn = document.getElementById('sign-in');
+        var qrcode = new QRCode("qrcode", { width: 300, height: 300 });
+
+        //document.getElementById('idLanguage').innerHTML = navigator.language;
+        document.getElementById('message').innerHTML = "Preparing QR code...";
+
+        var apiEndpoint = window.location.origin;
+        var respIssuanceReq = null;
+        signIn.addEventListener('click', () => {
+            document.getElementById('id-claims').style.display = "none";
+            document.getElementById('message-wrapper').style.display = "block";
+
+            var queryStrings = "";
+            var sep = "?";
+            var selfAssertedClaims = document.getElementsByClassName("selfAsserted");
+            for( var idx = 0; idx < selfAssertedClaims.length; idx++ ) {
+                queryStrings += sep + selfAssertedClaims[idx].id + "=" + selfAssertedClaims[idx].value;
+                sep = "&";
+            }
+
+            fetch(apiEndpoint + '/api/issue-request' + queryStrings)
+                .then(response => response.text())
+                .catch(error => document.getElementById("message").innerHTML = error)
+                .then(response => {
+                    if (response.length > 0) {
+                        //console.log(response)
+                        respIssuanceReq = JSON.parse(response);
+                        qrcode.makeCode(respIssuanceReq.url);
+                        document.getElementById('qrText').style.display = "block";
+                        document.getElementById('qrcodeFrame').style.display = "block";
+                        document.getElementsByTagName("img")[2].src = respIssuanceReq.qrCode;
+                        document.getElementById('message').innerHTML = "Waiting for scanning of QR code...";
+                        document.getElementById('sign-in').style.display = "none";
+                    }
+                })
+
+            var checkStatus = setInterval(function () {
+                fetch(apiEndpoint + '/api/issue-response-status?id=' + respIssuanceReq.id)
+                    .then(response => response.text())
+                    .catch(error => document.getElementById("message").innerHTML = error)
+                    .then(response => {
+                        if (response.length > 0) {
+                            console.log(response)
+                            respMsg = JSON.parse(response);
+                            document.getElementById('message-wrapper').style.display = "block";
+                            document.getElementById('qrText').style.display = "none";
+                            document.getElementById('qrcodeFrame').style.display = "none";
+                            document.getElementById('qrcode').style.display = "none";
+                            document.getElementById('sign-in').textContent = 'Verify Again';
+                            // respMsg.status == 1 -> QR Code scanned
+                            if (respMsg.status == 1) {
+                                document.getElementById('message').innerHTML = respMsg.message;
+                                //clearInterval(checkStatus);
+                            }
+                            // respMsg.status == 2 -> VC issued
+                            if (respMsg.status == 2) {
+                                document.getElementById('message').innerHTML = respMsg.message;
+                                clearInterval(checkStatus);
+                            }
+                            // respMsg.status == 99 -> VC issueance failed
+                            if (respMsg.status == 99) {
+                                document.getElementById('message').innerHTML = respMsg.message;
+                                document.getElementById('message').style.textColor = "red";
+                                clearInterval(checkStatus);
+                            }
+                        }
+                    })
+            }, 3000);
+
+        })
+
+        var credentialType;
+        fetch( window.location.origin + '/api/echo')
+            .then(response => response.text())
+            .catch(error => document.getElementById("message").innerHTML = error)
+            .then(response => {
+                if (response.length > 0) {
+                    var data = JSON.parse(response);
+                    credentialType = data.credentialType;
+                    document.getElementById('vcType').innerText = data.credentialType + " Issuance";
+                    document.getElementById('vcDescription').innerText = data.displayCard.description;
+                    document.title = data.credentialType + ' Verifiable Credentials';
+                    document.getElementById('idIon').href = "https://identity.foundation/ion/explorer/?did=" + data.didIssuer;
+                }
+            })
+
+    </script>
+
+</div>

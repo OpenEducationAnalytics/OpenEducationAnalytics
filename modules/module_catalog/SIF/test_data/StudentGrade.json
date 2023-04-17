@@ -1,0 +1,102 @@
+[
+  {
+    "RefId": "359D7510-1AD0-A9D7-A8C3-DAD0A85103A2",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290C",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "Homegroup": "7A",
+    "YearLevel": 7,
+    "TeachingGroupShortName": "Year 7 Teachers",
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+    "StaffPersonalRefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+    "Markers": "H. Lee, J. Gardner",
+    "TermInfoRefId": "E537D78A-E00B-C744-EF90-F2871CEB91A2",
+    "Description": "Subject of grade was determined by the teaching group.",
+    "LearningArea": "English",
+    "LearningStandardList": "F637D78A-E00B-C744-EF90-F2871CEB91A2",
+    "GradingScoreList": "Short Story, Report, Persuasive",
+    "TeacherJudgment": "Average",
+    "Grade": {
+      "Percentage": 79,
+      "Numeric": 3.0,
+      "Letter": "C",
+      "Narrative": "Johnny is only achieving average performance."
+    },
+    "TermSpan": "0828",
+    "SchoolYear": "2021"
+  },
+  {
+    "RefId": "359D7510-1AD0-A9D7-A8C3-DAD0A85103A3",
+    "StudentPersonalRefId": "9897466F-200E-4BC1-B9AE-D1507DA15CEF",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "Homegroup": "7A",
+    "YearLevel": 7,
+    "TeachingGroupShortName": "Year 7 Teachers",
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+    "StaffPersonalRefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+    "Markers": "H. Lee, J. Gardner",
+    "TermInfoRefId": "E537D78A-E00B-C744-EF90-F2871CEB91A2",
+    "Description": "Subject of grade was determined by the teaching group.",
+    "LearningArea": "English",
+    "LearningStandardList": "F637D78A-E00B-C744-EF90-F2871CEB91A2",
+    "GradingScoreList": "Short Story, Report, Persuasive",
+    "TeacherJudgment": "Average",
+    "Grade": {
+      "Percentage": 95,
+      "Numeric": 4.8,
+      "Letter": "A",
+      "Narrative": "Johnny is only achieving average performance."
+    },
+    "TermSpan": "0828",
+    "SchoolYear": "2021"
+  },
+  {
+    "RefId": "359D7510-1AD0-A9D7-A8C3-DAD0A85103A4",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290D",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "Homegroup": "7A",
+    "YearLevel": 7,
+    "TeachingGroupShortName": "Year 7 Teachers",
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+    "StaffPersonalRefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+    "Markers": "H. Lee, J. Gardner",
+    "TermInfoRefId": "E537D78A-E00B-C744-EF90-F2871CEB91A2",
+    "Description": "Subject of grade was determined by the teaching group.",
+    "LearningArea": "English",
+    "LearningStandardList": "F637D78A-E00B-C744-EF90-F2871CEB91A2",
+    "GradingScoreList": "Short Story, Report, Persuasive",
+    "TeacherJudgment": "Average",
+    "Grade": {
+      "Percentage": 90,
+      "Numeric": 4.5,
+      "Letter": "B",
+      "Narrative": "Johnny is only achieving average performance."
+    },
+    "TermSpan": "0828",
+    "SchoolYear": "2021"
+  },
+  {
+    "RefId": "359D7510-1AD0-A9D7-A8C3-DAD0A85103A5",
+    "StudentPersonalRefId": "7C834EA9-EDA1-2090-347F-83297E1C290E",
+    "SchoolInfoRefId": "D3E34B35-9D75-101A-1234-00AA001A1676",
+    "Homegroup": "7A",
+    "YearLevel": 7,
+    "TeachingGroupShortName": "Year 7 Teachers",
+    "TeachingGroupRefId": "C337D78A-E00B-C744-EF90-F2871CEB91A2",
+    "StaffPersonalRefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+    "Markers": "H. Lee, J. Gardner",
+    "TermInfoRefId": "E537D78A-E00B-C744-EF90-F2871CEB91A2",
+    "Description": "Subject of grade was determined by the teaching group.",
+    "LearningArea": "English",
+    "LearningStandardList": "F637D78A-E00B-C744-EF90-F2871CEB91A2",
+    "GradingScoreList": "Short Story, Report, Persuasive",
+    "TeacherJudgment": "Average",
+    "Grade": {
+      "Percentage": 100,
+      "Numeric": 5.0,
+      "Letter": "A",
+      "Narrative": "Johnny is only achieving average performance."
+    },
+    "TermSpan": "0828",
+    "SchoolYear": "2021"
+  }
+]

@@ -1,0 +1,65 @@
+{
+    "name": "deleteCanvasStage2Files",
+    "properties": {
+        "activities": [
+            {
+                "name": "ForEach file",
+                "type": "ForEach",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.stage1FileList",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "Delete Stage2np",
+                            "type": "Delete",
+                            "dependsOn": [],
+                            "policy": {
+                                "timeout": "7.00:00:00",
+                                "retry": 0,
+                                "retryIntervalInSeconds": 30,
+                                "secureOutput": false,
+                                "secureInput": false
+                            },
+                            "userProperties": [],
+                            "typeProperties": {
+                                "dataset": {
+                                    "referenceName": "Stage2npData_Parquet",
+                                    "type": "DatasetReference",
+                                    "parameters": {
+                                        "Folder": {
+                                            "value": "@toLower('')",
+                                            "type": "Expression"
+                                        },
+                                        "FileName": {
+                                            "value": "@replace(item(), '.gz', '')",
+                                            "type": "Expression"
+                                        }
+                                    }
+                                },
+                                "enableLogging": false,
+                                "storeSettings": {
+                                    "type": "AzureBlobFSReadSettings",
+                                    "recursive": false,
+                                    "enablePartitionDiscovery": false
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "stage1FileList": {
+                "type": "array"
+            }
+        },
+        "folder": {
+            "name": "CanvasData"
+        },
+        "annotations": []
+    }
+}

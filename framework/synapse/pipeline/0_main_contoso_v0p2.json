@@ -1,0 +1,88 @@
+{
+	"name": "0_main_contoso_v0p2",
+	"properties": {
+		"activities": [
+			{
+				"name": "1_land_contoso_v1p0",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "1_land_contoso_v0p2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"workspace": {
+							"value": "@pipeline().parameters.workspace",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "2_ingest_contoso_v1p0",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "1_land_contoso_v1p0",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "2_ingest_contoso_v0p2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"workspace": {
+							"value": "@pipeline().parameters.workspace",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "3_refine_contoso_v1p0",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "2_ingest_contoso_v1p0",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "3_refine_contoso_v0p2",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"workspace": {
+							"value": "@pipeline().parameters.workspace",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"workspace": {
+				"type": "string",
+				"defaultValue": "dev"
+			}
+		},
+		"folder": {
+			"name": "contoso_v0p2"
+		},
+		"annotations": []
+	}
+}

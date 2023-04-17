@@ -1,0 +1,21 @@
+{
+    "name": "LS_SQL_Serverless",
+    "type": "Microsoft.Synapse/workspaces/linkedservices",
+    "properties": {
+        "parameters": {
+            "dbName": {
+                "type": "string",
+                "defaultValue": "master"
+            }
+        },
+        "annotations": [],
+        "type": "AzureSqlDatabase",
+        "typeProperties": {
+            "connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=yoursynapseworkspace-ondemand.sql.azuresynapse.net;Initial Catalog=@{linkedService().dbName}"
+        },
+        "connectVia": {
+            "referenceName": "AutoResolveIntegrationRuntime",
+            "type": "IntegrationRuntimeReference"
+        }
+    }
+}

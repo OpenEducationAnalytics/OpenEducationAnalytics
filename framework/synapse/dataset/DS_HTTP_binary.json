@@ -1,0 +1,32 @@
+{
+    "name": "DS_HTTP_binary",
+    "properties": {
+        "description": "Retrieves data from an http endpoint.\nThe data can be in any format - the binary dataset allows us to pull any payload without affecting it.",
+        "linkedServiceName": {
+            "referenceName": "LS_HTTP",
+            "type": "LinkedServiceReference",
+            "parameters": {
+                "baseURL": {
+                    "value": "@dataset().URL",
+                    "type": "Expression"
+                }
+            }
+        },
+        "parameters": {
+            "URL": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "type": "Binary",
+        "typeProperties": {
+            "location": {
+                "type": "HttpServerLocation"
+            }
+        }
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

@@ -1,0 +1,72 @@
+{
+	"name": "create_lake_db",
+	"properties": {
+		"activities": [
+			{
+				"name": "create_lake_db",
+				"type": "SynapseNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebook": {
+						"referenceName": "OEA_connector",
+						"type": "NotebookReference"
+					},
+					"parameters": {
+						"method_name": {
+							"value": "create_lake_db",
+							"type": "string"
+						},
+						"kwargs": {
+							"value": {
+								"value": "{'dataset_full_path':'@{pipeline().parameters.datasetFullPath}'}",
+								"type": "Expression"
+							},
+							"type": "string"
+						},
+						"workspace": {
+							"value": {
+								"value": "@pipeline().parameters.workspace",
+								"type": "Expression"
+							},
+							"type": "string"
+						}
+					},
+					"sparkPool": {
+						"referenceName": "spark3p2sm",
+						"type": "BigDataPoolReference"
+					},
+					"conf": {
+						"spark.dynamicAllocation.enabled": null,
+						"spark.dynamicAllocation.minExecutors": null,
+						"spark.dynamicAllocation.maxExecutors": null
+					},
+					"numExecutors": null
+				}
+			}
+		],
+		"parameters": {
+			"workspace": {
+				"type": "string",
+				"defaultValue": "dev"
+			},
+			"datasetFullPath": {
+				"type": "string",
+				"defaultValue": "stage2/Ingested/contoso/v0.1"
+			}
+		},
+		"folder": {
+			"name": "OEA_Framework"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-11-15T20:46:03Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

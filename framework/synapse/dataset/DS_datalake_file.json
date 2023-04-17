@@ -1,0 +1,45 @@
+{
+    "name": "DS_datalake_file",
+    "properties": {
+        "description": "Used for landing data in the data lake.\nDefaults to landing data in stage1.\nNote that you can specify a full path in the filename param (eg, to land a file in a specific folder filename param can be 'contoso_sis/students/students.csv').\n",
+        "linkedServiceName": {
+            "referenceName": "LS_DataLake",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": {
+            "stage": {
+                "type": "string",
+                "defaultValue": "stage1"
+            },
+            "path": {
+                "type": "string"
+            },
+            "filename": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "type": "Binary",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "fileName": {
+                    "value": "@dataset().filename",
+                    "type": "Expression"
+                },
+                "folderPath": {
+                    "value": "@dataset().path",
+                    "type": "Expression"
+                },
+                "fileSystem": {
+                    "value": "@dataset().stage",
+                    "type": "Expression"
+                }
+            }
+        }
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

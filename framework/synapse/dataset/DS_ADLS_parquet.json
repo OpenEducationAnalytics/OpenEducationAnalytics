@@ -1,0 +1,40 @@
+{
+    "name": "DS_ADLS_parquet",
+    "properties": {
+        "description": "Used for landing data in the data lake as in parquet format.\nDefaults to landing data in stage1np.\nNote that you cannot specify a filename because with parquet the filename should be auto-generated.\n",
+        "linkedServiceName": {
+            "referenceName": "LS_Datalake",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": {
+            "filesystem": {
+                "type": "string",
+                "defaultValue": "stage1np"
+            },
+            "directory": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "type": "Parquet",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "folderPath": {
+                    "value": "@dataset().directory",
+                    "type": "Expression"
+                },
+                "fileSystem": {
+                    "value": "@dataset().filesystem",
+                    "type": "Expression"
+                }
+            },
+            "compressionCodec": "snappy"
+        },
+        "schema": []
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

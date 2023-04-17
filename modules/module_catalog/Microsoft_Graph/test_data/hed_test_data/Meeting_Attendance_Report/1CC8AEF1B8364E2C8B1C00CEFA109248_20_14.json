@@ -1,0 +1,621 @@
+{
+    "@odata.context": "https://graph.microsoft.com/v1.0/me/onlineMeetings/ee8fee12-f5d6-418a-b394-713894e50b1c/attendanceReports/9104c0b4-dc33-444f-9f20-a6a12f06210c",
+    "id": "ee8fee12-f5d6-418a-b394-713894e50b1c",
+    "totalParticipantCount": 36,
+    "meetingStartDateTime": "2022-1-20T14:0:00.00Z",
+    "meetingEndDateTime": "2022-1-20T15:15:00.00Z",
+    "attendanceRecords": [
+        {
+            "emailAddress": "SarahGLittle@contoso.org",
+            "totalAttendanceInSeconds": 4200,
+            "role": "Student",
+            "identity": {
+                "id": "d88e5ccc-b822-45c2-8080-2f020b9e52e0",
+                "displayName": "Sarah Little",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:3:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:13:00.00Z",
+                    "durationInSeconds": 4200
+                }
+            ]
+        },
+        {
+            "emailAddress": "GregoryKMizell@contoso.org",
+            "totalAttendanceInSeconds": 3960,
+            "role": "Student",
+            "identity": {
+                "id": "db87bbf7-f766-47ad-a8f1-9885a196e01e",
+                "displayName": "Gregory Mizell",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:0:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:6:00.00Z",
+                    "durationInSeconds": 3960
+                }
+            ]
+        },
+        {
+            "emailAddress": "NancyRHart@contoso.org",
+            "totalAttendanceInSeconds": 4080,
+            "role": "Student",
+            "identity": {
+                "id": "8ff6d109-edb7-4d0e-9e3e-623681952695",
+                "displayName": "Nancy Hart",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:12:00.00Z",
+                    "durationInSeconds": 4080
+                }
+            ]
+        },
+        {
+            "emailAddress": "RobertMJude@contoso.org",
+            "totalAttendanceInSeconds": 4260,
+            "role": "Student",
+            "identity": {
+                "id": "c08bb0f9-e2e2-4f72-9205-8d5935c8da67",
+                "displayName": "Robert Jude",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:2:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:13:00.00Z",
+                    "durationInSeconds": 4260
+                }
+            ]
+        },
+        {
+            "emailAddress": "PearlMSandiford@contoso.org",
+            "totalAttendanceInSeconds": 3840,
+            "role": "Student",
+            "identity": {
+                "id": "a1577386-09fa-4f89-bca3-bbadfa425ba5",
+                "displayName": "Pearl Sandiford",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:1:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:5:00.00Z",
+                    "durationInSeconds": 3840
+                }
+            ]
+        },
+        {
+            "emailAddress": "RooseveltKBridges@contoso.org",
+            "totalAttendanceInSeconds": 4440,
+            "role": "Student",
+            "identity": {
+                "id": "84cf5bc8-1b60-463d-8312-c44ecf79a247",
+                "displayName": "Roosevelt Bridges",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:0:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:14:00.00Z",
+                    "durationInSeconds": 4440
+                }
+            ]
+        },
+        {
+            "emailAddress": "BobbyLMcCarthy@contoso.org",
+            "totalAttendanceInSeconds": 3600,
+            "role": "Student",
+            "identity": {
+                "id": "f90b5ddb-17e2-4720-903d-20085e87373d",
+                "displayName": "Bobby McCarthy",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:0:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:0:00.00Z",
+                    "durationInSeconds": 3600
+                }
+            ]
+        },
+        {
+            "emailAddress": "PatrickJJohnson@contoso.org",
+            "totalAttendanceInSeconds": 3540,
+            "role": "Student",
+            "identity": {
+                "id": "f2f574e8-3c14-447b-8f0a-9d22bb5d4d04",
+                "displayName": "Patrick Johnson",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:3:00.00Z",
+                    "durationInSeconds": 3540
+                }
+            ]
+        },
+        {
+            "emailAddress": "LesleyKJenson@contoso.org",
+            "totalAttendanceInSeconds": 3900,
+            "role": "Student",
+            "identity": {
+                "id": "f6b5c18c-8938-4268-9d5b-e0697a38f019",
+                "displayName": "Lesley Jenson",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:0:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:5:00.00Z",
+                    "durationInSeconds": 3900
+                }
+            ]
+        },
+        {
+            "emailAddress": "MargaretRPatton@contoso.org",
+            "totalAttendanceInSeconds": 3480,
+            "role": "Student",
+            "identity": {
+                "id": "21150af9-ba91-4950-8aa8-d99ba66fde51",
+                "displayName": "Margaret Patton",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:2:00.00Z",
+                    "durationInSeconds": 3480
+                }
+            ]
+        },
+        {
+            "emailAddress": "JamesJKnight@contoso.org",
+            "totalAttendanceInSeconds": 3660,
+            "role": "Student",
+            "identity": {
+                "id": "5f786be7-c5be-4339-a1a5-583603e23086",
+                "displayName": "James Knight",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:5:00.00Z",
+                    "durationInSeconds": 3660
+                }
+            ]
+        },
+        {
+            "emailAddress": "MarshaJBailey@contoso.org",
+            "totalAttendanceInSeconds": 4020,
+            "role": "Student",
+            "identity": {
+                "id": "54729d63-095a-45e8-9a0b-a1545c5e7612",
+                "displayName": "Marsha Bailey",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:1:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:8:00.00Z",
+                    "durationInSeconds": 4020
+                }
+            ]
+        },
+        {
+            "emailAddress": "MicheleDHouston@contoso.org",
+            "totalAttendanceInSeconds": 3660,
+            "role": "Student",
+            "identity": {
+                "id": "a4604388-d346-4a6d-b9f5-fd2072b0c540",
+                "displayName": "Michele Houston",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:5:00.00Z",
+                    "durationInSeconds": 3660
+                }
+            ]
+        },
+        {
+            "emailAddress": "RogelioTShryock@contoso.org",
+            "totalAttendanceInSeconds": 3900,
+            "role": "Student",
+            "identity": {
+                "id": "190ffea0-8528-466f-bcd3-c7b8f759c4bd",
+                "displayName": "Rogelio Shryock",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:1:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:6:00.00Z",
+                    "durationInSeconds": 3900
+                }
+            ]
+        },
+        {
+            "emailAddress": "ArnoldVMurphy@contoso.org",
+            "totalAttendanceInSeconds": 4200,
+            "role": "Student",
+            "identity": {
+                "id": "d2df5195-1e67-4d31-9c9f-9f0c11039574",
+                "displayName": "Arnold Murphy",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:14:00.00Z",
+                    "durationInSeconds": 4200
+                }
+            ]
+        },
+        {
+            "emailAddress": "RamonaWSimms@contoso.org",
+            "totalAttendanceInSeconds": 4140,
+            "role": "Student",
+            "identity": {
+                "id": "d1a2ca8d-cb0d-4c86-9309-ef7dcd1312a8",
+                "displayName": "Ramona Simms",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:13:00.00Z",
+                    "durationInSeconds": 4140
+                }
+            ]
+        },
+        {
+            "emailAddress": "FrederickAWoodhouse@contoso.org",
+            "totalAttendanceInSeconds": 6720,
+            "role": "Student",
+            "identity": {
+                "id": "30d2b13e-7dfe-4d28-be46-9f0c1988dd8f",
+                "displayName": "Frederick Woodhouse",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:5:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:57:00.00Z",
+                    "durationInSeconds": 6720
+                }
+            ]
+        },
+        {
+            "emailAddress": "MichaelCKirkpatrick@contoso.org",
+            "totalAttendanceInSeconds": 4200,
+            "role": "Student",
+            "identity": {
+                "id": "c9e50bc4-116e-456f-b3e1-660f281b7bdd",
+                "displayName": "Michael Kirkpatrick",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:5:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:15:00.00Z",
+                    "durationInSeconds": 4200
+                }
+            ]
+        },
+        {
+            "emailAddress": "PeterAEbert@contoso.org",
+            "totalAttendanceInSeconds": 4140,
+            "role": "Student",
+            "identity": {
+                "id": "41e76120-4659-409d-a916-f4f07cf712dc",
+                "displayName": "Peter Ebert",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:3:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:12:00.00Z",
+                    "durationInSeconds": 4140
+                }
+            ]
+        },
+        {
+            "emailAddress": "TerrySVasquez@contoso.org",
+            "totalAttendanceInSeconds": 3660,
+            "role": "Student",
+            "identity": {
+                "id": "e00470cb-8d7b-4982-8f9c-6d13e0062e49",
+                "displayName": "Terry Vasquez",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:5:00.00Z",
+                    "durationInSeconds": 3660
+                }
+            ]
+        },
+        {
+            "emailAddress": "BrandonYVandenberg@contoso.org",
+            "totalAttendanceInSeconds": 6900,
+            "role": "Student",
+            "identity": {
+                "id": "7a3f4bda-a13a-47de-baa1-c8af1426536b",
+                "displayName": "Brandon Vandenberg",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:3:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:58:00.00Z",
+                    "durationInSeconds": 6900
+                }
+            ]
+        },
+        {
+            "emailAddress": "LynnAMeador@contoso.org",
+            "totalAttendanceInSeconds": 3960,
+            "role": "Student",
+            "identity": {
+                "id": "27d88160-cb9e-4950-81a4-3087e62ab393",
+                "displayName": "Lynn Meador",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:3:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:9:00.00Z",
+                    "durationInSeconds": 3960
+                }
+            ]
+        },
+        {
+            "emailAddress": "BarbaraAFarmer@contoso.org",
+            "totalAttendanceInSeconds": 3840,
+            "role": "Student",
+            "identity": {
+                "id": "ee7b700b-2aab-438f-b1c9-724b1f337f24",
+                "displayName": "Barbara Farmer",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:3:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:7:00.00Z",
+                    "durationInSeconds": 3840
+                }
+            ]
+        },
+        {
+            "emailAddress": "RaymondMCurtis@contoso.org",
+            "totalAttendanceInSeconds": 3360,
+            "role": "Student",
+            "identity": {
+                "id": "09c9d103-3ba6-4caa-aba1-67e99a6cb4d7",
+                "displayName": "Raymond Curtis",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:0:00.00Z",
+                    "durationInSeconds": 3360
+                }
+            ]
+        },
+        {
+            "emailAddress": "StephenOMueller@contoso.org",
+            "totalAttendanceInSeconds": 4080,
+            "role": "Student",
+            "identity": {
+                "id": "012cdf56-5a95-4866-a789-a5a9c8b05078",
+                "displayName": "Stephen Mueller",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:1:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:9:00.00Z",
+                    "durationInSeconds": 4080
+                }
+            ]
+        },
+        {
+            "emailAddress": "DorothyRCox@contoso.org",
+            "totalAttendanceInSeconds": 3360,
+            "role": "Student",
+            "identity": {
+                "id": "33e277a2-f555-4098-826d-d1056b8fa552",
+                "displayName": "Dorothy Cox",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:0:00.00Z",
+                    "durationInSeconds": 3360
+                }
+            ]
+        },
+        {
+            "emailAddress": "MichelleARose@contoso.org",
+            "totalAttendanceInSeconds": 4200,
+            "role": "Student",
+            "identity": {
+                "id": "ff9028fc-ccec-44e8-919d-e6fb79ee8637",
+                "displayName": "Michelle Rose",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:1:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:11:00.00Z",
+                    "durationInSeconds": 4200
+                }
+            ]
+        },
+        {
+            "emailAddress": "MarionRCamara@contoso.org",
+            "totalAttendanceInSeconds": 3420,
+            "role": "Student",
+            "identity": {
+                "id": "b6bd278f-c84e-4426-9500-6328093d3bfb",
+                "displayName": "Marion Camara",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:3:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:0:00.00Z",
+                    "durationInSeconds": 3420
+                }
+            ]
+        },
+        {
+            "emailAddress": "GeorgeJHolt@contoso.org",
+            "totalAttendanceInSeconds": 4320,
+            "role": "Student",
+            "identity": {
+                "id": "93f69de6-3ded-47f7-a3b8-1aabe37bc36f",
+                "displayName": "George Holt",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:0:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:12:00.00Z",
+                    "durationInSeconds": 4320
+                }
+            ]
+        },
+        {
+            "emailAddress": "KirstenJDavis@contoso.org",
+            "totalAttendanceInSeconds": 4260,
+            "role": "Student",
+            "identity": {
+                "id": "01d1b075-2375-41dc-a9a1-815a0d459c68",
+                "displayName": "Kirsten Davis",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:0:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:11:00.00Z",
+                    "durationInSeconds": 4260
+                }
+            ]
+        },
+        {
+            "emailAddress": "VivianJJohns@contoso.org",
+            "totalAttendanceInSeconds": 4320,
+            "role": "Student",
+            "identity": {
+                "id": "aaa30e0f-9048-4a13-b676-f9126cdbf516",
+                "displayName": "Vivian Johns",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:2:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:14:00.00Z",
+                    "durationInSeconds": 4320
+                }
+            ]
+        },
+        {
+            "emailAddress": "KrystalSMorales@contoso.org",
+            "totalAttendanceInSeconds": 3840,
+            "role": "Student",
+            "identity": {
+                "id": "ed0f8aaa-54bd-420f-8a6a-9c4dfe19db3c",
+                "displayName": "Krystal Morales",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:4:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:8:00.00Z",
+                    "durationInSeconds": 3840
+                }
+            ]
+        },
+        {
+            "emailAddress": "GeorgeSOdell@contoso.org",
+            "totalAttendanceInSeconds": 6840,
+            "role": "Student",
+            "identity": {
+                "id": "5a94bb6e-78ad-44e9-b76b-b23a192a2b67",
+                "displayName": "George Odell",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:3:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:57:00.00Z",
+                    "durationInSeconds": 6840
+                }
+            ]
+        },
+        {
+            "emailAddress": "ShaneJMcCaffrey@contoso.org",
+            "totalAttendanceInSeconds": 3780,
+            "role": "Student",
+            "identity": {
+                "id": "72ee43df-4b55-4e20-a9a5-35b8e11795de",
+                "displayName": "Shane McCaffrey",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:1:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:4:00.00Z",
+                    "durationInSeconds": 3780
+                }
+            ]
+        },
+        {
+            "emailAddress": "KimberlyOJohnson@contoso.org",
+            "totalAttendanceInSeconds": 3780,
+            "role": "Student",
+            "identity": {
+                "id": "7e2a18e3-ae91-4a13-b0cb-cc7dddac49de",
+                "displayName": "Kimberly Johnson",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:3:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:6:00.00Z",
+                    "durationInSeconds": 3780
+                }
+            ]
+        },
+        {
+            "emailAddress": "UlyssesMCulbreath@contoso.org",
+            "totalAttendanceInSeconds": 7020,
+            "role": "Student",
+            "identity": {
+                "id": "6ea75eef-4c40-47a5-b51f-fd66f47f2e85",
+                "displayName": "Ulysses Culbreath",
+                "tenantId": ""
+            },
+            "attendanceIntervals": [
+                {
+                    "joinDateTime": "2022-1-20T14:1:00.00Z",
+                    "leaveDateTime": "2022-1-20T15:58:00.00Z",
+                    "durationInSeconds": 7020
+                }
+            ]
+        }
+    ]
+}

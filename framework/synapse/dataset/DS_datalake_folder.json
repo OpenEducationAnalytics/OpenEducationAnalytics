@@ -1,0 +1,38 @@
+{
+    "name": "DS_datalake_folder",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "LS_DataLake",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": {
+            "filesystem": {
+                "type": "string",
+                "defaultValue": "@coalesce(null)"
+            },
+            "directory": {
+                "type": "string",
+                "defaultValue": "@coalesce(null)"
+            }
+        },
+        "folder": {
+            "name": "OEA_Framework"
+        },
+        "annotations": [],
+        "type": "Binary",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "folderPath": {
+                    "value": "@dataset().directory",
+                    "type": "Expression"
+                },
+                "fileSystem": {
+                    "value": "@dataset().filesystem",
+                    "type": "Expression"
+                }
+            }
+        }
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

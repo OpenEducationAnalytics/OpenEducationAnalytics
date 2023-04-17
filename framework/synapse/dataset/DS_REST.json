@@ -1,0 +1,47 @@
+{
+	"name": "DS_REST",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_REST",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"ClientId": {
+					"value": "@dataset().ClientId",
+					"type": "Expression"
+				},
+				"SecretName": {
+					"value": "@dataset().SecretName",
+					"type": "Expression"
+				},
+				"BaseURL": {
+					"value": "@dataset().BaseURL",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"RelativeURL": {
+				"type": "string"
+			},
+			"ClientId": {
+				"type": "string"
+			},
+			"SecretName": {
+				"type": "string"
+			},
+			"BaseURL": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"typeProperties": {
+			"relativeUrl": {
+				"value": "@dataset().RelativeURL",
+				"type": "Expression"
+			}
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

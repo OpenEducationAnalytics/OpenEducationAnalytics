@@ -1,0 +1,53 @@
+{
+    "name": "2_build_LA_fact_tables",
+    "properties": {
+        "activities": [
+            {
+                "name": "build_LA_fact_tables",
+                "description": "Builds the fact tables for this package that are needed to support the PBI file.",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "LA_build_fact_tables",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            }
+        },
+        "folder": {
+            "name": "Learning Analytics Package/v1.0"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-01-24T00:06:04Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

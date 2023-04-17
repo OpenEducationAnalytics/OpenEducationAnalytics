@@ -1,0 +1,338 @@
+[
+{
+    "RefId": "A8C3A2E3-5B35-9D75-101D-00AA001A0000",
+    "LocalId": "946379881",
+    "StateProvinceId": "C2345681",
+    "ElectronicIdList": {
+      "ElectronicId": [
+        {
+          "Type": "01",
+          "value": "206655"
+        }
+      ]
+    },
+    "OtherIdList": {
+      "OtherId": [
+        {
+          "Type": "0004",
+          "value": "333333333"
+        }
+      ]
+    },
+    "PersonInfo": {
+      "Name": {
+        "Type": "LGL",
+        "FamilyName": "Smith",
+        "GivenName": "Thomas",
+        "FullName": "Thomas Smith"
+      },
+      "OtherNames": {
+        "Name": [
+          {
+            "Type": "AKA",
+            "FamilyName": "Anderson",
+            "GivenName": "Samuel",
+            "FullName": "Samuel Anderson"
+          },
+          {
+            "Type": "PRF",
+            "FamilyName": "Rowinski",
+            "GivenName": "Sam",
+            "FullName": "Sam Rowinski "
+          }
+        ]
+      },
+      "Demographics": {
+        "IndigenousStatus": "3",
+        "Sex": "1",
+        "BirthDate": "1990-09-26",
+        "BirthDateVerification": "1004",
+        "PlaceOfBirth": "Clayton",
+        "StateOfBirth": "VIC",
+        "CountryOfBirth": "1101",
+        "CountriesOfCitizenship": {
+          "CountryOfCitizenship": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountriesOfResidency": {
+          "CountryOfResidency": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountryArrivalDate": "1990-09-26",
+        "AustralianCitizenshipStatus": "1",
+        "EnglishProficiency": {
+          "Code": "1"
+        },
+        "LanguageList": {
+          "Language": [
+            {
+              "Code": "0001",
+              "LanguageType": "1"
+            }
+          ]
+        },
+        "DwellingArrangement": {
+          "Code": "1671"
+        },
+        "Religion": {
+          "Code": "2013"
+        },
+        "ReligiousEventList": {
+          "ReligiousEvent": [
+            {
+              "Type": "Baptism",
+              "Date": "2000-09-01"
+            },
+            {
+              "Type": "Christmas",
+              "Date": "2009-12-24"
+            }
+          ]
+        },
+        "ReligiousRegion": "The Religion Region",
+        "PermanentResident": "P",
+        "VisaSubClass": "101",
+        "VisaStatisticalCode": "05"
+      },
+      "AddressList": {
+        "Address": [
+          {
+            "Type": "0123",
+            "Role": "012A",
+            "Street": {
+              "Line1": "Unit1/10",
+              "Line2": "Barkley Street"
+            },
+            "City": "Yarra Glenn",
+            "StateProvince": "VIC",
+            "Country": "1101",
+            "PostalCode": "9999"
+          },
+          {
+            "Type": "0123A",
+            "Role": "1073",
+            "Street": {
+              "Line1": "34 Term Address Street"
+            },
+            "City": "Home Town",
+            "StateProvince": "WA",
+            "Country": "1101",
+            "PostalCode": "9999"
+          }
+        ]
+      },
+      "PhoneNumberList": {
+        "PhoneNumber": [
+          {
+            "Type": "0096",
+            "Number": "03 9637-2289",
+            "Extension": "72289",
+            "ListedStatus": "Y"
+          },
+          {
+            "Type": "0888",
+            "Number": "0437-765-234",
+            "ListedStatus": "N"
+          }
+        ]
+      },
+      "EmailList": {
+        "Email": [
+          {
+            "Type": "01",
+            "value": "fsmith@yahoo.com"
+          },
+          {
+            "Type": "02",
+            "value": "freddy@gmail.com"
+          }
+        ]
+      }
+    },
+    "Title": "Class Teacher",
+    "EmploymentStatus": "A",
+    "MostRecent": {
+      "SchoolLocalId": "S01011234",
+      "LocalCampusId": "D",
+      "NAPLANClassList": {
+        "ClassCode": [
+          "9",
+          "7"
+        ]
+      },
+      "HomeGroup": "9G"
+    }
+  },
+  {
+    "RefId": "A8CCCCE3-5B35-9D75-101D-00AA001A0000",
+    "LocalId": "946379881",
+    "StateProvinceId": "C2345681",
+    "ElectronicIdList": {
+      "ElectronicId": [
+        {
+          "Type": "01",
+          "value": "206655"
+        }
+      ]
+    },
+    "OtherIdList": {
+      "OtherId": [
+        {
+          "Type": "0004",
+          "value": "333333333"
+        }
+      ]
+    },
+    "PersonInfo": {
+      "Name": {
+        "Type": "LGL",
+        "FamilyName": "Long",
+        "GivenName": "Tamara",
+        "FullName": "Tamara Long"
+      },
+      "OtherNames": {
+        "Name": [
+          {
+            "Type": "AKA",
+            "FamilyName": "Anderson",
+            "GivenName": "Samuel",
+            "FullName": "Samuel Anderson"
+          },
+          {
+            "Type": "PRF",
+            "FamilyName": "Rowinski",
+            "GivenName": "Sam",
+            "FullName": "Sam Rowinski "
+          }
+        ]
+      },
+      "Demographics": {
+        "IndigenousStatus": "3",
+        "Sex": "1",
+        "BirthDate": "1990-09-26",
+        "BirthDateVerification": "1004",
+        "PlaceOfBirth": "Clayton",
+        "StateOfBirth": "VIC",
+        "CountryOfBirth": "1101",
+        "CountriesOfCitizenship": {
+          "CountryOfCitizenship": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountriesOfResidency": {
+          "CountryOfResidency": [
+            "8104",
+            "1101"
+          ]
+        },
+        "CountryArrivalDate": "1990-09-26",
+        "AustralianCitizenshipStatus": "1",
+        "EnglishProficiency": {
+          "Code": "1"
+        },
+        "LanguageList": {
+          "Language": [
+            {
+              "Code": "0001",
+              "LanguageType": "1"
+            }
+          ]
+        },
+        "DwellingArrangement": {
+          "Code": "1671"
+        },
+        "Religion": {
+          "Code": "2013"
+        },
+        "ReligiousEventList": {
+          "ReligiousEvent": [
+            {
+              "Type": "Baptism",
+              "Date": "2000-09-01"
+            },
+            {
+              "Type": "Christmas",
+              "Date": "2009-12-24"
+            }
+          ]
+        },
+        "ReligiousRegion": "The Religion Region",
+        "PermanentResident": "P",
+        "VisaSubClass": "101",
+        "VisaStatisticalCode": "05"
+      },
+      "AddressList": {
+        "Address": [
+          {
+            "Type": "0123",
+            "Role": "012A",
+            "Street": {
+              "Line1": "Unit1/10",
+              "Line2": "Barkley Street"
+            },
+            "City": "Yarra Glenn",
+            "StateProvince": "VIC",
+            "Country": "1101",
+            "PostalCode": "9999"
+          },
+          {
+            "Type": "0123A",
+            "Role": "1073",
+            "Street": {
+              "Line1": "34 Term Address Street"
+            },
+            "City": "Home Town",
+            "StateProvince": "WA",
+            "Country": "1101",
+            "PostalCode": "9999"
+          }
+        ]
+      },
+      "PhoneNumberList": {
+        "PhoneNumber": [
+          {
+            "Type": "0096",
+            "Number": "03 9637-2289",
+            "Extension": "72289",
+            "ListedStatus": "Y"
+          },
+          {
+            "Type": "0888",
+            "Number": "0437-765-234",
+            "ListedStatus": "N"
+          }
+        ]
+      },
+      "EmailList": {
+        "Email": [
+          {
+            "Type": "01",
+            "value": "fsmith@yahoo.com"
+          },
+          {
+            "Type": "02",
+            "value": "freddy@gmail.com"
+          }
+        ]
+      }
+    },
+    "Title": "Integration Aide",
+    "EmploymentStatus": "A",
+    "MostRecent": {
+      "SchoolLocalId": "S01011234",
+      "LocalCampusId": "D",
+      "NAPLANClassList": {
+        "ClassCode": [
+          "9",
+          "7"
+        ]
+      },
+      "HomeGroup": "9G"
+    }
+  }
+]

@@ -1,0 +1,136 @@
+{
+    "name": "2_ingest_all_SIF",
+    "properties": {
+        "activities": [
+            {
+                "name": "land_metadata_from_URL",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_metadata_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/SIF/test_data/metadata.csv",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "sinkPath": "sif/v3.4.9"
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "ForEach1",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": "Ingested/sif/v3.4.9",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": "sdb_dev_s2i_sif_v3p4p9"
+                    }
+                }
+            },
+            {
+                "name": "ForEach1",
+                "type": "ForEach",
+                "dependsOn": [
+                    {
+                        "activity": "land_metadata_from_URL",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.entities",
+                        "type": "Expression"
+                    },
+                    "isSequential": false,
+                    "activities": [
+                        {
+                            "name": "ingest_entity",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "ingest_with_options",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "workspace": {
+                                        "value": "@pipeline().parameters.workspace",
+                                        "type": "Expression"
+                                    },
+                                    "entityPath": {
+                                        "value": "sif/v3.4.9/@{item()}",
+                                        "type": "Expression"
+                                    },
+                                    "primaryKey": "RefId",
+                                    "options": "'multiline':True"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "entities": {
+                "type": "array",
+                "defaultValue": [
+                    "GradingAssignment",
+                    "GradingAssignmentScore",
+                    "LearningStandardItem",
+                    "MarkValueInfo",
+                    "SectionInfo",
+                    "StaffAssignment",
+                    "StaffPersonal",
+                    "StudentDailyAttendance",
+                    "StudentGrade",
+                    "StudentPersonal",
+                    "StudentSchoolEnrollment",
+                    "StudentScoreJudgementAgainstStandard",
+                    "StudentSectionEnrollment",
+                    "TeachingGroup",
+                    "TermInfo"
+                ]
+            }
+        },
+        "folder": {
+            "name": "SIF/advanced"
+        },
+        "annotations": [],
+        "lastPublishTime": "2022-11-28T23:26:35Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

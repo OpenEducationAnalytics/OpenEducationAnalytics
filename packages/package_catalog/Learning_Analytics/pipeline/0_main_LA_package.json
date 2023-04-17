@@ -1,0 +1,142 @@
+{
+    "name": "0_main_LA_package",
+    "properties": {
+        "activities": [
+            {
+                "name": "1_build_LA_dim_tables",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "1_build_LA_dim_tables",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "2_build_LA_fact_tables",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "1_build_LA_dim_tables",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "2_build_LA_fact_tables",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "3_create_sql_db_general",
+                "description": "Adds the general tables to the same db created for sensitive table(s)",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "2_build_LA_fact_tables",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "storageAccount": {
+                            "value": "@pipeline().parameters.storageAccount",
+                            "type": "Expression"
+                        },
+                        "stage": "stage3",
+                        "datasetPath": "Published/learning_analytics/v1.0/general",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "sdb_@{pipeline().parameters.workspace}_s3p_learning_analytics_v1p0",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "3_create_sql_db_sensitive",
+                "description": "Adds the lookup table(s) to the same db created for general tables",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "2_build_LA_fact_tables",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "storageAccount": {
+                            "value": "@pipeline().parameters.storageAccount",
+                            "type": "Expression"
+                        },
+                        "stage": "stage3",
+                        "datasetPath": "Published/learning_analytics/v1.0/sensitive",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "sdb_@{pipeline().parameters.workspace}_s3p_learning_analytics_v1p0",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "storageAccount": {
+                "type": "string",
+                "defaultValue": "stoeacisd3v07kw1"
+            }
+        },
+        "folder": {
+            "name": "Learning Analytics Package/v1.0"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-02-27T02:18:03Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

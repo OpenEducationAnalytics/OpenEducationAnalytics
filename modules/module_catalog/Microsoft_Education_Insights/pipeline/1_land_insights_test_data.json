@@ -1,0 +1,1079 @@
+{
+    "name": "1_land_insights_test_data",
+    "properties": {
+        "activities": [
+            {
+                "name": "Set defaultFilename",
+                "description": "Sets defaultFilename variable depending on whether K-12 or Higher Ed. test data is to be landed.",
+                "type": "SetVariable",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "defaultFilename",
+                    "value": {
+                        "value": "@{pipeline().parameters.land_k12_or_hed_test_data}_test_data.csv",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "land_activity",
+                "description": "Land Insights either K-12 or Higher Ed. Activity Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/activity/2022-01-28/ApplicationUsage.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/activity",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_aadgroup",
+                "description": "Land Insights either K-12 or Higher Ed.  AADGroup Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/AadGroup/aadgroup.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/AadGroup",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_aadgroupmembership",
+                "description": "Land Insights either K-12 or Higher Ed.  AADGroupMembership Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/AadGroupMembership/aadgroupmembership.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/AadGroupMembership",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_aaduser",
+                "description": "Land Insights either K-12 or Higher Ed. AADUser Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/AadUser/aaduser.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/AadUser",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_aaduserpersonmapping",
+                "description": "Land Insights either K-12 or Higher Ed. AADUserPersonMapping Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/AadUserPersonMapping/aaduserpersonmapping.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/AadUserPersonMapping",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_course",
+                "description": "Land Insights either K-12 or Higher Ed. Course Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Course/course.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Course",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_coursegradelevel",
+                "description": "Land Insights either K-12 or Higher Ed. CourseGradeLevel Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/CourseGradeLevel/coursegradelevel.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/CourseGradeLevel",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_coursesubject",
+                "description": "Land Insights either K-12 or Higher Ed. CourseSubject Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/CourseSubject/coursesubject.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/CourseSubject",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_enrollment",
+                "description": "Land Insights either K-12 or Higher Ed. Enrollment Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Enrollment/enrollment.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Enrollment",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_organization",
+                "description": "Land Insights either K-12 or Higher Ed. Organization Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Organization/organization.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Organization",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_person",
+                "description": "Land Insights either K-12 or Higher Ed. Person Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Person/person.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Person",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_persondemographic",
+                "description": "Land Insights either K-12 or Higher Ed. PersonDemographic Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonDemographic/persondemographic.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonDemographic",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_persondemographicethnicity",
+                "description": "Land Insights either K-12 or Higher Ed. PersonDemographicEthnicity Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonDemographicEthnicity/persondemographicethnicity.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonDemographicEthnicity",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_persondemographicpersonflag",
+                "description": "Land Insights either K-12 or Higher Ed. PersonDemographicPersonFlag Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonDemographicPersonFlag/persondemographicpersonflag.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonDemographicPersonFlag",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_persondemographicrace",
+                "description": "Land Insights either K-12 or Higher Ed. PersonDemographicRace Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonDemographicRace/persondemographicrace.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonDemographicRace",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_personemailaddress",
+                "description": "Land Insights either K-12 or Higher Ed. PersonEmailAddress Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonEmailAddress/personemailaddress.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonEmailAddress",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_personidentifier",
+                "description": "Land Insights either K-12 or Higher Ed. PersonIdentifier Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonIdentifier/personidentifier.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonIdentifier",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_personorganizationrole",
+                "description": "Land Insights either K-12 or Higher Ed. PersonOrganizationRole Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonOrganizationRole/personorganizationrole.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonOrganizationRole",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_personphonenumber",
+                "description": "Land Insights either K-12 or Higher Ed. PersonPhoneNumber Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonPhoneNumber/personphonenumber.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonPhoneNumber",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_personrelationship",
+                "description": "Land Insights either K-12 or Higher Ed. PersonRelationship Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/PersonRelationship/personrelationship.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/PersonRelationship",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_refdefinition",
+                "description": "Land Insights either K-12 or Higher Ed. RefDefinition Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/RefDefinition/refdefinition.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/RefDefinition",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_reftranslation",
+                "description": "Land Insights either K-12 or Higher Ed. RefTranslation Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/RefTranslation/reftranslation.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/RefTranslation",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_section",
+                "description": "Land Insights either K-12 or Higher Ed. Section Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Section/section.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Section",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_sectiongradelevel",
+                "description": "Land Insights either K-12 or Higher Ed. SectionGradeLevel Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/SectionGradeLevel/sectiongradelevel.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/SectionGradeLevel",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_sectionsession",
+                "description": "Land Insights either K-12 or Higher Ed. SectionSession Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/SectionSession/sectionsession.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/SectionSession",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_sectionsubject",
+                "description": "Land Insights either K-12 or Higher Ed. SectionSubject Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/SectionSubject/sectionsubject.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/SectionSubject",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_session",
+                "description": "Land Insights either K-12 or Higher Ed. Session Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/Session/session.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/Session",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_sourcesystem",
+                "description": "Land Insights either K-12 or Higher Ed. SourceSystem Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roster/2022-01-28T06-16-22/SourceSystem/sourcesystem.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "M365/v@{pipeline().parameters.version}/SourceSystem",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "land_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "1.4.0"
+            }
+        },
+        "variables": {
+            "defaultFilename": {
+                "type": "String",
+                "defaultValue": "test_data.csv"
+            }
+        },
+        "folder": {
+            "name": "Insights Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-03-30T18:43:53Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
