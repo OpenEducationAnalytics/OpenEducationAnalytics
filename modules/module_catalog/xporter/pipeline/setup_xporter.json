@@ -1,0 +1,200 @@
+{
+	"name": "setup_xporter",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Xporter RelyingParty From KeyVault",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@concat('https://', pipeline().parameters.keyVaultName, '.vault.azure.net/secrets/', 'XporterRelyingParty', '?api-version=7.0')",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
+				}
+			},
+			{
+				"name": "Get Xporter RelyingParty Secret From KeyVault",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Get Xporter RelyingParty From KeyVault",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@concat('https://', pipeline().parameters.keyVaultName, '.vault.azure.net/secrets/', 'XporterRelyingPartySecret', '?api-version=7.0')",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"authentication": {
+						"type": "MSI",
+						"resource": "https://vault.azure.net"
+					}
+				}
+			},
+			{
+				"name": "Get Xporter Token",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Get Xporter RelyingParty Secret From KeyVault",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://xporter.groupcall.com/api/oauth/GetToken",
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "POST",
+					"body": {
+						"value": "@concat('{ \"relyingParty\":\"', activity('Get Xporter RelyingParty From KeyVault').output.value,'\", \"password\": \"', activity('Get Xporter RelyingParty Secret From KeyVault').output.value, '\",\"thirdpartyid\":\"XporterOnDemand\" }')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Get Xporter School Tokens",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Get Xporter Token",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "@concat('https://xporter.groupcall.com/api/manage/GetXodSchoolTokens?applicationid=', activity('Get Xporter RelyingParty from KeyVault').output.value)",
+						"type": "Expression"
+					},
+					"connectVia": {
+						"referenceName": "AutoResolveIntegrationRuntime",
+						"type": "IntegrationRuntimeReference"
+					},
+					"method": "GET",
+					"headers": {
+						"Authorization": {
+							"value": "@concat('Idaas ', activity('Get Xporter Token').output.token)",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			{
+				"name": "Loop Through School Tokens",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get Xporter School Tokens",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Xporter School Tokens').output.Tokens",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "Import Data From Xporter",
+							"type": "ExecutePipeline",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"pipeline": {
+									"referenceName": "import_from_xporter",
+									"type": "PipelineReference"
+								},
+								"waitOnCompletion": true,
+								"parameters": {
+									"estab": {
+										"value": "@item().estab",
+										"type": "Expression"
+									},
+									"token": {
+										"value": "@item().token",
+										"type": "Expression"
+									}
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"keyVaultName": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"tes": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Xporter Module/Extract"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-06T10:55:43Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}

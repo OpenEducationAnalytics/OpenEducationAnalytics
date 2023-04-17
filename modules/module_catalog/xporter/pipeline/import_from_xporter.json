@@ -1,0 +1,97 @@
+{
+	"name": "import_from_xporter",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Data From Xporter Endpoints",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@createArray(\n    json(concat('{ \"endpoint\": \"SchoolInfo\", \"query\": \"?httpStatusCodes=true\" }')), \n    json(concat('{ \"endpoint\": \"Students\", \"query\": \"?options=includeAttMarkString%2CincludeLeavers%2CincludeSubsidiary&httpStatusCodes=true\" }')),\n    json(concat('{ \"endpoint\": \"HistoricalAttendanceSummary\", \"query\": \"?SchoolYear=2022&httpStatusCodes=true\" }')),\n    json(concat('{ \"endpoint\": \"groups\", \"query\": \"?options=includeStudentMembers\" }')),\n    json(concat('{ \"endpoint\": \"staff\", \"query\": \"\" }')),\n    json(concat('{ \"endpoint\": \"AttendanceSummary\", \"query\":\"\"}'))\n    )",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copy Data From Xporter",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "BinarySource",
+									"storeSettings": {
+										"type": "HttpReadSettings",
+										"requestMethod": "GET",
+										"additionalHeaders": {
+											"value": "@{concat('Authorization: Idaas ', pipeline().parameters.token)}",
+											"type": "Expression"
+										},
+										"requestTimeout": ""
+									},
+									"formatSettings": {
+										"type": "BinaryReadSettings"
+									}
+								},
+								"sink": {
+									"type": "BinarySink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_HTTP_binary",
+									"type": "DatasetReference",
+									"parameters": {
+										"URL": {
+											"value": "@concat('https://xporter.groupcall.com/api/v1/School/', pipeline().parameters.estab, '/', item().endpoint, item().query)",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_ADLS_binary_file",
+									"type": "DatasetReference",
+									"parameters": {
+										"filesystem": "stage1np",
+										"filename": {
+											"value": "@concat('xporter/', pipeline().parameters.estab, '/', item().endpoint,'.json')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"estab": {
+				"type": "string"
+			},
+			"token": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "Xporter Module/Extract"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-06T10:55:29Z"
+	},
+	"type": "Microsoft.Synapse/workspaces/pipelines"
+}
