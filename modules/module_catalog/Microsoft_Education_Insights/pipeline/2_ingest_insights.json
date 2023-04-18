@@ -87,41 +87,6 @@
                 }
             },
             {
-                "name": "create_sql_db",
-                "type": "ExecutePipeline",
-                "dependsOn": [
-                    {
-                        "activity": "insights_schema_correction",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "userProperties": [],
-                "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "create_sql_db",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "stage": "stage2",
-                        "datasetPath": {
-                            "value": "@concat('Ingested/M365/v', pipeline().parameters.version)",
-                            "type": "Expression"
-                        },
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        },
-                        "dbName": {
-                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2i_M365_v1p14')",
-                            "type": "Expression"
-                        }
-                    }
-                }
-            },
-            {
                 "name": "insights_pre-processing",
                 "description": "This notebook adds a column to the AadGroupMembership table to act as a primary key for ingestion.",
                 "type": "SynapseNotebook",
@@ -239,7 +204,7 @@
             "name": "Insights Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-03-28T20:33:06Z"
+        "lastPublishTime": "2023-04-13T18:25:55Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
