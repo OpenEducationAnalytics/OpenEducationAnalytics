@@ -1,0 +1,27 @@
+{
+    "name": "DS_REST_Anonymous",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "LS_REST_Anonymous",
+            "type": "LinkedServiceReference",
+            "parameters": {
+                "BaseURL": {
+                    "value": "@dataset().BaseURL",
+                    "type": "Expression"
+                }
+            }
+        },
+        "parameters": {
+            "BaseURL": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "Modules/Ed-Fi"
+        },
+        "annotations": [],
+        "type": "RestResource",
+        "schema": []
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

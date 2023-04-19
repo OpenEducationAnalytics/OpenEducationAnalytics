@@ -1,0 +1,30 @@
+{
+    "name": "3_refine_edfi",
+    "properties": {
+        "activities": [
+            {
+                "name": "Wait1",
+                "type": "Wait",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "waitTimeInSeconds": 1
+                }
+            }
+        ],
+        "variables": {
+            "edfi_clientid": {
+                "type": "String"
+            },
+            "edfi_clientsecret": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "EdFi Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-04-13T17:44:36Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

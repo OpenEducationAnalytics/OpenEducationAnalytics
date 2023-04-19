@@ -1,0 +1,202 @@
+{
+    "name": "0_main_edfi",
+    "properties": {
+        "activities": [
+            {
+                "name": "get_clientid",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "get_secret_from_kv",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "secret_uri": "https://kv-oea-insmod1.vault.azure.net/secrets/edfi-clientid"
+                    }
+                }
+            },
+            {
+                "name": "set_clientid",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "get_clientid",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "edfi_clientid",
+                    "value": {
+                        "value": "@activity('get_clientid').output.pipelineReturnValue.secret.value",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "get_clientsecret",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "get_secret_from_kv",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "secret_uri": "https://kv-oea-insmod1.vault.azure.net/secrets/edfi-clientsecret"
+                    }
+                }
+            },
+            {
+                "name": "set_clientsecret",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "get_clientsecret",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "edfi_clientsecret",
+                    "value": {
+                        "value": "@activity('get_clientsecret').output.pipelineReturnValue.secret.value",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "1_land_edfi",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "set_clientid",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "set_clientsecret",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "1_land_edfi",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true
+                }
+            },
+            {
+                "name": "2_ingest_edfi",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "1_land_edfi",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "2_ingest_edfi",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true
+                }
+            },
+            {
+                "name": "3_refine_edfi",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "2_ingest_edfi",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "3_refine_edfi",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true
+                }
+            }
+        ],
+        "parameters": {
+            "MetadataUrl": {
+                "type": "string",
+                "defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/gene/v0.7dev/modules/module_catalog/Ed-Fi/docs/edfi_oea_metadata.csv"
+            },
+            "SwaggerUrl": {
+                "type": "string",
+                "defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/gene/v0.7dev//modules/module_catalog/Ed-Fi/docs/edfi_swagger.json"
+            }
+        },
+        "variables": {
+            "edfi_clientid": {
+                "type": "String"
+            },
+            "edfi_clientsecret": {
+                "type": "String"
+            },
+            "AuthUrl": {
+                "type": "String"
+            },
+            "DataManagementUrl": {
+                "type": "String"
+            },
+            "ChangeQueriesUrl": {
+                "type": "String"
+            },
+            "ApiVersion": {
+                "type": "String"
+            },
+            "TransactionalFolder": {
+                "type": "String"
+            },
+            "IngestedFolder": {
+                "type": "String"
+            },
+            "DependenciesUrl": {
+                "type": "String"
+            },
+            "RunDate": {
+                "type": "String"
+            },
+            "AccessToken": {
+                "type": "String"
+            },
+            "MinChangeVersion": {
+                "type": "String"
+            },
+            "MaxChangeVersion": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "EdFi Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-04-17T19:09:28Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

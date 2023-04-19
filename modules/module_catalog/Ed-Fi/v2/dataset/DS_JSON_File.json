@@ -1,0 +1,46 @@
+{
+    "name": "DS_JSON_File",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "LS_DataLake",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": {
+            "stage": {
+                "type": "string",
+                "defaultValue": "stage1"
+            },
+            "path": {
+                "type": "string"
+            },
+            "fileName": {
+                "type": "string",
+                "defaultValue": "data.json"
+            }
+        },
+        "folder": {
+            "name": "Modules/Ed-Fi"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "fileName": {
+                    "value": "@dataset().fileName",
+                    "type": "Expression"
+                },
+                "folderPath": {
+                    "value": "@dataset().path",
+                    "type": "Expression"
+                },
+                "fileSystem": {
+                    "value": "@dataset().stage",
+                    "type": "Expression"
+                }
+            }
+        },
+        "schema": {}
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

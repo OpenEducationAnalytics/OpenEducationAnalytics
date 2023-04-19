@@ -1,0 +1,160 @@
+{
+    "name": "DS_JSON",
+    "properties": {
+        "linkedServiceName": {
+            "referenceName": "LS_DataLake",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": {
+            "stage": {
+                "type": "string"
+            },
+            "path": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "Modules/Ed-Fi"
+        },
+        "annotations": [],
+        "type": "Json",
+        "typeProperties": {
+            "location": {
+                "type": "AzureBlobFSLocation",
+                "folderPath": {
+                    "value": "@dataset().path",
+                    "type": "Expression"
+                },
+                "fileSystem": {
+                    "value": "@dataset().stage",
+                    "type": "Expression"
+                }
+            }
+        },
+        "schema": {
+            "type": "object",
+            "properties": {
+                "protocol": {
+                    "type": "object",
+                    "properties": {
+                        "minReaderVersion": {
+                            "type": "integer"
+                        },
+                        "minWriterVersion": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "metaData": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "format": {
+                            "type": "object",
+                            "properties": {
+                                "provider": {
+                                    "type": "string"
+                                },
+                                "options": {
+                                    "type": "object"
+                                }
+                            }
+                        },
+                        "schemaString": {
+                            "type": "string"
+                        },
+                        "partitionColumns": {
+                            "type": "array"
+                        },
+                        "configuration": {
+                            "type": "object"
+                        },
+                        "createdTime": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "add": {
+                    "type": "object",
+                    "properties": {
+                        "path": {
+                            "type": "string"
+                        },
+                        "partitionValues": {
+                            "type": "object"
+                        },
+                        "size": {
+                            "type": "integer"
+                        },
+                        "modificationTime": {
+                            "type": "integer"
+                        },
+                        "dataChange": {
+                            "type": "boolean"
+                        },
+                        "stats": {
+                            "type": "string"
+                        },
+                        "tags": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "commitInfo": {
+                    "type": "object",
+                    "properties": {
+                        "timestamp": {
+                            "type": "integer"
+                        },
+                        "operation": {
+                            "type": "string"
+                        },
+                        "operationParameters": {
+                            "type": "object",
+                            "properties": {
+                                "mode": {
+                                    "type": "string"
+                                },
+                                "partitionBy": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "isolationLevel": {
+                            "type": "string"
+                        },
+                        "isBlindAppend": {
+                            "type": "boolean"
+                        },
+                        "operationMetrics": {
+                            "type": "object",
+                            "properties": {
+                                "numFiles": {
+                                    "type": "string"
+                                },
+                                "numOutputRows": {
+                                    "type": "string"
+                                },
+                                "numOutputBytes": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "engineInfo": {
+                            "type": "string"
+                        },
+                        "txnId": {
+                            "type": "string"
+                        },
+                        "readVersion": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "type": "Microsoft.Synapse/workspaces/datasets"
+}

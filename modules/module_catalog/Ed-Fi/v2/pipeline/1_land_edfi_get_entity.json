@@ -1,0 +1,325 @@
+{
+    "name": "1_land_edfi_get_entity",
+    "properties": {
+        "activities": [
+            {
+                "name": "Get-TotalCount-Records",
+                "type": "WebActivity",
+                "dependsOn": [
+                    {
+                        "activity": "SetAccessToken",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "url": {
+                        "value": "@concat(pipeline().parameters.ChangedEntityURL,'?MinChangeVersion=',pipeline().parameters.MinChangeVersion,'&MaxChangeVersion=',pipeline().parameters.MaxChangeVersion,'&totalCount=true')",
+                        "type": "Expression"
+                    },
+                    "connectVia": {
+                        "referenceName": "AutoResolveIntegrationRuntime",
+                        "type": "IntegrationRuntimeReference"
+                    },
+                    "method": "GET",
+                    "headers": {
+                        "Authorization": {
+                            "value": "@variables('AccessToken')",
+                            "type": "Expression"
+                        },
+                        "Accept": "application/json"
+                    }
+                }
+            },
+            {
+                "name": "Set-TotalCount",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "Get-TotalCount-Records",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "TotalCount",
+                    "value": {
+                        "value": "@activity('Get-TotalCount-Records').output.ADFWebActivityResponseHeaders['total-count']",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "GetAccessToken",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "get_edfi_access_token",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "AuthUrl": {
+                            "value": "@pipeline().parameters.AuthURL",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "SetAccessToken",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "GetAccessToken",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "AccessToken",
+                    "value": {
+                        "value": "@activity('GetAccessToken').output.pipelineReturnValue.access_token",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Copy-Deletes-JSON-to-ADLS",
+                "type": "Copy",
+                "dependsOn": [
+                    {
+                        "activity": "SetAccessToken",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "RestSource",
+                        "httpRequestTimeout": "00:01:40",
+                        "requestInterval": "00.00:00:00.010",
+                        "requestMethod": "GET",
+                        "additionalHeaders": {
+                            "Authorization": {
+                                "value": "@variables('AccessToken')",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "sink": {
+                        "type": "JsonSink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        },
+                        "formatSettings": {
+                            "type": "JsonWriteSettings"
+                        }
+                    },
+                    "enableStaging": false
+                },
+                "inputs": [
+                    {
+                        "referenceName": "DS_REST_Anonymous",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "BaseURL": {
+                                "value": "@concat(pipeline().parameters.DeletesEntityUrl,'?MinChangeVersion=',pipeline().parameters.MinChangeVersion,'&MaxChangeVersion=',pipeline().parameters.MaxChangeVersion)",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "DS_JSON",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "stage": "stage1",
+                            "path": {
+                                "value": "@pipeline().parameters.DeletesSinkPath",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "Copy-JSON-to-ADLS-Upserts",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set-TotalCount",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "1_land_edfi_loop_batches",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "TotalCount": {
+                            "value": "@variables('TotalCount')",
+                            "type": "Expression"
+                        },
+                        "AuthURL": {
+                            "value": "@pipeline().parameters.AuthURL",
+                            "type": "Expression"
+                        },
+                        "ClientId": {
+                            "value": "@pipeline().parameters.ClientId",
+                            "type": "Expression"
+                        },
+                        "SecretName": {
+                            "value": "@pipeline().parameters.SecretName",
+                            "type": "Expression"
+                        },
+                        "ChangedEntityURL": {
+                            "value": "@pipeline().parameters.ChangedEntityURL",
+                            "type": "Expression"
+                        },
+                        "ApiLimit": {
+                            "value": "@pipeline().parameters.ApiLimit",
+                            "type": "Expression"
+                        },
+                        "UpsertsSinkPath": {
+                            "value": "@pipeline().parameters.UpsertsSinkPath",
+                            "type": "Expression"
+                        },
+                        "MinChangeVersion": {
+                            "value": "@pipeline().parameters.MinChangeVersion",
+                            "type": "Expression"
+                        },
+                        "MaxChangeVersion": {
+                            "value": "@pipeline().parameters.MaxChangeVersion",
+                            "type": "Expression"
+                        },
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "AuthURL": {
+                "type": "string",
+                "defaultValue": "https://api.ed-fi.org/v5.2/api/oauth/token"
+            },
+            "ClientId": {
+                "type": "String",
+                "defaultValue": "R2xsAWWkKf3oX2WS"
+            },
+            "SecretName": {
+                "type": "String",
+                "defaultValue": "ws-synapse-edfi-2022-apiclientsecret"
+            },
+            "ChangedEntityURL": {
+                "type": "String",
+                "defaultValue": "https://api.edgraph.com/edfi/v5.2/saas/data/v3/e2e22d72-3b57-4863-8b0f-f5ff0dc0bc4b/2022/ed-fi/students?MinChangeVersion=0&MaxChangeVersion=2857796"
+            },
+            "ApiLimit": {
+                "type": "string",
+                "defaultValue": "500"
+            },
+            "UpsertsSinkPath": {
+                "type": "String",
+                "defaultValue": "Transactional/Ed-Fi/v5.2/DistrictId=All/SchoolYear=2022/ed-fi/students/Incremental/Upserts/rundate=2022-11-03"
+            },
+            "DeletesEntityUrl": {
+                "type": "string",
+                "defaultValue": "https://api.edgraph.com/edfi/v5.2/saas/data/v3/e2e22d72-3b57-4863-8b0f-f5ff0dc0bc4b/2022/ed-fi/students/deletes?MinChangeVersion=0&MaxChangeVersion=2857796"
+            },
+            "DeletesSinkPath": {
+                "type": "string",
+                "defaultValue": "Transactional/Ed-Fi/v5.2/DistrictId=All/SchoolYear=2022/ed-fi/students/Incremental/Deletes/rundate=2022-11-03"
+            },
+            "MinChangeVersion": {
+                "type": "string"
+            },
+            "MaxChangeVersion": {
+                "type": "string"
+            }
+        },
+        "variables": {
+            "AccessToken": {
+                "type": "String"
+            },
+            "TotalCount": {
+                "type": "String",
+                "defaultValue": "0"
+            },
+            "Offset": {
+                "type": "String",
+                "defaultValue": "0"
+            },
+            "OffsetUpperLimit": {
+                "type": "String",
+                "defaultValue": "0"
+            },
+            "OffsetInterval": {
+                "type": "String",
+                "defaultValue": "10000"
+            },
+            "RangeArray": {
+                "type": "Array"
+            },
+            "BatchSize": {
+                "type": "String"
+            },
+            "NumberOfPartitions": {
+                "type": "String"
+            },
+            "PartitionsArray": {
+                "type": "Array"
+            },
+            "IsFinished": {
+                "type": "Boolean"
+            }
+        },
+        "folder": {
+            "name": "EdFi Module/land"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-04-18T17:29:12Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
