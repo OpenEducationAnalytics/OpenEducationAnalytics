@@ -166,7 +166,7 @@
                             "userProperties": [],
                             "typeProperties": {
                                 "url": {
-                                    "value": "@concat(pipeline().parameters.ChangedEntityURL,'MinChangeVersion=',string(mul(item(), int(variables('BatchSize')))),'&MaxChangeVersion=',string(mul(add(item(), 1), int(variables('BatchSize')))),'&totalCount=true')",
+                                    "value": "@concat(pipeline().parameters.ChangedEntityURL,'?MinChangeVersion=',string(mul(item(), int(variables('BatchSize')))),'&MaxChangeVersion=',string(mul(add(item(), 1), int(variables('BatchSize')))),'&totalCount=true')",
                                     "type": "Expression"
                                 },
                                 "connectVia": {
@@ -259,7 +259,7 @@
                                                 "type": "DatasetReference",
                                                 "parameters": {
                                                     "BaseURL": {
-                                                        "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
+                                                        "value": "@concat(pipeline().parameters.ChangedEntityURL,'?MinChangeVersion=',string(mul(item(), int(variables('BatchSize')))),'&MaxChangeVersion=',string(mul(add(item(), 1), int(variables('BatchSize')))),'&limit=',pipeline().parameters.ApiLimit,'&offset=0')",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -399,83 +399,7 @@
                                                 "type": "DatasetReference",
                                                 "parameters": {
                                                     "BaseURL": {
-                                                        "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
-                                                        "type": "Expression"
-                                                    }
-                                                }
-                                            }
-                                        ],
-                                        "outputs": [
-                                            {
-                                                "referenceName": "DS_JSON",
-                                                "type": "DatasetReference",
-                                                "parameters": {
-                                                    "stage": "stage1",
-                                                    "path": {
-                                                        "value": "@pipeline().parameters.UpsertsSinkPath",
-                                                        "type": "Expression"
-                                                    }
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "name": "Copy-Upserts-JSON-to-ADLS-Second-Half",
-                                        "type": "Copy",
-                                        "dependsOn": [
-                                            {
-                                                "activity": "RefreshAccessTokenSecondHalf",
-                                                "dependencyConditions": [
-                                                    "Succeeded"
-                                                ]
-                                            }
-                                        ],
-                                        "policy": {
-                                            "timeout": "7.00:00:00",
-                                            "retry": 0,
-                                            "retryIntervalInSeconds": 30,
-                                            "secureOutput": false,
-                                            "secureInput": false
-                                        },
-                                        "userProperties": [],
-                                        "typeProperties": {
-                                            "source": {
-                                                "type": "RestSource",
-                                                "httpRequestTimeout": "00:01:40",
-                                                "requestInterval": "00.00:00:00.010",
-                                                "requestMethod": "GET",
-                                                "additionalHeaders": {
-                                                    "Authorization": {
-                                                        "value": "@activity('RefreshAccessTokenSecondHalf').output.pipelineReturnValue.access_token",
-                                                        "type": "Expression"
-                                                    }
-                                                },
-                                                "paginationRules": {
-                                                    "QueryParameters.{offset}": {
-                                                        "value": "Range:0:@{int(activity('Get-TotalCount-in-Batch').output.ADFWebActivityResponseHeaders['total-count'])}:@{pipeline().parameters.ApiLimit}",
-                                                        "type": "Expression"
-                                                    }
-                                                }
-                                            },
-                                            "sink": {
-                                                "type": "JsonSink",
-                                                "storeSettings": {
-                                                    "type": "AzureBlobFSWriteSettings"
-                                                },
-                                                "formatSettings": {
-                                                    "type": "JsonWriteSettings",
-                                                    "filePattern": "setOfObjects"
-                                                }
-                                            },
-                                            "enableStaging": false
-                                        },
-                                        "inputs": [
-                                            {
-                                                "referenceName": "DS_REST_Anonymous",
-                                                "type": "DatasetReference",
-                                                "parameters": {
-                                                    "BaseURL": {
-                                                        "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
+                                                        "value": "@concat(pipeline().parameters.ChangedEntityURL,'?MinChangeVersion=',string(mul(item(), int(variables('BatchSize')))),'&MaxChangeVersion=',string(mul(add(item(), 1), int(variables('BatchSize')))),'&limit=',pipeline().parameters.ApiLimit,'&offset=0')",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -497,29 +421,6 @@
                                     },
                                     {
                                         "name": "RefreshAccessTokenFirstHalf",
-                                        "type": "ExecutePipeline",
-                                        "dependsOn": [],
-                                        "userProperties": [],
-                                        "typeProperties": {
-                                            "pipeline": {
-                                                "referenceName": "get_edfi_access_token",
-                                                "type": "PipelineReference"
-                                            },
-                                            "waitOnCompletion": true,
-                                            "parameters": {
-                                                "workspace": {
-                                                    "value": "@pipeline().parameters.workspace",
-                                                    "type": "Expression"
-                                                },
-                                                "AuthUrl": {
-                                                    "value": "@pipeline().parameters.AuthURL",
-                                                    "type": "Expression"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "RefreshAccessTokenSecondHalf",
                                         "type": "ExecutePipeline",
                                         "dependsOn": [],
                                         "userProperties": [],
@@ -618,83 +519,7 @@
                                                 "type": "DatasetReference",
                                                 "parameters": {
                                                     "BaseURL": {
-                                                        "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
-                                                        "type": "Expression"
-                                                    }
-                                                }
-                                            }
-                                        ],
-                                        "outputs": [
-                                            {
-                                                "referenceName": "DS_JSON",
-                                                "type": "DatasetReference",
-                                                "parameters": {
-                                                    "stage": "stage1",
-                                                    "path": {
-                                                        "value": "@pipeline().parameters.UpsertsSinkPath",
-                                                        "type": "Expression"
-                                                    }
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "name": "Copy-Upserts-JSON-to-ADLS-Second-Half-Gateway",
-                                        "type": "Copy",
-                                        "dependsOn": [
-                                            {
-                                                "activity": "RefreshAccessTokenSecondHalfGateway",
-                                                "dependencyConditions": [
-                                                    "Succeeded"
-                                                ]
-                                            }
-                                        ],
-                                        "policy": {
-                                            "timeout": "7.00:00:00",
-                                            "retry": 0,
-                                            "retryIntervalInSeconds": 30,
-                                            "secureOutput": false,
-                                            "secureInput": false
-                                        },
-                                        "userProperties": [],
-                                        "typeProperties": {
-                                            "source": {
-                                                "type": "RestSource",
-                                                "httpRequestTimeout": "00:01:40",
-                                                "requestInterval": "00.00:00:00.010",
-                                                "requestMethod": "GET",
-                                                "additionalHeaders": {
-                                                    "Authorization": {
-                                                        "value": "@activity('RefreshAccessTokenSecondHalfGateway').output.pipelineReturnValue.access_token",
-                                                        "type": "Expression"
-                                                    }
-                                                },
-                                                "paginationRules": {
-                                                    "QueryParameters.{offset}": {
-                                                        "value": "Range:0:@{int(activity('Get-TotalCount-in-Batch').output.ADFWebActivityResponseHeaders['total-count'])}:@{pipeline().parameters.ApiLimit}",
-                                                        "type": "Expression"
-                                                    }
-                                                }
-                                            },
-                                            "sink": {
-                                                "type": "JsonSink",
-                                                "storeSettings": {
-                                                    "type": "AzureBlobFSWriteSettings"
-                                                },
-                                                "formatSettings": {
-                                                    "type": "JsonWriteSettings",
-                                                    "filePattern": "setOfObjects"
-                                                }
-                                            },
-                                            "enableStaging": false
-                                        },
-                                        "inputs": [
-                                            {
-                                                "referenceName": "DS_REST_Anonymous",
-                                                "type": "DatasetReference",
-                                                "parameters": {
-                                                    "BaseURL": {
-                                                        "value": "@{pipeline().parameters.ChangedEntityURL}MinChangeVersion=@{mul(item(), int(variables('BatchSize')))}&MaxChangeVersion=@{mul(add(item(), 1), int(variables('BatchSize')))}&limit=@{pipeline().parameters.ApiLimit}&offset={offset}",
+                                                        "value": "@concat(pipeline().parameters.ChangedEntityURL,'?MinChangeVersion=',string(mul(item(), int(variables('BatchSize')))),'&MaxChangeVersion=',string(mul(add(item(), 1), int(variables('BatchSize')))),'&limit=',pipeline().parameters.ApiLimit,'&offset=0')",
                                                         "type": "Expression"
                                                     }
                                                 }
@@ -729,36 +554,6 @@
                                         "dependsOn": [
                                             {
                                                 "activity": "Wait-for-2-Minutes",
-                                                "dependencyConditions": [
-                                                    "Succeeded"
-                                                ]
-                                            }
-                                        ],
-                                        "userProperties": [],
-                                        "typeProperties": {
-                                            "pipeline": {
-                                                "referenceName": "get_edfi_access_token",
-                                                "type": "PipelineReference"
-                                            },
-                                            "waitOnCompletion": true,
-                                            "parameters": {
-                                                "workspace": {
-                                                    "value": "@pipeline().parameters.workspace",
-                                                    "type": "Expression"
-                                                },
-                                                "AuthUrl": {
-                                                    "value": "@pipeline().parameters.AuthURL",
-                                                    "type": "Expression"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        "name": "RefreshAccessTokenSecondHalfGateway",
-                                        "type": "ExecutePipeline",
-                                        "dependsOn": [
-                                            {
-                                                "activity": "Copy-Upserts-JSON-to-ADLS-First-Half-Gateway",
                                                 "dependencyConditions": [
                                                     "Succeeded"
                                                 ]
