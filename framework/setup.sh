@@ -40,11 +40,12 @@ eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_Az
 # 2) install notebooks
 sed "s/yourstorageaccount/$storage_account/" $this_file_path/synapse/notebook/OEA_py.ipynb > $this_file_path/tmp/OEA_py1.ipynb
 sed "s/yourkeyvault/$key_vault/" $this_file_path/tmp/OEA_py1.ipynb > $this_file_path/tmp/OEA_py2.ipynb
-eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --spark-pool-name spark3p2sm --file @$this_file_path/tmp/OEA_py2.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name 1_read_me --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/1_read_me.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name 2_example_data_processing --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/2_example_data_processing.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_connector --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/OEA_connector.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_tests --spark-pool-name spark3p2sm --file @$this_file_path/synapse/notebook/OEA_tests.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_py --spark-pool-name spark3p3sm --file @$this_file_path/tmp/OEA_py2.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name 1_read_me --spark-pool-name spark3p3sm --file @$this_file_path/synapse/notebook/1_read_me.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name 2_example_data_processing --spark-pool-name spark3p3sm --file @$this_file_path/synapse/notebook/2_example_data_processing.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name 3_example_working_with_schemas --spark-pool-name spark3p3sm --file @$this_file_path/synapse/notebook/3_example_working_with_schemas.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_connector --spark-pool-name spark3p3sm --file @$this_file_path/synapse/notebook/OEA_connector.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name OEA_tests --spark-pool-name spark3p3sm --file @$this_file_path/synapse/notebook/OEA_tests.ipynb --only-show-errors"
 
 # 3) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
