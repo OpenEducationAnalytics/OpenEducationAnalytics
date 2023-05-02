@@ -27,7 +27,7 @@ Moodle data can be used for a variety of analytics purposes, including:
 ## Module Setup Instructions
 
 <p align="center">
-  <img src="https://github.com/cstohlmann/oea-moodle-module/blob/main/docs/images/moodle_module_v0.1_setup_instructions.png" alt="Moodle Setup Instructions"/>
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Moodle/docs/images/moodle_module_v0.1_setup_instructions.png" alt="Moodle Setup Instructions"/>
 </p>
 
 <ins><strong>Preparation:</ins></strong> This module currently leans on v0.8rc1 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.8rc1 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). 
