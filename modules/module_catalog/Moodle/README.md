@@ -83,7 +83,7 @@ Dashboard Explanation | Digital Learning Outcomes Summary
 | --- | --- |
 | [Overview of Moodle](https://moodle.org/) | Intro to Moodle, what it can do, and what it can provide. |
 | [Moodle Database Overview](https://www.examulator.com/er/) | Overview of Moodle and reference to full documentation. |
-| [Moodle Database Table Information](https://www.examulator.com/er/output/index.html) | Reference to learn about the schema details for Moodle tables ingested into stage 1. |
+| [Moodle Database Table Information](https://www.examulator.com/er/output/index.html) | Reference to learn about the schema details for Moodle tables landed into stage 1. |
 
 ## Contributions from the Community
  
