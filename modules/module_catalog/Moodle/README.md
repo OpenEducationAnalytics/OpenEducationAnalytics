@@ -4,21 +4,21 @@
 
 # Moodle Module
 
-[Moodle](https://moodle.org/) is a learning management system (LMS) for educational institutions, that provides data on learners' digital activity in Moodle applications such as assignments, lesson progresses, forum discussions, and quiz results.
+[Moodle](https://moodle.org/) is a learning management system (LMS) for educational institutions, that provides data on learners' digital activity in Moodle applications such as assignment attempts, lesson progresses, forum discussions, and quiz results.
 
-Using this module, data from Moodle can be exported into your organization's OEA data lakes to combine it with other datasets for a variety of use cases, including Learning Analytics. 
+This Moodle module is designed to extract relevant learning data from Moodle and transform it into a format compatible with the Learning Analytics Data Schema of Portrait and OEA. With 27 tables covering various aspects of the educational ecosystem, this module enables institutions to gain insights into student performance, engagement and course effectiveness, accelerating their analytics journey and promoting data-driven decision-making. 
 
-Moodle requires the access of the [Moodle Database](https://www.examulator.com/er/) from Moodle, which provides school and class roster data as well as activity/student performance data, to enable retrieving the files to be landed in the data lake.
+Moodle requires the access of the [Moodle Database](https://www.examulator.com/er/), which provides roster data as well as activity/student performance data; tables identified as valuable are to be queried from the Moodle database and landed in your organization's OEA data lake. Moodle data can then be combined with other datasets for a variety of use cases, including Learning Analytics. 
 
 <p align="center">
-  <img src="https://github.com/cstohlmann/oea-moodle-module/blob/main/docs/images/moodle_module_v0.1_overview.png" alt="Moodle Module v0.1 Overview"/>
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Moodle/docs/images/moodle_module_v0.1_overview.png" alt="Moodle Module v0.1 Overview"/>
 </p>
 
-(Moodle documentation on tables contained in the Moodle database: [Moodle Database Tables](https://www.examulator.com/er/output/index.html)) 
+(Moodle documentation on tables contained in the database: [Moodle Database Tables](https://www.examulator.com/er/output/index.html)) 
  
 ## Problem Statement and Module Impact
 
-Many education systems across the world use Moodle as a primary source of LMS data. This particular data source provides a wealth of data from SIS to student learning outcomes, as well as digital activity taking place. This module provides methods of data processing and refinement of certain rostering and activity tables from the Moodle database. These tables can then be fitted into schemas (used for supporting package) for individual use-cases.
+Many educational institutions using Moodle as their LMS struggle to analyze and understand their digital learning data effectively. This module addresses this challenge by extracting and transforming Moodle LMS data into widely-accepted analytic data schemas, enabling institutions to integrate their data with external analytics tools and platforms for deeper insights. By providing a structured and consistent data schema, this connector empowers educators to make data-driven decisions, enhance the learning experience for students, and improve overall educational outcomes.
 
 Moodle data can be used for a variety of analytics purposes, including:
  - School and district dashboards for education leaders to identify student activity in learning outcomes progress. 
@@ -89,7 +89,11 @@ Dashboard Explanation | Digital Learning Outcomes Summary
  
 The Moodle module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md).
 
-This module was developed by [Analytikus](https://www.analytikus.com/) in collaboration with [Kwantum Analytics](https://www.kwantumedu.com/). The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
+This module was developed by [Analytikus](https://www.analytikus.com/) in collaboration with [e-abclearning](https://www.e-abclearning.com/) and [Kwantum Analytics](https://www.kwantumedu.com/). This module is a part of the MADAI intiative, led by Universidad de Murcia and supported by ten other public universities in Spain. The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
+
+Analytikus, a leading data analytics company, provided their expertise in learning analytics, while e-abclearning, a specialist in e-learning solutions, contributed their knowledge and experience with Moodle LMS. Together, they developed a powerful and effective tool that accelerates the analytics journey for educational institutions using Moodle as their LMS.
+
+The MADAI initiative, driven by Universidad de Murcia and supported by ten other public universities in Spain, aimed to foster collaboration between educational institutions, technology providers, and industry experts to create innovative and data impactful solutions that address the challenges faced by educational institutions in the digital age. The Moodle Learning Analytics Module Connector is a prime example of the successful collaboration that emerged from this initiative, empowering educators, and institutions to harness the power of data analytics for improved educational outcomes.
 
 # Legal Notices
 Microsoft and any contributors grant you a license to the Microsoft documentation and other content
