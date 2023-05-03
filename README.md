@@ -1,7 +1,7 @@
 <img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
 # Open Education Analytics
-Open Education Analytics (OEA) is a fully [open-sourced](https://github.com/microsoft/OpenEduAnalytics/tree/main/docs/license) data integration and analytics framework for the education sector, as well as catalogs of assets contributed by customers and partners around the world - for K-12 as well as Higher Education.
+Open Education Analytics (OEA) is a fully [open-sourced](https://github.com/microsoft/OpenEduAnalytics/tree/main/docs/license) data integration and analytics framework for the education sector, as well as catalogs of assets contributed by customers and partners around the world for K-12 as well as Higher Education.
 
 <img align="right" height="300" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/diagrams/OEA_top_level.png">
 
@@ -20,7 +20,7 @@ To find out more about the growing ecosystem around OEA, including info about pa
 <br/>
 
 # Setting up OEA
-### What you need
+### What you need?
 To setup an environment with OpenEduAnalytics, you'll need:
 * an Azure subscription (if you don't have an Azure subscription, you can set up a [free subscription here](https://azure.microsoft.com/free), or check the [current list of Azure offers](https://azure.microsoft.com/en-us/support/legal/offer-details/))
 * role assignment of "Owner" on the Azure subscription you're using
@@ -34,7 +34,7 @@ You can setup this fully functional reference architecture (which includes test 
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
 1) Download the OEA framework setup script and framework assets to your Azure clouddrive \
 `cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/v0.8rc1/OEA_v0.8.zip`\
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/v0.8/OEA_v0.8.zip`\
 `unzip ./OEA_v0.8.zip`
 1) Run the setup script like this (substitute "mysuffix" with your preferred suffix representing your org, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
 `./OEA_v0.8/setup.sh mysuffix`
