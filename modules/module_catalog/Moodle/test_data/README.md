@@ -17,7 +17,7 @@ See full details on the [Moodle SQL Database Table Data Dictionary](https://www.
 | Activity/Assignments | [assign_grades](https://www.examulator.com/er/output/tables/assign_grades.html) | Grading information about a single assignment submission. |
 | Activity/Assignments | [assign_submission](https://www.examulator.com/er/output/tables/assign_submission.html) | Contains data for instances of student assignment submissions. |
 | Activity/Assignments | [assignsubmission_file](https://www.examulator.com/er/output/tables/assignsubmission_file.html) | Info about file submissions for assignments. |
-| Activity/Assignments | [assign_user_mapping](https://www.examulator.com/er/output/tables/assign_user_mapping.html) | Map an assignment specific id number to a user. |
+| Activity/Assignments | [assign_user_mapping](https://www.examulator.com/er/output/tables/assign_user_mapping.html) | Map assignment IDs to each user in a given class.  |
 | Academic Groups | [cohort](https://www.examulator.com/er/output/tables/cohort.html) | Each record represents one cohort (a.k.a. site-wide group). Test data currently uses this table for mapping students to schools. |
 | Academic Groups | [course](https://www.examulator.com/er/output/tables/course.html) | Course/class records. Test data currently uses this table for mapping students to classes <strong>(Sections in Insights Module -> Courses in Moodle Module)</strong>. |
 | Academic Groups | [course_categories](https://www.examulator.com/er/output/tables/course_categories.html) | Course category records. Test data currently uses this table for mapping students to class categories <strong>(Courses in Insights Module -> Course Categories in Moodle Module)</strong>. |
