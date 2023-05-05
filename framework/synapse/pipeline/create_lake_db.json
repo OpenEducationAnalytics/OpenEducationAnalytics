@@ -40,7 +40,7 @@
 						}
 					},
 					"sparkPool": {
-						"referenceName": "spark3p2sm",
+						"referenceName": "spark3p2med",
 						"type": "BigDataPoolReference"
 					},
 					"conf": {
