@@ -26,7 +26,7 @@ eval "az synapse data-flow create --workspace-name $synapse_workspace --name edf
 eval "az synapse data-flow create --workspace-name $synapse_workspace --name edfi_upsert  --file @$this_file_path/dataflow/edfi_upsert.json --only-show-errors"
 
 # 3) install notebooks
-eval "az synapse notebook import --workspace-name $synapse_workspace --name Refine_EdFi --spark-pool-name spark3p2sm --file @$this_file_path/notebook/Refine_EdFi.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Refine_EdFi --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Refine_EdFi.ipynb --only-show-errors"
 
 # 4) create integration runtime
 eval "az synapse integration-runtime managed create --workspace-name $synapse_workspace --resource-group $resource_group --name IR-DataFlows --time-to-live 10"

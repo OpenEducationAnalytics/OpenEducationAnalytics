@@ -432,7 +432,7 @@
                                 },
                                 "snapshot": true,
                                 "sparkPool": {
-                                    "referenceName": "spark3p2sm",
+                                    "referenceName": "spark3p3sm",
                                     "type": "BigDataPoolReference"
                                 },
                                 "executorSize": null,
