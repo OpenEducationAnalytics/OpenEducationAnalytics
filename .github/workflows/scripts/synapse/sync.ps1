@@ -20,13 +20,13 @@ $RESOURCENAME_REPLACEMENT_STRING_WP = "yoursynapseworkspace"
 $keyvaultName = GetKeyVaultName $resourceGroup
 $storageName = GetStorageAccountName $resourceGroup
 
-SavePipelineDefinitions $WORKSPACE_NAME $keyvaultName $storageName $RESOURCENAME_REPLACEMENT_STRING_KV $RESOURCENAME_REPLACEMENT_STRING_ST $RESOURCENAME_REPLACEMENT_STRING_WP
-SaveDatasetDefinitions $WORKSPACE_NAME $keyvaultName $storageName $RESOURCENAME_REPLACEMENT_STRING_KV $RESOURCENAME_REPLACEMENT_STRING_ST $RESOURCENAME_REPLACEMENT_STRING_WP
-SaveLinkedServiceDefinition $WORKSPACE_NAME $keyvaultName $storageName $RESOURCENAME_REPLACEMENT_STRING_KV $RESOURCENAME_REPLACEMENT_STRING_ST $RESOURCENAME_REPLACEMENT_STRING_WP
-SaveIntegrationRuntimeDefinition $WORKSPACE_NAME $resourceGroup
+SavePipelineDefinitions $workspaceName $keyvaultName $storageName $RESOURCENAME_REPLACEMENT_STRING_KV $RESOURCENAME_REPLACEMENT_STRING_ST $RESOURCENAME_REPLACEMENT_STRING_WP
+SaveDatasetDefinitions $workspaceName $keyvaultName $storageName $RESOURCENAME_REPLACEMENT_STRING_KV $RESOURCENAME_REPLACEMENT_STRING_ST $RESOURCENAME_REPLACEMENT_STRING_WP
+SaveLinkedServiceDefinition $workspaceName $keyvaultName $storageName $RESOURCENAME_REPLACEMENT_STRING_KV $RESOURCENAME_REPLACEMENT_STRING_ST $RESOURCENAME_REPLACEMENT_STRING_WP
+SaveIntegrationRuntimeDefinition $workspaceName $resourceGroup
 SaveDataFlowDefinition $workspaceName
 
 # Disabling notebook definition saving because the exported format
 # Seems to not match what is expected by the Github parser. This results
 # in Github not being able to preview the notebook.
-#SaveNotebookDefinition $WORKSPACE_NAME $keyvaultName $storageName $RESOURCENAME_REPLACEMENT_STRING_KV $RESOURCENAME_REPLACEMENT_STRING_ST $RESOURCENAME_REPLACEMENT_STRING_WP
+#SaveNotebookDefinition $workspaceName $keyvaultName $storageName $RESOURCENAME_REPLACEMENT_STRING_KV $RESOURCENAME_REPLACEMENT_STRING_ST $RESOURCENAME_REPLACEMENT_STRING_WP
