@@ -15,7 +15,7 @@ this_file_path=$(dirname $(realpath $0))
 echo "--> Setting up the SIF module assets."
 
 # 1) install notebooks
-eval "az synapse notebook import --workspace-name $synapse_workspace --name SIF_example --spark-pool-name spark3p3sm --file @$this_file_path/notebook/SIF_example.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name SIF_example --spark-pool-name spark3p2sm --file @$this_file_path/notebook/SIF_example.ipynb --only-show-errors"
 
 # 2) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.

@@ -109,7 +109,7 @@
                     },
                     "snapshot": true,
                     "sparkPool": {
-                        "referenceName": "spark3p3sm",
+                        "referenceName": "spark3p2med",
                         "type": "BigDataPoolReference"
                     }
                 }

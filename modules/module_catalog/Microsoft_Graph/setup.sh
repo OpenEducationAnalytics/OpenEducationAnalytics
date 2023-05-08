@@ -15,11 +15,11 @@ this_file_path=$(dirname $(realpath $0))
 echo "--> Setting up the Microsoft Graph module assets."
 
 # 1) install notebooks
-eval "az synapse notebook import --workspace-name $synapse_workspace --name Graph_example --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Graph_example.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name Graph_land_test_data --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Graph_land_test_data.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name Graph_pre-processing --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Graph_pre-processing.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name Graph_schema_correction --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Graph_schema_correction.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name Graph_refine --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Graph_refine.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Graph_example --spark-pool-name spark3p2med --file @$this_file_path/notebook/Graph_example.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Graph_land_test_data --spark-pool-name spark3p2med --file @$this_file_path/notebook/Graph_land_test_data.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Graph_pre-processing --spark-pool-name spark3p2med --file @$this_file_path/notebook/Graph_pre-processing.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Graph_schema_correction --spark-pool-name spark3p2med --file @$this_file_path/notebook/Graph_schema_correction.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Graph_refine --spark-pool-name spark3p2med --file @$this_file_path/notebook/Graph_refine.ipynb --only-show-errors"
 
 # 2) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
