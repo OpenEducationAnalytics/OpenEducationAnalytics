@@ -86,10 +86,10 @@ class AzureResourceProvisioner:
         self.azure_client.add_firewall_rule_for_synapse('allowAll', '0.0.0.0', '255.255.255.255', self.synapse_workspace_name)
 
         self.logger.info("\t--> Creating spark pool.")
-        self.azure_client.create_spark_pool(self.synapse_workspace_name, "spark3p1sm")
+        self.azure_client.create_spark_pool(self.synapse_workspace_name, "spark3p3sm")
         library_requirements = f"{os.path.dirname(__file__)}/requirements.txt"
         # Creating pool with requirements is not working, so as a work around we create pool and update it.
-        self.azure_client.update_spark_pool_with_requirements(self.synapse_workspace_name, "spark3p1sm", library_requirements)
+        self.azure_client.update_spark_pool_with_requirements(self.synapse_workspace_name, "spark3p3sm", library_requirements)
 
     def create_keyvault_and_appinsights(self):
         access_policy_for_synapse = { 'tenant_id': self.tenant_id, 'object_id': self.synapse_workspace_object.identity.principal_id,

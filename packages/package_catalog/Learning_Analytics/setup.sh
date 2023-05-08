@@ -15,8 +15,8 @@ this_file_path=$(dirname $(realpath $0))
 echo "--> Setting up the Learning Analytics package v1 assets."
 
 # 1) install notebooks
-eval "az synapse notebook import --workspace-name $synapse_workspace --name LA_build_dimension_tables --spark-pool-name spark3p2med --file @$this_file_path/notebook/LA_build_dimension_tables.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name LA_build_fact_tables --spark-pool-name spark3p2med --file @$this_file_path/notebook/LA_build_fact_tables.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name LA_build_dimension_tables --spark-pool-name spark3p3sm --file @$this_file_path/notebook/LA_build_dimension_tables.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name LA_build_fact_tables --spark-pool-name spark3p3sm --file @$this_file_path/notebook/LA_build_fact_tables.ipynb --only-show-errors"
 
 # 2) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
