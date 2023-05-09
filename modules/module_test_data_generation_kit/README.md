@@ -1,4 +1,4 @@
-> **Note:** This module is currently released as v0.1, and is dependent on the OEA framework v0.7
+> **Note:** This module is currently unreleased, and is dependent on the OEA framework v0.8
 
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
@@ -96,7 +96,7 @@ The OEA test data generation kit uses five base-truth tables to artifically gene
   <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/docs/images/module_test_data_gen_setup_visual.png" alt="OEA Module Test Data Generator Setup Instructions"/>
 </p>
 
-<ins><strong>Preparation:</ins></strong> This module currently leans on v0.7 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.7 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). 
+<ins><strong>Preparation:</ins></strong> This module currently leans on v0.8 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.8 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). 
 Also, examine modules/data sources currently compatible. See [below](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit#data-source-compatibility) for these applicable data sources. Choose which modules or data sources to apply this test data generator.
     
  - If you do not see a data source you wish to generate test data for, you will need to develop assets similar to the [Insights module test data generator example](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_test_data_generation_kit/notebook/Insights_module).
@@ -113,8 +113,9 @@ As it currently stands, this test data generation kit can be applied to the foll
 | Module | Applicable Tables |
 | --- | --- |
 | [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) Module | For the 27 different roster and activity tables. |
+| [Moodle](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Moodle) Module | For the 24 different roster and activity tables. |
 
-See the Insights module test data generator assets under the [Notebook resource](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/Insights_module) for an example of a compatible module for this test data generation kit.
+See the Insights module test data generator assets under the [Notebook resource](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_test_data_generation_kit/notebook/Moodle_module) for an example of a compatible module for this test data generation kit.
 
 ## Test Data Generation Kit Components
 
