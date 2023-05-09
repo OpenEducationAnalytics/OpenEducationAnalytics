@@ -1,0 +1,41 @@
+name: Synapse Workspace Sync
+
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        default: synapse-preprod
+
+permissions:
+  id-token: write
+  repository-projects: write
+  contents: write
+  statuses: write
+  deployments: write
+  actions: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Checkout OEA Repository
+        uses: actions/checkout@v3
+      - name: OIDC Login to Azure Public Cloud with AzPowershell (enableAzPSSession true)
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+          enable-AzPSSession: true
+      - run: |
+          git checkout -b ${{ vars.SYNC_BRANCH_NAME }}
+      - shell: pwsh
+        run: |
+          .github/workflows/scripts/synapse/sync.ps1 ${{ vars.WORKSPACE_NAME }} ${{ vars.RESOURCE_GROUP }}
+      - run: |
+          git config --global user.name ${{ github.actor }}
+          git config --global user.email github-actions[bot]@.noreply.github.com
+          git commit -am "Syncing with ${{ inputs.environment }}."
+          git push --set-upstream origin ${{ vars.SYNC_BRANCH_NAME }}
