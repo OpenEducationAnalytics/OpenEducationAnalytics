@@ -16,10 +16,9 @@ this_file_path=$(dirname $(realpath $0))
 source $this_file_path/set_names.sh $org_id
 
 echo "--> Setting up the Microsoft Education Insights module assets."
-output=$(az synapse workspace list | grep $org_id)
+output=$(az synapse workspace list | grep $OEA_SYNAPSE)
 
-if [[ $? != 0 ]]; then
-  echo "synapse_workspace exits"
+if [[ $? != 1 ]]; then
   synapse_workspace=$OEA_SYNAPSE
 fi
 
