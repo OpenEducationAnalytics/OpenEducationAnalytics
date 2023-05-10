@@ -28,6 +28,8 @@ eval "az synapse notebook import --workspace-name $synapse_workspace --name Insi
 eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_ingest --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Insights_ingest.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_schema_correction --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Insights_schema_correction.ipynb --only-show-errors"
 eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_refine --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Insights_refine.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_refine --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Insights_DataValidation.ipynb --only-show-errors"
+
 
 # 2) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
