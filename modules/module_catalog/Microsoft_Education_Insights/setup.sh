@@ -9,10 +9,19 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+org_id=$1
 synapse_workspace=$1
+
 this_file_path=$(dirname $(realpath $0))
+source $this_file_path/set_names.sh $org_id
 
 echo "--> Setting up the Microsoft Education Insights module assets."
+output=$(az synapse workspace list | grep $org_id)
+
+if [[ $? != 0 ]]; then
+  echo "synapse_workspace exits"
+  synapse_workspace=$OEA_SYNAPSE
+fi
 
 # 1) install notebooks
 eval "az synapse notebook import --workspace-name $synapse_workspace --name Insights_example --spark-pool-name spark3p3sm --file @$this_file_path/notebook/Insights_example.ipynb --only-show-errors"
