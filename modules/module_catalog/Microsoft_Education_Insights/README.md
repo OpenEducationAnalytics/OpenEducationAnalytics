@@ -50,10 +50,13 @@ All the steps outlined below are applicable to deployment of this module with pr
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
     * Download the module release to your Azure clouddrive \
 `cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/v0.2/module_Microsoft_Education_Insights_v0.2.zip`\
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_Microsoft_Education_Insights_v0.2/module_Microsoft_Education_Insights_v0.2.zip`\
 `unzip ./module_Microsoft_Education_Insights_v0.2.zip`
     * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
-`./module_Microsoft_Education_Insights_v0.2/setup.sh mysynapseworkspacename`) to install this package into your own environment.
+`./module_Microsoft_Education_Insights_v0.2/setup.sh mysynapseworkspacename` to install this package into your own environment.
+<br>OR</br>
+    * Run the setup script like this (substitute "mysuffix" with your preferred suffix representing your org, which must be less than 13 characters and can only contain letters and numbers): \
+`./module_Microsoft_Education_Insights_v0.2/setup.sh mysuffix` to install this package into your own environment.
 4. Run the [Insights module main pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline) or the [Insights_example notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Education_Insights/notebook/Insights_example.ipynb) into your Synapse workspace to see the functionality of module assets.
      * It is recommended that you first run the module example notebook to understanding the methods of data processing, before running the pipeline. Although, running either the example notebook or the main pipeline accomplish the same processes.
 5. Verify that the module pipeline landed data into stage 1 and 2, and SQL and lake databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/pipeline) for detailed instructions.
