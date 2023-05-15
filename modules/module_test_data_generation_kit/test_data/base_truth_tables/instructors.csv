@@ -1,0 +1,41 @@
+Gender,FirstName,MiddleName,LastName,InstructorID,Birthday,HispanicLatino,Race,Email,Phone,Address,City,State,Zipcode
+Female,Amanda,Brent,Mathis,48d4bb69-12d4-46ea-ad9b-35b177ce83d9,1993-11-29,TRUE,asian,AmandaMathis@contoso.edu,832-702-3631,2335 Orchard View Lane,Escondido,CA,92027
+Male,Bruce,Jesse,Mitchell,875112e3-4207-4095-93a7-13098042d674,1986-02-08,FALSE,twoormoreraces,BruceMitchell@contoso.edu,318-401-2923,19416 Barclay Road,Castro Valley,CA,94546
+Male,Donald,Vincent,Moore,024a065b-5a7f-4912-a7a0-a915d90df05b,1970-06-20,FALSE,blackafricanamerican,DonaldMoore@contoso.edu,651-306-7507,5792 Owl Hill Avenue,Santa Rosa,CA,95409
+Male,Daniel,Michael,Wolf,45f177ed-bc05-4d4b-936e-2f7783a49bb8,1987-07-02,FALSE,white,DanielWolf@contoso.edu,225-094-3122,1532 Milvia Street,Berkeley,CA,94709
+Female,Sherry,Sarah,Butler,0905caf3-b716-4d70-99d2-cbc11ea86fc0,1995-06-04,TRUE,blackafricanamerican,SherryButler@contoso.edu,272-107-8322,1349 Burkhart Avenue,San Leandro,CA,94579
+Female,Olivia,Darius,Hansen,21aad112-5821-43b1-abcd-7a26112bc612,1960-07-20,FALSE,blackafricanamerican,OliviaHansen@contoso.edu,021-785-7293,1234 Carmel Street,Madera,CA,93638
+Male,Jacob,Jason,Castro,85761fba-aedd-4060-8287-112468e33df1,1963-06-08,TRUE,blackafricanamerican,JacobCastro@contoso.edu,819-356-3529,22062 Cameron Street,Castro Valley,CA,94546
+Female,Sabrina,Kimberly,Scott,c32a0d94-d454-43de-bf30-bedfded4a21f,1966-04-20,TRUE,white,SabrinaScott@contoso.edu,099-432-5356,38676 Greenwich Circle,Fremont,CA,94536
+Female,Monica,Robin,Howe,64ecf024-f1dc-405e-9487-91ba660ecc16,1961-09-30,FALSE,white,MonicaHowe@contoso.edu,961-233-8337,406 Ashwood Court,Vacaville,CA,95688
+Male,Michael,Kristin,Weaver,f5ded75d-0355-4878-85cc-7db1a8ea6268,1957-03-09,FALSE,asian,MichaelWeaver@contoso.edu,132-613-4869,1797 Pasatiempo Drive,Chico,CA,95928
+Female,Sherry,Yvonne,Hall,e73365f3-9ef2-4972-9cc3-89608392154f,1977-11-01,FALSE,white,SherryHall@contoso.edu,857-810-0590,775 47th Street,Oakland,CA,94609
+Male,William,Renee,Roberts,e1db039d-dee9-4dad-b557-f81300ed1b3f,1964-11-18,TRUE,white,WilliamRoberts@contoso.edu,926-297-9504,4255 Tanager Common,Fremont,CA,94555
+Male,Richard,Linda,Wright,785405d0-6712-4c10-812c-4dd023dd916c,1991-11-03,FALSE,blackafricanamerican,RichardWright@contoso.edu,546-009-1577,565 Amber Isle,Alameda,CA,94501
+Male,John,Dale,Willis,f2dffd0f-533a-4092-8815-96386b290ba0,1988-12-02,FALSE,white,JohnWillis@contoso.edu,477-159-3441,37122 Contra Costa Avenue,Fremont,CA,94536
+Female,Heather,John,Miller,ad528d73-06e0-46fc-84a7-c90f041f3e74,1996-03-13,TRUE,americanindianalaskanative,HeatherMiller@contoso.edu,506-817-0453,649 Praderia Circle,Fremont,CA,94539
+Female,Alyssa,Jasmin,White,3f9cb016-6fa2-43e7-8407-eb3467672e84,1977-08-19,TRUE,blackafricanamerican,AlyssaWhite@contoso.edu,520-588-6415,3959 Fairlands Drive,Pleasanton,CA,94588
+Female,Meghan,Katherine,Fitzgerald,5cae7524-d2a1-4505-9e80-c9c1b4b4207f,1988-03-14,FALSE,white,MeghanFitzgerald@contoso.edu,844-791-4490,2708 Mabel Street,Berkeley,CA,94702
+Female,Nicole,Luis,White,5f126b81-7b32-4ec5-a15a-5953ccc9f4fd,1959-08-18,FALSE,blackafricanamerican,NicoleWhite@contoso.edu,359-808-1190,1106 Mission Drive,Antioch,CA,94509
+Male,John,Sara,Morrow,91967ef1-86ce-41a0-96d1-fca802c1a663,1993-09-22,FALSE,white,JohnMorrow@contoso.edu,255-041-5552,1736 81st Avenue,Oakland,CA,94621
+Female,Alyssa,Ann,James,1438b2ff-3c68-4ba0-aeb1-7b86373518b7,1990-06-09,FALSE,blackafricanamerican,AlyssaJames@contoso.edu,002-120-0304,2807 Huxley Place,Fremont,CA,94555
+Female,Margaret,Roger,Fleming,485ec7d9-788f-4681-ad99-8156ca82e51e,1978-05-16,FALSE,blackafricanamerican,MargaretFleming@contoso.edu,288-775-2569,461 Alder Street,Eureka,CA,95503
+Male,Brandon,Zachary,Burns,263f36ad-1f8c-48f3-8ae7-e8cb6dd28693,1967-08-29,TRUE,blackafricanamerican,BrandonBurns@contoso.edu,049-484-8355,468 Raymond Drive,Ione,CA,95640
+Female,Jodi,Kelsey,Cruz,671a218d-562d-46ae-bdc7-15b14be5cba3,1970-09-03,FALSE,white,JodiCruz@contoso.edu,629-421-6959,3215 Madsen Street,Hayward,CA,94541
+Male,Cesar,Beverly,Smith,09064139-f81b-4f2c-a505-db79b8b53566,1993-10-15,FALSE,white,CesarSmith@contoso.edu,212-853-4145,4016 Doane Street,Fremont,CA,94538
+Male,Mark,Katherine,Villa,7434ac0d-2923-4b28-a5c0-86cce16eba3c,1977-09-07,FALSE,blackafricanamerican,MarkVilla@contoso.edu,827-816-5873,4444 Hansen Avenue,Fremont,CA,94536
+Male,Christopher,Charles,Young,5d7696e0-bb96-404d-a21c-b02181dbf41a,1991-09-08,FALSE,asian,ChristopherYoung@contoso.edu,916-091-2748,1643 Oxford Street,Berkeley,CA,94709
+Male,John,Jessica,Ferrell,9ed430ef-8ffb-46ca-b3be-a39270968ef9,1985-05-23,FALSE,asian,JohnFerrell@contoso.edu,526-708-7291,20375 Wisteria Street,Castro Valley,CA,94546
+Female,Julie,Christian,Dunlap,927fa7d8-51e3-4d02-9716-bb990ebcb20e,1989-03-30,FALSE,asian,JulieDunlap@contoso.edu,714-742-2994,2747 68th Avenue,Oakland,CA,94605
+Male,Steven,Xavier,Hanson,906d9b48-4673-49ca-96d7-539434d76c0c,1995-10-12,FALSE,white,StevenHanson@contoso.edu,318-697-4449,3905 Lyceum Avenue,Los Angeles,CA,90066
+Male,Frank,Edward,Gordon,b1a741b0-fb84-47f3-93d1-d01df36586e4,1956-05-02,FALSE,white,FrankGordon@contoso.edu,943-029-2857,31770 Alvarado Boulevard,Union City,CA,94587
+Male,Michael,Jason,Knight,fafee70b-dfbe-4243-b55c-d00b4664fadb,1966-03-28,TRUE,white,MichaelKnight@contoso.edu,772-923-7699,3827 West Chapman Avenue,Orange,CA,92868
+Female,Mariah,Billy,Romero,7a39c5c2-c66d-4cb3-b21c-b0347a733411,1992-07-22,FALSE,blackafricanamerican,MariahRomero@contoso.edu,179-120-7414,4255 Tanager Common,Fremont,CA,94555
+Female,Jessica,Mitchell,Gomez,d7475f54-81cf-425f-863c-f2e40ad5f11c,1981-11-21,FALSE,asian,JessicaGomez@contoso.edu,530-028-3265,49548 Road 200,O'Neals,CA,93645
+Male,Jason,Sheila,Johnson,7680c151-4259-4b66-a9f2-d10babbfd6ab,1987-11-08,FALSE,blackafricanamerican,JasonJohnson@contoso.edu,529-077-8395,468 Raymond Drive,Ione,CA,95640
+Female,Carolyn,Jamie,Case,e1940734-469f-4959-b218-097dd7cd0b80,1992-12-19,FALSE,asian,CarolynCase@contoso.edu,035-080-9966,1219 Carleton Street,Berkeley,CA,94702
+Male,Brian,Mark,Fletcher,94270160-7471-4185-86a5-c1b277b45bdf,1983-12-24,FALSE,white,BrianFletcher@contoso.edu,275-284-9081,619 Colusa Avenue,Berkeley,CA,94707
+Female,Teresa,Joseph,Williams,1915f79c-c441-4fb5-935e-1cc6416dbafd,1986-02-28,FALSE,blackafricanamerican,TeresaWilliams@contoso.edu,932-058-4447,1011 San Jose Street,San Leandro,CA,94577
+Female,Sandra,Amanda,Hutchinson,cf50f228-e0b0-4146-b18d-be66769a2014,1979-01-01,FALSE,white,SandraHutchinson@contoso.edu,255-765-7540,1357 Addison Street,Berkeley,CA,94702
+Female,Suzanne,Martha,Moody,c9f74ac3-0df8-4f5f-a9e2-760f6ca7c06f,1979-02-09,FALSE,white,SuzanneMoody@contoso.edu,198-114-9168,450 C Street,Hayward,CA,94541
+Male,Stephen,Xavier,Koch,cce4daa9-1957-4178-be86-1aaa29e5ecca,1974-06-06,FALSE,blackafricanamerican,StephenKoch@contoso.edu,076-369-4321,1076 Foster Street,Alameda,CA,94502

@@ -1,0 +1,46 @@
+{
+    "name": "4_reset_workspace_moodle",
+    "properties": {
+        "activities": [
+            {
+                "name": "delete_dataset",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "delete_dataset",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "datasetPath": {
+                            "value": "@pipeline().parameters.datasetPath",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "datasetPath": {
+                "type": "string",
+                "defaultValue": "moodle/v0.1"
+            }
+        },
+        "folder": {
+            "name": "Moodle Module/v0.1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-04-20T17:44:49Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

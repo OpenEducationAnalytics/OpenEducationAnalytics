@@ -1,0 +1,136 @@
+{
+    "name": "2_ingest_moodle",
+    "properties": {
+        "activities": [
+            {
+                "name": "ingest_metadata_from_URL",
+                "description": "",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_metadata_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/metadata.csv",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "sinkPath": {
+                            "value": "@concat('moodle/v', pipeline().parameters.version)",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "ingest_moodle",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": {
+                            "value": "@concat('Ingested/moodle/v', pipeline().parameters.version)",
+                            "type": "Expression"
+                        },
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2i_moodle_v4p1')",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "ingest_moodle",
+                "description": "Ingests all tables from Moodle data source.",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "ingest_metadata_from_URL",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Moodle_ingest",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "version": {
+                            "value": {
+                                "value": "@pipeline().parameters.version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "sparkPool": {
+                        "referenceName": "spark3p2sm",
+                        "type": "BigDataPoolReference"
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "4.1"
+            }
+        },
+        "folder": {
+            "name": "Moodle Module/v0.1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-04-20T17:44:23Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
