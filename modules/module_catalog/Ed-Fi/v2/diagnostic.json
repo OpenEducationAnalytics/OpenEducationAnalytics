@@ -1,0 +1,23 @@
+{
+    "now": "2023-05-16T16:47:23.081Z",
+    "perfNow": 44071.39999999851,
+    "diagnosticCorrelation": "43e14cdc-4e59-417d-91c6-2298a1199b58",
+    "source": "DownloadSupportFiles",
+    "environment": {
+        "productName": "a365",
+        "buildVersion": "23.0424.09",
+        "environmentType": 9,
+        "resourceName": "syn-oea-insmod1",
+        "resourceRegion": "eastus",
+        "resourceGroup": "rg-oea-insmod1",
+        "subscriptionId": "5721bb7d-69e0-45a2-8919-c43e0d8710ce",
+        "sessionId": "rW4oz",
+        "operationId": "HHDwq",
+        "gitType": "live",
+        "loggingKey": false
+    },
+    "additionalInfo": {
+        "selectedResource": "0_main_edfi",
+        "selectedResourceType": "pipeline"
+    }
+}

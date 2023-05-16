@@ -1,0 +1,22 @@
+{
+    "name": "LS_REST_Anonymous",
+    "type": "Microsoft.Synapse/workspaces/linkedservices",
+    "properties": {
+        "parameters": {
+            "BaseURL": {
+                "type": "String"
+            }
+        },
+        "annotations": [],
+        "type": "RestService",
+        "typeProperties": {
+            "url": "@{linkedService().BaseURL}",
+            "enableServerCertificateValidation": true,
+            "authenticationType": "Anonymous"
+        },
+        "connectVia": {
+            "referenceName": "AutoResolveIntegrationRuntime",
+            "type": "IntegrationRuntimeReference"
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+    "name": "LS_DataLake",
+    "type": "Microsoft.Synapse/workspaces/linkedservices",
+    "properties": {
+        "type": "AzureBlobFS",
+        "connectVia": {
+            "referenceName": "AutoResolveIntegrationRuntime",
+            "type": "IntegrationRuntimeReference"
+        },
+        "description": "Connection to the OEA data lake",
+        "annotations": [],
+        "typeProperties": {
+            "url": "https://stoeainsmod1.dfs.core.windows.net"
+        }
+    }
+}

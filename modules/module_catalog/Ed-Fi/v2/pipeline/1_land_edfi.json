@@ -1,0 +1,329 @@
+{
+    "name": "1_land_edfi",
+    "properties": {
+        "activities": [
+            {
+                "name": "Get-ApiDetails",
+                "type": "WebActivity",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "7.00:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "url": {
+                        "value": "@pipeline().parameters.ApiUrl",
+                        "type": "Expression"
+                    },
+                    "connectVia": {
+                        "referenceName": "AutoResolveIntegrationRuntime",
+                        "type": "IntegrationRuntimeReference"
+                    },
+                    "method": "GET",
+                    "body": {
+                        "grant_type": "client_credentials"
+                    }
+                }
+            },
+            {
+                "name": "Set-AuthUrl",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "Get-ApiDetails",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "AuthUrl",
+                    "value": {
+                        "value": "@replace(activity('Get-ApiDetails').output.urls.oauth, '{instance}', concat(pipeline().parameters.InstanceId,''))",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Set-DataManagementUrl",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "Get-ApiDetails",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "DataManagementUrl",
+                    "value": {
+                        "value": "@replace(replace(activity('Get-ApiDetails').output.urls.dataManagementApi, '{instance}', concat(pipeline().parameters.InstanceId,'')), '2023', concat(pipeline().parameters.SchoolYear,''))",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Set-ChangeQueriesUrl",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "Get-ApiDetails",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "ChangeQueriesUrl",
+                    "value": {
+                        "value": "@concat(pipeline().parameters.ApiUrl,'changequeries/v1',if(not(empty(pipeline().parameters.InstanceId)),concat('/',pipeline().parameters.InstanceId),''),if(not(empty(pipeline().parameters.SchoolYear)),concat('/',pipeline().parameters.SchoolYear),''))",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Set-ApiVersion",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "Get-ApiDetails",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "ApiVersion",
+                    "value": {
+                        "value": "@activity('Get-ApiDetails').output.version",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Set-DependenciesUrl",
+                "type": "SetVariable",
+                "dependsOn": [
+                    {
+                        "activity": "Get-ApiDetails",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "DependenciesUrl",
+                    "value": {
+                        "value": "@replace(replace(activity('Get-ApiDetails').output.urls.dependencies, '{instance}', concat(pipeline().parameters.InstanceId,'')), '2023', concat(pipeline().parameters.SchoolYear,''))",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "Run_EdFi_Land",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Set-ApiVersion",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Set-AuthUrl",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Set-DataManagementUrl",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Set-ChangeQueriesUrl",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "Set-DependenciesUrl",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "EdFi_Land",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "authUrl": {
+                            "value": {
+                                "value": "@variables('AuthUrl')",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "dataManagementUrl": {
+                            "value": {
+                                "value": "@variables('DataManagementUrl')",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "changeQueriesUrl": {
+                            "value": {
+                                "value": "@variables('ChangeQueriesUrl')",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "dependenciesUrl": {
+                            "value": {
+                                "value": "@variables('DependenciesUrl')",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "apiVersion": {
+                            "value": {
+                                "value": "@variables('ApiVersion')",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "batchLimit": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiLimit",
+                                "type": "Expression"
+                            },
+                            "type": "int"
+                        },
+                        "kvName": {
+                            "value": {
+                                "value": "@pipeline().parameters.kvName",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "moduleName": {
+                            "value": {
+                                "value": "@pipeline().parameters.ModuleName",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "minChangeVer": {
+                            "value": {
+                                "value": "@pipeline().parameters.MinChangeVer",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "maxChangeVer": {
+                            "value": {
+                                "value": "@pipeline().parameters.MaxChangeVer",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string"
+            },
+            "ApiUrl": {
+                "type": "string"
+            },
+            "InstanceId": {
+                "type": "string"
+            },
+            "SchoolYear": {
+                "type": "string"
+            },
+            "ModuleName": {
+                "type": "string"
+            },
+            "DistrictId": {
+                "type": "string"
+            },
+            "ApiLimit": {
+                "type": "string"
+            },
+            "kvName": {
+                "type": "string"
+            },
+            "MinChangeVer": {
+                "type": "string"
+            },
+            "MaxChangeVer": {
+                "type": "string"
+            }
+        },
+        "variables": {
+            "edfi_clientid": {
+                "type": "String"
+            },
+            "edfi_clientsecret": {
+                "type": "String"
+            },
+            "AuthUrl": {
+                "type": "String"
+            },
+            "DataManagementUrl": {
+                "type": "String"
+            },
+            "ChangeQueriesUrl": {
+                "type": "String"
+            },
+            "ApiVersion": {
+                "type": "String"
+            },
+            "DependenciesUrl": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "EdFi Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-05-04T19:06:41Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

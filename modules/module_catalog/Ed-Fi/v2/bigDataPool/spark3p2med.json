@@ -1,0 +1,25 @@
+{
+    "name": "spark3p2med",
+    "location": "eastus",
+    "tags": {
+        "oea_version": "0.7dev"
+    },
+    "properties": {
+        "autoPause": {
+            "enabled": true,
+            "delayInMinutes": 15
+        },
+        "autoScale": {
+            "enabled": true,
+            "maxNodeCount": 10,
+            "minNodeCount": 3
+        },
+        "nodeCount": 3,
+        "nodeSize": "Medium",
+        "nodeSizeFamily": "MemoryOptimized",
+        "sparkVersion": "3.3",
+        "isComputeIsolationEnabled": false,
+        "sessionLevelPackagesEnabled": false,
+        "annotations": []
+    }
+}
