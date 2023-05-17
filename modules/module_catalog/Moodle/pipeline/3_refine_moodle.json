@@ -3,78 +3,8 @@
     "properties": {
         "activities": [
             {
-                "name": "create_sql_db_for_general",
-                "type": "ExecutePipeline",
-                "dependsOn": [
-                    {
-                        "activity": "refine_moodle_data",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "userProperties": [],
-                "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "create_sql_db",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "stage": "stage2",
-                        "datasetPath": {
-                            "value": "@concat('Refined/moodle/v',pipeline().parameters.version,'/general')",
-                            "type": "Expression"
-                        },
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        },
-                        "dbName": {
-                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2r_moodle_v4p1')",
-                            "type": "Expression"
-                        }
-                    }
-                }
-            },
-            {
-                "name": "create_sql_db_for_sensitive",
-                "type": "ExecutePipeline",
-                "dependsOn": [
-                    {
-                        "activity": "refine_moodle_data",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "userProperties": [],
-                "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "create_sql_db",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "stage": "stage2",
-                        "datasetPath": {
-                            "value": "@concat('Refined/moodle/v',pipeline().parameters.version,'/sensitive')",
-                            "type": "Expression"
-                        },
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        },
-                        "dbName": {
-                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2r_moodle_v4p1')",
-                            "type": "Expression"
-                        }
-                    }
-                }
-            },
-            {
                 "name": "refine_moodle_data",
-                "description": "Refines all tables from Insights currently located in stage2/Ingested/moodle/v4.1.",
+                "description": "Refines all tables from Moodle currently located in stage2/Ingested/moodle/v4.1.",
                 "type": "SynapseNotebook",
                 "dependsOn": [],
                 "policy": {
@@ -107,7 +37,7 @@
                         }
                     },
                     "sparkPool": {
-                        "referenceName": "spark3p2sm",
+                        "referenceName": "spark3p3sm",
                         "type": "BigDataPoolReference"
                     },
                     "conf": {
@@ -133,7 +63,7 @@
             "name": "Moodle Module/v0.1"
         },
         "annotations": [],
-        "lastPublishTime": "2023-04-20T17:44:34Z"
+        "lastPublishTime": "2023-05-17T15:12:52Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

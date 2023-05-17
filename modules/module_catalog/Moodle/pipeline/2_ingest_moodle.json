@@ -6,30 +6,6 @@
                 "name": "ingest_metadata_from_URL",
                 "description": "",
                 "type": "ExecutePipeline",
-                "dependsOn": [],
-                "userProperties": [],
-                "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "land_metadata_from_URL",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/metadata.csv",
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        },
-                        "sinkPath": {
-                            "value": "@concat('moodle/v', pipeline().parameters.version)",
-                            "type": "Expression"
-                        }
-                    }
-                }
-            },
-            {
-                "name": "create_sql_db",
-                "type": "ExecutePipeline",
                 "dependsOn": [
                     {
                         "activity": "ingest_moodle",
@@ -41,22 +17,18 @@
                 "userProperties": [],
                 "typeProperties": {
                     "pipeline": {
-                        "referenceName": "create_sql_db",
+                        "referenceName": "land_metadata_from_URL",
                         "type": "PipelineReference"
                     },
                     "waitOnCompletion": true,
                     "parameters": {
-                        "stage": "stage2",
-                        "datasetPath": {
-                            "value": "@concat('Ingested/moodle/v', pipeline().parameters.version)",
-                            "type": "Expression"
-                        },
+                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Microsoft_Education_Insights/test_data/metadata.csv",
                         "workspace": {
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
                         },
-                        "dbName": {
-                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2i_moodle_v4p1')",
+                        "sinkPath": {
+                            "value": "@concat('M365/v', pipeline().parameters.version)",
                             "type": "Expression"
                         }
                     }
@@ -64,16 +36,9 @@
             },
             {
                 "name": "ingest_moodle",
-                "description": "Ingests all tables from Moodle data source.",
+                "description": "Ingests the tables from Moodle listed in the notebook.",
                 "type": "SynapseNotebook",
-                "dependsOn": [
-                    {
-                        "activity": "ingest_metadata_from_URL",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
+                "dependsOn": [],
                 "policy": {
                     "timeout": "0.12:00:00",
                     "retry": 0,
@@ -104,7 +69,7 @@
                         }
                     },
                     "sparkPool": {
-                        "referenceName": "spark3p2sm",
+                        "referenceName": "spark3p3sm",
                         "type": "BigDataPoolReference"
                     },
                     "conf": {
@@ -121,6 +86,10 @@
                 "type": "string",
                 "defaultValue": "dev"
             },
+            "ingest_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
+            },
             "version": {
                 "type": "string",
                 "defaultValue": "4.1"
@@ -130,7 +99,7 @@
             "name": "Moodle Module/v0.1"
         },
         "annotations": [],
-        "lastPublishTime": "2023-04-20T17:44:23Z"
+        "lastPublishTime": "2023-05-17T15:12:37Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

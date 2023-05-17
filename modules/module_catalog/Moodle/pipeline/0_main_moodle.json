@@ -1,7 +1,7 @@
 {
     "name": "0_main_moodle",
     "properties": {
-        "description": "Change the workspace and version parameters as needed.\nNOTE: Moodle module only contains higher ed. (hed) test data, currently. ",
+        "description": "NOTE: Moodle module only contains hed test data at the moment (no K12 test dataset).",
         "activities": [
             {
                 "name": "2_ingest_moodle",
@@ -24,6 +24,10 @@
                     "parameters": {
                         "workspace": {
                             "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "ingest_k12_or_hed_test_data": {
+                            "value": "@pipeline().parameters.run_k12_or_hed_test_data",
                             "type": "Expression"
                         },
                         "version": {
@@ -65,7 +69,6 @@
             },
             {
                 "name": "1_land_moodle_test_or_prod",
-                "description": "",
                 "type": "IfCondition",
                 "dependsOn": [],
                 "userProperties": [],
@@ -120,7 +123,7 @@
             "name": "Moodle Module/v0.1"
         },
         "annotations": [],
-        "lastPublishTime": "2023-04-20T17:45:00Z"
+        "lastPublishTime": "2023-05-17T15:13:11Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
