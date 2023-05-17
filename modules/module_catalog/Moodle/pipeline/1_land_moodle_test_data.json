@@ -1,0 +1,1042 @@
+{
+    "name": "1_land_moodle_test_data",
+    "properties": {
+        "activities": [
+            {
+                "name": "Set defaultFilename",
+                "description": "Sets defaultFilename variable depending on whether K-12 or Higher Ed. test data is to be landed.",
+                "type": "SetVariable",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "defaultFilename",
+                    "value": {
+                        "value": "@{pipeline().parameters.land_k12_or_hed_test_data}_test_data.csv",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "land_assign",
+                "description": "Land Moodle either K-12 or Higher Ed. Assign Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/assign.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/assign",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_assign_grades",
+                "description": "Land Moodle either K-12 or Higher Ed.  Assign_grades Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/assign_grades.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/assign_grades",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_assign_submission",
+                "description": "Land Moodle either K-12 or Higher Ed.  Assign_submission Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/assign_submission.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/assign_submission",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_assign_user_mapping",
+                "description": "Land Moodle either K-12 or Higher Ed. Assign_user_mapping Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/assign_user_mapping.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/assign_user_mapping",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_assignsubmission_file",
+                "description": "Land Moodle either K-12 or Higher Ed. Assignsubmission_file Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/assignsubmission_file.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/assignsubmission_file",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_cohort",
+                "description": "Land Moodle either K-12 or Higher Ed. Cohort Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/cohort.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/cohort",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_course",
+                "description": "Land Moodle either K-12 or Higher Ed. Course Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/course.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/course",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_course_categories",
+                "description": "Land Moodle either K-12 or Higher Ed. Course_categories Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/course_categories.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/course_categories",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_enrol",
+                "description": "Land Moodle either K-12 or Higher Ed. Enrol Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/enrol.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/enrol",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_forum",
+                "description": "Land Moodle either K-12 or Higher Ed. Forum Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/forum.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/forum",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_forum_discussions",
+                "description": "Land Moodle either K-12 or Higher Ed. Forum_discussions Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/forum_discussions.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/forum_discussions",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_forum_grades",
+                "description": "Land Moodle either K-12 or Higher Ed. Forum_grades Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/forum_grades.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/forum_grades",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_forum_posts",
+                "description": "Land Moodle either K-12 or Higher Ed. Forum_posts Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/forum_posts.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/forum_posts",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_lesson",
+                "description": "Land Moodle either K-12 or Higher Ed. Lesson Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/lesson.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/lesson",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_lesson_answers",
+                "description": "Land Moodle either K-12 or Higher Ed. Lesson_answers Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/lesson_answers.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/lesson_answers",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_lesson_attempts",
+                "description": "Land Moodle either K-12 or Higher Ed. Lesson_attempts Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/lesson_attempts.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/lesson_attempts",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_lesson_grades",
+                "description": "Land Moodle either K-12 or Higher Ed. Lesson_grades Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/lesson_grades.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/lesson_grades",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_lesson_pages",
+                "description": "Land Moodle either K-12 or Higher Ed. Lesson_pages Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/lesson_pages.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/lesson_pages",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_lesson_timer",
+                "description": "Land Moodle either K-12 or Higher Ed. Lesson_timer Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/lesson_timer.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/lesson_timer",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_page",
+                "description": "Land Moodle either K-12 or Higher Ed. Page Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/page.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/page",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "delta"
+                    }
+                }
+            },
+            {
+                "name": "land_quiz",
+                "description": "Land Moodle either K-12 or Higher Ed. Quiz Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/quiz.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/quiz",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_quiz_attempts",
+                "description": "Land Moodle either K-12 or Higher Ed. Quiz_attempts Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/quiz_attempts.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/quiz_attempts",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_quiz_grades",
+                "description": "Land Moodle either K-12 or Higher Ed. Quiz_grades Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/quiz_grades.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/quiz_grades",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive"
+                    }
+                }
+            },
+            {
+                "name": "land_role",
+                "description": "Land Moodle either K-12 or Higher Ed. Role Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/role.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/role",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_role_assignments",
+                "description": "Land Moodle either K-12 or Higher Ed. Role_assignments Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/role_assignments.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/role_assignments",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_user",
+                "description": "Land Moodle either K-12 or Higher Ed. User Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/user.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/user",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot"
+                    }
+                }
+            },
+            {
+                "name": "land_user_enrolments",
+                "description": "Land Moodle either K-12 or Higher Ed. User_enrolments Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Moodle/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/user_enrolments.csv')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "moodle/v@{pipeline().parameters.version}/user_enrolments",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "delta"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "land_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "4.1"
+            }
+        },
+        "variables": {
+            "defaultFilename": {
+                "type": "String",
+                "defaultValue": "test_data.csv"
+            }
+        },
+        "folder": {
+            "name": "Moodle Module/v0.1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-05-17T15:50:16Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

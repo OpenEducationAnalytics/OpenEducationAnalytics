@@ -1,0 +1,69 @@
+{
+    "name": "3_refine_moodle",
+    "properties": {
+        "activities": [
+            {
+                "name": "refine_moodle_data",
+                "description": "Refines all tables from Moodle currently located in stage2/Ingested/moodle/v4.1.",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Moodle_refine",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "version": {
+                            "value": {
+                                "value": "@pipeline().parameters.version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "sparkPool": {
+                        "referenceName": "spark3p3sm",
+                        "type": "BigDataPoolReference"
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "4.1"
+            }
+        },
+        "folder": {
+            "name": "Moodle Module/v0.1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-05-17T15:12:52Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
