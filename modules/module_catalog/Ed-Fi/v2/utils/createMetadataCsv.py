@@ -3,7 +3,7 @@ import csv
 
 swaggerUrls = [
     "https://api.ed-fi.org/v5.2/api/metadata/composites/v1/ed-fi/enrollment/swagger.json",
-    "https://api.ed-fi.org/v5.2/api/metadata/identity/v2/swagger.json",
+    # "https://api.ed-fi.org/v5.2/api/metadata/identity/v2/swagger.json",
     "https://api.ed-fi.org/v5.2/api/metadata/data/v3/descriptors/swagger.json",
     "https://api.ed-fi.org/v5.2/api/metadata/data/v3/resources/swagger.json"
     ]
@@ -16,7 +16,7 @@ with open('./Metadata.csv', 'w',newline='') as f:
     # write header row
     writer.writerow(["Entity Name","Attribute Name","Attribute Data Type","Pseudonymization"])
 
-    for url in swaggerUrls[3:4]:
+    for url in swaggerUrls:
         print(url)
         swagger = requests.get(url).json()
 
@@ -28,18 +28,16 @@ with open('./Metadata.csv', 'w',newline='') as f:
             # write entity row
             # writer.writerow([key,"","",""])
 
-            if key in definitions:
-                raise Exception(f"key, {key}, already exists")
-            else:
+            if key not in definitions:
                 definitions[key] = {}
-            for property in swagger["definitions"][definition]["properties"].keys():
-                print(property, swagger["definitions"][definition]["properties"][property])
-                if "$ref" in swagger["definitions"][definition]["properties"][property]:
-                    #For now don't add refs to the definitions.  
-                    #definitions[key][property] = swagger["definitions"][definition]["properties"][property]
-                    pass
-                else:
-                    definitions[key][property] = ["",property, swagger["definitions"][definition]["properties"][property]["type"],"no-op"]
+                for property in swagger["definitions"][definition]["properties"].keys():
+                    print(property, swagger["definitions"][definition]["properties"][property])
+                    if "$ref" in swagger["definitions"][definition]["properties"][property]:
+                        #For now don't add refs to the definitions.  
+                        #definitions[key][property] = swagger["definitions"][definition]["properties"][property]
+                        pass
+                    else:
+                        definitions[key][property] = ["",property, swagger["definitions"][definition]["properties"][property]["type"],"no-op"]
             print("--------------------------------------")
 
         #iterate over the entities by path and write metadata for each entity to file
