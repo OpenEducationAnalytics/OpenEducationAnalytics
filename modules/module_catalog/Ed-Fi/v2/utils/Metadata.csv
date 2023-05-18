@@ -67,7 +67,7 @@ enrollment,,,
 ,studentUniqueId,string,no-op
 ,_etag,string,no-op
 absenceEventCategoryDescriptors,,,
-,id,string,no-op
+,id,string,hash
 ,absenceEventCategoryDescriptorId,integer,no-op
 ,codeValue,string,no-op
 ,description,string,no-op
