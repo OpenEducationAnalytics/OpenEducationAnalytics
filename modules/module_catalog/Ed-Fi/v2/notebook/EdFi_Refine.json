@@ -1,0 +1,267 @@
+{
+    "name": "EdFi_Refine",
+    "properties": {
+        "nbformat": 4,
+        "nbformat_minor": 2,
+        "bigDataPool": {
+            "referenceName": "spark3p2med",
+            "type": "BigDataPoolReference"
+        },
+        "sessionProperties": {
+            "driverMemory": "56g",
+            "driverCores": 8,
+            "executorMemory": "56g",
+            "executorCores": 8,
+            "numExecutors": 2,
+            "runAsWorkspaceSystemIdentity": false,
+            "conf": {
+                "spark.dynamicAllocation.enabled": "false",
+                "spark.dynamicAllocation.minExecutors": "2",
+                "spark.dynamicAllocation.maxExecutors": "2",
+                "spark.autotune.trackingId": "8765680a-8157-42f0-a0be-cd220f3b2ab1"
+            }
+        },
+        "metadata": {
+            "saveOutput": true,
+            "synapse_widget": {
+                "version": "0.1"
+            },
+            "enableDebugMode": false,
+            "kernelspec": {
+                "name": "synapse_pyspark",
+                "display_name": "Synapse PySpark"
+            },
+            "language_info": {
+                "name": "python"
+            },
+            "a365ComputeOptions": {
+                "id": "/subscriptions/5721bb7d-69e0-45a2-8919-c43e0d8710ce/resourceGroups/rg-oea-insmod1/providers/Microsoft.Synapse/workspaces/syn-oea-insmod1/bigDataPools/spark3p2med",
+                "name": "spark3p2med",
+                "type": "Spark",
+                "endpoint": "https://syn-oea-insmod1.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/spark3p2med",
+                "auth": {
+                    "type": "AAD",
+                    "authResource": "https://dev.azuresynapse.net"
+                },
+                "sparkVersion": "3.3",
+                "nodeCount": 3,
+                "cores": 8,
+                "memory": 56,
+                "automaticScaleJobs": false
+            },
+            "sessionKeepAliveTimeout": 30
+        },
+        "cells": [
+            {
+                "cell_type": "code",
+                "metadata": {
+                    "jupyter": {
+                        "source_hidden": false,
+                        "outputs_hidden": false
+                    },
+                    "nteract": {
+                        "transient": {
+                            "deleting": false
+                        }
+                    }
+                },
+                "source": [
+                    "# workspace = 'dev'\r\n",
+                    "# apiVersion = \"5.2\"\r\n",
+                    "# moduleName = \"EdFi4\""
+                ],
+                "outputs": [],
+                "execution_count": null
+            },
+            {
+                "cell_type": "code",
+                "metadata": {
+                    "jupyter": {
+                        "source_hidden": false,
+                        "outputs_hidden": false
+                    },
+                    "nteract": {
+                        "transient": {
+                            "deleting": false
+                        }
+                    }
+                },
+                "source": [
+                    "%run OEA_py"
+                ],
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": null,
+                                "session_id": "169",
+                                "statement_id": -1,
+                                "state": "finished",
+                                "livy_statement_state": "available",
+                                "queued_time": "2023-05-18T23:37:50.1462435Z",
+                                "session_start_time": null,
+                                "execution_start_time": "2023-05-18T23:37:50.9453324Z",
+                                "execution_finish_time": "2023-05-18T23:37:50.9454896Z",
+                                "spark_jobs": null,
+                                "parent_msg_id": "0302c5a2-1200-4bf2-b8a7-efa601bff454"
+                            },
+                            "text/plain": "StatementMeta(, 169, -1, Finished, Available)"
+                        }
+                    },
+                    {
+                        "name": "stdout",
+                        "output_type": "stream",
+                        "text": "2023-05-18 23:37:50,722 - OEA - INFO - Now using workspace: dev\n2023-05-18 23:37:50,722 - OEA - INFO - OEA initialized.\n"
+                    }
+                ],
+                "execution_count": 103
+            },
+            {
+                "cell_type": "code",
+                "metadata": {
+                    "jupyter": {
+                        "source_hidden": false,
+                        "outputs_hidden": false
+                    },
+                    "nteract": {
+                        "transient": {
+                            "deleting": false
+                        }
+                    }
+                },
+                "source": [
+                    "# 1) set the workspace (this determines where in the data lake you'll be writing to and reading from).\r\n",
+                    "# You can work in 'dev', 'prod', or a sandbox with any name you choose.\r\n",
+                    "# For example, Sam the developer can create a 'sam' workspace and expect to find his datasets in the data lake under oea/sandboxes/sam\r\n",
+                    "oea.set_workspace(workspace)"
+                ],
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": "spark3p2med",
+                                "session_id": "169",
+                                "statement_id": 10,
+                                "state": "finished",
+                                "livy_statement_state": "available",
+                                "queued_time": "2023-05-18T23:37:50.1821329Z",
+                                "session_start_time": null,
+                                "execution_start_time": "2023-05-18T23:37:51.1245169Z",
+                                "execution_finish_time": "2023-05-18T23:37:51.2885441Z",
+                                "spark_jobs": null,
+                                "parent_msg_id": "754eaa65-a3a3-44a6-b87f-9cd845be99bc"
+                            },
+                            "text/plain": "StatementMeta(spark3p2med, 169, 10, Finished, Available)"
+                        }
+                    },
+                    {
+                        "name": "stdout",
+                        "output_type": "stream",
+                        "text": "2023-05-18 23:37:51,102 - OEA - INFO - Now using workspace: dev\n"
+                    }
+                ],
+                "execution_count": 104
+            },
+            {
+                "cell_type": "code",
+                "metadata": {
+                    "jupyter": {
+                        "source_hidden": false,
+                        "outputs_hidden": false
+                    },
+                    "nteract": {
+                        "transient": {
+                            "deleting": false
+                        }
+                    }
+                },
+                "source": [
+                    "def refine_edfi_dataset(tables_source):\r\n",
+                    "    items = oea.get_folders(tables_source)\r\n",
+                    "    for item in items: \r\n",
+                    "        table_path = tables_source +'/'+ item\r\n",
+                    "        if item == 'metadata.csv':\r\n",
+                    "            logger.info('ignore metadata processing, since this is not a table to be ingested')\r\n",
+                    "        else:\r\n",
+                    "            try:\r\n",
+                    "                oea.refine(f'{moduleName}/{version}/ed-fi/'+ item, metadata[item], 'id')\r\n",
+                    "            except AnalysisException as e:\r\n",
+                    "                # This means the table may have not been properly refined due to errors with the primary key not aligning with columns expected in the lookup table.\r\n",
+                    "                logger.info(e)\r\n",
+                    "                pass\r\n",
+                    "            \r\n",
+                    "            logger.info('Refined table: ' + item + ' from: ' + table_path)"
+                ],
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": "spark3p2med",
+                                "session_id": "169",
+                                "statement_id": 11,
+                                "state": "finished",
+                                "livy_statement_state": "available",
+                                "queued_time": "2023-05-18T23:37:50.2468776Z",
+                                "session_start_time": null,
+                                "execution_start_time": "2023-05-18T23:37:51.4270918Z",
+                                "execution_finish_time": "2023-05-18T23:37:51.5907302Z",
+                                "spark_jobs": null,
+                                "parent_msg_id": "973a8453-c33a-42b1-a3db-74651f98878e"
+                            },
+                            "text/plain": "StatementMeta(spark3p2med, 169, 11, Finished, Available)"
+                        }
+                    }
+                ],
+                "execution_count": 105
+            },
+            {
+                "cell_type": "code",
+                "metadata": {
+                    "jupyter": {
+                        "source_hidden": false,
+                        "outputs_hidden": false
+                    },
+                    "nteract": {
+                        "transient": {
+                            "deleting": false
+                        }
+                    }
+                },
+                "source": [
+                    "metadata = oea.get_metadata_from_url('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/u/dablickw/edfiIngest/modules/module_catalog/Ed-Fi/v2/utils/Metadata.csv')\r\n",
+                    "refine_edfi_dataset(f'stage2/Ingested/{moduleName}/{version}/ed-fi')"
+                ],
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": "spark3p2med",
+                                "session_id": "169",
+                                "statement_id": 12,
+                                "state": "finished",
+                                "livy_statement_state": "available",
+                                "queued_time": "2023-05-18T23:37:50.3922948Z",
+                                "session_start_time": null,
+                                "execution_start_time": "2023-05-18T23:37:51.7358657Z",
+                                "execution_finish_time": "2023-05-18T23:39:04.4389265Z",
+                                "spark_jobs": null,
+                                "parent_msg_id": "4b1362a2-3a54-4d25-8126-dbf412ffdeca"
+                            },
+                            "text/plain": "StatementMeta(spark3p2med, 169, 12, Finished, Available)"
+                        }
+                    },
+                    {
+                        "name": "stdout",
+                        "output_type": "stream",
+                        "text": "2023-05-18 23:39:03,256 - OEA - INFO - Processed 12 updated rows from stage2/Ingested/EdFi4/5.2/ed-fi/absenceEventCategoryDescriptors into stage2/Refined\n2023-05-18 23:39:03,519 - OEA - INFO - Refined table: absenceEventCategoryDescriptors from: stage2/Ingested/EdFi4/5.2/ed-fi/absenceEventCategoryDescriptors\n"
+                    }
+                ],
+                "execution_count": 106
+            }
+        ]
+    }
+}

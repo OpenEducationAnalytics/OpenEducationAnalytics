@@ -18,11 +18,14 @@
                 "spark.dynamicAllocation.enabled": "false",
                 "spark.dynamicAllocation.minExecutors": "2",
                 "spark.dynamicAllocation.maxExecutors": "2",
-                "spark.autotune.trackingId": "ea39c954-fb01-46e5-adb9-6df8bc4b38a6"
+                "spark.autotune.trackingId": "9192d712-e841-4a4e-b312-0167e2202cb4"
             }
         },
         "metadata": {
             "saveOutput": true,
+            "synapse_widget": {
+                "version": "0.1"
+            },
             "enableDebugMode": false,
             "kernelspec": {
                 "name": "synapse_pyspark",
@@ -38,14 +41,13 @@
                 "endpoint": "https://syn-oea-insmod1.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/spark3p2med",
                 "auth": {
                     "type": "AAD",
-                    "authResource": "https://dev.azuresynapse.net",
-                    "authHeader": null
+                    "authResource": "https://dev.azuresynapse.net"
                 },
                 "sparkVersion": "3.3",
                 "nodeCount": 3,
                 "cores": 8,
                 "memory": 56,
-                "extraHeader": null
+                "automaticScaleJobs": false
             },
             "sessionKeepAliveTimeout": 30
         },
@@ -70,7 +72,27 @@
                     "maxChangeVer = None\r\n",
                     ""
                 ],
-                "outputs": [],
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": "spark3p2med",
+                                "session_id": "161",
+                                "statement_id": 19,
+                                "state": "finished",
+                                "livy_statement_state": "available",
+                                "queued_time": "2023-05-09T20:18:56.0295673Z",
+                                "session_start_time": null,
+                                "execution_start_time": "2023-05-09T20:18:56.1864085Z",
+                                "execution_finish_time": "2023-05-09T20:18:56.3531737Z",
+                                "spark_jobs": null,
+                                "parent_msg_id": "7dcd362b-94a2-44fd-bf06-3aac9b82ceec"
+                            },
+                            "text/plain": "StatementMeta(spark3p2med, 161, 19, Finished, Available)"
+                        }
+                    }
+                ],
                 "execution_count": 64
             },
             {
@@ -89,7 +111,32 @@
                 "source": [
                     "%run /OEA_py"
                 ],
-                "outputs": [],
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": null,
+                                "session_id": "161",
+                                "statement_id": -1,
+                                "state": "finished",
+                                "livy_statement_state": "available",
+                                "queued_time": "2023-05-09T20:18:56.08896Z",
+                                "session_start_time": null,
+                                "execution_start_time": "2023-05-09T20:18:56.9408638Z",
+                                "execution_finish_time": "2023-05-09T20:18:56.9410478Z",
+                                "spark_jobs": null,
+                                "parent_msg_id": "1359337d-403a-4500-b786-102c1bdbce19"
+                            },
+                            "text/plain": "StatementMeta(, 161, -1, Finished, Available)"
+                        }
+                    },
+                    {
+                        "name": "stdout",
+                        "output_type": "stream",
+                        "text": "2023-05-09 20:18:56,701 - OEA - INFO - Now using workspace: dev\n2023-05-09 20:18:56,701 - OEA - INFO - OEA initialized.\n"
+                    }
+                ],
                 "execution_count": 65
             },
             {
@@ -108,7 +155,32 @@
                 "source": [
                     "oea.set_workspace(workspace)"
                 ],
-                "outputs": [],
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": "spark3p2med",
+                                "session_id": "161",
+                                "statement_id": 21,
+                                "state": "finished",
+                                "livy_statement_state": "available",
+                                "queued_time": "2023-05-09T20:18:56.155319Z",
+                                "session_start_time": null,
+                                "execution_start_time": "2023-05-09T20:18:57.0771598Z",
+                                "execution_finish_time": "2023-05-09T20:18:57.2768038Z",
+                                "spark_jobs": null,
+                                "parent_msg_id": "7990f8d0-2df0-4cb9-945c-f16493187eda"
+                            },
+                            "text/plain": "StatementMeta(spark3p2med, 161, 21, Finished, Available)"
+                        }
+                    },
+                    {
+                        "name": "stdout",
+                        "output_type": "stream",
+                        "text": "2023-05-09 20:18:57,049 - OEA - INFO - Now using workspace: dev\n"
+                    }
+                ],
                 "execution_count": 66
             },
             {
@@ -223,7 +295,7 @@
                     "        return result\r\n",
                     "\r\n",
                     "    def writeToDeletesFile(self, resource, deletes):\r\n",
-                    "        path = f\"stage1/{self.transactionalFolder}{resource}/Deletes/delete_batch_data/rundate={self.runDate}/data.json\"\r\n",
+                    "        path = f\"stage1/{self.transactionalFolder}{resource}/delete_batch_data/rundate={self.runDate}/data.json\"\r\n",
                     "        mssparkutils.fs.put(oea.to_url(path),deletes.text)\r\n",
                     "\r\n",
                     "    def landEntities(self):\r\n",
@@ -258,7 +330,7 @@
                     "            for i in range(batches + 1):\r\n",
                     "                batch_url=f\"{url}&limit={self.batchLimit}&offset={(i)*self.batchLimit}\"\r\n",
                     "                data = requests.get(batch_url, headers={\"Authorization\":f\"Bearer {self.getAccessToken()}\"})          \r\n",
-                    "                filepath = f\"{path}/Upserts/delta_batch_data/rundate={self.runDate}/data{uuid.uuid4()}.json\"\r\n",
+                    "                filepath = f\"{path}/delta_batch_data/rundate={self.runDate}/data{uuid.uuid4()}.json\"\r\n",
                     "                output = json.loads(data.text)\r\n",
                     "                output_string = \"\"\r\n",
                     "                for line in output:\r\n",
@@ -266,7 +338,7 @@
                     "                mssparkutils.fs.put(oea.to_url(filepath),output_string)\r\n",
                     "        except:\r\n",
                     "            data = requests.get(url, headers={\"Authorization\":f\"Bearer {self.getAccessToken()}\"})          \r\n",
-                    "            filepath = f\"{path}/Upserts/delta_batch_data/rundate={self.runDate}/data{uuid.uuid4()}.json\"\r\n",
+                    "            filepath = f\"{path}/delta_batch_data/rundate={self.runDate}/data{uuid.uuid4()}.json\"\r\n",
                     "            output = json.loads(data.text)\r\n",
                     "            output_string = \"\"\r\n",
                     "            for line in output:\r\n",
@@ -280,7 +352,27 @@
                     "\r\n",
                     ""
                 ],
-                "outputs": [],
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": "spark3p2med",
+                                "session_id": "161",
+                                "statement_id": 22,
+                                "state": "finished",
+                                "livy_statement_state": "available",
+                                "queued_time": "2023-05-09T20:18:56.2266286Z",
+                                "session_start_time": null,
+                                "execution_start_time": "2023-05-09T20:18:57.4414071Z",
+                                "execution_finish_time": "2023-05-09T20:18:57.6161451Z",
+                                "spark_jobs": null,
+                                "parent_msg_id": "237a79d2-8553-427a-8e57-472600702d37"
+                            },
+                            "text/plain": "StatementMeta(spark3p2med, 161, 22, Finished, Available)"
+                        }
+                    }
+                ],
                 "execution_count": 67
             },
             {
@@ -306,7 +398,32 @@
                     "    exception = e\r\n",
                     ""
                 ],
-                "outputs": [],
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": "spark3p2med",
+                                "session_id": "161",
+                                "statement_id": 23,
+                                "state": "submitted",
+                                "livy_statement_state": "running",
+                                "queued_time": "2023-05-09T20:18:56.3822283Z",
+                                "session_start_time": null,
+                                "execution_start_time": "2023-05-09T20:18:57.7846902Z",
+                                "execution_finish_time": null,
+                                "spark_jobs": null,
+                                "parent_msg_id": "ea32697e-ec54-4b3d-aa98-1c8fb27f97e4"
+                            },
+                            "text/plain": "StatementMeta(spark3p2med, 161, 23, Submitted, Running)"
+                        }
+                    },
+                    {
+                        "name": "stdout",
+                        "output_type": "stream",
+                        "text": "2023-05-09 20:18:57,745 - EdFiLandClient - INFO - minChangeVersion=None and maxChangeVersion=None\n2023-05-09 20:18:58,822 - EdFiLandClient - INFO - initiating /ed-fi/absenceEventCategoryDescriptors\n2023-05-09 20:18:59,476 - root - INFO - completed /ed-fi/absenceEventCategoryDescriptors\n2023-05-09 20:18:59,666 - EdFiLandClient - INFO - initiating /ed-fi/academicHonorCategoryDescriptors\n2023-05-09 20:19:00,257 - root - INFO - completed /ed-fi/academicHonorCategoryDescriptors\n2023-05-09 20:19:00,450 - EdFiLandClient - INFO - initiating /ed-fi/academicSubjectDescriptors\n2023-05-09 20:19:01,112 - root - INFO - completed /ed-fi/academicSubjectDescriptors\n2023-05-09 20:19:01,293 - EdFiLandClient - INFO - initiating /ed-fi/accommodationDescriptors\n2023-05-09 20:19:01,833 - root - INFO - completed /ed-fi/accommodationDescriptors\n2023-05-09 20:19:02,006 - EdFiLandClient - INFO - initiating /ed-fi/accountClassificationDescriptors\n2023-05-09 20:19:02,684 - root - INFO - completed /ed-fi/accountClassificationDescriptors\n2023-05-09 20:19:02,859 - EdFiLandClient - INFO - initiating /ed-fi/achievementCategoryDescriptors\n2023-05-09 20:19:03,417 - root - INFO - completed /ed-fi/achievementCategoryDescriptors\n2023-05-09 20:19:03,595 - EdFiLandClient - INFO - initiating /ed-fi/additionalCreditTypeDescriptors\n2023-05-09 20:19:04,097 - root - INFO - completed /ed-fi/additionalCreditTypeDescriptors\n2023-05-09 20:19:04,278 - EdFiLandClient - INFO - initiating /ed-fi/addressTypeDescriptors\n2023-05-09 20:19:04,821 - root - INFO - completed /ed-fi/addressTypeDescriptors\n2023-05-09 20:19:04,996 - EdFiLandClient - INFO - initiating /ed-fi/administrationEnvironmentDescriptors\n2023-05-09 20:19:05,524 - root - INFO - completed /ed-fi/administrationEnvironmentDescriptors\n2023-05-09 20:19:05,708 - EdFiLandClient - INFO - initiating /ed-fi/administrativeFundingControlDescriptors\n2023-05-09 20:19:06,266 - root - INFO - completed /ed-fi/administrativeFundingControlDescriptors\n2023-05-09 20:19:06,442 - EdFiLandClient - INFO - initiating /ed-fi/ancestryEthnicOriginDescriptors\n2023-05-09 20:19:06,943 - root - INFO - completed /ed-fi/ancestryEthnicOriginDescriptors\n2023-05-09 20:19:07,201 - EdFiLandClient - INFO - initiating /ed-fi/assessmentCategoryDescriptors\n2023-05-09 20:19:07,745 - root - INFO - completed /ed-fi/assessmentCategoryDescriptors\n2023-05-09 20:19:07,946 - EdFiLandClient - INFO - initiating /ed-fi/assessmentIdentificationSystemDescriptors\n2023-05-09 20:19:08,509 - root - INFO - completed /ed-fi/assessmentIdentificationSystemDescriptors\n2023-05-09 20:19:08,710 - EdFiLandClient - INFO - initiating /ed-fi/assessmentItemCategoryDescriptors\n2023-05-09 20:19:09,321 - root - INFO - completed /ed-fi/assessmentItemCategoryDescriptors\n2023-05-09 20:19:09,548 - EdFiLandClient - INFO - initiating /ed-fi/assessmentItemResultDescriptors\n2023-05-09 20:19:10,176 - root - INFO - completed /ed-fi/assessmentItemResultDescriptors\n2023-05-09 20:19:10,380 - EdFiLandClient - INFO - initiating /ed-fi/assessmentPeriodDescriptors\n2023-05-09 20:19:11,327 - root - INFO - completed /ed-fi/assessmentPeriodDescriptors\n2023-05-09 20:19:11,516 - EdFiLandClient - INFO - initiating /ed-fi/assessmentReportingMethodDescriptors\n2023-05-09 20:19:12,085 - root - INFO - completed /ed-fi/assessmentReportingMethodDescriptors\n2023-05-09 20:19:12,278 - EdFiLandClient - INFO - initiating /ed-fi/attemptStatusDescriptors\n2023-05-09 20:19:12,826 - root - INFO - completed /ed-fi/attemptStatusDescriptors\n2023-05-09 20:19:13,019 - EdFiLandClient - INFO - initiating /ed-fi/attendanceEventCategoryDescriptors\n2023-05-09 20:19:13,645 - root - INFO - completed /ed-fi/attendanceEventCategoryDescriptors\n2023-05-09 20:19:13,854 - EdFiLandClient - INFO - initiating /ed-fi/behaviorDescriptors\n2023-05-09 20:19:14,412 - root - INFO - completed /ed-fi/behaviorDescriptors\n2023-05-09 20:19:14,622 - EdFiLandClient - INFO - initiating /ed-fi/calendarEventDescriptors\n2023-05-09 20:19:15,268 - root - INFO - completed /ed-fi/calendarEventDescriptors\n2023-05-09 20:19:15,471 - EdFiLandClient - INFO - initiating /ed-fi/calendarTypeDescriptors\n2023-05-09 20:19:16,040 - root - INFO - completed /ed-fi/calendarTypeDescriptors\n2023-05-09 20:19:16,243 - EdFiLandClient - INFO - initiating /ed-fi/careerPathwayDescriptors\n2023-05-09 20:19:16,779 - root - INFO - completed /ed-fi/careerPathwayDescriptors\n2023-05-09 20:19:16,979 - EdFiLandClient - INFO - initiating /ed-fi/charterApprovalAgencyTypeDescriptors\n2023-05-09 20:19:17,522 - root - INFO - completed /ed-fi/charterApprovalAgencyTypeDescriptors\n2023-05-09 20:19:17,719 - EdFiLandClient - INFO - initiating /ed-fi/charterStatusDescriptors\n2023-05-09 20:19:18,287 - root - INFO - completed /ed-fi/charterStatusDescriptors\n2023-05-09 20:19:18,479 - EdFiLandClient - INFO - initiating /ed-fi/citizenshipStatusDescriptors\n2023-05-09 20:19:19,074 - root - INFO - completed /ed-fi/citizenshipStatusDescriptors\n2023-05-09 20:19:19,262 - EdFiLandClient - INFO - initiating /ed-fi/classroomPositionDescriptors\n2023-05-09 20:19:19,831 - root - INFO - completed /ed-fi/classroomPositionDescriptors\n2023-05-09 20:19:20,034 - EdFiLandClient - INFO - initiating /ed-fi/cohortScopeDescriptors\n2023-05-09 20:19:20,586 - root - INFO - completed /ed-fi/cohortScopeDescriptors\n2023-05-09 20:19:20,779 - EdFiLandClient - INFO - initiating /ed-fi/cohortTypeDescriptors\n2023-05-09 20:19:21,329 - root - INFO - completed /ed-fi/cohortTypeDescriptors\n2023-05-09 20:19:21,520 - EdFiLandClient - INFO - initiating /ed-fi/cohortYearTypeDescriptors\n2023-05-09 20:19:22,088 - root - INFO - completed /ed-fi/cohortYearTypeDescriptors\n2023-05-09 20:19:22,263 - EdFiLandClient - INFO - initiating /ed-fi/competencyLevelDescriptors\n2023-05-09 20:19:22,774 - root - INFO - completed /ed-fi/competencyLevelDescriptors\n2023-05-09 20:19:22,956 - EdFiLandClient - INFO - initiating /ed-fi/contactTypeDescriptors\n2023-05-09 20:19:23,524 - root - INFO - completed /ed-fi/contactTypeDescriptors\n2023-05-09 20:19:23,713 - EdFiLandClient - INFO - initiating /ed-fi/contentClassDescriptors\n2023-05-09 20:19:24,287 - root - INFO - completed /ed-fi/contentClassDescriptors\n2023-05-09 20:19:24,463 - EdFiLandClient - INFO - initiating /ed-fi/continuationOfServicesReasonDescriptors\n2023-05-09 20:19:24,955 - root - INFO - completed /ed-fi/continuationOfServicesReasonDescriptors\n2023-05-09 20:19:25,123 - EdFiLandClient - INFO - initiating /ed-fi/costRateDescriptors\n2023-05-09 20:19:25,683 - root - INFO - completed /ed-fi/costRateDescriptors\n2023-05-09 20:19:25,868 - EdFiLandClient - INFO - initiating /ed-fi/countryDescriptors\n2023-05-09 20:19:26,367 - root - INFO - completed /ed-fi/countryDescriptors\n2023-05-09 20:19:26,548 - EdFiLandClient - INFO - initiating /ed-fi/courseAttemptResultDescriptors\n2023-05-09 20:19:27,071 - root - INFO - completed /ed-fi/courseAttemptResultDescriptors\n2023-05-09 20:19:27,247 - EdFiLandClient - INFO - initiating /ed-fi/courseDefinedByDescriptors\n2023-05-09 20:19:27,744 - root - INFO - completed /ed-fi/courseDefinedByDescriptors\n2023-05-09 20:19:27,915 - EdFiLandClient - INFO - initiating /ed-fi/courseGPAApplicabilityDescriptors\n2023-05-09 20:19:28,441 - root - INFO - completed /ed-fi/courseGPAApplicabilityDescriptors\n2023-05-09 20:19:28,605 - EdFiLandClient - INFO - initiating /ed-fi/courseIdentificationSystemDescriptors\n2023-05-09 20:19:29,110 - root - INFO - completed /ed-fi/courseIdentificationSystemDescriptors\n2023-05-09 20:19:29,279 - EdFiLandClient - INFO - initiating /ed-fi/courseLevelCharacteristicDescriptors\n2023-05-09 20:19:29,776 - root - INFO - completed /ed-fi/courseLevelCharacteristicDescriptors\n2023-05-09 20:19:29,951 - EdFiLandClient - INFO - initiating /ed-fi/courseRepeatCodeDescriptors\n2023-05-09 20:19:30,535 - root - INFO - completed /ed-fi/courseRepeatCodeDescriptors\n2023-05-09 20:19:30,713 - EdFiLandClient - INFO - initiating /ed-fi/credentialFieldDescriptors\n2023-05-09 20:19:31,323 - root - INFO - completed /ed-fi/credentialFieldDescriptors\n2023-05-09 20:19:31,510 - EdFiLandClient - INFO - initiating /ed-fi/credentialTypeDescriptors\n2023-05-09 20:19:32,121 - root - INFO - completed /ed-fi/credentialTypeDescriptors\n2023-05-09 20:19:32,297 - EdFiLandClient - INFO - initiating /ed-fi/creditCategoryDescriptors\n2023-05-09 20:19:32,821 - root - INFO - completed /ed-fi/creditCategoryDescriptors\n2023-05-09 20:19:32,996 - EdFiLandClient - INFO - initiating /ed-fi/creditTypeDescriptors\n2023-05-09 20:19:33,508 - root - INFO - completed /ed-fi/creditTypeDescriptors\n2023-05-09 20:19:33,680 - EdFiLandClient - INFO - initiating /ed-fi/cteProgramServiceDescriptors\n2023-05-09 20:19:34,184 - root - INFO - completed /ed-fi/cteProgramServiceDescriptors\n2023-05-09 20:19:34,363 - EdFiLandClient - INFO - initiating /ed-fi/curriculumUsedDescriptors\n2023-05-09 20:19:34,950 - root - INFO - completed /ed-fi/curriculumUsedDescriptors\n2023-05-09 20:19:35,122 - EdFiLandClient - INFO - initiating /ed-fi/deliveryMethodDescriptors\n2023-05-09 20:19:35,691 - root - INFO - completed /ed-fi/deliveryMethodDescriptors\n2023-05-09 20:19:35,861 - EdFiLandClient - INFO - initiating /ed-fi/diagnosisDescriptors\n2023-05-09 20:19:36,367 - root - INFO - completed /ed-fi/diagnosisDescriptors\n2023-05-09 20:19:36,539 - EdFiLandClient - INFO - initiating /ed-fi/diplomaLevelDescriptors\n2023-05-09 20:19:37,042 - root - INFO - completed /ed-fi/diplomaLevelDescriptors\n2023-05-09 20:19:37,216 - EdFiLandClient - INFO - initiating /ed-fi/diplomaTypeDescriptors\n2023-05-09 20:19:37,720 - root - INFO - completed /ed-fi/diplomaTypeDescriptors\n2023-05-09 20:19:37,905 - EdFiLandClient - INFO - initiating /ed-fi/disabilityDescriptors\n2023-05-09 20:19:38,560 - root - INFO - completed /ed-fi/disabilityDescriptors\n2023-05-09 20:19:38,729 - EdFiLandClient - INFO - initiating /ed-fi/disabilityDesignationDescriptors\n2023-05-09 20:19:39,293 - root - INFO - completed /ed-fi/disabilityDesignationDescriptors\n2023-05-09 20:19:39,489 - EdFiLandClient - INFO - initiating /ed-fi/disabilityDeterminationSourceTypeDescriptors\n2023-05-09 20:19:40,015 - root - INFO - completed /ed-fi/disabilityDeterminationSourceTypeDescriptors\n2023-05-09 20:19:40,189 - EdFiLandClient - INFO - initiating /ed-fi/disciplineActionLengthDifferenceReasonDescriptors\n2023-05-09 20:19:40,680 - root - INFO - completed /ed-fi/disciplineActionLengthDifferenceReasonDescriptors\n2023-05-09 20:19:40,854 - EdFiLandClient - INFO - initiating /ed-fi/disciplineDescriptors\n2023-05-09 20:19:41,367 - root - INFO - completed /ed-fi/disciplineDescriptors\n2023-05-09 20:19:41,555 - EdFiLandClient - INFO - initiating /ed-fi/disciplineIncidentParticipationCodeDescriptors\n2023-05-09 20:19:42,204 - root - INFO - completed /ed-fi/disciplineIncidentParticipationCodeDescriptors\n2023-05-09 20:19:42,373 - EdFiLandClient - INFO - initiating /ed-fi/educationalEnvironmentDescriptors\n2023-05-09 20:19:42,896 - root - INFO - completed /ed-fi/educationalEnvironmentDescriptors\n2023-05-09 20:19:43,060 - EdFiLandClient - INFO - initiating /ed-fi/educationOrganizationCategoryDescriptors\n2023-05-09 20:19:43,609 - root - INFO - completed /ed-fi/educationOrganizationCategoryDescriptors\n2023-05-09 20:19:43,789 - EdFiLandClient - INFO - initiating /ed-fi/educationOrganizationIdentificationSystemDescriptors\n2023-05-09 20:19:44,363 - root - INFO - completed /ed-fi/educationOrganizationIdentificationSystemDescriptors\n2023-05-09 20:19:44,533 - EdFiLandClient - INFO - initiating /ed-fi/educationPlanDescriptors\n2023-05-09 20:19:45,024 - root - INFO - completed /ed-fi/educationPlanDescriptors\n2023-05-09 20:19:45,198 - EdFiLandClient - INFO - initiating /ed-fi/electronicMailTypeDescriptors\n2023-05-09 20:19:45,758 - root - INFO - completed /ed-fi/electronicMailTypeDescriptors\n2023-05-09 20:19:45,926 - EdFiLandClient - INFO - initiating /ed-fi/employmentStatusDescriptors\n2023-05-09 20:19:46,437 - root - INFO - completed /ed-fi/employmentStatusDescriptors\n2023-05-09 20:19:46,615 - EdFiLandClient - INFO - initiating /ed-fi/entryGradeLevelReasonDescriptors\n2023-05-09 20:19:47,110 - root - INFO - completed /ed-fi/entryGradeLevelReasonDescriptors\n2023-05-09 20:19:47,291 - EdFiLandClient - INFO - initiating /ed-fi/entryTypeDescriptors\n2023-05-09 20:19:48,020 - root - INFO - completed /ed-fi/entryTypeDescriptors\n2023-05-09 20:19:48,196 - EdFiLandClient - INFO - initiating /ed-fi/eventCircumstanceDescriptors\n2023-05-09 20:19:48,707 - root - INFO - completed /ed-fi/eventCircumstanceDescriptors\n2023-05-09 20:19:48,874 - EdFiLandClient - INFO - initiating /ed-fi/exitWithdrawTypeDescriptors\n2023-05-09 20:19:49,376 - root - INFO - completed /ed-fi/exitWithdrawTypeDescriptors\n2023-05-09 20:19:49,548 - EdFiLandClient - INFO - initiating /ed-fi/gradebookEntryTypeDescriptors\n2023-05-09 20:19:50,049 - root - INFO - completed /ed-fi/gradebookEntryTypeDescriptors\n2023-05-09 20:19:50,233 - EdFiLandClient - INFO - initiating /ed-fi/gradeLevelDescriptors\n2023-05-09 20:19:50,774 - root - INFO - completed /ed-fi/gradeLevelDescriptors\n2023-05-09 20:19:50,959 - EdFiLandClient - INFO - initiating /ed-fi/gradePointAverageTypeDescriptors\n2023-05-09 20:19:51,474 - root - INFO - completed /ed-fi/gradePointAverageTypeDescriptors\n2023-05-09 20:19:51,655 - EdFiLandClient - INFO - initiating /ed-fi/gradeTypeDescriptors\n2023-05-09 20:19:52,188 - root - INFO - completed /ed-fi/gradeTypeDescriptors\n2023-05-09 20:19:52,372 - EdFiLandClient - INFO - initiating /ed-fi/gradingPeriodDescriptors\n2023-05-09 20:19:52,879 - root - INFO - completed /ed-fi/gradingPeriodDescriptors\n2023-05-09 20:19:53,046 - EdFiLandClient - INFO - initiating /ed-fi/graduationPlanTypeDescriptors\n2023-05-09 20:19:53,602 - root - INFO - completed /ed-fi/graduationPlanTypeDescriptors\n2023-05-09 20:19:53,789 - EdFiLandClient - INFO - initiating /ed-fi/gunFreeSchoolsActReportingStatusDescriptors\n2023-05-09 20:19:54,297 - root - INFO - completed /ed-fi/gunFreeSchoolsActReportingStatusDescriptors\n2023-05-09 20:19:54,496 - EdFiLandClient - INFO - initiating /ed-fi/homelessPrimaryNighttimeResidenceDescriptors\n2023-05-09 20:19:55,022 - root - INFO - completed /ed-fi/homelessPrimaryNighttimeResidenceDescriptors\n2023-05-09 20:19:55,199 - EdFiLandClient - INFO - initiating /ed-fi/homelessProgramServiceDescriptors\n2023-05-09 20:19:55,732 - root - INFO - completed /ed-fi/homelessProgramServiceDescriptors\n2023-05-09 20:19:55,917 - EdFiLandClient - INFO - initiating /ed-fi/identificationDocumentUseDescriptors\n2023-05-09 20:19:56,448 - root - INFO - completed /ed-fi/identificationDocumentUseDescriptors\n2023-05-09 20:19:56,762 - EdFiLandClient - INFO - initiating /ed-fi/incidentLocationDescriptors\n2023-05-09 20:19:57,291 - root - INFO - completed /ed-fi/incidentLocationDescriptors\n2023-05-09 20:19:57,467 - EdFiLandClient - INFO - initiating /ed-fi/indicatorDescriptors\n2023-05-09 20:19:57,995 - root - INFO - completed /ed-fi/indicatorDescriptors\n2023-05-09 20:19:58,182 - EdFiLandClient - INFO - initiating /ed-fi/indicatorGroupDescriptors\n2023-05-09 20:19:59,154 - root - INFO - completed /ed-fi/indicatorGroupDescriptors\n2023-05-09 20:19:59,332 - EdFiLandClient - INFO - initiating /ed-fi/indicatorLevelDescriptors\n2023-05-09 20:19:59,964 - root - INFO - completed /ed-fi/indicatorLevelDescriptors\n2023-05-09 20:20:00,158 - EdFiLandClient - INFO - initiating /ed-fi/institutionTelephoneNumberTypeDescriptors\n2023-05-09 20:20:00,812 - root - INFO - completed /ed-fi/institutionTelephoneNumberTypeDescriptors\n2023-05-09 20:20:00,999 - EdFiLandClient - INFO - initiating /ed-fi/interactivityStyleDescriptors\n2023-05-09 20:20:01,528 - root - INFO - completed /ed-fi/interactivityStyleDescriptors\n2023-05-09 20:20:01,710 - EdFiLandClient - INFO - initiating /ed-fi/internetAccessDescriptors\n2023-05-09 20:20:02,260 - root - INFO - completed /ed-fi/internetAccessDescriptors\n2023-05-09 20:20:02,461 - EdFiLandClient - INFO - initiating /ed-fi/interventionClassDescriptors\n2023-05-09 20:20:02,981 - root - INFO - completed /ed-fi/interventionClassDescriptors\n2023-05-09 20:20:03,206 - EdFiLandClient - INFO - initiating /ed-fi/interventionEffectivenessRatingDescriptors\n2023-05-09 20:20:03,914 - root - INFO - completed /ed-fi/interventionEffectivenessRatingDescriptors\n2023-05-09 20:20:04,110 - EdFiLandClient - INFO - initiating /ed-fi/languageDescriptors\n2023-05-09 20:20:04,690 - root - INFO - completed /ed-fi/languageDescriptors\n2023-05-09 20:20:04,868 - EdFiLandClient - INFO - initiating /ed-fi/languageInstructionProgramServiceDescriptors\n2023-05-09 20:20:05,451 - root - INFO - completed /ed-fi/languageInstructionProgramServiceDescriptors\n2023-05-09 20:20:05,637 - EdFiLandClient - INFO - initiating /ed-fi/languageUseDescriptors\n2023-05-09 20:20:06,222 - root - INFO - completed /ed-fi/languageUseDescriptors\n2023-05-09 20:20:06,412 - EdFiLandClient - INFO - initiating /ed-fi/learningStandardCategoryDescriptors\n2023-05-09 20:20:07,035 - root - INFO - completed /ed-fi/learningStandardCategoryDescriptors\n2023-05-09 20:20:07,228 - EdFiLandClient - INFO - initiating /ed-fi/learningStandardEquivalenceStrengthDescriptors\n2023-05-09 20:20:07,750 - root - INFO - completed /ed-fi/learningStandardEquivalenceStrengthDescriptors\n2023-05-09 20:20:07,934 - EdFiLandClient - INFO - initiating /ed-fi/learningStandardScopeDescriptors\n2023-05-09 20:20:08,471 - root - INFO - completed /ed-fi/learningStandardScopeDescriptors\n2023-05-09 20:20:08,672 - EdFiLandClient - INFO - initiating /ed-fi/levelOfEducationDescriptors\n2023-05-09 20:20:09,327 - root - INFO - completed /ed-fi/levelOfEducationDescriptors\n2023-05-09 20:20:09,523 - EdFiLandClient - INFO - initiating /ed-fi/licenseStatusDescriptors\n2023-05-09 20:20:10,041 - root - INFO - completed /ed-fi/licenseStatusDescriptors\n2023-05-09 20:20:10,223 - EdFiLandClient - INFO - initiating /ed-fi/licenseTypeDescriptors\n2023-05-09 20:20:10,695 - root - INFO - completed /ed-fi/licenseTypeDescriptors\n2023-05-09 20:20:10,864 - EdFiLandClient - INFO - initiating /ed-fi/limitedEnglishProficiencyDescriptors\n2023-05-09 20:20:11,409 - root - INFO - completed /ed-fi/limitedEnglishProficiencyDescriptors\n2023-05-09 20:20:11,599 - EdFiLandClient - INFO - initiating /ed-fi/localeDescriptors\n2023-05-09 20:20:12,112 - root - INFO - completed /ed-fi/localeDescriptors\n2023-05-09 20:20:12,294 - EdFiLandClient - INFO - initiating /ed-fi/localEducationAgencyCategoryDescriptors\n2023-05-09 20:20:12,785 - root - INFO - completed /ed-fi/localEducationAgencyCategoryDescriptors\n2023-05-09 20:20:12,960 - EdFiLandClient - INFO - initiating /ed-fi/magnetSpecialProgramEmphasisSchoolDescriptors\n2023-05-09 20:20:13,485 - root - INFO - completed /ed-fi/magnetSpecialProgramEmphasisSchoolDescriptors\n2023-05-09 20:20:13,659 - EdFiLandClient - INFO - initiating /ed-fi/mediumOfInstructionDescriptors\n2023-05-09 20:20:14,157 - root - INFO - completed /ed-fi/mediumOfInstructionDescriptors\n2023-05-09 20:20:14,334 - EdFiLandClient - INFO - initiating /ed-fi/methodCreditEarnedDescriptors\n2023-05-09 20:20:14,847 - root - INFO - completed /ed-fi/methodCreditEarnedDescriptors\n2023-05-09 20:20:15,022 - EdFiLandClient - INFO - initiating /ed-fi/migrantEducationProgramServiceDescriptors\n2023-05-09 20:20:15,534 - root - INFO - completed /ed-fi/migrantEducationProgramServiceDescriptors\n2023-05-09 20:20:15,705 - EdFiLandClient - INFO - initiating /ed-fi/monitoredDescriptors\n2023-05-09 20:20:16,208 - root - INFO - completed /ed-fi/monitoredDescriptors\n2023-05-09 20:20:16,393 - EdFiLandClient - INFO - initiating /ed-fi/neglectedOrDelinquentProgramDescriptors\n2023-05-09 20:20:16,920 - root - INFO - completed /ed-fi/neglectedOrDelinquentProgramDescriptors\n2023-05-09 20:20:17,100 - EdFiLandClient - INFO - initiating /ed-fi/neglectedOrDelinquentProgramServiceDescriptors\n2023-05-09 20:20:17,635 - root - INFO - completed /ed-fi/neglectedOrDelinquentProgramServiceDescriptors\n2023-05-09 20:20:17,819 - EdFiLandClient - INFO - initiating /ed-fi/networkPurposeDescriptors\n2023-05-09 20:20:18,326 - root - INFO - completed /ed-fi/networkPurposeDescriptors\n2023-05-09 20:20:18,501 - EdFiLandClient - INFO - initiating /ed-fi/oldEthnicityDescriptors\n2023-05-09 20:20:19,236 - root - INFO - completed /ed-fi/oldEthnicityDescriptors\n2023-05-09 20:20:19,420 - EdFiLandClient - INFO - initiating /ed-fi/operationalStatusDescriptors\n2023-05-09 20:20:20,028 - root - INFO - completed /ed-fi/operationalStatusDescriptors\n2023-05-09 20:20:20,242 - EdFiLandClient - INFO - initiating /ed-fi/otherNameTypeDescriptors\n2023-05-09 20:20:20,775 - root - INFO - completed /ed-fi/otherNameTypeDescriptors\n2023-05-09 20:20:20,969 - EdFiLandClient - INFO - initiating /ed-fi/participationDescriptors\n2023-05-09 20:20:21,583 - root - INFO - completed /ed-fi/participationDescriptors\n2023-05-09 20:20:21,798 - EdFiLandClient - INFO - initiating /ed-fi/participationStatusDescriptors\n2023-05-09 20:20:22,360 - root - INFO - completed /ed-fi/participationStatusDescriptors\n2023-05-09 20:20:22,546 - EdFiLandClient - INFO - initiating /ed-fi/performanceBaseConversionDescriptors\n2023-05-09 20:20:23,057 - root - INFO - completed /ed-fi/performanceBaseConversionDescriptors\n2023-05-09 20:20:23,254 - EdFiLandClient - INFO - initiating /ed-fi/performanceLevelDescriptors\n2023-05-09 20:20:23,823 - root - INFO - completed /ed-fi/performanceLevelDescriptors\n2023-05-09 20:20:24,011 - EdFiLandClient - INFO - initiating /ed-fi/personalInformationVerificationDescriptors\n2023-05-09 20:20:24,527 - root - INFO - completed /ed-fi/personalInformationVerificationDescriptors\n2023-05-09 20:20:24,698 - EdFiLandClient - INFO - initiating /ed-fi/platformTypeDescriptors\n2023-05-09 20:20:25,225 - root - INFO - completed /ed-fi/platformTypeDescriptors\n2023-05-09 20:20:25,391 - EdFiLandClient - INFO - initiating /ed-fi/populationServedDescriptors\n2023-05-09 20:20:25,902 - root - INFO - completed /ed-fi/populationServedDescriptors\n2023-05-09 20:20:26,080 - EdFiLandClient - INFO - initiating /ed-fi/postingResultDescriptors\n2023-05-09 20:20:26,651 - root - INFO - completed /ed-fi/postingResultDescriptors\n2023-05-09 20:20:26,814 - EdFiLandClient - INFO - initiating /ed-fi/postSecondaryEventCategoryDescriptors\n2023-05-09 20:20:27,360 - root - INFO - completed /ed-fi/postSecondaryEventCategoryDescriptors\n2023-05-09 20:20:27,532 - EdFiLandClient - INFO - initiating /ed-fi/postSecondaryInstitutionLevelDescriptors\n2023-05-09 20:20:28,044 - root - INFO - completed /ed-fi/postSecondaryInstitutionLevelDescriptors\n2023-05-09 20:20:28,218 - EdFiLandClient - INFO - initiating /ed-fi/proficiencyDescriptors\n2023-05-09 20:20:28,737 - root - INFO - completed /ed-fi/proficiencyDescriptors\n2023-05-09 20:20:28,916 - EdFiLandClient - INFO - initiating /ed-fi/programAssignmentDescriptors\n2023-05-09 20:20:29,426 - root - INFO - completed /ed-fi/programAssignmentDescriptors\n2023-05-09 20:20:29,595 - EdFiLandClient - INFO - initiating /ed-fi/programCharacteristicDescriptors\n2023-05-09 20:20:30,178 - root - INFO - completed /ed-fi/programCharacteristicDescriptors\n2023-05-09 20:20:30,352 - EdFiLandClient - INFO - initiating /ed-fi/programSponsorDescriptors\n2023-05-09 20:20:31,790 - root - INFO - completed /ed-fi/programSponsorDescriptors\n2023-05-09 20:20:31,972 - EdFiLandClient - INFO - initiating /ed-fi/programTypeDescriptors\n2023-05-09 20:20:32,600 - root - INFO - completed /ed-fi/programTypeDescriptors\n2023-05-09 20:20:32,766 - EdFiLandClient - INFO - initiating /ed-fi/progressDescriptors\n2023-05-09 20:20:33,289 - root - INFO - completed /ed-fi/progressDescriptors\n2023-05-09 20:20:33,477 - EdFiLandClient - INFO - initiating /ed-fi/progressLevelDescriptors\n2023-05-09 20:20:34,031 - root - INFO - completed /ed-fi/progressLevelDescriptors\n2023-05-09 20:20:34,240 - EdFiLandClient - INFO - initiating /ed-fi/providerCategoryDescriptors\n2023-05-09 20:20:34,896 - root - INFO - completed /ed-fi/providerCategoryDescriptors\n2023-05-09 20:20:35,068 - EdFiLandClient - INFO - initiating /ed-fi/providerProfitabilityDescriptors\n2023-05-09 20:20:35,558 - root - INFO - completed /ed-fi/providerProfitabilityDescriptors\n2023-05-09 20:20:35,738 - EdFiLandClient - INFO - initiating /ed-fi/providerStatusDescriptors\n2023-05-09 20:20:36,256 - root - INFO - completed /ed-fi/providerStatusDescriptors\n2023-05-09 20:20:36,424 - EdFiLandClient - INFO - initiating /ed-fi/publicationStatusDescriptors\n2023-05-09 20:20:36,945 - root - INFO - completed /ed-fi/publicationStatusDescriptors\n2023-05-09 20:20:37,111 - EdFiLandClient - INFO - initiating /ed-fi/questionFormDescriptors\n2023-05-09 20:20:37,693 - root - INFO - completed /ed-fi/questionFormDescriptors\n2023-05-09 20:20:37,923 - EdFiLandClient - INFO - initiating /ed-fi/raceDescriptors\n2023-05-09 20:20:38,437 - root - INFO - completed /ed-fi/raceDescriptors\n2023-05-09 20:20:38,617 - EdFiLandClient - INFO - initiating /ed-fi/reasonExitedDescriptors\n2023-05-09 20:20:39,272 - root - INFO - completed /ed-fi/reasonExitedDescriptors\n2023-05-09 20:20:39,467 - EdFiLandClient - INFO - initiating /ed-fi/reasonNotTestedDescriptors\n2023-05-09 20:20:39,972 - root - INFO - completed /ed-fi/reasonNotTestedDescriptors\n2023-05-09 20:20:40,146 - EdFiLandClient - INFO - initiating /ed-fi/recognitionTypeDescriptors\n2023-05-09 20:20:40,685 - root - INFO - completed /ed-fi/recognitionTypeDescriptors\n2023-05-09 20:20:40,857 - EdFiLandClient - INFO - initiating /ed-fi/relationDescriptors\n"
+                    }
+                ],
                 "execution_count": 68
             },
             {
@@ -326,7 +443,28 @@
                     "if exception != None:\r\n",
                     "    raise exception"
                 ],
-                "outputs": []
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": null,
+                                "session_id": null,
+                                "statement_id": null,
+                                "state": "waiting",
+                                "livy_statement_state": null,
+                                "queued_time": "2023-05-09T20:18:56.5382928Z",
+                                "session_start_time": null,
+                                "execution_start_time": null,
+                                "execution_finish_time": null,
+                                "spark_jobs": null,
+                                "parent_msg_id": "50aa2979-bd43-4eaa-987d-f9bd4749aa0b"
+                            },
+                            "text/plain": "StatementMeta(, , , Waiting, )"
+                        }
+                    }
+                ],
+                "execution_count": null
             }
         ]
     }

@@ -3,176 +3,9 @@
     "properties": {
         "activities": [
             {
-                "name": "Check-CheckpointKeysFileExists",
-                "type": "GetMetadata",
-                "dependsOn": [],
-                "policy": {
-                    "timeout": "0.12:00:00",
-                    "retry": 0,
-                    "retryIntervalInSeconds": 30,
-                    "secureOutput": false,
-                    "secureInput": false
-                },
-                "userProperties": [],
-                "typeProperties": {
-                    "dataset": {
-                        "referenceName": "DS_JSON_File",
-                        "type": "DatasetReference",
-                        "parameters": {
-                            "stage": "stage2",
-                            "path": {
-                                "value": "@pipeline().parameters.IngestedFolder",
-                                "type": "Expression"
-                            },
-                            "fileName": {
-                                "value": "@variables('CheckpointKeyFileName')",
-                                "type": "Expression"
-                            }
-                        }
-                    },
-                    "fieldList": [
-                        "exists"
-                    ],
-                    "storeSettings": {
-                        "type": "AzureBlobFSReadSettings",
-                        "recursive": true,
-                        "enablePartitionDiscovery": false
-                    },
-                    "formatSettings": {
-                        "type": "JsonReadSettings"
-                    }
-                }
-            },
-            {
-                "name": "Create-CheckpointKeysFileIfNotExists",
-                "type": "IfCondition",
-                "dependsOn": [
-                    {
-                        "activity": "Check-CheckpointKeysFileExists",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "userProperties": [],
-                "typeProperties": {
-                    "expression": {
-                        "value": "@activity('Check-CheckpointKeysFileExists').output.exists",
-                        "type": "Expression"
-                    },
-                    "ifFalseActivities": [
-                        {
-                            "name": "Create-CheckpointKeysFile",
-                            "type": "ExecuteDataFlow",
-                            "dependsOn": [],
-                            "policy": {
-                                "timeout": "0.12:00:00",
-                                "retry": 0,
-                                "retryIntervalInSeconds": 30,
-                                "secureOutput": false,
-                                "secureInput": false
-                            },
-                            "userProperties": [],
-                            "typeProperties": {
-                                "dataflow": {
-                                    "referenceName": "Create_CheckpointKeysFile",
-                                    "type": "DataFlowReference",
-                                    "parameters": {
-                                        "CheckpointKeySuffix": {
-                                            "value": "'@{pipeline().parameters.CheckpointKeySuffix}'",
-                                            "type": "Expression"
-                                        }
-                                    },
-                                    "datasetParameters": {
-                                        "EdFiEntitiesSource": {
-                                            "BaseURL": {
-                                                "value": "@pipeline().parameters.DependenciesUrl",
-                                                "type": "Expression"
-                                            }
-                                        },
-                                        "CheckpointKeysFile": {
-                                            "stage": "stage2",
-                                            "path": {
-                                                "value": "@pipeline().parameters.IngestedFolder",
-                                                "type": "Expression"
-                                            },
-                                            "fileName": {
-                                                "value": "@variables('CheckpointKeyFileName')",
-                                                "type": "Expression"
-                                            }
-                                        }
-                                    }
-                                },
-                                "compute": {
-                                    "coreCount": 8,
-                                    "computeType": "General"
-                                },
-                                "traceLevel": "Fine"
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                "name": "Get-CheckpointKeysFile",
-                "type": "Lookup",
-                "dependsOn": [
-                    {
-                        "activity": "Create-CheckpointKeysFileIfNotExists",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "policy": {
-                    "timeout": "0.12:00:00",
-                    "retry": 0,
-                    "retryIntervalInSeconds": 30,
-                    "secureOutput": false,
-                    "secureInput": false
-                },
-                "userProperties": [],
-                "typeProperties": {
-                    "source": {
-                        "type": "JsonSource",
-                        "storeSettings": {
-                            "type": "AzureBlobFSReadSettings",
-                            "recursive": true,
-                            "enablePartitionDiscovery": false
-                        },
-                        "formatSettings": {
-                            "type": "JsonReadSettings"
-                        }
-                    },
-                    "dataset": {
-                        "referenceName": "DS_JSON_File",
-                        "type": "DatasetReference",
-                        "parameters": {
-                            "stage": "stage2",
-                            "path": {
-                                "value": "@pipeline().parameters.IngestedFolder",
-                                "type": "Expression"
-                            },
-                            "fileName": {
-                                "value": "@variables('CheckpointKeyFileName')",
-                                "type": "Expression"
-                            }
-                        }
-                    },
-                    "firstRowOnly": false
-                }
-            },
-            {
                 "name": "Run EdFi_Ingest",
                 "type": "SynapseNotebook",
-                "dependsOn": [
-                    {
-                        "activity": "Get-CheckpointKeysFile",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
+                "dependsOn": [],
                 "policy": {
                     "timeout": "0.12:00:00",
                     "retry": 0,
@@ -186,7 +19,34 @@
                         "referenceName": "EdFi_Ingest",
                         "type": "NotebookReference"
                     },
-                    "snapshot": true
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.Workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "moduleName": {
+                            "value": {
+                                "value": "@pipeline().parameters.ModuleName",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "apiVersion": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiVersion",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p2med",
+                        "type": "BigDataPoolReference"
+                    }
                 }
             }
         ],
@@ -207,27 +67,34 @@
                 "type": "string",
                 "defaultValue": "5.2"
             },
-            "TransactionalFolder": {
-                "type": "string",
-                "defaultValue": "Transactional/Ed-Fi/v5.2/DistrictId=All/SchoolYear=2022"
-            },
-            "IngestedFolder": {
-                "type": "string",
-                "defaultValue": "Ingested/Ed-Fi/v5.2"
-            },
             "DependenciesUrl": {
                 "type": "string",
                 "defaultValue": "https://api.edgraph.dev/edfi/v5.2/saas/metadata/data/v3/123/2022/dependencies"
             },
-            "CheckpointKeySuffix": {
+            "Workspace": {
                 "type": "string",
-                "defaultValue": "006"
+                "defaultValue": "dev"
             }
         },
         "variables": {
             "CheckpointKeyFileName": {
                 "type": "String",
                 "defaultValue": "checkpoints.json"
+            },
+            "ApiVersion": {
+                "type": "String"
+            },
+            "AuthUrl": {
+                "type": "String"
+            },
+            "DataManagementUrl": {
+                "type": "String"
+            },
+            "ChangeQueriesUrl": {
+                "type": "String"
+            },
+            "DependenciesUrl": {
+                "type": "String"
             }
         },
         "folder": {
