@@ -1,7 +1,7 @@
 {
-    "now": "2023-05-19T18:34:42.618Z",
-    "perfNow": 90066242.6,
-    "diagnosticCorrelation": "5ded5889-43fb-4d7e-97cb-328df2d52696",
+    "now": "2023-05-22T22:35:14.101Z",
+    "perfNow": 7282794.5,
+    "diagnosticCorrelation": "f12b1862-6fcb-4354-b959-713c0319c289",
     "source": "DownloadSupportFiles",
     "environment": {
         "productName": "a365",
@@ -11,8 +11,8 @@
         "resourceRegion": "eastus",
         "resourceGroup": "rg-oea-insmod1",
         "subscriptionId": "5721bb7d-69e0-45a2-8919-c43e0d8710ce",
-        "sessionId": "ztbGH",
-        "operationId": "T376M",
+        "sessionId": "/ZLf5",
+        "operationId": "5yLLI",
         "gitType": "live",
         "loggingKey": false
     },

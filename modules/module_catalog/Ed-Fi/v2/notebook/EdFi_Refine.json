@@ -18,7 +18,7 @@
                 "spark.dynamicAllocation.enabled": "false",
                 "spark.dynamicAllocation.minExecutors": "2",
                 "spark.dynamicAllocation.maxExecutors": "2",
-                "spark.autotune.trackingId": "8765680a-8157-42f0-a0be-cd220f3b2ab1"
+                "spark.autotune.trackingId": "7fbb1871-5c29-4798-94e5-9f140a798d06"
             }
         },
         "metadata": {
@@ -68,10 +68,30 @@
                 "source": [
                     "# workspace = 'dev'\r\n",
                     "# apiVersion = \"5.2\"\r\n",
-                    "# moduleName = \"EdFi4\""
+                    "# moduleName = \"EdFi5\""
                 ],
-                "outputs": [],
-                "execution_count": null
+                "outputs": [
+                    {
+                        "output_type": "display_data",
+                        "data": {
+                            "application/vnd.livy.statement-meta+json": {
+                                "spark_pool": "spark3p2med",
+                                "session_id": "186",
+                                "statement_id": 7,
+                                "state": "finished",
+                                "livy_statement_state": "available",
+                                "queued_time": "2023-05-22T22:25:22.6576833Z",
+                                "session_start_time": null,
+                                "execution_start_time": "2023-05-22T22:25:22.8066826Z",
+                                "execution_finish_time": "2023-05-22T22:25:22.992171Z",
+                                "spark_jobs": null,
+                                "parent_msg_id": "8ce27fa4-dff6-458c-9217-917d227cfa26"
+                            },
+                            "text/plain": "StatementMeta(spark3p2med, 186, 7, Finished, Available)"
+                        }
+                    }
+                ],
+                "execution_count": 6
             },
             {
                 "cell_type": "code",
@@ -95,27 +115,27 @@
                         "data": {
                             "application/vnd.livy.statement-meta+json": {
                                 "spark_pool": null,
-                                "session_id": "169",
+                                "session_id": "186",
                                 "statement_id": -1,
                                 "state": "finished",
                                 "livy_statement_state": "available",
-                                "queued_time": "2023-05-18T23:37:50.1462435Z",
+                                "queued_time": "2023-05-22T22:25:22.7264163Z",
                                 "session_start_time": null,
-                                "execution_start_time": "2023-05-18T23:37:50.9453324Z",
-                                "execution_finish_time": "2023-05-18T23:37:50.9454896Z",
+                                "execution_start_time": "2023-05-22T22:25:24.5014861Z",
+                                "execution_finish_time": "2023-05-22T22:25:24.50176Z",
                                 "spark_jobs": null,
-                                "parent_msg_id": "0302c5a2-1200-4bf2-b8a7-efa601bff454"
+                                "parent_msg_id": "e131606f-7753-4f07-b690-04ba1e0516ae"
                             },
-                            "text/plain": "StatementMeta(, 169, -1, Finished, Available)"
+                            "text/plain": "StatementMeta(, 186, -1, Finished, Available)"
                         }
                     },
                     {
                         "name": "stdout",
                         "output_type": "stream",
-                        "text": "2023-05-18 23:37:50,722 - OEA - INFO - Now using workspace: dev\n2023-05-18 23:37:50,722 - OEA - INFO - OEA initialized.\n"
+                        "text": "2023-05-22 22:25:23,382 - OEA - INFO - Now using workspace: dev\n2023-05-22 22:25:23,383 - OEA - INFO - OEA initialized.\n"
                     }
                 ],
-                "execution_count": 103
+                "execution_count": 7
             },
             {
                 "cell_type": "code",
@@ -142,27 +162,27 @@
                         "data": {
                             "application/vnd.livy.statement-meta+json": {
                                 "spark_pool": "spark3p2med",
-                                "session_id": "169",
-                                "statement_id": 10,
+                                "session_id": "186",
+                                "statement_id": 9,
                                 "state": "finished",
                                 "livy_statement_state": "available",
-                                "queued_time": "2023-05-18T23:37:50.1821329Z",
+                                "queued_time": "2023-05-22T22:25:22.7895682Z",
                                 "session_start_time": null,
-                                "execution_start_time": "2023-05-18T23:37:51.1245169Z",
-                                "execution_finish_time": "2023-05-18T23:37:51.2885441Z",
+                                "execution_start_time": "2023-05-22T22:25:24.6922664Z",
+                                "execution_finish_time": "2023-05-22T22:25:24.8510157Z",
                                 "spark_jobs": null,
-                                "parent_msg_id": "754eaa65-a3a3-44a6-b87f-9cd845be99bc"
+                                "parent_msg_id": "e150bc3f-843a-4604-964e-e0139c22a178"
                             },
-                            "text/plain": "StatementMeta(spark3p2med, 169, 10, Finished, Available)"
+                            "text/plain": "StatementMeta(spark3p2med, 186, 9, Finished, Available)"
                         }
                     },
                     {
                         "name": "stdout",
                         "output_type": "stream",
-                        "text": "2023-05-18 23:37:51,102 - OEA - INFO - Now using workspace: dev\n"
+                        "text": "2023-05-22 22:25:24,644 - OEA - INFO - Now using workspace: dev\n"
                     }
                 ],
-                "execution_count": 104
+                "execution_count": 8
             },
             {
                 "cell_type": "code",
@@ -186,7 +206,7 @@
                     "            logger.info('ignore metadata processing, since this is not a table to be ingested')\r\n",
                     "        else:\r\n",
                     "            try:\r\n",
-                    "                oea.refine(f'{moduleName}/{version}/ed-fi/'+ item, metadata[item], 'id')\r\n",
+                    "                oea.refine(f'{moduleName}/{apiVersion}/ed-fi/'+ item, metadata[item], 'id')\r\n",
                     "            except AnalysisException as e:\r\n",
                     "                # This means the table may have not been properly refined due to errors with the primary key not aligning with columns expected in the lookup table.\r\n",
                     "                logger.info(e)\r\n",
@@ -200,22 +220,22 @@
                         "data": {
                             "application/vnd.livy.statement-meta+json": {
                                 "spark_pool": "spark3p2med",
-                                "session_id": "169",
-                                "statement_id": 11,
+                                "session_id": "186",
+                                "statement_id": 10,
                                 "state": "finished",
                                 "livy_statement_state": "available",
-                                "queued_time": "2023-05-18T23:37:50.2468776Z",
+                                "queued_time": "2023-05-22T22:25:22.8662243Z",
                                 "session_start_time": null,
-                                "execution_start_time": "2023-05-18T23:37:51.4270918Z",
-                                "execution_finish_time": "2023-05-18T23:37:51.5907302Z",
+                                "execution_start_time": "2023-05-22T22:25:25.8356873Z",
+                                "execution_finish_time": "2023-05-22T22:25:25.9947769Z",
                                 "spark_jobs": null,
-                                "parent_msg_id": "973a8453-c33a-42b1-a3db-74651f98878e"
+                                "parent_msg_id": "2bdb9223-b8cd-4584-abb2-55bcb51ced0d"
                             },
-                            "text/plain": "StatementMeta(spark3p2med, 169, 11, Finished, Available)"
+                            "text/plain": "StatementMeta(spark3p2med, 186, 10, Finished, Available)"
                         }
                     }
                 ],
-                "execution_count": 105
+                "execution_count": 9
             },
             {
                 "cell_type": "code",
@@ -232,7 +252,7 @@
                 },
                 "source": [
                     "metadata = oea.get_metadata_from_url('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/u/dablickw/edfiIngest/modules/module_catalog/Ed-Fi/v2/utils/Metadata.csv')\r\n",
-                    "refine_edfi_dataset(f'stage2/Ingested/{moduleName}/{version}/ed-fi')"
+                    "refine_edfi_dataset(f'stage2/Ingested/{moduleName}/{apiVersion}/ed-fi')"
                 ],
                 "outputs": [
                     {
@@ -240,27 +260,41 @@
                         "data": {
                             "application/vnd.livy.statement-meta+json": {
                                 "spark_pool": "spark3p2med",
-                                "session_id": "169",
-                                "statement_id": 12,
+                                "session_id": "186",
+                                "statement_id": 11,
                                 "state": "finished",
                                 "livy_statement_state": "available",
-                                "queued_time": "2023-05-18T23:37:50.3922948Z",
+                                "queued_time": "2023-05-22T22:25:23.0419365Z",
                                 "session_start_time": null,
-                                "execution_start_time": "2023-05-18T23:37:51.7358657Z",
-                                "execution_finish_time": "2023-05-18T23:39:04.4389265Z",
+                                "execution_start_time": "2023-05-22T22:25:26.1575818Z",
+                                "execution_finish_time": "2023-05-22T22:27:13.117011Z",
                                 "spark_jobs": null,
-                                "parent_msg_id": "4b1362a2-3a54-4d25-8126-dbf412ffdeca"
+                                "parent_msg_id": "4bd4514f-18a9-4e80-bb8e-b31b40554a33"
                             },
-                            "text/plain": "StatementMeta(spark3p2med, 169, 12, Finished, Available)"
+                            "text/plain": "StatementMeta(spark3p2med, 186, 11, Finished, Available)"
                         }
                     },
                     {
                         "name": "stdout",
                         "output_type": "stream",
-                        "text": "2023-05-18 23:39:03,256 - OEA - INFO - Processed 12 updated rows from stage2/Ingested/EdFi4/5.2/ed-fi/absenceEventCategoryDescriptors into stage2/Refined\n2023-05-18 23:39:03,519 - OEA - INFO - Refined table: absenceEventCategoryDescriptors from: stage2/Ingested/EdFi4/5.2/ed-fi/absenceEventCategoryDescriptors\n"
+                        "text": "2023-05-22 22:26:56,041 - OEA - INFO - Processed 13 updated rows from stage2/Ingested/EdFi5/5.2/ed-fi/absenceEventCategoryDescriptors into stage2/Refined\n2023-05-22 22:26:56,387 - OEA - INFO - Refined table: absenceEventCategoryDescriptors from: stage2/Ingested/EdFi5/5.2/ed-fi/absenceEventCategoryDescriptors\n2023-05-22 22:26:59,312 - OEA - INFO - Cannot resolve column name \"id_pseudonym\" among (_etag, academicHonorCategoryDescriptorId, codeValue, description, id, namespace, shortDescription, rundate)\n2023-05-22 22:26:59,318 - OEA - INFO - Refined table: academicHonorCategoryDescriptors from: stage2/Ingested/EdFi5/5.2/ed-fi/academicHonorCategoryDescriptors\n2023-05-22 22:27:01,623 - OEA - INFO - Cannot resolve column name \"id_pseudonym\" among (_etag, academicSubjectDescriptorId, codeValue, description, id, namespace, shortDescription, rundate)\n2023-05-22 22:27:01,627 - OEA - INFO - Refined table: academicSubjectDescriptors from: stage2/Ingested/EdFi5/5.2/ed-fi/academicSubjectDescriptors\n2023-05-22 22:27:03,889 - OEA - INFO - Cannot resolve column name \"id_pseudonym\" among (_etag, accommodationDescriptorId, codeValue, description, id, namespace, shortDescription, rundate)\n2023-05-22 22:27:03,893 - OEA - INFO - Refined table: accommodationDescriptors from: stage2/Ingested/EdFi5/5.2/ed-fi/accommodationDescriptors\n2023-05-22 22:27:06,125 - OEA - INFO - Cannot resolve column name \"id_pseudonym\" among (_etag, accountClassificationDescriptorId, codeValue, description, id, namespace, shortDescription, rundate)\n2023-05-22 22:27:06,129 - OEA - INFO - Refined table: accountClassificationDescriptors from: stage2/Ingested/EdFi5/5.2/ed-fi/accountClassificationDescriptors\n2023-05-22 22:27:08,468 - OEA - INFO - Cannot resolve column name \"id_pseudonym\" among (_etag, accountClassificationDescriptor, accountCodeDescription, accountCodeNumber, educationOrganizationReference, fiscalYear, id, rundate)\n2023-05-22 22:27:08,472 - OEA - INFO - Refined table: accountCodes from: stage2/Ingested/EdFi5/5.2/ed-fi/accountCodes\n2023-05-22 22:27:10,776 - OEA - INFO - Cannot resolve column name \"id_pseudonym\" among (_etag, educationOrganizationReference, id, rating, ratingDate, ratingOrganization, ratingProgram, ratingTitle, schoolYearTypeReference, rundate)\n2023-05-22 22:27:10,781 - OEA - INFO - Refined table: accountabilityRatings from: stage2/Ingested/EdFi5/5.2/ed-fi/accountabilityRatings\n"
+                    },
+                    {
+                        "output_type": "error",
+                        "ename": "TypeError",
+                        "evalue": "ArrayType.__init__() missing 1 required positional argument: 'elementType'",
+                        "traceback": [
+                            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+                            "\u001b[0;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+                            "Cell \u001b[0;32mIn [23], line 2\u001b[0m\n\u001b[1;32m      1\u001b[0m metadata \u001b[38;5;241m=\u001b[39m oea\u001b[38;5;241m.\u001b[39mget_metadata_from_url(\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mhttps://raw.githubusercontent.com/microsoft/OpenEduAnalytics/u/dablickw/edfiIngest/modules/module_catalog/Ed-Fi/v2/utils/Metadata.csv\u001b[39m\u001b[38;5;124m'\u001b[39m)\n\u001b[0;32m----> 2\u001b[0m \u001b[43mrefine_edfi_dataset\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;124;43mf\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[38;5;124;43mstage2/Ingested/\u001b[39;49m\u001b[38;5;132;43;01m{\u001b[39;49;00m\u001b[43mmoduleName\u001b[49m\u001b[38;5;132;43;01m}\u001b[39;49;00m\u001b[38;5;124;43m/\u001b[39;49m\u001b[38;5;132;43;01m{\u001b[39;49;00m\u001b[43mapiVersion\u001b[49m\u001b[38;5;132;43;01m}\u001b[39;49;00m\u001b[38;5;124;43m/ed-fi\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[43m)\u001b[49m\n",
+                            "Cell \u001b[0;32mIn [21], line 9\u001b[0m, in \u001b[0;36mrefine_edfi_dataset\u001b[0;34m(tables_source)\u001b[0m\n\u001b[1;32m      7\u001b[0m \u001b[38;5;28;01melse\u001b[39;00m:\n\u001b[1;32m      8\u001b[0m     \u001b[38;5;28;01mtry\u001b[39;00m:\n\u001b[0;32m----> 9\u001b[0m         \u001b[43moea\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mrefine\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;124;43mf\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[38;5;132;43;01m{\u001b[39;49;00m\u001b[43mmoduleName\u001b[49m\u001b[38;5;132;43;01m}\u001b[39;49;00m\u001b[38;5;124;43m/\u001b[39;49m\u001b[38;5;132;43;01m{\u001b[39;49;00m\u001b[43mapiVersion\u001b[49m\u001b[38;5;132;43;01m}\u001b[39;49;00m\u001b[38;5;124;43m/ed-fi/\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[38;5;241;43m+\u001b[39;49m\u001b[43m \u001b[49m\u001b[43mitem\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mmetadata\u001b[49m\u001b[43m[\u001b[49m\u001b[43mitem\u001b[49m\u001b[43m]\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[38;5;124;43mid\u001b[39;49m\u001b[38;5;124;43m'\u001b[39;49m\u001b[43m)\u001b[49m\n\u001b[1;32m     10\u001b[0m     \u001b[38;5;28;01mexcept\u001b[39;00m AnalysisException \u001b[38;5;28;01mas\u001b[39;00m e:\n\u001b[1;32m     11\u001b[0m         \u001b[38;5;66;03m# This means the table may have not been properly refined due to errors with the primary key not aligning with columns expected in the lookup table.\u001b[39;00m\n\u001b[1;32m     12\u001b[0m         logger\u001b[38;5;241m.\u001b[39minfo(e)\n",
+                            "Cell \u001b[0;32mIn [17], line 582\u001b[0m, in \u001b[0;36mOEA.refine\u001b[0;34m(self, entity_path, metadata, primary_key)\u001b[0m\n\u001b[1;32m    579\u001b[0m     metadata \u001b[38;5;241m=\u001b[39m all_metadata[path_dict[\u001b[38;5;124m'\u001b[39m\u001b[38;5;124mentity\u001b[39m\u001b[38;5;124m'\u001b[39m]]\n\u001b[1;32m    581\u001b[0m df_changes \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mget_latest_changes(source_path, sink_general_path)\n\u001b[0;32m--> 582\u001b[0m spark_schema \u001b[38;5;241m=\u001b[39m \u001b[38;5;28;43mself\u001b[39;49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mto_spark_schema\u001b[49m\u001b[43m(\u001b[49m\u001b[43mmetadata\u001b[49m\u001b[43m)\u001b[49m\n\u001b[1;32m    583\u001b[0m df_changes \u001b[38;5;241m=\u001b[39m \u001b[38;5;28mself\u001b[39m\u001b[38;5;241m.\u001b[39mmodify_schema(df_changes, spark_schema)        \n\u001b[1;32m    585\u001b[0m \u001b[38;5;28;01mif\u001b[39;00m df_changes\u001b[38;5;241m.\u001b[39mcount() \u001b[38;5;241m>\u001b[39m \u001b[38;5;241m0\u001b[39m:\n",
+                            "Cell \u001b[0;32mIn [17], line 331\u001b[0m, in \u001b[0;36mOEA.to_spark_schema\u001b[0;34m(self, schema)\u001b[0m\n\u001b[1;32m    329\u001b[0m     col_name \u001b[38;5;241m=\u001b[39m col_schema[\u001b[38;5;241m0\u001b[39m]\n\u001b[1;32m    330\u001b[0m     col_dtype \u001b[38;5;241m=\u001b[39m col_schema[\u001b[38;5;241m1\u001b[39m]\n\u001b[0;32m--> 331\u001b[0m     fields\u001b[38;5;241m.\u001b[39mappend(StructField(col_name, \u001b[38;5;28;43mglobals\u001b[39;49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\u001b[43m[\u001b[49m\u001b[43mcol_dtype\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mlower\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\u001b[38;5;241;43m.\u001b[39;49m\u001b[43mcapitalize\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m\u001b[43m \u001b[49m\u001b[38;5;241;43m+\u001b[39;49m\u001b[43m \u001b[49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[38;5;124;43mType\u001b[39;49m\u001b[38;5;124;43m\"\u001b[39;49m\u001b[43m]\u001b[49m\u001b[43m(\u001b[49m\u001b[43m)\u001b[49m, \u001b[38;5;28;01mTrue\u001b[39;00m))\n\u001b[1;32m    332\u001b[0m spark_schema \u001b[38;5;241m=\u001b[39m StructType(fields)\n\u001b[1;32m    333\u001b[0m \u001b[38;5;28;01mreturn\u001b[39;00m spark_schema\n",
+                            "\u001b[0;31mTypeError\u001b[0m: ArrayType.__init__() missing 1 required positional argument: 'elementType'"
+                        ]
                     }
                 ],
-                "execution_count": 106
+                "execution_count": 10
             }
         ]
     }
