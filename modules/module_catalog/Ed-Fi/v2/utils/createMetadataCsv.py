@@ -38,6 +38,8 @@ with open('./Metadata.csv', 'w',newline='') as f:
                         pass
                     elif property == "id":
                         definitions[key][property] = ["",property, swagger["definitions"][definition]["properties"][property]["type"],"hash"]
+                    elif swagger["definitions"][definition]["properties"][property]["type"] == "array":
+                        definitions[key][property] = ["",property, "string","no-op"]
                     else:
                         definitions[key][property] = ["",property, swagger["definitions"][definition]["properties"][property]["type"],"no-op"]
             print("--------------------------------------")
