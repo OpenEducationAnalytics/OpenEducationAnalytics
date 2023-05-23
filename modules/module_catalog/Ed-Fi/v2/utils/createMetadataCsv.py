@@ -40,6 +40,8 @@ with open('./Metadata.csv', 'w',newline='') as f:
                         definitions[key][property] = ["",property, swagger["definitions"][definition]["properties"][property]["type"],"hash"]
                     elif swagger["definitions"][definition]["properties"][property]["type"] == "array":
                         definitions[key][property] = ["",property, "string","no-op"]
+                    elif swagger["definitions"][definition]["properties"][property]["type"] == "number":
+                        definitions[key][property] = ["",property, "float","no-op"]
                     else:
                         definitions[key][property] = ["",property, swagger["definitions"][definition]["properties"][property]["type"],"no-op"]
             print("--------------------------------------")
