@@ -17,6 +17,10 @@
                         "workspace": {
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
+                        },
+                        "insights_version": {
+                            "value": "@pipeline().parameters.insights_version",
+                            "type": "Expression"
                         }
                     }
                 }
@@ -38,13 +42,7 @@
                         "referenceName": "2_build_LA_fact_tables",
                         "type": "PipelineReference"
                     },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        }
-                    }
+                    "waitOnCompletion": true
                 }
             },
             {
@@ -129,14 +127,18 @@
             },
             "storageAccount": {
                 "type": "string",
-                "defaultValue": "stoeacisd3v07kw1"
+                "defaultValue": "stoeav08"
+            },
+            "insights_version": {
+                "type": "string",
+                "defaultValue": "1.4.0"
             }
         },
         "folder": {
             "name": "Learning Analytics Package/v1.0"
         },
         "annotations": [],
-        "lastPublishTime": "2023-02-27T02:18:03Z"
+        "lastPublishTime": "2023-05-22T06:25:25Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
