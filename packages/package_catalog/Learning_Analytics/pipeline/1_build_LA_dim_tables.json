@@ -27,13 +27,25 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "insights_version": {
+                            "value": {
+                                "value": "@pipeline().parameters.insights_version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
-                    "snapshot": true,
                     "sparkPool": {
                         "referenceName": "spark3p3sm",
                         "type": "BigDataPoolReference"
-                    }
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
                 }
             }
         ],
@@ -41,13 +53,17 @@
             "workspace": {
                 "type": "string",
                 "defaultValue": "dev"
+            },
+            "insights_version": {
+                "type": "string",
+                "defaultValue": "1.4.0"
             }
         },
         "folder": {
             "name": "Learning Analytics Package/v1.0"
         },
         "annotations": [],
-        "lastPublishTime": "2023-01-24T00:05:57Z"
+        "lastPublishTime": "2023-05-22T06:25:20Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
