@@ -9,17 +9,17 @@ All notebooks depend on the [OEA python class](https://github.com/microsoft/Open
 ## Module Example Notebook: [Canvas_example.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/notebook/Canvas_example.ipynb)
 
 This Canvas module example notebook:
- - lands either K-12 or higher education test data into ```stage1/Transactional/canvas/v2.0``` of your data lake (refer to steps in the notebook for how to choose which dataset to land), 
- - pre-processes the test data (converting from the original JSON to a flat CSV for structured streaming) into ```stage1/Transactional/canvas_preprocessed/v2.0```, 
- - ingests the unstructured tables into ```stage2/Ingested/canvas_preprocessed/v2.0```, 
- - refines the data into ```stage2/Refined/canvas_preprocessed/v2.0/(general and sensitive)``` by pseudonymizing (i.e. hashing or masking) sensitive information. 
+ - lands either K-12 or higher education test data into ```stage1/Transactional/canvas_raw/v2.0``` of your data lake (refer to steps in the notebook for how to choose which dataset to land), 
+ - pre-processes the test data (converting from the original JSON to a flat CSV for structured streaming) into ```stage1/Transactional/canvas/v2.0```, 
+ - ingests the unstructured tables into ```stage2/Ingested/canvas/v2.0```, 
+ - refines the data into ```stage2/Refined/canvas/v2.0/(general and sensitive)``` by pseudonymizing (i.e. hashing or masking) sensitive information. 
 
 Basic functions for data exploration and visualization from Stage 1 to Stage 2 data lakes are also included. Steps are clearly outlined and commented.
 
 ## Module Pipeline Support Notebooks
 ### Module Pre-Processing Notebook: [Canvas_pre-processing.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/notebook/Canvas_pre-processing.ipynb)
 
-Module notebook responsible for conversion of the original record-oriented JSONs to CSVs pre-ingestion. Once any ad hoc column-dtype conversions are complete, the table is written to ```stage1/Transactional/canvas_preprocessed```.
+Module notebook responsible for conversion of the original record-oriented JSONs to CSVs pre-ingestion. Once any ad hoc column-dtype conversions are complete, the table is written to ```stage1/Transactional/canvas```.
 
 ### Module Ingestion Notebook: [Canvas_ingest.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/notebook/Canvas_ingest.ipynb)
 
