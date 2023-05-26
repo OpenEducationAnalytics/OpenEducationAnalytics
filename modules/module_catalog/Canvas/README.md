@@ -8,7 +8,7 @@
 
 
 <p align="center">
-  <img src="https://github.com/cstohlmann/oea-canvas-module/blob/main/docs/images/canvas_module_v0.2_overview.png" alt="Clever Module v0.2 Overview Visual"/>
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/docs/images/canvas_module_v0.2_overview.png" alt="Clever Module v0.2 Overview Visual"/>
 </p>
 
 ## Problem Statement and Module Impact
@@ -27,7 +27,7 @@ This module will also give you access to tables present in [Canvas Data v2](http
 
 ## Module Setup Instructions
 <p align="center">
-  <img src="https://github.com/cstohlmann/oea-canvas-module/blob/main/docs/images/canvas_module_v0.2_setup_instructions.png" alt="Canvas v2.0 Setup Instructions"/>
+  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/docs/images/canvas_module_v0.2_setup_instructions.png" alt="Canvas v2.0 Setup Instructions"/>
 </p>
 
 <ins><strong>Preparation:</ins></strong> This module currently leans on v0.8 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.8 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). 
@@ -67,7 +67,7 @@ See the [module test data page](https://github.com/microsoft/OpenEduAnalytics/tr
 Out-of-the box assets for this OEA module include: 
 1. [Test Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Canvas/test_data): One artificially generated test data set, which supports the module pipeline and Power BI template. Test data matches the [Canvas API tables](https://data-access-platform-api.s3.amazonaws.com/index.html#tag/API) format. This asset also includes a metadata.csv which is responsible for schema definitions and the pseudonymization process.
     - [Higher Education Test Data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Canvas/test_data/hed_test_data): Test data formatted as a higher education system.
-    - [metadata.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/test_data/metadata.csv): Metadata CSV to support module data ingestion and refining for all Moodle tables contained in the module.
+    - [metadata_v2.csv](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/test_data/metadata_v2.csv): Metadata CSV to support module data ingestion and refining for all Moodle tables contained in the module.
 2. [Pipeline Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Canvas/pipeline): One main pipeline template which lands data into the data lake in Stage 1 (for raw data) and processes into the Stage 2 data lake (for structured, queryable data). Stage 2 data is then made available via a serverless SQL endpoint.
 3. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Canvas/notebook): Two sets of notebooks that can be used for either data exploration, or necessary for ingesting and refining data in the pipeline; notebooks are automatically installed upon running the setup script.
     - [Canvas_example.ipynb](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/notebook/Canvas_example.ipynb): A module example notebook that demonstrates the basic functions of landing raw test data to Stage 1, ingestion from Stage 1 to Stage 2/Ingested, and refinement to Stage2/Refined.
