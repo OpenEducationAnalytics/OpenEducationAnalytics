@@ -56,8 +56,6 @@ Two sets of instructions are included:
 - Data has been refined to stage2/Refined.
 ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p5.1.png)
 
-- SQL database has been created: ```sdb_dev_s2r_graph_api_(beta or v1p0)``` (or, if workspace parameter was changed, replace dev with chosen workspace upon trigger).
-
 - **Final note**: The same processing of the test data can be accomplished by following the steps and running the [module example notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/Graph_example.ipynb).
 ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_v0.1rc1_pipeline_p6.png)
 
