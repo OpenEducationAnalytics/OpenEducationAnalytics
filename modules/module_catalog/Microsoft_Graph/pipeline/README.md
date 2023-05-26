@@ -5,7 +5,6 @@ This module uses a Synapse pipeline to:
 2. Ingest data into ```stage2/Ingested/graph_api/(beta or v1.0)``` and create a lake database (db) for queries.
 3. Correct the table schemas into ```stage2/Ingested_Corrected/graph_api/(beta or v1.0)```
 3. Refine data into ```stage2/Refined/graph_api/(beta or v1.0)/(general and sensitive)``` and create lake and SQL dbs for queries.
-    * Use the ```sdb_(dev or other workspace)_s2r_graph_api_(beta and v1p0)``` for connecting the serverless SQL db with Power BI DirectQuery.
 
 Notes:
 - Ingestion initially copies the data from ```stage1``` to ```stage2/Ingested```, except changes the file format from JSONs to Delta tables.
