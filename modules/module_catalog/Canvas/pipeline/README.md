@@ -14,11 +14,9 @@ Notes:
 
 Module Pipeline for Test Data  | Module Pipeline for Production Data
 :-------------------------:|:-------------------------:
-![](https://github.com/cstohlmann/oea-moodle-module/blob/main/docs/images/moodle_v0.1_test_data_pipeline_overview.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/coming_soon_visual.png)  
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/docs/images/canvas_v0.2_test_data_pipeline_overview.png) |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/coming_soon_visual.png)  
 
 For production data, this module pipeline can be automatically triggered (i.e. daily or weekly) to keep your Synapse data lake up-to-date.
-
-<strong><em>Important note: The pipeline for production data is not currently functional and is largely incomplete.</strong></em>
 
 ## Pipeline Setup Instructions
 
@@ -35,29 +33,32 @@ Two sets of instructions are included:
 2. Install the module to your workspace as outlined in the instructions.
 3. Once successfully installed, choose which workspace to work in.
     * <em>Note</em>: This module currently only uses test data formatted as a higher education institution (hed).
-![](https://github.com/cstohlmann/oea-moodle-module/blob/main/docs/images/moodle_v0.1_instructions_p1.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/docs/images/canvas_v0.2_instructions_p1.png)
 
 4. Explore the pipeline as desired for any additional changes to landing, ingesting, and refining the test data.
    * <strong><em>NOTE:</strong></em> You may have to attach notebook(s) to Spark pools, if not automatically connected following module installation. This is done by opening the notebooks used in the pipeline, and checking that the top header where Azure Synapse notebooks are attached in the "Attach to" field. Otherwise, there will be a notification "Please select a Spark pool to attach before running cell!" Manually attach this notebook to a Spark pool.
-![](https://github.com/cstohlmann/oea-moodle-module/blob/main/docs/images/moodle_v0.1_instructions_p2.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/docs/images/canvas_v0.2_instructions_p2.png)
 
 5. Commit/Publish any changes and trigger the pipeline manually.
 
 6. Once the pipeline has been successfully executed, verify that:
 
-- Data has landed in stage1.
-![](https://github.com/cstohlmann/oea-moodle-module/blob/main/docs/images/moodle_v0.1_instructions_p3.png)
+- Data has landed in stage1/canvas_raw.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/docs/images/canvas_v0.2_instructions_p3.png)
 
+- Data has pre-processed to stage1/canvas.
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/docs/images/canvas_v0.2_instructions_p4.png)
+     
 - Data has been ingested to stage2/Ingested.
-![](https://github.com/cstohlmann/oea-moodle-module/blob/main/docs/images/moodle_v0.1_instructions_p4.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/docs/images/canvas_v0.2_instructions_p5.png)
 
 - Data has been refined to stage2/Refined.
-![](https://github.com/cstohlmann/oea-moodle-module/blob/main/docs/images/moodle_v0.1_instructions_p5.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/docs/images/canvas_v0.2_instructions_p6.png)
 
-- SQL database has been created: ```sdb_dev_s2r_canvas_v4p1``` (or, if workspace parameter was changed, replace ```dev``` with chosen workspace upon trigger).
+- SQL database has been created: ```sdb_dev_s2r_canvas_v2p0``` (or, if workspace parameter was changed, replace ```dev``` with chosen workspace upon trigger).
 
 - **Final note**: The same processing of the test data can be accomplished by following the steps and running the [module example notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/notebook/Canvas_example.ipynb).
-![](https://github.com/cstohlmann/oea-moodle-module/blob/main/docs/images/moodle_v0.1_instructions_p6.png)
+![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Canvas/docs/images/canvas_v0.2_instructions_p7.png)
 
 </p>
 </details>
