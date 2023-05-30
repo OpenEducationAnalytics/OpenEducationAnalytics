@@ -1,0 +1,46 @@
+{
+    "name": "4_reset_workspace_canvas",
+    "properties": {
+        "activities": [
+            {
+                "name": "delete_dataset",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "delete_dataset",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "datasetPath": {
+                            "value": "@pipeline().parameters.datasetPath",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "datasetPath": {
+                "type": "string",
+                "defaultValue": "canvas/v2.0"
+            }
+        },
+        "folder": {
+            "name": "Canvas Module/v0.2"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-05-19T17:56:24Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

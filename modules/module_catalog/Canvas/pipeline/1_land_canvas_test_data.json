@@ -1,0 +1,537 @@
+{
+    "name": "1_land_canvas_test_data",
+    "properties": {
+        "activities": [
+            {
+                "name": "Set defaultFilename",
+                "description": "Sets defaultFilename variable depending on whether K-12 or Higher Ed. test data is to be landed.",
+                "type": "SetVariable",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "variableName": "defaultFilename",
+                    "value": {
+                        "value": "@{pipeline().parameters.land_k12_or_hed_test_data}_test_data.json",
+                        "type": "Expression"
+                    }
+                }
+            },
+            {
+                "name": "land_accounts",
+                "description": "Land Canvas K-12 or Higher Ed. Accounts Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/accounts.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/accounts",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_assignments",
+                "description": "Land Canvas K-12 or Higher Ed.  assignments Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/assignments.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/assignments",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_submissions",
+                "description": "Land Canvas K-12 or Higher Ed.  Submissions Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/submissions.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/submissions",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_course_sections",
+                "description": "Land Canvas K-12 or Higher Ed. Course_sections Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/course_sections.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/course_sections",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_courses",
+                "description": "Land Canvas either K-12 or Higher Ed. Courses Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/courses.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/courses",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_enrollment_terms",
+                "description": "Land Canvas K-12 or Higher Ed. Enrollment_terms Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/enrollment_terms.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/enrollment_terms",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_enrollments",
+                "description": "Land Canvas K-12 or Higher Ed. Enrollments Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/enrollments.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/enrollments",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_roles",
+                "description": "Land Canvas K-12 or Higher Ed. Roles Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/roles.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/roles",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_users",
+                "description": "Land Canvas K-12 or Higher Ed. Users Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/users.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/users",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_content_tags",
+                "description": "Land Canvas K-12 or Higher Ed.  Content_tags Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/content_tags.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/content_tags",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_context_modules",
+                "description": "Land Canvas K-12 or Higher Ed.  Context_modules Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/context_modules.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/context_modules",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "snapshot",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_quizzes",
+                "description": "Land Canvas K-12 or Higher Ed. Quizzes Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/quizzes.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/quizzes",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            },
+            {
+                "name": "land_quiz_submissions",
+                "description": "Land Canvas K-12 or Higher Ed. Quiz_submissions Test Data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Set defaultFilename",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_data_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": {
+                            "value": "@concat('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/',pipeline().parameters.land_k12_or_hed_test_data,'_test_data/quiz_submissions.json')",
+                            "type": "Expression"
+                        },
+                        "workspace": "dev",
+                        "sinkPath": {
+                            "value": "canvas_raw/v@{pipeline().parameters.version}/quiz_submissions",
+                            "type": "Expression"
+                        },
+                        "sinkFilename": {
+                            "value": "@variables('defaultFilename')",
+                            "type": "Expression"
+                        },
+                        "batchType": "additive",
+                        "datetimeFormat": "yyyy-MM-dd HH-mm-ss"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "land_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "2.0"
+            }
+        },
+        "variables": {
+            "defaultFilename": {
+                "type": "String",
+                "defaultValue": "test_data.csv"
+            }
+        },
+        "folder": {
+            "name": "Canvas Module/v0.2"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-05-19T07:44:19Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

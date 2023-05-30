@@ -1,0 +1,69 @@
+{
+    "name": "3_refine_canvas",
+    "properties": {
+        "activities": [
+            {
+                "name": "refine_canvas_data",
+                "description": "Refines tables from Canvas currently located in stage2/Ingested/canvas, but only tables also listed in the metadata_v2.csv.",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Canvas_refine",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "version": {
+                            "value": {
+                                "value": "@pipeline().parameters.version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "sparkPool": {
+                        "referenceName": "spark3p3sm",
+                        "type": "BigDataPoolReference"
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "2.0"
+            }
+        },
+        "folder": {
+            "name": "Canvas Module/v0.2"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-05-19T19:49:14Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
