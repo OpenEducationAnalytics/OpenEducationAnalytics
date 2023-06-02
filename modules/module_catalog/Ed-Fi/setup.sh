@@ -15,28 +15,16 @@ this_file_path=$(dirname $(realpath $0))
 
 echo "--> Setting up the Ed-Fi module assets."
 
-# 1) create datasets
-eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_JSON_File --file @$this_file_path/dataset/DS_JSON_File.json --only-show-errors"
-eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_JSON --file @$this_file_path/dataset/DS_JSON.json --only-show-errors"
-eval "az synapse dataset create --workspace-name $synapse_workspace --name DS_REST_Anonymous --file @$this_file_path/dataset/DS_REST_Anonymous.json --only-show-errors"
+# 2) install notebooks
+eval "az synapse notebook import --workspace-name $synapse_workspace --name EdFi_Land --spark-pool-name spark3p2sm --file @$this_file_path/notebook/EdFi_Land.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name EdFi_Ingest --spark-pool-name spark3p2sm --file @$this_file_path/notebook/EdFi_Land.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name EdFi_Refine --spark-pool-name spark3p2sm --file @$this_file_path/notebook/EdFi_Land.ipynb --only-show-errors"
 
-# 2) install dataflows
-eval "az synapse data-flow create --workspace-name $synapse_workspace --name Create_CheckpointKeysFile --file @$this_file_path/dataflow/Create_CheckpointKeysFile.json --only-show-errors"
-eval "az synapse data-flow create --workspace-name $synapse_workspace --name edfi_delete  --file @$this_file_path/dataflow/edfi_delete.json --only-show-errors"
-eval "az synapse data-flow create --workspace-name $synapse_workspace --name edfi_upsert  --file @$this_file_path/dataflow/edfi_upsert.json --only-show-errors"
-
-# 3) install notebooks
-eval "az synapse notebook import --workspace-name $synapse_workspace --name Refine_EdFi --spark-pool-name spark3p2sm --file @$this_file_path/notebook/Refine_EdFi.ipynb --only-show-errors"
-
-# 4) create integration runtime
-eval "az synapse integration-runtime managed create --workspace-name $synapse_workspace --resource-group $resource_group --name IR-DataFlows --time-to-live 10"
-
-# 5) setup pipelines
+# 3) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_REST_Keyset_Parallel --file @$this_file_path/pipeline/Copy_from_REST_Keyset_Parallel.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_from_REST_Anonymous_to_ADLS --file @$this_file_path/pipeline/Copy_from_REST_Anonymous_to_ADLS.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_EdFi_Entities_to_Stage1 --file @$this_file_path/pipeline/Copy_EdFi_Entities_to_Stage1.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Copy_Stage1_To_Stage2 --file @$this_file_path/pipeline/Copy_Stage1_To_Stage2.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name Master_Pipeline --file @$this_file_path/pipeline/Master_Pipeline.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_edfi --file @$this_file_path/pipeline/0_main_edfi.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_edfi --file @$this_file_path/pipeline/1_land_edfi.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 2_ingest_edfi --file @$this_file_path/pipeline/2_ingest_edfi.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 3_refine_edfi --file @$this_file_path/pipeline/3_refine_edfi.json"
 
 echo "--> Setup complete. The Ed-Fi module assets have been installed in the specified synapse workspace: $synapse_workspace"
