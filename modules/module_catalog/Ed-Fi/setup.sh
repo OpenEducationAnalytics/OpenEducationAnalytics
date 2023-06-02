@@ -21,9 +21,9 @@ eval "az synapse notebook import --workspace-name $synapse_workspace --name EdFi
 
 # 3) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_edfi --file @$this_file_path/pipeline/0_main_edfi.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_land_edfi --file @$this_file_path/pipeline/1_land_edfi.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 2_ingest_edfi --file @$this_file_path/pipeline/2_ingest_edfi.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 3_refine_edfi --file @$this_file_path/pipeline/3_refine_edfi.json"
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_edfi --file @$this_file_path/pipeline/0_main_edfi.json"
 
 echo "--> Setup complete. The Ed-Fi module assets have been installed in the specified synapse workspace: $synapse_workspace"
