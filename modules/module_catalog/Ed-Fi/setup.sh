@@ -16,8 +16,8 @@ echo "--> Setting up the Ed-Fi module assets."
 
 # 2) install notebooks
 eval "az synapse notebook import --workspace-name $synapse_workspace --name EdFi_Land --spark-pool-name spark3p2sm --file @$this_file_path/notebook/EdFi_Land.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name EdFi_Ingest --spark-pool-name spark3p2sm --file @$this_file_path/notebook/EdFi_Land.ipynb --only-show-errors"
-eval "az synapse notebook import --workspace-name $synapse_workspace --name EdFi_Refine --spark-pool-name spark3p2sm --file @$this_file_path/notebook/EdFi_Land.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name EdFi_Ingest --spark-pool-name spark3p2sm --file @$this_file_path/notebook/EdFi_Ingest.ipynb --only-show-errors"
+eval "az synapse notebook import --workspace-name $synapse_workspace --name EdFi_Refine --spark-pool-name spark3p2sm --file @$this_file_path/notebook/EdFi_Refin.ipynb --only-show-errors"
 
 # 3) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
