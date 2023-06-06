@@ -326,8 +326,7 @@
                 "defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/gene/v0.7dev//modules/module_catalog/Ed-Fi/docs/edfi_swagger.json"
             },
             "kvName": {
-                "type": "string",
-                "defaultValue": "kv-oea-insmod1"
+                "type": "string"
             },
             "workspace": {
                 "type": "string",
@@ -335,15 +334,13 @@
             },
             "ApiUrl": {
                 "type": "string",
-                "defaultValue": "https://api.edgraph.dev/edfi/v5.2/saas/"
+                "defaultValue": "https://api.ed-fi.org/v5.2/api/"
             },
             "InstanceId": {
-                "type": "string",
-                "defaultValue": "5eb775fb-4eff-4889-9eae-3919b7a2d321"
+                "type": "string"
             },
             "SchoolYear": {
-                "type": "string",
-                "defaultValue": "2011"
+                "type": "string"
             },
             "ModuleName": {
                 "type": "string",
@@ -384,7 +381,7 @@
             "name": "EdFi Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-05-19T18:34:40Z"
+        "lastPublishTime": "2023-06-05T17:45:46Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
