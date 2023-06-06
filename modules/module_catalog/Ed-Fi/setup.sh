@@ -3,7 +3,7 @@
 # Installs the Ed-Fi module
 # This script can be invoked directly to install the Ed-Fi module assets into an existing Synapse Workspace.
 if [ $# -ne 1 ]; then
-    echo "This setup script will install the Microsoft Education Insights module assets into an existing Synapse workspace."
+    echo "This setup script will install the Ed-Fi module assets into an existing Synapse workspace."
     echo "Invoke this script like this:  "
     echo "    setup.sh <synapse_workspace_name>"
     exit 1
