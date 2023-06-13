@@ -78,7 +78,7 @@ To install this module in your OEA environment, follow these steps:
 3. Run the setup script, replacing "mysynapseworkspacename" with your Synapse workspace name (must be less than 13 characters and contain only letters and numbers), and "myresourcegroupname" with the associated resource group name:\
 `./module_edfi_v0.2rc1/setup.sh mysynapseworkspacename myresourcegroupname`
 
-//// if the readme from your [dablickw branch](https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/u/dablickw/edfi_0.2rc1_documentation/modules/module_catalog/Ed-Fi/Readme.md) contains updated instructions, based on EdWire's feedback, then these instructions are up-to-date. If not, please update.  
+<!-- if the readme from your [dablickw branch](https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/u/dablickw/edfi_0.2rc1_documentation/modules/module_catalog/Ed-Fi/Readme.md) contains updated instructions, based on EdWire's feedback, then these instructions are up-to-date. If not, please update.   -->
 
 To use this module, follow these additional steps:
 
