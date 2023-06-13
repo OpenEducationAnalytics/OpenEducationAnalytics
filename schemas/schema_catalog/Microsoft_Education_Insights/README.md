@@ -5,7 +5,7 @@ The Education Insights Schema provides a way to easily setup the set of delta la
 In your synapse studio instance, in a notebook run the following:\
 `%run OEA_py`\
 `oea.set_workspace('dev')`\
-`oea.install_schema('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/gene/schema_as_component/schemas/schema_catalog/Microsoft_Education_Insights/Microsoft_Education_Insights.sss.csv', 'stage2/Refined/Microsoft_Education_Insights/v0.1', True)`
+`oea.install_schema('https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/schemas/schema_catalog/Microsoft_Education_Insights/Microsoft_Education_Insights.sss.csv', 'stage2/Refined/Microsoft_Education_Insights/v0.1', True)`
 
 # Data Model in Power BI
 Refer to the [Microsoft Education Insights module](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights/powerbi) for information on the Power BI data model and dashboards built on this schema.
