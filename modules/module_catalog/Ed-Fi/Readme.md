@@ -100,7 +100,7 @@ To use this module, follow these additional steps:
 
 
 
-### Module components - TO-DO
+### Module components - TO-DO DAVID
 
 **Sample copy:** 
 
@@ -127,7 +127,8 @@ The Microsoft Graph Reports API module [welcomes contributions](https://github.c
 
 This module was developed by [Kwantum Analytics](https://www.kwantumedu.com/). The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
-### Additional resources
+### Additional resources - TO-DO IF APPLICABLE - DAVID
+
 | Resource | Description |
 | --- | --- |
 | [Overview of Microsoft Graph](https://docs.microsoft.com/en-us/graph/overview) | Intro to Graph API and what it can do. |
@@ -139,7 +140,7 @@ This module was developed by [Kwantum Analytics](https://www.kwantumedu.com/). T
 
 
 
-### Data sources
+### Data sources - TO-DO IF APPLICABLE - DAVID
 
 Sample copy: 
 
@@ -151,7 +152,7 @@ See the [module test data page](https://github.com/microsoft/OpenEduAnalytics/tr
 
 
 
-## Additional information - TO-DO
+## Additional information - TO-DO IF APPLICABLE - DAVID
 
 ### Approximate hosting costs
 
@@ -163,7 +164,7 @@ Note the pricing does not consider the cost of hosting data in your Data Lake, S
 
 As always, it is suggested you monitor and review costs within your own environment.
 
-### Performance
+### Performance - TO-DO DAVID
 
 The Azure Durable Function has been designed with asynchronous I/O and scalability in mind. It does not download files directly, and instead invokes [start_copy_from_url](https://docs.microsoft.com/en-us/azure/developer/python/sdk/storage/azure-storage-blob/azure.storage.blob.blobclient?view=storage-py-v12#start-copy-from-url-source-url--metadata-none--incremental-copy-false----kwargs-) using the Python SDK.
 
@@ -175,7 +176,7 @@ Loads are incremental (only new/changes files are processed), so subsequent runs
 
 
 
-## How to contribute  - TO-DO
+## How to contribute  - TO-DO AYUNA
 
 Sample copy: 
 
