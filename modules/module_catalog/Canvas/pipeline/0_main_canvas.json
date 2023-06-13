@@ -1,0 +1,133 @@
+{
+    "name": "0_main_canvas",
+    "properties": {
+        "description": "only HEd test data at the moment",
+        "activities": [
+            {
+                "name": "2_ingest_canvas",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "1_land_canvas_test_or_prod",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "2_ingest_canvas",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "ingest_k12_or_hed_test_data": {
+                            "value": "@pipeline().parameters.run_k12_or_hed_test_data",
+                            "type": "Expression"
+                        },
+                        "version": {
+                            "value": "@pipeline().parameters.version",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "3_refine_canvas",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "2_ingest_canvas",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "3_refine_canvas",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "version": {
+                            "value": "@pipeline().parameters.version",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "1_land_canvas_test_or_prod",
+                "type": "IfCondition",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@not(equals(pipeline().parameters.workspace, 'prod'))",
+                        "type": "Expression"
+                    },
+                    "ifTrueActivities": [
+                        {
+                            "name": "1_land_canvas_test_data",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "1_land_canvas_test_data",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "land_k12_or_hed_test_data": {
+                                        "value": "@pipeline().parameters.run_k12_or_hed_test_data",
+                                        "type": "Expression"
+                                    },
+                                    "version": {
+                                        "value": "@pipeline().parameters.version",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "run_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
+            },
+            "dataShareDirectory": {
+                "type": "string",
+                "defaultValue": "canvas-{tenantid}"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "2.0"
+            }
+        },
+        "folder": {
+            "name": "Canvas Module/v0.2"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-05-22T21:50:57Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

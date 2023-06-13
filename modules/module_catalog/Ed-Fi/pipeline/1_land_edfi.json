@@ -1,0 +1,169 @@
+{
+    "name": "1_land_edfi",
+    "properties": {
+        "activities": [
+            {
+                "name": "Run_EdFi_Land",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "EdFi_Land",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "authUrl": {
+                            "value": {
+                                "value": "@pipeline().parameters.AuthUrl",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "dataManagementUrl": {
+                            "value": {
+                                "value": "@pipeline().parameters.DataManagementUrl",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "changeQueriesUrl": {
+                            "value": {
+                                "value": "@pipeline().parameters.ChangeQueriesUrl",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "dependenciesUrl": {
+                            "value": {
+                                "value": "@pipeline().parameters.DependenciesUrl",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "apiVersion": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiVersion",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "batchLimit": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiLimit",
+                                "type": "Expression"
+                            },
+                            "type": "int"
+                        },
+                        "kvName": {
+                            "value": {
+                                "value": "@pipeline().parameters.kvName",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "moduleName": {
+                            "value": {
+                                "value": "@pipeline().parameters.ModuleName",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "minChangeVer": {
+                            "value": {
+                                "value": "@pipeline().parameters.MinChangeVer",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "maxChangeVer": {
+                            "value": {
+                                "value": "@pipeline().parameters.MaxChangeVer",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true,
+                    "sparkPool": {
+                        "referenceName": "spark3p3med",
+                        "type": "BigDataPoolReference"
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string"
+            },
+            "ApiUrl": {
+                "type": "string"
+            },
+            "InstanceId": {
+                "type": "string"
+            },
+            "SchoolYear": {
+                "type": "string"
+            },
+            "ModuleName": {
+                "type": "string"
+            },
+            "DistrictId": {
+                "type": "string"
+            },
+            "ApiLimit": {
+                "type": "string"
+            },
+            "kvName": {
+                "type": "string"
+            },
+            "MinChangeVer": {
+                "type": "string"
+            },
+            "MaxChangeVer": {
+                "type": "string"
+            },
+            "AuthUrl": {
+                "type": "string"
+            },
+            "DataManagementUrl": {
+                "type": "string"
+            },
+            "ChangeQueriesUrl": {
+                "type": "string"
+            },
+            "DependenciesUrl": {
+                "type": "string"
+            },
+            "ApiVersion": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "EdFi Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-05-19T18:31:59Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

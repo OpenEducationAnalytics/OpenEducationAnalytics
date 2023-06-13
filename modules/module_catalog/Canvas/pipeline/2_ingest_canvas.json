@@ -1,0 +1,157 @@
+{
+    "name": "2_ingest_canvas",
+    "properties": {
+        "activities": [
+            {
+                "name": "ingest_metadata_from_URL",
+                "description": "",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "ingest_canvas",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_metadata_from_URL",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/main/modules/module_catalog/Canvas/test_data/metadata_v2.csv",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "sinkPath": {
+                            "value": "@concat('canvas/v', pipeline().parameters.version)",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "canvas_pre-processing",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Canvas_pre-processing",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "version": {
+                            "value": {
+                                "value": "@pipeline().parameters.version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "sparkPool": {
+                        "referenceName": "spark3p3sm",
+                        "type": "BigDataPoolReference"
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
+                }
+            },
+            {
+                "name": "ingest_canvas",
+                "description": "Ingests all tables listed on repo from Canvas data source.",
+                "type": "SynapseNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "canvas_pre-processing",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "Canvas_ingest",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "version": {
+                            "value": {
+                                "value": "@pipeline().parameters.version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "sparkPool": {
+                        "referenceName": "spark3p3sm",
+                        "type": "BigDataPoolReference"
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "ingest_k12_or_hed_test_data": {
+                "type": "string",
+                "defaultValue": "hed"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "2.0"
+            }
+        },
+        "folder": {
+            "name": "Canvas Module/v0.2"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-05-19T19:47:29Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
