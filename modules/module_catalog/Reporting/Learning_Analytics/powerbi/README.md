@@ -1,11 +1,11 @@
 # Power BI Dashboard
 
-The OEA Learning Analytics Package Power BI template enables users to quickly explore data. There is currently one options for exploring this package's Power BI templates.
-- **[Power BI with HEd test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/powerbi/Learning%20Analytics%20V1%20Import.pbix)**: Power BI templated with the Learning Analytics package v1 HEd test data imported locally. 
+The OEA Learning Analytics Reporting Power BI template enables users to quickly explore data. There is currently one options for exploring this package's Power BI templates.
+- **[Power BI with HEd test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Reporting/Learning_Analytics/powerbi/Learning%20Analytics%20V1.1%20Import.pbix)**: Power BI templated with the Learning Analytics package v1 HEd test data imported locally. 
 
 ## Dashboard Explanation 
 
-The OEA Learning Analytics v1 Package Power BI template provided consists of a single dashboard with two pages, which summarize student engagement and academic progress at a teacher-level. The current package version supports analysis from Microsoft Education Insights and Microsoft Graph data sources.
+The OEA Learning Analytics v1.1 Package Power BI template provided consists of a single dashboard with two pages, which summarize student engagement and academic progress at a teacher-level. The current package version supports analysis from Microsoft Education Insights and Microsoft Graph data sources.
 
 ## Test Data Dashboard Pages
 ### Learning Analytics Page 1: Student Digital Engagement

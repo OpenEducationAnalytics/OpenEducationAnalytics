@@ -1,10 +1,10 @@
 {
-    "name": "1_build_LA_dim_tables",
+    "name": "2_build_LA_fact_tables",
     "properties": {
         "activities": [
             {
-                "name": "build_LA_dim_tables",
-                "description": "Builds the dimension tables for this package that are needed to support the PBI file.",
+                "name": "build_LA_fact_tables",
+                "description": "Builds the fact tables for this package that are needed to support the PBI file.",
                 "type": "SynapseNotebook",
                 "dependsOn": [],
                 "policy": {
@@ -17,7 +17,7 @@
                 "userProperties": [],
                 "typeProperties": {
                     "notebook": {
-                        "referenceName": "LA_build_dimension_tables",
+                        "referenceName": "LA_build_fact_tables",
                         "type": "NotebookReference"
                     },
                     "parameters": {
@@ -60,10 +60,10 @@
             }
         },
         "folder": {
-            "name": "Learning Analytics Package/v1.0"
+            "name": "Transformation/Learning Analytics/v1.1"
         },
         "annotations": [],
-        "lastPublishTime": "2023-05-22T06:25:20Z"
+        "lastPublishTime": "2023-05-19T00:26:33Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
