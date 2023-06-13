@@ -1,3 +1,6 @@
+
+<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
+
 # Ed-Fi Data Integration Module
 
 ### Table of contents 
@@ -172,48 +175,25 @@ Loads are incremental (only new/changes files are processed), so subsequent runs
 
 
 
-## How to contribute 
+## How to contribute  - TO-DO
 
 Sample copy: 
 
-The Microsoft Insights module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md).
+The OEA Ed-Fi Data Integration Module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md).
 
-This module was developed by [Kwantum Analytics](https://www.kwantumedu.com/). The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
+This module was developed by [](). This module was developed by [Analytikus](https://www.analytikus.com/) in collaboration with [e-abclearning](https://www.e-abclearning.com/) and [Kwantum Analytics](https://www.kwantumedu.com/). 
 
-The Moodle module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md).
+The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
-This module was developed by [Analytikus](https://www.analytikus.com/) in collaboration with [e-abclearning](https://www.e-abclearning.com/) and [Kwantum Analytics](https://www.kwantumedu.com/). This module is a part of the MADAI intiative, led by Universidad de Murcia and supported by ten other public universities in Spain. The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
-
-Analytikus, a leading data analytics company, provided their expertise in learning analytics, while e-abclearning, a specialist in e-learning solutions, contributed their knowledge and experience with Moodle LMS. Together, they developed a powerful and effective tool that accelerates the analytics journey for educational institutions using Moodle as their LMS.
-
-The MADAI initiative, driven by Universidad de Murcia and supported by ten other public universities in Spain, aimed to foster collaboration between educational institutions, technology providers, and industry experts to create innovative and data impactful solutions that address the challenges faced by educational institutions in the digital age. The Moodle Learning Analytics Module Connector is a prime example of the successful collaboration that emerged from this initiative, empowering educators, and institutions to harness the power of data analytics for improved educational outcomes.
-
+EdWire, ... sample copy: a leading data analytics company, provided their expertise in learning analytics, while e-abclearning, a specialist in e-learning solutions, contributed their knowledge and experience with Moodle LMS. Together, they developed a powerful and effective tool that accelerates the analytics journey for educational institutions using Moodle as their LMS.
 
 
 ## Legal notices
 
 Microsoft and any contributors grant you a license to the Microsoft documentation and other content in this repository under the [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/legalcode), see the [LICENSE](LICENSE) file, and grant you a license to any code in the repository under the [MIT License](https://opensource.org/licenses/MIT), see the [LICENSE-CODE](LICENSE-CODE) file.
 
-Microsoft, Windows, Microsoft Azure and/or other Microsoft products and services referenced in the documentation may be either trademarks or registered trademarks of Microsoft in the United States and/or other countries. The licenses for this project do not grant you rights to use any Microsoft names, logos, or trademarks. Microsoft's general trademark guidelines can be found at http://go.microsoft.com/fwlink/?LinkID=254653.
+Microsoft, Windows, Microsoft Azure and/or other Microsoft products and services referenced in the documentation may be either trademarks or registered trademarks of Microsoft in the United States and/or other countries. The licenses for this project do not grant you rights to use any Microsoft names, logos, or trademarks. For further information, refer to [Microsoft Trademark and Brand Guidelines](http://go.microsoft.com/fwlink/?LinkID=254653).
 
-Privacy information can be found at https://privacy.microsoft.com/en-us/.
+For privacy information, visit [privacy.microsoft.com](https://privacy.microsoft.com/en-us/).
 
 Microsoft and any contributors reserve all other rights, whether under their respective copyrights, patents, or trademarks, whether by implication, estoppel or otherwise.
-********************
-# Legal Notices
-Microsoft and any contributors grant you a license to the Microsoft documentation and other content
-in this repository under the [Creative Commons Attribution 4.0 International Public License](https://creativecommons.org/licenses/by/4.0/legalcode),
-see the [LICENSE](LICENSE) file, and grant you a license to any code in the repository under the [MIT License](https://opensource.org/licenses/MIT), see the
-[LICENSE-CODE](LICENSE-CODE) file.
-
-Microsoft, Windows, Microsoft Azure and/or other Microsoft products and services referenced in the documentation
-may be either trademarks or registered trademarks of Microsoft in the United States and/or other countries.
-The licenses for this project do not grant you rights to use any Microsoft names, logos, or trademarks.
-Microsoft's general trademark guidelines can be found at http://go.microsoft.com/fwlink/?LinkID=254653.
-
-Privacy information can be found at https://privacy.microsoft.com/en-us/
-
-Microsoft and any contributors reserve all other rights, whether under their respective copyrights, patents,
-or trademarks, whether by implication, estoppel or otherwise.
-
-<img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
