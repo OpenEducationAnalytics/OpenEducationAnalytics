@@ -49,6 +49,7 @@ The education sector faces several challenges in data collection, reporting, and
 To address these challenges, the Ed-Fi Data Integration Module allows for analytics over multi-year, multi-district education data by leveraging a data lakehouse architecture, Azure Synapse pipelines, and dataflows. It enables customers to create a SQL Serverless database over the enriched DELTA files, defining SQL views tailored to their specific use cases.  
 
 
+
 ## How to use 
 
 ### Prerequisites 
@@ -57,7 +58,6 @@ To install this module, follow these steps:
 
 1. Ensure you have a Synapse workspace with the OEA framework assets installed. Refer to [OEA Setup](https://github.com/microsoft/OpenEduAnalytics#setup) for detailed instructions.
 2. Note that this module is specifically designed to work with version 0.8rc2 of the OEA framework. It is not compatible with earlier versions of the framework.
-
 
 ### Setup instructions
 
@@ -92,15 +92,12 @@ To use this module, follow these additional steps:
        - Set DistrictId, SchoolYear, and InstanceId only if they are applicable to your Ed-Fi instance.
     4. Run the 0_main_edfi pipeline to start using the module.
 
-
-# Things to Note
-
-1) For all the Ed-Fi instances, you need to create applications in the Admin App with the required permissions (Mostly, read access for all entities). The pipeline cna run into authorization issues if you do not have the required permissions.
-2) The client secrets for all the Ed-Fi instances should be stored in Azure key vault as secrets and the name of these secrets have to be provided in the Runner_Config.json file.
-3) Always remember to publish any assets before trying to use them. Debug mode is only used while developing.
+#### Notes:
+ - For all your Ed-Fi instances, create applications in the Admin App with the necessary permissions. Generally, read access is required for all entities. Failure to grant the required permissions can result in authorization issues during pipeline execution.
 
 
-### Module components 
+
+### Module components - TO-DO
 
 **Sample copy:** 
 
@@ -139,39 +136,6 @@ This module was developed by [Kwantum Analytics](https://www.kwantumedu.com/). T
 
 
 
-
-Sample copy: 
-
-<p align="center">
-  <img src="https://github.com/cstohlmann/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/images/v0.1/graph_module_v0.1_setup_instructions.png" alt="Microsoft Graph Setup Instructions"/>
-</p>
-
-<ins><strong>Preparation:</ins></strong> This module currently leans on v0.7 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.7 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb). 
-
-1. Run the [setup.sh script](https://github.com/Microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/setup.sh)
-    * Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
-[![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
-    * Download the module release to your Azure clouddrive \
-`cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_Microsoft_Graph_v0.1/module_Microsoft_Graph_v0.1.zip`\
-`unzip ./module_Microsoft_Graph_v0.1.zip`
-    * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
-`./module_Microsoft_Graph_v0.1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
-2. Run the [Graph module main pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline) or the [Graph_example notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/notebook/Graph_example.ipynb) into your Synapse workspace to see the functionality of module assets.
-     * It is recommended that you first run the module example notebook to understanding the methods of data processing, before running the pipeline. Although, running either the example notebook or the main pipeline accomplish the same processes.
-     * <em>[Depreciated - to be updated]</em> Additionally, see the [module written tutorial](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Microsoft_Graph/docs/Graph%20Reports%20API%20Module%20Tutorial.pdf) or [video tutorial](https://www.youtube.com/watch?v=K01h-QsMX9c) for detailed instructions.
-3. Verify that the module pipeline landed data into stage 1 and 2, and SQL and lake databases were created. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline) for detailed instructions.
-4. Download the [module Power BI template file](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/powerbi). Module test data is already imported into the Power BI. See the [module Power BI page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/powerbi) page for details and instructions for switching the Power BI template data source, to import from your Synapse workspace data source.
-
-#### Notes:
- - Microsoft Graph Reports API is free to access, and does not require a subscription. However, if you want to pull your own usage data from O365 and Teams (which is the primary focus of this module), these will require subscriptions for your education system.
- - The above instructions will setup the OEA Microsoft Graph Reports API module using the [module test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/test_data), but the same pipeline can be used for production data. See the [module pipeline page](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph/pipeline) for instructions on switching the pipeline data source to production data.
-
-#### OEA Digital Engagement Schema:
-
-After completing the setup of this module, the MS Graph M365 and Teams activity schemas can be transformed into the [OEA schema standard for digital engagement](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas/schema_catalog/Digital_Engagement_Schema). Refer to the documentation and assets to see how this module can be extended and standardized for OEA package-use.
-
-
 ### Data sources
 
 Sample copy: 
@@ -184,7 +148,7 @@ See the [module test data page](https://github.com/microsoft/OpenEduAnalytics/tr
 
 
 
-## Additional information 
+## Additional information - TO-DO
 
 ### Approximate hosting costs
 
