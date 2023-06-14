@@ -9,10 +9,18 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+org_id=$1
 synapse_workspace=$1
+
 this_file_path=$(dirname $(realpath $0))
+source $this_file_path/set_names.sh $org_id
 
 echo "--> Setting up the Learning Analytics Transformation v0.1 assets."
+output=$(az synapse workspace list | grep $OEA_SYNAPSE)
+
+if [[ $? != 1 ]]; then
+  synapse_workspace=$OEA_SYNAPSE
+fi
 
 # 1) install notebooks
 eval "az synapse notebook import --workspace-name $synapse_workspace --name LA_build_dimension_tables --spark-pool-name spark3p3sm --file @$this_file_path/notebook/LA_build_dimension_tables.ipynb --only-show-errors"
