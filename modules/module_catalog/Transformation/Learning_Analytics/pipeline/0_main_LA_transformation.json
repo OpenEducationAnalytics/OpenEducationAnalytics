@@ -1,5 +1,5 @@
 {
-    "name": "0_main_LA_package",
+    "name": "0_main_LA_transformation",
     "properties": {
         "activities": [
             {
@@ -155,7 +155,7 @@
             }
         },
         "folder": {
-            "name": "Learning Analytics Package/v1.1"
+            "name": "Transformation/Learning Analytics/v0.1"
         },
         "annotations": [],
         "lastPublishTime": "2023-06-05T06:05:09Z"
