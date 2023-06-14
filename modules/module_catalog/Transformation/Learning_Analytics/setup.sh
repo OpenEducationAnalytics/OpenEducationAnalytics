@@ -28,9 +28,9 @@ eval "az synapse notebook import --workspace-name $synapse_workspace --name LA_b
 
 # 2) setup pipelines
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
+eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_LA_transformation --file @$this_file_path/pipeline/0_main_LA_transformation.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 1_build_LA_dim_tables --file @$this_file_path/pipeline/1_build_LA_dim_tables.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 2_build_LA_fact_tables --file @$this_file_path/pipeline/2_build_LA_fact_tables.json"
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 3_reset_workspace_LA_package --file @$this_file_path/pipeline/3_reset_workspace_LA_package.json"
-eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_LA_transformation --file @$this_file_path/pipeline/0_main_LA_transformation.json"
 
 echo "--> Setup complete. The Learning Analytics Transformation v0.1 assets have been installed in the specified synapse workspace: $synapse_workspace"
