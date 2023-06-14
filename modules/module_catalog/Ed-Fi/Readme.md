@@ -181,11 +181,13 @@ Loads are incremental (only new/changes files are processed), so subsequent runs
 
 
 
-## How to contribute  - TO-DO AYUNA
+## How to contribute 
 
 The OEA Ed-Fi Data Integration Module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md).
 
 This module was co-developed by [EdGraph](https://edgraph.com/) and Microsoft [Open Education Analytics](https://openeducationanalytics.org/). 
+
+The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/), with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
 [EdGraph](https://edgraph.com/) is a platform for aggregating data from various systems into a unified operational datastore, aligned with the Ed-Fi standard. 
 
@@ -193,7 +195,6 @@ Their contributions to the Ed-Fi module, developed in collaboration with OEA, de
 
 For organizations seeking open-source education analytics solutions, EdGraph is a trusted partner that offers a range of managed services, analytics solutions, and data validation modules built on the OEA framework. Their expertise in Ed-Fi education data standards, demonstrated through their collaboration with Microsoft and recognition as an "OEA Advanced Partner," positions them as a valuable resource for educational institutions looking to accelerate their data integration and analytics initiatives.
 
-The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/), with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
 
 ## Legal notices
