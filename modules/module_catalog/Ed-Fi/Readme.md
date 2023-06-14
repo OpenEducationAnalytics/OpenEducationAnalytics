@@ -1,4 +1,3 @@
-
 <img align="right" height="100" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
 # Ed-Fi Data Integration Module
@@ -57,7 +56,7 @@ To address these challenges, the Ed-Fi Data Integration Module allows for analyt
 
 ### Prerequisites 
 
-To install this module, follow these steps:
+To install this module:
 
 1. Ensure you have a Synapse workspace with the OEA framework assets installed. Refer to [OEA Setup](https://github.com/microsoft/OpenEduAnalytics#setup) for detailed instructions.
 2. Note that this module is specifically designed to work with version 0.8rc2 of the OEA framework. It is not compatible with earlier versions of the framework.
@@ -129,6 +128,8 @@ This module was developed by [Kwantum Analytics](https://www.kwantumedu.com/). T
 
 ### Additional resources - TO-DO IF APPLICABLE - DAVID
 
+**Sample copy:** 
+
 | Resource | Description |
 | --- | --- |
 | [Overview of Microsoft Graph](https://docs.microsoft.com/en-us/graph/overview) | Intro to Graph API and what it can do. |
@@ -142,7 +143,7 @@ This module was developed by [Kwantum Analytics](https://www.kwantumedu.com/). T
 
 ### Data sources - TO-DO IF APPLICABLE - DAVID
 
-Sample copy: 
+**Sample copy:** 
 
  - The Graph Reports API data sources are used for ingesting Microsoft Teams and O365 "usage" data, as explained above. There are also additional data sources that can be ingested upon creating your own pipeline, or adding to the pipeline template provided. 
  - The data ingested can either be formatted as JSON or CSV, although the pipeline template and datasets provided utilize the JSON format. 
@@ -156,6 +157,8 @@ See the [module test data page](https://github.com/microsoft/OpenEduAnalytics/tr
 
 ### Approximate hosting costs
 
+**Sample copy:** 
+
 The Azure Durable Function does come with a hosting cost in Azure however it is generally fairly minimal when using the consumption model (which is the default).
 
 In our environment, most days did not exceed $0.20 USD per day. A full reload of the Canvas data cost ~$0.30 USD. For most use cases we anticipate the Azure Function and associated function storage would not exceed ~$5-10 USD per month. Costs for your environment will vary based on number of active staff/students in the platform.
@@ -165,6 +168,8 @@ Note the pricing does not consider the cost of hosting data in your Data Lake, S
 As always, it is suggested you monitor and review costs within your own environment.
 
 ### Performance - TO-DO DAVID
+
+**Sample copy:** 
 
 The Azure Durable Function has been designed with asynchronous I/O and scalability in mind. It does not download files directly, and instead invokes [start_copy_from_url](https://docs.microsoft.com/en-us/azure/developer/python/sdk/storage/azure-storage-blob/azure.storage.blob.blobclient?view=storage-py-v12#start-copy-from-url-source-url--metadata-none--incremental-copy-false----kwargs-) using the Python SDK.
 
@@ -178,15 +183,17 @@ Loads are incremental (only new/changes files are processed), so subsequent runs
 
 ## How to contribute  - TO-DO AYUNA
 
-Sample copy: 
-
 The OEA Ed-Fi Data Integration Module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md).
 
-This module was developed by [](). This module was developed by [Analytikus](https://www.analytikus.com/) in collaboration with [e-abclearning](https://www.e-abclearning.com/) and [Kwantum Analytics](https://www.kwantumedu.com/). 
+This module was co-developed by [EdGraph](https://edgraph.com/) and Microsoft [Open Education Analytics](https://openeducationanalytics.org/). 
 
-The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
+[EdGraph](https://edgraph.com/) is a platform for aggregating data from various systems into a unified operational datastore, aligned with the Ed-Fi standard. 
 
-EdWire, ... sample copy: a leading data analytics company, provided their expertise in learning analytics, while e-abclearning, a specialist in e-learning solutions, contributed their knowledge and experience with Moodle LMS. Together, they developed a powerful and effective tool that accelerates the analytics journey for educational institutions using Moodle as their LMS.
+Their contributions to the Ed-Fi module, developed in collaboration with OEA, demonstrate their expertise in Ed-Fi education data standards, providing valuable open-source tools that enable educational organizations to streamline their data integration and analytics initiatives while leveraging the OEA framework.
+
+For organizations seeking open-source education analytics solutions, EdGraph is a trusted partner that offers a range of managed services, analytics solutions, and data validation modules built on the OEA framework. Their expertise in Ed-Fi education data standards, demonstrated through their collaboration with Microsoft and recognition as an "OEA Advanced Partner," positions them as a valuable resource for educational institutions looking to accelerate their data integration and analytics initiatives.
+
+The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/), with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone, and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 
 
 ## Legal notices
