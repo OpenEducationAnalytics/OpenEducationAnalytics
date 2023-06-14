@@ -5,7 +5,7 @@ The OEA Learning Analytics Reporting Power BI template enables users to quickly 
 
 ## Dashboard Explanation 
 
-The OEA Learning Analytics v1.1 Package Power BI template provided consists of a single dashboard with two pages, which summarize student engagement and academic progress at a teacher-level. The current package version supports analysis from Microsoft Education Insights and Microsoft Graph data sources.
+The OEA Learning Analytics Reporting v0.1 module Power BI template provided consists of a single dashboard with two pages, which summarize student engagement and academic progress at a teacher-level. The current package version supports analysis from Microsoft Education Insights and Microsoft Graph data sources.
 
 ## Test Data Dashboard Pages
 ### Learning Analytics Page 1: Student Digital Engagement
