@@ -89,16 +89,11 @@
                 "defaultValue": "dev"
             }
         },
-        "variables": {
-            "source_path": {
-                "type": "String"
-            }
-        },
         "folder": {
             "name": "Learning Analytics Package/v1.1"
         },
         "annotations": [],
-        "lastPublishTime": "2023-06-05T06:02:38Z"
+        "lastPublishTime": "2023-06-14T07:12:09Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
