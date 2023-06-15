@@ -13,8 +13,18 @@ datetime=$(date "+%Y%m%d_%H%M%S")
 logfile="learning_analytics_package_setup_${datetime}.log"
 exec 3>&1 1>>${logfile} 2>&1
 
+org_id=$1
 synapse_workspace=$1
+
 this_file_path=$(dirname $(realpath $0))
+source $this_file_path/set_names.sh $org_id
+
+echo "--> Setting up the Learning Analytics Transformation v0.1 assets."
+output=$(az synapse workspace list | grep $OEA_SYNAPSE)
+
+if [[ $? != 1 ]]; then
+  synapse_workspace=$OEA_SYNAPSE
+fi
 
 echo "--> Setting up the Learning Analytics package v1.1 assets."
 
