@@ -9,6 +9,10 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+datetime=$(date "+%Y%m%d_%H%M%S")
+logfile="learning_analytics_transformation_setup_${datetime}.log"
+exec 3>&1 1>>${logfile} 2>&1
+
 org_id=$1
 synapse_workspace=$1
 
