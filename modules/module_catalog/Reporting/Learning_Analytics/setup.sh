@@ -29,4 +29,4 @@ eval "az synapse notebook import --workspace-name $synapse_workspace --name LA_r
 # Note that the ordering below matters because pipelines that are referred to by other pipelines must be created first.
 eval "az synapse pipeline create --workspace-name $synapse_workspace --name 0_main_LA_reporting --file @$this_file_path/pipeline/0_main_LA_reporting.json"
 
-echo "--> Setup complete. The Learning Analytics Reporting v1.1 assets have been installed in the specified synapse workspace: $synapse_workspace"
+echo "--> Setup complete. The Learning Analytics Reporting v0.1 assets have been installed in the specified synapse workspace: $synapse_workspace"
