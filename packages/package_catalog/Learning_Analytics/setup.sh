@@ -10,7 +10,7 @@ if [ $# -ne 1 ]; then
 fi
 
 datetime=$(date "+%Y%m%d_%H%M%S")
-logfile="learning_analytics_transformation_setup_${datetime}.log"
+logfile="learning_analytics_package_setup_${datetime}.log"
 exec 3>&1 1>>${logfile} 2>&1
 
 synapse_workspace=$1
