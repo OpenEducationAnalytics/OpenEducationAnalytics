@@ -1,4 +1,4 @@
-> **Note:** This package is currently released as v1.1rc1, and is dependent on the OEA framework v0.8
+> **Note:** This package is currently released as v1.1, and is dependent on the OEA framework v0.8
 
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
@@ -48,10 +48,10 @@ The assets in this package can be combined with course completion, graduation ra
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
     * Download the module release to your Azure clouddrive \
 `cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/package_Learning_Analytics_v1.1rc1/package_Learning_Analytics_v1.1rc1.zip`\
-`unzip ./package_Learning_Analytics_v1.1rc1.zip`
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/package_Learning_Analytics_v1.1/package_Learning_Analytics_v1.1.zip`\
+`unzip ./package_Learning_Analytics_v1.1.zip`
     * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
-`./package_Learning_Analytics_v1.1rc1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
+`./package_Learning_Analytics_v1.1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
 
       
 ## Data Sources
