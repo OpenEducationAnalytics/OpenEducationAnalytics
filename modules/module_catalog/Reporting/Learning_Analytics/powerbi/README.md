@@ -1,7 +1,7 @@
 # Power BI Dashboard
 
 The OEA Learning Analytics Reporting Power BI template enables users to quickly explore data. There is currently one options for exploring this package's Power BI templates.
-- **[Power BI with HEd test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Reporting/Learning_Analytics/powerbi/Learning%20Analytics%20V1.1%20Import.pbix)**: Power BI templated with the Learning Analytics package v1 HEd test data imported locally. 
+- **[Power BI with HEd test data](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Reporting/Learning_Analytics/powerbi/Learning%20Analytics%20V1.1%20Import.pbix)**: Power BI templated with the Learning Analytics package v1.1 HEd test data imported locally. 
 
 ## Dashboard Explanation 
 
