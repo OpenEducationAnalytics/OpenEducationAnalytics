@@ -1,4 +1,4 @@
-> **Note:** This module is currently released as v0.1, and is dependent on the OEA framework v0.8
+> **Note:** This module is currently released as v0.1 rc1, and is dependent on the OEA framework v0.8
 
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
@@ -27,17 +27,17 @@ Learning Analytics Reporting Module requires the deployment of [Microsoft Educat
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
     * Download the module release to your Azure clouddrive \
 `cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_LA_Reporting_v0.1/module_LA_Reporting_v0.1.zip`\
-`unzip ./module_LA_Reporting_v0.1.zip`
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_LA_Reporting_v0.1_rc1/module_LA_Reporting_v0.1_rc1.zip`\
+`unzip ./module_LA_Reporting_v0.1_rc1.zip`
     * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
-`./module_LA_Reporting_v0.1/setup.sh mysynapseworkspacename` to install this package into your own environment.
+`./module_LA_Reporting_v0.1_rc1/setup.sh mysynapseworkspacename` to install this package into your own environment.
 <br>OR</br>
     * Run the setup script like this (substitute "mysuffix" with your preferred suffix representing your org, which must be less than 13 characters and can only contain letters and numbers): \
 `./module_LA_Reporting_v0.1/setup.sh mysuffix` to install this package into your own environment.
 4. Run the [Learning Analytics Reporting module main pipeline template](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reporting/Learning_Analytics/pipeline) into your Synapse workspace to see the functionality of module assets.
 5. Once the pipeline has been successfully executed, verify that:
 - SQL database has been created: ```sdb_dev_s3p_learning_analytics_v1p0``` (or, if workspace parameter was changed, replace dev with chosen workspace upon trigger).
-
+6. Use the Power BI dashboard to explore the Learning Analytics use case.
 
 ## Data Sources
 
@@ -51,10 +51,11 @@ Out-of-the box assets for this OEA module include:
       * [OEA Use Case Documentation Template](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/use_cases/Open_Education_Analytics_Use_Case_Template_v3.docx). 
 3. [Notebooks](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Reporting/Learning_Analytics/notebooks): For steps to run module to support ingest, refine, aggregate, enrichment, and curation of data within the data lake.
 4. [Pipeline](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_catalog/Transformation/Learning_Analytics/pipeline): To confirm transformation module and create a SQL database to support Power BI dashboards.
+5. [Power BI Template](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Learning_Analytics/powerbi): For exploring, visualizing, and deriving insights from the data.
 
 ## Contributions from the Community
  
-The Learning Analytics Transformation [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md).
+The Learning Analytics Reporting module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md).
 
 This module was developed by [Kwantum Analytics](https://www.kwantumedu.com/). The architecture and reference implementation for all modules is built on [Azure Synapse Analytics](https://azure.microsoft.com/en-us/services/synapse-analytics/) - with [Azure Data Lake Storage](https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction) as the storage backbone,  and [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory/) providing the role-based access control.
 

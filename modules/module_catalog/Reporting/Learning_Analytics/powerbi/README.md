@@ -39,3 +39,6 @@ Note that the data model can be read easier by examining the sub-pages, under th
 
 ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Learning_Analytics/docs/images/v1/LA_package_v1_pbi_data_model_subpage.png)
 
+## Note
+Data model updates to accommodate the schema changes from [Microsoft Education Insights](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Education_Insights) and [Microsoft Graph](https://github.com/microsoft/OpenEduAnalytics/tree/main/modules/module_catalog/Microsoft_Graph)
+are in progress.
