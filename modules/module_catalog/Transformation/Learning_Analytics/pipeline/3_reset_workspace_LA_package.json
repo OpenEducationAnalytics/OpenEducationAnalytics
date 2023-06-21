@@ -1,0 +1,46 @@
+{
+    "name": "3_reset_workspace_LA_package",
+    "properties": {
+        "activities": [
+            {
+                "name": "delete_dataset",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "delete_dataset",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "datasetPath": {
+                            "value": "@pipeline().parameters.datasetPath",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "datasetPath": {
+                "type": "string",
+                "defaultValue": "learning_analytics"
+            }
+        },
+        "folder": {
+            "name": "Transformation/Learning Analytics/v0.1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-01-11T00:26:25Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}
