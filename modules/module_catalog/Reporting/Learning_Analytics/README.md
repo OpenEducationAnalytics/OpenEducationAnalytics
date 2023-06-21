@@ -1,4 +1,4 @@
-> **Note:** This module is currently released as v0.1 rc1, and is dependent on the OEA framework v0.8
+> **Note:** This module is currently released as v0.1 , and is dependent on the OEA framework v0.8
 
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
 
@@ -27,10 +27,10 @@ Learning Analytics Reporting Module requires the deployment of [Microsoft Educat
 [![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
     * Download the module release to your Azure clouddrive \
 `cd clouddrive`\
-`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_LA_Reporting_v0.1_rc1/module_LA_Reporting_v0.1_rc1.zip`\
-`unzip ./module_LA_Reporting_v0.1_rc1.zip`
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/module_LA_Reporting_v0.1/module_LA_Reporting_v0.1.zip`\
+`unzip ./module_LA_Reporting_v0.1.zip`
     * Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
-`./module_LA_Reporting_v0.1_rc1/setup.sh mysynapseworkspacename` to install this package into your own environment.
+`./module_LA_Reporting_v0.1/setup.sh mysynapseworkspacename` to install this package into your own environment.
 <br>OR</br>
     * Run the setup script like this (substitute "mysuffix" with your preferred suffix representing your org, which must be less than 13 characters and can only contain letters and numbers): \
 `./module_LA_Reporting_v0.1/setup.sh mysuffix` to install this package into your own environment.
