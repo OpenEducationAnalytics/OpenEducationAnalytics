@@ -331,7 +331,7 @@
         "parameters": {
             "MetadataUrl": {
                 "type": "string",
-                "defaultValue": "https://github.com/ayunav/OpenEduAnalytics/raw/main/modules/module_catalog/Ed-Fi/utils/Metadata.csv"
+                "defaultValue": "https://github.com/microsoft/OpenEduAnalytics/raw/main/modules/module_catalog/Ed-Fi/utils/Metadata.csv"
             },
             "SwaggerUrl": {
                 "type": "string",
