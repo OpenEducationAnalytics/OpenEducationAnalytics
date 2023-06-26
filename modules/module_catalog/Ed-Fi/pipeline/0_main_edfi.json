@@ -184,6 +184,18 @@
                         "Workspace": {
                             "value": "@pipeline().parameters.workspace",
                             "type": "Expression"
+                        },
+                        "SchoolYear": {
+                            "value": "@pipeline().parameters.SchoolYear",
+                            "type": "Expression"
+                        },
+                        "DistrictId": {
+                            "value": "@pipeline().parameters.DistrictId",
+                            "type": "Expression"
+                        },
+                        "MetadataUrl": {
+                            "value": "@pipeline().parameters.MetadataUrl",
+                            "type": "Expression"
                         }
                     }
                 }
@@ -319,7 +331,7 @@
         "parameters": {
             "MetadataUrl": {
                 "type": "string",
-                "defaultValue": "https://raw.githubusercontent.com/microsoft/OpenEduAnalytics/gene/v0.7dev/modules/module_catalog/Ed-Fi/docs/edfi_oea_metadata.csv"
+                "defaultValue": "https://github.com/ayunav/OpenEduAnalytics/raw/main/modules/module_catalog/Ed-Fi/utils/Metadata.csv"
             },
             "SwaggerUrl": {
                 "type": "string",
@@ -344,7 +356,7 @@
             },
             "ModuleName": {
                 "type": "string",
-                "defaultValue": "EdFi"
+                "defaultValue": "Ed-Fi"
             },
             "ApiLimit": {
                 "type": "string",
@@ -381,7 +393,7 @@
             "name": "EdFi Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-06-05T17:45:46Z"
+        "lastPublishTime": "2023-06-12T14:26:34Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
