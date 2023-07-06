@@ -40,9 +40,22 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "schoolYear": {
+                            "value": {
+                                "value": "@pipeline().parameters.SchoolYear",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "districtId": {
+                            "value": {
+                                "value": "@pipeline().parameters.DistrictId",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
-                    "snapshot": true,
                     "sparkPool": {
                         "referenceName": "spark3p3med",
                         "type": "BigDataPoolReference"
@@ -107,7 +120,7 @@
             "name": "EdFi Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-05-19T18:34:37Z"
+        "lastPublishTime": "2023-06-12T14:26:10Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
