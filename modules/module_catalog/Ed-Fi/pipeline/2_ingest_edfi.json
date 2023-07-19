@@ -1,0 +1,126 @@
+{
+    "name": "2_ingest_edfi",
+    "properties": {
+        "activities": [
+            {
+                "name": "Run EdFi_Ingest",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "EdFi_Ingest",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.Workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "moduleName": {
+                            "value": {
+                                "value": "@pipeline().parameters.ModuleName",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "apiVersion": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiVersion",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "schoolYear": {
+                            "value": {
+                                "value": "@pipeline().parameters.SchoolYear",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "districtId": {
+                            "value": {
+                                "value": "@pipeline().parameters.DistrictId",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "sparkPool": {
+                        "referenceName": "spark3p3med",
+                        "type": "BigDataPoolReference"
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
+                }
+            }
+        ],
+        "parameters": {
+            "ModuleName": {
+                "type": "string",
+                "defaultValue": "Ed-Fi"
+            },
+            "DistrictId": {
+                "type": "string",
+                "defaultValue": "All"
+            },
+            "SchoolYear": {
+                "type": "string",
+                "defaultValue": "2022"
+            },
+            "ApiVersion": {
+                "type": "string",
+                "defaultValue": "5.2"
+            },
+            "DependenciesUrl": {
+                "type": "string",
+                "defaultValue": "https://api.edgraph.dev/edfi/v5.2/saas/metadata/data/v3/123/2022/dependencies"
+            },
+            "Workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            }
+        },
+        "variables": {
+            "CheckpointKeyFileName": {
+                "type": "String",
+                "defaultValue": "checkpoints.json"
+            },
+            "ApiVersion": {
+                "type": "String"
+            },
+            "AuthUrl": {
+                "type": "String"
+            },
+            "DataManagementUrl": {
+                "type": "String"
+            },
+            "ChangeQueriesUrl": {
+                "type": "String"
+            },
+            "DependenciesUrl": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "EdFi Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-06-12T14:26:10Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

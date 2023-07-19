@@ -1,0 +1,167 @@
+{
+    "name": "0_main_LA_reporting",
+    "properties": {
+        "activities": [
+            {
+                "name": "Check for sensitive data",
+                "type": "GetMetadata",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_datalake_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage3', \n if(equals(pipeline().parameters.workspace,'prod'),'stage3',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage3')\n )\n)",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "Published/learning_analytics/v1.1/sensitive",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "fieldList": [
+                        "exists"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "BinaryReadSettings"
+                    }
+                }
+            },
+            {
+                "name": "Check for general data",
+                "type": "GetMetadata",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataset": {
+                        "referenceName": "DS_datalake_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage3', \n if(equals(pipeline().parameters.workspace,'prod'),'stage3',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage3')\n )\n)",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "Published/learning_analytics/v1.1/general",
+                                "type": "Expression"
+                            }
+                        }
+                    },
+                    "fieldList": [
+                        "exists"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "BinaryReadSettings"
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db_for_beta_general",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Check for general data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "storageAccount": "@pipeline().parameters.storageAccount",
+                        "stage": "stage3",
+                        "datasetPath": "Published/learning_analytics/v1.1/general",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "sdb_@{pipeline().parameters.workspace}_s3p_learning_analytics_v1p0",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db_for_beta_sensitive",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Check for sensitive data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "storageAccount": "@pipeline().parameters.storageAccount",
+                        "stage": "stage3",
+                        "datasetPath": "Published/learning_analytics/v1.1/sensitive",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": {
+                            "value": "sdb_@{pipeline().parameters.workspace}_s3p_learning_analytics_v1p0",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "storageAccount": {
+                "type": "string",
+                "defaultValue": "stoeav08"
+            }
+        },
+        "folder": {
+            "name": "Reporting/Learning Analytics/v0.1"
+        },
+        "annotations": []
+    }
+}

@@ -1,0 +1,129 @@
+{
+    "name": "3_refine_edfi",
+    "properties": {
+        "activities": [
+            {
+                "name": "EdFi_Refine",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "EdFi_Refine",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "moduleName": {
+                            "value": {
+                                "value": "@pipeline().parameters.ModuleName",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "apiVersion": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiVersion",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.Workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "schoolYear": {
+                            "value": {
+                                "value": "@pipeline().parameters.SchoolYear",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "districtId": {
+                            "value": {
+                                "value": "@pipeline().parameters.DistrictId",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "metadataUrl": {
+                            "value": {
+                                "value": "@pipeline().parameters.MetadataUrl",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "sparkPool": {
+                        "referenceName": "spark3p3med",
+                        "type": "BigDataPoolReference"
+                    },
+                    "conf": {
+                        "spark.dynamicAllocation.enabled": null,
+                        "spark.dynamicAllocation.minExecutors": null,
+                        "spark.dynamicAllocation.maxExecutors": null
+                    },
+                    "numExecutors": null
+                }
+            }
+        ],
+        "parameters": {
+            "ModuleName": {
+                "type": "string"
+            },
+            "ApiVersion": {
+                "type": "string"
+            },
+            "Workspace": {
+                "type": "string"
+            },
+            "SchoolYear": {
+                "type": "string"
+            },
+            "DistrictId": {
+                "type": "string"
+            },
+            "MetadataUrl": {
+                "type": "string"
+            }
+        },
+        "variables": {
+            "edfi_clientid": {
+                "type": "String"
+            },
+            "edfi_clientsecret": {
+                "type": "String"
+            },
+            "ApiVersion": {
+                "type": "String"
+            },
+            "AuthUrl": {
+                "type": "String"
+            },
+            "DataManagementUrl": {
+                "type": "String"
+            },
+            "ChangeQueriesUrl": {
+                "type": "String"
+            },
+            "DependenciesUrl": {
+                "type": "String"
+            }
+        },
+        "folder": {
+            "name": "EdFi Module/basic"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-06-12T14:26:23Z"
+    },
+    "type": "Microsoft.Synapse/workspaces/pipelines"
+}

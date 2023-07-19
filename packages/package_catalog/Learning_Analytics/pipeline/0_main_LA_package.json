@@ -3,119 +3,82 @@
     "properties": {
         "activities": [
             {
-                "name": "1_build_LA_dim_tables",
-                "type": "ExecutePipeline",
+                "name": "Check for sensitive data",
+                "type": "GetMetadata",
                 "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
                 "userProperties": [],
                 "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "1_build_LA_dim_tables",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        },
-                        "insights_version": {
-                            "value": "@pipeline().parameters.insights_version",
-                            "type": "Expression"
+                    "dataset": {
+                        "referenceName": "DS_datalake_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage3', \n if(equals(pipeline().parameters.workspace,'prod'),'stage3',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage3')\n )\n)",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "Published/learning_analytics/v1.1/sensitive",
+                                "type": "Expression"
+                            }
                         }
+                    },
+                    "fieldList": [
+                        "exists"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "BinaryReadSettings"
                     }
                 }
             },
             {
-                "name": "2_build_LA_fact_tables",
-                "type": "ExecutePipeline",
-                "dependsOn": [
-                    {
-                        "activity": "1_build_LA_dim_tables",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
+                "name": "Check for general data",
+                "type": "GetMetadata",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
                 "userProperties": [],
                 "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "2_build_LA_fact_tables",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true
-                }
-            },
-            {
-                "name": "3_create_sql_db_general",
-                "description": "Adds the general tables to the same db created for sensitive table(s)",
-                "type": "ExecutePipeline",
-                "dependsOn": [
-                    {
-                        "activity": "2_build_LA_fact_tables",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "userProperties": [],
-                "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "create_sql_db",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "storageAccount": {
-                            "value": "@pipeline().parameters.storageAccount",
-                            "type": "Expression"
-                        },
-                        "stage": "stage3",
-                        "datasetPath": "Published/learning_analytics/v1.0/general",
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        },
-                        "dbName": {
-                            "value": "sdb_@{pipeline().parameters.workspace}_s3p_learning_analytics_v1p0",
-                            "type": "Expression"
+                    "dataset": {
+                        "referenceName": "DS_datalake_folder",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@if(equals(pipeline().parameters.workspace,'dev'), 'oea/dev/stage3', \n if(equals(pipeline().parameters.workspace,'prod'),'stage3',\n  concat(concat('oea/sandboxes/', pipeline().parameters.workspace), '/stage3')\n )\n)",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "Published/learning_analytics/v1.1/general",
+                                "type": "Expression"
+                            }
                         }
-                    }
-                }
-            },
-            {
-                "name": "3_create_sql_db_sensitive",
-                "description": "Adds the lookup table(s) to the same db created for general tables",
-                "type": "ExecutePipeline",
-                "dependsOn": [
-                    {
-                        "activity": "2_build_LA_fact_tables",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "userProperties": [],
-                "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "create_sql_db",
-                        "type": "PipelineReference"
                     },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "storageAccount": {
-                            "value": "@pipeline().parameters.storageAccount",
-                            "type": "Expression"
-                        },
-                        "stage": "stage3",
-                        "datasetPath": "Published/learning_analytics/v1.0/sensitive",
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        },
-                        "dbName": {
-                            "value": "sdb_@{pipeline().parameters.workspace}_s3p_learning_analytics_v1p0",
-                            "type": "Expression"
-                        }
+                    "fieldList": [
+                        "exists"
+                    ],
+                    "storeSettings": {
+                        "type": "AzureBlobFSReadSettings",
+                        "recursive": true,
+                        "enablePartitionDiscovery": false
+                    },
+                    "formatSettings": {
+                        "type": "BinaryReadSettings"
                     }
                 }
             }
@@ -124,21 +87,13 @@
             "workspace": {
                 "type": "string",
                 "defaultValue": "dev"
-            },
-            "storageAccount": {
-                "type": "string",
-                "defaultValue": "stoeav08"
-            },
-            "insights_version": {
-                "type": "string",
-                "defaultValue": "1.4.0"
             }
         },
         "folder": {
-            "name": "Learning Analytics Package/v1.0"
+            "name": "Learning Analytics Package/v1.1"
         },
         "annotations": [],
-        "lastPublishTime": "2023-05-22T06:25:25Z"
+        "lastPublishTime": "2023-06-14T07:12:09Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
