@@ -1,6 +1,6 @@
 Entity Name,Attribute Name,Attribute Data Type,Pseudonymization
 data_test,,,
-,id,string,no-op
+,id,string,hash
 ,FirstGenerationinCollegeFlag,string,no-op
 ,Gender,string,no-op
 ,Race,string,no-op
@@ -34,7 +34,7 @@ data_test,,,
 ,Attrition,string,no-op
 ,rundate,string,no-op
 data_train,,,
-,id,string,no-op
+,id,string,hash
 ,FirstGenerationinCollegeFlag,string,no-op
 ,Gender,string,no-op
 ,Race,string,no-op
