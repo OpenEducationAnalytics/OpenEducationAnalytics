@@ -1,5 +1,5 @@
 Entity Name,Attribute Name,Attribute Data Type,Pseudonymization
-test,,,
+data_test,,,
 ,id,string,no-op
 ,FirstGenerationinCollegeFlag,string,no-op
 ,Gender,string,no-op
@@ -33,7 +33,7 @@ test,,,
 ,Dorm_Resident,string,no-op
 ,Attrition,string,no-op
 ,rundate,string,no-op
-train,,,
+data_train,,,
 ,id,string,no-op
 ,FirstGenerationinCollegeFlag,string,no-op
 ,Gender,string,no-op
