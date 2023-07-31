@@ -70,7 +70,7 @@ model_local_importance_values,,,
 ,PELL_Eligible,double,no-op
 ,Dorm_Resident,double,no-op
 ,rundate,timestamp,no-op
-,max_driver,double,no-op
+,max_driver,string,no-op
 ,max_driver_strength,double,no-op
 predictions_predict,,,
 ,id,string,hash
