@@ -5,6 +5,8 @@
 
 This package relies on data sourced from School Information Systems. Once aggregated, this data can be fed through the Responsible AI Accelerator in Azure Machine Learning to provide key insights.
 
+### Train and Test Data (test.json, train.json)
+
 | Student Attrition Factor | Description |
 | --- | --- |
 | FirstGenerationinCollegeFlag | |
@@ -40,5 +42,14 @@ This package relies on data sourced from School Information Systems. Once aggreg
 | Unknown_InstructorType | |
 | PELL_Eligible | |
 | Attrition | |
+
+### Predict Data (predict.json, predict_proba.json)
+
+| Predict | Description |
+| Evaluation | Attrition or Retain |
+
+| Predict Proba | Description |
+| Column 1 | Between 0 and 1, prediction probability of Attrition |
+| Column 2 | Between 0 and 1, prediction probability of Retain |
 
 It is critical that all end user identifiable information is pseudonymized to comply with GDPR and CCPA requirements (more details on the OEA pseudonymization process [here](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/data/README.md#pseudonymization-of-end-user-identifiable-information)).
