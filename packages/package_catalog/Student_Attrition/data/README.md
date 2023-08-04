@@ -46,6 +46,10 @@ Implementations of this package can use several [OEA Modules](https://github.com
 
 > Feel free to generate your own test data that will suit the new package you are creating. When generating new test data, it is important to make sure that it aligns with existing data or new data you plan to create so it becomes easier to join the tables and create relationships for Power BI visualization. To make this process seamless, we recommend integrating OEA standardized schemas. Common education data standards like Caliper, Ed-Fi and SIF allow for data solutions to be built on a common analytical foundation and for a ‘plug and play’ approach to combining data from multiple sources.  [Learn more about how to integrate OEA schemas in your new module](https://github.com/microsoft/OpenEduAnalytics/tree/main/schemas).
 
+## Power BI Data Model
+
+![](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Student_Attrition/powerbi/images/PBI_data_model.png)
+
 ## Data Dictionary
 
 This package relies on data sourced from School Information Systems. Once aggregated, this data can be fed through the Responsible AI Accelerator in Azure Machine Learning to provide key insights.
