@@ -37,7 +37,7 @@ See below for examples of developed PowerBI dashboards (see also the [Power BI](
 
 #### Modified Production Dashboard:
 
-Patterns of absenteeism  |  Strongest drivers of model predictions | School support staff dashboard
+Patterns of student attrition  |  Strongest drivers of model predictions | School support staff dashboard
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Dashboard%20Overview.png)  |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Drivers%20Dashboard.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Social%20Worker%20Dashboard.png)
 
