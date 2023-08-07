@@ -37,7 +37,7 @@ See below for examples of developed PowerBI dashboards (see also the [Power BI](
 
 Explanation Page  |  Overview of Student Attrition | Strongest drivers of model predictions
 :-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/microsoft/OpenEduAnalytics/blob/44e24fbda36e2823ccb70aba82973ee5447a751f/packages/package_catalog/Student_Attrition/docs/images/Azure_LinkedServices.png)  |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/44e24fbda36e2823ccb70aba82973ee5447a751f/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_overview.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/44e24fbda36e2823ccb70aba82973ee5447a751f/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_drivers.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_overview.png)  |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_overview.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_drivers.png)
 
 ## Package Setup Instructions
 
