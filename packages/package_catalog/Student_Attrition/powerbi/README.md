@@ -78,4 +78,3 @@ This package also includes example Power BI pictures of the package production i
 
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_instructions_p3_sql_server_db.png)
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_instructions_p4_serverless_sql_endpoint.png)
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_instructions_p4_serverless_sql_endpoint.png)
