@@ -35,9 +35,9 @@ See below for examples of developed PowerBI dashboards (see also the [Power BI](
 
 #### Example Power BI Dashboard:
 
-Explanation Page  |  Overview of Student Attrition | Strongest drivers of model predictions
+Overview of Student Attrition | Strongest drivers of model predictions | Help Page 
 :-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_overview.png)  |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_overview.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_drivers.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_overview.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_drivers.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/af1970efb37a09872f543143aa36f5ac375a307e/packages/package_catalog/Student_Attrition/docs/images/PBI_help.png)
 
 ## Package Setup Instructions
 
