@@ -1,14 +1,17 @@
-# Package Notebooks
+# Notebooks
 
-The OEA Predicting Chronic Absenteeism Package includes two python notebooks with their following outlined functionalities.
+This package is supported by 1 python notebook that is triggered within the Main Attrition pipeline.
 
-## [Build StudentModel Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/notebooks/CA_build_model_table.ipynb)
-This notebook is responsible for data aggregation and enrichments of the SIS, attendance and digital activity/attendance data. The methodological approach to this data curation, prior to ML model training and development, is outlined within the notebook with 7 clear steps.
+## Attrition Pre-Processing
 
-## [Develop ModelResults Table, using StudentModel Table](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/notebooks/CA_model_dev_and_train.ipynb)
-This notebook is responsible for InterpretML model training and model-driver aggregated results, of the StudentModel table. The approach to this model training and driver extraction is outlined within the notebook with 4 clear steps.
+The [Attrition Preprocessing notebook](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Student_Attrition/notebooks/attrition_preprocesing.ipynb/) implements functions that allow data collected from Azure Machine Learning to be landed within the OEA Framework Azure Data Lake Storage.
 
-Both notebooks are automatically imported into your Synapse workspace once you import the [Chronic Absenteeism package pipeline template](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Predicting_Chronic_Absenteeism/pipelines).
+### Usage Documentation
 
-### NOTE:
-If you are using this package for production data, you will need to edit these notebooks. These package notebooks currently do not account for handling any change data over time. Most OEA assets rely on [Structured Streaming](https://spark.apache.org/docs/latest/structured-streaming-programming-guide.html), whereas this package currently does not. 
+This notebook demonstrates the utility of the OEA_py class notebook, by flattening the .json files landed in the Azure Machine Learning Data Lake Storage and adjust the primary keys to accomodate the OEA Workspace.
+
+The steps outlined below describe how this notebook is used to flatten and clean the JSON tables:
+
+1. Set the workspace for where the Student Attrition tables are to be converted.
+2. Run process model functions, (processing test.json, train.json, predict.json, predict_proba.json, global_imp.json, and local_imp.json,) to pull them from stage1/Transactional/attrition_raw, and utilize data frame functions to flatten the original JSON structure.
+3. Run pre-process attrition data function to land flatten JSON's into stage1/Transactional/attrition folder where they can then be ingested by the 0_main_attrition pipeline into Stage 2.
