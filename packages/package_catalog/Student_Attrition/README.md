@@ -24,7 +24,8 @@ Broward College utilized Azure Machine Learning to identify five critical factor
 
 With the actionable insights generated from machine learning, Broward College offers tailored and proactive interventions to support each student based on their specific requirements. For instance, through the "Take One More" campaign, students nearing the threshold of cumulative credit hours are encouraged to add another class, as this has been found to increase their chances of success. Broward College is committed to helping students complete their education successfully, using technology to predict and provide assistance, thus ensuring students' progress along their educational pathways. See [Microsoft Customer Story: Broward Colege and Responsible AI](https://customers.microsoft.com/en-us/story/1540738819088108006-broward-college-higher-education-azure) and below video for more details.
 
-<iframe class="vidyard_iframe" title="Broward College harnesses the power of Azure Machine Learning and responsible AI to increase student" src="//play.vidyard.com/Z5HdyQqJq73Rcm2gFcvPFa.html?" width=640 height=360 scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen></iframe>
+<iframe width="560" height="315" src="//play.vidyard.com/Z5HdyQqJq73Rcm2gFcvPFa.html?" frameborder="0" allowfullscreen></iframe>
+
 
 ## Package Impact
 
