@@ -22,10 +22,7 @@ Broward College in Florida caters to a diverse student population of over 55,000
 
 Broward College utilized Azure Machine Learning to identify five critical factors that predict student attrition: cumulative credit hours earned, cumulative GPA, high school degree and/or GED status, and course modality (in-person, blended, or online learning). Armed with these predictors, the college is now implementing data-driven student support strategies campus-wide and modifying course design, scheduling, and learning methods accordingly. The use of machine learning has significantly expedited data processing, enabling the team to swiftly respond to students' needs and isolate potential confounding variables, such as the impact of the pandemic on student retention.
 
-With the actionable insights generated from machine learning, Broward College offers tailored and proactive interventions to support each student based on their specific requirements. For instance, through the "Take One More" campaign, students nearing the threshold of cumulative credit hours are encouraged to add another class, as this has been found to increase their chances of success. Broward College is committed to helping students complete their education successfully, using technology to predict and provide assistance, thus ensuring students' progress along their educational pathways. See [Microsoft Customer Story: Broward Colege and Responsible AI](https://customers.microsoft.com/en-us/story/1540738819088108006-broward-college-higher-education-azure) and below video for more details.
-
-<iframe width="560" height="315" src="//play.vidyard.com/Z5HdyQqJq73Rcm2gFcvPFa.html?" frameborder="0" allowfullscreen></iframe>
-
+With the actionable insights generated from machine learning, Broward College offers tailored and proactive interventions to support each student based on their specific requirements. For instance, through the "Take One More" campaign, students nearing the threshold of cumulative credit hours are encouraged to add another class, as this has been found to increase their chances of success. Broward College is committed to helping students complete their education successfully, using technology to predict and provide assistance, thus ensuring students' progress along their educational pathways. See [Microsoft Customer Story: Broward Colege and Responsible AI](https://customers.microsoft.com/en-us/story/1540738819088108006-broward-college-higher-education-azure) and more details including a video presentation.
 
 ## Package Impact
 
@@ -51,8 +48,8 @@ Below are the key steps for implementing this OEA package.
 
 1. [Azure AI Machine Learning Studio](https://azure.microsoft.com/en-us/products/machine-learning): 
 
-   - Run the [education_story model](https://github.com/cviddenKwantum/ResponsibleAIAccelerator/tree/main) in Azure AI Machine Learning Studio. 
-   - For detailed steps on how to create an instance of the Azure AI Machine Learning Studio and stand up the model, see the [Responsible AI repository](https://github.com/cviddenKwantum/ResponsibleAIAccelerator/tree/main).
+   - Run the [education_story model](https://github.com/microsoft/ResponsibleAIAccelerator in Azure AI Machine Learning Studio. 
+   - For detailed steps on how to create an instance of the Azure AI Machine Learning Studio and stand up the model, see the [Responsible AI repository](https://github.com/microsoft/ResponsibleAIAccelerator).
 
 2. Azure Synapse: 
    - Link the Azure AI Machine Learning Data Lake Storage Gen2 to your Synapse environment through the Manage tab in your Synapse workspace. 
@@ -67,7 +64,7 @@ Below are the key steps for implementing this OEA package.
 
 ## Machine Learning Approach
 
-View the [Responsible AI Accelerator documentation](https://github.com/cviddenKwantum/ResponsibleAIAccelerator/tree/main) to understand the key components of the Machine Learning Model and Approach used to support this package.
+View the [Responsible AI Accelerator documentation](https://github.com/microsoft/ResponsibleAIAccelerator) to understand the key components of the Machine Learning Model and Approach used to support this package.
 
 ## Data Sources
 
