@@ -61,9 +61,9 @@ With this package, we illustrate the export of model predictions and model inter
 
 Package data was combined to support Power BI visuals via the below data model.
 
- | Power BI Data Model
-:-------------------------:|
-![](https://github.com/microsoft/OpenEduAnalytics/blob/8a31d174d2519d0c746404ced7439480c33649f6/packages/package_catalog/Student_Attrition/docs/images/PBI_data_model.png) |
+| Power BI Data Model |
+| :-------------------------:|
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/8a31d174d2519d0c746404ced7439480c33649f6/packages/package_catalog/Student_Attrition/docs/images/PBI_data_model.png) |
 
 ## Pseudonymization of Personal Identifiable Information (PII)
 
