@@ -29,8 +29,6 @@ With the actionable insights generated from machine learning, Broward College of
     Your browser does not support the video tag.
 </video>
 
-
-
 ## Package Impact
 
 In general, this package can be used by system or institutional leaders, school, or department leaders, support staff, and educators to:
