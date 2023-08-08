@@ -2,6 +2,9 @@
 
 ## Package Setup Instructions
 
+For an example scenario of the Student Attrition Prediction Package use, reference the page [here](https://learn.microsoft.com/en-us/azure/architecture/example-scenario/ai/student-attrition-prediction).
+
+
 <ins><strong>Preparation:</ins></strong> This package currently leans on v0.8 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.8 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
 
 1. [Azure AI Machine Learning Studio](https://azure.microsoft.com/en-us/products/machine-learning): 
