@@ -42,8 +42,28 @@ The machine learning model table is of the below format where the target variabl
 
 ## Data Dictionary: RAI Dashboard Outputs
 
-The [Responsible AI Dashboard](https://github.com/microsoft/responsible-ai-toolbox) used to assess the trained classification model is capable of generating data artifacts related to model predictions, error analysis, fairness analysis, model interpretability, causal analysis, and more. 
+The [Responsible AI Dashboard](https://github.com/microsoft/responsible-ai-toolbox) used to assess the trained classification model is capable of generating data artifacts related to model predictions, error analysis, fairness analysis, model interpretability, causal analysis, and more as illustrated below.
 
+ | RAI Dashboard Data Artifacts
+:-------------------------:|
+![](https://github.com/microsoft/OpenEduAnalytics/blob/8a31d174d2519d0c746404ced7439480c33649f6/packages/package_catalog/Student_Attrition/docs/images/RAI_data_artifacts.png) |
+
+With this package, we illustrate the export of model predictions and model interpretability.
+
+* **Model Predictions**: 
+    * predict.json: Class predictions (Attrition or Retention)
+    * predict_proba.json: Class probabilities
+* **Model Explanations**:
+    * global_importance_values.json: Aggregate model feature importance values
+    * local_importance_values.json: Individual student level feature importance values
+
+## Power BI Data Model
+
+Package data was combined to support Power BI visuals via the below data model.
+
+| Power BI Data Model |
+| :-------------------------:|
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/8a31d174d2519d0c746404ced7439480c33649f6/packages/package_catalog/Student_Attrition/docs/images/PBI_data_model.png) |
 
 ## Pseudonymization of Personal Identifiable Information (PII)
 
