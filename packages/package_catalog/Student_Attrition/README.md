@@ -44,7 +44,7 @@ Overview of Student Attrition | Strongest drivers of model predictions | Help Pa
 <ins><strong>Preparation:</ins></strong> This package currently leans on v0.8 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.8 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
 
 Below are the key steps for implementing this OEA package. 
-<em>For more detailed instructions, see the [docs](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Student_Attrition/docs/README.md/) folder within the Student Attrition package.</em>
+<em>For more detailed instructions, see the [docs](https://github.com/microsoft/OpenEduAnalytics/tree/ca35c80060a4653a873ff83ce4ff4cc3081aeb62/packages/package_catalog/Student_Attrition/docs#package-setup-instructions) folder within the Student Attrition package.</em>
 
 1. [Azure AI Machine Learning Studio](https://azure.microsoft.com/en-us/products/machine-learning): 
 
