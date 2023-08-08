@@ -4,7 +4,7 @@
 
 # Student Attrition
 
-The OEA Student Attrition Package provides a set of assets which support an education system in developing their own predictive model to address student retention. This package was developed by [Broward College](https://www.broward.edu/) with OEA technical assets developed by [Kwantum Analytics](https://www.kwantumedu.com/) using [Azure Machine Learning](https://azure.microsoft.com/en-us/products/machine-learning) and [Responsible AI](https://github.com/cviddenKwantum/ResponsibleAIAccelerator/tree/main). This package works to identify key predictors of student attrition and provide data-driven, actionable strategies that will support students in achieving their academic goals. This package relies on three components:
+The OEA Student Attrition Package provides a set of assets which support an education system in developing their own predictive model to address student retention. This package was developed by [Broward College](https://www.broward.edu/) with OEA technical assets developed by [Kwantum Analytics](https://www.kwantumedu.com/) using [Azure Machine Learning](https://azure.microsoft.com/en-us/products/machine-learning) and [Responsible AI](https://github.com/microsoft/ResponsibleAIAccelerator/tree/main). This package works to identify key predictors of student attrition and provide data-driven, actionable strategies that will support students in achieving their academic goals. This package relies on three components:
 
 1. Azure Machine Learning and the [Microsoft Responsible AI Accelerator](https://github.com/microsoft/ResponsibleAIAccelerator)
 2. Azure Synapse
@@ -14,7 +14,7 @@ The OEA Student Attrition Package provides a set of assets which support an educ
 
 <ins>Technical Assets:</ins> Various assets are freely available in this package to help accelerate implementation of Student Attrition use cases. Assets include descriptions of data sources, notebooks for data processing, a pipeline for ML model building and deployment, and sample PowerBI dashboards. See descriptions of technical assets below.
 
-<ins>Important Note:</ins> It is strongly recommended to education systems or institutions planning to use this package establish that they establish a process for obtaining student, family, guardian, teacher, faculty, and staff <em> consent for using this type of student data </em>. This consent should be part of the system or institution’s <em> broader data governance policy </em> that clearly specifies who can have access to what data, under what conditions, for what purposes, and for what length of time.
+<ins>Important Note:</ins> It is strongly recommended to education systems or institutions planning to use this package establish that they establish a process for obtaining student, family, guardian, teacher, faculty, and staff <em> consent for using this type of student data </em>. This consent should be part of the system or institution's <em> broader data governance policy </em> that clearly specifies who can have access to what data, under what conditions, for what purposes, and for what length of time.
 
 ## Problem Statement
 
@@ -22,7 +22,14 @@ Broward College in Florida caters to a diverse student population of over 55,000
 
 Broward College utilized Azure Machine Learning to identify five critical factors that predict student attrition: cumulative credit hours earned, cumulative GPA, high school degree and/or GED status, and course modality (in-person, blended, or online learning). Armed with these predictors, the college is now implementing data-driven student support strategies campus-wide and modifying course design, scheduling, and learning methods accordingly. The use of machine learning has significantly expedited data processing, enabling the team to swiftly respond to students' needs and isolate potential confounding variables, such as the impact of the pandemic on student retention.
 
-With the actionable insights generated from machine learning, Broward College offers tailored and proactive interventions to support each student based on their specific requirements. For instance, through the "Take One More" campaign, students nearing the threshold of cumulative credit hours are encouraged to add another class, as this has been found to increase their chances of success. Broward College is committed to helping students complete their education successfully, using technology to predict and provide assistance, thus ensuring students' progress along their educational pathways.
+With the actionable insights generated from machine learning, Broward College offers tailored and proactive interventions to support each student based on their specific requirements. For instance, through the "Take One More" campaign, students nearing the threshold of cumulative credit hours are encouraged to add another class, as this has been found to increase their chances of success. Broward College is committed to helping students complete their education successfully, using technology to predict and provide assistance, thus ensuring students' progress along their educational pathways. See [Microsoft Customer Story: Broward Colege and Responsible AI](https://customers.microsoft.com/en-us/story/1540738819088108006-broward-college-higher-education-azure) and below video for more details.
+
+<video controls width="640" height="360">
+    <source src="https://videos.microsoft.com/customer-stories/watch/Z5HdyQqJq73Rcm2gFcvPFa?" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+
 
 ## Package Impact
 
