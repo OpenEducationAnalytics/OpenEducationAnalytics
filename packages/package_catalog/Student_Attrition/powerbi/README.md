@@ -1,121 +1,41 @@
-Upload the .pbix file for the package to this folder. Provide descriptions of each page and visuals, as well as screenshots of the Power BI dashboard and the semantic model in this readme file.
+# Power BI Dashboard Templates
 
-# PowerBI template
+The OEA Student Attrition Package Power BI template enables users to quickly explore data and create visuals. There are two options for exploring this package Power BI template.
 
-The [name of package] PowerBI template consists of [number] pages:
-1. **Page 1:** description of page.
-- visual 1 name - description of visual
-- visual 2 name - description of visual
-- visual 3 name - description of visual
+* The [Power BI with imported test data](https://github.com/microsoft/OpenEduAnalytics/blob/7fa354f84a4c96725967c3f7ece531f63366dc86/packages/package_catalog/Student_Attrition/powerbi/dashboards/Student%20Attrition%20v0.1%20Import.pbix) has all data local to the Power BI file. This can be downloaded directly from the OEA package github repo and used immediately.
+* The [Power BI with direct query](https://github.com/microsoft/OpenEduAnalytics/blob/7fa354f84a4c96725967c3f7ece531f63366dc86/packages/package_catalog/Student_Attrition/powerbi/dashboards/Student%20Attrition%20v0.1%20Direct%20Query.pbix) requires running the [OEA Student Attrition pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/7fa354f84a4c96725967c3f7ece531f63366dc86/packages/package_catalog/Student_Attrition/pipeline) first and connecting to your own Synapse serverless SQL endpoint.
 
-2. **Page 2:** description of page.
-- visual 1 name - description of visual
-- visual 2 name - description of visual
-- visual 3 name - description of visual
+# Example Power BI Dashboard Pages
 
-3. **Page 3:** description of page.
-- visual 1 name - description of visual
-- visual 2 name - description of visual
-- visual 3 name - description of visual
+2 example dashboard pages are included in both Power BI dashboard templates:
+* Student Attrition Overview: Summary of current levels of student attrition when compared to grade level, GPA, credit hours, financial aid, and various student demographics.
+* Student Attrition Model Drivers: Summary of aggregate and individual student drivers for predicting student attrition.
 
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Sample_PowerBI_Dashboard.png)
-NB: This can be an image of one of the PowerBI pages.
+## Student Attrition Overview
 
-## Semantic Model
-This PowerBI module is made up of the following tables: [list table names]. The dimension table is [name of dimension table] and the fact tables are [list of fact tables].
-![image](https://github.com/microsoft/OpenEduAnalytics/blob/main/modules/module_creation_kit/docs/images/Sample_PowerBI_Semantic_Model.png)
+| Overview of Student Attrition |
+| :-------------------------:|
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_overview.png) |
 
-### Table Details
-| Table | Column   | Description   |
-| :------------- | :---------- | :----------- |
-| Table 1 | Name of column | Description of column |
-| | Name of column | Description of column |
-| Table 2 | name of column | Description of column |
-| | Name of column | Description of column |
-| | Name of column | Description of column |
-| Table 3 | name of column | Description of column |
-| | Name of column | Description of column |
-| | Name of column | Description of column |
+## Student Attrition Model Drivers
 
-# Power BI Dashboards
+| Strongest drivers of model predictions | 
+|:-------------------------:|
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_drivers.png) |
 
-The OEA Chronic Absenteeism Package Power BI template enables users to quickly explore data. There are two options for exploring this package Power BI template.
-- [Power BI with test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/powerbi/Chronic%20Absenteeism%20Package%20Dashboard%20TestData.pbix): Power BI templated with module test data imported locally. 
-- [Power BI with direct query](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/powerbi/Chronic%20Absenteeism%20Package%20Dashboard%20DirectQuery.pbix): Power BI template connected to a Synapse workspace data source. See instructions below to setup.
+# Power BI Data Model
 
-See [Power BI setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Predicting_Chronic_Absenteeism/powerbi#power-bi-setup-instructions) below for details.
+4 tables (and 2 recoding tables) are included in the Power BI Template files. Each of the 4 tables are flattened versions of the [RAI Dashboard output data artifacts](https://github.com/microsoft/OpenEduAnalytics/tree/7fa354f84a4c96725967c3f7ece531f63366dc86/packages/package_catalog/Student_Attrition/data#data-dictionary-rai-dashboard-outputs) including:
 
-## Dashboard Explanation 
+* Model Predictions:
+   * predict.json: Class predictions (Attrition or Retention)
+   * predict_proba.json: Class probabilities
+* Model Explanations:
+   * global_importance_values.json: Aggregate model feature importance values
+   * local_importance_values.json: Individual student level feature importance values
 
-The OEA Chronic Absenteeism Package Power BI template provided consists of a single dashboard with two pages, which summarizes the status of chronic absenteeism and ML model-driver analysis at a distict-level. 
-
-Use the tool-tips provided on the visuals to understand the purpose of each data visualization.
-
-This package also includes example Power BI pictures of the package production implementation, which were developed in collaboration with key stakeholders at [Fresno Unified School District](https://www.fresnounified.org/) in Fresno, California. The aim of those dashboards were to:
-  - give a district [overview of chronic absence status](#overview-of-chronic-absence),
-  - identify the top [drivers (reasons) for chronic absence](#drivers_of_chronic_absence) as explained by the Machine Learning Model,
-  - help design school and student [interventions](#intervenction_identification) which are most impactful,
-  - and provide a [view for social workers](#social_worker_dashboard) to monitor chronic absense.
-
-## Test Data Dashboard Pages
-### Overview of Chronic Absenteeism
-
-| ![Overview of Chronic Absenteeism](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p1_overview%20of%20chronic%20absenteeism.png "Overview of Chronic Absenteeism") |
-|:--:|
-| <b> Summary of the status of chronic absence in the district by absence-level and school. </b>|
-
-### Drivers of Chronic Absenteeism
-
-| ![Drivers of Chronic Absenteeism](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p2_updated_drivers_of_CA.png "Drivers of Chronic Absenteeism") |
-|:--:|
-| <b> Summary of the top predictive drivers as identified by the ML model. Drivers can be ranked by count, aggregated by school, or explored for individual student. </b>|
-
-## Production Data Dashboard Pages
-### Overview of Chronic Absenteeism
-
-| ![Overview of Chronic Absence](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Dashboard%20Overview.png "Overview of Chronic Absence") |
-|:--:|
-| <b> Summary of the status of chronic absence in the district by absence-level and school. </b>|
-
-### Drivers for Chronic Absence
-
-| ![Drivers of Chronic Absence](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Drivers%20Dashboard.png "Drivers of Chronic Absence") |
-|:--:|
-| <b> Summary of the top predictive drivers as identified by the ML model. Drivers can be ranked by count, aggregated by school, or explored for individual student. </b>|
-
-### Intervention Identification
-
-| ![Chronic Absence Intervention](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/powerBIIntervention.png "Chronic Absence Intervention") |
-|:--:|
-| <b> Visualizations of groups of top drivers aggregated by school. The aim here is to identify groupings of schools which expect to see an increase (or decrease) of chronic absence. </b>|
-
-### Social Worker Dashboard
-
-| ![Social Worker Dashboard](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Social%20Worker%20Dashboard.png "Social Worker Dashboard") |
-|:--:|
-| <b> View of model results to help social workers identify students which need assistance. </b>|
-
-## Power BI Setup Instructions
-
-#### [Power BI with imported test data](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/powerbi/Chronic%20Absenteeism%20Package%20Dashboard%20TestData.pbix):
-1. Download the PBIX file with test data here: [LINK](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/powerbi/Chronic%20Absenteeism%20Package%20Dashboard%20TestData.pbix)
-2. Open the link locally on your computer and explore module test data. 
-
-#### [Power BI with direct query of data on your data lake](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/powerbi/Chronic%20Absenteeism%20Package%20Dashboard%20DirectQuery.pbix):
-1. Complete the [package setup instructions](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Predicting_Chronic_Absenteeism#package-setup-instructions).
-2. Download the PBIX file with direct query here: [LINK](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/powerbi/Chronic%20Absenteeism%20Package%20Dashboard%20DirectQuery.pbix)
-3. The dashboard visuals may not load. You will need to switch your Synapse workspace serverless SQL endpoint by:
-   * Select menu item File > Options and settings > Data source settings.
-
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_instructions_p1_options_and_settings.png)
-
-   * Select Change Source...
-
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_instructions_p2_data_source_settings.png)
-
-   * Enter your Synapse workspace SQL server endpoint. This can be found on your Synapse workspace information page in the Azure portal.
-
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_instructions_p3_sql_server_db.png)
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Hybrid_Engagement/docs/images/pbi_instructions_p4_serverless_sql_endpoint.png)
+| Tables for Power BI Data Model | 
+|:-------------------------:|
+| ![](https://github.com/microsoft/OpenEduAnalytics/blob/7fa354f84a4c96725967c3f7ece531f63366dc86/packages/package_catalog/Student_Attrition/docs/images/PBI_data_model.png) |
 
 

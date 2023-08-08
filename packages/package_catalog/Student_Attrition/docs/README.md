@@ -9,11 +9,11 @@ The [OEA Student Attrition Package - Use Case Documentation](https://github.com/
 
 The use case document was completed in collaboration with through a partnership between Microsoft Education, [Kwantum Analytics](https://www.kwantumedu.com/), and [Broward College](broward.edu).
 
-Important Note: It is strongly recommended to education systems or institutions planning to use this package establish that they establish a process for obtaining student, family, guardian, teacher, faculty, and staff consent for using this type of student absense data. This consent should be part of the system or institution's broader data governance policy that clearly specifies who can have access to what data, under what conditions, for what purposes, and for what length of time.
+Important Note: It is strongly recommended to education systems or institutions planning to use this package establish that they establish a process for obtaining student, family, guardian, teacher, faculty, and staff consent for using this type of student data. This consent should be part of the system or institution's broader data governance policy that clearly specifies who can have access to what data, under what conditions, for what purposes, and for what length of time.
 
 See below for links which detail the  [Broward College](https://www.broward.edu/) story and progress on this use case.
 
-* [Microsoft Customer Story: Broward Colege and Responsible AI](https://customers.microsoft.com/en-us/story/1540738819088108006-broward-college-higher-education-azure)
+* [Microsoft Customer Story: Broward College and Responsible AI](https://customers.microsoft.com/en-us/story/1540738819088108006-broward-college-higher-education-azure)
 *  [MS Learn sample architecture for student attrition](https://learn.microsoft.com/en-us/azure/architecture/example-scenario/ai/student-attrition-prediction).
 
 ## Package Setup Instructions
@@ -36,7 +36,7 @@ See below for links which detail the  [Broward College](https://www.broward.edu/
 
 3. Azure Synapse:
    - Import the pipeline found in the pipeline folder within this package.
-   - By importing the .zip file, you will recieve all pipeline and notebook assets needed to consume the data.
+   - By importing the .zip file, you will receive all pipeline and notebook assets needed to consume the data.
    - When importing the pipeline, connect it to the Azure Data Lake Storage you linked to the Azure AI Machine Learning Studio as well as to your OEA Azure Data Lake Storage previously created when standing up the OEA Framework.
   
    ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Student_Attrition/docs/images/Azure_PipelineParameters.png/)
@@ -44,4 +44,6 @@ See below for links which detail the  [Broward College](https://www.broward.edu/
 4. Azure Synapse:
    - Trigger the Student Attrition pipeline and verify the data was landed correctly into your OEA Azure Data Lake Storage under Stage 1 and Stage 2.
 
-## Reponsible AI Accelerator
+## Responsible AI Accelerator
+
+This package leverages the [Microsoft Responsible AI Accelerator](https://github.com/microsoft/ResponsibleAIAccelerator) which utilizes the [Responsible AI Dashboard](https://github.com/microsoft/responsible-ai-toolbox#introducing-responsible-ai-dashboard)
