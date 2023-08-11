@@ -4,17 +4,17 @@
 
 # Student Attrition
 
-The OEA Student Attrition Package provides a set of assets which support an education system in developing their own predictive model to address student retention. This package was developed by [Broward College](https://www.broward.edu/) with OEA technical assets developed by [Kwantum Analytics](https://www.kwantumedu.com/) using [Azure Machine Learning](https://azure.microsoft.com/en-us/products/machine-learning) and [Responsible AI](https://github.com/cviddenKwantum/ResponsibleAIAccelerator/tree/main). This package works to identify key predictors of student attrition and provide data-driven, actionable strategies that will support students in achieving their academic goals. This package relies on three components:
+The OEA Student Attrition Package provides a set of assets which support an education system in developing their own predictive model to address student retention. This package was developed by [Broward College](https://www.broward.edu/) with OEA technical assets developed by [Kwantum Analytics](https://www.kwantumedu.com/) using [Azure Machine Learning](https://azure.microsoft.com/en-us/products/machine-learning) and [Responsible AI](https://github.com/microsoft/ResponsibleAIAccelerator/tree/main). This package works to identify key predictors of student attrition and provide data-driven, actionable strategies that will support students in achieving their academic goals. This package relies on three components:
 
-1. Azure Machine Learning and the Responsible AI Accelerator
-2. Azure Synapse Workspace
+1. Azure Machine Learning and the [Microsoft Responsible AI Accelerator](https://github.com/microsoft/ResponsibleAIAccelerator)
+2. Azure Synapse
 3. Power BI Insights
 
 <ins>Use Case Documentation and Guidance:</ins> The OEA Student Attrition Package - [Use Case Documentation](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Student_Attrition/docs/OEA_Student_Attrition_Use_Case.pdf/) provides guidance on the end-to-end process of developing a successful Student Attrition use case project, including how to engage stakeholders in the project, prior research on the use case problem domain and theory, how to map data sources to the theory of the problem, and how to implement Microsoft’s Principles of Responsible Data and AI in the process of predictive modelling. <em> It is highly recommended this document be reviewed by any education system considering using this package, and that the documentation be revised to the specific data and decisions for that system’s context.</em>
 
 <ins>Technical Assets:</ins> Various assets are freely available in this package to help accelerate implementation of Student Attrition use cases. Assets include descriptions of data sources, notebooks for data processing, a pipeline for ML model building and deployment, and sample PowerBI dashboards. See descriptions of technical assets below.
 
-<ins>Important Note:</ins> It is strongly recommended to education systems or institutions planning to use this package establish that they establish a process for obtaining student, family, guardian, teacher, faculty, and staff **consent for using this type of student data**. This consent should be part of the system or institution’s **broader data governance policy** that clearly specifies who can have access to what data, under what conditions, for what purposes, and for what length of time.
+<ins>Important Note:</ins> It is strongly recommended to education systems or institutions planning to use this package establish that they establish a process for obtaining student, family, guardian, teacher, faculty, and staff <em> consent for using this type of student data </em>. This consent should be part of the system or institution's <em> broader data governance policy </em> that clearly specifies who can have access to what data, under what conditions, for what purposes, and for what length of time.
 
 ## Problem Statement
 
@@ -22,7 +22,7 @@ Broward College in Florida caters to a diverse student population of over 55,000
 
 Broward College utilized Azure Machine Learning to identify five critical factors that predict student attrition: cumulative credit hours earned, cumulative GPA, high school degree and/or GED status, and course modality (in-person, blended, or online learning). Armed with these predictors, the college is now implementing data-driven student support strategies campus-wide and modifying course design, scheduling, and learning methods accordingly. The use of machine learning has significantly expedited data processing, enabling the team to swiftly respond to students' needs and isolate potential confounding variables, such as the impact of the pandemic on student retention.
 
-With the actionable insights generated from machine learning, Broward College offers tailored and proactive interventions to support each student based on their specific requirements. For instance, through the "Take One More" campaign, students nearing the threshold of cumulative credit hours are encouraged to add another class, as this has been found to increase their chances of success. Broward College is committed to helping students complete their education successfully, using technology to predict and provide assistance, thus ensuring students' progress along their educational pathways.
+With the actionable insights generated from machine learning, Broward College offers tailored and proactive interventions to support each student based on their specific requirements. For instance, through the "Take One More" campaign, students nearing the threshold of cumulative credit hours are encouraged to add another class, as this has been found to increase their chances of success. Broward College is committed to helping students complete their education successfully, using technology to predict and provide assistance, thus ensuring students' progress along their educational pathways. See [Microsoft Customer Story: Broward College and Responsible AI](https://customers.microsoft.com/en-us/story/1540738819088108006-broward-college-higher-education-azure) and more details including a video presentation.
 
 ## Package Impact
 
@@ -33,43 +33,38 @@ In general, this package can be used by system or institutional leaders, school,
 
 See below for examples of developed PowerBI dashboards (see also the [Power BI](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Student_Attrition/powerbi/README.md/) folder).
 
-#### Out-of-the-Box Dashboard:
+#### Example Power BI Dashboard:
 
-Explanation Page  |  Overview of Student Attrition | Strongest drivers of model predictions
+Overview of Student Attrition | Strongest drivers of model predictions | Help Page 
 :-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p0_updated_explanation.png)  |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p1_overview%20of%20chronic%20absenteeism.png) | ![](https://github.com/cstohlmann/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/assets_for_test_data/pbi_p2_updated_drivers_of_CA.png)
-
-#### Modified Production Dashboard:
-
-Patterns of student attrition  |  Strongest drivers of model predictions | School support staff dashboard
-:-------------------------:|:-------------------------:|:-------------------------:
-![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Dashboard%20Overview.png)  |  ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Drivers%20Dashboard.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Predicting_Chronic_Absenteeism/docs/images/Chronic%20Absenteeism%20Social%20Worker%20Dashboard.png)
+![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_overview.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_drivers.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/af1970efb37a09872f543143aa36f5ac375a307e/packages/package_catalog/Student_Attrition/docs/images/PBI_help.png)
 
 ## Package Setup Instructions
 
 <ins><strong>Preparation:</ins></strong> This package currently leans on v0.8 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.8 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
 
+Below are the key steps for implementing this OEA package. 
+<em>For more detailed instructions, see the [docs](https://github.com/microsoft/OpenEduAnalytics/tree/ca35c80060a4653a873ff83ce4ff4cc3081aeb62/packages/package_catalog/Student_Attrition/docs#package-setup-instructions) folder within the Student Attrition package.</em>
+
 1. [Azure AI Machine Learning Studio](https://azure.microsoft.com/en-us/products/machine-learning): 
 
-   - Run the [education_story model](https://github.com/cviddenKwantum/ResponsibleAIAccelerator/tree/main) in Azure AI Machine Learning Studio. 
-   - For detailed steps on how to create an instance of the Azure AI Machine Learning Studio and stand up the model, see the [Responsible AI repository](https://github.com/cviddenKwantum/ResponsibleAIAccelerator/tree/main).
+   - Run the [education_story model](https://github.com/microsoft/ResponsibleAIAccelerator in Azure AI Machine Learning Studio. 
+   - For detailed steps on how to create an instance of the Azure AI Machine Learning Studio and stand up the model, see the [Responsible AI repository](https://github.com/microsoft/ResponsibleAIAccelerator).
 
 2. Azure Synapse: 
    - Link the Azure AI Machine Learning Data Lake Storage Gen2 to your Synapse environment through the Manage tab in your Synapse workspace. 
 
 3. Azure Synapse:
    - Import the pipeline found in the pipeline folder within this package.
-   - By importing the .zip file, you will recieve all pipeline and notebook assets needed to consume the data.
+   - By importing the .zip file, you will receive all pipeline and notebook assets needed to consume the data.
    - When importing the pipeline, connect it to the Azure Data Lake Storage you linked to the Azure AI Machine Learning Studio as well as to your OEA Azure Data Lake Storage previously created when standing up the OEA Framework.
 
 4. Azure Synapse:
    - Trigger the Student Attrition pipeline and verify the data was landed correctly into your OEA Azure Data Lake Storage under Stage 1 and Stage 2.
 
-<em>For more detailed instructions, see the [docs](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Student_Attrition/docs/README.md/) folder within the Student Attrition package.</em>
-
 ## Machine Learning Approach
 
-View the [Responsible AI Accelerator documentation](https://github.com/cviddenKwantum/ResponsibleAIAccelerator/tree/main) to understand the key components of the Machine Learning Model and Approach used to support this package.
+View the [Responsible AI Accelerator documentation](https://github.com/microsoft/ResponsibleAIAccelerator) to understand the key components of the Machine Learning Model and Approach used to support this package.
 
 ## Data Sources
 
