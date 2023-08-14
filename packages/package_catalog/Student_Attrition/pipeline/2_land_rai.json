@@ -1,0 +1,167 @@
+{
+    "name": "2_land_rai",
+    "properties": {
+        "activities": [
+            {
+                "name": "LandRAIModelData",
+                "type": "ForEach",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.raiData",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "Land Model Data",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "land_from_ls_datalake6",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "sourcePath": {
+                                        "value": "oea/pre_landing/raia/data",
+                                        "type": "Expression"
+                                    },
+                                    "sinkPath": {
+                                        "value": "attrition_raw/v@{pipeline().parameters.version}/data_@{item()}",
+                                        "type": "Expression"
+                                    },
+                                    "filePath": {
+                                        "value": "@{item()}.json",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "LandRAIPredictionData",
+                "type": "ForEach",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.raiPredict",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "Land Prediction Data",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "land_from_ls_datalake6",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "sourcePath": {
+                                        "value": "oea/pre_landing/raia/predictions",
+                                        "type": "Expression"
+                                    },
+                                    "sinkPath": {
+                                        "value": "attrition_raw/v@{pipeline().parameters.version}/predictions_@{item()}",
+                                        "type": "Expression"
+                                    },
+                                    "filePath": {
+                                        "value": "@{item()}.json",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "LandRAIPredictionExplainer",
+                "type": "ForEach",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "items": {
+                        "value": "@pipeline().parameters.raiExplainer",
+                        "type": "Expression"
+                    },
+                    "activities": [
+                        {
+                            "name": "Land Prediction_Explainer",
+                            "type": "ExecutePipeline",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "pipeline": {
+                                    "referenceName": "land_from_ls_datalake6",
+                                    "type": "PipelineReference"
+                                },
+                                "waitOnCompletion": true,
+                                "parameters": {
+                                    "sourcePath": {
+                                        "value": "oea/pre_landing/raia/explainer/*/*/*/",
+                                        "type": "Expression"
+                                    },
+                                    "sinkPath": {
+                                        "value": "attrition_raw/v@{pipeline().parameters.version}/model_@{item()}",
+                                        "type": "Expression"
+                                    },
+                                    "filePath": {
+                                        "value": "@{item()}.json",
+                                        "type": "Expression"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "parameters": {
+            "raiData": {
+                "type": "array",
+                "defaultValue": [
+                    "test",
+                    "train"
+                ]
+            },
+            "raiPredict": {
+                "type": "array",
+                "defaultValue": [
+                    "predict",
+                    "predict_proba"
+                ]
+            },
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "0.1"
+            },
+            "raiExplainer": {
+                "type": "array",
+                "defaultValue": [
+                    "global_importance_values",
+                    "local_importance_values",
+                    "features"
+                ]
+            }
+        },
+        "folder": {
+            "name": "StudentAttrition/v0.1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-07-26T19:58:28Z"
+    }
+}

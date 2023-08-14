@@ -1,0 +1,82 @@
+{
+    "name": "1_preland_rai",
+    "properties": {
+        "activities": [
+            {
+                "name": "Pre-land RAI dashboard assets",
+                "description": "Land all RAI dashboard data files",
+                "type": "Copy",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "source": {
+                        "type": "BinarySource",
+                        "storeSettings": {
+                            "type": "AzureBlobFSReadSettings",
+                            "recursive": true
+                        },
+                        "formatSettings": {
+                            "type": "BinaryReadSettings"
+                        }
+                    },
+                    "sink": {
+                        "type": "BinarySink",
+                        "storeSettings": {
+                            "type": "AzureBlobFSWriteSettings"
+                        }
+                    },
+                    "enableStaging": false
+                },
+                "inputs": [
+                    {
+                        "referenceName": "ML_datalake_file5",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": {
+                                "value": "@pipeline().parameters.RAIfilesystem",
+                                "type": "Expression"
+                            },
+                            "directory": {
+                                "value": "@pipeline().parameters.RAIdirectory",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ],
+                "outputs": [
+                    {
+                        "referenceName": "DS_datalake_folder6",
+                        "type": "DatasetReference",
+                        "parameters": {
+                            "filesystem": "oea",
+                            "directory": {
+                                "value": "pre_landing/raia",
+                                "type": "Expression"
+                            }
+                        }
+                    }
+                ]
+            }
+        ],
+        "parameters": {
+            "RAIfilesystem": {
+                "type": "string"
+            },
+            "RAIdirectory": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "StudentAttrition/v0.1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-07-18T15:51:48Z"
+    }
+}

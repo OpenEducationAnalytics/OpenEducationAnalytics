@@ -1,0 +1,290 @@
+{
+    "name": "4_refine_rai",
+    "properties": {
+        "activities": [
+            {
+                "name": "refine_model_test",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "refine3",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/data_test",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            },
+            {
+                "name": "refine_model_train",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "refine3",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/data_train",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db_for_general",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "refine_model_test",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_model_train",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_model_predictions",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_model_prediction_probs",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_model_global_imp",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_model_local_imp",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db3",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": {
+                            "value": "Refined/attrition/v@{pipeline().parameters.version}/general",
+                            "type": "Expression"
+                        },
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": "sdb_dev_s2r_attrition_v0p1"
+                    }
+                }
+            },
+            {
+                "name": "create_sql_db_for_sensitive",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "refine_model_test",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_model_train",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_model_predictions",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_model_prediction_probs",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_model_global_imp",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "refine_model_local_imp",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "create_sql_db3",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "stage": "stage2",
+                        "datasetPath": {
+                            "value": "Refined/attrition/v@{pipeline().parameters.version}/sensitive",
+                            "type": "Expression"
+                        },
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "dbName": "sdb_dev_s2r_attrition_v0p1"
+                    }
+                }
+            },
+            {
+                "name": "refine_model_predictions",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "refine3",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/predictions_predict",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            },
+            {
+                "name": "refine_model_prediction_probs",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "refine3",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/predictions_predict_proba",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            },
+            {
+                "name": "refine_model_global_imp",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "refine3",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/model_global_importance_values",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            },
+            {
+                "name": "refine_model_local_imp",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "refine3",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/model_local_importance_values",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "0.1"
+            }
+        },
+        "folder": {
+            "name": "StudentAttrition/v0.1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-07-27T02:23:58Z"
+    }
+}

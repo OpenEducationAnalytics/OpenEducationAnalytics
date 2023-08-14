@@ -1,0 +1,305 @@
+{
+    "name": "3_ingest_rai",
+    "properties": {
+        "activities": [
+            {
+                "name": "ingest_model_test_data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "rai_preprocess",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "ingest6",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/data_test",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            },
+            {
+                "name": "rai_preprocess",
+                "description": "Flatten .jsons and add primary keys to tables as required by ingestion steps.",
+                "type": "SynapseNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebook": {
+                        "referenceName": "attrition_preprocesing1",
+                        "type": "NotebookReference"
+                    },
+                    "parameters": {
+                        "workspace": {
+                            "value": {
+                                "value": "@pipeline().parameters.workspace",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "version": {
+                            "value": {
+                                "value": "@pipeline().parameters.version",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        }
+                    },
+                    "snapshot": true
+                }
+            },
+            {
+                "name": "ingest_model_train_data",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "rai_preprocess",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "ingest6",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/data_train",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            },
+            {
+                "name": "land_metadata_from_URL",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "ingest_model_test_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "ingest_model_train_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "ingest_model_predictions",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "ingest_model_predict_probs",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "ingest_model_global_imp",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    },
+                    {
+                        "activity": "ingest_model_local_imp",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "land_metadata_from_URL3",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "URL": "https://raw.githubusercontent.com/cviddenKwantum/OpenEduAnalytics/main/packages/package_catalog/Student_Attrition/data/metadata.csv",
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "sinkPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "ingest_model_predictions",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "rai_preprocess",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "ingest6",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/predictions_predict",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            },
+            {
+                "name": "ingest_model_predict_probs",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "rai_preprocess",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "ingest6",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/predictions_predict_proba",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            },
+            {
+                "name": "ingest_model_global_imp",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "rai_preprocess",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "ingest6",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/model_global_importance_values",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            },
+            {
+                "name": "ingest_model_local_imp",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "rai_preprocess",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "ingest6",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "entityPath": {
+                            "value": "attrition/v@{pipeline().parameters.version}/model_local_importance_values",
+                            "type": "Expression"
+                        },
+                        "primaryKey": "id"
+                    }
+                }
+            }
+        ],
+        "parameters": {
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "version": {
+                "type": "string"
+            }
+        },
+        "folder": {
+            "name": "StudentAttrition/v0.1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-07-27T03:00:47Z"
+    }
+}

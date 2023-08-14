@@ -1,0 +1,157 @@
+{
+    "name": "0_main_attrition",
+    "properties": {
+        "activities": [
+            {
+                "name": "1_preland_rai_attr",
+                "description": "Preland RAIA assets from ML studio storage as a linked service.",
+                "type": "ExecutePipeline",
+                "dependsOn": [],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "1_preland_rai",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "RAIfilesystem": {
+                            "value": "@pipeline().parameters.RAIfilesystem",
+                            "type": "Expression"
+                        },
+                        "RAIdirectory": {
+                            "value": "@pipeline().parameters.RAIdirectory",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "2_land_rai_attr",
+                "description": "Land select RAI dashboard tables to stage 1 in json format.",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "1_preland_rai_attr",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "2_land_rai",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "version": {
+                            "value": "@pipeline().parameters.version",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "3_ingest_rai_attr",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "2_land_rai_attr",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "3_ingest_rai",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true,
+                    "parameters": {
+                        "workspace": {
+                            "value": "@pipeline().parameters.workspace",
+                            "type": "Expression"
+                        },
+                        "version": {
+                            "value": "@pipeline().parameters.version",
+                            "type": "Expression"
+                        }
+                    }
+                }
+            },
+            {
+                "name": "4_refine_rai_attr",
+                "type": "ExecutePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "3_ingest_rai_attr",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "pipeline": {
+                        "referenceName": "4_refine_rai",
+                        "type": "PipelineReference"
+                    },
+                    "waitOnCompletion": true
+                }
+            }
+        ],
+        "parameters": {
+            "RAIfilesystem": {
+                "type": "string",
+                "defaultValue": "azureml-blobstore-69d16eb4-d605-43d5-9093-2d01ae089d20"
+            },
+            "RAIdirectory": {
+                "type": "string",
+                "defaultValue": "RAI_Student_Attrition_RAIInsights_1688589079_20230705_20_32_43/dashboard"
+            },
+            "raiData": {
+                "type": "array",
+                "defaultValue": [
+                    "test",
+                    "train"
+                ]
+            },
+            "raiPredict": {
+                "type": "array",
+                "defaultValue": [
+                    "predict",
+                    "predict_proba"
+                ]
+            },
+            "workspace": {
+                "type": "string",
+                "defaultValue": "dev"
+            },
+            "version": {
+                "type": "string",
+                "defaultValue": "0.1"
+            },
+            "raiExplainer": {
+                "type": "array",
+                "defaultValue": [
+                    "global_importance_values",
+                    "local_importance_values",
+                    "features"
+                ]
+            }
+        },
+        "folder": {
+            "name": "StudentAttrition/v0.1"
+        },
+        "annotations": [],
+        "lastPublishTime": "2023-07-27T03:00:49Z"
+    }
+}
