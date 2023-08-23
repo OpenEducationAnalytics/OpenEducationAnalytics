@@ -27,6 +27,7 @@ With the actionable insights generated from machine learning, Broward College of
 ## Package Impact
 
 In general, this package can be used by system or institutional leaders, school, or department leaders, support staff, and educators to:
+
  - <em> accurately identify </em> which students are at risk
  - <em> quickly understand </em> what type of support resources or interventions might be most effective to support and retain students
  - <em> guide decision making </em> of school support staff by providing a real-time and detailed snapshot of student critical factors and enable actionable steps towards support
@@ -35,31 +36,52 @@ See below for examples of developed PowerBI dashboards (see also the [Power BI](
 
 #### Example Power BI Dashboard:
 
-Overview of Student Attrition | Strongest drivers of model predictions | Help Page 
+Overview of Student Attrition | Strongest drivers of model predictions | Help Page
 :-------------------------:|:-------------------------:|:-------------------------:
 ![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_overview.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/a60b66be72e896272e947255ccb5303668684754/packages/package_catalog/Student_Attrition/docs/images/PBI_attrition_drivers.png) | ![](https://github.com/microsoft/OpenEduAnalytics/blob/af1970efb37a09872f543143aa36f5ac375a307e/packages/package_catalog/Student_Attrition/docs/images/PBI_help.png)
+
+## RAI Dashboard and Implementation
+
+Further details about RAI and the RAI dashboard can be found on the [RAI Dashboard Github repository](https://github.com/microsoft/ResponsibleAIAccelerator/tree/main). The main architecture of the RAI dashboard is described as follows:
+
+![](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Student_Attrition/docs/images/RAI_Architecture.png)
+
+The RAI accelerator outputs the following data pieces which are consumed within the package pipeline and used to display key information in the final PBI dashboard.
+
+- test.json
+- train.json
+- predict.json
+- predict_proba.json
+- local_importance_values.json
+- global_importance_values.json
+- features.json
 
 ## Package Setup Instructions
 
 <ins><strong>Preparation:</ins></strong> This package currently leans on v0.8 of the OEA framework. Ensure you have proper [Azure subscription and credentials](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework) and setup of the [OEA framework](https://github.com/microsoft/OpenEduAnalytics/tree/main/framework#setup-of-framework-assets). This will include v0.8 of the [OEA python class](https://github.com/microsoft/OpenEduAnalytics/blob/main/framework/synapse/notebook/OEA_py.ipynb).
 
-Below are the key steps for implementing this OEA package. 
+Below are the key steps for implementing this OEA package.
 <em>For more detailed instructions, see the [docs](https://github.com/microsoft/OpenEduAnalytics/tree/ca35c80060a4653a873ff83ce4ff4cc3081aeb62/packages/package_catalog/Student_Attrition/docs#package-setup-instructions) folder within the Student Attrition package.</em>
 
-1. [Azure AI Machine Learning Studio](https://azure.microsoft.com/en-us/products/machine-learning): 
-
-   - Run the [education_story model](https://github.com/microsoft/ResponsibleAIAccelerator in Azure AI Machine Learning Studio. 
+1. [Azure AI Machine Learning Studio](https://azure.microsoft.com/en-us/products/machine-learning):
+   - Run the [education_story model](https://github.com/microsoft/ResponsibleAIAccelerator) in Azure AI Machine Learning Studio.
    - For detailed steps on how to create an instance of the Azure AI Machine Learning Studio and stand up the model, see the [Responsible AI repository](https://github.com/microsoft/ResponsibleAIAccelerator).
 
-2. Azure Synapse: 
-   - Link the Azure AI Machine Learning Data Lake Storage Gen2 to your Synapse environment through the Manage tab in your Synapse workspace. 
+2. Azure Synapse:
+   - Link the Azure AI Machine Learning Data Lake Storage Gen2 to your Synapse environment through the Manage tab in your Synapse workspace.
 
-3. Azure Synapse:
-   - Import the pipeline found in the pipeline folder within this package.
-   - By importing the .zip file, you will receive all pipeline and notebook assets needed to consume the data.
-   - When importing the pipeline, connect it to the Azure Data Lake Storage you linked to the Azure AI Machine Learning Studio as well as to your OEA Azure Data Lake Storage previously created when standing up the OEA Framework.
+3. Run the [setup.sh script](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Student_Attrition/setup.sh) to import package assets, then run the [Student Attrition pipeline](https://github.com/microsoft/OpenEduAnalytics/tree/main/packages/package_catalog/Student_Attrition/pipeline).
+    - Open cloud shell in your Azure subscription (use ctrl+click on the button below to open in a new page)\
+[![Launch Cloud Shell](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/launchcloudshell.png "Launch Cloud Shell")](https://shell.azure.com/bash)
+    - Download the module release to your Azure clouddrive \
+`cd clouddrive`\
+`wget https://github.com/microsoft/OpenEduAnalytics/releases/download/package_Student_Attrition_v0.1/package_Student_Attrition_v0.1.zip`\
+`unzip ./package_Student_Attrition_v0.1.zip`
+    - Run the setup script like this (substitute "mysynapseworkspacename" with your synapse workspace name, which must be less than 13 characters and can only contain letters and numbers - e.g. syn-oea-cisd3v07kw1): \
+`./package_Student_Attrition_v0.1/setup.sh mysynapseworkspacename`) to install this package into your own environment.
 
 4. Azure Synapse:
+   - After importing the pipeline, connect it to the Azure Data Lake Storage you linked to the Azure AI Machine Learning Studio as well as to your OEA Azure Data Lake Storage previously created when standing up the OEA Framework. See the [package documentation](https://github.com/microsoft/OpenEduAnalytics/blob/main/packages/package_catalog/Student_Attrition/docs/README.md) for further details
    - Trigger the Student Attrition pipeline and verify the data was landed correctly into your OEA Azure Data Lake Storage under Stage 1 and Stage 2.
 
 ## Machine Learning Approach
