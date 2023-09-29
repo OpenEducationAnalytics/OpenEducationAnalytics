@@ -218,39 +218,6 @@
                 }
             },
             {
-                "name": "create_beta_sql_db",
-                "description": "Creates SQL db to hold the tables from the Graph beta queries.",
-                "type": "ExecutePipeline",
-                "dependsOn": [
-                    {
-                        "activity": "graph_schema_correction",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "userProperties": [],
-                "typeProperties": {
-                    "pipeline": {
-                        "referenceName": "create_sql_db",
-                        "type": "PipelineReference"
-                    },
-                    "waitOnCompletion": true,
-                    "parameters": {
-                        "stage": "stage2",
-                        "datasetPath": "Ingested/graph_api/beta",
-                        "workspace": {
-                            "value": "@pipeline().parameters.workspace",
-                            "type": "Expression"
-                        },
-                        "dbName": {
-                            "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2i_graph_api_beta')",
-                            "type": "Expression"
-                        }
-                    }
-                }
-            },
-            {
                 "name": "land_metadata_v1p0_from_URL",
                 "description": " \n",
                 "type": "ExecutePipeline",
@@ -291,54 +258,6 @@
                         "value": "@if(startswith(pipeline().parameters.ingest_k12_or_hed_test_data, 'hed'), true, false)",
                         "type": "Expression"
                     }
-                }
-            },
-            {
-                "name": "If ingest_hed",
-                "description": "create SQL db for v1p0 table(s).",
-                "type": "IfCondition",
-                "dependsOn": [
-                    {
-                        "activity": "graph_schema_correction",
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "userProperties": [],
-                "typeProperties": {
-                    "expression": {
-                        "value": "@variables('ingest_hed_test_data')",
-                        "type": "Expression"
-                    },
-                    "ifTrueActivities": [
-                        {
-                            "name": "create_v1p0_sql_db",
-                            "description": "Creates SQL db to hold the tables from the Graph v1.0 queries.",
-                            "type": "ExecutePipeline",
-                            "dependsOn": [],
-                            "userProperties": [],
-                            "typeProperties": {
-                                "pipeline": {
-                                    "referenceName": "create_sql_db",
-                                    "type": "PipelineReference"
-                                },
-                                "waitOnCompletion": true,
-                                "parameters": {
-                                    "stage": "stage2",
-                                    "datasetPath": "Ingested/graph_api/v1.0",
-                                    "workspace": {
-                                        "value": "@pipeline().parameters.workspace",
-                                        "type": "Expression"
-                                    },
-                                    "dbName": {
-                                        "value": "@concat('sdb_',pipeline().parameters.workspace,'_s2i_graph_api_v1p0')",
-                                        "type": "Expression"
-                                    }
-                                }
-                            }
-                        }
-                    ]
                 }
             }
         ],
