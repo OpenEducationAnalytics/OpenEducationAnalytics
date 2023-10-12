@@ -16,7 +16,7 @@
                 "userProperties": [],
                 "typeProperties": {
                     "notebook": {
-                        "referenceName": "EdFi_Ingest_20230717",
+                        "referenceName": "EdFi_Ingest",
                         "type": "NotebookReference"
                     },
                     "parameters": {
