@@ -1,5 +1,5 @@
 {
-    "name": "3_refine_edfi",
+    "name": "dev_v_2_3_refine_edfi",
     "properties": {
         "activities": [
             {
@@ -96,34 +96,11 @@
                 "type": "string"
             }
         },
-        "variables": {
-            "edfi_clientid": {
-                "type": "String"
-            },
-            "edfi_clientsecret": {
-                "type": "String"
-            },
-            "ApiVersion": {
-                "type": "String"
-            },
-            "AuthUrl": {
-                "type": "String"
-            },
-            "DataManagementUrl": {
-                "type": "String"
-            },
-            "ChangeQueriesUrl": {
-                "type": "String"
-            },
-            "DependenciesUrl": {
-                "type": "String"
-            }
-        },
         "folder": {
-            "name": "EdFi Module/basic"
+            "name": "EdFi Module/dev/v0.2"
         },
         "annotations": [],
-        "lastPublishTime": "2023-06-12T14:26:23Z"
+        "lastPublishTime": "2023-06-27T00:22:11Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

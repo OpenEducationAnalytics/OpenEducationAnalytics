@@ -1,5 +1,5 @@
 {
-    "name": "1_land_edfi",
+    "name": "dev_v_2_1_land_edfi",
     "properties": {
         "activities": [
             {
@@ -16,7 +16,7 @@
                 "userProperties": [],
                 "typeProperties": {
                     "notebook": {
-                        "referenceName": "EdFi_Land",
+                        "referenceName": "EdFi_Land_20230717",
                         "type": "NotebookReference"
                     },
                     "parameters": {
@@ -28,38 +28,18 @@
                             "type": "string"
                         },
                         "authUrl": {
-                            "value": {
-                                "value": "@pipeline().parameters.AuthUrl",
-                                "type": "Expression"
-                            },
                             "type": "string"
                         },
                         "dataManagementUrl": {
-                            "value": {
-                                "value": "@pipeline().parameters.DataManagementUrl",
-                                "type": "Expression"
-                            },
                             "type": "string"
                         },
                         "changeQueriesUrl": {
-                            "value": {
-                                "value": "@pipeline().parameters.ChangeQueriesUrl",
-                                "type": "Expression"
-                            },
                             "type": "string"
                         },
                         "dependenciesUrl": {
-                            "value": {
-                                "value": "@pipeline().parameters.DependenciesUrl",
-                                "type": "Expression"
-                            },
                             "type": "string"
                         },
                         "apiVersion": {
-                            "value": {
-                                "value": "@pipeline().parameters.ApiVersion",
-                                "type": "Expression"
-                            },
                             "type": "string"
                         },
                         "batchLimit": {
@@ -155,28 +135,13 @@
             },
             "MaxChangeVer": {
                 "type": "string"
-            },
-            "AuthUrl": {
-                "type": "string"
-            },
-            "DataManagementUrl": {
-                "type": "string"
-            },
-            "ChangeQueriesUrl": {
-                "type": "string"
-            },
-            "DependenciesUrl": {
-                "type": "string"
-            },
-            "ApiVersion": {
-                "type": "string"
             }
         },
         "folder": {
-            "name": "EdFi Module/basic"
+            "name": "EdFi Module/dev/v0.2"
         },
         "annotations": [],
-        "lastPublishTime": "2023-06-12T14:26:01Z"
+        "lastPublishTime": "2023-07-17T13:19:22Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

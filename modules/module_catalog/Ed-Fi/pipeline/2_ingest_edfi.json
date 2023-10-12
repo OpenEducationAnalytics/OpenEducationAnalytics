@@ -1,5 +1,5 @@
 {
-    "name": "2_ingest_edfi",
+    "name": "dev_v_2_2_ingest_edfi",
     "properties": {
         "activities": [
             {
@@ -16,7 +16,7 @@
                 "userProperties": [],
                 "typeProperties": {
                     "notebook": {
-                        "referenceName": "EdFi_Ingest",
+                        "referenceName": "EdFi_Ingest_20230717",
                         "type": "NotebookReference"
                     },
                     "parameters": {
@@ -35,10 +35,6 @@
                             "type": "string"
                         },
                         "apiVersion": {
-                            "value": {
-                                "value": "@pipeline().parameters.ApiVersion",
-                                "type": "Expression"
-                            },
                             "type": "string"
                         },
                         "schoolYear": {
@@ -82,14 +78,6 @@
                 "type": "string",
                 "defaultValue": "2022"
             },
-            "ApiVersion": {
-                "type": "string",
-                "defaultValue": "5.2"
-            },
-            "DependenciesUrl": {
-                "type": "string",
-                "defaultValue": "https://api.edgraph.dev/edfi/v5.2/saas/metadata/data/v3/123/2022/dependencies"
-            },
             "Workspace": {
                 "type": "string",
                 "defaultValue": "dev"
@@ -99,28 +87,13 @@
             "CheckpointKeyFileName": {
                 "type": "String",
                 "defaultValue": "checkpoints.json"
-            },
-            "ApiVersion": {
-                "type": "String"
-            },
-            "AuthUrl": {
-                "type": "String"
-            },
-            "DataManagementUrl": {
-                "type": "String"
-            },
-            "ChangeQueriesUrl": {
-                "type": "String"
-            },
-            "DependenciesUrl": {
-                "type": "String"
             }
         },
         "folder": {
-            "name": "EdFi Module/basic"
+            "name": "EdFi Module/dev/v0.2"
         },
         "annotations": [],
-        "lastPublishTime": "2023-06-12T14:26:10Z"
+        "lastPublishTime": "2023-07-17T13:19:29Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
