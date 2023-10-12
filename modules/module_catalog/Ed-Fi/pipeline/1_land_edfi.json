@@ -1,5 +1,5 @@
 {
-    "name": "dev_v_2_1_land_edfi",
+    "name": "1_land_edfi",
     "properties": {
         "activities": [
             {
@@ -138,7 +138,7 @@
             }
         },
         "folder": {
-            "name": "EdFi Module/dev/v0.2"
+            "name": "EdFi Module"
         },
         "annotations": [],
         "lastPublishTime": "2023-07-17T13:19:22Z"

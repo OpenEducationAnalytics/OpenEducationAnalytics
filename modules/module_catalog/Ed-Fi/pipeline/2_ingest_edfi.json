@@ -1,5 +1,5 @@
 {
-    "name": "dev_v_2_2_ingest_edfi",
+    "name": "2_ingest_edfi",
     "properties": {
         "activities": [
             {
@@ -90,7 +90,7 @@
             }
         },
         "folder": {
-            "name": "EdFi Module/dev/v0.2"
+            "name": "EdFi Module"
         },
         "annotations": [],
         "lastPublishTime": "2023-07-17T13:19:29Z"
