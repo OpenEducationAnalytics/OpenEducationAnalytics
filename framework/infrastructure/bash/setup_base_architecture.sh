@@ -35,7 +35,7 @@ az extension add --name azure-cli-ml
 # 1) Create the resource group
 echo "--> 1) Creating resource group: $OEA_RESOURCE_GROUP"
 echo "--> 1) Creating resource group: $OEA_RESOURCE_GROUP" 1>&3
-az group create -l $location -n $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION
+az group create -l $location -n $OEA_RESOURCE_GROUP --tags oea_version=$OEA_VERSION $OEA_ADDITIONAL_TAGS
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 # 2) Create the storage account and containers - https://docs.microsoft.com/en-us/cli/azure/storage/account?view=azure-cli-latest#az_storage_account_create
@@ -46,6 +46,7 @@ az storage account create --resource-group $OEA_RESOURCE_GROUP --name ${OEA_STOR
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 
 echo "--> Creating storage account containers."
+echo "--> Creating storage account containers." 1>&3
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name oea --auth-mode login
 [[ $? != 0 ]] && { echo "Provisioning of azure resource failed. See $logfile for more details." 1>&3; exit 1; }
 az storage container create --account-name $OEA_STORAGE_ACCOUNT --name stage1 --auth-mode login
