@@ -34,9 +34,6 @@
                             },
                             "type": "string"
                         },
-                        "apiVersion": {
-                            "type": "string"
-                        },
                         "schoolYear": {
                             "value": {
                                 "value": "@pipeline().parameters.SchoolYear",
@@ -50,10 +47,24 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "instanceId": {
+                            "value": {
+                                "value": "@pipeline().parameters.InstanceId",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "apiUrl": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiUrl",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
                     "sparkPool": {
-                        "referenceName": "spark3p3med",
+                        "referenceName": "spark3p3sm",
                         "type": "BigDataPoolReference"
                     },
                     "conf": {
@@ -81,6 +92,12 @@
             "Workspace": {
                 "type": "string",
                 "defaultValue": "dev"
+            },
+            "InstanceId": {
+                "type": "string"
+            },
+            "ApiUrl": {
+                "type": "string"
             }
         },
         "variables": {
@@ -93,7 +110,7 @@
             "name": "EdFi Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-07-17T13:19:29Z"
+        "lastPublishTime": "2023-10-20T05:33:58Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

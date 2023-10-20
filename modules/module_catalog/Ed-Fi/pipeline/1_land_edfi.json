@@ -27,21 +27,6 @@
                             },
                             "type": "string"
                         },
-                        "authUrl": {
-                            "type": "string"
-                        },
-                        "dataManagementUrl": {
-                            "type": "string"
-                        },
-                        "changeQueriesUrl": {
-                            "type": "string"
-                        },
-                        "dependenciesUrl": {
-                            "type": "string"
-                        },
-                        "apiVersion": {
-                            "type": "string"
-                        },
                         "batchLimit": {
                             "value": {
                                 "value": "@pipeline().parameters.ApiLimit",
@@ -90,10 +75,24 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "instanceId": {
+                            "value": {
+                                "value": "@pipeline().parameters.InstanceId",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "apiUrl": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiUrl",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
                     "sparkPool": {
-                        "referenceName": "spark3p3med",
+                        "referenceName": "spark3p3sm",
                         "type": "BigDataPoolReference"
                     },
                     "conf": {
@@ -141,7 +140,7 @@
             "name": "EdFi Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-07-17T13:19:22Z"
+        "lastPublishTime": "2023-10-20T05:33:56Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
