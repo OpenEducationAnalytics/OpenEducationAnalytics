@@ -5,8 +5,6 @@
             {
                 "name": "1_land_edfi",
                 "type": "ExecutePipeline",
-                "state": "Inactive",
-                "onInactiveMarkAs": "Succeeded",
                 "dependsOn": [],
                 "userProperties": [],
                 "typeProperties": {
@@ -62,8 +60,6 @@
             {
                 "name": "2_ingest_edfi",
                 "type": "ExecutePipeline",
-                "state": "Inactive",
-                "onInactiveMarkAs": "Succeeded",
                 "dependsOn": [
                     {
                         "activity": "1_land_edfi",
