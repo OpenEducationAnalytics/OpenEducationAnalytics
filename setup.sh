@@ -57,12 +57,12 @@ while getopts ":o:l:ir:" flag; do
       resource_group_name=${OPTARG} 
       ;;
     :)                                    
-      echo "Error: argument -${OPTARG} requires a value."
+      echo "Error: argument -${OPTARG} requires a value"
       echo ""
       print_usage
       ;;
     *) 
-      echo "Error: argument -${OPTARG} is not valid."
+      echo "Error: argument -${OPTARG} is not valid"
       echo ""
       print_usage
       ;;

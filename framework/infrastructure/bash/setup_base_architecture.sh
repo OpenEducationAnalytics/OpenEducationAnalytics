@@ -5,7 +5,7 @@
 # 1) create resource group
 # 2) create storage account and storage containers (stage1, stage2, stage3, oea)
 # 3) create synapse workspace and spark pool
-# 4) create keyvault 
+# 4) create keyvault
 # 5) create security groups and assign them access to storage
 
 org_id=$1

@@ -2,7 +2,7 @@
 if [ $# -ne 1 ] && [ $# -ne 2 ]; then
     echo "This script sets up the resource names as constants for subsequent scripts to use."
     echo "The org_id suffix used in the setup must be passed in."
-    echo "A optional resource_group_name may be passed to override the OEA_RESOURCE_GROUP="rg-<oea-org_id>"."
+    echo "A optional resource_group_name may be passed to override the OEA_RESOURCE_GROUP."
     exit 1
 fi
 org_id=$1
