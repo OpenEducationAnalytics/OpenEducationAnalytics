@@ -27,13 +27,6 @@
                             },
                             "type": "string"
                         },
-                        "apiVersion": {
-                            "value": {
-                                "value": "@pipeline().parameters.ApiVersion",
-                                "type": "Expression"
-                            },
-                            "type": "string"
-                        },
                         "workspace": {
                             "value": {
                                 "value": "@pipeline().parameters.Workspace",
@@ -61,10 +54,24 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "instanceId": {
+                            "value": {
+                                "value": "@pipeline().parameters.InstanceId",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "apiUrl": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiUrl",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
                     "sparkPool": {
-                        "referenceName": "spark3p3med",
+                        "referenceName": "spark3p3sm",
                         "type": "BigDataPoolReference"
                     },
                     "conf": {
@@ -80,9 +87,6 @@
             "ModuleName": {
                 "type": "string"
             },
-            "ApiVersion": {
-                "type": "string"
-            },
             "Workspace": {
                 "type": "string"
             },
@@ -94,13 +98,19 @@
             },
             "MetadataUrl": {
                 "type": "string"
+            },
+            "InstanceId": {
+                "type": "string"
+            },
+            "ApiUrl": {
+                "type": "string"
             }
         },
         "folder": {
             "name": "EdFi Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-06-27T00:22:11Z"
+        "lastPublishTime": "2023-10-20T05:34:05Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
