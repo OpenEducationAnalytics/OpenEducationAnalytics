@@ -34,13 +34,6 @@
                             },
                             "type": "string"
                         },
-                        "apiVersion": {
-                            "value": {
-                                "value": "@pipeline().parameters.ApiVersion",
-                                "type": "Expression"
-                            },
-                            "type": "string"
-                        },
                         "schoolYear": {
                             "value": {
                                 "value": "@pipeline().parameters.SchoolYear",
@@ -54,10 +47,24 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "instanceId": {
+                            "value": {
+                                "value": "@pipeline().parameters.InstanceId",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "apiUrl": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiUrl",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
                     "sparkPool": {
-                        "referenceName": "spark3p3med",
+                        "referenceName": "spark3p3sm",
                         "type": "BigDataPoolReference"
                     },
                     "conf": {
@@ -82,45 +89,28 @@
                 "type": "string",
                 "defaultValue": "2022"
             },
-            "ApiVersion": {
-                "type": "string",
-                "defaultValue": "5.2"
-            },
-            "DependenciesUrl": {
-                "type": "string",
-                "defaultValue": "https://api.edgraph.dev/edfi/v5.2/saas/metadata/data/v3/123/2022/dependencies"
-            },
             "Workspace": {
                 "type": "string",
                 "defaultValue": "dev"
+            },
+            "InstanceId": {
+                "type": "string"
+            },
+            "ApiUrl": {
+                "type": "string"
             }
         },
         "variables": {
             "CheckpointKeyFileName": {
                 "type": "String",
                 "defaultValue": "checkpoints.json"
-            },
-            "ApiVersion": {
-                "type": "String"
-            },
-            "AuthUrl": {
-                "type": "String"
-            },
-            "DataManagementUrl": {
-                "type": "String"
-            },
-            "ChangeQueriesUrl": {
-                "type": "String"
-            },
-            "DependenciesUrl": {
-                "type": "String"
             }
         },
         "folder": {
             "name": "EdFi Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-06-12T14:26:10Z"
+        "lastPublishTime": "2023-10-20T05:33:58Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }

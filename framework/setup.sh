@@ -5,7 +5,7 @@
 # This script is also automatically called from the base setup.sh script when setting up the complete OEA example including the provisioning of Azure resources.
 if [ $# -ne 3 ]; then
     echo "This setup script will install the OEA framework assets into an existing Synapse workspace."
-    echo "Invoke this script like this:  "
+    echo "Invoke this script like this:"
     echo "    setup.sh <synapse_workspace_name> <storage_account_name> <key_vault_name>"
     exit 1
 fi

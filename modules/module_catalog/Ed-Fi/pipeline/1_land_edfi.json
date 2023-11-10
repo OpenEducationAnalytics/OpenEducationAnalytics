@@ -27,41 +27,6 @@
                             },
                             "type": "string"
                         },
-                        "authUrl": {
-                            "value": {
-                                "value": "@pipeline().parameters.AuthUrl",
-                                "type": "Expression"
-                            },
-                            "type": "string"
-                        },
-                        "dataManagementUrl": {
-                            "value": {
-                                "value": "@pipeline().parameters.DataManagementUrl",
-                                "type": "Expression"
-                            },
-                            "type": "string"
-                        },
-                        "changeQueriesUrl": {
-                            "value": {
-                                "value": "@pipeline().parameters.ChangeQueriesUrl",
-                                "type": "Expression"
-                            },
-                            "type": "string"
-                        },
-                        "dependenciesUrl": {
-                            "value": {
-                                "value": "@pipeline().parameters.DependenciesUrl",
-                                "type": "Expression"
-                            },
-                            "type": "string"
-                        },
-                        "apiVersion": {
-                            "value": {
-                                "value": "@pipeline().parameters.ApiVersion",
-                                "type": "Expression"
-                            },
-                            "type": "string"
-                        },
                         "batchLimit": {
                             "value": {
                                 "value": "@pipeline().parameters.ApiLimit",
@@ -110,10 +75,24 @@
                                 "type": "Expression"
                             },
                             "type": "string"
+                        },
+                        "instanceId": {
+                            "value": {
+                                "value": "@pipeline().parameters.InstanceId",
+                                "type": "Expression"
+                            },
+                            "type": "string"
+                        },
+                        "apiUrl": {
+                            "value": {
+                                "value": "@pipeline().parameters.ApiUrl",
+                                "type": "Expression"
+                            },
+                            "type": "string"
                         }
                     },
                     "sparkPool": {
-                        "referenceName": "spark3p3med",
+                        "referenceName": "spark3p3sm",
                         "type": "BigDataPoolReference"
                     },
                     "conf": {
@@ -155,28 +134,13 @@
             },
             "MaxChangeVer": {
                 "type": "string"
-            },
-            "AuthUrl": {
-                "type": "string"
-            },
-            "DataManagementUrl": {
-                "type": "string"
-            },
-            "ChangeQueriesUrl": {
-                "type": "string"
-            },
-            "DependenciesUrl": {
-                "type": "string"
-            },
-            "ApiVersion": {
-                "type": "string"
             }
         },
         "folder": {
             "name": "EdFi Module/basic"
         },
         "annotations": [],
-        "lastPublishTime": "2023-06-12T14:26:01Z"
+        "lastPublishTime": "2023-10-20T05:33:56Z"
     },
     "type": "Microsoft.Synapse/workspaces/pipelines"
 }
