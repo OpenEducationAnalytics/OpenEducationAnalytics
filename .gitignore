@@ -4,3 +4,8 @@ packages/package_catalog/Verified_Credentials/vc-onboarding/obj/Debug/net5.0/pro
 packages/package_catalog/Verified_Credentials/vc-onboarding/obj/Debug/net5.0/vc-onboarding.GeneratedMSBuildEditorConfig.editorconfig
 packages/package_catalog/Verified_Credentials/vc-onboarding/obj/Debug/net5.0/project.razor.json
 packages/package_catalog/Verified_Credentials/vc-onboarding/obj/Debug/net5.0/vc-onboarding.GeneratedMSBuildEditorConfig.editorconfig
+framework/infrastructure/gui/downloads/*/*
+framework/infrastructure/gui/venv/*
+*.pyc
+*.env
+*.sqlite3

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Metadata Columns</h2>
+
+  <ul>
+    {% for col in object_list %}
+      <li>{{ col.column_name }} - {{ col.column_type }} </li>
+    {% empty %}
+      <li>No logs. <a href="{% url 'install' %}">Install.</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
