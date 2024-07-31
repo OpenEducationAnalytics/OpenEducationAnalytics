@@ -1,3 +1,4 @@
+> **Note:** This module is deprecated, with removal slated for 12/31/2024
 > **Note:** This module is currently released as v0.2, and is dependent on the OEA framework v0.8
 
 <img align="right" height="75" src="https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/pics/oea-logo-nobg.png">
