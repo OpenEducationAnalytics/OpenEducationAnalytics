@@ -1,7 +1,7 @@
 # PowerSchool Module
 PowerSchool "is a comprehensive system with extensive, configurable features to meet the needs of schools and districts of all sizes and types, including public, charter, private, international schools, and more." [Source](https://www.powerschool.com/student-information-cloud/powerschool-sis/)
 
-This moduile provides multiple plugins used to extract data from PowerSchool in a 
+This moduile provides multiple plugins used to extract data from PowerSchool from an API.
 
 ## Problem Statement and Module Impact
 
@@ -16,10 +16,13 @@ This moduile provides multiple plugins used to extract data from PowerSchool in 
 4. Save the Client ID and Client Secret in a secure location from the Data Configuration page of the plugin.
 
 ## Module Components
+
 ### Plugins
-* [seed-analytics](seed-analytics/)
-* [seed-roster](seed-roster/)
-* [seed-roster-and-gradesync](seed-roster-and-gradesync/)
+**[seed-analytics](seed-analytics/)** - A general purpose plugin solution for extracting student information including Students, Calendars, School Enrollments, Course Enrollments, School Attendance, and Behavior data.
+
+ [seed-roster](seed-roster/) - A rostering plugin to extract student enrollment information used to populate Microsoft School Data Sync.
+
+**[seed-roster-and-gradesync](seed-roster-and-gradesync/)** - A rostering plugin used to populate Microsoft School Data Sync along the ability to perform grade passback into PowerSchool.
 
 ## Contributions from the Community
  
