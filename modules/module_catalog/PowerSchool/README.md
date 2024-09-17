@@ -1,7 +1,7 @@
 # PowerSchool Module
 PowerSchool "is a comprehensive system with extensive, configurable features to meet the needs of schools and districts of all sizes and types, including public, charter, private, international schools, and more." [Source](https://www.powerschool.com/student-information-cloud/powerschool-sis/)
 
-This moduile provides multiple plugins used to extract data from PowerSchool from an API.
+This module provides multiple plugins used to extract data from PowerSchool from an API.
 
 ## Problem Statement and Module Impact
 
@@ -12,6 +12,7 @@ This moduile provides multiple plugins used to extract data from PowerSchool fro
     * [seed-roster-and-gradesync](seed-roster-and-gradesync/)
 2. Zip queries_root folder and the plugin.xml file into a single compressed archive
 3. Install the plugin in the PowerSchool admin interface
+
     Setup > System > System Settings > Plugin Management and Configuration > Install
 4. Save the Client ID and Client Secret in a secure location from the Data Configuration page of the plugin.
 
