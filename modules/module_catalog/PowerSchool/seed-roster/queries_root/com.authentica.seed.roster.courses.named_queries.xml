@@ -1,0 +1,21 @@
+<queries>
+    <query name="com.authentica.seed.roster.courses" flattened="true">
+        <description>Get courses</description>
+        <columns>
+            <column column="courses.course_number">sourcedId</column>
+            <column column="courses.schoolid">orgSourcedId</column>
+            <column column="courses.course_name">title</column>
+            <column column="courses.course_number">code</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                Courses.Course_Number as sourcedId,
+                Courses.SchoolId as orgSourcedId,
+                Courses.Course_Name as title,
+                Courses.Course_Number as code
+            FROM Courses
+            ]]>
+        </sql>
+    </query>
+</queries>

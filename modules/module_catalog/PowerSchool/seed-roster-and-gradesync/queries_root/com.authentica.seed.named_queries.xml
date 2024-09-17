@@ -1,0 +1,701 @@
+<queries>
+    <query name="com.authentica.seed.users.user_by_email" flattened="true">
+        <description>Get user by email address</description>
+        <args>
+            <arg name="email" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column>schoolstaff.id</column>
+            <column>schoolstaff.schoolid</column>
+            <column>schoolstaff.staffstatus</column>
+            <column>schoolstaff.status</column>
+            <column>schoolstaff.users_dcid</column>
+            <column>users.email_addr</column>
+            <column>users.first_name</column>
+            <column>users.middle_name</column>
+            <column>users.last_name</column>
+            <column>users.loginid</column>
+            <column>users.nameasimported</column>
+            <column>users.homeschoolid</column>
+            <column>users.dcid</column>
+			<column>users.teachernumber</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                schoolstaff.id,
+                schoolstaff.schoolid,
+                schoolstaff.staffstatus,
+                schoolstaff.status,
+                schoolstaff.users_dcid,
+                users.email_addr,
+                users.first_name,
+                users.middle_name,
+                users.last_name,
+                users.loginid,
+                users.nameasimported,
+                users.homeschoolid,
+                users.dcid,
+				users.teachernumber
+            FROM schoolstaff
+            INNER JOIN users ON schoolstaff.users_dcid = users.dcid
+            WHERE lower(users.email_addr) = lower(:email)
+            ]]>
+        </sql>
+    </query>
+	<query name="com.authentica.seed.users.users_all" flattened="true">
+        <description>Get all staff users</description>        
+        <columns>
+            <column>schoolstaff.id</column>
+            <column>schoolstaff.schoolid</column>
+            <column>schoolstaff.staffstatus</column>
+            <column>schoolstaff.status</column>
+            <column>schoolstaff.users_dcid</column>
+            <column>users.email_addr</column>
+            <column>users.first_name</column>
+            <column>users.middle_name</column>
+            <column>users.last_name</column>
+            <column>users.loginid</column>
+            <column>users.nameasimported</column>
+            <column>users.homeschoolid</column>
+            <column>users.dcid</column>
+			<column>users.teachernumber</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                schoolstaff.id,
+                schoolstaff.schoolid,
+                schoolstaff.staffstatus,
+                schoolstaff.status,
+                schoolstaff.users_dcid,
+                users.email_addr,
+                users.first_name,
+                users.middle_name,
+                users.last_name,
+                users.loginid,
+                users.nameasimported,
+                users.homeschoolid,
+                users.dcid,
+				users.teachernumber
+            FROM schoolstaff
+            INNER JOIN users ON schoolstaff.users_dcid = users.dcid
+            ]]>
+        </sql>
+    </query>
+	<query name="com.authentica.seed.students.students_by_number" flattened="true">
+        <description>Get student by student number</description>
+		<args>
+            <arg name="studentnumber" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column>students.id</column>
+            <column>students.dcid</column>
+            <column>students.student_number</column>
+            <column>students.state_studentnumber</column>
+            <column>students.first_name</column>
+            <column>students.last_name</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                students.id,
+                students.dcid,
+				students.student_number,
+				students.state_studentnumber,
+                students.first_name,
+                students.last_name
+            FROM students
+            WHERE students.student_number = :studentnumber
+            ]]>
+        </sql>
+    </query>
+	<query name="com.authentica.seed.students.students_all" flattened="true">
+        <description>Get all active students</description>
+        <columns>
+            <column>students.id</column>
+            <column>students.dcid</column>
+            <column>students.student_number</column>
+            <column>students.state_studentnumber</column>
+            <column>students.first_name</column>
+            <column>students.last_name</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                students.id,
+                students.dcid,
+				students.student_number,
+				students.state_studentnumber,
+                students.first_name,
+                students.last_name
+            FROM students
+            WHERE students.enroll_status=0
+            ]]>
+        </sql>
+    </query>
+	<query name="com.authentica.seed.sections.sections_by_schoolyear" flattened="true">
+        <description>Get Sections by schoolyear</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+			<column column="sections.id">sectionid</column>
+			<column column="sections.dcid">sectiondcid</column>
+			<column>sections.section_number</column>
+            <column>sections.expression</column>
+            <column>sections.original_expression</column>
+            <column>sections.parent_section_id</column>
+            <column>sections.schoolid</column>
+            <column>sections.gradebooktype</column>
+            <column>courses.course_name</column>
+            <column>courses.course_number</column>
+            <column>terms.abbreviation</column>
+			<column column="gradescaleitem.dcid">actualscoregradescaledcid</column>
+            <column column="gradescaleitem.dcid">section_gradescaleid</column>
+            <column column="gradescaleitem.dcid">course_gradescaleid</column>            
+			<column>users.teachernumber</column>
+			<column>schoolstaff.users_dcid</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT               
+                sections.id as sectionid,
+                sections.dcid as sectiondcid,
+				sections.section_number,
+                sections.expression,
+                sections.original_expression,
+                sections.parent_section_id,
+                sections.schoolid,
+                sections.gradebooktype,
+                courses.course_name,
+                courses.course_number,
+                terms.abbreviation,
+				case sections.gradescaleid
+				when 0 then gsi1.dcid
+				else gsi2.dcid
+				end as actualscoregradescaledcid,
+                gsi2.dcid AS section_gradescaleid,
+                gsi1.dcid AS course_gradescaleid,                
+				users.teachernumber,
+				schoolstaff.users_dcid
+            from sections sections
+                inner join courses courses on sections.course_number = courses.course_number
+                inner join gradescaleitem gsi1 on gsi1.id = courses.gradescaleid
+                left outer join gradescaleitem gsi2 on gsi2.id = sections.gradescaleid
+                left join terms terms on terms.id = sections.termid and terms.schoolid = sections.schoolid
+                left join schoolstaff schoolstaff on schoolstaff.id = sections.teacher
+				left join users on schoolstaff.users_dcid = users.dcid                
+                where terms.YearId+1991 = :schoolyear
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.sections.sections_by_userid" flattened="true">
+        <description>Get Sections by User ID</description>
+        <args>
+            <arg name="userid" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column>sectionteacher.roleid</column>
+            <column>sectionteacher.teacherid</column>
+            <column>sections.id</column>
+            <column>sections.dcid</column>
+            <column>sections.expression</column>
+            <column>sections.original_expression</column>
+            <column>sections.parent_section_id</column>
+            <column>sections.schoolid</column>
+            <column>sections.gradebooktype</column>
+            <column>courses.course_name</column>
+            <column>courses.course_number</column>
+            <column>terms.abbreviation</column>
+            <column column="gradescaleitem.dcid">section_gradescaleid</column>
+            <column column="gradescaleitem.dcid">course_gradescaleid</column>
+            <column column="schoolstaff.users_dcid">lead_teacherid</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                sectionteacher.roleid,
+                sectionteacher.teacherid,
+                sections.id,
+                sections.dcid,
+                sections.expression,
+                sections.original_expression,
+                sections.parent_section_id,
+                sections.schoolid,
+                sections.gradebooktype,
+                courses.course_name,
+                courses.course_number,
+                terms.abbreviation,
+                sg.dcid AS section_gradescaleid,
+                cg.dcid AS course_gradescaleid,
+                lead_teacher_staff.users_dcid AS lead_teacherid
+            FROM sectionteacher
+            INNER JOIN sections ON sectionteacher.sectionid = sections.id
+            INNER JOIN courses ON sections.course_number = courses.course_number
+            INNER JOIN schoolstaff ON schoolstaff.id = sectionteacher.teacherid
+            INNER JOIN terms ON terms.id = sections.termid
+                            AND terms.schoolid = sections.schoolid
+            LEFT JOIN gradescaleitem sg ON sg.id = sections.gradescaleid
+            LEFT JOIN gradescaleitem cg ON cg.id = courses.gradescaleid
+            INNER JOIN sectionteacher owner ON owner.sectionid = sections.id
+                                           AND owner.roleid = (SELECT roledef.id FROM roledef WHERE roledef.name = 'Lead Teacher')
+            INNER JOIN schoolstaff lead_teacher_staff ON lead_teacher_staff.id = owner.teacherid
+            WHERE schoolstaff.users_dcid = :userid
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.sections.sections_by_userid_and_sectionid" flattened="true">
+      <description>Get Sections by User ID</description>
+      <args>
+        <arg name="userdcid" type="primitive" required="true" />
+        <arg name="sectiondcid" type="primitive" required="true" />
+      </args>
+      <columns>
+        <column>sectionteacher.roleid</column>
+        <column>sectionteacher.teacherid</column>
+        <column>sections.id</column>
+        <column>sections.dcid</column>
+        <column>sections.expression</column>
+        <column>sections.original_expression</column>
+        <column>sections.parent_section_id</column>
+        <column>sections.schoolid</column>
+        <column>sections.gradebooktype</column>
+        <column>courses.course_name</column>
+        <column>courses.course_number</column>
+        <column>terms.abbreviation</column>
+        <column column="gradescaleitem.dcid">section_gradescaleid</column>
+        <column column="gradescaleitem.dcid">course_gradescaleid</column>
+        <column column="schoolstaff.users_dcid">lead_teacherid</column>
+      </columns>
+      <sql>
+        <![CDATA[
+            SELECT
+                sectionteacher.roleid,
+                sectionteacher.teacherid,
+                sections.id,
+                sections.dcid,
+                sections.expression,
+                sections.original_expression,
+                sections.parent_section_id,
+                sections.schoolid,
+                sections.gradebooktype,
+                courses.course_name,
+                courses.course_number,
+                terms.abbreviation,
+                sg.dcid AS section_gradescaleid,
+                cg.dcid AS course_gradescaleid,
+                lead_teacher_staff.users_dcid AS lead_teacherid
+            FROM sectionteacher
+            INNER JOIN sections ON sectionteacher.sectionid = sections.id
+            INNER JOIN courses ON sections.course_number = courses.course_number
+            INNER JOIN schoolstaff ON schoolstaff.id = sectionteacher.teacherid
+            INNER JOIN terms ON terms.id = sections.termid
+                            AND terms.schoolid = sections.schoolid
+            LEFT JOIN gradescaleitem sg ON sg.id = sections.gradescaleid
+            LEFT JOIN gradescaleitem cg ON cg.id = courses.gradescaleid
+            INNER JOIN sectionteacher owner ON owner.sectionid = sections.id
+                                           AND owner.roleid = (SELECT roledef.id FROM roledef WHERE roledef.name = 'Lead Teacher')
+            INNER JOIN schoolstaff lead_teacher_staff ON lead_teacher_staff.id = owner.teacherid
+            WHERE schoolstaff.users_dcid = :userdcid
+              AND sections.dcid = :sectiondcid
+            ]]>
+      </sql>
+    </query>
+    <query name="com.authentica.seed.students.students_by_sectionid" flattened="true">
+        <description>Get Students by Section ID</description>
+        <args>
+            <arg name="sectionid" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column>cc.sectionid</column>
+            <column>students.id</column>
+            <column>students.dcid</column>
+            <column>students.first_name</column>
+            <column>students.last_name</column>
+            <column>gradescalesectionstudent.gradescaleitemdcid</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                cc.sectionid,
+                students.id,
+                students.dcid,
+                students.first_name,
+                students.last_name,
+                gradescalesectionstudent.gradescaleitemdcid
+            FROM cc
+            INNER JOIN students ON cc.studentid = students.id
+            INNER JOIN sections ON sections.id = cc.sectionid
+            LEFT JOIN gradescalesectionstudent ON gradescalesectionstudent.sectionsdcid = sections.dcid
+                                              AND gradescalesectionstudent.studentsdcid = students.dcid
+            WHERE cc.sectionid = :sectionid
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.assignments.ptg_assignments_by_sectionid" flattened="true">
+        <description>Get Assignments by Section ID (PTG version)</description>
+        <args>
+            <arg name="sectionid" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column>pgassignments.datedue</column>
+            <column>pgassignments.dcid</column>
+            <column>pgassignments.description</column>
+            <column>pgassignments.id</column>
+            <column>pgassignments.name</column>
+            <column>pgassignments.pointspossible</column>
+            <column>pgassignments.publishstate</column>
+            <column>pgassignments.sectionid</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                pgassignments.datedue,
+                pgassignments.dcid,
+                pgassignments.description,
+                pgassignments.id,
+                pgassignments.name,
+                pgassignments.pointspossible,
+                pgassignments.publishstate,
+                pgassignments.sectionid
+            FROM pgassignments
+            WHERE pgassignments.sectionid = :sectionid
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.assignments.ptp_assignments_by_sectionid" flattened="true">
+      <description>Get Assignments by Section ID (PTP version)</description>
+      <args>
+        <arg name="sectiondcid" type="primitive" required="true" />
+      </args>
+      <columns>
+        <column>assignmentsection.assignmentsectionid</column>
+        <column>assignmentsection.assignmentid</column>
+        <column>assignmentsection.sectionsdcid</column>
+        <column>assignmentsection.name</column>
+        <column>assignmentsection.description</column>
+        <column>assignmentsection.duedate</column>
+        <column>assignmentsection.scoreentrypoints</column>
+        <column>assignmentsection.scoretype</column>
+      </columns>
+      <sql>
+          <![CDATA[
+          SELECT
+              assignmentsection.assignmentsectionid,
+              assignmentsection.assignmentid,
+              assignmentsection.sectionsdcid,
+              assignmentsection.name,
+              assignmentsection.description,
+              assignmentsection.duedate,
+              assignmentsection.scoreentrypoints,
+              assignmentsection.scoretype
+          FROM assignmentsection
+          WHERE assignmentsection.sectionsdcid = :sectiondcid
+          ]]>
+      </sql>
+    </query>
+    <query name="com.authentica.seed.assignments.ptg_assignments_by_assignmentdcid" flattened="true">
+        <description>Get Assignment by Assignment ID (PTG version)</description>
+        <args>
+            <arg name="assignmentdcid" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column>pgassignments.datedue</column>
+            <column>pgassignments.dcid</column>
+            <column>pgassignments.description</column>
+            <column>pgassignments.id</column>
+            <column>pgassignments.name</column>
+            <column>pgassignments.pointspossible</column>
+            <column>pgassignments.publishstate</column>
+            <column>pgassignments.sectionid</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                pgassignments.datedue,
+                pgassignments.dcid,
+                pgassignments.description,
+                pgassignments.id,
+                pgassignments.name,
+                pgassignments.pointspossible,
+                pgassignments.publishstate,
+                pgassignments.sectionid
+            FROM pgassignments
+            WHERE pgassignments.dcid = :assignmentdcid
+            ]]>
+        </sql>
+    </query>
+	<query name="com.authentica.seed.assignments.ptg_assignments_created_in_teams" flattened="true">
+        <description>Get Assignments created in Teams (PTG version)</description>        
+        <columns>
+            <column>pgassignments.datedue</column>
+            <column>pgassignments.dcid</column>
+            <column>pgassignments.description</column>
+            <column>pgassignments.id</column>
+            <column>pgassignments.name</column>
+            <column>pgassignments.pointspossible</column>
+            <column>pgassignments.publishstate</column>
+            <column>pgassignments.sectionid</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                pgassignments.datedue,
+                pgassignments.dcid,
+                pgassignments.description,
+                pgassignments.id,
+                pgassignments.name,
+                pgassignments.pointspossible,
+                pgassignments.publishstate,
+                pgassignments.sectionid
+            FROM pgassignments
+            WHERE pgassignments.description like '%[Created in Teams]%'
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.assignments.ptp_assignments_by_sectionid_and_assignmentid" flattened="true">
+      <description>Get Assignment by Section ID and Assignment ID (PTP version)</description>
+      <args>
+        <arg name="sectiondcid" type="primitive" required="true" />
+        <arg name="assignmentid" type="primitive" required="true" />
+      </args>
+      <columns>
+        <column>assignmentsection.assignmentsectionid</column>
+        <column>assignmentsection.assignmentid</column>
+        <column>assignmentsection.sectionsdcid</column>
+        <column>assignmentsection.name</column>
+        <column>assignmentsection.description</column>
+        <column>assignmentsection.duedate</column>
+        <column>assignmentsection.scoreentrypoints</column>
+        <column>assignmentsection.scoretype</column>
+      </columns>
+      <sql>
+          <![CDATA[
+          SELECT
+              assignmentsection.assignmentsectionid,
+              assignmentsection.assignmentid,
+              assignmentsection.sectionsdcid,
+              assignmentsection.name,
+              assignmentsection.description,
+              assignmentsection.duedate,
+              assignmentsection.scoreentrypoints,
+              assignmentsection.scoretype
+          FROM assignmentsection
+          WHERE assignmentsection.sectionsdcid = :sectiondcid
+            AND assignmentsection.assignmentid = :assignmentid
+          ]]>
+      </sql>
+    </query>
+    <query name="com.authentica.seed.assignments.ptp_assignments_by_sectionid_and_assignmentname" flattened="true">
+      <description>Get Assignment by Section ID and Assignment Name (PTP version)</description>
+      <args>
+        <arg name="sectiondcid" type="primitive" required="true" />
+        <arg name="assignmentname" type="primitive" required="true" />
+      </args>
+      <columns>
+        <column>assignmentsection.assignmentsectionid</column>
+        <column>assignmentsection.assignmentid</column>
+        <column>assignmentsection.sectionsdcid</column>
+        <column>assignmentsection.name</column>
+        <column>assignmentsection.description</column>
+        <column>assignmentsection.duedate</column>
+        <column>assignmentsection.scoreentrypoints</column>
+        <column>assignmentsection.totalpointvalue</column>
+        <column>assignmentsection.scoretype</column>
+      </columns>
+      <sql>
+          <![CDATA[
+          SELECT
+              assignmentsection.assignmentsectionid,
+              assignmentsection.assignmentid,
+              assignmentsection.sectionsdcid,
+              assignmentsection.name,
+              assignmentsection.description,
+              assignmentsection.duedate,
+              assignmentsection.scoreentrypoints,
+              assignmentsection.totalpointvalue,
+              assignmentsection.scoretype
+          FROM assignmentsection
+          WHERE assignmentsection.sectionsdcid = :sectiondcid
+            AND LOWER(assignmentsection.name) = LOWER(:assignmentname)
+          ]]>
+      </sql>
+    </query>
+	<query name="com.authentica.seed.assignments.ptp_assignments_created_in_teams" flattened="true">
+      <description>Get Assignments created in Teams (PTP version)</description>
+      <columns>
+        <column>assignmentsection.assignmentsectionid</column>
+        <column>assignmentsection.assignmentid</column>
+        <column>assignmentsection.sectionsdcid</column>
+        <column>assignmentsection.name</column>
+        <column>assignmentsection.description</column>
+        <column>assignmentsection.duedate</column>
+        <column>assignmentsection.scoreentrypoints</column>
+        <column>assignmentsection.scoretype</column>
+      </columns>
+      <sql>
+          <![CDATA[
+          SELECT
+              assignmentsection.assignmentsectionid,
+              assignmentsection.assignmentid,
+              assignmentsection.sectionsdcid,
+              assignmentsection.name,
+              assignmentsection.description,
+              assignmentsection.duedate,
+              assignmentsection.scoreentrypoints,
+              assignmentsection.scoretype
+          FROM assignmentsection
+          WHERE assignmentsection.description like '%[Created in Teams]%'
+          ]]>
+      </sql>
+    </query>
+    <query name="com.authentica.seed.scores.ptg_scores_by_assignmentid" flattened="true">
+        <description>Get Scores by Assignment ID (PTG version)</description>
+        <args>
+            <arg name="assignmentid" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column>sectionscoresassignments.assignment</column>
+            <column>sectionscoresassignments.dcid</column>
+            <column>sectionscoresassignments.score</column>
+            <column>sectionscoresid.sectionid</column>
+            <column>sectionscoresid.studentid</column>
+            <column column="students.dcid">students.studentdcid</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                sectionscoresassignments.assignment,
+                sectionscoresassignments.dcid,
+                sectionscoresassignments.score,
+                sectionscoresid.sectionid,
+                sectionscoresid.studentid,
+                students.dcid AS studentdcid
+            FROM sectionscoresassignments
+            INNER JOIN sectionscoresid ON sectionscoresassignments.fdcid = sectionscoresid.dcid
+            INNER JOIN students ON sectionscoresid.studentid = students.id
+            WHERE sectionscoresassignments.assignment = :assignmentid
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.scores.ptp_scores_by_assignmentid" flattened="true">
+      <description>Get Scores by Assignment ID (PTP version)</description>
+      <args>
+        <arg name="assignmentid" type="primitive" required="true" />
+        <arg name="sectionid" type="primitive" required="true" />
+      </args>
+      <columns>
+        <column>assignmentscore.assignmentscoreid</column>
+        <column>assignmentscore.studentsdcid</column>
+        <column>assignmentsection.scoretype</column>
+        <column>assignmentscore.scorelettergrade</column>
+        <column>assignmentscore.scorepercent</column>
+        <column>assignmentscore.scorepoints</column>
+        <column>assignmentscore.actualscoreentered</column>
+        <column>students.id</column>
+      </columns>
+      <sql>
+        <![CDATA[
+              SELECT
+                  assignmentscore.assignmentscoreid,
+                  assignmentscore.studentsdcid,
+                  assignmentsection.scoretype,
+                  assignmentscore.scorelettergrade,
+                  assignmentscore.scorepercent,
+                  assignmentscore.scorepoints,
+                  assignmentscore.actualscoreentered,
+                  students.id
+              FROM assignmentscore
+              INNER JOIN assignmentsection ON assignmentsection.assignmentsectionid = assignmentscore.assignmentsectionid
+              INNER JOIN students ON students.dcid = assignmentscore.studentsdcid
+              WHERE assignmentsection.assignmentid = :assignmentid
+                AND assignmentsection.sectionsdcid = :sectionid
+              ]]>
+      </sql>
+    </query>
+    <query name="com.authentica.seed.scores.ptp_scores_by_assignmentid_assignmentsectionid" flattened="true">
+      <description>Get Scores by Assignment ID and AssignmentSection ID(PTP version)</description>
+      <args>
+        <arg name="assignmentid" type="primitive" required="true" />
+        <arg name="assignmentsectionid" type="primitive" required="true" />
+      </args>
+      <columns>
+        <column>assignmentscore.assignmentscoreid</column>
+        <column>assignmentscore.studentsdcid</column>
+        <column>assignmentsection.scoretype</column>
+        <column>assignmentscore.scorelettergrade</column>
+        <column>assignmentscore.scorepercent</column>
+        <column>assignmentscore.scorepoints</column>
+        <column>assignmentscore.actualscoreentered</column>
+        <column>students.id</column>
+      </columns>
+      <sql>
+        <![CDATA[
+              SELECT
+                  assignmentscore.assignmentscoreid,
+                  assignmentscore.studentsdcid,
+                  assignmentsection.scoretype,
+                  assignmentscore.scorelettergrade,
+                  assignmentscore.scorepercent,
+                  assignmentscore.scorepoints,
+                  assignmentscore.actualscoreentered,
+                  students.id
+              FROM assignmentscore
+              INNER JOIN assignmentsection ON assignmentsection.assignmentsectionid = assignmentscore.assignmentsectionid
+              INNER JOIN students ON students.dcid = assignmentscore.studentsdcid
+              WHERE assignmentsection.assignmentid = :assignmentid
+                AND assignmentsection.assignmentsectionid = :assignmentsectionid
+              ]]>
+      </sql>
+    </query>
+    <query name="com.authentica.seed.teachercategories.teachercategories_by_userid" flattened="true">
+      <description>Get Categories by User ID</description>
+      <args>
+        <arg name="userdcid" type="primitive" required="true" />
+      </args>
+      <columns>
+        <column>teachercategory.name</column>
+        <column>teachercategory.teachercategoryid</column>
+        <column>teachercategory.isactive</column>
+        <column column="districtteachercategory.name">district_name</column>
+      </columns>
+      <sql>
+          <![CDATA[
+          SELECT
+              teachercategory.name,
+              teachercategory.teachercategoryid,
+              teachercategory.isactive,
+              districtteachercategory.name AS district_name
+          FROM teachercategory
+          LEFT JOIN districtteachercategory ON teachercategory.districtteachercategoryid = districtteachercategory.districtteachercategoryid
+          WHERE teachercategory.usersdcid = :userdcid
+          ]]>
+      </sql>
+    </query>
+	<query name="com.authentica.seed.teachercategories.teachercategories_by_userid_categoryname" flattened="true">
+      <description>Get Categories by User ID</description>
+      <args>
+        <arg name="userdcid" type="primitive" required="true" />
+		<arg name="category" type="primitive" required="true" />
+      </args>
+      <columns>
+        <column>teachercategory.name</column>
+        <column>teachercategory.teachercategoryid</column>
+        <column>teachercategory.isactive</column>
+        <column column="districtteachercategory.name">district_name</column>
+      </columns>
+      <sql>
+          <![CDATA[
+          SELECT
+              teachercategory.name,
+              teachercategory.teachercategoryid,
+              teachercategory.isactive,
+              districtteachercategory.name AS district_name
+          FROM teachercategory
+          LEFT JOIN districtteachercategory ON teachercategory.districtteachercategoryid = districtteachercategory.districtteachercategoryid
+          WHERE teachercategory.usersdcid = :userdcid and (LOWER(districtteachercategory.name) = :category or LOWER(teachercategory.name) = :category)
+          ]]>
+      </sql>
+    </query>
+</queries>

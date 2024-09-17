@@ -1,0 +1,94 @@
+<queries>
+    <query name="com.authentica.seed.grades.storedgrades.by_year" flattened="true">
+        <description>Get stored grades by school year</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="storedgrades.dcid">id</column>
+            <column column="terms.yearid">school_year</column>
+            <column column="storedgrades.schoolid">school_id</column>
+            <column column="students.student_number">student_id</column>
+            <column column="storedgrades.course_number">course_id</column>
+            <column column="storedgrades.course_name">course_name</column>
+            <column column="sections.id">section_id</column>
+            <column column="storedgrades.course_name">section_name</column>
+            <column column="storedgrades.grade">letter_grade_earned</column>
+            <column column="storedgrades.percent">numeric_grade_earned</column>
+            <column column="termbins.storecode">grading_period_id</column>
+            <column column="cc.dcid">section_enrollment_id</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                StoredGrades.DCID as id,
+                1991 + Terms.YearId as school_year,
+                StoredGrades.SchoolId as school_id,
+                Students.Student_Number as student_id,
+                StoredGrades.Course_Number as course_id,
+                StoredGrades.Course_Name as course_name,
+                Sections.ID as secton_id,
+                StoredGrades.Course_Name as section_name,
+                StoredGrades.Grade as letter_grade_earned,
+                StoredGrades.Percent as numeric_grade_earned,
+                TermBins.id as grading_period_id,
+                CC.dcid as section_enrollment_id
+            FROM StoredGrades
+            INNER JOIN Students
+              ON Students.ID = StoredGrades.StudentID
+            INNER JOIN Terms
+                on Terms.ID = StoredGrades.TermId
+            and Terms.SchoolId = StoredGrades.SchoolId
+            INNER JOIN Sections
+                on Sections.ID = StoredGrades.SectionID
+            INNER JOIN (
+                select DISTINCT 
+                    TO_CHAR(YearId) || '_' || TO_CHAR(SchoolId) || '_' || TO_CHAR(TermId) || '_' || StoreCode || '_' || TO_CHAR(Date1) || '_' || TO_CHAR(DATE2) as id,
+                    TermId,
+                    YearId,
+                    SchoolId,
+                    StoreCode,
+                    Date1,
+                    Date2
+                FROM TermBins) TermBins
+                on TermBins.TermID = StoredGrades.TermID
+               and TermBins.YearId = Terms.YearId
+               and TermBins.SchoolId = StoredGrades.SchoolId
+               and TermBins.StoreCode = StoredGrades.StoreCode
+            LEFT JOIN CC
+              ON CC.StudentID = StoredGrades.StudentID
+             and CC.SectionID = StoredGrades.SectionId
+            WHERE 1991 + Terms.YEARID = :schoolyear
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.grades.gradingperiods.by_year" flattened="true">
+        <description>Get grading periods by school year</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="termbins.dcid">id</column>
+            <column column="termbins.termid">term_id</column>
+            <column column="termbins.yearid">school_year</column>
+            <column column="termbins.schoolid">school_id</column>
+            <column column="termbins.storecode">grading_period</column>
+            <column column="termbins.date1">start_date</column>
+            <column column="termbins.date2">end_date</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            select DISTINCT 
+                TO_CHAR(YearId) || '_' || TO_CHAR(SchoolId) || '_' || TO_CHAR(TermId) || '_' || StoreCode || '_' || TO_CHAR(Date1) || '_' || TO_CHAR(DATE2) as id,
+                TermId,
+                YearId,
+                SchoolId,
+                StoreCode,
+                Date1,
+                Date2
+            FROM TermBins
+            WHERE 1991 + YEARID = :schoolyear
+            ]]>
+        </sql>
+    </query>
+</queries>

@@ -1,0 +1,23 @@
+<queries>
+    <query name="com.authentica.seed.courses" flattened="true">
+        <description>Get coruses</description>
+        <args>
+        </args>
+        <columns>
+            <column column="courses.dcid">id</column>
+            <column column="courses.course_number">course_id</column>
+            <column column="courses.schoolid">school_id</column>
+            <column column="courses.course_name">course_name</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT DISTINCT
+                Courses.DCID as id,
+                Courses.Course_Number as course_id,
+                Courses.SchoolId as school_id,
+                Courses.Course_Name as course_name
+            FROM Courses		
+            ]]>
+        </sql>
+    </query>
+</queries>

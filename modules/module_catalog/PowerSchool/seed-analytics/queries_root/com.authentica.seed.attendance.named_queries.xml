@@ -1,0 +1,35 @@
+<queries>
+    <query name="com.authentica.seed.attendance.daily.by_year" flattened="true">
+        <description>Get daily attendance</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="attendance.dcid">id</column>
+            <column column="attendance.yearid">school_year</column>
+            <column column="attendance.schoolid">school_id</column>
+            <column column="attendance.att_date">attendance_date</column>
+            <column column="attendance_code.att_code">attendance_code</column>
+            <column column="attendance_code.description">attendance_code_description</column>
+            <column column="students.student_number">student_id</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                Attendance.DCID as id,
+                1991 + Attendance.YearId as school_year,
+                Attendance.SchoolId as school_id,
+                Attendance.Att_Date as attendance_date,
+                Attendance_Code.Att_Code as attendance_code,
+                Attendance_Code.Description as attendance_code_description,
+                Students.Student_Number as student_id
+            FROM
+                Attendance
+                INNER JOIN Students on Students.ID = Attendance.StudentId
+                INNER JOIN Attendance_Code ON Attendance_Code.ID = Attendance.Attendance_CodeID
+                AND Attendance.ATT_Mode_Code = 'ATT_ModeDaily'
+                AND 1991 + Attendance.YearId = :schoolyear
+            ]]>
+        </sql>
+    </query>
+</queries>

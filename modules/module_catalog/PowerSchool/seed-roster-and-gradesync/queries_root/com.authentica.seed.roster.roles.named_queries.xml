@@ -1,0 +1,33 @@
+<queries>
+    <query name="com.authentica.seed.roster.roles" flattened="true">
+        <description>Get user roles</description>
+        <columns>
+            <column column="users.dcid">sourcedId</column>
+            <column column="schoolstaff.schoolid">orgSourcedId</column>
+            <column column="schoolstaff.staffstatus">role</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT DISTINCT
+                'users_' || users.dcid as sourcedId,
+                SchoolStaff.SchoolID as orgSourcedId,
+                case
+                    when SchoolStaff.StaffStatus = 1 then 'teacher'
+                    when SchoolStaff.StaffStatus = 2 then 'administrator'
+                    when SchoolStaff.StaffStatus = 4 then 'teacher' 
+                end as role
+            From SchoolStaff
+            inner join Users
+              on Users.DCID = SchoolStaff.Users_DCID
+            where SchoolStaff.StaffStatus in (1,2,4)
+            union all
+            SELECT
+                'students_' || Students.Student_Number,
+                Students.SchoolID as orgSourceId,
+                'student' as role
+            FROM Students
+            WHERE Enroll_Status = 0
+            ]]>
+        </sql>
+    </query>
+</queries>

@@ -1,0 +1,51 @@
+<queries>
+    <query name="com.authentica.seed.roster.enrollments" flattened="true">
+        <description>Get class enrollments</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="cc.dcid">id</column>
+            <column column="students.student_number">userSourcedId</column>
+            <column column="cc.sectionid">classSourcedId</column>
+            <column column="cc.dcid">role</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT distinct
+                cc.dcid as id,
+                'students_' || Students.Student_Number as userSourcedId,
+                CC.SectionID as classSourcedId,
+                'student' as role
+            FROM CC
+            INNER JOIN Students
+              on Students.ID = CC.StudentID
+            inner join Courses
+              on Courses.Course_Number = CC.Course_Number
+            inner join Terms
+              on Terms.ID = CC.TermId
+             and Terms.SchoolID = CC.SchoolID
+            where Terms.YearID + 1991 = :schoolyear
+              and Students.Enroll_Status = 0
+            UNION
+            SELECT
+                sectionteacher.id,
+                'users_' || Users.DCID as userSourcedId,
+                SectionTeacher.SectionID as classSourcedId,
+                'teacher' as role
+            From SectionTeacher
+            inner join Sections
+              on Sections.ID = SectionTeacher.SectionID
+            inner join SchoolStaff
+              on SchoolStaff.Id = SectionTeacher.TeacherId
+            inner join Users
+              on Users.DCID = SchoolStaff.Users_DCID
+            inner join Terms
+              on Terms.ID = Sections.TermId
+             and Terms.SchoolId = Sections.SchoolID
+            where Terms.YearID + 1991 = :schoolyear
+              and (SectionTeacher.End_Date is null or SectionTeacher.End_Date > SYSDATE)
+            ]]>
+        </sql>
+    </query>
+</queries>

@@ -1,0 +1,52 @@
+<queries>
+    <query name="com.authentica.seed.discipline.log.by_year" flattened="true">
+        <description>Get students</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="log.Discipline_IncidentDate">school_year</column>
+            <column column="log.schoolid">school_id</column>
+            <column column="log.dcid">incident_id</column>
+            <column column="log.Discipline_IncidentDate">incident_date</column>
+            <column column="log.Discipline_IncidentType">incident_behavior</column>
+            <column column="log.Discipline_IncidentTypeDetail">incident_behavior_detail</column>
+            <column column="log.Student_Number">student_id</column>
+            <column column="log.Discipline_ActionTaken">discipline_action_code</column>
+            <column column="log.Discipline_ActionTakenDetail">discipline_action_detail</column>
+            <column column="log.Discipline_ActionDate">discipline_action_date</column>
+            <column column="log.Discipline_DurationAssigned">discipline_action_length</column>
+            <column column="log.Discipline_DurationActual">discipline_action_length_actual</column>
+            <column column="log.LogTypeID">log_type_id</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT DISTINCT
+                CASE
+                    WHEN EXTRACT(MONTH FROM Log.Discipline_IncidentDate) >=7 then EXTRACT(YEAR FROM Log.Discipline_IncidentDate) + 1
+                    ELSE EXTRACT(YEAR FROM Log.Discipline_IncidentDate)
+                END as school_year,
+                Log.SchoolID as school_id,
+                Log.DCID as incident_id,
+                Log.Discipline_IncidentDate as incident_date,
+                Log.Discipline_IncidentType as incident_behavior,
+                Log.Discipline_IncidentTypeDetail as incident_behavior_detail,
+                STudents.Student_Number as student_id,
+                coalesce(Log.Discipline_ActionTaken, Log.Consequence) as discipline_action_code,
+                coalesce(Log.Discipline_ActionTakenDetail, Log.Consequence) as discipline_action_detail,
+                coalesce(Log.Discipline_ActionDate, Log.Discipline_IncidentDate, Log.Entry_Date) as discipline_action_date,
+                Log.Discipline_DurationAssigned as discipline_action_length,
+                Log.Discipline_DurationActual as discipline_action_length_actual,
+                Log.LogTypeID as log_type_id
+            FROM Log
+            inner join Students
+              on Students.ID = Log.StudentID
+            WHERE 
+                CASE
+                    WHEN EXTRACT(MONTH FROM Log.Discipline_IncidentDate) >=7 then EXTRACT(YEAR FROM Log.Discipline_IncidentDate) + 1
+                    ELSE EXTRACT(YEAR FROM Log.Discipline_IncidentDate)
+                END = :schoolyear
+            ]]>
+        </sql>
+    </query>
+</queries>

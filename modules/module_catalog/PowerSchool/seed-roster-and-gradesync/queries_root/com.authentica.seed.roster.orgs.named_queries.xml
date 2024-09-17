@@ -1,0 +1,19 @@
+<queries>
+    <query name="com.authentica.seed.roster.orgs" flattened="true">
+        <description>Get organizations</description>
+        <columns>
+            <column column="schools.school_number">sourcedId</column>
+            <column column="schools.name">name</column>
+            <column column="schools.name">type</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                schools.school_number as sourcedId,
+                schools.name as name,
+                'school' as type
+            FROM schools
+            ]]>
+        </sql>
+    </query>
+</queries>

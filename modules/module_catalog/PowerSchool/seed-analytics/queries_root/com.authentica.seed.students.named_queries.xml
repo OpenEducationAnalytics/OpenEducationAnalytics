@@ -1,0 +1,62 @@
+<queries>
+    <query name="com.authentica.seed.students.all" flattened="true">
+        <description>Get students</description>
+        <args>
+            
+        </args>
+        <columns>
+            <column column="students.student_number">student_id</column>
+            <column column="students.first_name">First_Name</column>
+            <column column="students.middle_name">Middle_Name</column>
+            <column column="students.last_name">Last_Name</column>
+            <column column="students.dob">birth_date</column>
+            <column column="students.gender">sex</column>
+            <column column="students.ethnicity">race</column>
+            <column column="students.fedethnicity">federal_ethnicity_indicator</column>
+            <column column="EmailAddress.emailaddress">emailaddress</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT DISTINCT
+                Students.Student_Number as student_id,
+                Students.First_Name,
+                Students.Middle_Name,
+                Students.Last_Name,
+                Students.DOB as birth_date,
+                Students.Gender as sex,
+                Students.Ethnicity as race,
+                Students.FedEthnicity as federal_ethnicity_indicator,
+                EmailAddress.EmailAddress
+            FROM
+                Students
+                LEFT JOIN PersonEmailAddressAssoc ON PersonEmailAddressAssoc.PersonID = Students.Person_ID
+                AND PersonEmailAddressAssoc.IsPrimaryEmailAddress = 1
+                LEFT JOIN EmailAddress ON EmailAddress.EmailAddressID = PersonEmailAddressAssoc.EmailAddressID		
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.students.race" flattened="true">
+        <description>Get student race</description>
+        <args>
+            
+        </args>
+        <columns>
+            <column column="students.student_number">student_id</column>
+            <column column="gen.value">race</column>
+            <column column="gen.valueT">race_description</column>
+            <column column="gen.value2">sif_race_code</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                Students.Student_Number as student_id,
+                Gen.value as Race,
+                Gen.valueT as race_description,
+                Gen.value2 as sif_race_code
+            from StudentRace
+            inner join Students on Students.ID = StudentRace.StudentId
+            inner join Gen on Gen.cat = 'Race' and Gen.value = StudentRace.RaceCD
+            ]]>
+        </sql>
+    </query>
+</queries>

@@ -1,0 +1,50 @@
+<queries>
+    <query name="com.authentica.seed.roster.userflags.wa" flattened="true">
+        <description>Get user flags</description>
+        <columns>
+            <column column="students.student_number">studentSourcedId</column>
+            <column column="demographic.homeless_yn">flag</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                'students_' || Students.Student_Number as studentSourcedId,
+                'homeless' as flag
+            FROM Demographic
+            INNER JOIN Students
+              ON Students.ID = Demographic.StudentID
+            WHERE Demographic.Homeless_YN = 1
+
+            UNION ALL
+
+            SELECT
+                'students_' || Students.Student_Number as studentSourcedId,
+                'giftedOrTalented' as flag
+            FROM Demographic
+            INNER JOIN Students
+              ON Students.ID = Demographic.StudentID
+            WHERE Demographic.Gifted_YN = 1
+
+            UNION ALL
+
+            SELECT
+                'students_' || Students.Student_Number as studentSourcedId,
+                'lep' as flag
+            FROM Demographic
+            INNER JOIN Students
+              ON Students.ID = Demographic.StudentID
+            WHERE Demographic.Lim_Eng_Prof = 1
+            
+            UNION ALL
+
+            SELECT
+                'students_' || Students.Student_Number as studentSourcedId,
+                'iep' as flag
+            FROM S_WA_STU_SPED_X
+            INNER JOIN Students
+              on Students.DCID = S_WA_STU_SPED_X.StudentsDCID
+            WHERE S_WA_STU_SPED_X.IEP_Current = 1
+            ]]>
+        </sql>
+    </query>
+</queries>

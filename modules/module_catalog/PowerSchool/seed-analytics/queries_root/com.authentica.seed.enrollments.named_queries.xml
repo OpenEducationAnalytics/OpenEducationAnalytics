@@ -1,0 +1,101 @@
+<queries>
+    <query name="com.authentica.seed.enrollments.school.by_year" flattened="true">
+        <description>Get school enrollments by school year</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="students.enrollmentid">id</column>
+            <column column="students.entrydate">school_year</column>
+            <column column="students.schoolid">school_id</column>
+            <column column="students.student_number">student_id</column>
+            <column column="students.entrydate">entry_date</column>
+            <column column="students.entrycode">entry_code</column>
+            <column column="students.exitdate">exit_date</column>
+            <column column="students.exitcode">exit_code</column>
+            <column column="students.Grade_level">grade_level</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                Students.EnrollmentId as id,
+                CASE
+                    WHEN EXTRACT(MONTH FROM Students.EntryDate) >=7 then EXTRACT(YEAR FROM Students.EntryDate) + 1
+                    ELSE EXTRACT(YEAR FROM Students.EntryDate)
+                END as school_year,
+                Students.SchoolID as school_id,
+                Students.Student_Number as student_id,
+                Students.EntryDate as entry_date,
+                Students.EntryCode as entry_code,
+                Students.ExitDate as exit_or_withdraw_date,
+                Students.ExitCode as exit_code,
+                Students.Grade_level as Grade_level
+            FROM Students
+            WHERE CASE
+                    WHEN EXTRACT(MONTH FROM Students.EntryDate) >=7 then EXTRACT(YEAR FROM Students.EntryDate) + 1
+                    ELSE EXTRACT(YEAR FROM Students.EntryDate)
+                END = :schoolyear
+            UNION ALL
+            SELECT
+                Reenrollments.ID as id,
+                CASE
+                    WHEN EXTRACT(MONTH FROM ReEnrollments.EntryDate) >=7 then EXTRACT(YEAR FROM ReEnrollments.EntryDate) + 1
+                    ELSE EXTRACT(YEAR FROM ReEnrollments.EntryDate)
+                END as school_year,
+                ReEnrollments.SchoolID as school_id,
+                Students.Student_Number as student_id,
+                ReEnrollments.EntryDate as entry_date,
+                ReEnrollments.EntryCode as entry_code,
+                ReEnrollments.ExitDate as exit_or_withdraw_date,
+                ReEnrollments.ExitCode as exit_code,
+                ReEnrollments.Grade_level as Grade_level
+            FROM ReEnrollments
+            INNER JOIN Students ON Students.ID = ReEnrollments.StudentID
+            WHERE CASE
+                    WHEN EXTRACT(MONTH FROM ReEnrollments.EntryDate) >=7 then EXTRACT(YEAR FROM ReEnrollments.EntryDate) + 1
+                    ELSE EXTRACT(YEAR FROM ReEnrollments.EntryDate)
+                END = :schoolyear			
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.enrollments.section.by_year" flattened="true">
+        <description>Get section enrollments by school year</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+                    <column column="cc.dcid">id</column>
+                    <column column="terms.yearid">school_year</column>
+                    <column column="cc.schoolid">school_id</column>
+                    <column column="terms.ID">term_id</column>
+                    <column column="terms.name">term_name</column>
+                    <column column="courses.course_number">course_id</column>
+                    <column column="courses.course_name">course_name</column>
+                    <column column="sections.id">section_id</column>
+                    <column column="students.student_number">student_id</column>
+                    <column column="cc.dateenrolled">entry_date</column>
+                    <column column="cc.dateleft">exit_date</column>
+        </columns>
+        <sql>
+            <![CDATA[
+                SELECT CC.DCID as id, 
+                1991 + Terms.YearId as school_year, 
+                CC.schoolid as school_id, 
+                Terms.ID as term_id, 
+                Terms.Name as term_name, 
+                Courses.dcid as course_id, 
+                Courses.Course_name as course_name, 
+                Sections.Id as section_id,  
+                Students.Student_Number as student_id, 
+                CC.DateEnrolled as entry_date, 
+                CC.DateLeft as exit_date 
+                FROM CC 
+                INNER JOIN Terms ON Terms.ID = CC.TermID and Terms.SchoolId = CC.SchoolId 
+                INNER JOIN Courses ON Courses.Course_Number = CC.Course_Number 
+                INNER JOIN Sections on abs(Sections.ID) = CC.SectionId 
+                INNER JOIN Students on Students.Id = CC.StudentId
+                WHERE 1991 + Terms.YEARID = :schoolyear
+            ]]>
+        </sql>
+    </query>
+</queries>
