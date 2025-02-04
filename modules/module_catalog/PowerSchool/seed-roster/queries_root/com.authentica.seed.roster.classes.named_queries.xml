@@ -1,0 +1,57 @@
+<queries>
+    <query name="com.authentica.seed.roster.classes" flattened="true">
+        <description>Get classses</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="sections.id">sourcedId</column>
+            <column column="sections.schoolid">orgSourcedId</column>
+            <column column="courses.course_name">title</column>
+            <column column="courses.course_number">courseSourcedId</column>
+            <column column="sections.section_number">code</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                Sections.ID as sourcedId,
+                Sections.SchoolID as orgSourcedId,
+                Courses.Course_Name || ' - ' || Sections.Expression || ' ' || Terms.Abbreviation as title,
+                Courses.Course_Number as courseSourcedId,
+                Sections.Section_Number as code
+            FROM Sections
+            inner join Terms
+              on Terms.Id = Sections.TermId
+             and Terms.SchoolId = Sections.SchoolId
+            inner join Courses
+              on Courses.Course_Number = Sections.Course_Number
+            where Terms.YearId + 1991 = :schoolyear
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.roster.classes.periods" flattened="true">
+        <description>Get classses</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="period.abbreviation">abbreviation</column>
+            <column column="period.id">id</column>
+            <column column="period.name">name</column>
+            <column column="period.period_number">period_number</column>
+            <column column="period.schoolid">schoolid</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                Period.Abbreviation,
+                Period.ID,
+                Period.Name,
+                Period.Period_Number,
+                Period.SchoolID
+            from Period
+            where Period.Year_ID + 1991 = :schoolyear
+            ]]>
+        </sql>
+    </query>
+</queries>

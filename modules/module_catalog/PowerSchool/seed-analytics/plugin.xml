@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://plugin.powerschool.pearson.com" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd" 
+        name="Authentica seed" 
+        version="1.0.0.21"
+        description="Plugin for the integration with PowerSchool">
+    <oauth></oauth>
+    <access_request>
+        <field table="ATTENDANCE" field="ATT_DATE" access="ViewOnly" />
+        <field table="ATTENDANCE" field="ATT_MODE_CODE" access="ViewOnly" />
+        <field table="ATTENDANCE" field="ATTENDANCE_CODEID" access="ViewOnly" />
+        <field table="ATTENDANCE" field="DCID" access="ViewOnly" />
+        <field table="ATTENDANCE" field="SCHOOLID" access="ViewOnly" />
+        <field table="ATTENDANCE" field="STUDENTID" access="ViewOnly" />
+        <field table="ATTENDANCE" field="YEARID" access="ViewOnly" />
+        <field table="ATTENDANCE_CODE" field="ATT_CODE" access="ViewOnly" />
+        <field table="ATTENDANCE_CODE" field="DESCRIPTION" access="ViewOnly" />
+        <field table="ATTENDANCE_CODE" field="ID" access="ViewOnly" />
+        <field table="CALENDAR_DAY" field="DATE_VALUE" access="ViewOnly" />
+        <field table="CALENDAR_DAY" field="INSESSION" access="ViewOnly" />
+        <field table="CALENDAR_DAY" field="MEMBERSHIPVALUE" access="ViewOnly" />
+        <field table="CALENDAR_DAY" field="SCHOOLID" access="ViewOnly" />
+        <field table="CALENDAR_DAY" field="TYPE" access="ViewOnly" />
+        <field table="CC" field="DCID" access="ViewOnly" />
+        <field table="CC" field="COURSE_NUMBER" access="ViewOnly" />
+        <field table="CC" field="DATEENROLLED" access="ViewOnly" />
+        <field table="CC" field="DATELEFT" access="ViewOnly" />
+        <field table="CC" field="DCID" access="ViewOnly" />
+        <field table="CC" field="SCHOOLID" access="ViewOnly" />
+        <field table="CC" field="SECTIONID" access="ViewOnly" />
+        <field table="CC" field="STUDENTID" access="ViewOnly" />
+        <field table="CC" field="TERMID" access="ViewOnly" />
+        <field table="COURSES" field="COURSE_NAME" access="ViewOnly" />
+        <field table="COURSES" field="COURSE_NUMBER" access="ViewOnly" />
+        <field table="COURSES" field="DCID" access="ViewOnly" />
+        <field table="COURSES" field="GRADESCALEID" access="ViewOnly" />
+        <field table="COURSES" field="SCHOOLID" access="ViewOnly" />
+        <field table="EMAILADDRESS" field="EMAILADDRESS" access="ViewOnly" />
+        <field table="EMAILADDRESS" field="EMAILADDRESSID" access="ViewOnly" />
+        <field table="GEN" field="CAT" access="ViewOnly" />
+        <field table="GEN" field="VALUE" access="ViewOnly" />
+        <field table="GEN" field="VALUET" access="ViewOnly" />
+        <field table="GEN" field="VALUE2" access="ViewOnly" />
+        <field table="GEN" field="YEARID" access="ViewOnly" />
+        <field table="LOG" field="DCID" access="ViewOnly" />
+        <field table="LOG" field="Consequence" access="ViewOnly" />
+        <field table="LOG" field="Discipline_ActionDate" access="ViewOnly" />
+        <field table="LOG" field="Discipline_DurationActual" access="ViewOnly" />
+        <field table="LOG" field="Discipline_DurationAssigned" access="ViewOnly" />
+        <field table="LOG" field="Discipline_IncidentDate" access="ViewOnly" />
+        <field table="LOG" field="Discipline_IncidentType" access="ViewOnly" />
+        <field table="LOG" field="Discipline_IncidentTypeDetail" access="ViewOnly" />
+        <field table="LOG" field="Discipline_ActionTaken" access="ViewOnly" />
+        <field table="LOG" field="Discipline_ActionTakenDetail" access="ViewOnly" />
+        <field table="LOG" field="Entry_Date" access="ViewOnly" />
+        <field table="LOG" field="LogTypeID" access="ViewOnly" />
+        <field table="LOG" field="SchoolID" access="ViewOnly" />
+        <field table="LOG" field="StudentID" access="ViewOnly" />
+        <field table="LOG" field="Student_Number" access="ViewOnly" />
+        <field table="PERSONEMAILADDRESSASSOC" field="ISPRIMARYEMAILADDRESS" access="ViewOnly" />
+        <field table="PERSONEMAILADDRESSASSOC" field="PERSONID" access="ViewOnly" />
+        <field table="PERSONEMAILADDRESSASSOC" field="EMAILADDRESSID" access="ViewOnly" />
+        <field table="REENROLLMENTS" field="ENTRYCODE" access="ViewOnly" />
+        <field table="REENROLLMENTS" field="ENTRYDATE" access="ViewOnly" />
+        <field table="REENROLLMENTS" field="EXITCODE" access="ViewOnly" />
+        <field table="REENROLLMENTS" field="EXITDATE" access="ViewOnly" />
+        <field table="REENROLLMENTS" field="GRADE_LEVEL" access="ViewOnly" />
+        <field table="REENROLLMENTS" field="ID" access="ViewOnly" />
+        <field table="REENROLLMENTS" field="SCHOOLID" access="ViewOnly" />
+        <field table="REENROLLMENTS" field="STUDENTID" access="ViewOnly" />
+        <field table="SCHOOLS" field="NAME" access="ViewOnly" />
+        <field table="SCHOOLS" field="SCHOOL_NUMBER" access="ViewOnly" />
+        <field table="SECTIONS" field="COURSE_NUMBER" access="ViewOnly" />
+        <field table="SECTIONS" field="DCID" access="ViewOnly" />
+        <field table="SECTIONS" field="EXPRESSION" access="ViewOnly" />
+        <field table="SECTIONS" field="GRADEBOOKTYPE" access="ViewOnly" />
+        <field table="SECTIONS" field="GRADESCALEID" access="ViewOnly" />
+        <field table="SECTIONS" field="ID" access="ViewOnly" />
+        <field table="SECTIONS" field="ORIGINAL_EXPRESSION" access="ViewOnly" />
+        <field table="SECTIONS" field="PARENT_SECTION_ID" access="ViewOnly" />
+        <field table="SECTIONS" field="SCHOOLID" access="ViewOnly" />
+        <field table="SECTIONS" field="SECTION_NUMBER" access="ViewOnly" />
+        <field table="SECTIONS" field="TEACHER" access="ViewOnly" />
+        <field table="SECTIONS" field="TERMID" access="ViewOnly" />
+        <field table="STOREDGRADES" field="COURSE_NAME" access="ViewOnly" />
+        <field table="STOREDGRADES" field="COURSE_NUMBER" access="ViewOnly" />
+        <field table="STOREDGRADES" field="DCID" access="ViewOnly" />
+        <field table="STOREDGRADES" field="GRADE" access="ViewOnly" />
+        <field table="STOREDGRADES" field="PERCENT" access="ViewOnly" />
+        <field table="STOREDGRADES" field="SCHOOLID" access="ViewOnly" />
+        <field table="STOREDGRADES" field="SECTIONID" access="ViewOnly" />
+        <field table="STOREDGRADES" field="STORECODE" access="ViewOnly" />
+        <field table="STOREDGRADES" field="STUDENTID" access="ViewOnly" />
+        <field table="STOREDGRADES" field="TERMID" access="ViewOnly" />
+        <field table="STUDENTRACE" field="STUDENTID" access="ViewOnly" />
+        <field table="STUDENTRACE" field="RACECD" access="ViewOnly" />
+        <field table="STUDENTS" field="DCID" access="ViewOnly" />
+        <field table="STUDENTS" field="DOB" access="ViewOnly" />
+        <field table="STUDENTS" field="ENROLL_STATUS" access="ViewOnly" />
+        <field table="STUDENTS" field="ENROLLMENTID" access="ViewOnly" />
+        <field table="STUDENTS" field="ENTRYCODE" access="ViewOnly" />
+        <field table="STUDENTS" field="ENTRYDATE" access="ViewOnly" />
+        <field table="STUDENTS" field="ETHNICITY" access="ViewOnly" />
+        <field table="STUDENTS" field="EXITCODE" access="ViewOnly" /> 
+        <field table="STUDENTS" field="EXITDATE" access="ViewOnly" />
+        <field table="STUDENTS" field="FEDETHNICITY" access="ViewOnly" />
+        <field table="STUDENTS" field="FIRST_NAME" access="ViewOnly" />
+        <field table="STUDENTS" field="GENDER" access="ViewOnly" />
+        <field table="STUDENTS" field="GRADE_LEVEL" access="ViewOnly" />
+        <field table="STUDENTS" field="ID" access="ViewOnly" />
+        <field table="STUDENTS" field="LAST_NAME" access="ViewOnly" />
+        <field table="STUDENTS" field="MIDDLE_NAME" access="ViewOnly" />
+        <field table="STUDENTS" field="PERSON_ID" access="ViewOnly" />
+        <field table="STUDENTS" field="SCHOOLID" access="ViewOnly" />
+        <field table="STUDENTS" field="STATE_STUDENTNUMBER" access="ViewOnly" />
+        <field table="STUDENTS" field="STUDENT_NUMBER" access="ViewOnly" />
+        <field table="TERMBINS" field="DATE1" access="ViewOnly" />
+        <field table="TERMBINS" field="DATE2" access="ViewOnly" />
+        <field table="TERMBINS" field="DCID" access="ViewOnly" />
+        <field table="TERMBINS" field="GRADESCALEID" access="ViewOnly" />
+        <field table="TERMBINS" field="SCHOOLID" access="ViewOnly" />
+        <field table="TERMBINS" field="STORECODE" access="ViewOnly" />
+        <field table="TERMBINS" field="TERMID" access="ViewOnly" />
+        <field table="TERMBINS" field="YEARID" access="ViewOnly" />
+        <field table="TERMS" field="ABBREVIATION" access="ViewOnly" />
+        <field table="TERMS" field="FIRSTDAY" access="ViewOnly" />
+        <field table="TERMS" field="ID" access="ViewOnly" />
+        <field table="TERMS" field="LASTDAY" access="ViewOnly" />
+        <field table="TERMS" field="NAME" access="ViewOnly" />
+        <field table="TERMS" field="SCHOOLID" access="ViewOnly" />
+        <field table="TERMS" field="YEARID" access="ViewOnly" />
+    </access_request>
+    <publisher name="Authentica Solutions">
+        <contact email="N/A" />
+    </publisher>
+</plugin>

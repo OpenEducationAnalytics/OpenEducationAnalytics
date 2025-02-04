@@ -1,0 +1,39 @@
+<queries>
+    <query name="com.authentica.seed.calendars.by_year" flattened="true">
+        <description>Get calendars</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="terms.yearid">school_year</column>
+            <column column="calendar_day.schoolid">school_id</column>
+            <column column="calendar_day.date_value">calendar_date</column>
+            <column column="calendar_day.type">date_type_indicator</column>
+            <column column="terms.id">term_id</column>
+            <column column="terms.name">term_name</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT DISTINCT
+                1991 + Terms.YearId as school_year,
+                Calendar_Day.SchoolId as school_id,
+                Calendar_Day.Date_Value as calendar_date,
+                COALESCE(
+                    Calendar_Day.Type,
+                    CASE
+                        WHEN
+                            Calendar_DAY.INSESSION = 1 AND Calendar_Day.MEMBERSHIPVALUE = 1 then 'School Day'
+                        ELSE 'Other'
+                    END
+                ) as date_type_indicator,
+                Terms.ID as term_id,
+                Terms.Name as term_name
+            FROM Calendar_Day
+            LEFT JOIN Terms
+              ON Calendar_Day.Date_Value between Terms.FirstDay and Terms.LastDay
+             and Terms.SchoolId = Calendar_Day.SchoolId
+            WHERE 1991 + Terms.YearID = :schoolyear			
+            ]]>
+        </sql>
+    </query>
+</queries>

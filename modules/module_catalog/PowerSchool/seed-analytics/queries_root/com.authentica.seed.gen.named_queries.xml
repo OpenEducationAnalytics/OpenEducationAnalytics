@@ -1,0 +1,43 @@
+<queries>
+    <query name="com.authentica.seed.gen.by_category" flattened="true">
+        <description>Get code values</description>
+        <args>
+            <arg name="category" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="gen.cat">category</column>
+            <column column="gen.value">value</column>
+            <column column="gen.value2">value2</column>
+            <column column="gen.valuet">valuet</column>
+            <column column="gen.yearid">school_year</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT DISTINCT
+                Gen.Cat as category,
+                Gen.Value,
+                cast(Gen.Value2 as varchar2(3999)) as value2,
+                cast(Gen.ValueT as varchar2(3999)) as valuet,
+                1991 + Gen.YearID as school_year
+            FROM Gen
+            WHERE Gen.Cat = :category
+            ]]>
+        </sql>
+    </query>
+    <query name="com.authentica.seed.gen.categories" flattened="true">
+        <description>Get code value categories</description>
+        <args>
+            <arg name="category" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="gen.cat">category</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT DISTINCT
+                Gen.Cat as category
+            FROM Gen
+            ]]>
+        </sql>
+    </query>
+</queries>

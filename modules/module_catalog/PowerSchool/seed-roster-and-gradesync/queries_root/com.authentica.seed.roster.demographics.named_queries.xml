@@ -1,0 +1,40 @@
+<queries>
+    <query name="com.authentica.seed.roster.demographics" flattened="true">
+        <description>Get user demographics</description>
+        <columns>
+            <column column="Students.Student_Number">userSourcedId</column>
+            <column column="students.gender">sex</column>
+            <column column="students.dob">birth_date</column>
+            <column column="demographic.birth_city">birth_city</column>
+            <column column="demographic.birth_state_cd">birth_state</column>
+            <column column="demographic.birth_country_cd">birth_country</column>
+            <column column="students.fedethnicity">is_hispanic_latino</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                'students_' || Students.Student_Number as userSourcedId,
+                Students.Gender as sex,
+                Students.DOB as birth_date,
+                Demographic.Birth_City as birth_city,
+                Demographic.Birth_State_CD as birth_state,
+                Demographic.Birth_Country_CD as birth_country,
+                Students.FedEthnicity as is_hispanic_latino
+            FROM Students
+            LEFT JOIN Demographic
+              ON Demographic.StudentID = Students.ID
+            WHERE Students.Enroll_Status = 0
+            UNION ALL
+            SELECT
+                'users_' || Users.DCID as userSourcedId,
+                null as sex,
+                null as birth_date,
+                null as birth_city,
+                null as birth_state,
+                null as birth_country,
+                Users.FedEthnicity as is_hispanic_latino
+            FROM Users
+            ]]>
+        </sql>
+    </query>
+</queries>

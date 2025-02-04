@@ -1,0 +1,39 @@
+<queries>
+    <query name="com.authentica.seed.roster.users" flattened="true">
+        <description>Get rosters</description>
+        <columns>
+            <column column="users.dcid">sourcedId</column>
+            <column column="users.loginid">username</column>
+            <column column="users.last_name">familyName</column>
+            <column column="users.first_name">givenName</column>
+            <column column="users.email_addr">email</column>
+            <column column="users.dcid">source</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT distinct
+                'users_' || users.dcid as sourcedId,
+                users.Email_Addr as username,
+                Users.Last_Name as familyName,
+                Users.First_Name as givenName,
+                Users.Email_Addr as email,
+                'users' as source
+            FROM users
+            where users.email_addr is not null
+            union all
+            SELECT
+                'students_' || Students.Student_Number,
+                EmailAddress.EmailAddress as username,
+                Students.Last_Name as familyName,
+                Students.First_Name as givenName,
+                EmailAddress.EmailAddress as email,
+                'students' as source
+            FROM Students
+                LEFT JOIN PersonEmailAddressAssoc ON PersonEmailAddressAssoc.PersonID = Students.Person_ID
+                AND PersonEmailAddressAssoc.IsPrimaryEmailAddress = 1
+                LEFT JOIN EmailAddress ON EmailAddress.EmailAddressID = PersonEmailAddressAssoc.EmailAddressID
+            WHERE Students.Enroll_Status = 0
+            ]]>
+        </sql>
+    </query>
+</queries>

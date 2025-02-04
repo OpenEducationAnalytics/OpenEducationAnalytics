@@ -1,0 +1,34 @@
+<queries>
+    <query name="com.authentica.seed.roster.academicsessions" flattened="true">
+        <description>Get academic sessions</description>
+        <args>
+            <arg name="schoolyear" type="primitive" required="true" />
+        </args>
+        <columns>
+            <column column="terms.dcid">sourcedId</column>
+            <column column="terms.name">title</column>
+            <column column="terms.isyearrec">type</column>
+            <column column="terms.yearid">schoolYear</column>
+            <column column="terms.firstday">startDate</column>
+            <column column="terms.lastday">endDate</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                Terms.DCID as sourcedId,
+                Terms.Name as title,
+                case
+                    when Terms.IsYearRec = 1 then 'schoolYear'
+                    when Terms.Portion = 2 then 'semester'
+                    when Terms.Portion = 4 then 'quarter'
+                    else 'term'
+                end as type,
+                Terms.YearID + 1991 as schoolYear,
+                Terms.FirstDay as startDate,
+                Terms.LastDay as endDate
+            FROM Terms
+            where Terms.YearID + 1991 = :schoolyear
+            ]]>
+        </sql>
+    </query>
+</queries>

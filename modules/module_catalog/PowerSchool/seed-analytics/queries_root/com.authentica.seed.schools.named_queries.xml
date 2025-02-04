@@ -1,0 +1,20 @@
+<queries>
+    <query name="com.authentica.seed.schools" flattened="true">
+        <description>Get schools</description>
+        <args>
+            
+        </args>
+        <columns>
+            <column column="schools.school_number">school_id</column>
+            <column column="schools.name">school_name</column>
+        </columns>
+        <sql>
+            <![CDATA[
+            SELECT
+                schools.school_number as school_id,
+                schools.name as school_name
+            FROM schools			
+            ]]>
+        </sql>
+    </query>
+</queries>
