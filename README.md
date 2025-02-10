@@ -37,7 +37,7 @@ You can setup this fully functional reference architecture (which includes test 
 `wget https://github.com/microsoft/OpenEduAnalytics/releases/download/v0.8/OEA_v0.8.zip`\
 `unzip ./OEA_v0.8.zip`
 1) Run the setup script like this (substitute "mysuffix" with your preferred suffix representing your org, which must be less than 13 characters and can only contain letters and numbers - this will be used as a suffix in the naming of provisioned resources): \
-`./OEA_v0.8/setup.sh -o mysuffix`
+`./OEA_v0.8/setup.sh mysuffix`
 
 (You can refer to this [setup video](https://youtu.be/m0Y88bQ644E) for a quick walkthrough of this process)
 
