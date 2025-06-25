@@ -27,7 +27,7 @@
                 Students.Student_Number as student_id,
                 StoredGrades.Course_Number as course_id,
                 StoredGrades.Course_Name as course_name,
-                Sections.ID as secton_id,
+                Sections.ID as section_id,
                 StoredGrades.Course_Name as section_name,
                 StoredGrades.Grade as letter_grade_earned,
                 StoredGrades.Percent as numeric_grade_earned,
