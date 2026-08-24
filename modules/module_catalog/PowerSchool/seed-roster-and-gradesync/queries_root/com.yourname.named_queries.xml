@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.yourname.seed.users.user_by_email" flattened="true">
+    <query name="com.yourname.users.user_by_email" flattened="true">
         <description>Get user by email address</description>
         <args>
             <arg name="email" type="primitive" required="true" />
@@ -43,7 +43,7 @@
             ]]>
         </sql>
     </query>
-	<query name="com.yourname.seed.users.users_all" flattened="true">
+	<query name="com.yourname.users.users_all" flattened="true">
         <description>Get all staff users</description>        
         <columns>
             <column>schoolstaff.id</column>
@@ -83,7 +83,7 @@
             ]]>
         </sql>
     </query>
-	<query name="com.yourname.seed.students.students_by_number" flattened="true">
+	<query name="com.yourname.students.students_by_number" flattened="true">
         <description>Get student by student number</description>
 		<args>
             <arg name="studentnumber" type="primitive" required="true" />
@@ -110,7 +110,7 @@
             ]]>
         </sql>
     </query>
-	<query name="com.yourname.seed.students.students_all" flattened="true">
+	<query name="com.yourname.students.students_all" flattened="true">
         <description>Get all active students</description>
         <columns>
             <column>students.id</column>
@@ -134,7 +134,7 @@
             ]]>
         </sql>
     </query>
-	<query name="com.yourname.seed.sections.sections_by_schoolyear" flattened="true">
+	<query name="com.yourname.sections.sections_by_schoolyear" flattened="true">
         <description>Get Sections by schoolyear</description>
         <args>
             <arg name="schoolyear" type="primitive" required="true" />
@@ -190,7 +190,7 @@
             ]]>
         </sql>
     </query>
-    <query name="com.yourname.seed.sections.sections_by_userid" flattened="true">
+    <query name="com.yourname.sections.sections_by_userid" flattened="true">
         <description>Get Sections by User ID</description>
         <args>
             <arg name="userid" type="primitive" required="true" />
@@ -245,7 +245,7 @@
             ]]>
         </sql>
     </query>
-    <query name="com.yourname.seed.sections.sections_by_userid_and_sectionid" flattened="true">
+    <query name="com.yourname.sections.sections_by_userid_and_sectionid" flattened="true">
       <description>Get Sections by User ID</description>
       <args>
         <arg name="userdcid" type="primitive" required="true" />
@@ -302,7 +302,7 @@
             ]]>
       </sql>
     </query>
-    <query name="com.yourname.seed.students.students_by_sectionid" flattened="true">
+    <query name="com.yourname.students.students_by_sectionid" flattened="true">
         <description>Get Students by Section ID</description>
         <args>
             <arg name="sectionid" type="primitive" required="true" />
@@ -333,7 +333,7 @@
             ]]>
         </sql>
     </query>
-    <query name="com.yourname.seed.assignments.ptg_assignments_by_sectionid" flattened="true">
+    <query name="com.yourname.assignments.ptg_assignments_by_sectionid" flattened="true">
         <description>Get Assignments by Section ID (PTG version)</description>
         <args>
             <arg name="sectionid" type="primitive" required="true" />
@@ -364,7 +364,7 @@
             ]]>
         </sql>
     </query>
-    <query name="com.yourname.seed.assignments.ptp_assignments_by_sectionid" flattened="true">
+    <query name="com.yourname.assignments.ptp_assignments_by_sectionid" flattened="true">
       <description>Get Assignments by Section ID (PTP version)</description>
       <args>
         <arg name="sectiondcid" type="primitive" required="true" />
@@ -395,7 +395,7 @@
           ]]>
       </sql>
     </query>
-    <query name="com.yourname.seed.assignments.ptg_assignments_by_assignmentdcid" flattened="true">
+    <query name="com.yourname.assignments.ptg_assignments_by_assignmentdcid" flattened="true">
         <description>Get Assignment by Assignment ID (PTG version)</description>
         <args>
             <arg name="assignmentdcid" type="primitive" required="true" />
@@ -426,7 +426,7 @@
             ]]>
         </sql>
     </query>
-	<query name="com.yourname.seed.assignments.ptg_assignments_created_in_teams" flattened="true">
+	<query name="com.yourname.assignments.ptg_assignments_created_in_teams" flattened="true">
         <description>Get Assignments created in Teams (PTG version)</description>        
         <columns>
             <column>pgassignments.datedue</column>
@@ -454,7 +454,7 @@
             ]]>
         </sql>
     </query>
-    <query name="com.yourname.seed.assignments.ptp_assignments_by_sectionid_and_assignmentid" flattened="true">
+    <query name="com.yourname.assignments.ptp_assignments_by_sectionid_and_assignmentid" flattened="true">
       <description>Get Assignment by Section ID and Assignment ID (PTP version)</description>
       <args>
         <arg name="sectiondcid" type="primitive" required="true" />
@@ -487,7 +487,7 @@
           ]]>
       </sql>
     </query>
-    <query name="com.yourname.seed.assignments.ptp_assignments_by_sectionid_and_assignmentname" flattened="true">
+    <query name="com.yourname.assignments.ptp_assignments_by_sectionid_and_assignmentname" flattened="true">
       <description>Get Assignment by Section ID and Assignment Name (PTP version)</description>
       <args>
         <arg name="sectiondcid" type="primitive" required="true" />
@@ -522,7 +522,7 @@
           ]]>
       </sql>
     </query>
-	<query name="com.yourname.seed.assignments.ptp_assignments_created_in_teams" flattened="true">
+	<query name="com.yourname.assignments.ptp_assignments_created_in_teams" flattened="true">
       <description>Get Assignments created in Teams (PTP version)</description>
       <columns>
         <column>assignmentsection.assignmentsectionid</column>
@@ -550,7 +550,7 @@
           ]]>
       </sql>
     </query>
-    <query name="com.yourname.seed.scores.ptg_scores_by_assignmentid" flattened="true">
+    <query name="com.yourname.scores.ptg_scores_by_assignmentid" flattened="true">
         <description>Get Scores by Assignment ID (PTG version)</description>
         <args>
             <arg name="assignmentid" type="primitive" required="true" />
@@ -579,7 +579,7 @@
             ]]>
         </sql>
     </query>
-    <query name="com.yourname.seed.scores.ptp_scores_by_assignmentid" flattened="true">
+    <query name="com.yourname.scores.ptp_scores_by_assignmentid" flattened="true">
       <description>Get Scores by Assignment ID (PTP version)</description>
       <args>
         <arg name="assignmentid" type="primitive" required="true" />
@@ -614,7 +614,7 @@
               ]]>
       </sql>
     </query>
-    <query name="com.yourname.seed.scores.ptp_scores_by_assignmentid_assignmentsectionid" flattened="true">
+    <query name="com.yourname.scores.ptp_scores_by_assignmentid_assignmentsectionid" flattened="true">
       <description>Get Scores by Assignment ID and AssignmentSection ID(PTP version)</description>
       <args>
         <arg name="assignmentid" type="primitive" required="true" />
@@ -649,7 +649,7 @@
               ]]>
       </sql>
     </query>
-    <query name="com.yourname.seed.teachercategories.teachercategories_by_userid" flattened="true">
+    <query name="com.yourname.teachercategories.teachercategories_by_userid" flattened="true">
       <description>Get Categories by User ID</description>
       <args>
         <arg name="userdcid" type="primitive" required="true" />
@@ -673,7 +673,7 @@
           ]]>
       </sql>
     </query>
-	<query name="com.yourname.seed.teachercategories.teachercategories_by_userid_categoryname" flattened="true">
+	<query name="com.yourname.teachercategories.teachercategories_by_userid_categoryname" flattened="true">
       <description>Get Categories by User ID</description>
       <args>
         <arg name="userdcid" type="primitive" required="true" />

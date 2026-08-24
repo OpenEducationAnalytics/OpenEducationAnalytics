@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.yourname.seed.roster.demographics" flattened="true">
+    <query name="com.yourname.roster.demographics" flattened="true">
         <description>Get user demographics</description>
         <columns>
             <column column="Students.Student_Number">userSourcedId</column>

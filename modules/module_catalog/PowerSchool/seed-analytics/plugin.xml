@@ -2,7 +2,7 @@
 <plugin xmlns="http://plugin.powerschool.pearson.com" 
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd" 
-        name="yourname seed" 
+        name="YourNameHere" 
         version="1.0.0.21"
         description="Plugin for the integration with PowerSchool">
     <oauth></oauth>
@@ -131,7 +131,7 @@
         <field table="TERMS" field="SCHOOLID" access="ViewOnly" />
         <field table="TERMS" field="YEARID" access="ViewOnly" />
     </access_request>
-    <publisher name="yourname">
+    <publisher name="YourNameHere">
         <contact email="N/A" />
     </publisher>
 </plugin>

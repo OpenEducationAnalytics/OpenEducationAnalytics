@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.yourname.seed.roster.userflags.wa" flattened="true">
+    <query name="com.yourname.roster.userflags.wa" flattened="true">
         <description>Get user flags</description>
         <columns>
             <column column="students.student_number">studentSourcedId</column>

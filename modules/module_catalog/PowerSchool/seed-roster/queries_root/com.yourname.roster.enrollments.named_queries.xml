@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.yourname.seed.roster.enrollments" flattened="true">
+    <query name="com.yourname.roster.enrollments" flattened="true">
         <description>Get class enrollments</description>
         <args>
             <arg name="schoolyear" type="primitive" required="true" />
