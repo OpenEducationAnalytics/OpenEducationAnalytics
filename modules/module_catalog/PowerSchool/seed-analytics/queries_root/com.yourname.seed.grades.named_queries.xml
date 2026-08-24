@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.grades.storedgrades.by_year" flattened="true">
+    <query name="com.yourname.seed.grades.storedgrades.by_year" flattened="true">
         <description>Get stored grades by school year</description>
         <args>
             <arg name="schoolyear" type="primitive" required="true" />
@@ -62,7 +62,7 @@
             ]]>
         </sql>
     </query>
-    <query name="com.authentica.seed.grades.gradingperiods.by_year" flattened="true">
+    <query name="com.yourname.seed.grades.gradingperiods.by_year" flattened="true">
         <description>Get grading periods by school year</description>
         <args>
             <arg name="schoolyear" type="primitive" required="true" />

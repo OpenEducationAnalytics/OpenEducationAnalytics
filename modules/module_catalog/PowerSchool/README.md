@@ -29,7 +29,7 @@ This module provides multiple plugins used to extract data from PowerSchool from
  
 The PowerSchool module [welcomes contributions](https://github.com/microsoft/OpenEduAnalytics/blob/main/docs/license/CONTRIBUTING.md).
 
-This module was developed by [Authentica Solutions](https://authenticasolutions.com/).
+This module was developed by <yourname>.
 
 # Legal Notices
 Microsoft and any contributors grant you a license to the Microsoft documentation and other content

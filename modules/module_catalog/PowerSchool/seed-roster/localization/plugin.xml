@@ -2,7 +2,7 @@
 <plugin xmlns="http://plugin.powerschool.pearson.com" 
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd" 
-        name="Authentica seed roster" 
+        name="yourname seed roster" 
         version="1.0.0.7"
         description="Plugin for integration with PowerSchool">
     <oauth></oauth>
@@ -110,7 +110,7 @@
         <field table="USERS" field="LAST_NAME" access="ViewOnly" />
         <field table="USERS" field="LOGINID" access="ViewOnly" />
     </access_request>
-    <publisher name="Authentica Solutions">
+    <publisher name="yourname">
         <contact email="N/A" />
     </publisher>
 </plugin>

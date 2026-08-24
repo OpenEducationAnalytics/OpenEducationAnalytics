@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.roster.academicsessions" flattened="true">
+    <query name="com.yourname.seed.roster.academicsessions" flattened="true">
         <description>Get academic sessions</description>
         <args>
             <arg name="schoolyear" type="primitive" required="true" />

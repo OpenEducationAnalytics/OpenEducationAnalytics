@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.schools" flattened="true">
+    <query name="com.yourname.seed.schools" flattened="true">
         <description>Get schools</description>
         <args>
             

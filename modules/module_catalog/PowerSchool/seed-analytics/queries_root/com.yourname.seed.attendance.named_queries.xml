@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.attendance.daily.by_year" flattened="true">
+    <query name="com.yourname.seed.attendance.daily.by_year" flattened="true">
         <description>Get daily attendance</description>
         <args>
             <arg name="schoolyear" type="primitive" required="true" />

@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.roster.orgs" flattened="true">
+    <query name="com.yourname.seed.roster.orgs" flattened="true">
         <description>Get organizations</description>
         <columns>
             <column column="schools.school_number">sourcedId</column>

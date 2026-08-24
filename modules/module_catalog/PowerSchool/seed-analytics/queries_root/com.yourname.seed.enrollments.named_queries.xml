@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.enrollments.school.by_year" flattened="true">
+    <query name="com.yourname.seed.enrollments.school.by_year" flattened="true">
         <description>Get school enrollments by school year</description>
         <args>
             <arg name="schoolyear" type="primitive" required="true" />
@@ -58,7 +58,7 @@
             ]]>
         </sql>
     </query>
-    <query name="com.authentica.seed.enrollments.section.by_year" flattened="true">
+    <query name="com.yourname.seed.enrollments.section.by_year" flattened="true">
         <description>Get section enrollments by school year</description>
         <args>
             <arg name="schoolyear" type="primitive" required="true" />

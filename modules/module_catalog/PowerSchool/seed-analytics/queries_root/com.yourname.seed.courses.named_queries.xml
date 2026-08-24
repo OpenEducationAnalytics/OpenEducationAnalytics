@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.courses" flattened="true">
+    <query name="com.yourname.seed.courses" flattened="true">
         <description>Get coruses</description>
         <args>
         </args>

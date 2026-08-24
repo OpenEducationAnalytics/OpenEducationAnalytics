@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.discipline.log.by_year" flattened="true">
+    <query name="com.yourname.seed.discipline.log.by_year" flattened="true">
         <description>Get students</description>
         <args>
             <arg name="schoolyear" type="primitive" required="true" />

@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.roster.users" flattened="true">
+    <query name="com.yourname.seed.roster.users" flattened="true">
         <description>Get rosters</description>
         <columns>
             <column column="users.dcid">sourcedId</column>
