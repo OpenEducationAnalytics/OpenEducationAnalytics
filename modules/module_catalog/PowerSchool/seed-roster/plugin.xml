@@ -110,6 +110,6 @@
         <field table="USERS" field="LOGINID" access="ViewOnly" />
     </access_request>
     <publisher name="YourNameHere">
-        <contact email="N/A" />
+        <contact email="yournamehere@yournamehere.com" />
     </publisher>
 </plugin>
