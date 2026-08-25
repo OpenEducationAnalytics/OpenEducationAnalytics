@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.calendars.by_year" flattened="true">
+    <query name="com.yourname.calendars.by_year" flattened="true">
         <description>Get calendars</description>
         <args>
             <arg name="schoolyear" type="primitive" required="true" />

@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.gen.by_category" flattened="true">
+    <query name="com.yourname.gen.by_category" flattened="true">
         <description>Get code values</description>
         <args>
             <arg name="category" type="primitive" required="true" />
@@ -24,7 +24,7 @@
             ]]>
         </sql>
     </query>
-    <query name="com.authentica.seed.gen.categories" flattened="true">
+    <query name="com.yourname.gen.categories" flattened="true">
         <description>Get code value categories</description>
         <args>
             <arg name="category" type="primitive" required="true" />

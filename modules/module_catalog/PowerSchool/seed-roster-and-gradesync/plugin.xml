@@ -2,7 +2,7 @@
 <plugin xmlns="http://plugin.powerschool.pearson.com" 
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
         xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd" 
-        name="Authentica Grade Sync - seed" 
+        name="YourNameHere" 
         version="1.0.0.6"
         description="Plugin for the integration with PowerSchool, Microsoft Teams Assignments.">
     <oauth></oauth>
@@ -183,7 +183,7 @@
         <field table="ROLEDEF" field="ID" access="ViewOnly" />
         <field table="ROLEDEF" field="NAME" access="ViewOnly" />
     </access_request>
-    <publisher name="Authentica Solutions">
-        <contact email="N/A" />
+    <publisher name="YourNameHere">
+        <contact email="yournamehere@yourdomain.com" />
     </publisher>
 </plugin>

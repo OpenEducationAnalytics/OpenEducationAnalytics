@@ -1,5 +1,5 @@
 <queries>
-    <query name="com.authentica.seed.roster.roles" flattened="true">
+    <query name="com.yourname.roster.roles" flattened="true">
         <description>Get user roles</description>
         <columns>
             <column column="users.dcid">sourcedId</column>
