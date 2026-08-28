@@ -1,6 +1,6 @@
 tslearn==0.4.1
 tsfresh==0.17.0
-dash==1.19.0
+dash==2.15.0
 dash_cytoscape==0.2.0
 gevent==23.9.1
 flask_cors==3.0.10
